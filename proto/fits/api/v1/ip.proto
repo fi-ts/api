@@ -1,0 +1,206 @@
+syntax = "proto3";
+
+package fits.api.v1;
+
+import "buf/validate/validate.proto";
+import "fits/api/v1/common.proto";
+import "fits/api/v1/predefined_rules.proto";
+
+// IPService provides IP address management operations.
+service IPService {
+  // Returns the IP address with the specified IP.
+  rpc Get(IPServiceGetRequest) returns (IPServiceGetResponse) {
+    option (project_roles) = PROJECT_ROLE_OWNER;
+    option (project_roles) = PROJECT_ROLE_EDITOR;
+    option (project_roles) = PROJECT_ROLE_VIEWER;
+    option (auditing) = AUDITING_EXCLUDED;
+  }
+  // Creates a new IP address.
+  rpc Create(IPServiceCreateRequest) returns (IPServiceCreateResponse) {
+    option (project_roles) = PROJECT_ROLE_OWNER;
+    option (project_roles) = PROJECT_ROLE_EDITOR;
+    option (auditing) = AUDITING_INCLUDED;
+  }
+  // Updates an IP address.
+  rpc Update(IPServiceUpdateRequest) returns (IPServiceUpdateResponse) {
+    option (project_roles) = PROJECT_ROLE_OWNER;
+    option (project_roles) = PROJECT_ROLE_EDITOR;
+    option (auditing) = AUDITING_INCLUDED;
+  }
+  // Returns the list of all IP addresses.
+  rpc List(IPServiceListRequest) returns (IPServiceListResponse) {
+    option (project_roles) = PROJECT_ROLE_OWNER;
+    option (project_roles) = PROJECT_ROLE_EDITOR;
+    option (project_roles) = PROJECT_ROLE_VIEWER;
+    option (auditing) = AUDITING_EXCLUDED;
+  }
+  // Deletes an IP address.
+  rpc Delete(IPServiceDeleteRequest) returns (IPServiceDeleteResponse) {
+    option (project_roles) = PROJECT_ROLE_OWNER;
+    option (project_roles) = PROJECT_ROLE_EDITOR;
+    option (auditing) = AUDITING_INCLUDED;
+  }
+}
+
+// IPType specifies different ip address types
+enum IPType {
+  // IP_TYPE_UNSPECIFIED is not specified
+  IP_TYPE_UNSPECIFIED = 0;
+  // IP_TYPE_EPHEMERAL defines a ephemeral ip address which is freed/deleted after usage
+  IP_TYPE_EPHEMERAL = 1 [(enum_string_value) = "ephemeral"];
+  // IP_TYPE_STATIC defines a static ip address which must be freed/deleted explicitly
+  IP_TYPE_STATIC = 2 [(enum_string_value) = "static"];
+}
+
+// IPAddressFamily defines either IPv4 or IPv6 Addressfamily
+enum IPAddressFamily {
+  // IP_ADDRESS_FAMILY_UNSPECIFIED is not specified
+  IP_ADDRESS_FAMILY_UNSPECIFIED = 0;
+  // IP_ADDRESS_FAMILY_V4 defines a IPv4 address
+  IP_ADDRESS_FAMILY_V4 = 1 [(enum_string_value) = "ipv4"];
+  // IP_ADDRESS_FAMILY_V6 defines a IPv6 address
+  IP_ADDRESS_FAMILY_V6 = 2 [(enum_string_value) = "ipv6"];
+}
+
+// IP is a ip address which can be used as loadbalancer addresses
+message IP {
+  // Uuid of this ip
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // Meta for this ip
+  Meta meta = 2;
+  // Ip is either ipv4 or ipv6 address
+  string ip = 3 [(buf.validate.field).string.ip = true];
+  // Name of this ip
+  string name = 4 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Description of this ip
+  string description = 5 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
+  // Network is the network this ip belongs to
+  string network = 6 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Project where this ip address belongs to
+  string project = 7 [(buf.validate.field).string.uuid = true];
+  // Type of this ip
+  IPType type = 8 [(buf.validate.field).enum.defined_only = true];
+  // Namespace if specified this ip is from a namespaced network and can therefore overlap with others
+  // Will be equal with project most of the time
+  optional string namespace = 9 [(buf.validate.field).string.uuid = true];
+}
+
+// IPServiceGetRequest is the request payload for a ip get request
+message IPServiceGetRequest {
+  // IP of the ip to get
+  string ip = 1 [(buf.validate.field).string.ip = true];
+  // Project of the ip
+  string project = 2 [(buf.validate.field).string.uuid = true];
+  // Namespace can be specified to get the ip of a namespace.
+  optional string namespace = 3 [(buf.validate.field).string.uuid = true];
+}
+
+// IPServiceCreateRequest is the request payload for a ip create request
+message IPServiceCreateRequest {
+  // Network from which the IP should be created
+  string network = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Project of the ip
+  string project = 2 [(buf.validate.field).string.uuid = true];
+  // Name of the ip
+  optional string name = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Description of the ip
+  optional string description = 4 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
+  // IP if given try to create this ip if still available
+  optional string ip = 5 [(buf.validate.field).string.ip = true];
+  // Machine for which this ip should get created
+  optional string machine = 6 [(buf.validate.field).string.uuid = true];
+  // Labels to put onto the ip
+  optional Labels labels = 7;
+  // Type of the IP, ether ephemeral (default), or static
+  optional IPType type = 8 [(buf.validate.field).enum.defined_only = true];
+  // Addressfamily of the IP to create, defaults to ipv4
+  optional IPAddressFamily address_family = 9 [(buf.validate.field).enum.defined_only = true];
+}
+
+// IPServiceUpdateRequest is the request payload for a ip update request
+message IPServiceUpdateRequest {
+  // Ip the ip to update
+  string ip = 1 [(buf.validate.field).string.ip = true];
+  // UpdateMeta contains the timestamp and strategy to be used in this update request
+  UpdateMeta update_meta = 2 [(buf.validate.field).required = true];
+  // Project id of the ip
+  string project = 3 [(buf.validate.field).string.uuid = true];
+  // Name of this ip
+  optional string name = 4 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Description of this ip
+  optional string description = 5 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
+  // Type of this ip
+  optional IPType type = 6 [(buf.validate.field).enum.defined_only = true];
+  // Labels on this ip
+  optional UpdateLabels labels = 7;
+}
+
+// IPServiceListRequest is the request payload for a ip list request
+message IPServiceListRequest {
+  // Project of the ips to list
+  string project = 1 [(buf.validate.field).string.uuid = true];
+  // Query to list one ore more ips
+  IPQuery query = 2;
+}
+
+// IPQuery can be used to query a IP or a list of IP
+message IPQuery {
+  // Ip the ip to list
+  optional string ip = 1 [(buf.validate.field).string.ip = true];
+  // Network from where the ips to list
+  optional string network = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Project of the ips to list
+  optional string project = 3 [(buf.validate.field).string.uuid = true];
+  // Name of this ip
+  optional string name = 4 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Uuid for which this ips should get filtered
+  optional string uuid = 5 [(buf.validate.field).string.uuid = true];
+  // Machine for which this ips should get filtered
+  optional string machine = 6 [(buf.validate.field).string.uuid = true];
+  // ParentPrefixCidr for which this ips should get filtered
+  optional string parent_prefix_cidr = 7 [(buf.validate.field).string.ip_prefix = true];
+  // Labels for which this ips should get filtered
+  optional Labels labels = 8;
+  // Static if set to true, this will be a Static ip
+  optional IPType type = 9 [(buf.validate.field).enum.defined_only = true];
+  // Addressfamily of the IPs to list, defaults to all addressfamilies
+  optional IPAddressFamily address_family = 10 [(buf.validate.field).enum.defined_only = true];
+}
+
+// IPServiceDeleteRequest is the request payload for a ip delete request
+message IPServiceDeleteRequest {
+  // IP of the ip to delete
+  string ip = 1 [(buf.validate.field).string.ip = true];
+  // Project of the ip
+  string project = 2 [(buf.validate.field).string.uuid = true];
+}
+
+// IPServiceGetResponse is the response payload for a ip get request
+message IPServiceGetResponse {
+  // Ip the ip
+  IP ip = 1;
+}
+
+// IPServiceUpdateResponse is the response payload for a ip update request
+message IPServiceUpdateResponse {
+  // Ip the ip
+  IP ip = 1;
+}
+
+// IPServiceCreateResponse is the response payload for a ip create request
+message IPServiceCreateResponse {
+  // Ip the ip
+  IP ip = 1;
+}
+
+// IPServiceListResponse is the response payload for a ip list request
+message IPServiceListResponse {
+  // Ips the ips
+  repeated IP ips = 1;
+}
+
+// IPServiceDeleteResponse is the response payload for a ip delete request
+message IPServiceDeleteResponse {
+  // Ip the ip
+  IP ip = 1;
+}

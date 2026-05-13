@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package fits.api.v1;
+
+import "fits.api.v1/common.proto";
+
+service WrongProjectService {
+  rpc Add(WrongProjectServiceAddRequest) returns (WrongProjectServiceAddResponse) {
+    option (tenant_roles) = TENANT_ROLE_OWNER;
+  }
+  rpc Get(WrongProjectServiceGetRequest) returns (WrongProjectServiceGetResponse) {
+    option (project_roles) = PROJECT_ROLE_OWNER;
+  }
+  rpc List(WrongProjectServiceListRequest) returns (WrongProjectServiceListResponse) {}
+  rpc Update(WrongProjectServiceUpdateRequest) returns (WrongProjectServiceUpdateResponse) {
+    option (admin_roles) = ADMIN_ROLE_VIEWER;
+    option (project_roles) = PROJECT_ROLE_OWNER;
+  }
+  rpc Delete(WrongProjectServiceDeleteRequest) returns (WrongProjectServiceDeleteResponse) {
+    option (admin_roles) = ADMIN_ROLE_VIEWER;
+    option (fits.api.v1.visibility) = VISIBILITY_PUBLIC;
+  }
+  rpc Charge(WrongProjectServiceChargeRequest) returns (WrongProjectServiceChargeResponse) {
+    option (chargeable) = CHARGEABLE_TRUE;
+  }
+}
+
+message WrongProjectServiceAddRequest {
+  string uuid = 1;
+}
+
+message WrongProjectServiceAddResponse {
+  string login = 1;
+}
+message WrongProjectServiceGetRequest {
+  string uuid = 1;
+}
+
+message WrongProjectServiceGetResponse {
+  string uuid = 1;
+}
+message WrongProjectServiceListRequest {
+  string uuid = 1;
+}
+
+message WrongProjectServiceListResponse {
+  string uuid = 1;
+}
+
+message WrongProjectServiceUpdateRequest {
+  string uuid = 1;
+  string project = 2;
+  fits.api.v1.Meta meta = 3;
+}
+message WrongProjectServiceUpdateResponse {
+  string uuid = 1;
+}
+
+message WrongProjectServiceDeleteRequest {
+  string uuid = 1;
+}
+
+message WrongProjectServiceDeleteResponse {
+  string uuid = 1;
+}
+message WrongProjectServiceChargeRequest {
+  string uuid = 1;
+}
+
+message WrongProjectServiceChargeResponse {
+  string uuid = 1;
+}

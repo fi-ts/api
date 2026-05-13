@@ -1,0 +1,143 @@
+syntax = "proto3";
+
+package fits.api.v1;
+
+import "buf/validate/validate.proto";
+import "fits/api/v1/common.proto";
+import "fits/api/v1/predefined_rules.proto";
+import "google/protobuf/timestamp.proto";
+
+// ProjectService provides project management operations.
+service ProjectService {
+  // Returns the list of all accessible projects.
+  rpc List(ProjectServiceListRequest) returns (ProjectServiceListResponse) {
+    option (visibility) = VISIBILITY_SELF;
+    option (auditing) = AUDITING_EXCLUDED;
+  }
+  // Returns the project with the specified UUID.
+  rpc Get(ProjectServiceGetRequest) returns (ProjectServiceGetResponse) {
+    option (project_roles) = PROJECT_ROLE_OWNER;
+    option (project_roles) = PROJECT_ROLE_EDITOR;
+    option (project_roles) = PROJECT_ROLE_VIEWER;
+    option (auditing) = AUDITING_EXCLUDED;
+  }
+  // Create a project
+  rpc Create(ProjectServiceCreateRequest) returns (ProjectServiceCreateResponse) {
+    option (tenant_roles) = TENANT_ROLE_OWNER;
+    option (tenant_roles) = TENANT_ROLE_EDITOR;
+    option (auditing) = AUDITING_INCLUDED;
+  }
+  // Delete a project
+  rpc Delete(ProjectServiceDeleteRequest) returns (ProjectServiceDeleteResponse) {
+    option (project_roles) = PROJECT_ROLE_OWNER;
+    option (auditing) = AUDITING_INCLUDED;
+  }
+  // Update a project
+  rpc Update(ProjectServiceUpdateRequest) returns (ProjectServiceUpdateResponse) {
+    option (project_roles) = PROJECT_ROLE_OWNER;
+    option (project_roles) = PROJECT_ROLE_EDITOR;
+    option (auditing) = AUDITING_INCLUDED;
+  }
+}
+
+// Project defines a group of resources belonging to a tenant
+// a tenant can have multiple projects
+message Project {
+  // Uuid of this project
+  string uuid = 1;
+  // Meta for this project
+  Meta meta = 2;
+  // Name of this project must be unique per tenant
+  string name = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Description of this project
+  string description = 4 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
+  // Tenant this project belongs to
+  string tenant = 5;
+  // AvatarUrl of the Project
+  optional string avatar_url = 6;
+}
+
+// ProjectServiceListRequest is the request payload to list all projects
+message ProjectServiceListRequest {
+  // Id lists only projects with this id
+  optional string id = 1;
+  // Name lists only projects with this name
+  optional string name = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Tenant lists only projects of this tenant
+  optional string tenant = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Labels lists only projects containing the given labels
+  optional Labels labels = 4;
+}
+
+// ProjectServiceListResponse is the response payload to list all projects
+message ProjectServiceListResponse {
+  // Projects is a list of all your projects
+  repeated Project projects = 1;
+}
+
+// ProjectServiceGetRequest is the request payload to get a project
+message ProjectServiceGetRequest {
+  // Project is the uuid of the project to get
+  string project = 1 [(buf.validate.field).string.uuid = true];
+}
+
+// ProjectServiceGetResponse is the response payload to get a projects
+message ProjectServiceGetResponse {
+  // Project is the project
+  Project project = 1;
+}
+
+// ProjectServiceCreateRequest is the request payload to Create a project
+message ProjectServiceCreateRequest {
+  // Login is the tenant of this project
+  // TODO: is login really a good name?
+  string login = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Name of this project, unique per tenant
+  string name = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Description of this project
+  string description = 3 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
+  // Avatar URL of the project
+  optional string avatar_url = 4;
+  // Labels on the project
+  Labels labels = 5;
+}
+
+// ProjectServiceCreateResponse is the response payload of creation of a project
+message ProjectServiceCreateResponse {
+  // Project is the project
+  Project project = 1;
+}
+
+// ProjectServiceDeleteRequest is the request payload to delete a project
+message ProjectServiceDeleteRequest {
+  // Project is the uuid of the project to get
+  string project = 1 [(buf.validate.field).string.uuid = true];
+}
+
+// ProjectServiceDeleteResponse is the response payload to delete a project
+message ProjectServiceDeleteResponse {
+  // Project is the project
+  Project project = 1;
+}
+
+// ProjectServiceUpdateRequest is the request payload to update a project
+message ProjectServiceUpdateRequest {
+  // Project is the uuid of the project to get
+  string project = 1 [(buf.validate.field).string.uuid = true];
+  // UpdateMeta contains the timestamp and strategy to be used in this update request
+  UpdateMeta update_meta = 2 [(buf.validate.field).required = true];
+  // Name of this project unique per tenant
+  optional string name = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Description of this project
+  optional string description = 4 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
+  // Avatar URL of the project
+  optional string avatar_url = 5;
+  // Labels on this project
+  optional UpdateLabels labels = 6;
+}
+
+// ProjectServiceUpdateResponse is the response payload to update a project
+message ProjectServiceUpdateResponse {
+  // Project is the project
+  Project project = 1;
+}

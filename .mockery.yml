@@ -1,0 +1,11 @@
+---
+all: true
+recursive: true
+include-auto-generated: true
+dir: 'go/tests/mocks/{{.InterfaceDirRelative | trimPrefix "go/"}}'
+filename: "{{.InterfaceName}}.go"
+pkgname: '{{.SrcPackageName}}'
+structname: '{{.InterfaceName}}'
+packages:
+  github.com/fi-ts/api/go/fits:
+  github.com/fi-ts/api/go/client:

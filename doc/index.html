@@ -1,0 +1,4441 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Protocol Documentation</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic"/>
+    <style>
+      body {
+        width: 60em;
+        margin: 1em auto;
+        color: #222;
+        font-family: "Ubuntu", sans-serif;
+        padding-bottom: 4em;
+      }
+
+      h1 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      h2 {
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin: 1.5em 0;
+      }
+
+      h3 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      a {
+        text-decoration: none;
+        color: #567e25;
+      }
+
+      table {
+        width: 100%;
+        font-size: 80%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        font-weight: 700;
+        background-color: #dcdcdc;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #fbfbfb;
+      }
+
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5ex 2ex;
+      }
+
+      td p {
+        text-indent: 1em;
+        margin: 0;
+      }
+
+      td p:nth-child(1) {
+        text-indent: 0;  
+      }
+
+       
+      .field-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .field-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .field-table td:nth-child(3) {  
+        width: 6em;
+      }
+      .field-table td:nth-child(4) {  
+        width: auto;
+      }
+
+       
+      .extension-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(3) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(4) {  
+        width: 5em;
+      }
+      .extension-table td:nth-child(5) {  
+        width: auto;
+      }
+
+       
+      .enum-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .enum-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .enum-table td:nth-child(3) {  
+        width: auto;
+      }
+
+       
+      .scalar-value-types-table tr {
+        height: 3em;
+      }
+
+       
+      #toc-container ul {
+        list-style-type: none;
+        padding-left: 1em;
+        line-height: 180%;
+        margin: 0;
+      }
+      #toc > li > a {
+        font-weight: bold;
+      }
+
+       
+      .file-heading {
+        width: 100%;
+        display: table;
+        border-bottom: 1px solid #aaa;
+        margin: 4em 0 1.5em 0;
+      }
+      .file-heading h2 {
+        border: none;
+        display: table-cell;
+      }
+      .file-heading a {
+        text-align: right;
+        display: table-cell;
+      }
+
+       
+      .badge {
+        width: 1.6em;
+        height: 1.6em;
+        display: inline-block;
+
+        line-height: 1.6em;
+        text-align: center;
+        font-weight: bold;
+        font-size: 60%;
+
+        color: #89ba48;
+        background-color: #dff0c8;
+
+        margin: 0.5ex 1em 0.5ex -1em;
+        border: 1px solid #fbfbfb;
+        border-radius: 1ex;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+  </head>
+
+  <body>
+
+    <h1 id="title">Protocol Documentation</h1>
+
+    <h2>Table of Contents</h2>
+
+    <div id="toc-container">
+      <ul id="toc">
+        
+          
+          <li>
+            <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto">fits/api/v1/predefined_rules.proto</a>
+            <ul>
+              
+              
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#fits%2fapi%2fv1%2fcommon.proto">fits/api/v1/common.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.v1.Labels"><span class="badge">M</span>Labels</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.Labels.LabelsEntry"><span class="badge">M</span>Labels.LabelsEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.Meta"><span class="badge">M</span>Meta</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.Paging"><span class="badge">M</span>Paging</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.UpdateLabels"><span class="badge">M</span>UpdateLabels</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.UpdateMeta"><span class="badge">M</span>UpdateMeta</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#fits.api.v1.AdminRole"><span class="badge">E</span>AdminRole</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.Auditing"><span class="badge">E</span>Auditing</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.InfraRole"><span class="badge">E</span>InfraRole</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.MachineRole"><span class="badge">E</span>MachineRole</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.OptimisticLockingStrategy"><span class="badge">E</span>OptimisticLockingStrategy</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ProjectRole"><span class="badge">E</span>ProjectRole</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantRole"><span class="badge">E</span>TenantRole</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.Visibility"><span class="badge">E</span>Visibility</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fcommon.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fcommon.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fcommon.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fcommon.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fcommon.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fcommon.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#fits%2fapi%2fv1%2fhealth.proto">fits/api/v1/health.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.v1.Health"><span class="badge">M</span>Health</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.HealthServiceGetRequest"><span class="badge">M</span>HealthServiceGetRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.HealthServiceGetResponse"><span class="badge">M</span>HealthServiceGetResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.HealthStatus"><span class="badge">M</span>HealthStatus</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.HealthStatus.PartitionsEntry"><span class="badge">M</span>HealthStatus.PartitionsEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.PartitionHealth"><span class="badge">M</span>PartitionHealth</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#fits.api.v1.Service"><span class="badge">E</span>Service</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ServiceStatus"><span class="badge">E</span>ServiceStatus</a>
+                </li>
+              
+              
+              
+                <li>
+                  <a href="#fits.api.v1.HealthService"><span class="badge">S</span>HealthService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#fits%2fapi%2fv1%2fip.proto">fits/api/v1/ip.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.v1.IP"><span class="badge">M</span>IP</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.IPQuery"><span class="badge">M</span>IPQuery</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.IPServiceCreateRequest"><span class="badge">M</span>IPServiceCreateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.IPServiceCreateResponse"><span class="badge">M</span>IPServiceCreateResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.IPServiceDeleteRequest"><span class="badge">M</span>IPServiceDeleteRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.IPServiceDeleteResponse"><span class="badge">M</span>IPServiceDeleteResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.IPServiceGetRequest"><span class="badge">M</span>IPServiceGetRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.IPServiceGetResponse"><span class="badge">M</span>IPServiceGetResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.IPServiceListRequest"><span class="badge">M</span>IPServiceListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.IPServiceListResponse"><span class="badge">M</span>IPServiceListResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.IPServiceUpdateRequest"><span class="badge">M</span>IPServiceUpdateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.IPServiceUpdateResponse"><span class="badge">M</span>IPServiceUpdateResponse</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#fits.api.v1.IPAddressFamily"><span class="badge">E</span>IPAddressFamily</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.IPType"><span class="badge">E</span>IPType</a>
+                </li>
+              
+              
+              
+                <li>
+                  <a href="#fits.api.v1.IPService"><span class="badge">S</span>IPService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#fits%2fapi%2fv1%2ftoken.proto">fits/api/v1/token.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.v1.MethodPermission"><span class="badge">M</span>MethodPermission</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.Token"><span class="badge">M</span>Token</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.Token.ProjectRolesEntry"><span class="badge">M</span>Token.ProjectRolesEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.Token.TenantRolesEntry"><span class="badge">M</span>Token.TenantRolesEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TokenServiceCreateRequest"><span class="badge">M</span>TokenServiceCreateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TokenServiceCreateRequest.ProjectRolesEntry"><span class="badge">M</span>TokenServiceCreateRequest.ProjectRolesEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TokenServiceCreateRequest.TenantRolesEntry"><span class="badge">M</span>TokenServiceCreateRequest.TenantRolesEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TokenServiceCreateResponse"><span class="badge">M</span>TokenServiceCreateResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TokenServiceGetRequest"><span class="badge">M</span>TokenServiceGetRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TokenServiceGetResponse"><span class="badge">M</span>TokenServiceGetResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TokenServiceListRequest"><span class="badge">M</span>TokenServiceListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TokenServiceListResponse"><span class="badge">M</span>TokenServiceListResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TokenServiceRefreshRequest"><span class="badge">M</span>TokenServiceRefreshRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TokenServiceRefreshResponse"><span class="badge">M</span>TokenServiceRefreshResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TokenServiceRevokeRequest"><span class="badge">M</span>TokenServiceRevokeRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TokenServiceRevokeResponse"><span class="badge">M</span>TokenServiceRevokeResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TokenServiceUpdateRequest"><span class="badge">M</span>TokenServiceUpdateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TokenServiceUpdateRequest.ProjectRolesEntry"><span class="badge">M</span>TokenServiceUpdateRequest.ProjectRolesEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TokenServiceUpdateRequest.TenantRolesEntry"><span class="badge">M</span>TokenServiceUpdateRequest.TenantRolesEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TokenServiceUpdateResponse"><span class="badge">M</span>TokenServiceUpdateResponse</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#fits.api.v1.TokenType"><span class="badge">E</span>TokenType</a>
+                </li>
+              
+              
+              
+                <li>
+                  <a href="#fits.api.v1.TokenService"><span class="badge">S</span>TokenService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#fits%2fapi%2fv1%2fmethod.proto">fits/api/v1/method.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.v1.MethodServiceListRequest"><span class="badge">M</span>MethodServiceListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.MethodServiceListResponse"><span class="badge">M</span>MethodServiceListResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.MethodServiceTokenScopedListRequest"><span class="badge">M</span>MethodServiceTokenScopedListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.MethodServiceTokenScopedListResponse"><span class="badge">M</span>MethodServiceTokenScopedListResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.MethodServiceTokenScopedListResponse.ProjectRolesEntry"><span class="badge">M</span>MethodServiceTokenScopedListResponse.ProjectRolesEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.MethodServiceTokenScopedListResponse.TenantRolesEntry"><span class="badge">M</span>MethodServiceTokenScopedListResponse.TenantRolesEntry</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#fits.api.v1.MethodService"><span class="badge">S</span>MethodService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#fits%2fapi%2fv1%2fproject.proto">fits/api/v1/project.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.v1.Project"><span class="badge">M</span>Project</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ProjectServiceCreateRequest"><span class="badge">M</span>ProjectServiceCreateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ProjectServiceCreateResponse"><span class="badge">M</span>ProjectServiceCreateResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ProjectServiceDeleteRequest"><span class="badge">M</span>ProjectServiceDeleteRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ProjectServiceDeleteResponse"><span class="badge">M</span>ProjectServiceDeleteResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ProjectServiceGetRequest"><span class="badge">M</span>ProjectServiceGetRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ProjectServiceGetResponse"><span class="badge">M</span>ProjectServiceGetResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ProjectServiceListRequest"><span class="badge">M</span>ProjectServiceListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ProjectServiceListResponse"><span class="badge">M</span>ProjectServiceListResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ProjectServiceUpdateRequest"><span class="badge">M</span>ProjectServiceUpdateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ProjectServiceUpdateResponse"><span class="badge">M</span>ProjectServiceUpdateResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#fits.api.v1.ProjectService"><span class="badge">S</span>ProjectService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#fits%2fapi%2fv1%2ftenant.proto">fits/api/v1/tenant.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.v1.Tenant"><span class="badge">M</span>Tenant</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantServiceCreateRequest"><span class="badge">M</span>TenantServiceCreateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantServiceCreateResponse"><span class="badge">M</span>TenantServiceCreateResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantServiceDeleteRequest"><span class="badge">M</span>TenantServiceDeleteRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantServiceDeleteResponse"><span class="badge">M</span>TenantServiceDeleteResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantServiceGetRequest"><span class="badge">M</span>TenantServiceGetRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantServiceGetResponse"><span class="badge">M</span>TenantServiceGetResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantServiceListRequest"><span class="badge">M</span>TenantServiceListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantServiceListResponse"><span class="badge">M</span>TenantServiceListResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantServiceUpdateRequest"><span class="badge">M</span>TenantServiceUpdateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantServiceUpdateResponse"><span class="badge">M</span>TenantServiceUpdateResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#fits.api.v1.TenantService"><span class="badge">S</span>TenantService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#fits%2fapi%2fv1%2fversion.proto">fits/api/v1/version.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.v1.Version"><span class="badge">M</span>Version</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.VersionServiceGetRequest"><span class="badge">M</span>VersionServiceGetRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.VersionServiceGetResponse"><span class="badge">M</span>VersionServiceGetResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#fits.api.v1.VersionService"><span class="badge">S</span>VersionService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+      </ul>
+    </div>
+
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/v1/predefined_rules.proto">fits/api/v1/predefined_rules.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+
+      
+
+      
+        <h3 id="fits/api/v1/predefined_rules.proto-extensions">File-level Extensions</h3>
+        <table class="extension-table">
+          <thead>
+            <tr><td>Extension</td><td>Type</td><td>Base</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>keys_and_values_trimmed</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.MapRules">.buf.validate.MapRules</a></td>
+                <td>80068951</td>
+                <td><p>Keys and Values trimmed enforces all map keys and values to be trimmed, e.g. no whitespaces at the begin and end</p></td>
+              </tr>
+            
+              <tr>
+                <td>keys_trimmed</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.MapRules">.buf.validate.MapRules</a></td>
+                <td>80068952</td>
+                <td><p>Keys trimmed enforces all map keys and values to be trimmed, e.g. no whitespaces at the begin and end</p></td>
+              </tr>
+            
+              <tr>
+                <td>all_trimmed</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.RepeatedRules">.buf.validate.RepeatedRules</a></td>
+                <td>80058954</td>
+                <td><p>All Trimmed enforces all strings to be trimmed, e.g. no whitespaces at the begin and end</p></td>
+              </tr>
+            
+              <tr>
+                <td>are_host_and_port</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.RepeatedRules">.buf.validate.RepeatedRules</a></td>
+                <td>80058953</td>
+                <td><p>AreHostAndPort validates if a slice of strings are all in the form of &lt;ip | host&gt;:&lt;port&gt;</p></td>
+              </tr>
+            
+              <tr>
+                <td>ips</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.RepeatedRules">.buf.validate.RepeatedRules</a></td>
+                <td>80058952</td>
+                <td><p>Ips validates if a slice of ips in string form are valid</p></td>
+              </tr>
+            
+              <tr>
+                <td>prefixes</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.RepeatedRules">.buf.validate.RepeatedRules</a></td>
+                <td>80058951</td>
+                <td><p>Prefixes validates if a slice of prefixes in string form are valid</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_description</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80048953</td>
+                <td><p>IsDescription returns true if description field satisfies our requirements</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_ip_or_hostname</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80048957</td>
+                <td><p>IsIpOrHostname validates that the given string is either a ip or a hostname</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_name</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80048952</td>
+                <td><p>IsName returns true if name field satisfies our requirements</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_partition</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80048954</td>
+                <td><p>IsPartition returns true if partition field satisfies our requirements</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_prefix</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80048955</td>
+                <td><p>IsPrefix validates if the given string is a valid prefix</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_uri</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80048956</td>
+                <td><p>IsUri validates if the given string is a valid URI</p></td>
+              </tr>
+            
+              <tr>
+                <td>macaddress</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80048951</td>
+                <td><p>Macaddress returns true if the given string is a valid macadress</p></td>
+              </tr>
+            
+              <tr>
+                <td>trimmed</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80048958</td>
+                <td><p>Trimmed enforces the string to be trimmed, e.g. no whitespaces at the begin and end</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/v1/common.proto">fits/api/v1/common.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.v1.Labels">Labels</h3>
+        <p>Labels define additional information to a entity</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>labels</td>
+                  <td><a href="#fits.api.v1.Labels.LabelsEntry">Labels.LabelsEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>Labels consists labels </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.Labels.LabelsEntry">Labels.LabelsEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.Meta">Meta</h3>
+        <p>Meta of a message</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>labels</td>
+                  <td><a href="#fits.api.v1.Labels">Labels</a></td>
+                  <td>optional</td>
+                  <td><p>Tags on this entity </p></td>
+                </tr>
+              
+                <tr>
+                  <td>created_at</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>CreatedAt is the date when this entity was created </p></td>
+                </tr>
+              
+                <tr>
+                  <td>updated_at</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>UpdatedAt is the date when this entity was updated
+must be part of the update request to ensure optimistic locking </p></td>
+                </tr>
+              
+                <tr>
+                  <td>generation</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>Generation identifies how often this entity was modified since creation. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.Paging">Paging</h3>
+        <p>Paging defines paging for methods with a lot of results</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>page</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td>optional</td>
+                  <td><p>Page is used for pagination, if unset only the first page is returned,
+the list response contains then the page number for the next page. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>count</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td>optional</td>
+                  <td><p>Count is the number of results returned per page, if not given server side defaults apply </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.UpdateLabels">UpdateLabels</h3>
+        <p>UpdateLabels is a message to update labels</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>update</td>
+                  <td><a href="#fits.api.v1.Labels">Labels</a></td>
+                  <td></td>
+                  <td><p>Update labels. New ones will be added, existing ones overwritten </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remove</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Remove labels by key </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.UpdateMeta">UpdateMeta</h3>
+        <p>UpdateMeta must be provided with every UpdateRequest to define how optimistic locking should be handled</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>updated_at</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>UpdatedAt is the date when this entity was updated
+must be part of the update request to ensure optimistic locking </p></td>
+                </tr>
+              
+                <tr>
+                  <td>locking_strategy</td>
+                  <td><a href="#fits.api.v1.OptimisticLockingStrategy">OptimisticLockingStrategy</a></td>
+                  <td></td>
+                  <td><p>LockingStrategy to be used for this update request </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="fits.api.v1.AdminRole">AdminRole</h3>
+        <p>AdminRole specifies what role a logged in user needs to call this admin service</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>ADMIN_ROLE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>ADMIN_ROLE_UNSPECIFIED is not specified</p></td>
+              </tr>
+            
+              <tr>
+                <td>ADMIN_ROLE_EDITOR</td>
+                <td>1</td>
+                <td><p>ADMIN_ROLE_EDITOR the logged in user needs at least editor role to call this method</p></td>
+              </tr>
+            
+              <tr>
+                <td>ADMIN_ROLE_VIEWER</td>
+                <td>2</td>
+                <td><p>ADMIN_ROLE_VIEWER the logged in user needs at least viewer role to call this method</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="fits.api.v1.Auditing">Auditing</h3>
+        <p>Auditing option specified per service method</p><p>by default all service methods are included</p><p>add the auditing option if you want to exclude a method in auditing</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>AUDITING_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>AUDITING_UNSPECIFIED is not specified</p></td>
+              </tr>
+            
+              <tr>
+                <td>AUDITING_INCLUDED</td>
+                <td>1</td>
+                <td><p>AUDITING_INCLUDED if a method is annotated with this, all calls are audited</p></td>
+              </tr>
+            
+              <tr>
+                <td>AUDITING_EXCLUDED</td>
+                <td>2</td>
+                <td><p>AUDITING_EXCLUDED if a method is annotated with this, no calls are audited</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="fits.api.v1.InfraRole">InfraRole</h3>
+        <p>InfraRole specifies what role a microservice needs to call this infra service</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>INFRA_ROLE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>INFRA_ROLE_UNSPECIFIED is not specified</p></td>
+              </tr>
+            
+              <tr>
+                <td>INFRA_ROLE_EDITOR</td>
+                <td>1</td>
+                <td><p>INFRA_ROLE_EDITOR a microservice needs at least editor role to call this method</p></td>
+              </tr>
+            
+              <tr>
+                <td>INFRA_ROLE_VIEWER</td>
+                <td>2</td>
+                <td><p>INFRA_ROLE_VIEWER a microservice needs at least viewer role to call this method</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="fits.api.v1.MachineRole">MachineRole</h3>
+        <p>MachineRole specifies what role a microservice needs to call this machine service</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>MACHINE_ROLE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>MACHINE_ROLE_UNSPECIFIED is not specified</p></td>
+              </tr>
+            
+              <tr>
+                <td>MACHINE_ROLE_EDITOR</td>
+                <td>1</td>
+                <td><p>MACHINE_ROLE_EDITOR a microservice needs at least editor role to call this method</p></td>
+              </tr>
+            
+              <tr>
+                <td>MACHINE_ROLE_VIEWER</td>
+                <td>2</td>
+                <td><p>MACHINE_ROLE_VIEWER a microservice needs at least viewer role to call this method</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="fits.api.v1.OptimisticLockingStrategy">OptimisticLockingStrategy</h3>
+        <p>OptimisticLockingStrategy defines how optimistic locking should be handled.</p><p>It defaults to client side, which requires the UpdatedAt timestamp to be provided</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>OPTIMISTIC_LOCKING_STRATEGY_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>OPTIMISTIC_LOCKING_STRATEGY_UNSPECIFIED same as client side</p></td>
+              </tr>
+            
+              <tr>
+                <td>OPTIMISTIC_LOCKING_STRATEGY_CLIENT</td>
+                <td>1</td>
+                <td><p>OPTIMISTIC_LOCKING_STRATEGY_CLIENT requires UpdatedAt to be specified</p></td>
+              </tr>
+            
+              <tr>
+                <td>OPTIMISTIC_LOCKING_STRATEGY_SERVER</td>
+                <td>2</td>
+                <td><p>OPTIMISTIC_LOCKING_STRATEGY_SERVER allows to omit UpdatedAt
+and fetches the most recent entity before updating with the given values with the update request</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="fits.api.v1.ProjectRole">ProjectRole</h3>
+        <p>ProjectRole specifies what role a logged in user needs to call this project scoped service</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>PROJECT_ROLE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>PROJECT_ROLE_UNSPECIFIED is not specified</p></td>
+              </tr>
+            
+              <tr>
+                <td>PROJECT_ROLE_OWNER</td>
+                <td>1</td>
+                <td><p>PROJECT_ROLE_OWNER the logged in user needs at least owner role to call this method</p></td>
+              </tr>
+            
+              <tr>
+                <td>PROJECT_ROLE_EDITOR</td>
+                <td>2</td>
+                <td><p>PROJECT_ROLE_EDITOR the logged in user needs at least editor role to call this method</p></td>
+              </tr>
+            
+              <tr>
+                <td>PROJECT_ROLE_VIEWER</td>
+                <td>3</td>
+                <td><p>PROJECT_ROLE_VIEWER the logged in user needs at least viewer role to call this method</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="fits.api.v1.TenantRole">TenantRole</h3>
+        <p>TenantRole specifies what role a logged in user needs to call this tenant scoped service</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>TENANT_ROLE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>TENANT_ROLE_UNSPECIFIED is not specified</p></td>
+              </tr>
+            
+              <tr>
+                <td>TENANT_ROLE_OWNER</td>
+                <td>1</td>
+                <td><p>TENANT_ROLE_OWNER the logged in user needs at least owner role to call this method</p></td>
+              </tr>
+            
+              <tr>
+                <td>TENANT_ROLE_EDITOR</td>
+                <td>2</td>
+                <td><p>TENANT_ROLE_EDITOR the logged in user needs at least editor role to call this method</p></td>
+              </tr>
+            
+              <tr>
+                <td>TENANT_ROLE_VIEWER</td>
+                <td>3</td>
+                <td><p>TENANT_ROLE_VIEWER the logged in user needs at least viewer role to call this method</p></td>
+              </tr>
+            
+              <tr>
+                <td>TENANT_ROLE_GUEST</td>
+                <td>4</td>
+                <td><p>TENANT_ROLE_GUEST the logged in user needs at least guest role to call this method
+The guest role is assumed by users who are invited to a tenant&#39;s project without them
+having a direct membership within the tenant.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="fits.api.v1.Visibility">Visibility</h3>
+        <p>Visibility of a method</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>VISIBILITY_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>VISIBILITY_UNSPECIFIED is not defined</p></td>
+              </tr>
+            
+              <tr>
+                <td>VISIBILITY_PUBLIC</td>
+                <td>1</td>
+                <td><p>VISIBILITY_PUBLIC specifies that this service is accessible without authentication</p></td>
+              </tr>
+            
+              <tr>
+                <td>VISIBILITY_SELF</td>
+                <td>2</td>
+                <td><p>VISIBILITY_SELF enable call this endpoint from the authenticated user only</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+        <h3 id="fits/api/v1/common.proto-extensions">File-level Extensions</h3>
+        <table class="extension-table">
+          <thead>
+            <tr><td>Extension</td><td>Type</td><td>Base</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>enum_string_value</td>
+                <td><a href="#string">string</a></td>
+                <td><a href="#google.protobuf.EnumValueOptions">.google.protobuf.EnumValueOptions</a></td>
+                <td>52000</td>
+                <td><p>StringValue which can be set to a enum</p></td>
+              </tr>
+            
+              <tr>
+                <td>admin_roles</td>
+                <td><a href="#fits.api.v1.AdminRole">AdminRole</a></td>
+                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
+                <td>51002</td>
+                <td><p>AdminRoles are used to define which admin role a logged in user must provide to call this method</p></td>
+              </tr>
+            
+              <tr>
+                <td>auditing</td>
+                <td><a href="#fits.api.v1.Auditing">Auditing</a></td>
+                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
+                <td>51004</td>
+                <td><p>Auditing defines if calls to this method should be audited or not</p></td>
+              </tr>
+            
+              <tr>
+                <td>project_roles</td>
+                <td><a href="#fits.api.v1.ProjectRole">ProjectRole</a></td>
+                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
+                <td>51001</td>
+                <td><p>ProjectRoles are used to define which project role a logged in user must provide to call this method</p></td>
+              </tr>
+            
+              <tr>
+                <td>tenant_roles</td>
+                <td><a href="#fits.api.v1.TenantRole">TenantRole</a></td>
+                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
+                <td>51000</td>
+                <td><p>TenantRoles are used to define which tenant role a logged in user must provide to call this method</p></td>
+              </tr>
+            
+              <tr>
+                <td>visibility</td>
+                <td><a href="#fits.api.v1.Visibility">Visibility</a></td>
+                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
+                <td>51003</td>
+                <td><p>Visibility defines the visibility of this method, this is used to have public or self visible methods</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/v1/health.proto">fits/api/v1/health.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.v1.Health">Health</h3>
+        <p>Health reports the health status of all services.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>services</td>
+                  <td><a href="#fits.api.v1.HealthStatus">HealthStatus</a></td>
+                  <td>repeated</td>
+                  <td><p>Services contains the health of all individual services </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.HealthServiceGetRequest">HealthServiceGetRequest</h3>
+        <p>HealthServiceGetRequest is the request payload for getting the health of the system.</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.v1.HealthServiceGetResponse">HealthServiceGetResponse</h3>
+        <p>HealthServiceGetResponse is the response payload for getting the health of the system.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>health</td>
+                  <td><a href="#fits.api.v1.Health">Health</a></td>
+                  <td></td>
+                  <td><p>Health contains the overall health of the system </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.HealthStatus">HealthStatus</h3>
+        <p>HealthStatus represents the health status of one service.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#fits.api.v1.Service">Service</a></td>
+                  <td></td>
+                  <td><p>Name is the name of the service </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#fits.api.v1.ServiceStatus">ServiceStatus</a></td>
+                  <td></td>
+                  <td><p>Status is the status of this service </p></td>
+                </tr>
+              
+                <tr>
+                  <td>message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Message describes the reason for the unhealthy status if possible </p></td>
+                </tr>
+              
+                <tr>
+                  <td>partitions</td>
+                  <td><a href="#fits.api.v1.HealthStatus.PartitionsEntry">HealthStatus.PartitionsEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>Partitions describes the health of the service by partition </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.HealthStatus.PartitionsEntry">HealthStatus.PartitionsEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#fits.api.v1.PartitionHealth">PartitionHealth</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.PartitionHealth">PartitionHealth</h3>
+        <p>PartitionHealth represents the status of a specific service in this partition.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#fits.api.v1.ServiceStatus">ServiceStatus</a></td>
+                  <td></td>
+                  <td><p>Status is the health status of the service in this partition </p></td>
+                </tr>
+              
+                <tr>
+                  <td>message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Message describes the reason for the unhealthy status if possible </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="fits.api.v1.Service">Service</h3>
+        <p>Service defines the service for which the healthiness is reported.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>SERVICE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>SERVICE_UNSPECIFIED is a unknown service</p></td>
+              </tr>
+            
+              <tr>
+                <td>SERVICE_K8S</td>
+                <td>1</td>
+                <td><p>SERVICE_K8S the kubernetes service</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="fits.api.v1.ServiceStatus">ServiceStatus</h3>
+        <p>ServiceStatus defines the status of a service.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>SERVICE_STATUS_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>SERVICE_STATUS_UNSPECIFIED service status is not known or unspecified</p></td>
+              </tr>
+            
+              <tr>
+                <td>SERVICE_STATUS_DEGRADED</td>
+                <td>1</td>
+                <td><p>SERVICE_STATUS_DEGRADED the service is in degraded status, not the whole functionality is available</p></td>
+              </tr>
+            
+              <tr>
+                <td>SERVICE_STATUS_UNHEALTHY</td>
+                <td>2</td>
+                <td><p>SERVICE_STATUS_UNHEALTHY the service is in unhealthy status, serious impact is expected</p></td>
+              </tr>
+            
+              <tr>
+                <td>SERVICE_STATUS_HEALTHY</td>
+                <td>3</td>
+                <td><p>SERVICE_STATUS_HEALTHY the service is in healthy status, for example fully functional</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+        <h3 id="fits.api.v1.HealthService">HealthService</h3>
+        <p>HealthService provides health status monitoring operations.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Get</td>
+                <td><a href="#fits.api.v1.HealthServiceGetRequest">HealthServiceGetRequest</a></td>
+                <td><a href="#fits.api.v1.HealthServiceGetResponse">HealthServiceGetResponse</a></td>
+                <td><p>Returns the health status of the platform.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/v1/ip.proto">fits/api/v1/ip.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.v1.IP">IP</h3>
+        <p>IP is a ip address which can be used as loadbalancer addresses</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Uuid of this ip </p></td>
+                </tr>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#fits.api.v1.Meta">Meta</a></td>
+                  <td></td>
+                  <td><p>Meta for this ip </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ip</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Ip is either ipv4 or ipv6 address </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name of this ip </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Description of this ip </p></td>
+                </tr>
+              
+                <tr>
+                  <td>network</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Network is the network this ip belongs to </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Project where this ip address belongs to </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#fits.api.v1.IPType">IPType</a></td>
+                  <td></td>
+                  <td><p>Type of this ip </p></td>
+                </tr>
+              
+                <tr>
+                  <td>namespace</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Namespace if specified this ip is from a namespaced network and can therefore overlap with others
+Will be equal with project most of the time </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.IPQuery">IPQuery</h3>
+        <p>IPQuery can be used to query a IP or a list of IP</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>ip</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Ip the ip to list </p></td>
+                </tr>
+              
+                <tr>
+                  <td>network</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Network from where the ips to list </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Project of the ips to list </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Name of this ip </p></td>
+                </tr>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Uuid for which this ips should get filtered </p></td>
+                </tr>
+              
+                <tr>
+                  <td>machine</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Machine for which this ips should get filtered </p></td>
+                </tr>
+              
+                <tr>
+                  <td>parent_prefix_cidr</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>ParentPrefixCidr for which this ips should get filtered </p></td>
+                </tr>
+              
+                <tr>
+                  <td>labels</td>
+                  <td><a href="#fits.api.v1.Labels">Labels</a></td>
+                  <td>optional</td>
+                  <td><p>Labels for which this ips should get filtered </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#fits.api.v1.IPType">IPType</a></td>
+                  <td>optional</td>
+                  <td><p>Static if set to true, this will be a Static ip </p></td>
+                </tr>
+              
+                <tr>
+                  <td>address_family</td>
+                  <td><a href="#fits.api.v1.IPAddressFamily">IPAddressFamily</a></td>
+                  <td>optional</td>
+                  <td><p>Addressfamily of the IPs to list, defaults to all addressfamilies </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.IPServiceCreateRequest">IPServiceCreateRequest</h3>
+        <p>IPServiceCreateRequest is the request payload for a ip create request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>network</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Network from which the IP should be created </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Project of the ip </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Name of the ip </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Description of the ip </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ip</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>IP if given try to create this ip if still available </p></td>
+                </tr>
+              
+                <tr>
+                  <td>machine</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Machine for which this ip should get created </p></td>
+                </tr>
+              
+                <tr>
+                  <td>labels</td>
+                  <td><a href="#fits.api.v1.Labels">Labels</a></td>
+                  <td>optional</td>
+                  <td><p>Labels to put onto the ip </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#fits.api.v1.IPType">IPType</a></td>
+                  <td>optional</td>
+                  <td><p>Type of the IP, ether ephemeral (default), or static </p></td>
+                </tr>
+              
+                <tr>
+                  <td>address_family</td>
+                  <td><a href="#fits.api.v1.IPAddressFamily">IPAddressFamily</a></td>
+                  <td>optional</td>
+                  <td><p>Addressfamily of the IP to create, defaults to ipv4 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.IPServiceCreateResponse">IPServiceCreateResponse</h3>
+        <p>IPServiceCreateResponse is the response payload for a ip create request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>ip</td>
+                  <td><a href="#fits.api.v1.IP">IP</a></td>
+                  <td></td>
+                  <td><p>Ip the ip </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.IPServiceDeleteRequest">IPServiceDeleteRequest</h3>
+        <p>IPServiceDeleteRequest is the request payload for a ip delete request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>ip</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>IP of the ip to delete </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Project of the ip </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.IPServiceDeleteResponse">IPServiceDeleteResponse</h3>
+        <p>IPServiceDeleteResponse is the response payload for a ip delete request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>ip</td>
+                  <td><a href="#fits.api.v1.IP">IP</a></td>
+                  <td></td>
+                  <td><p>Ip the ip </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.IPServiceGetRequest">IPServiceGetRequest</h3>
+        <p>IPServiceGetRequest is the request payload for a ip get request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>ip</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>IP of the ip to get </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Project of the ip </p></td>
+                </tr>
+              
+                <tr>
+                  <td>namespace</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Namespace can be specified to get the ip of a namespace. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.IPServiceGetResponse">IPServiceGetResponse</h3>
+        <p>IPServiceGetResponse is the response payload for a ip get request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>ip</td>
+                  <td><a href="#fits.api.v1.IP">IP</a></td>
+                  <td></td>
+                  <td><p>Ip the ip </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.IPServiceListRequest">IPServiceListRequest</h3>
+        <p>IPServiceListRequest is the request payload for a ip list request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Project of the ips to list </p></td>
+                </tr>
+              
+                <tr>
+                  <td>query</td>
+                  <td><a href="#fits.api.v1.IPQuery">IPQuery</a></td>
+                  <td></td>
+                  <td><p>Query to list one ore more ips </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.IPServiceListResponse">IPServiceListResponse</h3>
+        <p>IPServiceListResponse is the response payload for a ip list request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>ips</td>
+                  <td><a href="#fits.api.v1.IP">IP</a></td>
+                  <td>repeated</td>
+                  <td><p>Ips the ips </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.IPServiceUpdateRequest">IPServiceUpdateRequest</h3>
+        <p>IPServiceUpdateRequest is the request payload for a ip update request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>ip</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Ip the ip to update </p></td>
+                </tr>
+              
+                <tr>
+                  <td>update_meta</td>
+                  <td><a href="#fits.api.v1.UpdateMeta">UpdateMeta</a></td>
+                  <td></td>
+                  <td><p>UpdateMeta contains the timestamp and strategy to be used in this update request </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Project id of the ip </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Name of this ip </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Description of this ip </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#fits.api.v1.IPType">IPType</a></td>
+                  <td>optional</td>
+                  <td><p>Type of this ip </p></td>
+                </tr>
+              
+                <tr>
+                  <td>labels</td>
+                  <td><a href="#fits.api.v1.UpdateLabels">UpdateLabels</a></td>
+                  <td>optional</td>
+                  <td><p>Labels on this ip </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.IPServiceUpdateResponse">IPServiceUpdateResponse</h3>
+        <p>IPServiceUpdateResponse is the response payload for a ip update request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>ip</td>
+                  <td><a href="#fits.api.v1.IP">IP</a></td>
+                  <td></td>
+                  <td><p>Ip the ip </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="fits.api.v1.IPAddressFamily">IPAddressFamily</h3>
+        <p>IPAddressFamily defines either IPv4 or IPv6 Addressfamily</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>IP_ADDRESS_FAMILY_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>IP_ADDRESS_FAMILY_UNSPECIFIED is not specified</p></td>
+              </tr>
+            
+              <tr>
+                <td>IP_ADDRESS_FAMILY_V4</td>
+                <td>1</td>
+                <td><p>IP_ADDRESS_FAMILY_V4 defines a IPv4 address</p></td>
+              </tr>
+            
+              <tr>
+                <td>IP_ADDRESS_FAMILY_V6</td>
+                <td>2</td>
+                <td><p>IP_ADDRESS_FAMILY_V6 defines a IPv6 address</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="fits.api.v1.IPType">IPType</h3>
+        <p>IPType specifies different ip address types</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>IP_TYPE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>IP_TYPE_UNSPECIFIED is not specified</p></td>
+              </tr>
+            
+              <tr>
+                <td>IP_TYPE_EPHEMERAL</td>
+                <td>1</td>
+                <td><p>IP_TYPE_EPHEMERAL defines a ephemeral ip address which is freed/deleted after usage</p></td>
+              </tr>
+            
+              <tr>
+                <td>IP_TYPE_STATIC</td>
+                <td>2</td>
+                <td><p>IP_TYPE_STATIC defines a static ip address which must be freed/deleted explicitly</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+        <h3 id="fits.api.v1.IPService">IPService</h3>
+        <p>IPService provides IP address management operations.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Get</td>
+                <td><a href="#fits.api.v1.IPServiceGetRequest">IPServiceGetRequest</a></td>
+                <td><a href="#fits.api.v1.IPServiceGetResponse">IPServiceGetResponse</a></td>
+                <td><p>Returns the IP address with the specified IP.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Create</td>
+                <td><a href="#fits.api.v1.IPServiceCreateRequest">IPServiceCreateRequest</a></td>
+                <td><a href="#fits.api.v1.IPServiceCreateResponse">IPServiceCreateResponse</a></td>
+                <td><p>Creates a new IP address.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Update</td>
+                <td><a href="#fits.api.v1.IPServiceUpdateRequest">IPServiceUpdateRequest</a></td>
+                <td><a href="#fits.api.v1.IPServiceUpdateResponse">IPServiceUpdateResponse</a></td>
+                <td><p>Updates an IP address.</p></td>
+              </tr>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#fits.api.v1.IPServiceListRequest">IPServiceListRequest</a></td>
+                <td><a href="#fits.api.v1.IPServiceListResponse">IPServiceListResponse</a></td>
+                <td><p>Returns the list of all IP addresses.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Delete</td>
+                <td><a href="#fits.api.v1.IPServiceDeleteRequest">IPServiceDeleteRequest</a></td>
+                <td><a href="#fits.api.v1.IPServiceDeleteResponse">IPServiceDeleteResponse</a></td>
+                <td><p>Deletes an IP address.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/v1/token.proto">fits/api/v1/token.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.v1.MethodPermission">MethodPermission</h3>
+        <p>MethodPermission is a mapping from a subject/project to a service method</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>subject</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Subject maybe either the project or the tenant
+for which the methods should be allowed
+
+asterisk (*) can be specified to match any subject
+empty string (&#34;&#34;) can be specified for requests that do not require a subject, e.g. partition list
+otherwise either a projectid or a tenant login should be specified </p></td>
+                </tr>
+              
+                <tr>
+                  <td>methods</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Methods which should be accessible </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.Token">Token</h3>
+        <p>Token generates a jwt authentication token to access the api</p><p>There are two different types of tokens, api- and user- tokens</p><p>A user token is used to authenticate end user requests for example from a cli.</p><p>The configured roles in a user token are expanded in the api server</p><p>based on the memberships in other projects and tenants based on the role granted there.</p><p>User tokens will never contain permissions.</p><p>Permissions are always derived from the tenant and project roles and memberships.</p><p>The api token should be used to authenticate services.</p><p>In contrast to a user token, the api token permissions and roles apply as configured during the token create process.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Uuid of the jwt token, used to reference it by revoke </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>User who created this token </p></td>
+                </tr>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#fits.api.v1.Meta">Meta</a></td>
+                  <td></td>
+                  <td><p>Meta for this token </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Description is a user given description of this token. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>permissions</td>
+                  <td><a href="#fits.api.v1.MethodPermission">MethodPermission</a></td>
+                  <td>repeated</td>
+                  <td><p>Permissions is a list of service methods this token can be used for </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expires</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>Expires gives the date in the future after which this token can not be used anymore </p></td>
+                </tr>
+              
+                <tr>
+                  <td>issued_at</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>IssuedAt gives the date when this token was created </p></td>
+                </tr>
+              
+                <tr>
+                  <td>token_type</td>
+                  <td><a href="#fits.api.v1.TokenType">TokenType</a></td>
+                  <td></td>
+                  <td><p>TokenType describes the type of this token </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project_roles</td>
+                  <td><a href="#fits.api.v1.Token.ProjectRolesEntry">Token.ProjectRolesEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>ProjectRoles associates a project id with the corresponding role of the token owner </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tenant_roles</td>
+                  <td><a href="#fits.api.v1.Token.TenantRolesEntry">Token.TenantRolesEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>TenantRoles associates a tenant id with the corresponding role of the token owner </p></td>
+                </tr>
+              
+                <tr>
+                  <td>admin_role</td>
+                  <td><a href="#fits.api.v1.AdminRole">AdminRole</a></td>
+                  <td>optional</td>
+                  <td><p>AdminRole defines the admin role of the token owner </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.Token.ProjectRolesEntry">Token.ProjectRolesEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#fits.api.v1.ProjectRole">ProjectRole</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.Token.TenantRolesEntry">Token.TenantRolesEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#fits.api.v1.TenantRole">TenantRole</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TokenServiceCreateRequest">TokenServiceCreateRequest</h3>
+        <p>TokenServiceCreateRequest is the request payload to create a token</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Description of the token </p></td>
+                </tr>
+              
+                <tr>
+                  <td>permissions</td>
+                  <td><a href="#fits.api.v1.MethodPermission">MethodPermission</a></td>
+                  <td>repeated</td>
+                  <td><p>Permissions is a list of service methods this token can be used for </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expires</td>
+                  <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
+                  <td></td>
+                  <td><p>Expires gives the duration since now, after which this token can not be used anymore </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project_roles</td>
+                  <td><a href="#fits.api.v1.TokenServiceCreateRequest.ProjectRolesEntry">TokenServiceCreateRequest.ProjectRolesEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>ProjectRoles associates a project id with the corresponding role of the token owner </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tenant_roles</td>
+                  <td><a href="#fits.api.v1.TokenServiceCreateRequest.TenantRolesEntry">TokenServiceCreateRequest.TenantRolesEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>TenantRoles_associates a tenant id with the corresponding role of the token owner </p></td>
+                </tr>
+              
+                <tr>
+                  <td>admin_role</td>
+                  <td><a href="#fits.api.v1.AdminRole">AdminRole</a></td>
+                  <td>optional</td>
+                  <td><p>AdminRole defines the admin role of the token owner </p></td>
+                </tr>
+              
+                <tr>
+                  <td>labels</td>
+                  <td><a href="#fits.api.v1.Labels">Labels</a></td>
+                  <td></td>
+                  <td><p>Labels on this token </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TokenServiceCreateRequest.ProjectRolesEntry">TokenServiceCreateRequest.ProjectRolesEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#fits.api.v1.ProjectRole">ProjectRole</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TokenServiceCreateRequest.TenantRolesEntry">TokenServiceCreateRequest.TenantRolesEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#fits.api.v1.TenantRole">TenantRole</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TokenServiceCreateResponse">TokenServiceCreateResponse</h3>
+        <p>TokenServiceCreateResponse is the response payload of a token create request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>token</td>
+                  <td><a href="#fits.api.v1.Token">Token</a></td>
+                  <td></td>
+                  <td><p>Token which was created </p></td>
+                </tr>
+              
+                <tr>
+                  <td>secret</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Secret is the body if the jwt token, should be used in api requests as bearer token </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TokenServiceGetRequest">TokenServiceGetRequest</h3>
+        <p>TokenServiceGetRequest is the request payload of a token get request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Uuid of the token to get </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TokenServiceGetResponse">TokenServiceGetResponse</h3>
+        <p>TokenServiceGetResponse is the response payload of a token get request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>token</td>
+                  <td><a href="#fits.api.v1.Token">Token</a></td>
+                  <td></td>
+                  <td><p>Token is the token </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TokenServiceListRequest">TokenServiceListRequest</h3>
+        <p>TokenServiceListRequest is the request payload to list tokens</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.v1.TokenServiceListResponse">TokenServiceListResponse</h3>
+        <p>TokenServiceListResponse is the response payload of a token list request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tokens</td>
+                  <td><a href="#fits.api.v1.Token">Token</a></td>
+                  <td>repeated</td>
+                  <td><p>Tokens is a list of tokens without the secrets </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TokenServiceRefreshRequest">TokenServiceRefreshRequest</h3>
+        <p>TokenServiceRefreshRequest is the request payload of a token refresh request</p><p>Permissions, Roles and Expiration duration and all other properties are inherited from the calling token.</p><p>The expiration duration will be calculated from the existing token (exp - iat)</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.v1.TokenServiceRefreshResponse">TokenServiceRefreshResponse</h3>
+        <p>TokenServiceRefreshResponse is the response payload of a token refresh request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>token</td>
+                  <td><a href="#fits.api.v1.Token">Token</a></td>
+                  <td></td>
+                  <td><p>Token which was refreshed </p></td>
+                </tr>
+              
+                <tr>
+                  <td>secret</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Secret is the body if the jwt token, should be used in api requests as bearer token </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TokenServiceRevokeRequest">TokenServiceRevokeRequest</h3>
+        <p>TokenServiceRevokeRequest is the request payload of a token revoke request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Uuid of the token to revoke </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TokenServiceRevokeResponse">TokenServiceRevokeResponse</h3>
+        <p>TokenServiceRevokeResponse is the response payload of a token revoke request</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.v1.TokenServiceUpdateRequest">TokenServiceUpdateRequest</h3>
+        <p>TokenServiceUpdateRequest is the request payload of a token update request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Uuid of the token to update </p></td>
+                </tr>
+              
+                <tr>
+                  <td>update_meta</td>
+                  <td><a href="#fits.api.v1.UpdateMeta">UpdateMeta</a></td>
+                  <td></td>
+                  <td><p>UpdateMeta contains the timestamp and strategy to be used in this update request
+TokenUpdate is not guarded with optlock in the backend </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Description is a user given description of this token. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>permissions</td>
+                  <td><a href="#fits.api.v1.MethodPermission">MethodPermission</a></td>
+                  <td>repeated</td>
+                  <td><p>Permissions is a list of service methods this token can be used for </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project_roles</td>
+                  <td><a href="#fits.api.v1.TokenServiceUpdateRequest.ProjectRolesEntry">TokenServiceUpdateRequest.ProjectRolesEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>ProjectRoles associates a project id with the corresponding role of the token owner </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tenant_roles</td>
+                  <td><a href="#fits.api.v1.TokenServiceUpdateRequest.TenantRolesEntry">TokenServiceUpdateRequest.TenantRolesEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>TenantRoles associates a tenant id with the corresponding role of the token owner </p></td>
+                </tr>
+              
+                <tr>
+                  <td>admin_role</td>
+                  <td><a href="#fits.api.v1.AdminRole">AdminRole</a></td>
+                  <td>optional</td>
+                  <td><p>AdminRole defines the admin role of the token owner </p></td>
+                </tr>
+              
+                <tr>
+                  <td>labels</td>
+                  <td><a href="#fits.api.v1.UpdateLabels">UpdateLabels</a></td>
+                  <td></td>
+                  <td><p>Labels on this token </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TokenServiceUpdateRequest.ProjectRolesEntry">TokenServiceUpdateRequest.ProjectRolesEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#fits.api.v1.ProjectRole">ProjectRole</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TokenServiceUpdateRequest.TenantRolesEntry">TokenServiceUpdateRequest.TenantRolesEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#fits.api.v1.TenantRole">TenantRole</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TokenServiceUpdateResponse">TokenServiceUpdateResponse</h3>
+        <p>TokenServiceUpdateResponse is the response payload of a token update request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>token</td>
+                  <td><a href="#fits.api.v1.Token">Token</a></td>
+                  <td></td>
+                  <td><p>Token is the updated token </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="fits.api.v1.TokenType">TokenType</h3>
+        <p>TokenType specifies different use cases of tokens</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>TOKEN_TYPE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>TOKEN_TYPE_UNSPECIFIED is not specified</p></td>
+              </tr>
+            
+              <tr>
+                <td>TOKEN_TYPE_API</td>
+                <td>1</td>
+                <td><p>TOKEN_TYPE_API is a token for api usage</p></td>
+              </tr>
+            
+              <tr>
+                <td>TOKEN_TYPE_USER</td>
+                <td>2</td>
+                <td><p>TOKEN_TYPE_USER is a token to access the api with cli, a web application or other user induced actions.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+        <h3 id="fits.api.v1.TokenService">TokenService</h3>
+        <p>TokenService provides token management operations.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Get</td>
+                <td><a href="#fits.api.v1.TokenServiceGetRequest">TokenServiceGetRequest</a></td>
+                <td><a href="#fits.api.v1.TokenServiceGetResponse">TokenServiceGetResponse</a></td>
+                <td><p>Returns the token with the specified UUID.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Create</td>
+                <td><a href="#fits.api.v1.TokenServiceCreateRequest">TokenServiceCreateRequest</a></td>
+                <td><a href="#fits.api.v1.TokenServiceCreateResponse">TokenServiceCreateResponse</a></td>
+                <td><p>Creates a token to authenticate against the platform, the secret will be only visible in the response.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Update</td>
+                <td><a href="#fits.api.v1.TokenServiceUpdateRequest">TokenServiceUpdateRequest</a></td>
+                <td><a href="#fits.api.v1.TokenServiceUpdateResponse">TokenServiceUpdateResponse</a></td>
+                <td><p>Updates a token.</p></td>
+              </tr>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#fits.api.v1.TokenServiceListRequest">TokenServiceListRequest</a></td>
+                <td><a href="#fits.api.v1.TokenServiceListResponse">TokenServiceListResponse</a></td>
+                <td><p>Returns the list of all user tokens.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Revoke</td>
+                <td><a href="#fits.api.v1.TokenServiceRevokeRequest">TokenServiceRevokeRequest</a></td>
+                <td><a href="#fits.api.v1.TokenServiceRevokeResponse">TokenServiceRevokeResponse</a></td>
+                <td><p>Revokes a token, no further usage is possible afterwards.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Refresh</td>
+                <td><a href="#fits.api.v1.TokenServiceRefreshRequest">TokenServiceRefreshRequest</a></td>
+                <td><a href="#fits.api.v1.TokenServiceRefreshResponse">TokenServiceRefreshResponse</a></td>
+                <td><p>Refreshes a token, this will create a new token with the exact same permissions as the calling token contains.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/v1/method.proto">fits/api/v1/method.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.v1.MethodServiceListRequest">MethodServiceListRequest</h3>
+        <p>MethodServiceListRequest is the request payload for listing all public methods.</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.v1.MethodServiceListResponse">MethodServiceListResponse</h3>
+        <p>MethodServiceListResponse is the response payload for listing all public methods.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>methods</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Methods is a list of methods public callable </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.MethodServiceTokenScopedListRequest">MethodServiceTokenScopedListRequest</h3>
+        <p>MethodServiceTokenScopedListRequest is the request payload for listing all methods callable with the token present in the request.</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.v1.MethodServiceTokenScopedListResponse">MethodServiceTokenScopedListResponse</h3>
+        <p>MethodServiceTokenScopedListResponse is the response payload which contains all methods which are callable with the given token.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>permissions</td>
+                  <td><a href="#fits.api.v1.MethodPermission">MethodPermission</a></td>
+                  <td>repeated</td>
+                  <td><p>Permissions contains a list of methods which can be called </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project_roles</td>
+                  <td><a href="#fits.api.v1.MethodServiceTokenScopedListResponse.ProjectRolesEntry">MethodServiceTokenScopedListResponse.ProjectRolesEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>ProjectRoles associates a project ID with the corresponding role of the token owner </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tenant_roles</td>
+                  <td><a href="#fits.api.v1.MethodServiceTokenScopedListResponse.TenantRolesEntry">MethodServiceTokenScopedListResponse.TenantRolesEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>TenantRoles associates a tenant ID with the corresponding role of the token owner </p></td>
+                </tr>
+              
+                <tr>
+                  <td>admin_role</td>
+                  <td><a href="#fits.api.v1.AdminRole">AdminRole</a></td>
+                  <td>optional</td>
+                  <td><p>AdminRole defines the admin role of the token owner </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.MethodServiceTokenScopedListResponse.ProjectRolesEntry">MethodServiceTokenScopedListResponse.ProjectRolesEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#fits.api.v1.ProjectRole">ProjectRole</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.MethodServiceTokenScopedListResponse.TenantRolesEntry">MethodServiceTokenScopedListResponse.TenantRolesEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#fits.api.v1.TenantRole">TenantRole</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="fits.api.v1.MethodService">MethodService</h3>
+        <p>MethodService provides method discovery operations.</p><p>Methods are functions in services.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#fits.api.v1.MethodServiceListRequest">MethodServiceListRequest</a></td>
+                <td><a href="#fits.api.v1.MethodServiceListResponse">MethodServiceListResponse</a></td>
+                <td><p>Returns the list of all public visible methods.</p></td>
+              </tr>
+            
+              <tr>
+                <td>TokenScopedList</td>
+                <td><a href="#fits.api.v1.MethodServiceTokenScopedListRequest">MethodServiceTokenScopedListRequest</a></td>
+                <td><a href="#fits.api.v1.MethodServiceTokenScopedListResponse">MethodServiceTokenScopedListResponse</a></td>
+                <td><p>TokenScopedList returns all methods callable with the token present in the request.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/v1/project.proto">fits/api/v1/project.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.v1.Project">Project</h3>
+        <p>Project defines a group of resources belonging to a tenant</p><p>a tenant can have multiple projects</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Uuid of this project </p></td>
+                </tr>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#fits.api.v1.Meta">Meta</a></td>
+                  <td></td>
+                  <td><p>Meta for this project </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name of this project must be unique per tenant </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Description of this project </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant this project belongs to </p></td>
+                </tr>
+              
+                <tr>
+                  <td>avatar_url</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>AvatarUrl of the Project </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.ProjectServiceCreateRequest">ProjectServiceCreateRequest</h3>
+        <p>ProjectServiceCreateRequest is the request payload to Create a project</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>login</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Login is the tenant of this project
+TODO: is login really a good name? </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name of this project, unique per tenant </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Description of this project </p></td>
+                </tr>
+              
+                <tr>
+                  <td>avatar_url</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Avatar URL of the project </p></td>
+                </tr>
+              
+                <tr>
+                  <td>labels</td>
+                  <td><a href="#fits.api.v1.Labels">Labels</a></td>
+                  <td></td>
+                  <td><p>Labels on the project </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.ProjectServiceCreateResponse">ProjectServiceCreateResponse</h3>
+        <p>ProjectServiceCreateResponse is the response payload of creation of a project</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#fits.api.v1.Project">Project</a></td>
+                  <td></td>
+                  <td><p>Project is the project </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.ProjectServiceDeleteRequest">ProjectServiceDeleteRequest</h3>
+        <p>ProjectServiceDeleteRequest is the request payload to delete a project</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Project is the uuid of the project to get </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.ProjectServiceDeleteResponse">ProjectServiceDeleteResponse</h3>
+        <p>ProjectServiceDeleteResponse is the response payload to delete a project</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#fits.api.v1.Project">Project</a></td>
+                  <td></td>
+                  <td><p>Project is the project </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.ProjectServiceGetRequest">ProjectServiceGetRequest</h3>
+        <p>ProjectServiceGetRequest is the request payload to get a project</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Project is the uuid of the project to get </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.ProjectServiceGetResponse">ProjectServiceGetResponse</h3>
+        <p>ProjectServiceGetResponse is the response payload to get a projects</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#fits.api.v1.Project">Project</a></td>
+                  <td></td>
+                  <td><p>Project is the project </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.ProjectServiceListRequest">ProjectServiceListRequest</h3>
+        <p>ProjectServiceListRequest is the request payload to list all projects</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Id lists only projects with this id </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Name lists only projects with this name </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Tenant lists only projects of this tenant </p></td>
+                </tr>
+              
+                <tr>
+                  <td>labels</td>
+                  <td><a href="#fits.api.v1.Labels">Labels</a></td>
+                  <td>optional</td>
+                  <td><p>Labels lists only projects containing the given labels </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.ProjectServiceListResponse">ProjectServiceListResponse</h3>
+        <p>ProjectServiceListResponse is the response payload to list all projects</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>projects</td>
+                  <td><a href="#fits.api.v1.Project">Project</a></td>
+                  <td>repeated</td>
+                  <td><p>Projects is a list of all your projects </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.ProjectServiceUpdateRequest">ProjectServiceUpdateRequest</h3>
+        <p>ProjectServiceUpdateRequest is the request payload to update a project</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Project is the uuid of the project to get </p></td>
+                </tr>
+              
+                <tr>
+                  <td>update_meta</td>
+                  <td><a href="#fits.api.v1.UpdateMeta">UpdateMeta</a></td>
+                  <td></td>
+                  <td><p>UpdateMeta contains the timestamp and strategy to be used in this update request </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Name of this project unique per tenant </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Description of this project </p></td>
+                </tr>
+              
+                <tr>
+                  <td>avatar_url</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Avatar URL of the project </p></td>
+                </tr>
+              
+                <tr>
+                  <td>labels</td>
+                  <td><a href="#fits.api.v1.UpdateLabels">UpdateLabels</a></td>
+                  <td>optional</td>
+                  <td><p>Labels on this project </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.ProjectServiceUpdateResponse">ProjectServiceUpdateResponse</h3>
+        <p>ProjectServiceUpdateResponse is the response payload to update a project</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#fits.api.v1.Project">Project</a></td>
+                  <td></td>
+                  <td><p>Project is the project </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="fits.api.v1.ProjectService">ProjectService</h3>
+        <p>ProjectService provides project management operations.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#fits.api.v1.ProjectServiceListRequest">ProjectServiceListRequest</a></td>
+                <td><a href="#fits.api.v1.ProjectServiceListResponse">ProjectServiceListResponse</a></td>
+                <td><p>Returns the list of all accessible projects.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Get</td>
+                <td><a href="#fits.api.v1.ProjectServiceGetRequest">ProjectServiceGetRequest</a></td>
+                <td><a href="#fits.api.v1.ProjectServiceGetResponse">ProjectServiceGetResponse</a></td>
+                <td><p>Returns the project with the specified UUID.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Create</td>
+                <td><a href="#fits.api.v1.ProjectServiceCreateRequest">ProjectServiceCreateRequest</a></td>
+                <td><a href="#fits.api.v1.ProjectServiceCreateResponse">ProjectServiceCreateResponse</a></td>
+                <td><p>Create a project</p></td>
+              </tr>
+            
+              <tr>
+                <td>Delete</td>
+                <td><a href="#fits.api.v1.ProjectServiceDeleteRequest">ProjectServiceDeleteRequest</a></td>
+                <td><a href="#fits.api.v1.ProjectServiceDeleteResponse">ProjectServiceDeleteResponse</a></td>
+                <td><p>Delete a project</p></td>
+              </tr>
+            
+              <tr>
+                <td>Update</td>
+                <td><a href="#fits.api.v1.ProjectServiceUpdateRequest">ProjectServiceUpdateRequest</a></td>
+                <td><a href="#fits.api.v1.ProjectServiceUpdateResponse">ProjectServiceUpdateResponse</a></td>
+                <td><p>Update a project</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/v1/tenant.proto">fits/api/v1/tenant.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.v1.Tenant">Tenant</h3>
+        <p>Tenant is a customer of the platform</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>login</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Login of the tenant </p></td>
+                </tr>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#fits.api.v1.Meta">Meta</a></td>
+                  <td></td>
+                  <td><p>Meta for this tenant </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name of the tenant </p></td>
+                </tr>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Email of the tenant </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Description of this tenant </p></td>
+                </tr>
+              
+                <tr>
+                  <td>avatar_url</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>AvatarUrl of the tenant </p></td>
+                </tr>
+              
+                <tr>
+                  <td>created_by</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>CreatedBy stores who created this tenant </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TenantServiceCreateRequest">TenantServiceCreateRequest</h3>
+        <p>TenantServiceCreateRequest is the request payload of the tenant create request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name of this tenant </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Description of this tenant </p></td>
+                </tr>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Email of the tenant, if not set will be inherited from the creator </p></td>
+                </tr>
+              
+                <tr>
+                  <td>avatar_url</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>AvatarUrl of the tenant </p></td>
+                </tr>
+              
+                <tr>
+                  <td>labels</td>
+                  <td><a href="#fits.api.v1.Labels">Labels</a></td>
+                  <td></td>
+                  <td><p>Labels on the tenant </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TenantServiceCreateResponse">TenantServiceCreateResponse</h3>
+        <p>TenantServiceCreateResponse is the response payload of the tenant create request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#fits.api.v1.Tenant">Tenant</a></td>
+                  <td></td>
+                  <td><p>Tenant is the tenant </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TenantServiceDeleteRequest">TenantServiceDeleteRequest</h3>
+        <p>TenantServiceDeleteRequest is the request payload of the tenant delete request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>login</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Login of the tenant </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TenantServiceDeleteResponse">TenantServiceDeleteResponse</h3>
+        <p>TenantServiceDeleteResponse is the response payload of the tenant delete request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#fits.api.v1.Tenant">Tenant</a></td>
+                  <td></td>
+                  <td><p>Tenant is the tenant </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TenantServiceGetRequest">TenantServiceGetRequest</h3>
+        <p>TenantServiceGetRequest is the request payload of the tenant get request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>login</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Login of the tenant </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TenantServiceGetResponse">TenantServiceGetResponse</h3>
+        <p>TenantServiceGetResponse is the response payload of the tenant get request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#fits.api.v1.Tenant">Tenant</a></td>
+                  <td></td>
+                  <td><p>Tenant is the tenant </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TenantServiceListRequest">TenantServiceListRequest</h3>
+        <p>TenantServiceListRequest is the request payload of the tenant list request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Id filters tenants by id </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Name filters tenants by name </p></td>
+                </tr>
+              
+                <tr>
+                  <td>labels</td>
+                  <td><a href="#fits.api.v1.Labels">Labels</a></td>
+                  <td>optional</td>
+                  <td><p>Labels lists only projects containing the given labels </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TenantServiceListResponse">TenantServiceListResponse</h3>
+        <p>TenantServiceListResponse is the response payload of the tenant list request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenants</td>
+                  <td><a href="#fits.api.v1.Tenant">Tenant</a></td>
+                  <td>repeated</td>
+                  <td><p>Tenants is the list of tenants </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TenantServiceUpdateRequest">TenantServiceUpdateRequest</h3>
+        <p>TenantServiceUpdateRequest is the request payload of the tenant update request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>login</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Login of the tenant </p></td>
+                </tr>
+              
+                <tr>
+                  <td>update_meta</td>
+                  <td><a href="#fits.api.v1.UpdateMeta">UpdateMeta</a></td>
+                  <td></td>
+                  <td><p>UpdateMeta contains the timestamp and strategy to be used in this update request </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Name of the tenant </p></td>
+                </tr>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Email of the tenant </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Description of this tenant </p></td>
+                </tr>
+              
+                <tr>
+                  <td>avatar_url</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>AvatarUrl of the tenant </p></td>
+                </tr>
+              
+                <tr>
+                  <td>labels</td>
+                  <td><a href="#fits.api.v1.UpdateLabels">UpdateLabels</a></td>
+                  <td>optional</td>
+                  <td><p>Labels on the tenant </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TenantServiceUpdateResponse">TenantServiceUpdateResponse</h3>
+        <p>TenantServiceUpdateResponse is the response payload of the tenant update request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#fits.api.v1.Tenant">Tenant</a></td>
+                  <td></td>
+                  <td><p>Tenant is the tenant </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="fits.api.v1.TenantService">TenantService</h3>
+        <p>TenantService provides tenant management operations.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Create</td>
+                <td><a href="#fits.api.v1.TenantServiceCreateRequest">TenantServiceCreateRequest</a></td>
+                <td><a href="#fits.api.v1.TenantServiceCreateResponse">TenantServiceCreateResponse</a></td>
+                <td><p>Creates a new tenant.</p></td>
+              </tr>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#fits.api.v1.TenantServiceListRequest">TenantServiceListRequest</a></td>
+                <td><a href="#fits.api.v1.TenantServiceListResponse">TenantServiceListResponse</a></td>
+                <td><p>Returns the list of tenants.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Get</td>
+                <td><a href="#fits.api.v1.TenantServiceGetRequest">TenantServiceGetRequest</a></td>
+                <td><a href="#fits.api.v1.TenantServiceGetResponse">TenantServiceGetResponse</a></td>
+                <td><p>Get a tenant</p></td>
+              </tr>
+            
+              <tr>
+                <td>Update</td>
+                <td><a href="#fits.api.v1.TenantServiceUpdateRequest">TenantServiceUpdateRequest</a></td>
+                <td><a href="#fits.api.v1.TenantServiceUpdateResponse">TenantServiceUpdateResponse</a></td>
+                <td><p>Update a tenant</p></td>
+              </tr>
+            
+              <tr>
+                <td>Delete</td>
+                <td><a href="#fits.api.v1.TenantServiceDeleteRequest">TenantServiceDeleteRequest</a></td>
+                <td><a href="#fits.api.v1.TenantServiceDeleteResponse">TenantServiceDeleteResponse</a></td>
+                <td><p>Delete a tenant</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/v1/version.proto">fits/api/v1/version.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.v1.Version">Version</h3>
+        <p>Version represents the version of the application.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>version</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Version of the application </p></td>
+                </tr>
+              
+                <tr>
+                  <td>revision</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Revision of the application </p></td>
+                </tr>
+              
+                <tr>
+                  <td>git_sha1</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>GitSHA1 of the application </p></td>
+                </tr>
+              
+                <tr>
+                  <td>build_date</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>BuildDate of the application </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.VersionServiceGetRequest">VersionServiceGetRequest</h3>
+        <p>VersionServiceGetRequest is the request payload for getting the version.</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.v1.VersionServiceGetResponse">VersionServiceGetResponse</h3>
+        <p>VersionServiceGetResponse is the response payload for getting the version.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>version</td>
+                  <td><a href="#fits.api.v1.Version">Version</a></td>
+                  <td></td>
+                  <td><p>Version contains the version of the application </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="fits.api.v1.VersionService">VersionService</h3>
+        <p>VersionService provides version information operations.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Get</td>
+                <td><a href="#fits.api.v1.VersionServiceGetRequest">VersionServiceGetRequest</a></td>
+                <td><a href="#fits.api.v1.VersionServiceGetResponse">VersionServiceGetResponse</a></td>
+                <td><p>Returns the version of the application.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+
+    <h2 id="scalar-value-types">Scalar Value Types</h2>
+    <table class="scalar-value-types-table">
+      <thead>
+        <tr><td>.proto Type</td><td>Notes</td><td>C++</td><td>Java</td><td>Python</td><td>Go</td><td>C#</td><td>PHP</td><td>Ruby</td></tr>
+      </thead>
+      <tbody>
+        
+          <tr id="double">
+            <td>double</td>
+            <td></td>
+            <td>double</td>
+            <td>double</td>
+            <td>float</td>
+            <td>float64</td>
+            <td>double</td>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+        
+          <tr id="float">
+            <td>float</td>
+            <td></td>
+            <td>float</td>
+            <td>float</td>
+            <td>float</td>
+            <td>float32</td>
+            <td>float</td>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+        
+          <tr id="int32">
+            <td>int32</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="int64">
+            <td>int64</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="uint32">
+            <td>uint32</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int/long</td>
+            <td>uint32</td>
+            <td>uint</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="uint64">
+            <td>uint64</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>uint64</td>
+            <td>ulong</td>
+            <td>integer/string</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="sint32">
+            <td>sint32</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="sint64">
+            <td>sint64</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="fixed32">
+            <td>fixed32</td>
+            <td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>uint32</td>
+            <td>uint</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="fixed64">
+            <td>fixed64</td>
+            <td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>uint64</td>
+            <td>ulong</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="sfixed32">
+            <td>sfixed32</td>
+            <td>Always four bytes.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="sfixed64">
+            <td>sfixed64</td>
+            <td>Always eight bytes.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="bool">
+            <td>bool</td>
+            <td></td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>boolean</td>
+            <td>bool</td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>TrueClass/FalseClass</td>
+          </tr>
+        
+          <tr id="string">
+            <td>string</td>
+            <td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+            <td>string</td>
+            <td>String</td>
+            <td>str/unicode</td>
+            <td>string</td>
+            <td>string</td>
+            <td>string</td>
+            <td>String (UTF-8)</td>
+          </tr>
+        
+          <tr id="bytes">
+            <td>bytes</td>
+            <td>May contain any arbitrary sequence of bytes.</td>
+            <td>string</td>
+            <td>ByteString</td>
+            <td>str</td>
+            <td>[]byte</td>
+            <td>ByteString</td>
+            <td>string</td>
+            <td>String (ASCII-8BIT)</td>
+          </tr>
+        
+      </tbody>
+    </table>
+  </body>
+</html>
+

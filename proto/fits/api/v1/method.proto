@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package fits.api.v1;
+
+import "buf/validate/validate.proto";
+import "fits/api/v1/common.proto";
+import "fits/api/v1/token.proto";
+
+// MethodService provides method discovery operations.
+// Methods are functions in services.
+service MethodService {
+  // Returns the list of all public visible methods.
+  rpc List(MethodServiceListRequest) returns (MethodServiceListResponse) {
+    option (visibility) = VISIBILITY_PUBLIC;
+    option (auditing) = AUDITING_EXCLUDED;
+  }
+  // TokenScopedList returns all methods callable with the token present in the request.
+  rpc TokenScopedList(MethodServiceTokenScopedListRequest) returns (MethodServiceTokenScopedListResponse) {
+    option (visibility) = VISIBILITY_SELF;
+    option (auditing) = AUDITING_EXCLUDED;
+  }
+}
+
+// MethodServiceListRequest is the request payload for listing all public methods.
+message MethodServiceListRequest {}
+
+// MethodServiceListResponse is the response payload for listing all public methods.
+message MethodServiceListResponse {
+  // Methods is a list of methods public callable
+  repeated string methods = 1;
+}
+
+// MethodServiceTokenScopedListRequest is the request payload for listing all methods callable with the token present in the request.
+message MethodServiceTokenScopedListRequest {}
+
+// MethodServiceTokenScopedListResponse is the response payload which contains all methods which are callable with the given token.
+message MethodServiceTokenScopedListResponse {
+  // Permissions contains a list of methods which can be called
+  repeated MethodPermission permissions = 1;
+  // ProjectRoles associates a project ID with the corresponding role of the token owner
+  map<string, ProjectRole> project_roles = 2;
+  // TenantRoles associates a tenant ID with the corresponding role of the token owner
+  map<string, TenantRole> tenant_roles = 3;
+  // AdminRole defines the admin role of the token owner
+  optional AdminRole admin_role = 4 [(buf.validate.field).enum.defined_only = true];
+}

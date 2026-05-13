@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package fits.api.v1;
+
+import "buf/validate/validate.proto";
+import "fits/api/v1/common.proto";
+import "fits/api/v1/predefined_rules.proto";
+
+// VersionService provides version information operations.
+service VersionService {
+  // Returns the version of the application.
+  rpc Get(VersionServiceGetRequest) returns (VersionServiceGetResponse) {
+    option (visibility) = VISIBILITY_PUBLIC;
+    option (auditing) = AUDITING_EXCLUDED;
+  }
+}
+
+// Version represents the version of the application.
+message Version {
+  // Version of the application
+  string version = 1 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
+  // Revision of the application
+  string revision = 2 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
+  // GitSHA1 of the application
+  string git_sha1 = 3 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
+  // BuildDate of the application
+  string build_date = 4 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
+}
+
+// VersionServiceGetRequest is the request payload for getting the version.
+message VersionServiceGetRequest {}
+
+// VersionServiceGetResponse is the response payload for getting the version.
+message VersionServiceGetResponse {
+  // Version contains the version of the application
+  Version version = 1;
+}

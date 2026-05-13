@@ -1,0 +1,182 @@
+syntax = "proto3";
+
+package fits.api.v1;
+
+import "buf/validate/validate.proto";
+import "fits/api/v1/predefined_rules.proto";
+import "google/protobuf/descriptor.proto";
+import "google/protobuf/timestamp.proto";
+
+// TenantRole specifies what role a logged in user needs to call this tenant scoped service
+enum TenantRole {
+  // TENANT_ROLE_UNSPECIFIED is not specified
+  TENANT_ROLE_UNSPECIFIED = 0;
+  // TENANT_ROLE_OWNER the logged in user needs at least owner role to call this method
+  TENANT_ROLE_OWNER = 1;
+  // TENANT_ROLE_EDITOR the logged in user needs at least editor role to call this method
+  TENANT_ROLE_EDITOR = 2;
+  // TENANT_ROLE_VIEWER the logged in user needs at least viewer role to call this method
+  TENANT_ROLE_VIEWER = 3;
+  // TENANT_ROLE_GUEST the logged in user needs at least guest role to call this method
+  // The guest role is assumed by users who are invited to a tenant's project without them
+  // having a direct membership within the tenant.
+  TENANT_ROLE_GUEST = 4;
+}
+
+// ProjectRole specifies what role a logged in user needs to call this project scoped service
+enum ProjectRole {
+  // PROJECT_ROLE_UNSPECIFIED is not specified
+  PROJECT_ROLE_UNSPECIFIED = 0;
+  // PROJECT_ROLE_OWNER the logged in user needs at least owner role to call this method
+  PROJECT_ROLE_OWNER = 1;
+  // PROJECT_ROLE_EDITOR the logged in user needs at least editor role to call this method
+  PROJECT_ROLE_EDITOR = 2;
+  // PROJECT_ROLE_VIEWER the logged in user needs at least viewer role to call this method
+  PROJECT_ROLE_VIEWER = 3;
+}
+
+// AdminRole specifies what role a logged in user needs to call this admin service
+enum AdminRole {
+  // ADMIN_ROLE_UNSPECIFIED is not specified
+  ADMIN_ROLE_UNSPECIFIED = 0;
+  // ADMIN_ROLE_EDITOR the logged in user needs at least editor role to call this method
+  ADMIN_ROLE_EDITOR = 1;
+  // ADMIN_ROLE_VIEWER the logged in user needs at least viewer role to call this method
+  ADMIN_ROLE_VIEWER = 2;
+}
+
+// InfraRole specifies what role a microservice needs to call this infra service
+enum InfraRole {
+  // INFRA_ROLE_UNSPECIFIED is not specified
+  INFRA_ROLE_UNSPECIFIED = 0;
+  // INFRA_ROLE_EDITOR a microservice needs at least editor role to call this method
+  INFRA_ROLE_EDITOR = 1;
+  // INFRA_ROLE_VIEWER a microservice needs at least viewer role to call this method
+  INFRA_ROLE_VIEWER = 2;
+}
+
+// MachineRole specifies what role a microservice needs to call this machine service
+enum MachineRole {
+  // MACHINE_ROLE_UNSPECIFIED is not specified
+  MACHINE_ROLE_UNSPECIFIED = 0;
+  // MACHINE_ROLE_EDITOR a microservice needs at least editor role to call this method
+  MACHINE_ROLE_EDITOR = 1;
+  // MACHINE_ROLE_VIEWER a microservice needs at least viewer role to call this method
+  MACHINE_ROLE_VIEWER = 2;
+}
+
+// Visibility of a method
+enum Visibility {
+  // VISIBILITY_UNSPECIFIED is not defined
+  VISIBILITY_UNSPECIFIED = 0;
+  // VISIBILITY_PUBLIC specifies that this service is accessible without authentication
+  VISIBILITY_PUBLIC = 1;
+  // VISIBILITY_SELF enable call this endpoint from the authenticated user only
+  VISIBILITY_SELF = 2;
+}
+
+// Auditing option specified per service method
+// by default all service methods are included
+// add the auditing option if you want to exclude a method in auditing
+enum Auditing {
+  // AUDITING_UNSPECIFIED is not specified
+  AUDITING_UNSPECIFIED = 0;
+  // AUDITING_INCLUDED if a method is annotated with this, all calls are audited
+  AUDITING_INCLUDED = 1;
+  // AUDITING_EXCLUDED if a method is annotated with this, no calls are audited
+  AUDITING_EXCLUDED = 2;
+}
+
+// MethodOptions to specify specific annotations to methods
+extend google.protobuf.MethodOptions {
+  // TenantRoles are used to define which tenant role a logged in user must provide to call this method
+  repeated TenantRole tenant_roles = 51000;
+  // ProjectRoles are used to define which project role a logged in user must provide to call this method
+  repeated ProjectRole project_roles = 51001;
+  // AdminRoles are used to define which admin role a logged in user must provide to call this method
+  repeated AdminRole admin_roles = 51002;
+  // Visibility defines the visibility of this method, this is used to have public or self visible methods
+  Visibility visibility = 51003;
+  // Auditing defines if calls to this method should be audited or not
+  Auditing auditing = 51004;
+}
+
+// EnumValueOptions, can be accessed with go/enum/GetFormatStringValue
+extend google.protobuf.EnumValueOptions {
+  // StringValue which can be set to a enum
+  string enum_string_value = 52000;
+}
+
+// Paging defines paging for methods with a lot of results
+message Paging {
+  // Page is used for pagination, if unset only the first page is returned,
+  // the list response contains then the page number for the next page.
+  optional uint64 page = 1;
+  // Count is the number of results returned per page, if not given server side defaults apply
+  optional uint64 count = 2;
+}
+
+// Labels define additional information to a entity
+message Labels {
+  // Labels consists labels
+  map<string, string> labels = 1 [
+    (buf.validate.field).map = {
+      keys: {
+        string: {
+          min_len: 1
+          max_len: 256
+        }
+      }
+      values: {
+        string: {
+          min_len: 0
+          max_len: 256
+        }
+      }
+    },
+    (buf.validate.field).map.(fits.api.v1.keys_and_values_trimmed) = true
+  ];
+}
+
+// Meta of a message
+message Meta {
+  // Tags on this entity
+  optional Labels labels = 1;
+  // CreatedAt is the date when this entity was created
+  google.protobuf.Timestamp created_at = 2;
+  // UpdatedAt is the date when this entity was updated
+  // must be part of the update request to ensure optimistic locking
+  google.protobuf.Timestamp updated_at = 3;
+  // Generation identifies how often this entity was modified since creation.
+  uint64 generation = 4;
+}
+
+// UpdateLabels is a message to update labels
+message UpdateLabels {
+  // Update labels. New ones will be added, existing ones overwritten
+  Labels update = 1;
+  // Remove labels by key
+  repeated string remove = 2;
+}
+
+// UpdateMeta must be provided with every UpdateRequest to define how optimistic locking should be handled
+message UpdateMeta {
+  // UpdatedAt is the date when this entity was updated
+  // must be part of the update request to ensure optimistic locking
+  google.protobuf.Timestamp updated_at = 1;
+
+  // LockingStrategy to be used for this update request
+  OptimisticLockingStrategy locking_strategy = 2 [(buf.validate.field).enum.defined_only = true];
+}
+
+// OptimisticLockingStrategy defines how optimistic locking should be handled.
+// It defaults to client side, which requires the UpdatedAt timestamp to be provided
+enum OptimisticLockingStrategy {
+  // OPTIMISTIC_LOCKING_STRATEGY_UNSPECIFIED same as client side
+  OPTIMISTIC_LOCKING_STRATEGY_UNSPECIFIED = 0;
+  // OPTIMISTIC_LOCKING_STRATEGY_CLIENT requires UpdatedAt to be specified
+  OPTIMISTIC_LOCKING_STRATEGY_CLIENT = 1;
+  // OPTIMISTIC_LOCKING_STRATEGY_SERVER allows to omit UpdatedAt
+  // and fetches the most recent entity before updating with the given values with the update request
+  OPTIMISTIC_LOCKING_STRATEGY_SERVER = 2;
+}

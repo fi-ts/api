@@ -1,0 +1,101 @@
+syntax = "proto2";
+
+package fits.api.v1;
+
+import "buf/validate/validate.proto";
+
+// See https://protovalidate.com/schemas/predefined-rules/
+// See https://celbyexample.com/ for cel documentation
+
+extend buf.validate.StringRules {
+  // Macaddress returns true if the given string is a valid macadress
+  optional bool macaddress = 80048951 [(buf.validate.predefined).cel = {
+    id: "string.macaddress"
+    message: "this string must be a valid macaddress"
+    expression: "this.matches('^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$')"
+  }];
+  // IsName returns true if name field satisfies our requirements
+  optional bool is_name = 80048952 [(buf.validate.predefined).cel = {
+    id: "string.is_name"
+    message: "must be within 2 and 128 characters"
+    expression: "this.size() >= 2 && this.size() <= 128"
+  }];
+  // IsDescription returns true if description field satisfies our requirements
+  optional bool is_description = 80048953 [(buf.validate.predefined).cel = {
+    id: "string.is_description"
+    message: "must be shorter than 256 characters"
+    expression: "this.size() <= 256"
+  }];
+  // IsPartition returns true if partition field satisfies our requirements
+  optional bool is_partition = 80048954 [(buf.validate.predefined).cel = {
+    id: "string.is_partition"
+    message: "must be within 2 and 128 characters"
+    expression: "this.size() >= 2 && this.size() <= 128"
+  }];
+  // IsPrefix validates if the given string is a valid prefix
+  optional bool is_prefix = 80048955 [(buf.validate.predefined).cel = {
+    id: "string.prefixes"
+    message: "given prefixes must be valid"
+    expression: "this.isIpPrefix()"
+  }];
+  // IsUri validates if the given string is a valid URI
+  optional bool is_uri = 80048956 [(buf.validate.predefined).cel = {
+    id: "string.uri"
+    message: "given uri must be valid"
+    expression: "this.isUri()"
+  }];
+  // IsIpOrHostname validates that the given string is either a ip or a hostname
+  optional bool is_ip_or_hostname = 80048957 [(buf.validate.predefined).cel = {
+    id: "valid_address"
+    message: "must be a valid IP address or hostname"
+    expression: "this.isIp() || this.isHostname()"
+  }];
+  // Trimmed enforces the string to be trimmed, e.g. no whitespaces at the begin and end
+  optional bool trimmed = 80048958 [(buf.validate.predefined).cel = {
+    id: "string.trimmed"
+    message: "value must not start or end with whitespace"
+    expression: "this.trim().size() == this.size()"
+  }];
+}
+
+extend buf.validate.RepeatedRules {
+  // Prefixes validates if a slice of prefixes in string form are valid
+  optional bool prefixes = 80058951 [(buf.validate.predefined).cel = {
+    id: "repeated.prefixes"
+    message: "given prefixes must be valid"
+    expression: "this.all(m, m.isIpPrefix())"
+  }];
+  // Ips validates if a slice of ips in string form are valid
+  optional bool ips = 80058952 [(buf.validate.predefined).cel = {
+    id: "repeated.ips"
+    message: "given ips must be valid"
+    expression: "this.all(m, m.isIp())"
+  }];
+  // AreHostAndPort validates if a slice of strings are all in the form of <ip | host>:<port>
+  optional bool are_host_and_port = 80058953 [(buf.validate.predefined).cel = {
+    id: "repeated.are_host_and_port"
+    message: "given entries must all be in the form of <ip | host>:<port> but port is optional"
+    expression: "this.all(m, m.isHostAndPort(false))"
+  }];
+  // All Trimmed enforces all strings to be trimmed, e.g. no whitespaces at the begin and end
+  optional bool all_trimmed = 80058954 [(buf.validate.predefined).cel = {
+    id: "repeated.all_trimmed"
+    message: "given values must not start or end with whitespace"
+    expression: "this.all(m, m.trim().size() == m.size())"
+  }];
+}
+
+extend buf.validate.MapRules {
+  // Keys and Values trimmed enforces all map keys and values to be trimmed, e.g. no whitespaces at the begin and end
+  optional bool keys_and_values_trimmed = 80068951 [(buf.validate.predefined).cel = {
+    id: "map.keys_and_values_trimmed"
+    message: "keys and values must not start or end with whitespace"
+    expression: "this.all(k, k.trim().size() == k.size()) && this.all(v, v.trim().size() == v.size())"
+  }];
+  // Keys trimmed enforces all map keys and values to be trimmed, e.g. no whitespaces at the begin and end
+  optional bool keys_trimmed = 80068952 [(buf.validate.predefined).cel = {
+    id: "map.keys_trimmed"
+    message: "keys must not start or end with whitespace"
+    expression: "this.all(k, k.trim().size() == k.size())"
+  }];
+}

@@ -1,0 +1,257 @@
+syntax = "proto3";
+
+package fits.api.v1;
+
+import "buf/validate/validate.proto";
+import "fits/api/v1/common.proto";
+import "fits/api/v1/predefined_rules.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+// TokenService provides token management operations.
+service TokenService {
+  // Returns the token with the specified UUID.
+  rpc Get(TokenServiceGetRequest) returns (TokenServiceGetResponse) {
+    option (visibility) = VISIBILITY_SELF;
+    option (auditing) = AUDITING_INCLUDED;
+  }
+  // Creates a token to authenticate against the platform, the secret will be only visible in the response.
+  rpc Create(TokenServiceCreateRequest) returns (TokenServiceCreateResponse) {
+    option (visibility) = VISIBILITY_SELF;
+    option (auditing) = AUDITING_INCLUDED;
+  }
+  // Updates a token.
+  rpc Update(TokenServiceUpdateRequest) returns (TokenServiceUpdateResponse) {
+    option (visibility) = VISIBILITY_SELF;
+    option (auditing) = AUDITING_INCLUDED;
+  }
+  // Returns the list of all user tokens.
+  rpc List(TokenServiceListRequest) returns (TokenServiceListResponse) {
+    option (visibility) = VISIBILITY_SELF;
+    option (auditing) = AUDITING_INCLUDED;
+  }
+  // Revokes a token, no further usage is possible afterwards.
+  rpc Revoke(TokenServiceRevokeRequest) returns (TokenServiceRevokeResponse) {
+    option (visibility) = VISIBILITY_SELF;
+    option (auditing) = AUDITING_INCLUDED;
+  }
+  // Refreshes a token, this will create a new token with the exact same permissions as the calling token contains.
+  rpc Refresh(TokenServiceRefreshRequest) returns (TokenServiceRefreshResponse) {
+    option (visibility) = VISIBILITY_SELF;
+    option (auditing) = AUDITING_INCLUDED;
+  }
+}
+
+// Token generates a jwt authentication token to access the api
+//
+// There are two different types of tokens, api- and user- tokens
+//
+// A user token is used to authenticate end user requests for example from a cli.
+// The configured roles in a user token are expanded in the api server
+// based on the memberships in other projects and tenants based on the role granted there.
+// User tokens will never contain permissions.
+// Permissions are always derived from the tenant and project roles and memberships.
+//
+// The api token should be used to authenticate services.
+// In contrast to a user token, the api token permissions and roles apply as configured during the token create process.
+message Token {
+  // Message level validation, can be developed using https://protovalidate.com/playground
+  option (buf.validate.message).cel = {
+    id: "token.permissions.usertoken"
+    message: "token type user must not have permissions"
+    expression: "(this.token_type == 2 && this.permissions.size() == 0) || this.token_type != 2"
+  };
+  // Uuid of the jwt token, used to reference it by revoke
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // User who created this token
+  string user = 2 [(buf.validate.field).string = {
+    min_len: 2
+    max_len: 512
+  }];
+  // Meta for this token
+  Meta meta = 3;
+  // Description is a user given description of this token.
+  string description = 4 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
+  // Permissions is a list of service methods this token can be used for
+  repeated MethodPermission permissions = 5 [(buf.validate.field).repeated.max_items = 500];
+  // Expires gives the date in the future after which this token can not be used anymore
+  google.protobuf.Timestamp expires = 6;
+  // IssuedAt gives the date when this token was created
+  google.protobuf.Timestamp issued_at = 7;
+  // TokenType describes the type of this token
+  TokenType token_type = 8 [(buf.validate.field).enum.defined_only = true];
+  // ProjectRoles associates a project id with the corresponding role of the token owner
+  map<string, ProjectRole> project_roles = 9;
+  // TenantRoles associates a tenant id with the corresponding role of the token owner
+  map<string, TenantRole> tenant_roles = 10;
+  // AdminRole defines the admin role of the token owner
+  optional AdminRole admin_role = 11 [(buf.validate.field).enum.defined_only = true];
+}
+
+// TokenType specifies different use cases of tokens
+enum TokenType {
+  // TOKEN_TYPE_UNSPECIFIED is not specified
+  TOKEN_TYPE_UNSPECIFIED = 0;
+  // TOKEN_TYPE_API is a token for api usage
+  TOKEN_TYPE_API = 1;
+  // TOKEN_TYPE_USER is a token to access the api with cli, a web application or other user induced actions.
+  TOKEN_TYPE_USER = 2;
+}
+
+// TokenServiceCreateRequest is the request payload to create a token
+message TokenServiceCreateRequest {
+  // Description of the token
+  string description = 1 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
+  // Permissions is a list of service methods this token can be used for
+  repeated MethodPermission permissions = 2 [(buf.validate.field).repeated.max_items = 100];
+  // Expires gives the duration since now, after which this token can not be used anymore
+  google.protobuf.Duration expires = 3 [(buf.validate.field).duration = {
+    lt: {seconds: 31536001}
+    gte: {seconds: 600}
+  }];
+  // ProjectRoles associates a project id with the corresponding role of the token owner
+  map<string, ProjectRole> project_roles = 4 [
+    (buf.validate.field).map = {
+      keys: {
+        string: {uuid: true}
+      }
+      values: {
+        enum: {defined_only: true}
+      }
+    },
+    (buf.validate.field).map.(fits.api.v1.keys_trimmed) = true
+  ];
+  // TenantRoles_associates a tenant id with the corresponding role of the token owner
+  map<string, TenantRole> tenant_roles = 5 [
+    (buf.validate.field).map = {
+      keys: {
+        string: {
+          min_len: 3
+          max_len: 128
+        }
+      }
+      values: {
+        enum: {defined_only: true}
+      }
+    },
+    (buf.validate.field).map.(fits.api.v1.keys_trimmed) = true
+  ];
+  // AdminRole defines the admin role of the token owner
+  optional AdminRole admin_role = 6 [(buf.validate.field).enum.defined_only = true];
+  // Labels on this token
+  Labels labels = 7;
+}
+
+// MethodPermission is a mapping from a subject/project to a service method
+message MethodPermission {
+  // Subject maybe either the project or the tenant
+  // for which the methods should be allowed
+  //
+  // asterisk (*) can be specified to match any subject
+  // empty string ("") can be specified for requests that do not require a subject, e.g. partition list
+  // otherwise either a projectid or a tenant login should be specified
+  string subject = 1 [(buf.validate.field).string = {max_len: 256}];
+  // Methods which should be accessible
+  repeated string methods = 2 [(buf.validate.field).repeated.max_items = 500];
+}
+
+// TokenServiceCreateResponse is the response payload of a token create request
+message TokenServiceCreateResponse {
+  // Token which was created
+  Token token = 1;
+  // Secret is the body if the jwt token, should be used in api requests as bearer token
+  string secret = 2;
+}
+
+// TokenServiceListRequest is the request payload to list tokens
+message TokenServiceListRequest {}
+
+// TokenServiceListResponse is the response payload of a token list request
+message TokenServiceListResponse {
+  // Tokens is a list of tokens without the secrets
+  repeated Token tokens = 1;
+}
+
+// TokenServiceRevokeRequest is the request payload of a token revoke request
+message TokenServiceRevokeRequest {
+  // Uuid of the token to revoke
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+}
+
+// TokenServiceRevokeResponse is the response payload of a token revoke request
+message TokenServiceRevokeResponse {}
+
+// TokenServiceUpdateRequest is the request payload of a token update request
+message TokenServiceUpdateRequest {
+  // Uuid of the token to update
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // UpdateMeta contains the timestamp and strategy to be used in this update request
+  // TokenUpdate is not guarded with optlock in the backend
+  UpdateMeta update_meta = 2 [(buf.validate.field).required = false];
+  // Description is a user given description of this token.
+  optional string description = 3 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
+  // Permissions is a list of service methods this token can be used for
+  repeated MethodPermission permissions = 4;
+  // ProjectRoles associates a project id with the corresponding role of the token owner
+  map<string, ProjectRole> project_roles = 5 [
+    (buf.validate.field).map = {
+      keys: {
+        string: {uuid: true}
+      }
+      values: {
+        enum: {defined_only: true}
+      }
+    },
+    (buf.validate.field).map.(fits.api.v1.keys_trimmed) = true
+  ];
+  // TenantRoles associates a tenant id with the corresponding role of the token owner
+  map<string, TenantRole> tenant_roles = 6 [
+    (buf.validate.field).map = {
+      keys: {
+        string: {
+          min_len: 3
+          max_len: 128
+        }
+      }
+      values: {
+        enum: {defined_only: true}
+      }
+    },
+    (buf.validate.field).map.(fits.api.v1.keys_trimmed) = true
+  ];
+  // AdminRole defines the admin role of the token owner
+  optional AdminRole admin_role = 7 [(buf.validate.field).enum.defined_only = true];
+  // Labels on this token
+  UpdateLabels labels = 8;
+}
+
+// TokenServiceUpdateResponse is the response payload of a token update request
+message TokenServiceUpdateResponse {
+  // Token is the updated token
+  Token token = 1;
+}
+
+// TokenServiceGetRequest is the request payload of a token get request
+message TokenServiceGetRequest {
+  // Uuid of the token to get
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+}
+
+// TokenServiceGetResponse is the response payload of a token get request
+message TokenServiceGetResponse {
+  // Token is the token
+  Token token = 1;
+}
+
+// TokenServiceRefreshRequest is the request payload of a token refresh request
+// Permissions, Roles and Expiration duration and all other properties are inherited from the calling token.
+// The expiration duration will be calculated from the existing token (exp - iat)
+message TokenServiceRefreshRequest {}
+
+// TokenServiceRefreshResponse is the response payload of a token refresh request
+message TokenServiceRefreshResponse {
+  // Token which was refreshed
+  Token token = 1;
+  // Secret is the body if the jwt token, should be used in api requests as bearer token
+  string secret = 2;
+}

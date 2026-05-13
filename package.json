@@ -1,0 +1,23 @@
+{
+  "name": "@fi-ts/api",
+  "description": "fi-ts api typescript client",
+  "repository": "https://github.com/fi-ts/api.git",
+  "scripts": {
+    "build": "tsc --project js/tsconfig.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "www.f-i-ts.de",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@bufbuild/protobuf": "^2.12.0",
+    "@connectrpc/connect-web": "^2.1.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "files": [
+    "js/*"
+  ],
+  "version": "0.0.0"
+}
