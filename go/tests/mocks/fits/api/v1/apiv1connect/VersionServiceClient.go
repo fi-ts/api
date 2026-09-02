@@ -74,7 +74,7 @@ type VersionServiceClient_Get_Call struct {
 // Get is a helper method to define mock.On call
 //   - context1 context.Context
 //   - versionServiceGetRequest *apiv1.VersionServiceGetRequest
-func (_e *VersionServiceClient_Expecter) Get(context1 interface{}, versionServiceGetRequest interface{}) *VersionServiceClient_Get_Call {
+func (_e *VersionServiceClient_Expecter) Get(context1 any, versionServiceGetRequest any) *VersionServiceClient_Get_Call {
 	return &VersionServiceClient_Get_Call{Call: _e.mock.On("Get", context1, versionServiceGetRequest)}
 }
 

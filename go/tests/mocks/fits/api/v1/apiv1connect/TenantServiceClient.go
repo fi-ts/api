@@ -74,7 +74,7 @@ type TenantServiceClient_Create_Call struct {
 // Create is a helper method to define mock.On call
 //   - context1 context.Context
 //   - tenantServiceCreateRequest *apiv1.TenantServiceCreateRequest
-func (_e *TenantServiceClient_Expecter) Create(context1 interface{}, tenantServiceCreateRequest interface{}) *TenantServiceClient_Create_Call {
+func (_e *TenantServiceClient_Expecter) Create(context1 any, tenantServiceCreateRequest any) *TenantServiceClient_Create_Call {
 	return &TenantServiceClient_Create_Call{Call: _e.mock.On("Create", context1, tenantServiceCreateRequest)}
 }
 
@@ -142,7 +142,7 @@ type TenantServiceClient_Delete_Call struct {
 // Delete is a helper method to define mock.On call
 //   - context1 context.Context
 //   - tenantServiceDeleteRequest *apiv1.TenantServiceDeleteRequest
-func (_e *TenantServiceClient_Expecter) Delete(context1 interface{}, tenantServiceDeleteRequest interface{}) *TenantServiceClient_Delete_Call {
+func (_e *TenantServiceClient_Expecter) Delete(context1 any, tenantServiceDeleteRequest any) *TenantServiceClient_Delete_Call {
 	return &TenantServiceClient_Delete_Call{Call: _e.mock.On("Delete", context1, tenantServiceDeleteRequest)}
 }
 
@@ -210,7 +210,7 @@ type TenantServiceClient_Get_Call struct {
 // Get is a helper method to define mock.On call
 //   - context1 context.Context
 //   - tenantServiceGetRequest *apiv1.TenantServiceGetRequest
-func (_e *TenantServiceClient_Expecter) Get(context1 interface{}, tenantServiceGetRequest interface{}) *TenantServiceClient_Get_Call {
+func (_e *TenantServiceClient_Expecter) Get(context1 any, tenantServiceGetRequest any) *TenantServiceClient_Get_Call {
 	return &TenantServiceClient_Get_Call{Call: _e.mock.On("Get", context1, tenantServiceGetRequest)}
 }
 
@@ -278,7 +278,7 @@ type TenantServiceClient_List_Call struct {
 // List is a helper method to define mock.On call
 //   - context1 context.Context
 //   - tenantServiceListRequest *apiv1.TenantServiceListRequest
-func (_e *TenantServiceClient_Expecter) List(context1 interface{}, tenantServiceListRequest interface{}) *TenantServiceClient_List_Call {
+func (_e *TenantServiceClient_Expecter) List(context1 any, tenantServiceListRequest any) *TenantServiceClient_List_Call {
 	return &TenantServiceClient_List_Call{Call: _e.mock.On("List", context1, tenantServiceListRequest)}
 }
 
@@ -346,7 +346,7 @@ type TenantServiceClient_Update_Call struct {
 // Update is a helper method to define mock.On call
 //   - context1 context.Context
 //   - tenantServiceUpdateRequest *apiv1.TenantServiceUpdateRequest
-func (_e *TenantServiceClient_Expecter) Update(context1 interface{}, tenantServiceUpdateRequest interface{}) *TenantServiceClient_Update_Call {
+func (_e *TenantServiceClient_Expecter) Update(context1 any, tenantServiceUpdateRequest any) *TenantServiceClient_Update_Call {
 	return &TenantServiceClient_Update_Call{Call: _e.mock.On("Update", context1, tenantServiceUpdateRequest)}
 }
 

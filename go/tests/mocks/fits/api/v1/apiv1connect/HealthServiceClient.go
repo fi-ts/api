@@ -74,7 +74,7 @@ type HealthServiceClient_Get_Call struct {
 // Get is a helper method to define mock.On call
 //   - context1 context.Context
 //   - healthServiceGetRequest *apiv1.HealthServiceGetRequest
-func (_e *HealthServiceClient_Expecter) Get(context1 interface{}, healthServiceGetRequest interface{}) *HealthServiceClient_Get_Call {
+func (_e *HealthServiceClient_Expecter) Get(context1 any, healthServiceGetRequest any) *HealthServiceClient_Get_Call {
 	return &HealthServiceClient_Get_Call{Call: _e.mock.On("Get", context1, healthServiceGetRequest)}
 }
 
