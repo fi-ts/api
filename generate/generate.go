@@ -104,8 +104,8 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 		}
 		methods = permissions.Methods{
 			// Allow service reflection to list available methods
-			serverReflectionInfov1alpha1: true,
-			serverReflectionInfo:         true,
+			serverReflectionInfov1alpha1: struct{}{},
+			serverReflectionInfo:         struct{}{},
 		}
 		visibility = permissions.Visibility{
 			Public: map[string]bool{
@@ -146,19 +146,31 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 						// Tenant
 						switch role := *methodOpt.IdentifierValue; role {
 						case v1.TenantRole_TENANT_ROLE_OWNER.String(), v1.TenantRole_TENANT_ROLE_EDITOR.String(), v1.TenantRole_TENANT_ROLE_VIEWER.String(), v1.TenantRole_TENANT_ROLE_GUEST.String():
-							roles.Tenant[role] = append(roles.Tenant[role], methodName)
+							apirole := v1.TenantRole(v1.TenantRole_value[role])
+							if methods := roles.Tenant[apirole]; methods == nil {
+								roles.Tenant[apirole] = permissions.Methods{}
+							}
+							roles.Tenant[apirole][methodName] = struct{}{}
 							visibility.Tenant[methodName] = true
 						case v1.TenantRole_TENANT_ROLE_UNSPECIFIED.String():
 							// noop
 						// Project
 						case v1.ProjectRole_PROJECT_ROLE_OWNER.String(), v1.ProjectRole_PROJECT_ROLE_EDITOR.String(), v1.ProjectRole_PROJECT_ROLE_VIEWER.String():
-							roles.Project[role] = append(roles.Project[role], methodName)
+							apirole := v1.ProjectRole(v1.ProjectRole_value[role])
+							if methods := roles.Project[apirole]; methods == nil {
+								roles.Project[apirole] = permissions.Methods{}
+							}
+							roles.Project[apirole][methodName] = struct{}{}
 							visibility.Project[methodName] = true
 						case v1.ProjectRole_PROJECT_ROLE_UNSPECIFIED.String():
 							// noop
 						// Admin
 						case v1.AdminRole_ADMIN_ROLE_EDITOR.String(), v1.AdminRole_ADMIN_ROLE_VIEWER.String():
-							roles.Admin[role] = append(roles.Admin[role], methodName)
+							apirole := v1.AdminRole(v1.AdminRole_value[role])
+							if methods := roles.Admin[apirole]; methods == nil {
+								roles.Admin[apirole] = permissions.Methods{}
+							}
+							roles.Admin[apirole][methodName] = struct{}{}
 							visibility.Admin[methodName] = true
 						case v1.AdminRole_ADMIN_ROLE_UNSPECIFIED.String():
 							// noop
@@ -181,7 +193,7 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 							return nil, fmt.Errorf("unknown method identifier value detected:%s", *methodOpt.IdentifierValue)
 
 						}
-						methods[methodName] = true
+						methods[methodName] = struct{}{}
 					}
 				}
 			}

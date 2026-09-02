@@ -3,6 +3,7 @@ package permissions
 
 import (
 	"connectrpc.com/connect"
+	v1 "github.com/fi-ts/api/go/fits/api/v1"
 )
 
 func GetServices() []string {
@@ -18,33 +19,33 @@ func GetServicePermissions() *ServicePermissions {
 		Roles:      Roles{
 			Admin:   Admin{
 				{{- range $role, $methods := .Roles.Admin }}
-					"{{ $role }}": []string{
-						{{- range $method := $methods }}
-							"{{ $method }}",
+					v1.AdminRole_{{ $role }}: map[string]struct{}{
+						{{- range $method,$v := $methods }}
+							"{{ $method }}":{{ $v }},
 						{{- end }}
 					},
 				{{- end }}
 			},
 			Tenant:  Tenant{
 				{{- range $role, $methods := .Roles.Tenant }}
-					"{{ $role }}": []string{
-						{{- range $method := $methods }}
-							"{{ $method }}",
+					v1.TenantRole_{{ $role }}: map[string]struct{}{
+						{{- range $method,$v := $methods }}
+							"{{ $method }}":{{ $v }},
 						{{- end }}
 					},
 				{{- end }}
 			},
 			Project: Project{
 				{{- range $role, $methods := .Roles.Project }}
-					"{{ $role }}": []string{
-						{{- range $method := $methods }}
-							"{{ $method }}",
+					v1.ProjectRole_{{ $role }}: map[string]struct{}{
+						{{- range $method,$v := $methods }}
+							"{{ $method }}":{{ $v }},
 						{{- end }}
 					},
 				{{- end }}
 			},
 		},
-		Methods:    map[string]bool{
+		Methods:    map[string]struct{}{
 {{- range $key, $value := .Methods }}
 	"{{ $key }}": {{ $value }} ,
 {{- end }}

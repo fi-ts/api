@@ -2,6 +2,8 @@ package permissions
 
 import (
 	_ "embed"
+
+	v1 "github.com/fi-ts/api/go/fits/api/v1"
 )
 
 type (
@@ -13,13 +15,13 @@ type (
 		Services   []string   `json:"services,omitempty"`
 	}
 
-	Methods map[string]bool
+	Methods map[string]struct{}
 
 	Auditable map[string]bool
 
-	Admin   map[string][]string
-	Tenant  map[string][]string
-	Project map[string][]string
+	Admin   map[v1.AdminRole]Methods
+	Tenant  map[v1.TenantRole]Methods
+	Project map[v1.ProjectRole]Methods
 
 	// Roles
 	Roles struct {
