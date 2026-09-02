@@ -3,6 +3,7 @@ package permissions
 
 import (
 	"connectrpc.com/connect"
+	v1 "github.com/fi-ts/api/go/fits/api/v1"
 )
 
 func GetServices() []string {
@@ -22,80 +23,80 @@ func GetServicePermissions() *ServicePermissions {
 		Roles: Roles{
 			Admin: Admin{},
 			Tenant: Tenant{
-				"TENANT_ROLE_EDITOR": []string{
-					"/fits.api.v1.ProjectService/Create",
-					"/fits.api.v1.TenantService/Get",
-					"/fits.api.v1.TenantService/Update",
-					"/fits.api.v1.TenantService/Delete",
+				v1.TenantRole_TENANT_ROLE_OWNER: map[string]struct{}{
+					"/fits.api.v1.ProjectService/Create": {},
+					"/fits.api.v1.TenantService/Delete":  {},
+					"/fits.api.v1.TenantService/Get":     {},
+					"/fits.api.v1.TenantService/Update":  {},
 				},
-				"TENANT_ROLE_GUEST": []string{
-					"/fits.api.v1.TenantService/Get",
+				v1.TenantRole_TENANT_ROLE_EDITOR: map[string]struct{}{
+					"/fits.api.v1.ProjectService/Create": {},
+					"/fits.api.v1.TenantService/Delete":  {},
+					"/fits.api.v1.TenantService/Get":     {},
+					"/fits.api.v1.TenantService/Update":  {},
 				},
-				"TENANT_ROLE_OWNER": []string{
-					"/fits.api.v1.ProjectService/Create",
-					"/fits.api.v1.TenantService/Get",
-					"/fits.api.v1.TenantService/Update",
-					"/fits.api.v1.TenantService/Delete",
+				v1.TenantRole_TENANT_ROLE_VIEWER: map[string]struct{}{
+					"/fits.api.v1.TenantService/Get": {},
 				},
-				"TENANT_ROLE_VIEWER": []string{
-					"/fits.api.v1.TenantService/Get",
+				v1.TenantRole_TENANT_ROLE_GUEST: map[string]struct{}{
+					"/fits.api.v1.TenantService/Get": {},
 				},
 			},
 			Project: Project{
-				"PROJECT_ROLE_EDITOR": []string{
-					"/fits.api.v1.IPService/Get",
-					"/fits.api.v1.IPService/Create",
-					"/fits.api.v1.IPService/Update",
-					"/fits.api.v1.IPService/List",
-					"/fits.api.v1.IPService/Delete",
-					"/fits.api.v1.ProjectService/Get",
-					"/fits.api.v1.ProjectService/Update",
+				v1.ProjectRole_PROJECT_ROLE_OWNER: map[string]struct{}{
+					"/fits.api.v1.IPService/Create":      {},
+					"/fits.api.v1.IPService/Delete":      {},
+					"/fits.api.v1.IPService/Get":         {},
+					"/fits.api.v1.IPService/List":        {},
+					"/fits.api.v1.IPService/Update":      {},
+					"/fits.api.v1.ProjectService/Delete": {},
+					"/fits.api.v1.ProjectService/Get":    {},
+					"/fits.api.v1.ProjectService/Update": {},
 				},
-				"PROJECT_ROLE_OWNER": []string{
-					"/fits.api.v1.IPService/Get",
-					"/fits.api.v1.IPService/Create",
-					"/fits.api.v1.IPService/Update",
-					"/fits.api.v1.IPService/List",
-					"/fits.api.v1.IPService/Delete",
-					"/fits.api.v1.ProjectService/Get",
-					"/fits.api.v1.ProjectService/Delete",
-					"/fits.api.v1.ProjectService/Update",
+				v1.ProjectRole_PROJECT_ROLE_EDITOR: map[string]struct{}{
+					"/fits.api.v1.IPService/Create":      {},
+					"/fits.api.v1.IPService/Delete":      {},
+					"/fits.api.v1.IPService/Get":         {},
+					"/fits.api.v1.IPService/List":        {},
+					"/fits.api.v1.IPService/Update":      {},
+					"/fits.api.v1.ProjectService/Get":    {},
+					"/fits.api.v1.ProjectService/Update": {},
 				},
-				"PROJECT_ROLE_VIEWER": []string{
-					"/fits.api.v1.IPService/Get",
-					"/fits.api.v1.IPService/List",
-					"/fits.api.v1.ProjectService/Get",
+				v1.ProjectRole_PROJECT_ROLE_VIEWER: map[string]struct{}{
+					"/fits.api.v1.IPService/Get":      {},
+					"/fits.api.v1.IPService/List":     {},
+					"/fits.api.v1.ProjectService/Get": {},
 				},
 			},
 		},
-		Methods: map[string]bool{
-			"/fits.api.v1.HealthService/Get":                                 true,
-			"/fits.api.v1.IPService/Create":                                  true,
-			"/fits.api.v1.IPService/Delete":                                  true,
-			"/fits.api.v1.IPService/Get":                                     true,
-			"/fits.api.v1.IPService/List":                                    true,
-			"/fits.api.v1.IPService/Update":                                  true,
-			"/fits.api.v1.MethodService/List":                                true,
-			"/fits.api.v1.MethodService/TokenScopedList":                     true,
-			"/fits.api.v1.ProjectService/Create":                             true,
-			"/fits.api.v1.ProjectService/Delete":                             true,
-			"/fits.api.v1.ProjectService/Get":                                true,
-			"/fits.api.v1.ProjectService/List":                               true,
-			"/fits.api.v1.ProjectService/Update":                             true,
-			"/fits.api.v1.TenantService/Create":                              true,
-			"/fits.api.v1.TenantService/Delete":                              true,
-			"/fits.api.v1.TenantService/Get":                                 true,
-			"/fits.api.v1.TenantService/List":                                true,
-			"/fits.api.v1.TenantService/Update":                              true,
-			"/fits.api.v1.TokenService/Create":                               true,
-			"/fits.api.v1.TokenService/Get":                                  true,
-			"/fits.api.v1.TokenService/List":                                 true,
-			"/fits.api.v1.TokenService/Refresh":                              true,
-			"/fits.api.v1.TokenService/Revoke":                               true,
-			"/fits.api.v1.TokenService/Update":                               true,
-			"/fits.api.v1.VersionService/Get":                                true,
-			"/grpc.reflection.v1.ServerReflection/ServerReflectionInfo":      true,
-			"/grpc.reflection.v1alpha.ServerReflection/ServerReflectionInfo": true,
+		Methods: map[string]struct{}{
+			"/fits.api.v1.HealthService/Get":                                 {},
+			"/fits.api.v1.IPService/Create":                                  {},
+			"/fits.api.v1.IPService/Delete":                                  {},
+			"/fits.api.v1.IPService/Get":                                     {},
+			"/fits.api.v1.IPService/List":                                    {},
+			"/fits.api.v1.IPService/Update":                                  {},
+			"/fits.api.v1.MethodService/List":                                {},
+			"/fits.api.v1.MethodService/TokenScopedList":                     {},
+			"/fits.api.v1.ProjectService/Create":                             {},
+			"/fits.api.v1.ProjectService/Delete":                             {},
+			"/fits.api.v1.ProjectService/Get":                                {},
+			"/fits.api.v1.ProjectService/List":                               {},
+			"/fits.api.v1.ProjectService/Update":                             {},
+			"/fits.api.v1.TenantService/Create":                              {},
+			"/fits.api.v1.TenantService/Delete":                              {},
+			"/fits.api.v1.TenantService/Get":                                 {},
+			"/fits.api.v1.TenantService/List":                                {},
+			"/fits.api.v1.TenantService/Update":                              {},
+			"/fits.api.v1.TokenService/Create":                               {},
+			"/fits.api.v1.TokenService/Get":                                  {},
+			"/fits.api.v1.TokenService/List":                                 {},
+			"/fits.api.v1.TokenService/Refresh":                              {},
+			"/fits.api.v1.TokenService/Revoke":                               {},
+			"/fits.api.v1.TokenService/Update":                               {},
+			"/fits.api.v1.VersionService/Get":                                {},
+			"/grpc.reflection.v1.ServerReflection/ServerReflectionInfo":      {},
+			"/grpc.reflection.v1alpha.ServerReflection/ServerReflectionInfo": {},
 		},
 		Visibility: Visibility{
 			Public: map[string]bool{
