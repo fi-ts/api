@@ -74,7 +74,7 @@ type MethodServiceClient_List_Call struct {
 // List is a helper method to define mock.On call
 //   - context1 context.Context
 //   - methodServiceListRequest *apiv1.MethodServiceListRequest
-func (_e *MethodServiceClient_Expecter) List(context1 interface{}, methodServiceListRequest interface{}) *MethodServiceClient_List_Call {
+func (_e *MethodServiceClient_Expecter) List(context1 any, methodServiceListRequest any) *MethodServiceClient_List_Call {
 	return &MethodServiceClient_List_Call{Call: _e.mock.On("List", context1, methodServiceListRequest)}
 }
 
@@ -142,7 +142,7 @@ type MethodServiceClient_TokenScopedList_Call struct {
 // TokenScopedList is a helper method to define mock.On call
 //   - context1 context.Context
 //   - methodServiceTokenScopedListRequest *apiv1.MethodServiceTokenScopedListRequest
-func (_e *MethodServiceClient_Expecter) TokenScopedList(context1 interface{}, methodServiceTokenScopedListRequest interface{}) *MethodServiceClient_TokenScopedList_Call {
+func (_e *MethodServiceClient_Expecter) TokenScopedList(context1 any, methodServiceTokenScopedListRequest any) *MethodServiceClient_TokenScopedList_Call {
 	return &MethodServiceClient_TokenScopedList_Call{Call: _e.mock.On("TokenScopedList", context1, methodServiceTokenScopedListRequest)}
 }
 

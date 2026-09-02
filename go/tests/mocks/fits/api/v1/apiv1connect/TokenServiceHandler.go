@@ -74,7 +74,7 @@ type TokenServiceHandler_Create_Call struct {
 // Create is a helper method to define mock.On call
 //   - context1 context.Context
 //   - tokenServiceCreateRequest *apiv1.TokenServiceCreateRequest
-func (_e *TokenServiceHandler_Expecter) Create(context1 interface{}, tokenServiceCreateRequest interface{}) *TokenServiceHandler_Create_Call {
+func (_e *TokenServiceHandler_Expecter) Create(context1 any, tokenServiceCreateRequest any) *TokenServiceHandler_Create_Call {
 	return &TokenServiceHandler_Create_Call{Call: _e.mock.On("Create", context1, tokenServiceCreateRequest)}
 }
 
@@ -142,7 +142,7 @@ type TokenServiceHandler_Get_Call struct {
 // Get is a helper method to define mock.On call
 //   - context1 context.Context
 //   - tokenServiceGetRequest *apiv1.TokenServiceGetRequest
-func (_e *TokenServiceHandler_Expecter) Get(context1 interface{}, tokenServiceGetRequest interface{}) *TokenServiceHandler_Get_Call {
+func (_e *TokenServiceHandler_Expecter) Get(context1 any, tokenServiceGetRequest any) *TokenServiceHandler_Get_Call {
 	return &TokenServiceHandler_Get_Call{Call: _e.mock.On("Get", context1, tokenServiceGetRequest)}
 }
 
@@ -210,7 +210,7 @@ type TokenServiceHandler_List_Call struct {
 // List is a helper method to define mock.On call
 //   - context1 context.Context
 //   - tokenServiceListRequest *apiv1.TokenServiceListRequest
-func (_e *TokenServiceHandler_Expecter) List(context1 interface{}, tokenServiceListRequest interface{}) *TokenServiceHandler_List_Call {
+func (_e *TokenServiceHandler_Expecter) List(context1 any, tokenServiceListRequest any) *TokenServiceHandler_List_Call {
 	return &TokenServiceHandler_List_Call{Call: _e.mock.On("List", context1, tokenServiceListRequest)}
 }
 
@@ -278,7 +278,7 @@ type TokenServiceHandler_Refresh_Call struct {
 // Refresh is a helper method to define mock.On call
 //   - context1 context.Context
 //   - tokenServiceRefreshRequest *apiv1.TokenServiceRefreshRequest
-func (_e *TokenServiceHandler_Expecter) Refresh(context1 interface{}, tokenServiceRefreshRequest interface{}) *TokenServiceHandler_Refresh_Call {
+func (_e *TokenServiceHandler_Expecter) Refresh(context1 any, tokenServiceRefreshRequest any) *TokenServiceHandler_Refresh_Call {
 	return &TokenServiceHandler_Refresh_Call{Call: _e.mock.On("Refresh", context1, tokenServiceRefreshRequest)}
 }
 
@@ -346,7 +346,7 @@ type TokenServiceHandler_Revoke_Call struct {
 // Revoke is a helper method to define mock.On call
 //   - context1 context.Context
 //   - tokenServiceRevokeRequest *apiv1.TokenServiceRevokeRequest
-func (_e *TokenServiceHandler_Expecter) Revoke(context1 interface{}, tokenServiceRevokeRequest interface{}) *TokenServiceHandler_Revoke_Call {
+func (_e *TokenServiceHandler_Expecter) Revoke(context1 any, tokenServiceRevokeRequest any) *TokenServiceHandler_Revoke_Call {
 	return &TokenServiceHandler_Revoke_Call{Call: _e.mock.On("Revoke", context1, tokenServiceRevokeRequest)}
 }
 
@@ -414,7 +414,7 @@ type TokenServiceHandler_Update_Call struct {
 // Update is a helper method to define mock.On call
 //   - context1 context.Context
 //   - tokenServiceUpdateRequest *apiv1.TokenServiceUpdateRequest
-func (_e *TokenServiceHandler_Expecter) Update(context1 interface{}, tokenServiceUpdateRequest interface{}) *TokenServiceHandler_Update_Call {
+func (_e *TokenServiceHandler_Expecter) Update(context1 any, tokenServiceUpdateRequest any) *TokenServiceHandler_Update_Call {
 	return &TokenServiceHandler_Update_Call{Call: _e.mock.On("Update", context1, tokenServiceUpdateRequest)}
 }
 
