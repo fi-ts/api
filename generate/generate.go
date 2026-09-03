@@ -4,12 +4,12 @@ import (
 	"bytes"
 	"fmt"
 	"go/format"
-	"html/template"
 	"os"
 	"path"
 	"path/filepath"
 	"slices"
 	"strings"
+	"text/template"
 
 	v1 "github.com/fi-ts/api/go/fits/api/v1"
 	"github.com/fi-ts/api/go/permissions"
@@ -29,10 +29,10 @@ const (
 var (
 	//go:embed go_servicepermissions.tpl
 	servicePermissionsTpl string
-	//go:embed go_mock_client.tpl
-	mockClientTpl string
 	//go:embed go_client.tpl
 	clientTpl string
+	//go:embed ts_client.tpl
+	tsClientTpl string
 	//go:embed python_client.tpl
 	pythonClientTpl string
 )
@@ -54,7 +54,7 @@ func main() {
 		panic(err)
 	}
 
-	err = writeTemplate("../go/permissions/servicepermissions.go", servicePermissionsTpl, perms)
+	err = writeTemplate("../go/permissions/servicepermissions.go", servicePermissionsTpl, perms, sprig.FuncMap())
 	if err != nil {
 		panic(err)
 	}
@@ -66,12 +66,24 @@ func main() {
 		panic(err)
 	}
 
-	err = writeTemplate("../go/client/client.go", clientTpl, svcs)
+	funcs := sprig.FuncMap()
+	funcs["lowerFirst"] = func(s string) string {
+		if len(s) == 0 {
+			return s
+		}
+		// If the string is all uppercase (e.g. "IP", "VPN", "BMC"), lowercase the entire thing
+		if s == strings.ToUpper(s) {
+			return strings.ToLower(s)
+		}
+		return strings.ToLower(s[:1]) + s[1:]
+	}
+
+	err = writeTemplate("../go/client/client.go", clientTpl, svcs, funcs)
 	if err != nil {
 		panic(err)
 	}
 
-	err = writeTemplate("../go/tests/mock_clients.go", mockClientTpl, svcs)
+	err = writeTemplate("../js/client.ts", tsClientTpl, svcs, funcs)
 	if err != nil {
 		panic(err)
 	}
@@ -264,8 +276,8 @@ func svcs(root string) (map[string]api, error) {
 	return result, nil
 }
 
-func writeTemplate(dest, text string, data any) error {
-	t, err := template.New("").Funcs(sprig.FuncMap()).Parse(text)
+func writeTemplate(dest, text string, data any, funcs template.FuncMap) error {
+	t, err := template.New("").Funcs(funcs).Parse(text)
 	if err != nil {
 		return err
 	}
@@ -275,15 +287,22 @@ func writeTemplate(dest, text string, data any) error {
 		return err
 	}
 
-	p, err := format.Source(buf.Bytes())
-	if err != nil {
-		return err
+	var p []byte
+	if strings.HasSuffix(dest, ".go") {
+		var ferr error
+		p, ferr = format.Source(buf.Bytes())
+		if ferr != nil {
+			return ferr
+		}
+	} else {
+		p = buf.Bytes()
 	}
 
 	fmt.Println("wrote " + dest)
 
 	return os.WriteFile(dest, p, 0755) // nolint:gosec
 }
+
 func writePythonTemplate(dest, text string, data any) error {
 	t, err := template.New("").Funcs(sprig.FuncMap()).Parse(text)
 	if err != nil {

@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"connectrpc.com/connect"
-	apiv2models "github.com/fi-ts/api/go/fits/api/v1"
+	apiv1models "github.com/fi-ts/api/go/fits/api/v1"
 )
 
 // authinterceptor adds the required auth headers
@@ -124,7 +124,7 @@ func (i *tokenRenewingInterceptor) renewTokenIfNeeded() error {
 	i.Lock()
 	defer i.Unlock()
 
-	resp, err := i.client.Apiv1().Token().Refresh(context.Background(), &apiv2models.TokenServiceRefreshRequest{})
+	resp, err := i.client.Apiv1().Token().Refresh(context.Background(), &apiv1models.TokenServiceRefreshRequest{})
 	if err != nil {
 		return fmt.Errorf("unable to refresh token %w", err)
 	}

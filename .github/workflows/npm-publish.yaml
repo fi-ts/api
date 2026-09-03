@@ -1,0 +1,43 @@
+name: publish-npm
+
+on:
+  release:
+    types:
+      - published
+
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  js:
+    name: JavaScript
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v7
+
+      - name: setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org/
+
+      - name: setup bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        working-directory: js
+        run: bun install --frozen-lockfile
+
+      - name: build
+        run: make build
+
+      - name: Publish to npm
+        working-directory: js
+        run: bunx npm@11.8.0 publish --provenance # workaround for bun not supporting trusted publishing of npm (https://github.com/oven-sh/bun/issues/15601)
+        if: github.event_name == 'release'
