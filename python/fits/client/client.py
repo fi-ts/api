@@ -12,9 +12,11 @@ import fits.api.v1.version_connect as api_version_connect
 
 
 
+
 class Client:
-    def __init__(self, baseurl: str, timeout: float = 10):
+    def __init__(self, baseurl: str, timeout: float = 10, interceptors: list = []):
         self._baseurl = baseurl
+        self._interceptors = list(interceptors)
 
         transport = pyqwest.SyncHTTPTransport(
             http_version=pyqwest.HTTPVersion.HTTP2,
@@ -25,35 +27,36 @@ class Client:
 
 
     def apiv1(self):
-        return self._Apiv1(baseurl=self._baseurl, client=self._client)
+        return self._Apiv1(baseurl=self._baseurl, client=self._client, interceptors=self._interceptors)
 
 
 
     class _Apiv1:
-        def __init__(self, baseurl: str, client: pyqwest.SyncClient = None):
+        def __init__(self, baseurl: str, client: pyqwest.SyncClient = None, interceptors: list = []):
             self._baseurl = baseurl
             self._client = client
+            self._interceptors = list(interceptors)
 
 
         def health(self):
-            return api_health_connect.HealthServiceClientSync(address=self._baseurl, http_client=self._client)
+            return api_health_connect.HealthServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
         def ip(self):
-            return api_ip_connect.IPServiceClientSync(address=self._baseurl, http_client=self._client)
+            return api_ip_connect.IPServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
         def method(self):
-            return api_method_connect.MethodServiceClientSync(address=self._baseurl, http_client=self._client)
+            return api_method_connect.MethodServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
         def project(self):
-            return api_project_connect.ProjectServiceClientSync(address=self._baseurl, http_client=self._client)
+            return api_project_connect.ProjectServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
         def tenant(self):
-            return api_tenant_connect.TenantServiceClientSync(address=self._baseurl, http_client=self._client)
+            return api_tenant_connect.TenantServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
         def token(self):
-            return api_token_connect.TokenServiceClientSync(address=self._baseurl, http_client=self._client)
+            return api_token_connect.TokenServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
         def version(self):
-            return api_version_connect.VersionServiceClientSync(address=self._baseurl, http_client=self._client)
+            return api_version_connect.VersionServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
 
