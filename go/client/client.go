@@ -6,11 +6,13 @@ import (
 	compress "github.com/klauspost/connect-compress/v2"
 
 	"github.com/fi-ts/api/go/fits/api/v1/apiv1connect"
+	"github.com/fi-ts/api/go/fits/api/vm/v1/vmv1connect"
 )
 
 type (
 	Client interface {
 		Apiv1() Apiv1
+		Apivmv1() Apivmv1
 	}
 	client struct {
 		config *DialConfig
@@ -35,6 +37,14 @@ type (
 		tenantservice  apiv1connect.TenantServiceClient
 		tokenservice   apiv1connect.TokenServiceClient
 		versionservice apiv1connect.VersionServiceClient
+	}
+
+	Apivmv1 interface {
+		VM() vmv1connect.VMServiceClient
+	}
+
+	apivmv1 struct {
+		vmservice vmv1connect.VMServiceClient
 	}
 )
 
@@ -135,4 +145,20 @@ func (c *apiv1) Token() apiv1connect.TokenServiceClient {
 }
 func (c *apiv1) Version() apiv1connect.VersionServiceClient {
 	return c.versionservice
+}
+
+func (c *client) Apivmv1() Apivmv1 {
+	a := &apivmv1{
+		vmservice: vmv1connect.NewVMServiceClient(
+			c.config.HttpClient(),
+			c.config.BaseURL,
+			connect.WithInterceptors(c.interceptors...),
+			compress.WithAll(compress.LevelBalanced),
+		),
+	}
+	return a
+}
+
+func (c *apivmv1) VM() vmv1connect.VMServiceClient {
+	return c.vmservice
 }

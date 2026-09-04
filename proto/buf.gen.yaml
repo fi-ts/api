@@ -13,21 +13,21 @@ managed:
       value: github.com/fi-ts/api/go
 plugins:
   # go
-  - remote: buf.build/protocolbuffers/go:v1.36.11
+  - remote: buf.build/protocolbuffers/go:v1.36.12
     out: ../go
     opt: paths=source_relative
-  - remote: buf.build/connectrpc/go:v1.19.2
+  - remote: buf.build/connectrpc/go:v1.20.0
     out: ../go
     opt: paths=source_relative,simple
   # python
-  - remote: buf.build/protocolbuffers/python:v34.1
+  - remote: buf.build/protocolbuffers/python:v36.1
     out: ../python
-  - remote: buf.build/protocolbuffers/pyi:v34.1
+  - remote: buf.build/protocolbuffers/pyi:v36.1
     out: ../python
-  - remote: buf.build/connectrpc/python:v0.8.1
+  - remote: buf.build/connectrpc/python:v0.10.1
     out: ../python
   # js
-  - remote: buf.build/bufbuild/es:v2.12.0
+  - remote: buf.build/bufbuild/es:v2.14.0
     include_imports: true
     out: ../js
     opt: target=ts

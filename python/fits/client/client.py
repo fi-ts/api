@@ -10,6 +10,8 @@ import fits.api.v1.tenant_connect as api_tenant_connect
 import fits.api.v1.token_connect as api_token_connect
 import fits.api.v1.version_connect as api_version_connect
 
+import fits.apivm.v1.vm_connect as apivm_vm_connect
+
 
 
 class Client:
@@ -26,6 +28,9 @@ class Client:
 
     def apiv1(self):
         return self._Apiv1(baseurl=self._baseurl, client=self._client)
+
+    def apivmv1(self):
+        return self._Apivmv1(baseurl=self._baseurl, client=self._client)
 
 
 
@@ -55,5 +60,15 @@ class Client:
 
         def version(self):
             return api_version_connect.VersionServiceClientSync(address=self._baseurl, http_client=self._client)
+
+
+    class _Apivmv1:
+        def __init__(self, baseurl: str, client: pyqwest.SyncClient = None):
+            self._baseurl = baseurl
+            self._client = client
+
+
+        def vm(self):
+            return apivm_vm_connect.VMServiceClientSync(address=self._baseurl, http_client=self._client)
 
 
