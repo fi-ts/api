@@ -1,0 +1,146 @@
+syntax = "proto3";
+
+package fits.api.vm.v1;
+
+import "buf/validate/validate.proto";
+import "fits/api/v1/common.proto";
+import "fits/api/v1/predefined_rules.proto";
+
+// VMService provides VM address management operations.
+service VMService {
+  // Returns the VM address with the specified VM.
+  rpc Get(VMServiceGetRequest) returns (VMServiceGetResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_OWNER;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_VIEWER;
+    option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
+  }
+  // Creates a new VM address.
+  rpc Create(VMServiceCreateRequest) returns (VMServiceCreateResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_OWNER;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
+  }
+  // Updates an VM address.
+  rpc Update(VMServiceUpdateRequest) returns (VMServiceUpdateResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_OWNER;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
+  }
+  // Returns the list of all VM addresses.
+  rpc List(VMServiceListRequest) returns (VMServiceListResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_OWNER;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_VIEWER;
+    option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
+  }
+  // Deletes an VM address.
+  rpc Delete(VMServiceDeleteRequest) returns (VMServiceDeleteResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_OWNER;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
+  }
+}
+
+// VM Instance Messages
+message VMInstance {
+  // Uuid of this vm
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // Meta for this vm
+  fits.api.v1.Meta meta = 2;
+  // Name of this vm
+  string name = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Project where this vm address belongs to
+  string project = 4 [(buf.validate.field).string.uuid = true];
+}
+
+// Service messages
+
+// VMServiceGetRequest TODO
+message VMServiceGetRequest {
+  // Uuid of this vm
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // Project where this vm address belongs to
+  string project = 2 [(buf.validate.field).string.uuid = true];
+}
+
+// VMServiceGetResponse TODO
+message VMServiceGetResponse {
+  // The vm
+  VMInstance vm = 1;
+}
+
+// VMServiceCreateRequest TODO
+message VMServiceCreateRequest {
+  // Project of the vm
+  string project = 1 [(buf.validate.field).string.uuid = true];
+  // Name of the vm
+  optional string name = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Number of CPUs of this vm
+  uint32 cpu = 3;
+  // Ram of the vm in GB
+  uint32 ram = 4;
+  // OS Uuid of the OS to install in the vm instance
+  string os_uuid = 5 [(buf.validate.field).string.uuid = true];
+  // VLAN Uuid of the VLAN to install in the vm instance into
+  string vlan_uuid = 6 [(buf.validate.field).string.uuid = true];
+  // Location Uuid of the datacenter location to install in the vm instance
+  string location_uuid = 7 [(buf.validate.field).string.uuid = true];
+  // Contact Uuid of who is the responsible contact of the vm instance
+  string contact_uuid = 8 [(buf.validate.field).string.uuid = true];
+  // List of disks for this vm
+  repeated Disk disks = 9;
+  // Disks             []DiskInputModel
+  // RequestedBy       *string // TODO is inherited from the token making the create request -> stored in meta.createdBy
+
+  // AccountingKey     *string
+  // Availability      VMInstanceLinuxCreateInputModelAvailability
+  // Backup            bool
+  // Billable          bool
+  // BillingStartDate  *openapi_types.Date
+  // Contract          bool
+  // ContractNumber    *string
+  // Encrypted         bool
+  // LdapUuid          openapi_types.UUID
+  // OrderNumber       string
+  // Serviceclass      VMInstanceLinuxCreateInputModelServiceclass
+  // Storageclass      VMInstanceLinuxCreateInputModelStorageclass
+  // TechnicalKey      *string
+  // TenantUuid        *string // TODO Defined with the projectUUID
+  // TransactionNumber *string
+}
+
+// Disk
+message Disk {
+  // AutoExtend if set to true the disk grows automatically
+  bool auto_extend = 1;
+  // Size if the disk in GB
+  optional uint64 size_in_gb = 2; // TODO discuss how this could be optional
+  // DriveLetter where this disk should be assigned
+  optional string drive_letter = 3;
+  // Label of the disk
+  string label = 4;
+  // MountPoint where this disk should be mounted
+  optional string mount_point = 5; // TODO this requires a Filesystem on the disk ?
+}
+
+// VMServiceCreateResponse TODO
+message VMServiceCreateResponse {}
+
+// VMServiceUpdateRequest TODO
+message VMServiceUpdateRequest {}
+
+// VMServiceUpdateResponse TODO
+message VMServiceUpdateResponse {}
+
+// VMServiceListRequest TODO
+message VMServiceListRequest {}
+
+// VMServiceListResponse TODO
+message VMServiceListResponse {}
+
+// VMServiceDeleteRequest TODO
+message VMServiceDeleteRequest {}
+
+// VMServiceDeleteResponse TODO
+message VMServiceDeleteResponse {}

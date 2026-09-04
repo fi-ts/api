@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package fits.api.vm.v1;
+
+import "buf/validate/validate.proto";
+
+// TODO matthias define get list service
+
+// Os is the definition of a potential OS of a VM instance
+// TODO create a dedicated service
+message Os {
+  // Uuid of this os
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+}
