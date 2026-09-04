@@ -72,15 +72,15 @@ func main() {
 		panic(err)
 	}
 
-	// err = writeTemplate("../go/tests/mock_clients.go", mockClientTpl, svcs)
-	// if err != nil {
-	// 	panic(err)
-	// }
+	err = writeTemplate("../go/tests/mock_clients.go", mockClientTpl, svcs)
+	if err != nil {
+		panic(err)
+	}
 
-	// err = writePythonTemplate("../python/fits/client/client.py", pythonClientTpl, svcs)
-	// if err != nil {
-	// 	panic(err)
-	// }
+	err = writePythonTemplate("../python/fits/client/client.py", pythonClientTpl, svcs)
+	if err != nil {
+		panic(err)
+	}
 }
 
 func servicePermissions(root string) (*permissions.ServicePermissions, error) {
