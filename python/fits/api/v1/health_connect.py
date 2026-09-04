@@ -7,6 +7,8 @@ from typing import Protocol
 
 from connectrpc.client import ConnectClient, ConnectClientSync
 from connectrpc.code import Code
+from connectrpc.codec import Codec
+from connectrpc.compression import Compression
 from connectrpc.errors import ConnectError
 from connectrpc.interceptor import Interceptor, InterceptorSync
 from connectrpc.method import IdempotencyLevel, MethodInfo
@@ -21,7 +23,7 @@ class HealthService(Protocol):
 
 
 class HealthServiceASGIApplication(ConnectASGIApplication[HealthService]):
-    def __init__(self, service: HealthService | AsyncGenerator[HealthService], *, interceptors: Iterable[Interceptor]=(), read_max_bytes: int | None = None) -> None:
+    def __init__(self, service: HealthService | AsyncGenerator[HealthService], *, interceptors: Iterable[Interceptor]=(), read_max_bytes: int | None = None, compressions: Iterable[Compression] | None = None, codecs: Iterable[Codec] | None = None) -> None:
         super().__init__(
             service=service,
             endpoints=lambda svc: {
@@ -38,6 +40,8 @@ class HealthServiceASGIApplication(ConnectASGIApplication[HealthService]):
             },
             interceptors=interceptors,
             read_max_bytes=read_max_bytes,
+            compressions=compressions,
+            codecs=codecs,
         )
 
     @property
@@ -68,13 +72,16 @@ class HealthServiceClient(ConnectClient):
         )
 
 
+
+
+
 class HealthServiceSync(Protocol):
     def get(self, request: fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
 
 class HealthServiceWSGIApplication(ConnectWSGIApplication):
-    def __init__(self, service: HealthServiceSync, interceptors: Iterable[InterceptorSync]=(), read_max_bytes: int | None = None) -> None:
+    def __init__(self, service: HealthServiceSync, interceptors: Iterable[InterceptorSync]=(), read_max_bytes: int | None = None, compressions: Iterable[Compression] | None = None, codecs: Iterable[Codec] | None = None) -> None:
         super().__init__(
             endpoints={
                 "/fits.api.v1.HealthService/Get": EndpointSync.unary(
@@ -90,6 +97,8 @@ class HealthServiceWSGIApplication(ConnectWSGIApplication):
             },
             interceptors=interceptors,
             read_max_bytes=read_max_bytes,
+            compressions=compressions,
+            codecs=codecs,
         )
 
     @property
@@ -118,3 +127,5 @@ class HealthServiceClientSync(ConnectClientSync):
             headers=headers,
             timeout_ms=timeout_ms,
         )
+
+

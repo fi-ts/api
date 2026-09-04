@@ -34,6 +34,29 @@ jobs:
       run: |
         git diff --exit-code --compact-summary
 
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org/
+
+      - name: Setup bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        working-directory: js
+        run: bun install --frozen-lockfile
+
+      - name: build
+        run: make build
+
   go:
     name: Go
     runs-on: ubuntu-latest
