@@ -7,6 +7,8 @@ from typing import Protocol
 
 from connectrpc.client import ConnectClient, ConnectClientSync
 from connectrpc.code import Code
+from connectrpc.codec import Codec
+from connectrpc.compression import Compression
 from connectrpc.errors import ConnectError
 from connectrpc.interceptor import Interceptor, InterceptorSync
 from connectrpc.method import IdempotencyLevel, MethodInfo
@@ -24,7 +26,7 @@ class MethodService(Protocol):
 
 
 class MethodServiceASGIApplication(ConnectASGIApplication[MethodService]):
-    def __init__(self, service: MethodService | AsyncGenerator[MethodService], *, interceptors: Iterable[Interceptor]=(), read_max_bytes: int | None = None) -> None:
+    def __init__(self, service: MethodService | AsyncGenerator[MethodService], *, interceptors: Iterable[Interceptor]=(), read_max_bytes: int | None = None, compressions: Iterable[Compression] | None = None, codecs: Iterable[Codec] | None = None) -> None:
         super().__init__(
             service=service,
             endpoints=lambda svc: {
@@ -51,6 +53,8 @@ class MethodServiceASGIApplication(ConnectASGIApplication[MethodService]):
             },
             interceptors=interceptors,
             read_max_bytes=read_max_bytes,
+            compressions=compressions,
+            codecs=codecs,
         )
 
     @property
@@ -101,6 +105,9 @@ class MethodServiceClient(ConnectClient):
         )
 
 
+
+
+
 class MethodServiceSync(Protocol):
     def list(self, request: fits_dot_api_dot_v1_dot_method__pb2.MethodServiceListRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_method__pb2.MethodServiceListResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
@@ -109,7 +116,7 @@ class MethodServiceSync(Protocol):
 
 
 class MethodServiceWSGIApplication(ConnectWSGIApplication):
-    def __init__(self, service: MethodServiceSync, interceptors: Iterable[InterceptorSync]=(), read_max_bytes: int | None = None) -> None:
+    def __init__(self, service: MethodServiceSync, interceptors: Iterable[InterceptorSync]=(), read_max_bytes: int | None = None, compressions: Iterable[Compression] | None = None, codecs: Iterable[Codec] | None = None) -> None:
         super().__init__(
             endpoints={
                 "/fits.api.v1.MethodService/List": EndpointSync.unary(
@@ -135,6 +142,8 @@ class MethodServiceWSGIApplication(ConnectWSGIApplication):
             },
             interceptors=interceptors,
             read_max_bytes=read_max_bytes,
+            compressions=compressions,
+            codecs=codecs,
         )
 
     @property
@@ -183,3 +192,5 @@ class MethodServiceClientSync(ConnectClientSync):
             headers=headers,
             timeout_ms=timeout_ms,
         )
+
+

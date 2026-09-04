@@ -38,8 +38,9 @@ var (
 )
 
 type api struct {
-	Name     string
-	Services []struct {
+	Name        string
+	ConnectName string
+	Services    []struct {
 		Name     string
 		FileName string
 	}
@@ -71,15 +72,15 @@ func main() {
 		panic(err)
 	}
 
-	err = writeTemplate("../go/tests/mock_clients.go", mockClientTpl, svcs)
-	if err != nil {
-		panic(err)
-	}
+	// err = writeTemplate("../go/tests/mock_clients.go", mockClientTpl, svcs)
+	// if err != nil {
+	// 	panic(err)
+	// }
 
-	err = writePythonTemplate("../python/fits/client/client.py", pythonClientTpl, svcs)
-	if err != nil {
-		panic(err)
-	}
+	// err = writePythonTemplate("../python/fits/client/client.py", pythonClientTpl, svcs)
+	// if err != nil {
+	// 	panic(err)
+	// }
 }
 
 func servicePermissions(root string) (*permissions.ServicePermissions, error) {
@@ -242,11 +243,15 @@ func svcs(root string) (map[string]api, error) {
 		_, name, _ := strings.Cut(*fd.Package, "fits.")
 		name = strings.ReplaceAll(name, ".", "")
 
+		segs := strings.Split(*fd.Package, ".")
+		connectName := strings.Join(segs[len(segs)-2:], "")
+
 		a, ok := result[name]
 		if !ok {
 			a = api{
-				Name: name,
-				Path: path.Dir(strings.TrimPrefix(filename, root)),
+				Name:        name,
+				ConnectName: connectName,
+				Path:        path.Dir(strings.TrimPrefix(filename, root)),
 			}
 		}
 		for _, serviceDesc := range fd.GetService() {

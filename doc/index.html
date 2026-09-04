@@ -732,6 +732,84 @@
             </ul>
           </li>
         
+          
+          <li>
+            <a href="#fits%2fapi%2fvm%2fv1%2fos.proto">fits/api/vm/v1/os.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.Os"><span class="badge">M</span>Os</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#fits%2fapi%2fvm%2fv1%2fvm.proto">fits/api/vm/v1/vm.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.Disk"><span class="badge">M</span>Disk</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.VMInstance"><span class="badge">M</span>VMInstance</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.VMServiceCreateRequest"><span class="badge">M</span>VMServiceCreateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.VMServiceCreateResponse"><span class="badge">M</span>VMServiceCreateResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.VMServiceDeleteRequest"><span class="badge">M</span>VMServiceDeleteRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.VMServiceDeleteResponse"><span class="badge">M</span>VMServiceDeleteResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.VMServiceGetRequest"><span class="badge">M</span>VMServiceGetRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.VMServiceGetResponse"><span class="badge">M</span>VMServiceGetResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.VMServiceListRequest"><span class="badge">M</span>VMServiceListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.VMServiceListResponse"><span class="badge">M</span>VMServiceListResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.VMServiceUpdateRequest"><span class="badge">M</span>VMServiceUpdateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.VMServiceUpdateResponse"><span class="badge">M</span>VMServiceUpdateResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#fits.api.vm.v1.VMService"><span class="badge">S</span>VMService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
@@ -4239,6 +4317,451 @@ TODO: is login really a good name? </p></td>
                 <td><a href="#fits.api.v1.VersionServiceGetRequest">VersionServiceGetRequest</a></td>
                 <td><a href="#fits.api.v1.VersionServiceGetResponse">VersionServiceGetResponse</a></td>
                 <td><p>Returns the version of the application.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/vm/v1/os.proto">fits/api/vm/v1/os.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.vm.v1.Os">Os</h3>
+        <p>Os is the definition of a potential OS of a VM instance</p><p>TODO create a dedicated service</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Uuid of this os </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/vm/v1/vm.proto">fits/api/vm/v1/vm.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.vm.v1.Disk">Disk</h3>
+        <p>Disk</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>auto_extend</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>AutoExtend if set to true the disk grows automatically </p></td>
+                </tr>
+              
+                <tr>
+                  <td>size_in_gb</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td>optional</td>
+                  <td><p>Size if the disk in GB
+
+TODO discuss how this could be optional </p></td>
+                </tr>
+              
+                <tr>
+                  <td>drive_letter</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>DriveLetter where this disk should be assigned </p></td>
+                </tr>
+              
+                <tr>
+                  <td>label</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Label of the disk </p></td>
+                </tr>
+              
+                <tr>
+                  <td>mount_point</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>MountPoint where this disk should be mounted
+
+TODO this requires a Filesystem on the disk ? </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.vm.v1.VMInstance">VMInstance</h3>
+        <p>VM Instance Messages</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Uuid of this vm </p></td>
+                </tr>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#fits.api.v1.Meta">fits.api.v1.Meta</a></td>
+                  <td></td>
+                  <td><p>Meta for this vm </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name of this vm </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Project where this vm address belongs to </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.vm.v1.VMServiceCreateRequest">VMServiceCreateRequest</h3>
+        <p>VMServiceCreateRequest TODO</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Project of the vm </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Name of the vm </p></td>
+                </tr>
+              
+                <tr>
+                  <td>cpu</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Number of CPUs of this vm </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ram</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Ram of the vm in GB </p></td>
+                </tr>
+              
+                <tr>
+                  <td>os_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OS Uuid of the OS to install in the vm instance </p></td>
+                </tr>
+              
+                <tr>
+                  <td>vlan_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>VLAN Uuid of the VLAN to install in the vm instance into </p></td>
+                </tr>
+              
+                <tr>
+                  <td>location_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Location Uuid of the datacenter location to install in the vm instance </p></td>
+                </tr>
+              
+                <tr>
+                  <td>contact_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Contact Uuid of who is the responsible contact of the vm instance </p></td>
+                </tr>
+              
+                <tr>
+                  <td>disks</td>
+                  <td><a href="#fits.api.vm.v1.Disk">Disk</a></td>
+                  <td>repeated</td>
+                  <td><p>List of disks for this vm
+
+Disks             []DiskInputModel
+RequestedBy       *string // TODO is inherited from the token making the create request -&gt; stored in meta.createdBy </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.vm.v1.VMServiceCreateResponse">VMServiceCreateResponse</h3>
+        <p>VMServiceCreateResponse TODO</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.vm.v1.VMServiceDeleteRequest">VMServiceDeleteRequest</h3>
+        <p>VMServiceDeleteRequest TODO</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Project of the vm </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.vm.v1.VMServiceDeleteResponse">VMServiceDeleteResponse</h3>
+        <p>VMServiceDeleteResponse TODO</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.vm.v1.VMServiceGetRequest">VMServiceGetRequest</h3>
+        <p>VMServiceGetRequest TODO</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Uuid of this vm </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Project where this vm address belongs to </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.vm.v1.VMServiceGetResponse">VMServiceGetResponse</h3>
+        <p>VMServiceGetResponse TODO</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>vm</td>
+                  <td><a href="#fits.api.vm.v1.VMInstance">VMInstance</a></td>
+                  <td></td>
+                  <td><p>The vm </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.vm.v1.VMServiceListRequest">VMServiceListRequest</h3>
+        <p>VMServiceListRequest TODO</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Project of the vm </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.vm.v1.VMServiceListResponse">VMServiceListResponse</h3>
+        <p>VMServiceListResponse TODO</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.vm.v1.VMServiceUpdateRequest">VMServiceUpdateRequest</h3>
+        <p>VMServiceUpdateRequest TODO</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Project of the vm </p></td>
+                </tr>
+              
+                <tr>
+                  <td>update_meta</td>
+                  <td><a href="#fits.api.v1.UpdateMeta">fits.api.v1.UpdateMeta</a></td>
+                  <td></td>
+                  <td><p>UpdateMeta contains the timestamp and strategy to be used in this update request. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.vm.v1.VMServiceUpdateResponse">VMServiceUpdateResponse</h3>
+        <p>VMServiceUpdateResponse TODO</p>
+
+        
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="fits.api.vm.v1.VMService">VMService</h3>
+        <p>VMService provides VM address management operations.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Get</td>
+                <td><a href="#fits.api.vm.v1.VMServiceGetRequest">VMServiceGetRequest</a></td>
+                <td><a href="#fits.api.vm.v1.VMServiceGetResponse">VMServiceGetResponse</a></td>
+                <td><p>Returns the VM address with the specified VM.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Create</td>
+                <td><a href="#fits.api.vm.v1.VMServiceCreateRequest">VMServiceCreateRequest</a></td>
+                <td><a href="#fits.api.vm.v1.VMServiceCreateResponse">VMServiceCreateResponse</a></td>
+                <td><p>Creates a new VM address.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Update</td>
+                <td><a href="#fits.api.vm.v1.VMServiceUpdateRequest">VMServiceUpdateRequest</a></td>
+                <td><a href="#fits.api.vm.v1.VMServiceUpdateResponse">VMServiceUpdateResponse</a></td>
+                <td><p>Updates an VM address.</p></td>
+              </tr>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#fits.api.vm.v1.VMServiceListRequest">VMServiceListRequest</a></td>
+                <td><a href="#fits.api.vm.v1.VMServiceListResponse">VMServiceListResponse</a></td>
+                <td><p>Returns the list of all VM addresses.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Delete</td>
+                <td><a href="#fits.api.vm.v1.VMServiceDeleteRequest">VMServiceDeleteRequest</a></td>
+                <td><a href="#fits.api.vm.v1.VMServiceDeleteResponse">VMServiceDeleteResponse</a></td>
+                <td><p>Deletes an VM address.</p></td>
               </tr>
             
           </tbody>

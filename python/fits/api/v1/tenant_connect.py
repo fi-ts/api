@@ -7,6 +7,8 @@ from typing import Protocol
 
 from connectrpc.client import ConnectClient, ConnectClientSync
 from connectrpc.code import Code
+from connectrpc.codec import Codec
+from connectrpc.compression import Compression
 from connectrpc.errors import ConnectError
 from connectrpc.interceptor import Interceptor, InterceptorSync
 from connectrpc.method import IdempotencyLevel, MethodInfo
@@ -33,7 +35,7 @@ class TenantService(Protocol):
 
 
 class TenantServiceASGIApplication(ConnectASGIApplication[TenantService]):
-    def __init__(self, service: TenantService | AsyncGenerator[TenantService], *, interceptors: Iterable[Interceptor]=(), read_max_bytes: int | None = None) -> None:
+    def __init__(self, service: TenantService | AsyncGenerator[TenantService], *, interceptors: Iterable[Interceptor]=(), read_max_bytes: int | None = None, compressions: Iterable[Compression] | None = None, codecs: Iterable[Codec] | None = None) -> None:
         super().__init__(
             service=service,
             endpoints=lambda svc: {
@@ -90,6 +92,8 @@ class TenantServiceASGIApplication(ConnectASGIApplication[TenantService]):
             },
             interceptors=interceptors,
             read_max_bytes=read_max_bytes,
+            compressions=compressions,
+            codecs=codecs,
         )
 
     @property
@@ -200,6 +204,9 @@ class TenantServiceClient(ConnectClient):
         )
 
 
+
+
+
 class TenantServiceSync(Protocol):
     def create(self, request: fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceCreateResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
@@ -214,7 +221,7 @@ class TenantServiceSync(Protocol):
 
 
 class TenantServiceWSGIApplication(ConnectWSGIApplication):
-    def __init__(self, service: TenantServiceSync, interceptors: Iterable[InterceptorSync]=(), read_max_bytes: int | None = None) -> None:
+    def __init__(self, service: TenantServiceSync, interceptors: Iterable[InterceptorSync]=(), read_max_bytes: int | None = None, compressions: Iterable[Compression] | None = None, codecs: Iterable[Codec] | None = None) -> None:
         super().__init__(
             endpoints={
                 "/fits.api.v1.TenantService/Create": EndpointSync.unary(
@@ -270,6 +277,8 @@ class TenantServiceWSGIApplication(ConnectWSGIApplication):
             },
             interceptors=interceptors,
             read_max_bytes=read_max_bytes,
+            compressions=compressions,
+            codecs=codecs,
         )
 
     @property
@@ -378,3 +387,5 @@ class TenantServiceClientSync(ConnectClientSync):
             headers=headers,
             timeout_ms=timeout_ms,
         )
+
+

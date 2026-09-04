@@ -81,3 +81,49 @@ func (_c *Client_Apiv1_Call) RunAndReturn(run func() client.Apiv1) *Client_Apiv1
 	_c.Call.Return(run)
 	return _c
 }
+
+// Apivmv1 provides a mock function for the type Client
+func (_mock *Client) Apivmv1() client.Apivmv1 {
+	ret := _mock.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for Apivmv1")
+	}
+
+	var r0 client.Apivmv1
+	if returnFunc, ok := ret.Get(0).(func() client.Apivmv1); ok {
+		r0 = returnFunc()
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(client.Apivmv1)
+		}
+	}
+	return r0
+}
+
+// Client_Apivmv1_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'Apivmv1'
+type Client_Apivmv1_Call struct {
+	*mock.Call
+}
+
+// Apivmv1 is a helper method to define mock.On call
+func (_e *Client_Expecter) Apivmv1() *Client_Apivmv1_Call {
+	return &Client_Apivmv1_Call{Call: _e.mock.On("Apivmv1")}
+}
+
+func (_c *Client_Apivmv1_Call) Run(run func()) *Client_Apivmv1_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *Client_Apivmv1_Call) Return(apivmv1 client.Apivmv1) *Client_Apivmv1_Call {
+	_c.Call.Return(apivmv1)
+	return _c
+}
+
+func (_c *Client_Apivmv1_Call) RunAndReturn(run func() client.Apivmv1) *Client_Apivmv1_Call {
+	_c.Call.Return(run)
+	return _c
+}

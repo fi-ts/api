@@ -128,19 +128,33 @@ message Disk {
 message VMServiceCreateResponse {}
 
 // VMServiceUpdateRequest TODO
-message VMServiceUpdateRequest {}
+message VMServiceUpdateRequest {
+  // Project of the vm
+  string project = 1 [(buf.validate.field).string.uuid = true];
+
+  // TODO updatable fields
+
+  // UpdateMeta contains the timestamp and strategy to be used in this update request.
+  fits.api.v1.UpdateMeta update_meta = 2 [(buf.validate.field).required = true];
+}
 
 // VMServiceUpdateResponse TODO
 message VMServiceUpdateResponse {}
 
 // VMServiceListRequest TODO
-message VMServiceListRequest {}
+message VMServiceListRequest {
+  // Project of the vm
+  string project = 1 [(buf.validate.field).string.uuid = true];
+}
 
 // VMServiceListResponse TODO
 message VMServiceListResponse {}
 
 // VMServiceDeleteRequest TODO
-message VMServiceDeleteRequest {}
+message VMServiceDeleteRequest {
+  // Project of the vm
+  string project = 1 [(buf.validate.field).string.uuid = true];
+}
 
 // VMServiceDeleteResponse TODO
 message VMServiceDeleteResponse {}

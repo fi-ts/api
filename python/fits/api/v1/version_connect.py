@@ -7,6 +7,8 @@ from typing import Protocol
 
 from connectrpc.client import ConnectClient, ConnectClientSync
 from connectrpc.code import Code
+from connectrpc.codec import Codec
+from connectrpc.compression import Compression
 from connectrpc.errors import ConnectError
 from connectrpc.interceptor import Interceptor, InterceptorSync
 from connectrpc.method import IdempotencyLevel, MethodInfo
@@ -21,7 +23,7 @@ class VersionService(Protocol):
 
 
 class VersionServiceASGIApplication(ConnectASGIApplication[VersionService]):
-    def __init__(self, service: VersionService | AsyncGenerator[VersionService], *, interceptors: Iterable[Interceptor]=(), read_max_bytes: int | None = None) -> None:
+    def __init__(self, service: VersionService | AsyncGenerator[VersionService], *, interceptors: Iterable[Interceptor]=(), read_max_bytes: int | None = None, compressions: Iterable[Compression] | None = None, codecs: Iterable[Codec] | None = None) -> None:
         super().__init__(
             service=service,
             endpoints=lambda svc: {
@@ -38,6 +40,8 @@ class VersionServiceASGIApplication(ConnectASGIApplication[VersionService]):
             },
             interceptors=interceptors,
             read_max_bytes=read_max_bytes,
+            compressions=compressions,
+            codecs=codecs,
         )
 
     @property
@@ -68,13 +72,16 @@ class VersionServiceClient(ConnectClient):
         )
 
 
+
+
+
 class VersionServiceSync(Protocol):
     def get(self, request: fits_dot_api_dot_v1_dot_version__pb2.VersionServiceGetRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_version__pb2.VersionServiceGetResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
 
 class VersionServiceWSGIApplication(ConnectWSGIApplication):
-    def __init__(self, service: VersionServiceSync, interceptors: Iterable[InterceptorSync]=(), read_max_bytes: int | None = None) -> None:
+    def __init__(self, service: VersionServiceSync, interceptors: Iterable[InterceptorSync]=(), read_max_bytes: int | None = None, compressions: Iterable[Compression] | None = None, codecs: Iterable[Codec] | None = None) -> None:
         super().__init__(
             endpoints={
                 "/fits.api.v1.VersionService/Get": EndpointSync.unary(
@@ -90,6 +97,8 @@ class VersionServiceWSGIApplication(ConnectWSGIApplication):
             },
             interceptors=interceptors,
             read_max_bytes=read_max_bytes,
+            compressions=compressions,
+            codecs=codecs,
         )
 
     @property
@@ -118,3 +127,5 @@ class VersionServiceClientSync(ConnectClientSync):
             headers=headers,
             timeout_ms=timeout_ms,
         )
+
+
