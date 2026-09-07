@@ -27,6 +27,7 @@ generate:
 .PHONY: test
 test:
 	$(MAKE) -C go test
+	$(MAKE) -C js test
 
 .PHONY: build
 build:

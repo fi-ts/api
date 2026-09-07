@@ -45,26 +45,6 @@ enum AdminRole {
   ADMIN_ROLE_VIEWER = 2;
 }
 
-// InfraRole specifies what role a microservice needs to call this infra service
-enum InfraRole {
-  // INFRA_ROLE_UNSPECIFIED is not specified
-  INFRA_ROLE_UNSPECIFIED = 0;
-  // INFRA_ROLE_EDITOR a microservice needs at least editor role to call this method
-  INFRA_ROLE_EDITOR = 1;
-  // INFRA_ROLE_VIEWER a microservice needs at least viewer role to call this method
-  INFRA_ROLE_VIEWER = 2;
-}
-
-// MachineRole specifies what role a microservice needs to call this machine service
-enum MachineRole {
-  // MACHINE_ROLE_UNSPECIFIED is not specified
-  MACHINE_ROLE_UNSPECIFIED = 0;
-  // MACHINE_ROLE_EDITOR a microservice needs at least editor role to call this method
-  MACHINE_ROLE_EDITOR = 1;
-  // MACHINE_ROLE_VIEWER a microservice needs at least viewer role to call this method
-  MACHINE_ROLE_VIEWER = 2;
-}
-
 // Visibility of a method
 enum Visibility {
   // VISIBILITY_UNSPECIFIED is not defined

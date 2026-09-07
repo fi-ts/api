@@ -5,3 +5,4 @@ clean:
 .PHONY: generate
 generate:
 	@find fits -type d -exec touch {}/__init__.py \;
+	@find buf -type d -exec touch {}/__init__.py \;

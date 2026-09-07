@@ -18,39 +18,106 @@ jobs:
     name: Generate
     runs-on: ubuntu-latest
     steps:
-    - name: Check out code
-      uses: actions/checkout@v7
+      - name: Check out code
+        uses: actions/checkout@v7
 
-    - name: Set up Go
-      uses: actions/setup-go@v7
-      with:
-        go-version-file: 'go.mod'
-        cache: false
+      - name: Set up Go
+        uses: actions/setup-go@v7
+        with:
+          go-version-file: "go.mod"
+          cache: false
 
-    - name: Generate
-      run: make proto generate
+      - name: Generate
+        run: make proto generate
 
-    - name: Ensure Git is clean
-      run: |
-        git diff --exit-code --compact-summary
+      - name: Ensure Git is clean
+        run: |
+          git diff --exit-code --compact-summary
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org/
+
+      - name: Setup bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        working-directory: js
+        run: bun install --frozen-lockfile
+
+      - name: build
+        run: make build
 
   go:
     name: Go
     runs-on: ubuntu-latest
     steps:
-    - name: Check out code
-      uses: actions/checkout@v7
+      - name: Check out code
+        uses: actions/checkout@v7
 
-    - name: Check spelling
-      uses: crate-ci/typos@master
+      - name: Check spelling
+        uses: crate-ci/typos@master
 
-    - name: Set up Go
-      uses: actions/setup-go@v7
-      with:
-        go-version-file: 'go.mod'
-        cache: false
+      - name: Set up Go
+        uses: actions/setup-go@v7
+        with:
+          go-version-file: "go.mod"
+          cache: false
 
-    - name: Lint
-      uses: golangci/golangci-lint-action@v9
-      with:
-        args: -D protogetter --timeout=5m
+      - name: Lint
+        uses: golangci/golangci-lint-action@v9
+        with:
+          args: -D protogetter --timeout=5m
+
+  python:
+    name: Python
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v7
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Make tag
+        run: |
+          [ "${GITHUB_EVENT_NAME}" == 'pull_request' ] && echo "tag=v0.0.0.dev-${{ github.event.number }}" >> $GITHUB_ENV || true
+          [ "${GITHUB_EVENT_NAME}" == 'release' ] && echo "tag=${GITHUB_REF##*/}" >> $GITHUB_ENV || true
+          [ "${GITHUB_EVENT_NAME}" == 'push' ] && echo "tag=v0.0.0-rc0" >> $GITHUB_ENV || true
+
+      - name: Package
+        run: |
+          cd python
+          python -m pip install build
+          python -m build
+        env:
+          VERSION: ${{ env.tag }}
+
+      # SKIP pypi push as not required at the moment
+      #
+      # - name: Publish to Test PyPI
+      #   uses: pypa/gh-action-pypi-publish@release/v1
+      #   with:
+      #     password: ${{ secrets.test_pypi_password }}
+      #     repository-url: https://test.pypi.org/legacy/
+      #     skip-existing: true
+      #     packages-dir: python/dist
+      #   if: ${{ github.event_name != 'release' }}
+
+      # - name: Publish to PyPI
+      #   uses: pypa/gh-action-pypi-publish@release/v1
+      #   with:
+      #     password: ${{ secrets.pypi_password }}
+      #     packages-dir: python/dist
+      #   if: ${{ github.event_name == 'release' }}
