@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Set up Go
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@v7
         with:
           go-version-file: "go.mod"
           cache: false
@@ -68,7 +68,7 @@ jobs:
         uses: crate-ci/typos@master
 
       - name: Set up Go
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@v7
         with:
           go-version-file: "go.mod"
           cache: false
@@ -104,18 +104,20 @@ jobs:
         env:
           VERSION: ${{ env.tag }}
 
-      - name: Publish to Test PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.test_pypi_password }}
-          repository-url: https://test.pypi.org/legacy/
-          skip-existing: true
-          packages-dir: python/dist
-        if: ${{ github.event_name != 'release' }}
+      # SKIP pypi push as not required at the moment
+      #
+      # - name: Publish to Test PyPI
+      #   uses: pypa/gh-action-pypi-publish@release/v1
+      #   with:
+      #     password: ${{ secrets.test_pypi_password }}
+      #     repository-url: https://test.pypi.org/legacy/
+      #     skip-existing: true
+      #     packages-dir: python/dist
+      #   if: ${{ github.event_name != 'release' }}
 
-      - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.pypi_password }}
-          packages-dir: python/dist
-        if: ${{ github.event_name == 'release' }}
+      # - name: Publish to PyPI
+      #   uses: pypa/gh-action-pypi-publish@release/v1
+      #   with:
+      #     password: ${{ secrets.pypi_password }}
+      #     packages-dir: python/dist
+      #   if: ${{ github.event_name == 'release' }}
