@@ -24,7 +24,7 @@ const (
 type (
 	// DialConfig is the configuration to create a api-server connection
 	DialConfig struct {
-		// BaseUrl points to the apiv2 url where the apiserver is reachable
+		// BaseUrl points to the apiv1 url where the apiserver is reachable
 		BaseURL string
 		// Token to be used to talk to the apiserver, the string representation of the token.
 		// If Token is specified, TokenFile cannot be specified.

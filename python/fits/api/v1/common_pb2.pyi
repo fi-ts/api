@@ -34,18 +34,6 @@ class AdminRole(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     ADMIN_ROLE_EDITOR: _ClassVar[AdminRole]
     ADMIN_ROLE_VIEWER: _ClassVar[AdminRole]
 
-class InfraRole(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
-    __slots__ = ()
-    INFRA_ROLE_UNSPECIFIED: _ClassVar[InfraRole]
-    INFRA_ROLE_EDITOR: _ClassVar[InfraRole]
-    INFRA_ROLE_VIEWER: _ClassVar[InfraRole]
-
-class MachineRole(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
-    __slots__ = ()
-    MACHINE_ROLE_UNSPECIFIED: _ClassVar[MachineRole]
-    MACHINE_ROLE_EDITOR: _ClassVar[MachineRole]
-    MACHINE_ROLE_VIEWER: _ClassVar[MachineRole]
-
 class Visibility(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
     VISIBILITY_UNSPECIFIED: _ClassVar[Visibility]
@@ -75,12 +63,6 @@ PROJECT_ROLE_VIEWER: ProjectRole
 ADMIN_ROLE_UNSPECIFIED: AdminRole
 ADMIN_ROLE_EDITOR: AdminRole
 ADMIN_ROLE_VIEWER: AdminRole
-INFRA_ROLE_UNSPECIFIED: InfraRole
-INFRA_ROLE_EDITOR: InfraRole
-INFRA_ROLE_VIEWER: InfraRole
-MACHINE_ROLE_UNSPECIFIED: MachineRole
-MACHINE_ROLE_EDITOR: MachineRole
-MACHINE_ROLE_VIEWER: MachineRole
 VISIBILITY_UNSPECIFIED: Visibility
 VISIBILITY_PUBLIC: Visibility
 VISIBILITY_SELF: Visibility

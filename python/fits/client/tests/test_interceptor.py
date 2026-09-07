@@ -64,27 +64,7 @@ class TestInterceptor:
     def test_interceptor_receives_request(self, mock_ip_service):
         """Interceptor can observe the service and method being called."""
         ips = MockIPService()
-        from fits.infra.v1.bmc_connect import BMCServiceWSGIApplication
-        from fits.infra.v1.component_connect import ComponentServiceWSGIApplication
         from fits.api.v1.version_connect import VersionServiceWSGIApplication
-        from fits.infra.v1 import bmc_pb2
-        from fits.infra.v1 import component_pb2 as infra_component_pb2
-
-        class NoopBMC:
-            def update_b_m_c_info(self, request, ctx):
-                from fits.infra.v1.bmc_pb2 import UpdateBMCInfoResponse
-                return UpdateBMCInfoResponse()
-            def wait_for_b_m_c_command(self, request, ctx):
-                from fits.infra.v1.bmc_pb2 import WaitForBMCCommandResponse
-                yield WaitForBMCCommandResponse()
-            def b_m_c_command_done(self, request, ctx):
-                from fits.infra.v1.bmc_pb2 import BMCCommandDoneResponse
-                return BMCCommandDoneResponse()
-
-        class NoopComponent:
-            def ping(self, request, ctx):
-                from fits.infra.v1.component_pb2 import ComponentServicePingResponse
-                return ComponentServicePingResponse()
 
         class NoopVersion:
             def get(self, request, ctx):
@@ -94,8 +74,6 @@ class TestInterceptor:
         services = {
             "/fits.api.v1.VersionService": VersionServiceWSGIApplication(NoopVersion()),
             "/fits.api.v1.IPService": IPServiceWSGIApplication(ips),
-            "/fits.infra.v1.BMCService": BMCServiceWSGIApplication(NoopBMC()),
-            "/fits.infra.v1.ComponentService": ComponentServiceWSGIApplication(NoopComponent()),
         }
         transport = WSGITransport(_build_combined_wsgi_app(services))
 
@@ -118,25 +96,7 @@ class TestInterceptor:
     def test_auth_interceptor_injects_token(self):
         """Auth interceptor injects Authorization header that the server receives."""
         ips = MockIPService()
-        from fits.infra.v1.bmc_connect import BMCServiceWSGIApplication
-        from fits.infra.v1.component_connect import ComponentServiceWSGIApplication
         from fits.api.v1.version_connect import VersionServiceWSGIApplication
-
-        class NoopBMC:
-            def update_b_m_c_info(self, request, ctx):
-                from fits.infra.v1.bmc_pb2 import UpdateBMCInfoResponse
-                return UpdateBMCInfoResponse()
-            def wait_for_b_m_c_command(self, request, ctx):
-                from fits.infra.v1.bmc_pb2 import WaitForBMCCommandResponse
-                yield WaitForBMCCommandResponse()
-            def b_m_c_command_done(self, request, ctx):
-                from fits.infra.v1.bmc_pb2 import BMCCommandDoneResponse
-                return BMCCommandDoneResponse()
-
-        class NoopComponent:
-            def ping(self, request, ctx):
-                from fits.infra.v1.component_pb2 import ComponentServicePingResponse
-                return ComponentServicePingResponse()
 
         class NoopVersion:
             def get(self, request, ctx):
@@ -146,8 +106,6 @@ class TestInterceptor:
         services = {
             "/fits.api.v1.VersionService": VersionServiceWSGIApplication(NoopVersion()),
             "/fits.api.v1.IPService": IPServiceWSGIApplication(ips),
-            "/fits.infra.v1.BMCService": BMCServiceWSGIApplication(NoopBMC()),
-            "/fits.infra.v1.ComponentService": ComponentServiceWSGIApplication(NoopComponent()),
         }
         transport = WSGITransport(_build_combined_wsgi_app(services))
 
@@ -165,7 +123,7 @@ class TestInterceptor:
     def test_interceptor_on_client_wrapper(self, test_client, mock_ip_service):
         """Client wrapper passes headers through to the underlying service."""
         token = "wrapper-test-token"
-        resp = test_client.apiv2().ip().get(
+        resp = test_client.apiv1().ip().get(
             request=ip_pb2.IPServiceGetRequest(ip="5.6.7.8"),
             headers={"authorization": f"Bearer {token}"},
         )

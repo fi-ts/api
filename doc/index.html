@@ -279,14 +279,6 @@
                 </li>
               
                 <li>
-                  <a href="#fits.api.v1.InfraRole"><span class="badge">E</span>InfraRole</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.v1.MachineRole"><span class="badge">E</span>MachineRole</a>
-                </li>
-              
-                <li>
                   <a href="#fits.api.v1.OptimisticLockingStrategy"><span class="badge">E</span>OptimisticLockingStrategy</a>
                 </li>
               
@@ -1131,64 +1123,6 @@ must be part of the update request to ensure optimistic locking </p></td>
                 <td>AUDITING_EXCLUDED</td>
                 <td>2</td>
                 <td><p>AUDITING_EXCLUDED if a method is annotated with this, no calls are audited</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
-        <h3 id="fits.api.v1.InfraRole">InfraRole</h3>
-        <p>InfraRole specifies what role a microservice needs to call this infra service</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>INFRA_ROLE_UNSPECIFIED</td>
-                <td>0</td>
-                <td><p>INFRA_ROLE_UNSPECIFIED is not specified</p></td>
-              </tr>
-            
-              <tr>
-                <td>INFRA_ROLE_EDITOR</td>
-                <td>1</td>
-                <td><p>INFRA_ROLE_EDITOR a microservice needs at least editor role to call this method</p></td>
-              </tr>
-            
-              <tr>
-                <td>INFRA_ROLE_VIEWER</td>
-                <td>2</td>
-                <td><p>INFRA_ROLE_VIEWER a microservice needs at least viewer role to call this method</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
-        <h3 id="fits.api.v1.MachineRole">MachineRole</h3>
-        <p>MachineRole specifies what role a microservice needs to call this machine service</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>MACHINE_ROLE_UNSPECIFIED</td>
-                <td>0</td>
-                <td><p>MACHINE_ROLE_UNSPECIFIED is not specified</p></td>
-              </tr>
-            
-              <tr>
-                <td>MACHINE_ROLE_EDITOR</td>
-                <td>1</td>
-                <td><p>MACHINE_ROLE_EDITOR a microservice needs at least editor role to call this method</p></td>
-              </tr>
-            
-              <tr>
-                <td>MACHINE_ROLE_VIEWER</td>
-                <td>2</td>
-                <td><p>MACHINE_ROLE_VIEWER a microservice needs at least viewer role to call this method</p></td>
               </tr>
             
           </tbody>
