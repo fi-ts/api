@@ -3,7 +3,7 @@
   "description": "fi-ts api typescript client",
   "repository": "https://github.com/fi-ts/api.git",
   "scripts": {
-    "build": "tsc --project js/tsconfig.json",
+    "build": "tsc --project tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "www.f-i-ts.de",
@@ -14,10 +14,12 @@
     "@connectrpc/connect-web": "^2.1.2"
   },
   "devDependencies": {
+    "@types/bun": "^1.3.14",
     "typescript": "^7.0.2"
   },
   "files": [
-    "js/*"
+    "fits",
+    "buf"
   ],
   "version": "0.0.0"
 }

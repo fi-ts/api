@@ -244,64 +244,6 @@ export declare enum AdminRole {
  */
 export declare const AdminRoleSchema: GenEnum<AdminRole>;
 /**
- * InfraRole specifies what role a microservice needs to call this infra service
- *
- * @generated from enum fits.api.v1.InfraRole
- */
-export declare enum InfraRole {
-    /**
-     * INFRA_ROLE_UNSPECIFIED is not specified
-     *
-     * @generated from enum value: INFRA_ROLE_UNSPECIFIED = 0;
-     */
-    UNSPECIFIED = 0,
-    /**
-     * INFRA_ROLE_EDITOR a microservice needs at least editor role to call this method
-     *
-     * @generated from enum value: INFRA_ROLE_EDITOR = 1;
-     */
-    EDITOR = 1,
-    /**
-     * INFRA_ROLE_VIEWER a microservice needs at least viewer role to call this method
-     *
-     * @generated from enum value: INFRA_ROLE_VIEWER = 2;
-     */
-    VIEWER = 2
-}
-/**
- * Describes the enum fits.api.v1.InfraRole.
- */
-export declare const InfraRoleSchema: GenEnum<InfraRole>;
-/**
- * MachineRole specifies what role a microservice needs to call this machine service
- *
- * @generated from enum fits.api.v1.MachineRole
- */
-export declare enum MachineRole {
-    /**
-     * MACHINE_ROLE_UNSPECIFIED is not specified
-     *
-     * @generated from enum value: MACHINE_ROLE_UNSPECIFIED = 0;
-     */
-    UNSPECIFIED = 0,
-    /**
-     * MACHINE_ROLE_EDITOR a microservice needs at least editor role to call this method
-     *
-     * @generated from enum value: MACHINE_ROLE_EDITOR = 1;
-     */
-    EDITOR = 1,
-    /**
-     * MACHINE_ROLE_VIEWER a microservice needs at least viewer role to call this method
-     *
-     * @generated from enum value: MACHINE_ROLE_VIEWER = 2;
-     */
-    VIEWER = 2
-}
-/**
- * Describes the enum fits.api.v1.MachineRole.
- */
-export declare const MachineRoleSchema: GenEnum<MachineRole>;
-/**
  * Visibility of a method
  *
  * @generated from enum fits.api.v1.Visibility

@@ -37,35 +37,6 @@ type (
 {{ end }}
 )
 
-func New(config *DialConfig) (Client, error) {
-	err := config.parse()
-	if err != nil {
-		return nil, err
-	}
-
-	c := &client{
-		config:       config,
-		interceptors: []connect.Interceptor{},
-	}
-
-	if config.Token != "" {
-		authInterceptor := &authInterceptor{config: config}
-		c.interceptors = append(c.interceptors, authInterceptor)
-
-		if config.TokenRenewal != nil {
-			tokenRenewingInterceptor := &tokenRenewingInterceptor{config: config, client: c}
-			c.interceptors = append(c.interceptors, tokenRenewingInterceptor)
-		}
-	}
-	if config.Log != nil {
-		loggingInterceptor := &loggingInterceptor{config: config}
-		c.interceptors = append(c.interceptors, loggingInterceptor)
-	}
-	c.interceptors = append(c.interceptors, config.Interceptors...)
-
-	return c, nil
-}
-
 {{ range $name, $api := . -}}
 func (c *client) {{ $name | title }}() {{ $name | title }} {
 	a := &{{ $name }}{
