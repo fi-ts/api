@@ -36,8 +36,8 @@ class VMServiceGetResponse(_message.Message):
     def __init__(self, vm: _Optional[_Union[VMInstance, _Mapping]] = ...) -> None: ...
 
 class VMServiceCreateRequest(_message.Message):
-    __slots__ = ("project", "name", "cpu", "ram", "os_uuid", "vlan_uuid", "location_uuid", "contact_uuid", "disks")
-    PROJECT_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("project_uuid", "name", "cpu", "ram", "os_uuid", "vlan_uuid", "location_uuid", "contact_uuid", "disks")
+    PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
     NAME_FIELD_NUMBER: _ClassVar[int]
     CPU_FIELD_NUMBER: _ClassVar[int]
     RAM_FIELD_NUMBER: _ClassVar[int]
@@ -46,7 +46,7 @@ class VMServiceCreateRequest(_message.Message):
     LOCATION_UUID_FIELD_NUMBER: _ClassVar[int]
     CONTACT_UUID_FIELD_NUMBER: _ClassVar[int]
     DISKS_FIELD_NUMBER: _ClassVar[int]
-    project: str
+    project_uuid: str
     name: str
     cpu: int
     ram: int
@@ -55,7 +55,7 @@ class VMServiceCreateRequest(_message.Message):
     location_uuid: str
     contact_uuid: str
     disks: _containers.RepeatedCompositeFieldContainer[Disk]
-    def __init__(self, project: _Optional[str] = ..., name: _Optional[str] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., os_uuid: _Optional[str] = ..., vlan_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., disks: _Optional[_Iterable[_Union[Disk, _Mapping]]] = ...) -> None: ...
+    def __init__(self, project_uuid: _Optional[str] = ..., name: _Optional[str] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., os_uuid: _Optional[str] = ..., vlan_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., disks: _Optional[_Iterable[_Union[Disk, _Mapping]]] = ...) -> None: ...
 
 class Disk(_message.Message):
     __slots__ = ("auto_extend", "size_in_gb", "drive_letter", "label", "mount_point")

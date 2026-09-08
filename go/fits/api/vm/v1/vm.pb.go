@@ -26,13 +26,13 @@ const (
 // VM Instance Messages
 type VMInstance struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Uuid of this vm
+	// Uuid of this VM
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	// Meta for this vm
+	// Meta for this VM
 	Meta *v1.Meta `protobuf:"bytes,2,opt,name=meta,proto3" json:"meta,omitempty"`
-	// Name of this vm
+	// Name of this VM
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	// Project where this vm address belongs to
+	// Project where this VM belongs to
 	Project       string `protobuf:"bytes,4,opt,name=project,proto3" json:"project,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -99,9 +99,9 @@ func (x *VMInstance) GetProject() string {
 // VMServiceGetRequest TODO
 type VMServiceGetRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Uuid of this vm
+	// Uuid of this VM
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	// Project where this vm address belongs to
+	// Project where this VM belongs to
 	Project       string `protobuf:"bytes,2,opt,name=project,proto3" json:"project,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -154,7 +154,7 @@ func (x *VMServiceGetRequest) GetProject() string {
 // VMServiceGetResponse TODO
 type VMServiceGetResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The vm
+	// The VM
 	Vm            *VMInstance `protobuf:"bytes,1,opt,name=vm,proto3" json:"vm,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -200,23 +200,23 @@ func (x *VMServiceGetResponse) GetVm() *VMInstance {
 // VMServiceCreateRequest TODO
 type VMServiceCreateRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Project of the vm
-	Project string `protobuf:"bytes,1,opt,name=project,proto3" json:"project,omitempty"`
-	// Name of the vm
+	// Project of the VM
+	ProjectUuid string `protobuf:"bytes,1,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
+	// Name of the VM
 	Name *string `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
-	// Number of CPUs of this vm
+	// Number of CPUs of this VM
 	Cpu uint32 `protobuf:"varint,3,opt,name=cpu,proto3" json:"cpu,omitempty"`
-	// Ram of the vm in GB
+	// RAM of the VM in GB
 	Ram uint32 `protobuf:"varint,4,opt,name=ram,proto3" json:"ram,omitempty"`
-	// OS Uuid of the OS to install in the vm instance
+	// OS Uuid of the OS to install in the VM instance
 	OsUuid string `protobuf:"bytes,5,opt,name=os_uuid,json=osUuid,proto3" json:"os_uuid,omitempty"`
-	// VLAN Uuid of the VLAN to install in the vm instance into
+	// VLAN Uuid of the VLAN to install in the VM instance into
 	VlanUuid string `protobuf:"bytes,6,opt,name=vlan_uuid,json=vlanUuid,proto3" json:"vlan_uuid,omitempty"`
-	// Location Uuid of the datacenter location to install in the vm instance
+	// Location Uuid of the datacenter location to install in the VM instance
 	LocationUuid string `protobuf:"bytes,7,opt,name=location_uuid,json=locationUuid,proto3" json:"location_uuid,omitempty"`
-	// Contact Uuid of who is the responsible contact of the vm instance
+	// Contact Uuid of who is the responsible contact of the VM instance
 	ContactUuid string `protobuf:"bytes,8,opt,name=contact_uuid,json=contactUuid,proto3" json:"contact_uuid,omitempty"`
-	// List of disks for this vm
+	// List of disks for this VM
 	Disks         []*Disk `protobuf:"bytes,9,rep,name=disks,proto3" json:"disks,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -252,9 +252,9 @@ func (*VMServiceCreateRequest) Descriptor() ([]byte, []int) {
 	return file_fits_api_vm_v1_vm_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *VMServiceCreateRequest) GetProject() string {
+func (x *VMServiceCreateRequest) GetProjectUuid() string {
 	if x != nil {
-		return x.Project
+		return x.ProjectUuid
 	}
 	return ""
 }
@@ -437,7 +437,7 @@ func (*VMServiceCreateResponse) Descriptor() ([]byte, []int) {
 // VMServiceUpdateRequest TODO
 type VMServiceUpdateRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Project of the vm
+	// Project of the VM
 	Project string `protobuf:"bytes,1,opt,name=project,proto3" json:"project,omitempty"`
 	// UpdateMeta contains the timestamp and strategy to be used in this update request.
 	UpdateMeta    *v1.UpdateMeta `protobuf:"bytes,2,opt,name=update_meta,json=updateMeta,proto3" json:"update_meta,omitempty"`
@@ -529,7 +529,7 @@ func (*VMServiceUpdateResponse) Descriptor() ([]byte, []int) {
 // VMServiceListRequest TODO
 type VMServiceListRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Project of the vm
+	// Project of the VM
 	Project       string `protobuf:"bytes,1,opt,name=project,proto3" json:"project,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -612,7 +612,7 @@ func (*VMServiceListResponse) Descriptor() ([]byte, []int) {
 // VMServiceDeleteRequest TODO
 type VMServiceDeleteRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Project of the vm
+	// Project of the VM
 	Project       string `protobuf:"bytes,1,opt,name=project,proto3" json:"project,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -707,9 +707,9 @@ const file_fits_api_vm_v1_vm_proto_rawDesc = "" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\"\n" +
 	"\aproject\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\aproject\"B\n" +
 	"\x14VMServiceGetResponse\x12*\n" +
-	"\x02vm\x18\x01 \x01(\v2\x1a.fits.api.vm.v1.VMInstanceR\x02vm\"\xe1\x02\n" +
-	"\x16VMServiceCreateRequest\x12\"\n" +
-	"\aproject\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\aproject\x12$\n" +
+	"\x02vm\x18\x01 \x01(\v2\x1a.fits.api.vm.v1.VMInstanceR\x02vm\"\xea\x02\n" +
+	"\x16VMServiceCreateRequest\x12+\n" +
+	"\fproject_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12$\n" +
 	"\x04name\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01H\x00R\x04name\x88\x01\x01\x12\x10\n" +
 	"\x03cpu\x18\x03 \x01(\rR\x03cpu\x12\x10\n" +
 	"\x03ram\x18\x04 \x01(\rR\x03ram\x12!\n" +

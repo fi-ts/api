@@ -133,3 +133,13 @@ class UpdateMeta(_message.Message):
     updated_at: _timestamp_pb2.Timestamp
     locking_strategy: OptimisticLockingStrategy
     def __init__(self, updated_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., locking_strategy: _Optional[_Union[OptimisticLockingStrategy, str]] = ...) -> None: ...
+
+class ValidationError(_message.Message):
+    __slots__ = ("loc", "msg", "type")
+    LOC_FIELD_NUMBER: _ClassVar[int]
+    MSG_FIELD_NUMBER: _ClassVar[int]
+    TYPE_FIELD_NUMBER: _ClassVar[int]
+    loc: _containers.RepeatedScalarFieldContainer[str]
+    msg: str
+    type: str
+    def __init__(self, loc: _Optional[_Iterable[str]] = ..., msg: _Optional[str] = ..., type: _Optional[str] = ...) -> None: ...

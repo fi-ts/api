@@ -47,15 +47,15 @@ const (
 
 // VMServiceClient is a client for the fits.api.vm.v1.VMService service.
 type VMServiceClient interface {
-	// Returns the VM address with the specified VM.
+	// Returns the VM with the specified UUID.
 	Get(context.Context, *v1.VMServiceGetRequest) (*v1.VMServiceGetResponse, error)
-	// Creates a new VM address.
+	// Creates a new VM.
 	Create(context.Context, *v1.VMServiceCreateRequest) (*v1.VMServiceCreateResponse, error)
-	// Updates an VM address.
+	// Updates a VM.
 	Update(context.Context, *v1.VMServiceUpdateRequest) (*v1.VMServiceUpdateResponse, error)
-	// Returns the list of all VM addresses.
+	// Returns the list of all VMs.
 	List(context.Context, *v1.VMServiceListRequest) (*v1.VMServiceListResponse, error)
-	// Deletes an VM address.
+	// Deletes a VM.
 	Delete(context.Context, *v1.VMServiceDeleteRequest) (*v1.VMServiceDeleteResponse, error)
 }
 
@@ -159,15 +159,15 @@ func (c *vMServiceClient) Delete(ctx context.Context, req *v1.VMServiceDeleteReq
 
 // VMServiceHandler is an implementation of the fits.api.vm.v1.VMService service.
 type VMServiceHandler interface {
-	// Returns the VM address with the specified VM.
+	// Returns the VM with the specified UUID.
 	Get(context.Context, *v1.VMServiceGetRequest) (*v1.VMServiceGetResponse, error)
-	// Creates a new VM address.
+	// Creates a new VM.
 	Create(context.Context, *v1.VMServiceCreateRequest) (*v1.VMServiceCreateResponse, error)
-	// Updates an VM address.
+	// Updates a VM.
 	Update(context.Context, *v1.VMServiceUpdateRequest) (*v1.VMServiceUpdateResponse, error)
-	// Returns the list of all VM addresses.
+	// Returns the list of all VMs.
 	List(context.Context, *v1.VMServiceListRequest) (*v1.VMServiceListResponse, error)
-	// Deletes an VM address.
+	// Deletes a VM.
 	Delete(context.Context, *v1.VMServiceDeleteRequest) (*v1.VMServiceDeleteResponse, error)
 }
 

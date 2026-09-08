@@ -6,35 +6,35 @@ import "buf/validate/validate.proto";
 import "fits/api/v1/common.proto";
 import "fits/api/v1/predefined_rules.proto";
 
-// VMService provides VM address management operations.
+// VMService provides VM CRUD perations.
 service VMService {
-  // Returns the VM address with the specified VM.
+  // Returns the VM with the specified UUID.
   rpc Get(VMServiceGetRequest) returns (VMServiceGetResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_OWNER;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_VIEWER;
     option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
   }
-  // Creates a new VM address.
+  // Creates a new VM.
   rpc Create(VMServiceCreateRequest) returns (VMServiceCreateResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_OWNER;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
-  // Updates an VM address.
+  // Updates a VM.
   rpc Update(VMServiceUpdateRequest) returns (VMServiceUpdateResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_OWNER;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
-  // Returns the list of all VM addresses.
+  // Returns the list of all VMs.
   rpc List(VMServiceListRequest) returns (VMServiceListResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_OWNER;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_VIEWER;
     option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
   }
-  // Deletes an VM address.
+  // Deletes a VM.
   rpc Delete(VMServiceDeleteRequest) returns (VMServiceDeleteResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_OWNER;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
@@ -44,13 +44,13 @@ service VMService {
 
 // VM Instance Messages
 message VMInstance {
-  // Uuid of this vm
+  // Uuid of this VM
   string uuid = 1 [(buf.validate.field).string.uuid = true];
-  // Meta for this vm
+  // Meta for this VM
   fits.api.v1.Meta meta = 2;
-  // Name of this vm
+  // Name of this VM
   string name = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
-  // Project where this vm address belongs to
+  // Project where this VM belongs to
   string project = 4 [(buf.validate.field).string.uuid = true];
 }
 
@@ -58,40 +58,54 @@ message VMInstance {
 
 // VMServiceGetRequest TODO
 message VMServiceGetRequest {
-  // Uuid of this vm
+  // Uuid of this VM
   string uuid = 1 [(buf.validate.field).string.uuid = true];
-  // Project where this vm address belongs to
+  // Project where this VM belongs to
   string project = 2 [(buf.validate.field).string.uuid = true];
 }
 
 // VMServiceGetResponse TODO
 message VMServiceGetResponse {
-  // The vm
+  // The VM
   VMInstance vm = 1;
 }
+// TODO sample for windows/linux differentiation
+// message VMServiceCreateWindowsRequest {
+// Windows Disk
+// }
+// message VMServiceCreateLinuxRequest {
+// }
 
 // VMServiceCreateRequest TODO
 message VMServiceCreateRequest {
-  // Project of the vm
-  string project = 1 [(buf.validate.field).string.uuid = true];
-  // Name of the vm
+  // Project of the VM
+  string project_uuid = 1 [(buf.validate.field).string.uuid = true];
+  // Name of the VM
   optional string name = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
-  // Number of CPUs of this vm
+  // Number of CPUs of this VM
   uint32 cpu = 3;
-  // Ram of the vm in GB
+  // RAM of the VM in GB
   uint32 ram = 4;
-  // OS Uuid of the OS to install in the vm instance
+  // OS Uuid of the OS to install in the VM instance
   string os_uuid = 5 [(buf.validate.field).string.uuid = true];
-  // VLAN Uuid of the VLAN to install in the vm instance into
+  // VLAN Uuid of the VLAN to install in the VM instance into
   string vlan_uuid = 6 [(buf.validate.field).string.uuid = true];
-  // Location Uuid of the datacenter location to install in the vm instance
+  // Location Uuid of the datacenter location to install in the VM instance
   string location_uuid = 7 [(buf.validate.field).string.uuid = true];
-  // Contact Uuid of who is the responsible contact of the vm instance
+  // Contact Uuid of who is the responsible contact of the VM instance
   string contact_uuid = 8 [(buf.validate.field).string.uuid = true];
-  // List of disks for this vm
+  // List of disks for this VM
   repeated Disk disks = 9;
+  // TODO differentiation
+  // oneof vmtype {
+  //   // ensure at least one match is specified.
+  //   option (buf.validate.oneof).required = true;
+  //   VMServiceCreateWindowsRequest windows = 21;
+  //   VMServiceCreateLinuxRequest linux = 22;
+  // }
   // Disks             []DiskInputModel
-  // RequestedBy       *string // TODO is inherited from the token making the create request -> stored in meta.createdBy
+  // TODO is inherited from the token making the create request -> stored in meta.createdBy
+  // RequestedBy       *string
 
   // AccountingKey     *string
   // Availability      VMInstanceLinuxCreateInputModelAvailability
@@ -129,7 +143,7 @@ message VMServiceCreateResponse {}
 
 // VMServiceUpdateRequest TODO
 message VMServiceUpdateRequest {
-  // Project of the vm
+  // Project of the VM
   string project = 1 [(buf.validate.field).string.uuid = true];
 
   // TODO updatable fields
@@ -143,7 +157,7 @@ message VMServiceUpdateResponse {}
 
 // VMServiceListRequest TODO
 message VMServiceListRequest {
-  // Project of the vm
+  // Project of the VM
   string project = 1 [(buf.validate.field).string.uuid = true];
 }
 
@@ -152,7 +166,7 @@ message VMServiceListResponse {}
 
 // VMServiceDeleteRequest TODO
 message VMServiceDeleteRequest {
-  // Project of the vm
+  // Project of the VM
   string project = 1 [(buf.validate.field).string.uuid = true];
 }
 

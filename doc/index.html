@@ -269,6 +269,10 @@
                   <a href="#fits.api.v1.UpdateMeta"><span class="badge">M</span>UpdateMeta</a>
                 </li>
               
+                <li>
+                  <a href="#fits.api.v1.ValidationError"><span class="badge">M</span>ValidationError</a>
+                </li>
+              
               
                 <li>
                   <a href="#fits.api.v1.AdminRole"><span class="badge">E</span>AdminRole</a>
@@ -726,15 +730,135 @@
         
           
           <li>
-            <a href="#fits%2fapi%2fvm%2fv1%2fos.proto">fits/api/vm/v1/os.proto</a>
+            <a href="#fits%2fapi%2fvm%2fv1%2flocation.proto">fits/api/vm/v1/location.proto</a>
             <ul>
               
                 <li>
-                  <a href="#fits.api.vm.v1.Os"><span class="badge">M</span>Os</a>
+                  <a href="#fits.api.vm.v1.Location"><span class="badge">M</span>Location</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.LocationServiceListRequest"><span class="badge">M</span>LocationServiceListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.LocationServiceListResponse"><span class="badge">M</span>LocationServiceListResponse</a>
                 </li>
               
               
               
+              
+                <li>
+                  <a href="#fits.api.vm.v1.LocationService"><span class="badge">S</span>LocationService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#fits%2fapi%2fvm%2fv1%2fos.proto">fits/api/vm/v1/os.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.OS"><span class="badge">M</span>OS</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.OSServiceListRequest"><span class="badge">M</span>OSServiceListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.OSServiceListResponse"><span class="badge">M</span>OSServiceListResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#fits.api.vm.v1.OSService"><span class="badge">S</span>OSService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#fits%2fapi%2fvm%2fv1%2fservice.proto">fits/api/vm/v1/service.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.Service"><span class="badge">M</span>Service</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.ServiceServiceListRequest"><span class="badge">M</span>ServiceServiceListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.ServiceServiceListResponse"><span class="badge">M</span>ServiceServiceListResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#fits.api.vm.v1.ServiceService"><span class="badge">S</span>ServiceService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#fits%2fapi%2fvm%2fv1%2fstagetype.proto">fits/api/vm/v1/stagetype.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.StageType"><span class="badge">M</span>StageType</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.StageTypeServiceListRequest"><span class="badge">M</span>StageTypeServiceListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.StageTypeServiceListResponse"><span class="badge">M</span>StageTypeServiceListResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#fits.api.vm.v1.StageTypeService"><span class="badge">S</span>StageTypeService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#fits%2fapi%2fvm%2fv1%2fvlan.proto">fits/api/vm/v1/vlan.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.Vlan"><span class="badge">M</span>Vlan</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.VlanServiceListRequest"><span class="badge">M</span>VlanServiceListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.VlanServiceListResponse"><span class="badge">M</span>VlanServiceListResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#fits.api.vm.v1.VlanService"><span class="badge">S</span>VlanService</a>
+                </li>
               
             </ul>
           </li>
@@ -1137,6 +1261,44 @@ must be part of the update request to ensure optimistic locking </p></td>
                   <td><a href="#fits.api.v1.OptimisticLockingStrategy">OptimisticLockingStrategy</a></td>
                   <td></td>
                   <td><p>LockingStrategy to be used for this update request </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.ValidationError">ValidationError</h3>
+        <p>ValidationError describes a single validation problem reported by an upstream API.</p><p>Used to surface structured validation errors (e.g. HTTP 422) returned by backends.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>loc</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Location of the validation error within the request, e.g. [&#34;body&#34;, &#34;tenant_uuid&#34;] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>msg</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human readable error message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Type of the validation error, e.g. &#34;value_error&#34; </p></td>
                 </tr>
               
             </tbody>
@@ -4260,13 +4422,13 @@ TODO: is login really a good name? </p></td>
     
       
       <div class="file-heading">
-        <h2 id="fits/api/vm/v1/os.proto">fits/api/vm/v1/os.proto</h2><a href="#title">Top</a>
+        <h2 id="fits/api/vm/v1/location.proto">fits/api/vm/v1/location.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
       
-        <h3 id="fits.api.vm.v1.Os">Os</h3>
-        <p>Os is the definition of a potential OS of a VM instance</p><p>TODO create a dedicated service</p>
+        <h3 id="fits.api.vm.v1.Location">Location</h3>
+        <p>Location is the definition of an available datacenter location for VM instances</p>
 
         
           <table class="field-table">
@@ -4279,7 +4441,45 @@ TODO: is login really a good name? </p></td>
                   <td>uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Uuid of this os </p></td>
+                  <td><p>Uuid of this location </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>title of the location </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.vm.v1.LocationServiceListRequest">LocationServiceListRequest</h3>
+        <p>LocationServiceListRequest is the request payload for a location list request.</p><p>The upstream nulink API accepts no body or parameters, so this is intentionally empty.</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.vm.v1.LocationServiceListResponse">LocationServiceListResponse</h3>
+        <p>LocationServiceListResponse is the response payload for a location list request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>locations</td>
+                  <td><a href="#fits.api.vm.v1.Location">Location</a></td>
+                  <td>repeated</td>
+                  <td><p>The available locations </p></td>
                 </tr>
               
             </tbody>
@@ -4295,6 +4495,576 @@ TODO: is login really a good name? </p></td>
       
 
       
+        <h3 id="fits.api.vm.v1.LocationService">LocationService</h3>
+        <p>LocationService lists datacenter locations available for VM instances.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#fits.api.vm.v1.LocationServiceListRequest">LocationServiceListRequest</a></td>
+                <td><a href="#fits.api.vm.v1.LocationServiceListResponse">LocationServiceListResponse</a></td>
+                <td><p>Returns a list of all datacenter locations.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/vm/v1/os.proto">fits/api/vm/v1/os.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.vm.v1.OS">OS</h3>
+        <p>OS is the definition of an available OS for VM instances</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Uuid of this OS </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Title of the OS </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Type of the OS </p></td>
+                </tr>
+              
+                <tr>
+                  <td>version</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Version of the OS </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.vm.v1.OSServiceListRequest">OSServiceListRequest</h3>
+        <p>OSServiceListRequest is the request payload for a OS list request.</p><p>The upstream nulink API accepts no body or parameters, so this is intentionally empty.</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.vm.v1.OSServiceListResponse">OSServiceListResponse</h3>
+        <p>OSServiceListResponse is the response payload for a OS list request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>oss</td>
+                  <td><a href="#fits.api.vm.v1.OS">OS</a></td>
+                  <td>repeated</td>
+                  <td><p>The available OSs </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="fits.api.vm.v1.OSService">OSService</h3>
+        <p>OSService lists operating systems available for VM instances.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#fits.api.vm.v1.OSServiceListRequest">OSServiceListRequest</a></td>
+                <td><a href="#fits.api.vm.v1.OSServiceListResponse">OSServiceListResponse</a></td>
+                <td><p>Returns a list of all OSs.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/vm/v1/service.proto">fits/api/vm/v1/service.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.vm.v1.Service">Service</h3>
+        <p>TODO what is a service?</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Uuid of this Service </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>title of the Service
+
+type NucleusDBServices struct {
+	ServiceTitle string `json:&#34;service_title&#34;`
+	ServiceUuid  string `json:&#34;service_uuid&#34;`
+} </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.vm.v1.ServiceServiceListRequest">ServiceServiceListRequest</h3>
+        <p>ServiceServiceListRequest is the request payload for a service list request.</p><p>The upstream nulink API accepts no body or parameters, so this is intentionally empty.</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.vm.v1.ServiceServiceListResponse">ServiceServiceListResponse</h3>
+        <p>ServiceServiceListResponse is the response payload for a service list request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>services</td>
+                  <td><a href="#fits.api.vm.v1.Service">Service</a></td>
+                  <td>repeated</td>
+                  <td><p>The available services </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="fits.api.vm.v1.ServiceService">ServiceService</h3>
+        <p>ServiceService TODO what is a service?</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#fits.api.vm.v1.ServiceServiceListRequest">ServiceServiceListRequest</a></td>
+                <td><a href="#fits.api.vm.v1.ServiceServiceListResponse">ServiceServiceListResponse</a></td>
+                <td><p>Returns a list of all services.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/vm/v1/stagetype.proto">fits/api/vm/v1/stagetype.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.vm.v1.StageType">StageType</h3>
+        <p>TODO what is a stage type?</p><p>Maps to the upstream NucleusDBStageTypes model.</p><p>TODO evaluate whether the uuid is really optional; the upstream API spec does not</p><p>make this clear, so we validate it strictly for now.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Uuid of this stage type </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>title of the stage type
+
+type NucleusDBStageTypes struct {
+	StageTypeTitle string              `json:&#34;stage_type_title&#34;`
+	StageTypeUuid  *openapi_types.UUID `json:&#34;stage_type_uuid,omitempty&#34;`
+} </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.vm.v1.StageTypeServiceListRequest">StageTypeServiceListRequest</h3>
+        <p>StageTypeServiceListRequest is the request payload for a stage type list request.</p><p>Maps to the upstream TenantInputModel.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenant_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant to list available stage types for
+
+Note: the upstream model also has a requested_by field, which is intentionally
+omitted here because it is added by the auth layer from the request context. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.vm.v1.StageTypeServiceListResponse">StageTypeServiceListResponse</h3>
+        <p>StageTypeServiceListResponse is the response payload for a stage type list request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>stagetypes</td>
+                  <td><a href="#fits.api.vm.v1.StageType">StageType</a></td>
+                  <td>repeated</td>
+                  <td><p>The available stage types </p></td>
+                </tr>
+              
+                <tr>
+                  <td>validation_errors</td>
+                  <td><a href="#fits.api.v1.ValidationError">fits.api.v1.ValidationError</a></td>
+                  <td>repeated</td>
+                  <td><p>Validation errors returned by the upstream API when the request is rejected (HTTP 422)
+TODO this is just a test </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="fits.api.vm.v1.StageTypeService">StageTypeService</h3>
+        <p>StageTypeService lists stage types available for VM instances.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#fits.api.vm.v1.StageTypeServiceListRequest">StageTypeServiceListRequest</a></td>
+                <td><a href="#fits.api.vm.v1.StageTypeServiceListResponse">StageTypeServiceListResponse</a></td>
+                <td><p>Returns a list of all stage types available for a tenant.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/vm/v1/vlan.proto">fits/api/vm/v1/vlan.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.vm.v1.Vlan">Vlan</h3>
+        <p>Vlan is a VLAN that a VM can be connected to.</p><p>Maps to the upstream NucleusDBVlans model.</p><p>TODO evaluate which of the uuid fields are really optional; the upstream API</p><p>spec does not make this clear, so we validate them strictly for now.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Uuid of this VLAN </p></td>
+                </tr>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Id of this VLAN </p></td>
+                </tr>
+              
+                <tr>
+                  <td>subnet_title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Title of the subnet this VLAN belongs to </p></td>
+                </tr>
+              
+                <tr>
+                  <td>subnet</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>CIDR of the subnet this VLAN belongs to </p></td>
+                </tr>
+              
+                <tr>
+                  <td>subnetmask</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Subnetmask of this VLAN </p></td>
+                </tr>
+              
+                <tr>
+                  <td>gateway</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Gateway of this VLAN </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ip_range_start</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Start of the usable IP range of this VLAN </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ip_range_end</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>End of the usable IP range of this VLAN </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_dhcp</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether DHCP is used on this VLAN </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pod_title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Title of the pod this VLAN belongs to </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pod_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Uuid of the pod this VLAN belongs to </p></td>
+                </tr>
+              
+                <tr>
+                  <td>stage_type_title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Title of the stage type of this VLAN </p></td>
+                </tr>
+              
+                <tr>
+                  <td>stage_type_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Uuid of the stage type of this VLAN </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tenant_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Uuid of the tenant this VLAN belongs to </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tenant_title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Title of the tenant this VLAN belongs to </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.vm.v1.VlanServiceListRequest">VlanServiceListRequest</h3>
+        <p>VlanServiceListRequest is the request payload for a VLAN list request.</p><p>Maps to the upstream TenantInputModel.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenant_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant to list available VLANs for
+
+Note: the upstream model also has a requested_by field, which is intentionally
+omitted here because it is added by the auth layer from the request context. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.vm.v1.VlanServiceListResponse">VlanServiceListResponse</h3>
+        <p>VlanServiceListResponse is the response payload for a VLAN list request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>vlans</td>
+                  <td><a href="#fits.api.vm.v1.Vlan">Vlan</a></td>
+                  <td>repeated</td>
+                  <td><p>The available VLANs </p></td>
+                </tr>
+              
+                <tr>
+                  <td>validation_errors</td>
+                  <td><a href="#fits.api.v1.ValidationError">fits.api.v1.ValidationError</a></td>
+                  <td>repeated</td>
+                  <td><p>Validation errors returned by the upstream API when the request is rejected (HTTP 422)
+TODO this is just a test </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="fits.api.vm.v1.VlanService">VlanService</h3>
+        <p>VLANService lists VLANs avaiable for VM instances.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#fits.api.vm.v1.VlanServiceListRequest">VlanServiceListRequest</a></td>
+                <td><a href="#fits.api.vm.v1.VlanServiceListResponse">VlanServiceListResponse</a></td>
+                <td><p>Returns a list of all VLANs available for a tenant.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
     
       
       <div class="file-heading">
@@ -4373,28 +5143,28 @@ TODO this requires a Filesystem on the disk ? </p></td>
                   <td>uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Uuid of this vm </p></td>
+                  <td><p>Uuid of this VM </p></td>
                 </tr>
               
                 <tr>
                   <td>meta</td>
                   <td><a href="#fits.api.v1.Meta">fits.api.v1.Meta</a></td>
                   <td></td>
-                  <td><p>Meta for this vm </p></td>
+                  <td><p>Meta for this VM </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Name of this vm </p></td>
+                  <td><p>Name of this VM </p></td>
                 </tr>
               
                 <tr>
                   <td>project</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Project where this vm address belongs to </p></td>
+                  <td><p>Project where this VM belongs to </p></td>
                 </tr>
               
             </tbody>
@@ -4415,69 +5185,77 @@ TODO this requires a Filesystem on the disk ? </p></td>
             <tbody>
               
                 <tr>
-                  <td>project</td>
+                  <td>project_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Project of the vm </p></td>
+                  <td><p>Project of the VM </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
-                  <td><p>Name of the vm </p></td>
+                  <td><p>Name of the VM </p></td>
                 </tr>
               
                 <tr>
                   <td>cpu</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>Number of CPUs of this vm </p></td>
+                  <td><p>Number of CPUs of this VM </p></td>
                 </tr>
               
                 <tr>
                   <td>ram</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>Ram of the vm in GB </p></td>
+                  <td><p>RAM of the VM in GB </p></td>
                 </tr>
               
                 <tr>
                   <td>os_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>OS Uuid of the OS to install in the vm instance </p></td>
+                  <td><p>OS Uuid of the OS to install in the VM instance </p></td>
                 </tr>
               
                 <tr>
                   <td>vlan_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>VLAN Uuid of the VLAN to install in the vm instance into </p></td>
+                  <td><p>VLAN Uuid of the VLAN to install in the VM instance into </p></td>
                 </tr>
               
                 <tr>
                   <td>location_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Location Uuid of the datacenter location to install in the vm instance </p></td>
+                  <td><p>Location Uuid of the datacenter location to install in the VM instance </p></td>
                 </tr>
               
                 <tr>
                   <td>contact_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Contact Uuid of who is the responsible contact of the vm instance </p></td>
+                  <td><p>Contact Uuid of who is the responsible contact of the VM instance </p></td>
                 </tr>
               
                 <tr>
                   <td>disks</td>
                   <td><a href="#fits.api.vm.v1.Disk">Disk</a></td>
                   <td>repeated</td>
-                  <td><p>List of disks for this vm
+                  <td><p>List of disks for this VM
 
+TODO differentiation
+oneof vmtype {
+  // ensure at least one match is specified.
+  option (buf.validate.oneof).required = true;
+  VMServiceCreateWindowsRequest windows = 21;
+  VMServiceCreateLinuxRequest linux = 22;
+}
 Disks             []DiskInputModel
-RequestedBy       *string // TODO is inherited from the token making the create request -&gt; stored in meta.createdBy </p></td>
+TODO is inherited from the token making the create request -&gt; stored in meta.createdBy
+RequestedBy       *string </p></td>
                 </tr>
               
             </tbody>
@@ -4508,7 +5286,7 @@ RequestedBy       *string // TODO is inherited from the token making the create 
                   <td>project</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Project of the vm </p></td>
+                  <td><p>Project of the VM </p></td>
                 </tr>
               
             </tbody>
@@ -4539,14 +5317,14 @@ RequestedBy       *string // TODO is inherited from the token making the create 
                   <td>uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Uuid of this vm </p></td>
+                  <td><p>Uuid of this VM </p></td>
                 </tr>
               
                 <tr>
                   <td>project</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Project where this vm address belongs to </p></td>
+                  <td><p>Project where this VM belongs to </p></td>
                 </tr>
               
             </tbody>
@@ -4570,7 +5348,7 @@ RequestedBy       *string // TODO is inherited from the token making the create 
                   <td>vm</td>
                   <td><a href="#fits.api.vm.v1.VMInstance">VMInstance</a></td>
                   <td></td>
-                  <td><p>The vm </p></td>
+                  <td><p>The VM </p></td>
                 </tr>
               
             </tbody>
@@ -4594,7 +5372,7 @@ RequestedBy       *string // TODO is inherited from the token making the create 
                   <td>project</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Project of the vm </p></td>
+                  <td><p>Project of the VM </p></td>
                 </tr>
               
             </tbody>
@@ -4625,7 +5403,7 @@ RequestedBy       *string // TODO is inherited from the token making the create 
                   <td>project</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Project of the vm </p></td>
+                  <td><p>Project of the VM </p></td>
                 </tr>
               
                 <tr>
@@ -4656,7 +5434,7 @@ RequestedBy       *string // TODO is inherited from the token making the create 
 
       
         <h3 id="fits.api.vm.v1.VMService">VMService</h3>
-        <p>VMService provides VM address management operations.</p>
+        <p>VMService provides VM CRUD perations.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -4667,35 +5445,35 @@ RequestedBy       *string // TODO is inherited from the token making the create 
                 <td>Get</td>
                 <td><a href="#fits.api.vm.v1.VMServiceGetRequest">VMServiceGetRequest</a></td>
                 <td><a href="#fits.api.vm.v1.VMServiceGetResponse">VMServiceGetResponse</a></td>
-                <td><p>Returns the VM address with the specified VM.</p></td>
+                <td><p>Returns the VM with the specified UUID.</p></td>
               </tr>
             
               <tr>
                 <td>Create</td>
                 <td><a href="#fits.api.vm.v1.VMServiceCreateRequest">VMServiceCreateRequest</a></td>
                 <td><a href="#fits.api.vm.v1.VMServiceCreateResponse">VMServiceCreateResponse</a></td>
-                <td><p>Creates a new VM address.</p></td>
+                <td><p>Creates a new VM.</p></td>
               </tr>
             
               <tr>
                 <td>Update</td>
                 <td><a href="#fits.api.vm.v1.VMServiceUpdateRequest">VMServiceUpdateRequest</a></td>
                 <td><a href="#fits.api.vm.v1.VMServiceUpdateResponse">VMServiceUpdateResponse</a></td>
-                <td><p>Updates an VM address.</p></td>
+                <td><p>Updates a VM.</p></td>
               </tr>
             
               <tr>
                 <td>List</td>
                 <td><a href="#fits.api.vm.v1.VMServiceListRequest">VMServiceListRequest</a></td>
                 <td><a href="#fits.api.vm.v1.VMServiceListResponse">VMServiceListResponse</a></td>
-                <td><p>Returns the list of all VM addresses.</p></td>
+                <td><p>Returns the list of all VMs.</p></td>
               </tr>
             
               <tr>
                 <td>Delete</td>
                 <td><a href="#fits.api.vm.v1.VMServiceDeleteRequest">VMServiceDeleteRequest</a></td>
                 <td><a href="#fits.api.vm.v1.VMServiceDeleteResponse">VMServiceDeleteResponse</a></td>
-                <td><p>Deletes an VM address.</p></td>
+                <td><p>Deletes a VM.</p></td>
               </tr>
             
           </tbody>

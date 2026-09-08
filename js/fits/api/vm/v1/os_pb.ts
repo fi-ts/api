@@ -2,36 +2,113 @@
 // @generated from file fits/api/vm/v1/os.proto (package fits.api.vm.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
+import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
+import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../../../buf/validate/validate_pb";
+import { file_fits_api_v1_common } from "../../v1/common_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file fits/api/vm/v1/os.proto.
  */
 export const file_fits_api_vm_v1_os: GenFile = /*@__PURE__*/
-  fileDesc("ChdmaXRzL2FwaS92bS92MS9vcy5wcm90bxIOZml0cy5hcGkudm0udjEiHAoCT3MSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQFCpQEKEmNvbS5maXRzLmFwaS52bS52MUIHT3NQcm90b1ABWitnaXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS92bS92MTt2bXYxogIDRkFWqgIORml0cy5BcGkuVm0uVjHKAg5GaXRzXEFwaVxWbVxWMeICGkZpdHNcQXBpXFZtXFYxXEdQQk1ldGFkYXRh6gIRRml0czo6QXBpOjpWbTo6VjFiBnByb3RvMw", [file_buf_validate_validate]);
+  fileDesc("ChdmaXRzL2FwaS92bS92MS9vcy5wcm90bxIOZml0cy5hcGkudm0udjEiSgoCT1MSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESDQoFdGl0bGUYAiABKAkSDAoEdHlwZRgDIAEoCRIPCgd2ZXJzaW9uGAQgASgJIhYKFE9TU2VydmljZUxpc3RSZXF1ZXN0IjgKFU9TU2VydmljZUxpc3RSZXNwb25zZRIfCgNvc3MYASADKAsyEi5maXRzLmFwaS52bS52MS5PUzJtCglPU1NlcnZpY2USYAoETGlzdBIkLmZpdHMuYXBpLnZtLnYxLk9TU2VydmljZUxpc3RSZXF1ZXN0GiUuZml0cy5hcGkudm0udjEuT1NTZXJ2aWNlTGlzdFJlc3BvbnNlIgvK8xgDAQID4PMYAkKlAQoSY29tLmZpdHMuYXBpLnZtLnYxQgdPc1Byb3RvUAFaK2dpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL3ZtL3YxO3ZtdjGiAgNGQVaqAg5GaXRzLkFwaS5WbS5WMcoCDkZpdHNcQXBpXFZtXFYx4gIaRml0c1xBcGlcVm1cVjFcR1BCTWV0YWRhdGHqAhFGaXRzOjpBcGk6OlZtOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_common]);
 
 /**
- * Os is the definition of a potential OS of a VM instance
- * TODO create a dedicated service
+ * OS is the definition of an available OS for VM instances
  *
- * @generated from message fits.api.vm.v1.Os
+ * @generated from message fits.api.vm.v1.OS
  */
-export type Os = Message<"fits.api.vm.v1.Os"> & {
+export type OS = Message<"fits.api.vm.v1.OS"> & {
   /**
-   * Uuid of this os
+   * Uuid of this OS
    *
    * @generated from field: string uuid = 1;
    */
   uuid: string;
+
+  /**
+   * Title of the OS
+   *
+   * @generated from field: string title = 2;
+   */
+  title: string;
+
+  /**
+   * Type of the OS
+   *
+   * @generated from field: string type = 3;
+   */
+  type: string;
+
+  /**
+   * Version of the OS
+   *
+   * @generated from field: string version = 4;
+   */
+  version: string;
 };
 
 /**
- * Describes the message fits.api.vm.v1.Os.
- * Use `create(OsSchema)` to create a new message.
+ * Describes the message fits.api.vm.v1.OS.
+ * Use `create(OSSchema)` to create a new message.
  */
-export const OsSchema: GenMessage<Os> = /*@__PURE__*/
+export const OSSchema: GenMessage<OS> = /*@__PURE__*/
   messageDesc(file_fits_api_vm_v1_os, 0);
+
+/**
+ * OSServiceListRequest is the request payload for a OS list request.
+ * The upstream nulink API accepts no body or parameters, so this is intentionally empty.
+ *
+ * @generated from message fits.api.vm.v1.OSServiceListRequest
+ */
+export type OSServiceListRequest = Message<"fits.api.vm.v1.OSServiceListRequest"> & {
+};
+
+/**
+ * Describes the message fits.api.vm.v1.OSServiceListRequest.
+ * Use `create(OSServiceListRequestSchema)` to create a new message.
+ */
+export const OSServiceListRequestSchema: GenMessage<OSServiceListRequest> = /*@__PURE__*/
+  messageDesc(file_fits_api_vm_v1_os, 1);
+
+/**
+ * OSServiceListResponse is the response payload for a OS list request
+ *
+ * @generated from message fits.api.vm.v1.OSServiceListResponse
+ */
+export type OSServiceListResponse = Message<"fits.api.vm.v1.OSServiceListResponse"> & {
+  /**
+   * The available OSs
+   *
+   * @generated from field: repeated fits.api.vm.v1.OS oss = 1;
+   */
+  oss: OS[];
+};
+
+/**
+ * Describes the message fits.api.vm.v1.OSServiceListResponse.
+ * Use `create(OSServiceListResponseSchema)` to create a new message.
+ */
+export const OSServiceListResponseSchema: GenMessage<OSServiceListResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_vm_v1_os, 2);
+
+/**
+ * OSService lists operating systems available for VM instances.
+ *
+ * @generated from service fits.api.vm.v1.OSService
+ */
+export const OSService: GenService<{
+  /**
+   * Returns a list of all OSs.
+   *
+   * @generated from rpc fits.api.vm.v1.OSService.List
+   */
+  list: {
+    methodKind: "unary";
+    input: typeof OSServiceListRequestSchema;
+    output: typeof OSServiceListResponseSchema;
+  },
+}> = /*@__PURE__*/
+  serviceDesc(file_fits_api_vm_v1_os, 0);
 

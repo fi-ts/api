@@ -23,9 +23,10 @@ _sym_db = _symbol_database.Default()
 
 
 from buf.validate import validate_pb2 as buf_dot_validate_dot_validate__pb2
+from fits.api.v1 import common_pb2 as fits_dot_api_dot_v1_dot_common__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x17\x66its/api/vm/v1/os.proto\x12\x0e\x66its.api.vm.v1\x1a\x1b\x62uf/validate/validate.proto\"\"\n\x02Os\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuidB\xa5\x01\n\x12\x63om.fits.api.vm.v1B\x07OsProtoP\x01Z+github.com/fi-ts/api/go/fits/api/vm/v1;vmv1\xa2\x02\x03\x46\x41V\xaa\x02\x0e\x46its.Api.Vm.V1\xca\x02\x0e\x46its\\Api\\Vm\\V1\xe2\x02\x1a\x46its\\Api\\Vm\\V1\\GPBMetadata\xea\x02\x11\x46its::Api::Vm::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x17\x66its/api/vm/v1/os.proto\x12\x0e\x66its.api.vm.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\"f\n\x02OS\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x14\n\x05title\x18\x02 \x01(\tR\x05title\x12\x12\n\x04type\x18\x03 \x01(\tR\x04type\x12\x18\n\x07version\x18\x04 \x01(\tR\x07version\"\x16\n\x14OSServiceListRequest\"=\n\x15OSServiceListResponse\x12$\n\x03oss\x18\x01 \x03(\x0b\x32\x12.fits.api.vm.v1.OSR\x03oss2m\n\tOSService\x12`\n\x04List\x12$.fits.api.vm.v1.OSServiceListRequest\x1a%.fits.api.vm.v1.OSServiceListResponse\"\x0b\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x42\xa5\x01\n\x12\x63om.fits.api.vm.v1B\x07OsProtoP\x01Z+github.com/fi-ts/api/go/fits/api/vm/v1;vmv1\xa2\x02\x03\x46\x41V\xaa\x02\x0e\x46its.Api.Vm.V1\xca\x02\x0e\x46its\\Api\\Vm\\V1\xe2\x02\x1a\x46its\\Api\\Vm\\V1\\GPBMetadata\xea\x02\x11\x46its::Api::Vm::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -35,6 +36,14 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._serialized_options = b'\n\022com.fits.api.vm.v1B\007OsProtoP\001Z+github.com/fi-ts/api/go/fits/api/vm/v1;vmv1\242\002\003FAV\252\002\016Fits.Api.Vm.V1\312\002\016Fits\\Api\\Vm\\V1\342\002\032Fits\\Api\\Vm\\V1\\GPBMetadata\352\002\021Fits::Api::Vm::V1'
   _globals['_OS'].fields_by_name['uuid']._loaded_options = None
   _globals['_OS'].fields_by_name['uuid']._serialized_options = b'\272H\005r\003\260\001\001'
-  _globals['_OS']._serialized_start=72
-  _globals['_OS']._serialized_end=106
+  _globals['_OSSERVICE'].methods_by_name['List']._loaded_options = None
+  _globals['_OSSERVICE'].methods_by_name['List']._serialized_options = b'\312\363\030\003\001\002\003\340\363\030\002'
+  _globals['_OS']._serialized_start=98
+  _globals['_OS']._serialized_end=200
+  _globals['_OSSERVICELISTREQUEST']._serialized_start=202
+  _globals['_OSSERVICELISTREQUEST']._serialized_end=224
+  _globals['_OSSERVICELISTRESPONSE']._serialized_start=226
+  _globals['_OSSERVICELISTRESPONSE']._serialized_end=287
+  _globals['_OSSERVICE']._serialized_start=289
+  _globals['_OSSERVICE']._serialized_end=398
 # @@protoc_insertion_point(module_scope)

@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/vm/v1/vm.proto.
  */
 export const file_fits_api_vm_v1_vm: GenFile = /*@__PURE__*/
-  fileDesc("ChdmaXRzL2FwaS92bS92MS92bS5wcm90bxIOZml0cy5hcGkudm0udjEiewoKVk1JbnN0YW5jZRIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIfCgRtZXRhGAIgASgLMhEuZml0cy5hcGkudjEuTWV0YRIZCgRuYW1lGAMgASgJQgu6SAhyBsCzrrECARIZCgdwcm9qZWN0GAQgASgJQgi6SAVyA7ABASJIChNWTVNlcnZpY2VHZXRSZXF1ZXN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEhkKB3Byb2plY3QYAiABKAlCCLpIBXIDsAEBIj4KFFZNU2VydmljZUdldFJlc3BvbnNlEiYKAnZtGAEgASgLMhouZml0cy5hcGkudm0udjEuVk1JbnN0YW5jZSKUAgoWVk1TZXJ2aWNlQ3JlYXRlUmVxdWVzdBIZCgdwcm9qZWN0GAEgASgJQgi6SAVyA7ABARIeCgRuYW1lGAIgASgJQgu6SAhyBsCzrrECAUgAiAEBEgsKA2NwdRgDIAEoDRILCgNyYW0YBCABKA0SGQoHb3NfdXVpZBgFIAEoCUIIukgFcgOwAQESGwoJdmxhbl91dWlkGAYgASgJQgi6SAVyA7ABARIfCg1sb2NhdGlvbl91dWlkGAcgASgJQgi6SAVyA7ABARIeCgxjb250YWN0X3V1aWQYCCABKAlCCLpIBXIDsAEBEiMKBWRpc2tzGAkgAygLMhQuZml0cy5hcGkudm0udjEuRGlza0IHCgVfbmFtZSKoAQoERGlzaxITCgthdXRvX2V4dGVuZBgBIAEoCBIXCgpzaXplX2luX2diGAIgASgESACIAQESGQoMZHJpdmVfbGV0dGVyGAMgASgJSAGIAQESDQoFbGFiZWwYBCABKAkSGAoLbW91bnRfcG9pbnQYBSABKAlIAogBAUINCgtfc2l6ZV9pbl9nYkIPCg1fZHJpdmVfbGV0dGVyQg4KDF9tb3VudF9wb2ludCIZChdWTVNlcnZpY2VDcmVhdGVSZXNwb25zZSJpChZWTVNlcnZpY2VVcGRhdGVSZXF1ZXN0EhkKB3Byb2plY3QYASABKAlCCLpIBXIDsAEBEjQKC3VwZGF0ZV9tZXRhGAIgASgLMhcuZml0cy5hcGkudjEuVXBkYXRlTWV0YUIGukgDyAEBIhkKF1ZNU2VydmljZVVwZGF0ZVJlc3BvbnNlIjEKFFZNU2VydmljZUxpc3RSZXF1ZXN0EhkKB3Byb2plY3QYASABKAlCCLpIBXIDsAEBIhcKFVZNU2VydmljZUxpc3RSZXNwb25zZSIzChZWTVNlcnZpY2VEZWxldGVSZXF1ZXN0EhkKB3Byb2plY3QYASABKAlCCLpIBXIDsAEBIhkKF1ZNU2VydmljZURlbGV0ZVJlc3BvbnNlMoEECglWTVNlcnZpY2USXQoDR2V0EiMuZml0cy5hcGkudm0udjEuVk1TZXJ2aWNlR2V0UmVxdWVzdBokLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZUdldFJlc3BvbnNlIgvK8xgDAQID4PMYAhJlCgZDcmVhdGUSJi5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VDcmVhdGVSZXF1ZXN0GicuZml0cy5hcGkudm0udjEuVk1TZXJ2aWNlQ3JlYXRlUmVzcG9uc2UiCsrzGAIBAuDzGAESZQoGVXBkYXRlEiYuZml0cy5hcGkudm0udjEuVk1TZXJ2aWNlVXBkYXRlUmVxdWVzdBonLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZVVwZGF0ZVJlc3BvbnNlIgrK8xgCAQLg8xgBEmAKBExpc3QSJC5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VMaXN0UmVxdWVzdBolLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZUxpc3RSZXNwb25zZSILyvMYAwECA+DzGAISZQoGRGVsZXRlEiYuZml0cy5hcGkudm0udjEuVk1TZXJ2aWNlRGVsZXRlUmVxdWVzdBonLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZURlbGV0ZVJlc3BvbnNlIgrK8xgCAQLg8xgBQqUBChJjb20uZml0cy5hcGkudm0udjFCB1ZtUHJvdG9QAVorZ2l0aHViLmNvbS9maS10cy9hcGkvZ28vZml0cy9hcGkvdm0vdjE7dm12MaICA0ZBVqoCDkZpdHMuQXBpLlZtLlYxygIORml0c1xBcGlcVm1cVjHiAhpGaXRzXEFwaVxWbVxWMVxHUEJNZXRhZGF0YeoCEUZpdHM6OkFwaTo6Vm06OlYxYgZwcm90bzM", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
+  fileDesc("ChdmaXRzL2FwaS92bS92MS92bS5wcm90bxIOZml0cy5hcGkudm0udjEiewoKVk1JbnN0YW5jZRIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIfCgRtZXRhGAIgASgLMhEuZml0cy5hcGkudjEuTWV0YRIZCgRuYW1lGAMgASgJQgu6SAhyBsCzrrECARIZCgdwcm9qZWN0GAQgASgJQgi6SAVyA7ABASJIChNWTVNlcnZpY2VHZXRSZXF1ZXN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEhkKB3Byb2plY3QYAiABKAlCCLpIBXIDsAEBIj4KFFZNU2VydmljZUdldFJlc3BvbnNlEiYKAnZtGAEgASgLMhouZml0cy5hcGkudm0udjEuVk1JbnN0YW5jZSKZAgoWVk1TZXJ2aWNlQ3JlYXRlUmVxdWVzdBIeCgxwcm9qZWN0X3V1aWQYASABKAlCCLpIBXIDsAEBEh4KBG5hbWUYAiABKAlCC7pICHIGwLOusQIBSACIAQESCwoDY3B1GAMgASgNEgsKA3JhbRgEIAEoDRIZCgdvc191dWlkGAUgASgJQgi6SAVyA7ABARIbCgl2bGFuX3V1aWQYBiABKAlCCLpIBXIDsAEBEh8KDWxvY2F0aW9uX3V1aWQYByABKAlCCLpIBXIDsAEBEh4KDGNvbnRhY3RfdXVpZBgIIAEoCUIIukgFcgOwAQESIwoFZGlza3MYCSADKAsyFC5maXRzLmFwaS52bS52MS5EaXNrQgcKBV9uYW1lIqgBCgREaXNrEhMKC2F1dG9fZXh0ZW5kGAEgASgIEhcKCnNpemVfaW5fZ2IYAiABKARIAIgBARIZCgxkcml2ZV9sZXR0ZXIYAyABKAlIAYgBARINCgVsYWJlbBgEIAEoCRIYCgttb3VudF9wb2ludBgFIAEoCUgCiAEBQg0KC19zaXplX2luX2diQg8KDV9kcml2ZV9sZXR0ZXJCDgoMX21vdW50X3BvaW50IhkKF1ZNU2VydmljZUNyZWF0ZVJlc3BvbnNlImkKFlZNU2VydmljZVVwZGF0ZVJlcXVlc3QSGQoHcHJvamVjdBgBIAEoCUIIukgFcgOwAQESNAoLdXBkYXRlX21ldGEYAiABKAsyFy5maXRzLmFwaS52MS5VcGRhdGVNZXRhQga6SAPIAQEiGQoXVk1TZXJ2aWNlVXBkYXRlUmVzcG9uc2UiMQoUVk1TZXJ2aWNlTGlzdFJlcXVlc3QSGQoHcHJvamVjdBgBIAEoCUIIukgFcgOwAQEiFwoVVk1TZXJ2aWNlTGlzdFJlc3BvbnNlIjMKFlZNU2VydmljZURlbGV0ZVJlcXVlc3QSGQoHcHJvamVjdBgBIAEoCUIIukgFcgOwAQEiGQoXVk1TZXJ2aWNlRGVsZXRlUmVzcG9uc2UygQQKCVZNU2VydmljZRJdCgNHZXQSIy5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VHZXRSZXF1ZXN0GiQuZml0cy5hcGkudm0udjEuVk1TZXJ2aWNlR2V0UmVzcG9uc2UiC8rzGAMBAgPg8xgCEmUKBkNyZWF0ZRImLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZUNyZWF0ZVJlcXVlc3QaJy5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VDcmVhdGVSZXNwb25zZSIKyvMYAgEC4PMYARJlCgZVcGRhdGUSJi5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VVcGRhdGVSZXF1ZXN0GicuZml0cy5hcGkudm0udjEuVk1TZXJ2aWNlVXBkYXRlUmVzcG9uc2UiCsrzGAIBAuDzGAESYAoETGlzdBIkLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZUxpc3RSZXF1ZXN0GiUuZml0cy5hcGkudm0udjEuVk1TZXJ2aWNlTGlzdFJlc3BvbnNlIgvK8xgDAQID4PMYAhJlCgZEZWxldGUSJi5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VEZWxldGVSZXF1ZXN0GicuZml0cy5hcGkudm0udjEuVk1TZXJ2aWNlRGVsZXRlUmVzcG9uc2UiCsrzGAIBAuDzGAFCpQEKEmNvbS5maXRzLmFwaS52bS52MUIHVm1Qcm90b1ABWitnaXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS92bS92MTt2bXYxogIDRkFWqgIORml0cy5BcGkuVm0uVjHKAg5GaXRzXEFwaVxWbVxWMeICGkZpdHNcQXBpXFZtXFYxXEdQQk1ldGFkYXRh6gIRRml0czo6QXBpOjpWbTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
 
 /**
  * VM Instance Messages
@@ -23,28 +23,28 @@ export const file_fits_api_vm_v1_vm: GenFile = /*@__PURE__*/
  */
 export type VMInstance = Message<"fits.api.vm.v1.VMInstance"> & {
   /**
-   * Uuid of this vm
+   * Uuid of this VM
    *
    * @generated from field: string uuid = 1;
    */
   uuid: string;
 
   /**
-   * Meta for this vm
+   * Meta for this VM
    *
    * @generated from field: fits.api.v1.Meta meta = 2;
    */
   meta?: Meta | undefined;
 
   /**
-   * Name of this vm
+   * Name of this VM
    *
    * @generated from field: string name = 3;
    */
   name: string;
 
   /**
-   * Project where this vm address belongs to
+   * Project where this VM belongs to
    *
    * @generated from field: string project = 4;
    */
@@ -65,14 +65,14 @@ export const VMInstanceSchema: GenMessage<VMInstance> = /*@__PURE__*/
  */
 export type VMServiceGetRequest = Message<"fits.api.vm.v1.VMServiceGetRequest"> & {
   /**
-   * Uuid of this vm
+   * Uuid of this VM
    *
    * @generated from field: string uuid = 1;
    */
   uuid: string;
 
   /**
-   * Project where this vm address belongs to
+   * Project where this VM belongs to
    *
    * @generated from field: string project = 2;
    */
@@ -93,7 +93,7 @@ export const VMServiceGetRequestSchema: GenMessage<VMServiceGetRequest> = /*@__P
  */
 export type VMServiceGetResponse = Message<"fits.api.vm.v1.VMServiceGetResponse"> & {
   /**
-   * The vm
+   * The VM
    *
    * @generated from field: fits.api.vm.v1.VMInstance vm = 1;
    */
@@ -114,66 +114,74 @@ export const VMServiceGetResponseSchema: GenMessage<VMServiceGetResponse> = /*@_
  */
 export type VMServiceCreateRequest = Message<"fits.api.vm.v1.VMServiceCreateRequest"> & {
   /**
-   * Project of the vm
+   * Project of the VM
    *
-   * @generated from field: string project = 1;
+   * @generated from field: string project_uuid = 1;
    */
-  project: string;
+  projectUuid: string;
 
   /**
-   * Name of the vm
+   * Name of the VM
    *
    * @generated from field: optional string name = 2;
    */
   name?: string | undefined;
 
   /**
-   * Number of CPUs of this vm
+   * Number of CPUs of this VM
    *
    * @generated from field: uint32 cpu = 3;
    */
   cpu: number;
 
   /**
-   * Ram of the vm in GB
+   * RAM of the VM in GB
    *
    * @generated from field: uint32 ram = 4;
    */
   ram: number;
 
   /**
-   * OS Uuid of the OS to install in the vm instance
+   * OS Uuid of the OS to install in the VM instance
    *
    * @generated from field: string os_uuid = 5;
    */
   osUuid: string;
 
   /**
-   * VLAN Uuid of the VLAN to install in the vm instance into
+   * VLAN Uuid of the VLAN to install in the VM instance into
    *
    * @generated from field: string vlan_uuid = 6;
    */
   vlanUuid: string;
 
   /**
-   * Location Uuid of the datacenter location to install in the vm instance
+   * Location Uuid of the datacenter location to install in the VM instance
    *
    * @generated from field: string location_uuid = 7;
    */
   locationUuid: string;
 
   /**
-   * Contact Uuid of who is the responsible contact of the vm instance
+   * Contact Uuid of who is the responsible contact of the VM instance
    *
    * @generated from field: string contact_uuid = 8;
    */
   contactUuid: string;
 
   /**
-   * List of disks for this vm
+   * List of disks for this VM
    *
+   * TODO differentiation
+   * oneof vmtype {
+   *   // ensure at least one match is specified.
+   *   option (buf.validate.oneof).required = true;
+   *   VMServiceCreateWindowsRequest windows = 21;
+   *   VMServiceCreateLinuxRequest linux = 22;
+   * }
    * Disks             []DiskInputModel
-   * RequestedBy       *string // TODO is inherited from the token making the create request -> stored in meta.createdBy
+   * TODO is inherited from the token making the create request -> stored in meta.createdBy
+   * RequestedBy       *string
    *
    * @generated from field: repeated fits.api.vm.v1.Disk disks = 9;
    */
@@ -262,7 +270,7 @@ export const VMServiceCreateResponseSchema: GenMessage<VMServiceCreateResponse> 
  */
 export type VMServiceUpdateRequest = Message<"fits.api.vm.v1.VMServiceUpdateRequest"> & {
   /**
-   * Project of the vm
+   * Project of the VM
    *
    * @generated from field: string project = 1;
    */
@@ -305,7 +313,7 @@ export const VMServiceUpdateResponseSchema: GenMessage<VMServiceUpdateResponse> 
  */
 export type VMServiceListRequest = Message<"fits.api.vm.v1.VMServiceListRequest"> & {
   /**
-   * Project of the vm
+   * Project of the VM
    *
    * @generated from field: string project = 1;
    */
@@ -341,7 +349,7 @@ export const VMServiceListResponseSchema: GenMessage<VMServiceListResponse> = /*
  */
 export type VMServiceDeleteRequest = Message<"fits.api.vm.v1.VMServiceDeleteRequest"> & {
   /**
-   * Project of the vm
+   * Project of the VM
    *
    * @generated from field: string project = 1;
    */
@@ -371,13 +379,13 @@ export const VMServiceDeleteResponseSchema: GenMessage<VMServiceDeleteResponse> 
   messageDesc(file_fits_api_vm_v1_vm, 11);
 
 /**
- * VMService provides VM address management operations.
+ * VMService provides VM CRUD perations.
  *
  * @generated from service fits.api.vm.v1.VMService
  */
 export const VMService: GenService<{
   /**
-   * Returns the VM address with the specified VM.
+   * Returns the VM with the specified UUID.
    *
    * @generated from rpc fits.api.vm.v1.VMService.Get
    */
@@ -387,7 +395,7 @@ export const VMService: GenService<{
     output: typeof VMServiceGetResponseSchema;
   },
   /**
-   * Creates a new VM address.
+   * Creates a new VM.
    *
    * @generated from rpc fits.api.vm.v1.VMService.Create
    */
@@ -397,7 +405,7 @@ export const VMService: GenService<{
     output: typeof VMServiceCreateResponseSchema;
   },
   /**
-   * Updates an VM address.
+   * Updates a VM.
    *
    * @generated from rpc fits.api.vm.v1.VMService.Update
    */
@@ -407,7 +415,7 @@ export const VMService: GenService<{
     output: typeof VMServiceUpdateResponseSchema;
   },
   /**
-   * Returns the list of all VM addresses.
+   * Returns the list of all VMs.
    *
    * @generated from rpc fits.api.vm.v1.VMService.List
    */
@@ -417,7 +425,7 @@ export const VMService: GenService<{
     output: typeof VMServiceListResponseSchema;
   },
   /**
-   * Deletes an VM address.
+   * Deletes a VM.
    *
    * @generated from rpc fits.api.vm.v1.VMService.Delete
    */

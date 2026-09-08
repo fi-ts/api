@@ -160,3 +160,14 @@ enum OptimisticLockingStrategy {
   // and fetches the most recent entity before updating with the given values with the update request
   OPTIMISTIC_LOCKING_STRATEGY_SERVER = 2;
 }
+
+// ValidationError describes a single validation problem reported by an upstream API.
+// Used to surface structured validation errors (e.g. HTTP 422) returned by backends.
+message ValidationError {
+  // Location of the validation error within the request, e.g. ["body", "tenant_uuid"]
+  repeated string loc = 1;
+  // Human readable error message
+  string msg = 2;
+  // Type of the validation error, e.g. "value_error"
+  string type = 3;
+}

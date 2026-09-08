@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package fits.api.vm.v1;
+
+import "buf/validate/validate.proto";
+import "fits/api/v1/common.proto";
+
+// VLANService lists VLANs avaiable for VM instances.
+service VlanService {
+  // Returns a list of all VLANs available for a tenant.
+  rpc List(VlanServiceListRequest) returns (VlanServiceListResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_OWNER;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_VIEWER;
+    option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
+  }
+}
+
+// Vlan is a VLAN that a VM can be connected to.
+// Maps to the upstream NucleusDBVlans model.
+// TODO evaluate which of the uuid fields are really optional; the upstream API
+// spec does not make this clear, so we validate them strictly for now.
+message Vlan {
+  // Uuid of this VLAN
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // Id of this VLAN
+  int32 id = 2;
+  // Title of the subnet this VLAN belongs to
+  string subnet_title = 3;
+  // CIDR of the subnet this VLAN belongs to
+  string subnet = 4;
+  // Subnetmask of this VLAN
+  string subnetmask = 5;
+  // Gateway of this VLAN
+  string gateway = 6;
+  // Start of the usable IP range of this VLAN
+  string ip_range_start = 7;
+  // End of the usable IP range of this VLAN
+  string ip_range_end = 8;
+  // Whether DHCP is used on this VLAN
+  bool use_dhcp = 9;
+  // Title of the pod this VLAN belongs to
+  string pod_title = 10;
+  // Uuid of the pod this VLAN belongs to
+  string pod_uuid = 11 [(buf.validate.field).string.uuid = true];
+  // Title of the stage type of this VLAN
+  string stage_type_title = 12;
+  // Uuid of the stage type of this VLAN
+  string stage_type_uuid = 13 [(buf.validate.field).string.uuid = true];
+  // Uuid of the tenant this VLAN belongs to
+  string tenant_uuid = 14 [(buf.validate.field).string.uuid = true];
+  // Title of the tenant this VLAN belongs to
+  string tenant_title = 15;
+
+  // type NucleusDBVlans struct {
+  // 	Gateway        string              `json:"gateway"`
+  // 	IpRangeEnd     string              `json:"ip_range_end"`
+  // 	IpRangeStart   string              `json:"ip_range_start"`
+  // 	PodTitle       string              `json:"pod_title"`
+  // 	PodUuid        *openapi_types.UUID `json:"pod_uuid,omitempty"`
+  // 	StageTypeTitle string              `json:"stage_type_title"`
+  // 	StageTypeUuid  *openapi_types.UUID `json:"stage_type_uuid,omitempty"`
+  // 	Subnet         string              `json:"subnet"`
+  // 	SubnetTitle    string              `json:"subnet_title"`
+  // 	Subnetmask     string              `json:"subnetmask"`
+  // 	TenantTitle    string              `json:"tenant_title"`
+  // 	TenantUuid     string              `json:"tenant_uuid"`
+  // 	UseDhcp        bool                `json:"use_dhcp"`
+  // 	VlanId         int                 `json:"vlan_id"`
+  // 	VlanUuid       *openapi_types.UUID `json:"vlan_uuid,omitempty"`
+  // }
+}
+
+// VlanServiceListRequest is the request payload for a VLAN list request.
+// Maps to the upstream TenantInputModel.
+message VlanServiceListRequest {
+  // Tenant to list available VLANs for
+  string tenant_uuid = 1 [(buf.validate.field).string.uuid = true];
+  // Note: the upstream model also has a requested_by field, which is intentionally
+  // omitted here because it is added by the auth layer from the request context.
+}
+
+// VlanServiceListResponse is the response payload for a VLAN list request
+message VlanServiceListResponse {
+  // The available VLANs
+  repeated Vlan vlans = 1;
+  // Validation errors returned by the upstream API when the request is rejected (HTTP 422)
+  // TODO this is just a test
+  repeated fits.api.v1.ValidationError validation_errors = 2;
+}

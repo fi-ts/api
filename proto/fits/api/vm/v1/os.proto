@@ -3,12 +3,44 @@ syntax = "proto3";
 package fits.api.vm.v1;
 
 import "buf/validate/validate.proto";
+import "fits/api/v1/common.proto";
 
-// TODO matthias define get list service
+// OSService lists operating systems available for VM instances.
+service OSService {
+  // Returns a list of all OSs.
+  rpc List(OSServiceListRequest) returns (OSServiceListResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_OWNER;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_VIEWER;
+    option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
+  }
+}
 
-// Os is the definition of a potential OS of a VM instance
-// TODO create a dedicated service
-message Os {
-  // Uuid of this os
+// OS is the definition of an available OS for VM instances
+message OS {
+  // Uuid of this OS
   string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // Title of the OS
+  string title = 2;
+  // Type of the OS
+  string type = 3;
+  // Version of the OS
+  string version = 4;
+
+  // type NucleusDBOss struct {
+  // 	OsTitle   string              `json:"os_title"`
+  // 	OsType    string              `json:"os_type"`
+  // 	OsUuid    *openapi_types.UUID `json:"os_uuid,omitempty"`
+  // 	OsVersion string              `json:"os_version"`
+  // }
+}
+
+// OSServiceListRequest is the request payload for a OS list request.
+// The upstream nulink API accepts no body or parameters, so this is intentionally empty.
+message OSServiceListRequest {}
+
+// OSServiceListResponse is the response payload for a OS list request
+message OSServiceListResponse {
+  // The available OSs
+  repeated OS oss = 1;
 }
