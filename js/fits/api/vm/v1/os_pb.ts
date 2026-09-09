@@ -95,6 +95,7 @@ export const OSServiceListResponseSchema: GenMessage<OSServiceListResponse> = /*
 
 /**
  * OSService lists operating systems available for VM instances.
+ * TODO wurde besprochen am 09.09.26
  *
  * @generated from service fits.api.vm.v1.OSService
  */

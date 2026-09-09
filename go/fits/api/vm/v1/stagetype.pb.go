@@ -8,7 +8,7 @@ package vmv1
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
-	v1 "github.com/fi-ts/api/go/fits/api/v1"
+	_ "github.com/fi-ts/api/go/fits/api/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -23,10 +23,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// TODO what is a stage type?
 // Maps to the upstream NucleusDBStageTypes model.
-// TODO evaluate whether the uuid is really optional; the upstream API spec does not
-// make this clear, so we validate it strictly for now.
 type StageType struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Uuid of this stage type
@@ -84,9 +81,7 @@ func (x *StageType) GetTitle() string {
 // StageTypeServiceListRequest is the request payload for a stage type list request.
 // Maps to the upstream TenantInputModel.
 type StageTypeServiceListRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Tenant to list available stage types for
-	TenantUuid    string `protobuf:"bytes,1,opt,name=tenant_uuid,json=tenantUuid,proto3" json:"tenant_uuid,omitempty"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -121,23 +116,13 @@ func (*StageTypeServiceListRequest) Descriptor() ([]byte, []int) {
 	return file_fits_api_vm_v1_stagetype_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *StageTypeServiceListRequest) GetTenantUuid() string {
-	if x != nil {
-		return x.TenantUuid
-	}
-	return ""
-}
-
 // StageTypeServiceListResponse is the response payload for a stage type list request
 type StageTypeServiceListResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The available stage types
-	Stagetypes []*StageType `protobuf:"bytes,1,rep,name=stagetypes,proto3" json:"stagetypes,omitempty"`
-	// Validation errors returned by the upstream API when the request is rejected (HTTP 422)
-	// TODO this is just a test
-	ValidationErrors []*v1.ValidationError `protobuf:"bytes,2,rep,name=validation_errors,json=validationErrors,proto3" json:"validation_errors,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	Stagetypes    []*StageType `protobuf:"bytes,1,rep,name=stagetypes,proto3" json:"stagetypes,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *StageTypeServiceListResponse) Reset() {
@@ -177,29 +162,19 @@ func (x *StageTypeServiceListResponse) GetStagetypes() []*StageType {
 	return nil
 }
 
-func (x *StageTypeServiceListResponse) GetValidationErrors() []*v1.ValidationError {
-	if x != nil {
-		return x.ValidationErrors
-	}
-	return nil
-}
-
 var File_fits_api_vm_v1_stagetype_proto protoreflect.FileDescriptor
 
 const file_fits_api_vm_v1_stagetype_proto_rawDesc = "" +
 	"\n" +
-	"\x1efits/api/vm/v1/stagetype.proto\x12\x0efits.api.vm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\"?\n" +
+	"\x1efits/api/vm/v1/stagetype.proto\x12\x0efits.api.vm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"L\n" +
 	"\tStageType\x12\x1c\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\"H\n" +
-	"\x1bStageTypeServiceListRequest\x12)\n" +
-	"\vtenant_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\n" +
-	"tenantUuid\"\xa4\x01\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12!\n" +
+	"\x05title\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x05title\"\x1d\n" +
+	"\x1bStageTypeServiceListRequest\"Y\n" +
 	"\x1cStageTypeServiceListResponse\x129\n" +
 	"\n" +
 	"stagetypes\x18\x01 \x03(\v2\x19.fits.api.vm.v1.StageTypeR\n" +
-	"stagetypes\x12I\n" +
-	"\x11validation_errors\x18\x02 \x03(\v2\x1c.fits.api.v1.ValidationErrorR\x10validationErrors2\x82\x01\n" +
+	"stagetypes2\x82\x01\n" +
 	"\x10StageTypeService\x12n\n" +
 	"\x04List\x12+.fits.api.vm.v1.StageTypeServiceListRequest\x1a,.fits.api.vm.v1.StageTypeServiceListResponse\"\v\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02B\xac\x01\n" +
 	"\x12com.fits.api.vm.v1B\x0eStagetypeProtoP\x01Z+github.com/fi-ts/api/go/fits/api/vm/v1;vmv1\xa2\x02\x03FAV\xaa\x02\x0eFits.Api.Vm.V1\xca\x02\x0eFits\\Api\\Vm\\V1\xe2\x02\x1aFits\\Api\\Vm\\V1\\GPBMetadata\xea\x02\x11Fits::Api::Vm::V1b\x06proto3"
@@ -221,18 +196,16 @@ var file_fits_api_vm_v1_stagetype_proto_goTypes = []any{
 	(*StageType)(nil),                    // 0: fits.api.vm.v1.StageType
 	(*StageTypeServiceListRequest)(nil),  // 1: fits.api.vm.v1.StageTypeServiceListRequest
 	(*StageTypeServiceListResponse)(nil), // 2: fits.api.vm.v1.StageTypeServiceListResponse
-	(*v1.ValidationError)(nil),           // 3: fits.api.v1.ValidationError
 }
 var file_fits_api_vm_v1_stagetype_proto_depIdxs = []int32{
 	0, // 0: fits.api.vm.v1.StageTypeServiceListResponse.stagetypes:type_name -> fits.api.vm.v1.StageType
-	3, // 1: fits.api.vm.v1.StageTypeServiceListResponse.validation_errors:type_name -> fits.api.v1.ValidationError
-	1, // 2: fits.api.vm.v1.StageTypeService.List:input_type -> fits.api.vm.v1.StageTypeServiceListRequest
-	2, // 3: fits.api.vm.v1.StageTypeService.List:output_type -> fits.api.vm.v1.StageTypeServiceListResponse
-	3, // [3:4] is the sub-list for method output_type
-	2, // [2:3] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	1, // 1: fits.api.vm.v1.StageTypeService.List:input_type -> fits.api.vm.v1.StageTypeServiceListRequest
+	2, // 2: fits.api.vm.v1.StageTypeService.List:output_type -> fits.api.vm.v1.StageTypeServiceListResponse
+	2, // [2:3] is the sub-list for method output_type
+	1, // [1:2] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_vm_v1_stagetype_proto_init() }

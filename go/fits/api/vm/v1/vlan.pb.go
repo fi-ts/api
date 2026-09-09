@@ -203,7 +203,7 @@ func (x *Vlan) GetTenantTitle() string {
 type VlanServiceListRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Tenant to list available VLANs for
-	TenantUuid    string `protobuf:"bytes,1,opt,name=tenant_uuid,json=tenantUuid,proto3" json:"tenant_uuid,omitempty"`
+	Tenant        string `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -238,9 +238,9 @@ func (*VlanServiceListRequest) Descriptor() ([]byte, []int) {
 	return file_fits_api_vm_v1_vlan_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *VlanServiceListRequest) GetTenantUuid() string {
+func (x *VlanServiceListRequest) GetTenant() string {
 	if x != nil {
-		return x.TenantUuid
+		return x.Tenant
 	}
 	return ""
 }
@@ -305,7 +305,7 @@ var File_fits_api_vm_v1_vlan_proto protoreflect.FileDescriptor
 
 const file_fits_api_vm_v1_vlan_proto_rawDesc = "" +
 	"\n" +
-	"\x19fits/api/vm/v1/vlan.proto\x12\x0efits.api.vm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\"\xf8\x03\n" +
+	"\x19fits/api/vm/v1/vlan.proto\x12\x0efits.api.vm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xf8\x03\n" +
 	"\x04Vlan\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x0e\n" +
 	"\x02id\x18\x02 \x01(\x05R\x02id\x12!\n" +
@@ -326,10 +326,9 @@ const file_fits_api_vm_v1_vlan_proto_rawDesc = "" +
 	"\x0fstage_type_uuid\x18\r \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rstageTypeUuid\x12)\n" +
 	"\vtenant_uuid\x18\x0e \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\n" +
 	"tenantUuid\x12!\n" +
-	"\ftenant_title\x18\x0f \x01(\tR\vtenantTitle\"C\n" +
-	"\x16VlanServiceListRequest\x12)\n" +
-	"\vtenant_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\n" +
-	"tenantUuid\"\x90\x01\n" +
+	"\ftenant_title\x18\x0f \x01(\tR\vtenantTitle\"=\n" +
+	"\x16VlanServiceListRequest\x12#\n" +
+	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\"\x90\x01\n" +
 	"\x17VlanServiceListResponse\x12*\n" +
 	"\x05vlans\x18\x01 \x03(\v2\x14.fits.api.vm.v1.VlanR\x05vlans\x12I\n" +
 	"\x11validation_errors\x18\x02 \x03(\v2\x1c.fits.api.v1.ValidationErrorR\x10validationErrors2s\n" +

@@ -7,7 +7,6 @@
 package vmv1
 
 import (
-	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	_ "github.com/fi-ts/api/go/fits/api/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -27,6 +26,7 @@ const (
 type Service struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Uuid of this Service
+	// TODO this is actually not a UUID, but a string. It can be "special-customer" e.g.
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	// title of the Service
 	Title         string `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
@@ -166,9 +166,9 @@ var File_fits_api_vm_v1_service_proto protoreflect.FileDescriptor
 
 const file_fits_api_vm_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1cfits/api/vm/v1/service.proto\x12\x0efits.api.vm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\"=\n" +
-	"\aService\x12\x1c\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x14\n" +
+	"\x1cfits/api/vm/v1/service.proto\x12\x0efits.api.vm.v1\x1a\x18fits/api/v1/common.proto\"3\n" +
+	"\aService\x12\x12\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\"\x1b\n" +
 	"\x19ServiceServiceListRequest\"Q\n" +
 	"\x1aServiceServiceListResponse\x123\n" +

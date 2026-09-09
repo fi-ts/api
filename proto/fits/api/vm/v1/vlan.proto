@@ -4,8 +4,10 @@ package fits.api.vm.v1;
 
 import "buf/validate/validate.proto";
 import "fits/api/v1/common.proto";
+import "fits/api/v1/predefined_rules.proto";
 
 // VLANService lists VLANs avaiable for VM instances.
+// TODO wurde besprochen am 09.09.26
 service VlanService {
   // Returns a list of all VLANs available for a tenant.
   rpc List(VlanServiceListRequest) returns (VlanServiceListResponse) {
@@ -75,7 +77,7 @@ message Vlan {
 // Maps to the upstream TenantInputModel.
 message VlanServiceListRequest {
   // Tenant to list available VLANs for
-  string tenant_uuid = 1 [(buf.validate.field).string.uuid = true];
+  string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // Note: the upstream model also has a requested_by field, which is intentionally
   // omitted here because it is added by the auth layer from the request context.
 }

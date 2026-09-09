@@ -1,5 +1,6 @@
 from buf.validate import validate_pb2 as _validate_pb2
 from fits.api.v1 import common_pb2 as _common_pb2
+from fits.api.v1 import predefined_rules_pb2 as _predefined_rules_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
@@ -43,10 +44,10 @@ class Vlan(_message.Message):
     def __init__(self, uuid: _Optional[str] = ..., id: _Optional[int] = ..., subnet_title: _Optional[str] = ..., subnet: _Optional[str] = ..., subnetmask: _Optional[str] = ..., gateway: _Optional[str] = ..., ip_range_start: _Optional[str] = ..., ip_range_end: _Optional[str] = ..., use_dhcp: _Optional[bool] = ..., pod_title: _Optional[str] = ..., pod_uuid: _Optional[str] = ..., stage_type_title: _Optional[str] = ..., stage_type_uuid: _Optional[str] = ..., tenant_uuid: _Optional[str] = ..., tenant_title: _Optional[str] = ...) -> None: ...
 
 class VlanServiceListRequest(_message.Message):
-    __slots__ = ("tenant_uuid",)
-    TENANT_UUID_FIELD_NUMBER: _ClassVar[int]
-    tenant_uuid: str
-    def __init__(self, tenant_uuid: _Optional[str] = ...) -> None: ...
+    __slots__ = ("tenant",)
+    TENANT_FIELD_NUMBER: _ClassVar[int]
+    tenant: str
+    def __init__(self, tenant: _Optional[str] = ...) -> None: ...
 
 class VlanServiceListResponse(_message.Message):
     __slots__ = ("vlans", "validation_errors")

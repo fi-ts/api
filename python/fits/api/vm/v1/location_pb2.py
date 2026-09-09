@@ -24,9 +24,10 @@ _sym_db = _symbol_database.Default()
 
 from buf.validate import validate_pb2 as buf_dot_validate_dot_validate__pb2
 from fits.api.v1 import common_pb2 as fits_dot_api_dot_v1_dot_common__pb2
+from fits.api.v1 import predefined_rules_pb2 as fits_dot_api_dot_v1_dot_predefined__rules__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1d\x66its/api/vm/v1/location.proto\x12\x0e\x66its.api.vm.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\">\n\x08Location\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x14\n\x05title\x18\x02 \x01(\tR\x05title\"\x1c\n\x1aLocationServiceListRequest\"U\n\x1bLocationServiceListResponse\x12\x36\n\tlocations\x18\x01 \x03(\x0b\x32\x18.fits.api.vm.v1.LocationR\tlocations2\x7f\n\x0fLocationService\x12l\n\x04List\x12*.fits.api.vm.v1.LocationServiceListRequest\x1a+.fits.api.vm.v1.LocationServiceListResponse\"\x0b\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x42\xab\x01\n\x12\x63om.fits.api.vm.v1B\rLocationProtoP\x01Z+github.com/fi-ts/api/go/fits/api/vm/v1;vmv1\xa2\x02\x03\x46\x41V\xaa\x02\x0e\x46its.Api.Vm.V1\xca\x02\x0e\x46its\\Api\\Vm\\V1\xe2\x02\x1a\x46its\\Api\\Vm\\V1\\GPBMetadata\xea\x02\x11\x46its::Api::Vm::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1d\x66its/api/vm/v1/location.proto\x12\x0e\x66its.api.vm.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\">\n\x08Location\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x14\n\x05title\x18\x02 \x01(\tR\x05title\"A\n\x1aLocationServiceListRequest\x12#\n\x06tenant\x18\x01 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\"U\n\x1bLocationServiceListResponse\x12\x36\n\tlocations\x18\x01 \x03(\x0b\x32\x18.fits.api.vm.v1.LocationR\tlocations2\x7f\n\x0fLocationService\x12l\n\x04List\x12*.fits.api.vm.v1.LocationServiceListRequest\x1a+.fits.api.vm.v1.LocationServiceListResponse\"\x0b\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x42\xab\x01\n\x12\x63om.fits.api.vm.v1B\rLocationProtoP\x01Z+github.com/fi-ts/api/go/fits/api/vm/v1;vmv1\xa2\x02\x03\x46\x41V\xaa\x02\x0e\x46its.Api.Vm.V1\xca\x02\x0e\x46its\\Api\\Vm\\V1\xe2\x02\x1a\x46its\\Api\\Vm\\V1\\GPBMetadata\xea\x02\x11\x46its::Api::Vm::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -36,14 +37,16 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._serialized_options = b'\n\022com.fits.api.vm.v1B\rLocationProtoP\001Z+github.com/fi-ts/api/go/fits/api/vm/v1;vmv1\242\002\003FAV\252\002\016Fits.Api.Vm.V1\312\002\016Fits\\Api\\Vm\\V1\342\002\032Fits\\Api\\Vm\\V1\\GPBMetadata\352\002\021Fits::Api::Vm::V1'
   _globals['_LOCATION'].fields_by_name['uuid']._loaded_options = None
   _globals['_LOCATION'].fields_by_name['uuid']._serialized_options = b'\272H\005r\003\260\001\001'
+  _globals['_LOCATIONSERVICELISTREQUEST'].fields_by_name['tenant']._loaded_options = None
+  _globals['_LOCATIONSERVICELISTREQUEST'].fields_by_name['tenant']._serialized_options = b'\272H\010r\006\300\263\256\261\002\001'
   _globals['_LOCATIONSERVICE'].methods_by_name['List']._loaded_options = None
   _globals['_LOCATIONSERVICE'].methods_by_name['List']._serialized_options = b'\312\363\030\003\001\002\003\340\363\030\002'
-  _globals['_LOCATION']._serialized_start=104
-  _globals['_LOCATION']._serialized_end=166
-  _globals['_LOCATIONSERVICELISTREQUEST']._serialized_start=168
-  _globals['_LOCATIONSERVICELISTREQUEST']._serialized_end=196
-  _globals['_LOCATIONSERVICELISTRESPONSE']._serialized_start=198
-  _globals['_LOCATIONSERVICELISTRESPONSE']._serialized_end=283
-  _globals['_LOCATIONSERVICE']._serialized_start=285
-  _globals['_LOCATIONSERVICE']._serialized_end=412
+  _globals['_LOCATION']._serialized_start=140
+  _globals['_LOCATION']._serialized_end=202
+  _globals['_LOCATIONSERVICELISTREQUEST']._serialized_start=204
+  _globals['_LOCATIONSERVICELISTREQUEST']._serialized_end=269
+  _globals['_LOCATIONSERVICELISTRESPONSE']._serialized_start=271
+  _globals['_LOCATIONSERVICELISTRESPONSE']._serialized_end=356
+  _globals['_LOCATIONSERVICE']._serialized_start=358
+  _globals['_LOCATIONSERVICE']._serialized_end=485
 # @@protoc_insertion_point(module_scope)

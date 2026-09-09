@@ -6,6 +6,7 @@ import "buf/validate/validate.proto";
 import "fits/api/v1/common.proto";
 
 // OSService lists operating systems available for VM instances.
+// TODO wurde besprochen am 09.09.26
 service OSService {
   // Returns a list of all OSs.
   rpc List(OSServiceListRequest) returns (OSServiceListResponse) {

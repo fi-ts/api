@@ -784,33 +784,6 @@
         
           
           <li>
-            <a href="#fits%2fapi%2fvm%2fv1%2fservice.proto">fits/api/vm/v1/service.proto</a>
-            <ul>
-              
-                <li>
-                  <a href="#fits.api.vm.v1.Service"><span class="badge">M</span>Service</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.vm.v1.ServiceServiceListRequest"><span class="badge">M</span>ServiceServiceListRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.vm.v1.ServiceServiceListResponse"><span class="badge">M</span>ServiceServiceListResponse</a>
-                </li>
-              
-              
-              
-              
-                <li>
-                  <a href="#fits.api.vm.v1.ServiceService"><span class="badge">S</span>ServiceService</a>
-                </li>
-              
-            </ul>
-          </li>
-        
-          
-          <li>
             <a href="#fits%2fapi%2fvm%2fv1%2fstagetype.proto">fits/api/vm/v1/stagetype.proto</a>
             <ul>
               
@@ -4459,9 +4432,27 @@ TODO: is login really a good name? </p></td>
         
       
         <h3 id="fits.api.vm.v1.LocationServiceListRequest">LocationServiceListRequest</h3>
-        <p>LocationServiceListRequest is the request payload for a location list request.</p><p>The upstream nulink API accepts no body or parameters, so this is intentionally empty.</p>
+        <p>LocationServiceListRequest is the request payload for a location list request.</p><p>The upstream nulink API accepts no body or parameters, so this is intentionally empty.</p><p>TODO pro tenant anders. FITS darf beide RZ, sonst nur eines, logik dazu in nu-link</p>
 
         
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant to list available locations for
+TODO Tobias baut in nulink-api ein </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
 
         
       
@@ -4496,7 +4487,7 @@ TODO: is login really a good name? </p></td>
 
       
         <h3 id="fits.api.vm.v1.LocationService">LocationService</h3>
-        <p>LocationService lists datacenter locations available for VM instances.</p>
+        <p>LocationService lists datacenter locations available for VM instances.</p><p>TODO wurde besprochen am 09.09.26</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -4605,7 +4596,7 @@ TODO: is login really a good name? </p></td>
 
       
         <h3 id="fits.api.vm.v1.OSService">OSService</h3>
-        <p>OSService lists operating systems available for VM instances.</p>
+        <p>OSService lists operating systems available for VM instances.</p><p>TODO wurde besprochen am 09.09.26</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -4626,113 +4617,13 @@ TODO: is login really a good name? </p></td>
     
       
       <div class="file-heading">
-        <h2 id="fits/api/vm/v1/service.proto">fits/api/vm/v1/service.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-      
-        <h3 id="fits.api.vm.v1.Service">Service</h3>
-        <p>TODO what is a service?</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>uuid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Uuid of this Service </p></td>
-                </tr>
-              
-                <tr>
-                  <td>title</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>title of the Service
-
-type NucleusDBServices struct {
-	ServiceTitle string `json:&#34;service_title&#34;`
-	ServiceUuid  string `json:&#34;service_uuid&#34;`
-} </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="fits.api.vm.v1.ServiceServiceListRequest">ServiceServiceListRequest</h3>
-        <p>ServiceServiceListRequest is the request payload for a service list request.</p><p>The upstream nulink API accepts no body or parameters, so this is intentionally empty.</p>
-
-        
-
-        
-      
-        <h3 id="fits.api.vm.v1.ServiceServiceListResponse">ServiceServiceListResponse</h3>
-        <p>ServiceServiceListResponse is the response payload for a service list request</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>services</td>
-                  <td><a href="#fits.api.vm.v1.Service">Service</a></td>
-                  <td>repeated</td>
-                  <td><p>The available services </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-
-      
-
-      
-
-      
-        <h3 id="fits.api.vm.v1.ServiceService">ServiceService</h3>
-        <p>ServiceService TODO what is a service?</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>List</td>
-                <td><a href="#fits.api.vm.v1.ServiceServiceListRequest">ServiceServiceListRequest</a></td>
-                <td><a href="#fits.api.vm.v1.ServiceServiceListResponse">ServiceServiceListResponse</a></td>
-                <td><p>Returns a list of all services.</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-
-        
-    
-      
-      <div class="file-heading">
         <h2 id="fits/api/vm/v1/stagetype.proto">fits/api/vm/v1/stagetype.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
       
         <h3 id="fits.api.vm.v1.StageType">StageType</h3>
-        <p>TODO what is a stage type?</p><p>Maps to the upstream NucleusDBStageTypes model.</p><p>TODO evaluate whether the uuid is really optional; the upstream API spec does not</p><p>make this clear, so we validate it strictly for now.</p>
+        <p>Maps to the upstream NucleusDBStageTypes model.</p>
 
         
           <table class="field-table">
@@ -4752,12 +4643,7 @@ type NucleusDBServices struct {
                   <td>title</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>title of the stage type
-
-type NucleusDBStageTypes struct {
-	StageTypeTitle string              `json:&#34;stage_type_title&#34;`
-	StageTypeUuid  *openapi_types.UUID `json:&#34;stage_type_uuid,omitempty&#34;`
-} </p></td>
+                  <td><p>title of the stage type </p></td>
                 </tr>
               
             </tbody>
@@ -4771,26 +4657,6 @@ type NucleusDBStageTypes struct {
         <p>StageTypeServiceListRequest is the request payload for a stage type list request.</p><p>Maps to the upstream TenantInputModel.</p>
 
         
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>tenant_uuid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Tenant to list available stage types for
-
-Note: the upstream model also has a requested_by field, which is intentionally
-omitted here because it is added by the auth layer from the request context. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
 
         
       
@@ -4811,14 +4677,6 @@ omitted here because it is added by the auth layer from the request context. </p
                   <td><p>The available stage types </p></td>
                 </tr>
               
-                <tr>
-                  <td>validation_errors</td>
-                  <td><a href="#fits.api.v1.ValidationError">fits.api.v1.ValidationError</a></td>
-                  <td>repeated</td>
-                  <td><p>Validation errors returned by the upstream API when the request is rejected (HTTP 422)
-TODO this is just a test </p></td>
-                </tr>
-              
             </tbody>
           </table>
 
@@ -4833,7 +4691,7 @@ TODO this is just a test </p></td>
 
       
         <h3 id="fits.api.vm.v1.StageTypeService">StageTypeService</h3>
-        <p>StageTypeService lists stage types available for VM instances.</p>
+        <p>StageTypeService lists stage types available for VM instances.</p><p>TODO wurde besprochen am 09.09.26</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -4992,7 +4850,7 @@ TODO this is just a test </p></td>
             <tbody>
               
                 <tr>
-                  <td>tenant_uuid</td>
+                  <td>tenant</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Tenant to list available VLANs for
@@ -5047,7 +4905,7 @@ TODO this is just a test </p></td>
 
       
         <h3 id="fits.api.vm.v1.VlanService">VlanService</h3>
-        <p>VLANService lists VLANs avaiable for VM instances.</p>
+        <p>VLANService lists VLANs avaiable for VM instances.</p><p>TODO wurde besprochen am 09.09.26</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>

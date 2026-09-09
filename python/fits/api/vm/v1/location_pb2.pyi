@@ -1,5 +1,6 @@
 from buf.validate import validate_pb2 as _validate_pb2
 from fits.api.v1 import common_pb2 as _common_pb2
+from fits.api.v1 import predefined_rules_pb2 as _predefined_rules_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
@@ -17,8 +18,10 @@ class Location(_message.Message):
     def __init__(self, uuid: _Optional[str] = ..., title: _Optional[str] = ...) -> None: ...
 
 class LocationServiceListRequest(_message.Message):
-    __slots__ = ()
-    def __init__(self) -> None: ...
+    __slots__ = ("tenant",)
+    TENANT_FIELD_NUMBER: _ClassVar[int]
+    tenant: str
+    def __init__(self, tenant: _Optional[str] = ...) -> None: ...
 
 class LocationServiceListResponse(_message.Message):
     __slots__ = ("locations",)

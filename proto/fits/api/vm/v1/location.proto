@@ -4,8 +4,10 @@ package fits.api.vm.v1;
 
 import "buf/validate/validate.proto";
 import "fits/api/v1/common.proto";
+import "fits/api/v1/predefined_rules.proto";
 
 // LocationService lists datacenter locations available for VM instances.
+// TODO wurde besprochen am 09.09.26
 service LocationService {
   // Returns a list of all datacenter locations.
   rpc List(LocationServiceListRequest) returns (LocationServiceListResponse) {
@@ -26,7 +28,12 @@ message Location {
 
 // LocationServiceListRequest is the request payload for a location list request.
 // The upstream nulink API accepts no body or parameters, so this is intentionally empty.
-message LocationServiceListRequest {}
+// TODO pro tenant anders. FITS darf beide RZ, sonst nur eines, logik dazu in nu-link
+message LocationServiceListRequest {
+  // Tenant to list available locations for
+  // TODO Tobias baut in nulink-api ein
+  string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+}
 
 // LocationServiceListResponse is the response payload for a location list request
 message LocationServiceListResponse {

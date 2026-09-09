@@ -4,8 +4,10 @@ package fits.api.vm.v1;
 
 import "buf/validate/validate.proto";
 import "fits/api/v1/common.proto";
+import "fits/api/v1/predefined_rules.proto";
 
 // StageTypeService lists stage types available for VM instances.
+// TODO wurde besprochen am 09.09.26
 service StageTypeService {
   // Returns a list of all stage types available for a tenant.
   rpc List(StageTypeServiceListRequest) returns (StageTypeServiceListResponse) {
@@ -16,35 +18,20 @@ service StageTypeService {
   }
 }
 
-// TODO what is a stage type?
 // Maps to the upstream NucleusDBStageTypes model.
-// TODO evaluate whether the uuid is really optional; the upstream API spec does not
-// make this clear, so we validate it strictly for now.
 message StageType {
   // Uuid of this stage type
   string uuid = 1 [(buf.validate.field).string.uuid = true];
   // title of the stage type
-  string title = 2;
-  // type NucleusDBStageTypes struct {
-  // 	StageTypeTitle string              `json:"stage_type_title"`
-  // 	StageTypeUuid  *openapi_types.UUID `json:"stage_type_uuid,omitempty"`
-  // }
+  string title = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
 }
 
 // StageTypeServiceListRequest is the request payload for a stage type list request.
 // Maps to the upstream TenantInputModel.
-message StageTypeServiceListRequest {
-  // Tenant to list available stage types for
-  string tenant_uuid = 1 [(buf.validate.field).string.uuid = true];
-  // Note: the upstream model also has a requested_by field, which is intentionally
-  // omitted here because it is added by the auth layer from the request context.
-}
+message StageTypeServiceListRequest {}
 
 // StageTypeServiceListResponse is the response payload for a stage type list request
 message StageTypeServiceListResponse {
   // The available stage types
   repeated StageType stagetypes = 1;
-  // Validation errors returned by the upstream API when the request is rejected (HTTP 422)
-  // TODO this is just a test
-  repeated fits.api.v1.ValidationError validation_errors = 2;
 }

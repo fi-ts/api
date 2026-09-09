@@ -24,9 +24,10 @@ _sym_db = _symbol_database.Default()
 
 from buf.validate import validate_pb2 as buf_dot_validate_dot_validate__pb2
 from fits.api.v1 import common_pb2 as fits_dot_api_dot_v1_dot_common__pb2
+from fits.api.v1 import predefined_rules_pb2 as fits_dot_api_dot_v1_dot_predefined__rules__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1e\x66its/api/vm/v1/stagetype.proto\x12\x0e\x66its.api.vm.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\"?\n\tStageType\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x14\n\x05title\x18\x02 \x01(\tR\x05title\"H\n\x1bStageTypeServiceListRequest\x12)\n\x0btenant_uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\ntenantUuid\"\xa4\x01\n\x1cStageTypeServiceListResponse\x12\x39\n\nstagetypes\x18\x01 \x03(\x0b\x32\x19.fits.api.vm.v1.StageTypeR\nstagetypes\x12I\n\x11validation_errors\x18\x02 \x03(\x0b\x32\x1c.fits.api.v1.ValidationErrorR\x10validationErrors2\x82\x01\n\x10StageTypeService\x12n\n\x04List\x12+.fits.api.vm.v1.StageTypeServiceListRequest\x1a,.fits.api.vm.v1.StageTypeServiceListResponse\"\x0b\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x42\xac\x01\n\x12\x63om.fits.api.vm.v1B\x0eStagetypeProtoP\x01Z+github.com/fi-ts/api/go/fits/api/vm/v1;vmv1\xa2\x02\x03\x46\x41V\xaa\x02\x0e\x46its.Api.Vm.V1\xca\x02\x0e\x46its\\Api\\Vm\\V1\xe2\x02\x1a\x46its\\Api\\Vm\\V1\\GPBMetadata\xea\x02\x11\x46its::Api::Vm::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1e\x66its/api/vm/v1/stagetype.proto\x12\x0e\x66its.api.vm.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"L\n\tStageType\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12!\n\x05title\x18\x02 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x05title\"\x1d\n\x1bStageTypeServiceListRequest\"Y\n\x1cStageTypeServiceListResponse\x12\x39\n\nstagetypes\x18\x01 \x03(\x0b\x32\x19.fits.api.vm.v1.StageTypeR\nstagetypes2\x82\x01\n\x10StageTypeService\x12n\n\x04List\x12+.fits.api.vm.v1.StageTypeServiceListRequest\x1a,.fits.api.vm.v1.StageTypeServiceListResponse\"\x0b\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x42\xac\x01\n\x12\x63om.fits.api.vm.v1B\x0eStagetypeProtoP\x01Z+github.com/fi-ts/api/go/fits/api/vm/v1;vmv1\xa2\x02\x03\x46\x41V\xaa\x02\x0e\x46its.Api.Vm.V1\xca\x02\x0e\x46its\\Api\\Vm\\V1\xe2\x02\x1a\x46its\\Api\\Vm\\V1\\GPBMetadata\xea\x02\x11\x46its::Api::Vm::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -36,16 +37,16 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._serialized_options = b'\n\022com.fits.api.vm.v1B\016StagetypeProtoP\001Z+github.com/fi-ts/api/go/fits/api/vm/v1;vmv1\242\002\003FAV\252\002\016Fits.Api.Vm.V1\312\002\016Fits\\Api\\Vm\\V1\342\002\032Fits\\Api\\Vm\\V1\\GPBMetadata\352\002\021Fits::Api::Vm::V1'
   _globals['_STAGETYPE'].fields_by_name['uuid']._loaded_options = None
   _globals['_STAGETYPE'].fields_by_name['uuid']._serialized_options = b'\272H\005r\003\260\001\001'
-  _globals['_STAGETYPESERVICELISTREQUEST'].fields_by_name['tenant_uuid']._loaded_options = None
-  _globals['_STAGETYPESERVICELISTREQUEST'].fields_by_name['tenant_uuid']._serialized_options = b'\272H\005r\003\260\001\001'
+  _globals['_STAGETYPE'].fields_by_name['title']._loaded_options = None
+  _globals['_STAGETYPE'].fields_by_name['title']._serialized_options = b'\272H\010r\006\300\263\256\261\002\001'
   _globals['_STAGETYPESERVICE'].methods_by_name['List']._loaded_options = None
   _globals['_STAGETYPESERVICE'].methods_by_name['List']._serialized_options = b'\312\363\030\003\001\002\003\340\363\030\002'
-  _globals['_STAGETYPE']._serialized_start=105
-  _globals['_STAGETYPE']._serialized_end=168
-  _globals['_STAGETYPESERVICELISTREQUEST']._serialized_start=170
-  _globals['_STAGETYPESERVICELISTREQUEST']._serialized_end=242
-  _globals['_STAGETYPESERVICELISTRESPONSE']._serialized_start=245
-  _globals['_STAGETYPESERVICELISTRESPONSE']._serialized_end=409
-  _globals['_STAGETYPESERVICE']._serialized_start=412
-  _globals['_STAGETYPESERVICE']._serialized_end=542
+  _globals['_STAGETYPE']._serialized_start=141
+  _globals['_STAGETYPE']._serialized_end=217
+  _globals['_STAGETYPESERVICELISTREQUEST']._serialized_start=219
+  _globals['_STAGETYPESERVICELISTREQUEST']._serialized_end=248
+  _globals['_STAGETYPESERVICELISTRESPONSE']._serialized_start=250
+  _globals['_STAGETYPESERVICELISTRESPONSE']._serialized_end=339
+  _globals['_STAGETYPESERVICE']._serialized_start=342
+  _globals['_STAGETYPESERVICE']._serialized_end=472
 # @@protoc_insertion_point(module_scope)

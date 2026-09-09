@@ -4,7 +4,6 @@
 
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
-import { file_buf_validate_validate } from "../../../../buf/validate/validate_pb";
 import { file_fits_api_v1_common } from "../../v1/common_pb";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -12,7 +11,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/vm/v1/service.proto.
  */
 export const file_fits_api_vm_v1_service: GenFile = /*@__PURE__*/
-  fileDesc("ChxmaXRzL2FwaS92bS92MS9zZXJ2aWNlLnByb3RvEg5maXRzLmFwaS52bS52MSIwCgdTZXJ2aWNlEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEg0KBXRpdGxlGAIgASgJIhsKGVNlcnZpY2VTZXJ2aWNlTGlzdFJlcXVlc3QiRwoaU2VydmljZVNlcnZpY2VMaXN0UmVzcG9uc2USKQoIc2VydmljZXMYASADKAsyFy5maXRzLmFwaS52bS52MS5TZXJ2aWNlMnwKDlNlcnZpY2VTZXJ2aWNlEmoKBExpc3QSKS5maXRzLmFwaS52bS52MS5TZXJ2aWNlU2VydmljZUxpc3RSZXF1ZXN0GiouZml0cy5hcGkudm0udjEuU2VydmljZVNlcnZpY2VMaXN0UmVzcG9uc2UiC8rzGAMBAgPg8xgCQqoBChJjb20uZml0cy5hcGkudm0udjFCDFNlcnZpY2VQcm90b1ABWitnaXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS92bS92MTt2bXYxogIDRkFWqgIORml0cy5BcGkuVm0uVjHKAg5GaXRzXEFwaVxWbVxWMeICGkZpdHNcQXBpXFZtXFYxXEdQQk1ldGFkYXRh6gIRRml0czo6QXBpOjpWbTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_common]);
+  fileDesc("ChxmaXRzL2FwaS92bS92MS9zZXJ2aWNlLnByb3RvEg5maXRzLmFwaS52bS52MSImCgdTZXJ2aWNlEgwKBHV1aWQYASABKAkSDQoFdGl0bGUYAiABKAkiGwoZU2VydmljZVNlcnZpY2VMaXN0UmVxdWVzdCJHChpTZXJ2aWNlU2VydmljZUxpc3RSZXNwb25zZRIpCghzZXJ2aWNlcxgBIAMoCzIXLmZpdHMuYXBpLnZtLnYxLlNlcnZpY2UyfAoOU2VydmljZVNlcnZpY2USagoETGlzdBIpLmZpdHMuYXBpLnZtLnYxLlNlcnZpY2VTZXJ2aWNlTGlzdFJlcXVlc3QaKi5maXRzLmFwaS52bS52MS5TZXJ2aWNlU2VydmljZUxpc3RSZXNwb25zZSILyvMYAwECA+DzGAJCqgEKEmNvbS5maXRzLmFwaS52bS52MUIMU2VydmljZVByb3RvUAFaK2dpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL3ZtL3YxO3ZtdjGiAgNGQVaqAg5GaXRzLkFwaS5WbS5WMcoCDkZpdHNcQXBpXFZtXFYx4gIaRml0c1xBcGlcVm1cVjFcR1BCTWV0YWRhdGHqAhFGaXRzOjpBcGk6OlZtOjpWMWIGcHJvdG8z", [file_fits_api_v1_common]);
 
 /**
  * TODO what is a service?
@@ -22,6 +21,7 @@ export const file_fits_api_vm_v1_service: GenFile = /*@__PURE__*/
 export type Service = Message<"fits.api.vm.v1.Service"> & {
   /**
    * Uuid of this Service
+   * TODO this is actually not a UUID, but a string. It can be "special-customer" e.g.
    *
    * @generated from field: string uuid = 1;
    */

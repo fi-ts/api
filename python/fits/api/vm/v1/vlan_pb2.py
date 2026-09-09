@@ -24,9 +24,10 @@ _sym_db = _symbol_database.Default()
 
 from buf.validate import validate_pb2 as buf_dot_validate_dot_validate__pb2
 from fits.api.v1 import common_pb2 as fits_dot_api_dot_v1_dot_common__pb2
+from fits.api.v1 import predefined_rules_pb2 as fits_dot_api_dot_v1_dot_predefined__rules__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x19\x66its/api/vm/v1/vlan.proto\x12\x0e\x66its.api.vm.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\"\xf8\x03\n\x04Vlan\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x0e\n\x02id\x18\x02 \x01(\x05R\x02id\x12!\n\x0csubnet_title\x18\x03 \x01(\tR\x0bsubnetTitle\x12\x16\n\x06subnet\x18\x04 \x01(\tR\x06subnet\x12\x1e\n\nsubnetmask\x18\x05 \x01(\tR\nsubnetmask\x12\x18\n\x07gateway\x18\x06 \x01(\tR\x07gateway\x12$\n\x0eip_range_start\x18\x07 \x01(\tR\x0cipRangeStart\x12 \n\x0cip_range_end\x18\x08 \x01(\tR\nipRangeEnd\x12\x19\n\x08use_dhcp\x18\t \x01(\x08R\x07useDhcp\x12\x1b\n\tpod_title\x18\n \x01(\tR\x08podTitle\x12#\n\x08pod_uuid\x18\x0b \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x07podUuid\x12(\n\x10stage_type_title\x18\x0c \x01(\tR\x0estageTypeTitle\x12\x30\n\x0fstage_type_uuid\x18\r \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\rstageTypeUuid\x12)\n\x0btenant_uuid\x18\x0e \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\ntenantUuid\x12!\n\x0ctenant_title\x18\x0f \x01(\tR\x0btenantTitle\"C\n\x16VlanServiceListRequest\x12)\n\x0btenant_uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\ntenantUuid\"\x90\x01\n\x17VlanServiceListResponse\x12*\n\x05vlans\x18\x01 \x03(\x0b\x32\x14.fits.api.vm.v1.VlanR\x05vlans\x12I\n\x11validation_errors\x18\x02 \x03(\x0b\x32\x1c.fits.api.v1.ValidationErrorR\x10validationErrors2s\n\x0bVlanService\x12\x64\n\x04List\x12&.fits.api.vm.v1.VlanServiceListRequest\x1a\'.fits.api.vm.v1.VlanServiceListResponse\"\x0b\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x42\xa7\x01\n\x12\x63om.fits.api.vm.v1B\tVlanProtoP\x01Z+github.com/fi-ts/api/go/fits/api/vm/v1;vmv1\xa2\x02\x03\x46\x41V\xaa\x02\x0e\x46its.Api.Vm.V1\xca\x02\x0e\x46its\\Api\\Vm\\V1\xe2\x02\x1a\x46its\\Api\\Vm\\V1\\GPBMetadata\xea\x02\x11\x46its::Api::Vm::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x19\x66its/api/vm/v1/vlan.proto\x12\x0e\x66its.api.vm.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xf8\x03\n\x04Vlan\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x0e\n\x02id\x18\x02 \x01(\x05R\x02id\x12!\n\x0csubnet_title\x18\x03 \x01(\tR\x0bsubnetTitle\x12\x16\n\x06subnet\x18\x04 \x01(\tR\x06subnet\x12\x1e\n\nsubnetmask\x18\x05 \x01(\tR\nsubnetmask\x12\x18\n\x07gateway\x18\x06 \x01(\tR\x07gateway\x12$\n\x0eip_range_start\x18\x07 \x01(\tR\x0cipRangeStart\x12 \n\x0cip_range_end\x18\x08 \x01(\tR\nipRangeEnd\x12\x19\n\x08use_dhcp\x18\t \x01(\x08R\x07useDhcp\x12\x1b\n\tpod_title\x18\n \x01(\tR\x08podTitle\x12#\n\x08pod_uuid\x18\x0b \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x07podUuid\x12(\n\x10stage_type_title\x18\x0c \x01(\tR\x0estageTypeTitle\x12\x30\n\x0fstage_type_uuid\x18\r \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\rstageTypeUuid\x12)\n\x0btenant_uuid\x18\x0e \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\ntenantUuid\x12!\n\x0ctenant_title\x18\x0f \x01(\tR\x0btenantTitle\"=\n\x16VlanServiceListRequest\x12#\n\x06tenant\x18\x01 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\"\x90\x01\n\x17VlanServiceListResponse\x12*\n\x05vlans\x18\x01 \x03(\x0b\x32\x14.fits.api.vm.v1.VlanR\x05vlans\x12I\n\x11validation_errors\x18\x02 \x03(\x0b\x32\x1c.fits.api.v1.ValidationErrorR\x10validationErrors2s\n\x0bVlanService\x12\x64\n\x04List\x12&.fits.api.vm.v1.VlanServiceListRequest\x1a\'.fits.api.vm.v1.VlanServiceListResponse\"\x0b\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x42\xa7\x01\n\x12\x63om.fits.api.vm.v1B\tVlanProtoP\x01Z+github.com/fi-ts/api/go/fits/api/vm/v1;vmv1\xa2\x02\x03\x46\x41V\xaa\x02\x0e\x46its.Api.Vm.V1\xca\x02\x0e\x46its\\Api\\Vm\\V1\xe2\x02\x1a\x46its\\Api\\Vm\\V1\\GPBMetadata\xea\x02\x11\x46its::Api::Vm::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -42,16 +43,16 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_VLAN'].fields_by_name['stage_type_uuid']._serialized_options = b'\272H\005r\003\260\001\001'
   _globals['_VLAN'].fields_by_name['tenant_uuid']._loaded_options = None
   _globals['_VLAN'].fields_by_name['tenant_uuid']._serialized_options = b'\272H\005r\003\260\001\001'
-  _globals['_VLANSERVICELISTREQUEST'].fields_by_name['tenant_uuid']._loaded_options = None
-  _globals['_VLANSERVICELISTREQUEST'].fields_by_name['tenant_uuid']._serialized_options = b'\272H\005r\003\260\001\001'
+  _globals['_VLANSERVICELISTREQUEST'].fields_by_name['tenant']._loaded_options = None
+  _globals['_VLANSERVICELISTREQUEST'].fields_by_name['tenant']._serialized_options = b'\272H\010r\006\300\263\256\261\002\001'
   _globals['_VLANSERVICE'].methods_by_name['List']._loaded_options = None
   _globals['_VLANSERVICE'].methods_by_name['List']._serialized_options = b'\312\363\030\003\001\002\003\340\363\030\002'
-  _globals['_VLAN']._serialized_start=101
-  _globals['_VLAN']._serialized_end=605
-  _globals['_VLANSERVICELISTREQUEST']._serialized_start=607
-  _globals['_VLANSERVICELISTREQUEST']._serialized_end=674
-  _globals['_VLANSERVICELISTRESPONSE']._serialized_start=677
-  _globals['_VLANSERVICELISTRESPONSE']._serialized_end=821
-  _globals['_VLANSERVICE']._serialized_start=823
-  _globals['_VLANSERVICE']._serialized_end=938
+  _globals['_VLAN']._serialized_start=137
+  _globals['_VLAN']._serialized_end=641
+  _globals['_VLANSERVICELISTREQUEST']._serialized_start=643
+  _globals['_VLANSERVICELISTREQUEST']._serialized_end=704
+  _globals['_VLANSERVICELISTRESPONSE']._serialized_start=707
+  _globals['_VLANSERVICELISTRESPONSE']._serialized_end=851
+  _globals['_VLANSERVICE']._serialized_start=853
+  _globals['_VLANSERVICE']._serialized_end=968
 # @@protoc_insertion_point(module_scope)

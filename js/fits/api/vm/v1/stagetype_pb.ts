@@ -5,21 +5,18 @@
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../../../buf/validate/validate_pb";
-import type { ValidationError } from "../../v1/common_pb";
 import { file_fits_api_v1_common } from "../../v1/common_pb";
+import { file_fits_api_v1_predefined_rules } from "../../v1/predefined_rules_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file fits/api/vm/v1/stagetype.proto.
  */
 export const file_fits_api_vm_v1_stagetype: GenFile = /*@__PURE__*/
-  fileDesc("Ch5maXRzL2FwaS92bS92MS9zdGFnZXR5cGUucHJvdG8SDmZpdHMuYXBpLnZtLnYxIjIKCVN0YWdlVHlwZRIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARINCgV0aXRsZRgCIAEoCSI8ChtTdGFnZVR5cGVTZXJ2aWNlTGlzdFJlcXVlc3QSHQoLdGVuYW50X3V1aWQYASABKAlCCLpIBXIDsAEBIoYBChxTdGFnZVR5cGVTZXJ2aWNlTGlzdFJlc3BvbnNlEi0KCnN0YWdldHlwZXMYASADKAsyGS5maXRzLmFwaS52bS52MS5TdGFnZVR5cGUSNwoRdmFsaWRhdGlvbl9lcnJvcnMYAiADKAsyHC5maXRzLmFwaS52MS5WYWxpZGF0aW9uRXJyb3IyggEKEFN0YWdlVHlwZVNlcnZpY2USbgoETGlzdBIrLmZpdHMuYXBpLnZtLnYxLlN0YWdlVHlwZVNlcnZpY2VMaXN0UmVxdWVzdBosLmZpdHMuYXBpLnZtLnYxLlN0YWdlVHlwZVNlcnZpY2VMaXN0UmVzcG9uc2UiC8rzGAMBAgPg8xgCQqwBChJjb20uZml0cy5hcGkudm0udjFCDlN0YWdldHlwZVByb3RvUAFaK2dpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL3ZtL3YxO3ZtdjGiAgNGQVaqAg5GaXRzLkFwaS5WbS5WMcoCDkZpdHNcQXBpXFZtXFYx4gIaRml0c1xBcGlcVm1cVjFcR1BCTWV0YWRhdGHqAhFGaXRzOjpBcGk6OlZtOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_common]);
+  fileDesc("Ch5maXRzL2FwaS92bS92MS9zdGFnZXR5cGUucHJvdG8SDmZpdHMuYXBpLnZtLnYxIj8KCVN0YWdlVHlwZRIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIaCgV0aXRsZRgCIAEoCUILukgIcgbAs66xAgEiHQobU3RhZ2VUeXBlU2VydmljZUxpc3RSZXF1ZXN0Ik0KHFN0YWdlVHlwZVNlcnZpY2VMaXN0UmVzcG9uc2USLQoKc3RhZ2V0eXBlcxgBIAMoCzIZLmZpdHMuYXBpLnZtLnYxLlN0YWdlVHlwZTKCAQoQU3RhZ2VUeXBlU2VydmljZRJuCgRMaXN0EisuZml0cy5hcGkudm0udjEuU3RhZ2VUeXBlU2VydmljZUxpc3RSZXF1ZXN0GiwuZml0cy5hcGkudm0udjEuU3RhZ2VUeXBlU2VydmljZUxpc3RSZXNwb25zZSILyvMYAwECA+DzGAJCrAEKEmNvbS5maXRzLmFwaS52bS52MUIOU3RhZ2V0eXBlUHJvdG9QAVorZ2l0aHViLmNvbS9maS10cy9hcGkvZ28vZml0cy9hcGkvdm0vdjE7dm12MaICA0ZBVqoCDkZpdHMuQXBpLlZtLlYxygIORml0c1xBcGlcVm1cVjHiAhpGaXRzXEFwaVxWbVxWMVxHUEJNZXRhZGF0YeoCEUZpdHM6OkFwaTo6Vm06OlYxYgZwcm90bzM", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
 
 /**
- * TODO what is a stage type?
  * Maps to the upstream NucleusDBStageTypes model.
- * TODO evaluate whether the uuid is really optional; the upstream API spec does not
- * make this clear, so we validate it strictly for now.
  *
  * @generated from message fits.api.vm.v1.StageType
  */
@@ -33,11 +30,6 @@ export type StageType = Message<"fits.api.vm.v1.StageType"> & {
 
   /**
    * title of the stage type
-   *
-   * type NucleusDBStageTypes struct {
-   * 	StageTypeTitle string              `json:"stage_type_title"`
-   * 	StageTypeUuid  *openapi_types.UUID `json:"stage_type_uuid,omitempty"`
-   * }
    *
    * @generated from field: string title = 2;
    */
@@ -58,15 +50,6 @@ export const StageTypeSchema: GenMessage<StageType> = /*@__PURE__*/
  * @generated from message fits.api.vm.v1.StageTypeServiceListRequest
  */
 export type StageTypeServiceListRequest = Message<"fits.api.vm.v1.StageTypeServiceListRequest"> & {
-  /**
-   * Tenant to list available stage types for
-   *
-   * Note: the upstream model also has a requested_by field, which is intentionally
-   * omitted here because it is added by the auth layer from the request context.
-   *
-   * @generated from field: string tenant_uuid = 1;
-   */
-  tenantUuid: string;
 };
 
 /**
@@ -88,14 +71,6 @@ export type StageTypeServiceListResponse = Message<"fits.api.vm.v1.StageTypeServ
    * @generated from field: repeated fits.api.vm.v1.StageType stagetypes = 1;
    */
   stagetypes: StageType[];
-
-  /**
-   * Validation errors returned by the upstream API when the request is rejected (HTTP 422)
-   * TODO this is just a test
-   *
-   * @generated from field: repeated fits.api.v1.ValidationError validation_errors = 2;
-   */
-  validationErrors: ValidationError[];
 };
 
 /**
@@ -107,6 +82,7 @@ export const StageTypeServiceListResponseSchema: GenMessage<StageTypeServiceList
 
 /**
  * StageTypeService lists stage types available for VM instances.
+ * TODO wurde besprochen am 09.09.26
  *
  * @generated from service fits.api.vm.v1.StageTypeService
  */
