@@ -69,12 +69,21 @@ message VMServiceGetResponse {
   // The VM
   VMInstance vm = 1;
 }
-// TODO sample for windows/linux differentiation
-// message VMServiceCreateWindowsRequest {
-// Windows Disk
-// }
-// message VMServiceCreateLinuxRequest {
-// }
+// Windows-specific create request parts
+message VMServiceCreateWindowsRequest {
+  // Domain UUID
+  string domain_uuid = 1 [(buf.validate.field).string.uuid = true];
+  // // Windows Disk
+  WindowsDisk disk = 2;
+}
+
+// Linux-specific create request parts
+message VMServiceCreateLinuxRequest {
+  // LDAP UUID
+  string ldap_uuid = 1 [(buf.validate.field).string.uuid = true];
+  // Linux Disk
+  LinuxDisk disk = 2;
+}
 
 // VMServiceCreateRequest TODO
 message VMServiceCreateRequest {
@@ -84,7 +93,7 @@ message VMServiceCreateRequest {
   optional string name = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // Number of CPUs of this VM
   uint32 cpu = 3;
-  // RAM of the VM in GB
+  // RAM of the VM in GB (TODO 2^n validation)
   uint32 ram = 4;
   // OS Uuid of the OS to install in the VM instance
   string os_uuid = 5 [(buf.validate.field).string.uuid = true];
@@ -93,20 +102,43 @@ message VMServiceCreateRequest {
   // Location Uuid of the datacenter location to install in the VM instance
   string location_uuid = 7 [(buf.validate.field).string.uuid = true];
   // Contact Uuid of who is the responsible contact of the VM instance
+  // TODO hier ist noch Klärungsbedarf. Ansprechpartner hängt nicht mal an einem echten user im system
+  // TODO sondern sind einfach nur Kontaktdaten, die an die Entity hingehängt wird.
+  // TODO aktuell hängt dies in der nulink api
+  // TODO labels als Option?
+  // TODO what about dsgvo?
+  // TODO daten im service now?
+  // TODO eventuell im tenant-apiserver Kontakte erlauben?
+  // TODO was macht FCN? wäre das für sie auch sinnvoll?
+  // TODO is required
   string contact_uuid = 8 [(buf.validate.field).string.uuid = true];
-  // List of disks for this VM
-  repeated Disk disks = 9;
-  // TODO differentiation
-  // oneof vmtype {
-  //   // ensure at least one match is specified.
-  //   option (buf.validate.oneof).required = true;
-  //   VMServiceCreateWindowsRequest windows = 21;
-  //   VMServiceCreateLinuxRequest linux = 22;
-  // }
+  // Replaces optional ContractNumber, TransactionNumber, TechnicalKey, AccountingKey
+  fits.api.v1.Labels labels = 10;
+  // Order number muss unbedingt mitgegeben werden
+  // Hängt sogar z.b. am VM restart.
+  // Wird für gewöhnlich vom User angegeben.
+  string order_number = 11;
+  // Currently no different backup plans, just true or false
+  bool backup = 12;
+  // V0, V1, V2, V3 -> highest=best
+  string availability = 13;
+  // SZ1, SZ2, SZ3 -> highest=best
+  string serviceclass = 14;
+  // TODO differentiation Linux/Windows
+  oneof vmtype {
+    // ensure at least one match is specified.
+    option (buf.validate.oneof).required = true;
+    // Windows Disk and Domain
+    VMServiceCreateWindowsRequest windows = 21;
+    // Linux Disk and LDAP
+    VMServiceCreateLinuxRequest linux = 22;
+  }
   // Disks             []DiskInputModel
   // TODO is inherited from the token making the create request -> stored in meta.createdBy
+  // TODO Tobias bietet an, das Token selbst zu lesen und das RequestedBy selbst zu holen über x-original token (siehe Botonds PR)
   // RequestedBy       *string
 
+  // Still open
   // AccountingKey     *string
   // Availability      VMInstanceLinuxCreateInputModelAvailability
   // Backup            bool
@@ -124,18 +156,28 @@ message VMServiceCreateRequest {
   // TransactionNumber *string
 }
 
-// Disk
-message Disk {
+// LinuxDisk
+message LinuxDisk {
+  // AutoExtend if set to true the disk grows automatically
+  bool auto_extend = 1;
+  // Size if the disk in GB
+  optional uint64 size_in_gb = 2; // TODO discuss how this could be optional
+  // Label of the disk
+  string label = 4;
+  // MountPoint where this disk should be mounted
+  optional string mount_point = 5; // TODO this requires a Filesystem on the disk ?
+}
+
+// WindowsDisk
+message WindowsDisk {
   // AutoExtend if set to true the disk grows automatically
   bool auto_extend = 1;
   // Size if the disk in GB
   optional uint64 size_in_gb = 2; // TODO discuss how this could be optional
   // DriveLetter where this disk should be assigned
-  optional string drive_letter = 3;
+  optional string driveletter = 3;
   // Label of the disk
   string label = 4;
-  // MountPoint where this disk should be mounted
-  optional string mount_point = 5; // TODO this requires a Filesystem on the disk ?
 }
 
 // VMServiceCreateResponse TODO

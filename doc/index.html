@@ -842,11 +842,15 @@
             <ul>
               
                 <li>
-                  <a href="#fits.api.vm.v1.Disk"><span class="badge">M</span>Disk</a>
+                  <a href="#fits.api.vm.v1.LinuxDisk"><span class="badge">M</span>LinuxDisk</a>
                 </li>
               
                 <li>
                   <a href="#fits.api.vm.v1.VMInstance"><span class="badge">M</span>VMInstance</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.VMServiceCreateLinuxRequest"><span class="badge">M</span>VMServiceCreateLinuxRequest</a>
                 </li>
               
                 <li>
@@ -855,6 +859,10 @@
               
                 <li>
                   <a href="#fits.api.vm.v1.VMServiceCreateResponse"><span class="badge">M</span>VMServiceCreateResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.VMServiceCreateWindowsRequest"><span class="badge">M</span>VMServiceCreateWindowsRequest</a>
                 </li>
               
                 <li>
@@ -887,6 +895,10 @@
               
                 <li>
                   <a href="#fits.api.vm.v1.VMServiceUpdateResponse"><span class="badge">M</span>VMServiceUpdateResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.vm.v1.WindowsDisk"><span class="badge">M</span>WindowsDisk</a>
                 </li>
               
               
@@ -4487,7 +4499,7 @@ TODO Tobias baut in nulink-api ein </p></td>
 
       
         <h3 id="fits.api.vm.v1.LocationService">LocationService</h3>
-        <p>LocationService lists datacenter locations available for VM instances.</p><p>TODO wurde besprochen am 09.09.26</p>
+        <p>LocationService lists datacenter locations available for VM instances.</p><p>TODO wurde besprochen am 09.09.26</p><p>TODO muss zu "Pod" werden. User erstellen eine VM nicht pro location, sondern pro Pod</p><p>TODO Ein Pod ist fest an einer location verankert.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -4931,8 +4943,8 @@ TODO this is just a test </p></td>
       <p></p>
 
       
-        <h3 id="fits.api.vm.v1.Disk">Disk</h3>
-        <p>Disk</p>
+        <h3 id="fits.api.vm.v1.LinuxDisk">LinuxDisk</h3>
+        <p>LinuxDisk</p>
 
         
           <table class="field-table">
@@ -4955,13 +4967,6 @@ TODO this is just a test </p></td>
                   <td><p>Size if the disk in GB
 
 TODO discuss how this could be optional </p></td>
-                </tr>
-              
-                <tr>
-                  <td>drive_letter</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>DriveLetter where this disk should be assigned </p></td>
                 </tr>
               
                 <tr>
@@ -5032,6 +5037,37 @@ TODO this requires a Filesystem on the disk ? </p></td>
 
         
       
+        <h3 id="fits.api.vm.v1.VMServiceCreateLinuxRequest">VMServiceCreateLinuxRequest</h3>
+        <p>Linux-specific create request parts</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>ldap_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>LDAP UUID </p></td>
+                </tr>
+              
+                <tr>
+                  <td>disk</td>
+                  <td><a href="#fits.api.vm.v1.LinuxDisk">LinuxDisk</a></td>
+                  <td></td>
+                  <td><p>Linux Disk </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="fits.api.vm.v1.VMServiceCreateRequest">VMServiceCreateRequest</h3>
         <p>VMServiceCreateRequest TODO</p>
 
@@ -5067,7 +5103,7 @@ TODO this requires a Filesystem on the disk ? </p></td>
                   <td>ram</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>RAM of the VM in GB </p></td>
+                  <td><p>RAM of the VM in GB (TODO 2^n validation) </p></td>
                 </tr>
               
                 <tr>
@@ -5095,25 +5131,67 @@ TODO this requires a Filesystem on the disk ? </p></td>
                   <td>contact_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Contact Uuid of who is the responsible contact of the VM instance </p></td>
+                  <td><p>Contact Uuid of who is the responsible contact of the VM instance
+TODO hier ist noch Klärungsbedarf. Ansprechpartner hängt nicht mal an einem echten user im system
+TODO sondern sind einfach nur Kontaktdaten, die an die Entity hingehängt wird.
+TODO aktuell hängt dies in der nulink api
+TODO labels als Option?
+TODO what about dsgvo?
+TODO daten im service now?
+TODO eventuell im tenant-apiserver Kontakte erlauben?
+TODO was macht FCN? wäre das für sie auch sinnvoll?
+TODO is required </p></td>
                 </tr>
               
                 <tr>
-                  <td>disks</td>
-                  <td><a href="#fits.api.vm.v1.Disk">Disk</a></td>
-                  <td>repeated</td>
-                  <td><p>List of disks for this VM
-
-TODO differentiation
-oneof vmtype {
-  // ensure at least one match is specified.
-  option (buf.validate.oneof).required = true;
-  VMServiceCreateWindowsRequest windows = 21;
-  VMServiceCreateLinuxRequest linux = 22;
-}
-Disks             []DiskInputModel
-TODO is inherited from the token making the create request -&gt; stored in meta.createdBy
-RequestedBy       *string </p></td>
+                  <td>labels</td>
+                  <td><a href="#fits.api.v1.Labels">fits.api.v1.Labels</a></td>
+                  <td></td>
+                  <td><p>Replaces optional ContractNumber, TransactionNumber, TechnicalKey, AccountingKey </p></td>
+                </tr>
+              
+                <tr>
+                  <td>order_number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Order number muss unbedingt mitgegeben werden
+Hängt sogar z.b. am VM restart.
+Wird für gewöhnlich vom User angegeben. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>backup</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Currently no different backup plans, just true or false </p></td>
+                </tr>
+              
+                <tr>
+                  <td>availability</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>V0, V1, V2, V3 -&gt; highest=best </p></td>
+                </tr>
+              
+                <tr>
+                  <td>serviceclass</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>SZ1, SZ2, SZ3 -&gt; highest=best </p></td>
+                </tr>
+              
+                <tr>
+                  <td>windows</td>
+                  <td><a href="#fits.api.vm.v1.VMServiceCreateWindowsRequest">VMServiceCreateWindowsRequest</a></td>
+                  <td></td>
+                  <td><p>Windows Disk and Domain </p></td>
+                </tr>
+              
+                <tr>
+                  <td>linux</td>
+                  <td><a href="#fits.api.vm.v1.VMServiceCreateLinuxRequest">VMServiceCreateLinuxRequest</a></td>
+                  <td></td>
+                  <td><p>Linux Disk and LDAP </p></td>
                 </tr>
               
             </tbody>
@@ -5127,6 +5205,37 @@ RequestedBy       *string </p></td>
         <p>VMServiceCreateResponse TODO</p>
 
         
+
+        
+      
+        <h3 id="fits.api.vm.v1.VMServiceCreateWindowsRequest">VMServiceCreateWindowsRequest</h3>
+        <p>Windows-specific create request parts</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>domain_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Domain UUID </p></td>
+                </tr>
+              
+                <tr>
+                  <td>disk</td>
+                  <td><a href="#fits.api.vm.v1.WindowsDisk">WindowsDisk</a></td>
+                  <td></td>
+                  <td><p>Windows Disk </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
 
         
       
@@ -5282,6 +5391,53 @@ RequestedBy       *string </p></td>
         <p>VMServiceUpdateResponse TODO</p>
 
         
+
+        
+      
+        <h3 id="fits.api.vm.v1.WindowsDisk">WindowsDisk</h3>
+        <p>WindowsDisk</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>auto_extend</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>AutoExtend if set to true the disk grows automatically </p></td>
+                </tr>
+              
+                <tr>
+                  <td>size_in_gb</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td>optional</td>
+                  <td><p>Size if the disk in GB
+
+TODO discuss how this could be optional </p></td>
+                </tr>
+              
+                <tr>
+                  <td>driveletter</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>DriveLetter where this disk should be assigned </p></td>
+                </tr>
+              
+                <tr>
+                  <td>label</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Label of the disk </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
 
         
       

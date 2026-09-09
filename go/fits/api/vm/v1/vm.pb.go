@@ -197,6 +197,116 @@ func (x *VMServiceGetResponse) GetVm() *VMInstance {
 	return nil
 }
 
+// Windows-specific create request parts
+type VMServiceCreateWindowsRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Domain UUID
+	DomainUuid string `protobuf:"bytes,1,opt,name=domain_uuid,json=domainUuid,proto3" json:"domain_uuid,omitempty"`
+	// // Windows Disk
+	Disk          *WindowsDisk `protobuf:"bytes,2,opt,name=disk,proto3" json:"disk,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VMServiceCreateWindowsRequest) Reset() {
+	*x = VMServiceCreateWindowsRequest{}
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VMServiceCreateWindowsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VMServiceCreateWindowsRequest) ProtoMessage() {}
+
+func (x *VMServiceCreateWindowsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VMServiceCreateWindowsRequest.ProtoReflect.Descriptor instead.
+func (*VMServiceCreateWindowsRequest) Descriptor() ([]byte, []int) {
+	return file_fits_api_vm_v1_vm_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *VMServiceCreateWindowsRequest) GetDomainUuid() string {
+	if x != nil {
+		return x.DomainUuid
+	}
+	return ""
+}
+
+func (x *VMServiceCreateWindowsRequest) GetDisk() *WindowsDisk {
+	if x != nil {
+		return x.Disk
+	}
+	return nil
+}
+
+// Linux-specific create request parts
+type VMServiceCreateLinuxRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// LDAP UUID
+	LdapUuid string `protobuf:"bytes,1,opt,name=ldap_uuid,json=ldapUuid,proto3" json:"ldap_uuid,omitempty"`
+	// Linux Disk
+	Disk          *LinuxDisk `protobuf:"bytes,2,opt,name=disk,proto3" json:"disk,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VMServiceCreateLinuxRequest) Reset() {
+	*x = VMServiceCreateLinuxRequest{}
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VMServiceCreateLinuxRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VMServiceCreateLinuxRequest) ProtoMessage() {}
+
+func (x *VMServiceCreateLinuxRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VMServiceCreateLinuxRequest.ProtoReflect.Descriptor instead.
+func (*VMServiceCreateLinuxRequest) Descriptor() ([]byte, []int) {
+	return file_fits_api_vm_v1_vm_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *VMServiceCreateLinuxRequest) GetLdapUuid() string {
+	if x != nil {
+		return x.LdapUuid
+	}
+	return ""
+}
+
+func (x *VMServiceCreateLinuxRequest) GetDisk() *LinuxDisk {
+	if x != nil {
+		return x.Disk
+	}
+	return nil
+}
+
 // VMServiceCreateRequest TODO
 type VMServiceCreateRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -206,7 +316,7 @@ type VMServiceCreateRequest struct {
 	Name *string `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
 	// Number of CPUs of this VM
 	Cpu uint32 `protobuf:"varint,3,opt,name=cpu,proto3" json:"cpu,omitempty"`
-	// RAM of the VM in GB
+	// RAM of the VM in GB (TODO 2^n validation)
 	Ram uint32 `protobuf:"varint,4,opt,name=ram,proto3" json:"ram,omitempty"`
 	// OS Uuid of the OS to install in the VM instance
 	OsUuid string `protobuf:"bytes,5,opt,name=os_uuid,json=osUuid,proto3" json:"os_uuid,omitempty"`
@@ -215,16 +325,42 @@ type VMServiceCreateRequest struct {
 	// Location Uuid of the datacenter location to install in the VM instance
 	LocationUuid string `protobuf:"bytes,7,opt,name=location_uuid,json=locationUuid,proto3" json:"location_uuid,omitempty"`
 	// Contact Uuid of who is the responsible contact of the VM instance
+	// TODO hier ist noch Klärungsbedarf. Ansprechpartner hängt nicht mal an einem echten user im system
+	// TODO sondern sind einfach nur Kontaktdaten, die an die Entity hingehängt wird.
+	// TODO aktuell hängt dies in der nulink api
+	// TODO labels als Option?
+	// TODO what about dsgvo?
+	// TODO daten im service now?
+	// TODO eventuell im tenant-apiserver Kontakte erlauben?
+	// TODO was macht FCN? wäre das für sie auch sinnvoll?
+	// TODO is required
 	ContactUuid string `protobuf:"bytes,8,opt,name=contact_uuid,json=contactUuid,proto3" json:"contact_uuid,omitempty"`
-	// List of disks for this VM
-	Disks         []*Disk `protobuf:"bytes,9,rep,name=disks,proto3" json:"disks,omitempty"`
+	// Replaces optional ContractNumber, TransactionNumber, TechnicalKey, AccountingKey
+	Labels *v1.Labels `protobuf:"bytes,10,opt,name=labels,proto3" json:"labels,omitempty"`
+	// Order number muss unbedingt mitgegeben werden
+	// Hängt sogar z.b. am VM restart.
+	// Wird für gewöhnlich vom User angegeben.
+	OrderNumber string `protobuf:"bytes,11,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
+	// Currently no different backup plans, just true or false
+	Backup bool `protobuf:"varint,12,opt,name=backup,proto3" json:"backup,omitempty"`
+	// V0, V1, V2, V3 -> highest=best
+	Availability string `protobuf:"bytes,13,opt,name=availability,proto3" json:"availability,omitempty"`
+	// SZ1, SZ2, SZ3 -> highest=best
+	Serviceclass string `protobuf:"bytes,14,opt,name=serviceclass,proto3" json:"serviceclass,omitempty"`
+	// TODO differentiation Linux/Windows
+	//
+	// Types that are valid to be assigned to Vmtype:
+	//
+	//	*VMServiceCreateRequest_Windows
+	//	*VMServiceCreateRequest_Linux
+	Vmtype        isVMServiceCreateRequest_Vmtype `protobuf_oneof:"vmtype"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *VMServiceCreateRequest) Reset() {
 	*x = VMServiceCreateRequest{}
-	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[3]
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -236,7 +372,7 @@ func (x *VMServiceCreateRequest) String() string {
 func (*VMServiceCreateRequest) ProtoMessage() {}
 
 func (x *VMServiceCreateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[3]
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -249,7 +385,7 @@ func (x *VMServiceCreateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VMServiceCreateRequest.ProtoReflect.Descriptor instead.
 func (*VMServiceCreateRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_vm_v1_vm_proto_rawDescGZIP(), []int{3}
+	return file_fits_api_vm_v1_vm_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *VMServiceCreateRequest) GetProjectUuid() string {
@@ -308,22 +444,91 @@ func (x *VMServiceCreateRequest) GetContactUuid() string {
 	return ""
 }
 
-func (x *VMServiceCreateRequest) GetDisks() []*Disk {
+func (x *VMServiceCreateRequest) GetLabels() *v1.Labels {
 	if x != nil {
-		return x.Disks
+		return x.Labels
 	}
 	return nil
 }
 
-// Disk
-type Disk struct {
+func (x *VMServiceCreateRequest) GetOrderNumber() string {
+	if x != nil {
+		return x.OrderNumber
+	}
+	return ""
+}
+
+func (x *VMServiceCreateRequest) GetBackup() bool {
+	if x != nil {
+		return x.Backup
+	}
+	return false
+}
+
+func (x *VMServiceCreateRequest) GetAvailability() string {
+	if x != nil {
+		return x.Availability
+	}
+	return ""
+}
+
+func (x *VMServiceCreateRequest) GetServiceclass() string {
+	if x != nil {
+		return x.Serviceclass
+	}
+	return ""
+}
+
+func (x *VMServiceCreateRequest) GetVmtype() isVMServiceCreateRequest_Vmtype {
+	if x != nil {
+		return x.Vmtype
+	}
+	return nil
+}
+
+func (x *VMServiceCreateRequest) GetWindows() *VMServiceCreateWindowsRequest {
+	if x != nil {
+		if x, ok := x.Vmtype.(*VMServiceCreateRequest_Windows); ok {
+			return x.Windows
+		}
+	}
+	return nil
+}
+
+func (x *VMServiceCreateRequest) GetLinux() *VMServiceCreateLinuxRequest {
+	if x != nil {
+		if x, ok := x.Vmtype.(*VMServiceCreateRequest_Linux); ok {
+			return x.Linux
+		}
+	}
+	return nil
+}
+
+type isVMServiceCreateRequest_Vmtype interface {
+	isVMServiceCreateRequest_Vmtype()
+}
+
+type VMServiceCreateRequest_Windows struct {
+	// Windows Disk and Domain
+	Windows *VMServiceCreateWindowsRequest `protobuf:"bytes,21,opt,name=windows,proto3,oneof"`
+}
+
+type VMServiceCreateRequest_Linux struct {
+	// Linux Disk and LDAP
+	Linux *VMServiceCreateLinuxRequest `protobuf:"bytes,22,opt,name=linux,proto3,oneof"`
+}
+
+func (*VMServiceCreateRequest_Windows) isVMServiceCreateRequest_Vmtype() {}
+
+func (*VMServiceCreateRequest_Linux) isVMServiceCreateRequest_Vmtype() {}
+
+// LinuxDisk
+type LinuxDisk struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// AutoExtend if set to true the disk grows automatically
 	AutoExtend bool `protobuf:"varint,1,opt,name=auto_extend,json=autoExtend,proto3" json:"auto_extend,omitempty"`
 	// Size if the disk in GB
 	SizeInGb *uint64 `protobuf:"varint,2,opt,name=size_in_gb,json=sizeInGb,proto3,oneof" json:"size_in_gb,omitempty"` // TODO discuss how this could be optional
-	// DriveLetter where this disk should be assigned
-	DriveLetter *string `protobuf:"bytes,3,opt,name=drive_letter,json=driveLetter,proto3,oneof" json:"drive_letter,omitempty"`
 	// Label of the disk
 	Label string `protobuf:"bytes,4,opt,name=label,proto3" json:"label,omitempty"`
 	// MountPoint where this disk should be mounted
@@ -332,21 +537,21 @@ type Disk struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Disk) Reset() {
-	*x = Disk{}
-	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[4]
+func (x *LinuxDisk) Reset() {
+	*x = LinuxDisk{}
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Disk) String() string {
+func (x *LinuxDisk) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Disk) ProtoMessage() {}
+func (*LinuxDisk) ProtoMessage() {}
 
-func (x *Disk) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[4]
+func (x *LinuxDisk) ProtoReflect() protoreflect.Message {
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -357,42 +562,108 @@ func (x *Disk) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Disk.ProtoReflect.Descriptor instead.
-func (*Disk) Descriptor() ([]byte, []int) {
-	return file_fits_api_vm_v1_vm_proto_rawDescGZIP(), []int{4}
+// Deprecated: Use LinuxDisk.ProtoReflect.Descriptor instead.
+func (*LinuxDisk) Descriptor() ([]byte, []int) {
+	return file_fits_api_vm_v1_vm_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *Disk) GetAutoExtend() bool {
+func (x *LinuxDisk) GetAutoExtend() bool {
 	if x != nil {
 		return x.AutoExtend
 	}
 	return false
 }
 
-func (x *Disk) GetSizeInGb() uint64 {
+func (x *LinuxDisk) GetSizeInGb() uint64 {
 	if x != nil && x.SizeInGb != nil {
 		return *x.SizeInGb
 	}
 	return 0
 }
 
-func (x *Disk) GetDriveLetter() string {
-	if x != nil && x.DriveLetter != nil {
-		return *x.DriveLetter
-	}
-	return ""
-}
-
-func (x *Disk) GetLabel() string {
+func (x *LinuxDisk) GetLabel() string {
 	if x != nil {
 		return x.Label
 	}
 	return ""
 }
 
-func (x *Disk) GetMountPoint() string {
+func (x *LinuxDisk) GetMountPoint() string {
 	if x != nil && x.MountPoint != nil {
 		return *x.MountPoint
+	}
+	return ""
+}
+
+// WindowsDisk
+type WindowsDisk struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// AutoExtend if set to true the disk grows automatically
+	AutoExtend bool `protobuf:"varint,1,opt,name=auto_extend,json=autoExtend,proto3" json:"auto_extend,omitempty"`
+	// Size if the disk in GB
+	SizeInGb *uint64 `protobuf:"varint,2,opt,name=size_in_gb,json=sizeInGb,proto3,oneof" json:"size_in_gb,omitempty"` // TODO discuss how this could be optional
+	// DriveLetter where this disk should be assigned
+	Driveletter *string `protobuf:"bytes,3,opt,name=driveletter,proto3,oneof" json:"driveletter,omitempty"`
+	// Label of the disk
+	Label         string `protobuf:"bytes,4,opt,name=label,proto3" json:"label,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *WindowsDisk) Reset() {
+	*x = WindowsDisk{}
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *WindowsDisk) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*WindowsDisk) ProtoMessage() {}
+
+func (x *WindowsDisk) ProtoReflect() protoreflect.Message {
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use WindowsDisk.ProtoReflect.Descriptor instead.
+func (*WindowsDisk) Descriptor() ([]byte, []int) {
+	return file_fits_api_vm_v1_vm_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *WindowsDisk) GetAutoExtend() bool {
+	if x != nil {
+		return x.AutoExtend
+	}
+	return false
+}
+
+func (x *WindowsDisk) GetSizeInGb() uint64 {
+	if x != nil && x.SizeInGb != nil {
+		return *x.SizeInGb
+	}
+	return 0
+}
+
+func (x *WindowsDisk) GetDriveletter() string {
+	if x != nil && x.Driveletter != nil {
+		return *x.Driveletter
+	}
+	return ""
+}
+
+func (x *WindowsDisk) GetLabel() string {
+	if x != nil {
+		return x.Label
 	}
 	return ""
 }
@@ -406,7 +677,7 @@ type VMServiceCreateResponse struct {
 
 func (x *VMServiceCreateResponse) Reset() {
 	*x = VMServiceCreateResponse{}
-	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[5]
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -418,7 +689,7 @@ func (x *VMServiceCreateResponse) String() string {
 func (*VMServiceCreateResponse) ProtoMessage() {}
 
 func (x *VMServiceCreateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[5]
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -431,7 +702,7 @@ func (x *VMServiceCreateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VMServiceCreateResponse.ProtoReflect.Descriptor instead.
 func (*VMServiceCreateResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_vm_v1_vm_proto_rawDescGZIP(), []int{5}
+	return file_fits_api_vm_v1_vm_proto_rawDescGZIP(), []int{8}
 }
 
 // VMServiceUpdateRequest TODO
@@ -447,7 +718,7 @@ type VMServiceUpdateRequest struct {
 
 func (x *VMServiceUpdateRequest) Reset() {
 	*x = VMServiceUpdateRequest{}
-	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[6]
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -459,7 +730,7 @@ func (x *VMServiceUpdateRequest) String() string {
 func (*VMServiceUpdateRequest) ProtoMessage() {}
 
 func (x *VMServiceUpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[6]
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -472,7 +743,7 @@ func (x *VMServiceUpdateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VMServiceUpdateRequest.ProtoReflect.Descriptor instead.
 func (*VMServiceUpdateRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_vm_v1_vm_proto_rawDescGZIP(), []int{6}
+	return file_fits_api_vm_v1_vm_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *VMServiceUpdateRequest) GetProject() string {
@@ -498,7 +769,7 @@ type VMServiceUpdateResponse struct {
 
 func (x *VMServiceUpdateResponse) Reset() {
 	*x = VMServiceUpdateResponse{}
-	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[7]
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -510,7 +781,7 @@ func (x *VMServiceUpdateResponse) String() string {
 func (*VMServiceUpdateResponse) ProtoMessage() {}
 
 func (x *VMServiceUpdateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[7]
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -523,7 +794,7 @@ func (x *VMServiceUpdateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VMServiceUpdateResponse.ProtoReflect.Descriptor instead.
 func (*VMServiceUpdateResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_vm_v1_vm_proto_rawDescGZIP(), []int{7}
+	return file_fits_api_vm_v1_vm_proto_rawDescGZIP(), []int{10}
 }
 
 // VMServiceListRequest TODO
@@ -537,7 +808,7 @@ type VMServiceListRequest struct {
 
 func (x *VMServiceListRequest) Reset() {
 	*x = VMServiceListRequest{}
-	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[8]
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -549,7 +820,7 @@ func (x *VMServiceListRequest) String() string {
 func (*VMServiceListRequest) ProtoMessage() {}
 
 func (x *VMServiceListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[8]
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -562,7 +833,7 @@ func (x *VMServiceListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VMServiceListRequest.ProtoReflect.Descriptor instead.
 func (*VMServiceListRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_vm_v1_vm_proto_rawDescGZIP(), []int{8}
+	return file_fits_api_vm_v1_vm_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *VMServiceListRequest) GetProject() string {
@@ -581,7 +852,7 @@ type VMServiceListResponse struct {
 
 func (x *VMServiceListResponse) Reset() {
 	*x = VMServiceListResponse{}
-	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[9]
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -593,7 +864,7 @@ func (x *VMServiceListResponse) String() string {
 func (*VMServiceListResponse) ProtoMessage() {}
 
 func (x *VMServiceListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[9]
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -606,7 +877,7 @@ func (x *VMServiceListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VMServiceListResponse.ProtoReflect.Descriptor instead.
 func (*VMServiceListResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_vm_v1_vm_proto_rawDescGZIP(), []int{9}
+	return file_fits_api_vm_v1_vm_proto_rawDescGZIP(), []int{12}
 }
 
 // VMServiceDeleteRequest TODO
@@ -620,7 +891,7 @@ type VMServiceDeleteRequest struct {
 
 func (x *VMServiceDeleteRequest) Reset() {
 	*x = VMServiceDeleteRequest{}
-	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[10]
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -632,7 +903,7 @@ func (x *VMServiceDeleteRequest) String() string {
 func (*VMServiceDeleteRequest) ProtoMessage() {}
 
 func (x *VMServiceDeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[10]
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -645,7 +916,7 @@ func (x *VMServiceDeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VMServiceDeleteRequest.ProtoReflect.Descriptor instead.
 func (*VMServiceDeleteRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_vm_v1_vm_proto_rawDescGZIP(), []int{10}
+	return file_fits_api_vm_v1_vm_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *VMServiceDeleteRequest) GetProject() string {
@@ -664,7 +935,7 @@ type VMServiceDeleteResponse struct {
 
 func (x *VMServiceDeleteResponse) Reset() {
 	*x = VMServiceDeleteResponse{}
-	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[11]
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -676,7 +947,7 @@ func (x *VMServiceDeleteResponse) String() string {
 func (*VMServiceDeleteResponse) ProtoMessage() {}
 
 func (x *VMServiceDeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[11]
+	mi := &file_fits_api_vm_v1_vm_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -689,7 +960,7 @@ func (x *VMServiceDeleteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VMServiceDeleteResponse.ProtoReflect.Descriptor instead.
 func (*VMServiceDeleteResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_vm_v1_vm_proto_rawDescGZIP(), []int{11}
+	return file_fits_api_vm_v1_vm_proto_rawDescGZIP(), []int{14}
 }
 
 var File_fits_api_vm_v1_vm_proto protoreflect.FileDescriptor
@@ -707,30 +978,52 @@ const file_fits_api_vm_v1_vm_proto_rawDesc = "" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\"\n" +
 	"\aproject\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\aproject\"B\n" +
 	"\x14VMServiceGetResponse\x12*\n" +
-	"\x02vm\x18\x01 \x01(\v2\x1a.fits.api.vm.v1.VMInstanceR\x02vm\"\xea\x02\n" +
+	"\x02vm\x18\x01 \x01(\v2\x1a.fits.api.vm.v1.VMInstanceR\x02vm\"{\n" +
+	"\x1dVMServiceCreateWindowsRequest\x12)\n" +
+	"\vdomain_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\n" +
+	"domainUuid\x12/\n" +
+	"\x04disk\x18\x02 \x01(\v2\x1b.fits.api.vm.v1.WindowsDiskR\x04disk\"s\n" +
+	"\x1bVMServiceCreateLinuxRequest\x12%\n" +
+	"\tldap_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bldapUuid\x12-\n" +
+	"\x04disk\x18\x02 \x01(\v2\x19.fits.api.vm.v1.LinuxDiskR\x04disk\"\x8f\x05\n" +
 	"\x16VMServiceCreateRequest\x12+\n" +
 	"\fproject_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12$\n" +
-	"\x04name\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01H\x00R\x04name\x88\x01\x01\x12\x10\n" +
+	"\x04name\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01H\x01R\x04name\x88\x01\x01\x12\x10\n" +
 	"\x03cpu\x18\x03 \x01(\rR\x03cpu\x12\x10\n" +
 	"\x03ram\x18\x04 \x01(\rR\x03ram\x12!\n" +
 	"\aos_uuid\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06osUuid\x12%\n" +
 	"\tvlan_uuid\x18\x06 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bvlanUuid\x12-\n" +
 	"\rlocation_uuid\x18\a \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\flocationUuid\x12+\n" +
-	"\fcontact_uuid\x18\b \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vcontactUuid\x12*\n" +
-	"\x05disks\x18\t \x03(\v2\x14.fits.api.vm.v1.DiskR\x05disksB\a\n" +
-	"\x05_name\"\xde\x01\n" +
-	"\x04Disk\x12\x1f\n" +
+	"\fcontact_uuid\x18\b \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vcontactUuid\x12+\n" +
+	"\x06labels\x18\n" +
+	" \x01(\v2\x13.fits.api.v1.LabelsR\x06labels\x12!\n" +
+	"\forder_number\x18\v \x01(\tR\vorderNumber\x12\x16\n" +
+	"\x06backup\x18\f \x01(\bR\x06backup\x12\"\n" +
+	"\favailability\x18\r \x01(\tR\favailability\x12\"\n" +
+	"\fserviceclass\x18\x0e \x01(\tR\fserviceclass\x12I\n" +
+	"\awindows\x18\x15 \x01(\v2-.fits.api.vm.v1.VMServiceCreateWindowsRequestH\x00R\awindows\x12C\n" +
+	"\x05linux\x18\x16 \x01(\v2+.fits.api.vm.v1.VMServiceCreateLinuxRequestH\x00R\x05linuxB\x0f\n" +
+	"\x06vmtype\x12\x05\xbaH\x02\b\x01B\a\n" +
+	"\x05_name\"\xaa\x01\n" +
+	"\tLinuxDisk\x12\x1f\n" +
 	"\vauto_extend\x18\x01 \x01(\bR\n" +
 	"autoExtend\x12!\n" +
 	"\n" +
-	"size_in_gb\x18\x02 \x01(\x04H\x00R\bsizeInGb\x88\x01\x01\x12&\n" +
-	"\fdrive_letter\x18\x03 \x01(\tH\x01R\vdriveLetter\x88\x01\x01\x12\x14\n" +
+	"size_in_gb\x18\x02 \x01(\x04H\x00R\bsizeInGb\x88\x01\x01\x12\x14\n" +
 	"\x05label\x18\x04 \x01(\tR\x05label\x12$\n" +
-	"\vmount_point\x18\x05 \x01(\tH\x02R\n" +
+	"\vmount_point\x18\x05 \x01(\tH\x01R\n" +
 	"mountPoint\x88\x01\x01B\r\n" +
-	"\v_size_in_gbB\x0f\n" +
-	"\r_drive_letterB\x0e\n" +
-	"\f_mount_point\"\x19\n" +
+	"\v_size_in_gbB\x0e\n" +
+	"\f_mount_point\"\xad\x01\n" +
+	"\vWindowsDisk\x12\x1f\n" +
+	"\vauto_extend\x18\x01 \x01(\bR\n" +
+	"autoExtend\x12!\n" +
+	"\n" +
+	"size_in_gb\x18\x02 \x01(\x04H\x00R\bsizeInGb\x88\x01\x01\x12%\n" +
+	"\vdriveletter\x18\x03 \x01(\tH\x01R\vdriveletter\x88\x01\x01\x12\x14\n" +
+	"\x05label\x18\x04 \x01(\tR\x05labelB\r\n" +
+	"\v_size_in_gbB\x0e\n" +
+	"\f_driveletter\"\x19\n" +
 	"\x17VMServiceCreateResponse\"~\n" +
 	"\x16VMServiceUpdateRequest\x12\"\n" +
 	"\aproject\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\aproject\x12@\n" +
@@ -766,43 +1059,51 @@ func file_fits_api_vm_v1_vm_proto_rawDescGZIP() []byte {
 	return file_fits_api_vm_v1_vm_proto_rawDescData
 }
 
-var file_fits_api_vm_v1_vm_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_fits_api_vm_v1_vm_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_fits_api_vm_v1_vm_proto_goTypes = []any{
-	(*VMInstance)(nil),              // 0: fits.api.vm.v1.VMInstance
-	(*VMServiceGetRequest)(nil),     // 1: fits.api.vm.v1.VMServiceGetRequest
-	(*VMServiceGetResponse)(nil),    // 2: fits.api.vm.v1.VMServiceGetResponse
-	(*VMServiceCreateRequest)(nil),  // 3: fits.api.vm.v1.VMServiceCreateRequest
-	(*Disk)(nil),                    // 4: fits.api.vm.v1.Disk
-	(*VMServiceCreateResponse)(nil), // 5: fits.api.vm.v1.VMServiceCreateResponse
-	(*VMServiceUpdateRequest)(nil),  // 6: fits.api.vm.v1.VMServiceUpdateRequest
-	(*VMServiceUpdateResponse)(nil), // 7: fits.api.vm.v1.VMServiceUpdateResponse
-	(*VMServiceListRequest)(nil),    // 8: fits.api.vm.v1.VMServiceListRequest
-	(*VMServiceListResponse)(nil),   // 9: fits.api.vm.v1.VMServiceListResponse
-	(*VMServiceDeleteRequest)(nil),  // 10: fits.api.vm.v1.VMServiceDeleteRequest
-	(*VMServiceDeleteResponse)(nil), // 11: fits.api.vm.v1.VMServiceDeleteResponse
-	(*v1.Meta)(nil),                 // 12: fits.api.v1.Meta
-	(*v1.UpdateMeta)(nil),           // 13: fits.api.v1.UpdateMeta
+	(*VMInstance)(nil),                    // 0: fits.api.vm.v1.VMInstance
+	(*VMServiceGetRequest)(nil),           // 1: fits.api.vm.v1.VMServiceGetRequest
+	(*VMServiceGetResponse)(nil),          // 2: fits.api.vm.v1.VMServiceGetResponse
+	(*VMServiceCreateWindowsRequest)(nil), // 3: fits.api.vm.v1.VMServiceCreateWindowsRequest
+	(*VMServiceCreateLinuxRequest)(nil),   // 4: fits.api.vm.v1.VMServiceCreateLinuxRequest
+	(*VMServiceCreateRequest)(nil),        // 5: fits.api.vm.v1.VMServiceCreateRequest
+	(*LinuxDisk)(nil),                     // 6: fits.api.vm.v1.LinuxDisk
+	(*WindowsDisk)(nil),                   // 7: fits.api.vm.v1.WindowsDisk
+	(*VMServiceCreateResponse)(nil),       // 8: fits.api.vm.v1.VMServiceCreateResponse
+	(*VMServiceUpdateRequest)(nil),        // 9: fits.api.vm.v1.VMServiceUpdateRequest
+	(*VMServiceUpdateResponse)(nil),       // 10: fits.api.vm.v1.VMServiceUpdateResponse
+	(*VMServiceListRequest)(nil),          // 11: fits.api.vm.v1.VMServiceListRequest
+	(*VMServiceListResponse)(nil),         // 12: fits.api.vm.v1.VMServiceListResponse
+	(*VMServiceDeleteRequest)(nil),        // 13: fits.api.vm.v1.VMServiceDeleteRequest
+	(*VMServiceDeleteResponse)(nil),       // 14: fits.api.vm.v1.VMServiceDeleteResponse
+	(*v1.Meta)(nil),                       // 15: fits.api.v1.Meta
+	(*v1.Labels)(nil),                     // 16: fits.api.v1.Labels
+	(*v1.UpdateMeta)(nil),                 // 17: fits.api.v1.UpdateMeta
 }
 var file_fits_api_vm_v1_vm_proto_depIdxs = []int32{
-	12, // 0: fits.api.vm.v1.VMInstance.meta:type_name -> fits.api.v1.Meta
+	15, // 0: fits.api.vm.v1.VMInstance.meta:type_name -> fits.api.v1.Meta
 	0,  // 1: fits.api.vm.v1.VMServiceGetResponse.vm:type_name -> fits.api.vm.v1.VMInstance
-	4,  // 2: fits.api.vm.v1.VMServiceCreateRequest.disks:type_name -> fits.api.vm.v1.Disk
-	13, // 3: fits.api.vm.v1.VMServiceUpdateRequest.update_meta:type_name -> fits.api.v1.UpdateMeta
-	1,  // 4: fits.api.vm.v1.VMService.Get:input_type -> fits.api.vm.v1.VMServiceGetRequest
-	3,  // 5: fits.api.vm.v1.VMService.Create:input_type -> fits.api.vm.v1.VMServiceCreateRequest
-	6,  // 6: fits.api.vm.v1.VMService.Update:input_type -> fits.api.vm.v1.VMServiceUpdateRequest
-	8,  // 7: fits.api.vm.v1.VMService.List:input_type -> fits.api.vm.v1.VMServiceListRequest
-	10, // 8: fits.api.vm.v1.VMService.Delete:input_type -> fits.api.vm.v1.VMServiceDeleteRequest
-	2,  // 9: fits.api.vm.v1.VMService.Get:output_type -> fits.api.vm.v1.VMServiceGetResponse
-	5,  // 10: fits.api.vm.v1.VMService.Create:output_type -> fits.api.vm.v1.VMServiceCreateResponse
-	7,  // 11: fits.api.vm.v1.VMService.Update:output_type -> fits.api.vm.v1.VMServiceUpdateResponse
-	9,  // 12: fits.api.vm.v1.VMService.List:output_type -> fits.api.vm.v1.VMServiceListResponse
-	11, // 13: fits.api.vm.v1.VMService.Delete:output_type -> fits.api.vm.v1.VMServiceDeleteResponse
-	9,  // [9:14] is the sub-list for method output_type
-	4,  // [4:9] is the sub-list for method input_type
-	4,  // [4:4] is the sub-list for extension type_name
-	4,  // [4:4] is the sub-list for extension extendee
-	0,  // [0:4] is the sub-list for field type_name
+	7,  // 2: fits.api.vm.v1.VMServiceCreateWindowsRequest.disk:type_name -> fits.api.vm.v1.WindowsDisk
+	6,  // 3: fits.api.vm.v1.VMServiceCreateLinuxRequest.disk:type_name -> fits.api.vm.v1.LinuxDisk
+	16, // 4: fits.api.vm.v1.VMServiceCreateRequest.labels:type_name -> fits.api.v1.Labels
+	3,  // 5: fits.api.vm.v1.VMServiceCreateRequest.windows:type_name -> fits.api.vm.v1.VMServiceCreateWindowsRequest
+	4,  // 6: fits.api.vm.v1.VMServiceCreateRequest.linux:type_name -> fits.api.vm.v1.VMServiceCreateLinuxRequest
+	17, // 7: fits.api.vm.v1.VMServiceUpdateRequest.update_meta:type_name -> fits.api.v1.UpdateMeta
+	1,  // 8: fits.api.vm.v1.VMService.Get:input_type -> fits.api.vm.v1.VMServiceGetRequest
+	5,  // 9: fits.api.vm.v1.VMService.Create:input_type -> fits.api.vm.v1.VMServiceCreateRequest
+	9,  // 10: fits.api.vm.v1.VMService.Update:input_type -> fits.api.vm.v1.VMServiceUpdateRequest
+	11, // 11: fits.api.vm.v1.VMService.List:input_type -> fits.api.vm.v1.VMServiceListRequest
+	13, // 12: fits.api.vm.v1.VMService.Delete:input_type -> fits.api.vm.v1.VMServiceDeleteRequest
+	2,  // 13: fits.api.vm.v1.VMService.Get:output_type -> fits.api.vm.v1.VMServiceGetResponse
+	8,  // 14: fits.api.vm.v1.VMService.Create:output_type -> fits.api.vm.v1.VMServiceCreateResponse
+	10, // 15: fits.api.vm.v1.VMService.Update:output_type -> fits.api.vm.v1.VMServiceUpdateResponse
+	12, // 16: fits.api.vm.v1.VMService.List:output_type -> fits.api.vm.v1.VMServiceListResponse
+	14, // 17: fits.api.vm.v1.VMService.Delete:output_type -> fits.api.vm.v1.VMServiceDeleteResponse
+	13, // [13:18] is the sub-list for method output_type
+	8,  // [8:13] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_vm_v1_vm_proto_init() }
@@ -810,15 +1111,19 @@ func file_fits_api_vm_v1_vm_proto_init() {
 	if File_fits_api_vm_v1_vm_proto != nil {
 		return
 	}
-	file_fits_api_vm_v1_vm_proto_msgTypes[3].OneofWrappers = []any{}
-	file_fits_api_vm_v1_vm_proto_msgTypes[4].OneofWrappers = []any{}
+	file_fits_api_vm_v1_vm_proto_msgTypes[5].OneofWrappers = []any{
+		(*VMServiceCreateRequest_Windows)(nil),
+		(*VMServiceCreateRequest_Linux)(nil),
+	}
+	file_fits_api_vm_v1_vm_proto_msgTypes[6].OneofWrappers = []any{}
+	file_fits_api_vm_v1_vm_proto_msgTypes[7].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_fits_api_vm_v1_vm_proto_rawDesc), len(file_fits_api_vm_v1_vm_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

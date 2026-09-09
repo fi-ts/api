@@ -91,6 +91,8 @@ export const LocationServiceListResponseSchema: GenMessage<LocationServiceListRe
 /**
  * LocationService lists datacenter locations available for VM instances.
  * TODO wurde besprochen am 09.09.26
+ * TODO muss zu "Pod" werden. User erstellen eine VM nicht pro location, sondern pro Pod
+ * TODO Ein Pod ist fest an einer location verankert.
  *
  * @generated from service fits.api.vm.v1.LocationService
  */

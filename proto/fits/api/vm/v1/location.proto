@@ -8,6 +8,8 @@ import "fits/api/v1/predefined_rules.proto";
 
 // LocationService lists datacenter locations available for VM instances.
 // TODO wurde besprochen am 09.09.26
+// TODO muss zu "Pod" werden. User erstellen eine VM nicht pro location, sondern pro Pod
+// TODO Ein Pod ist fest an einer location verankert.
 service LocationService {
   // Returns a list of all datacenter locations.
   rpc List(LocationServiceListRequest) returns (LocationServiceListResponse) {
