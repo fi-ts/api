@@ -43,6 +43,7 @@ service VMService {
 }
 
 // VM Instance Messages
+// TODO NucleusDBVMs und NucleusDBVMsLightUser aussortieren
 message VMInstance {
   // Uuid of this VM
   string uuid = 1 [(buf.validate.field).string.uuid = true];
@@ -120,9 +121,9 @@ message VMServiceCreateRequest {
   string order_number = 11;
   // Currently no different backup plans, just true or false
   bool backup = 12;
-  // V0, V1, V2, V3 -> highest=best
+  // v0, v1, v2, v3 -> highest=best
   string availability = 13;
-  // SZ1, SZ2, SZ3 -> highest=best
+  // sz1, sz2, sz3 -> highest=best
   string serviceclass = 14;
   // TODO differentiation Linux/Windows
   oneof vmtype {
@@ -204,7 +205,10 @@ message VMServiceListRequest {
 }
 
 // VMServiceListResponse TODO
-message VMServiceListResponse {}
+message VMServiceListResponse {
+  // List of VM instances
+  repeated VMInstance vms = 1;
+}
 
 // VMServiceDeleteRequest TODO
 message VMServiceDeleteRequest {
