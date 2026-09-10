@@ -16,7 +16,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/vm/v1/vm.proto.
  */
 export const file_fits_api_vm_v1_vm: GenFile = /*@__PURE__*/
-  fileDesc("ChdmaXRzL2FwaS92bS92MS92bS5wcm90bxIOZml0cy5hcGkudm0udjEi3QQKClZNSW5zdGFuY2USFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESHwoEbWV0YRgCIAEoCzIRLmZpdHMuYXBpLnYxLk1ldGESGQoEZnFkbhgDIAEoCUILukgIcgbAs66xAgESHgoMcHJvamVjdF91dWlkGAQgASgJQgi6SAVyA7ABARIZCgdvc191dWlkGAUgASgJQgi6SAVyA7ABARIfCg1sb2NhdGlvbl91dWlkGAYgASgJQgi6SAVyA7ABARIeCgxjb250YWN0X3V1aWQYByABKAlCCLpIBXIDsAEBEgsKA2NwdRgIIAEoDRILCgNyYW0YCSABKA0SFAoMb3JkZXJfbnVtYmVyGAogASgJEhAKCGNvbnRyYWN0GAsgASgIEg4KBmJhY2t1cBgMIAEoCBIUCgxhdmFpbGFiaWxpdHkYDSABKAkSFAoMc2VydmljZWNsYXNzGA4gASgJEg4KBnN0YXR1cxgZIAEoCRITCgtzdGF0dXNfaW5mbxgQIAEoCRI5Cg93aW5kb3dzX2RldGFpbHMYESABKAsyHi5maXRzLmFwaS52bS52MS5XaW5kb3dzRGV0YWlsc0gAEjUKDWxpbnV4X2RldGFpbHMYEiABKAsyHC5maXRzLmFwaS52bS52MS5MaW51eERldGFpbHNIABI0CgppbnRlcmZhY2VzGBMgAygLMiAuZml0cy5hcGkudm0udjEuTmV0d29ya0ludGVyZmFjZRIiCgR2bGFuGBQgASgLMhQuZml0cy5hcGkudm0udjEuVmxhbkIQCgdkZXRhaWxzEgW6SAIIASJ1CgxMaW51eERldGFpbHMSKAoFZGlza3MYASADKAsyGS5maXRzLmFwaS52bS52MS5MaW51eERpc2sSGwoJbGRhcF91dWlkGAIgASgJQgi6SAVyA7ABARIeCglsZGFwX2ZxZG4YAyABKAlCC7pICHIGwLOusQIBIn0KDldpbmRvd3NEZXRhaWxzEioKBWRpc2tzGAEgAygLMhsuZml0cy5hcGkudm0udjEuV2luZG93c0Rpc2sSHQoLZG9tYWluX3V1aWQYAiABKAlCCLpIBXIDsAEBEiAKC2RvbWFpbl9mcWRuGAMgASgJQgu6SAhyBsCzrrECASJeChBOZXR3b3JrSW50ZXJmYWNlEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEh4KCWlwYWRkcmVzcxgCIAEoCUILukgIcgbos66xAgESEgoKbWFjYWRkcmVzcxgDIAEoCSJIChNWTVNlcnZpY2VHZXRSZXF1ZXN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEhkKB3Byb2plY3QYAiABKAlCCLpIBXIDsAEBIj4KFFZNU2VydmljZUdldFJlc3BvbnNlEiYKAnZtGAEgASgLMhouZml0cy5hcGkudm0udjEuVk1JbnN0YW5jZSJpCh1WTVNlcnZpY2VDcmVhdGVXaW5kb3dzUmVxdWVzdBIdCgtkb21haW5fdXVpZBgBIAEoCUIIukgFcgOwAQESKQoEZGlzaxgCIAEoCzIbLmZpdHMuYXBpLnZtLnYxLldpbmRvd3NEaXNrImMKG1ZNU2VydmljZUNyZWF0ZUxpbnV4UmVxdWVzdBIbCglsZGFwX3V1aWQYASABKAlCCLpIBXIDsAEBEicKBGRpc2sYAiABKAsyGS5maXRzLmFwaS52bS52MS5MaW51eERpc2si/AMKFlZNU2VydmljZUNyZWF0ZVJlcXVlc3QSHgoMcHJvamVjdF91dWlkGAEgASgJQgi6SAVyA7ABARIeCgRuYW1lGAIgASgJQgu6SAhyBsCzrrECAUgBiAEBEhkKB29zX3V1aWQYAyABKAlCCLpIBXIDsAEBEhsKCXZsYW5fdXVpZBgEIAEoCUIIukgFcgOwAQESHwoNbG9jYXRpb25fdXVpZBgFIAEoCUIIukgFcgOwAQESHgoMY29udGFjdF91dWlkGAYgASgJQgi6SAVyA7ABARILCgNjcHUYByABKA0SCwoDcmFtGAggASgNEhQKDG9yZGVyX251bWJlchgJIAEoCRIjCgZsYWJlbHMYCiABKAsyEy5maXRzLmFwaS52MS5MYWJlbHMSDgoGYmFja3VwGAsgASgIEhQKDGF2YWlsYWJpbGl0eRgMIAEoCRIUCgxzZXJ2aWNlY2xhc3MYDSABKAkSQAoHd2luZG93cxgOIAEoCzItLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZUNyZWF0ZVdpbmRvd3NSZXF1ZXN0SAASPAoFbGludXgYDyABKAsyKy5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VDcmVhdGVMaW51eFJlcXVlc3RIAEIPCgZ2bXR5cGUSBbpIAggBQgcKBV9uYW1lIoEBCglMaW51eERpc2sSEwoLYXV0b19leHRlbmQYASABKAgSFwoKc2l6ZV9pbl9nYhgCIAEoBEgAiAEBEg0KBWxhYmVsGAQgASgJEhgKC21vdW50X3BvaW50GAUgASgJSAGIAQFCDQoLX3NpemVfaW5fZ2JCDgoMX21vdW50X3BvaW50IoMBCgtXaW5kb3dzRGlzaxITCgthdXRvX2V4dGVuZBgBIAEoCBIXCgpzaXplX2luX2diGAIgASgESACIAQESGAoLZHJpdmVsZXR0ZXIYAyABKAlIAYgBARINCgVsYWJlbBgEIAEoCUINCgtfc2l6ZV9pbl9nYkIOCgxfZHJpdmVsZXR0ZXIiGQoXVk1TZXJ2aWNlQ3JlYXRlUmVzcG9uc2UibgoWVk1TZXJ2aWNlVXBkYXRlUmVxdWVzdBIeCgxwcm9qZWN0X3V1aWQYASABKAlCCLpIBXIDsAEBEjQKC3VwZGF0ZV9tZXRhGAIgASgLMhcuZml0cy5hcGkudjEuVXBkYXRlTWV0YUIGukgDyAEBIhkKF1ZNU2VydmljZVVwZGF0ZVJlc3BvbnNlImwKFFZNU2VydmljZUxpc3RSZXF1ZXN0EhMKBnRlbmFudBgBIAEoCUgAiAEBEiMKDHByb2plY3RfdXVpZBgCIAEoCUIIukgFcgOwAQFIAYgBAUIJCgdfdGVuYW50Qg8KDV9wcm9qZWN0X3V1aWQiQAoVVk1TZXJ2aWNlTGlzdFJlc3BvbnNlEicKA3ZtcxgBIAMoCzIaLmZpdHMuYXBpLnZtLnYxLlZNSW5zdGFuY2UiMwoWVk1TZXJ2aWNlRGVsZXRlUmVxdWVzdBIZCgdwcm9qZWN0GAEgASgJQgi6SAVyA7ABASIZChdWTVNlcnZpY2VEZWxldGVSZXNwb25zZTKBBAoJVk1TZXJ2aWNlEl0KA0dldBIjLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZUdldFJlcXVlc3QaJC5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VHZXRSZXNwb25zZSILyvMYAwECA+DzGAISZQoGQ3JlYXRlEiYuZml0cy5hcGkudm0udjEuVk1TZXJ2aWNlQ3JlYXRlUmVxdWVzdBonLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZUNyZWF0ZVJlc3BvbnNlIgrK8xgCAQLg8xgBEmUKBlVwZGF0ZRImLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZVVwZGF0ZVJlcXVlc3QaJy5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VVcGRhdGVSZXNwb25zZSIKyvMYAgEC4PMYARJgCgRMaXN0EiQuZml0cy5hcGkudm0udjEuVk1TZXJ2aWNlTGlzdFJlcXVlc3QaJS5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VMaXN0UmVzcG9uc2UiC8rzGAMBAgPg8xgCEmUKBkRlbGV0ZRImLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZURlbGV0ZVJlcXVlc3QaJy5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VEZWxldGVSZXNwb25zZSIKyvMYAgEC4PMYAUKlAQoSY29tLmZpdHMuYXBpLnZtLnYxQgdWbVByb3RvUAFaK2dpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL3ZtL3YxO3ZtdjGiAgNGQVaqAg5GaXRzLkFwaS5WbS5WMcoCDkZpdHNcQXBpXFZtXFYx4gIaRml0c1xBcGlcVm1cVjFcR1BCTWV0YWRhdGHqAhFGaXRzOjpBcGk6OlZtOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules, file_fits_api_vm_v1_vlan]);
+  fileDesc("ChdmaXRzL2FwaS92bS92MS92bS5wcm90bxIOZml0cy5hcGkudm0udjEi+gQKClZNSW5zdGFuY2USFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESHwoEbWV0YRgCIAEoCzIRLmZpdHMuYXBpLnYxLk1ldGESGQoEZnFkbhgDIAEoCUILukgIcgbAs66xAgESGwoGdGVuYW50GAQgASgJQgu6SAhyBsCzrrECARIeCgxwcm9qZWN0X3V1aWQYBSABKAlCCLpIBXIDsAEBEhkKB29zX3V1aWQYBiABKAlCCLpIBXIDsAEBEh8KDWxvY2F0aW9uX3V1aWQYByABKAlCCLpIBXIDsAEBEh4KDGNvbnRhY3RfdXVpZBgIIAEoCUIIukgFcgOwAQESCwoDY3B1GAkgASgNEgsKA3JhbRgKIAEoDRIUCgxvcmRlcl9udW1iZXIYCyABKAkSEAoIY29udHJhY3QYDCABKAgSDgoGYmFja3VwGA0gASgIEhQKDGF2YWlsYWJpbGl0eRgOIAEoCRIUCgxzZXJ2aWNlY2xhc3MYDyABKAkSDgoGc3RhdHVzGBAgASgJEhMKC3N0YXR1c19pbmZvGBEgASgJEjkKD3dpbmRvd3NfZGV0YWlscxgSIAEoCzIeLmZpdHMuYXBpLnZtLnYxLldpbmRvd3NEZXRhaWxzSAASNQoNbGludXhfZGV0YWlscxgTIAEoCzIcLmZpdHMuYXBpLnZtLnYxLkxpbnV4RGV0YWlsc0gAEjQKCmludGVyZmFjZXMYFCADKAsyIC5maXRzLmFwaS52bS52MS5OZXR3b3JrSW50ZXJmYWNlEiIKBHZsYW4YFSABKAsyFC5maXRzLmFwaS52bS52MS5WbGFuQhAKB2RldGFpbHMSBbpIAggBInUKDExpbnV4RGV0YWlscxIoCgVkaXNrcxgBIAMoCzIZLmZpdHMuYXBpLnZtLnYxLkxpbnV4RGlzaxIbCglsZGFwX3V1aWQYAiABKAlCCLpIBXIDsAEBEh4KCWxkYXBfZnFkbhgDIAEoCUILukgIcgbAs66xAgEifQoOV2luZG93c0RldGFpbHMSKgoFZGlza3MYASADKAsyGy5maXRzLmFwaS52bS52MS5XaW5kb3dzRGlzaxIdCgtkb21haW5fdXVpZBgCIAEoCUIIukgFcgOwAQESIAoLZG9tYWluX2ZxZG4YAyABKAlCC7pICHIGwLOusQIBIl4KEE5ldHdvcmtJbnRlcmZhY2USFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESHgoJaXBhZGRyZXNzGAIgASgJQgu6SAhyBuizrrECARISCgptYWNhZGRyZXNzGAMgASgJIkgKE1ZNU2VydmljZUdldFJlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESGQoHcHJvamVjdBgCIAEoCUIIukgFcgOwAQEiPgoUVk1TZXJ2aWNlR2V0UmVzcG9uc2USJgoCdm0YASABKAsyGi5maXRzLmFwaS52bS52MS5WTUluc3RhbmNlImkKHVZNU2VydmljZUNyZWF0ZVdpbmRvd3NSZXF1ZXN0Eh0KC2RvbWFpbl91dWlkGAEgASgJQgi6SAVyA7ABARIpCgRkaXNrGAIgASgLMhsuZml0cy5hcGkudm0udjEuV2luZG93c0Rpc2siYwobVk1TZXJ2aWNlQ3JlYXRlTGludXhSZXF1ZXN0EhsKCWxkYXBfdXVpZBgBIAEoCUIIukgFcgOwAQESJwoEZGlzaxgCIAEoCzIZLmZpdHMuYXBpLnZtLnYxLkxpbnV4RGlzayL8AwoWVk1TZXJ2aWNlQ3JlYXRlUmVxdWVzdBIeCgxwcm9qZWN0X3V1aWQYASABKAlCCLpIBXIDsAEBEh4KBG5hbWUYAiABKAlCC7pICHIGwLOusQIBSAGIAQESGQoHb3NfdXVpZBgDIAEoCUIIukgFcgOwAQESGwoJdmxhbl91dWlkGAQgASgJQgi6SAVyA7ABARIfCg1sb2NhdGlvbl91dWlkGAUgASgJQgi6SAVyA7ABARIeCgxjb250YWN0X3V1aWQYBiABKAlCCLpIBXIDsAEBEgsKA2NwdRgHIAEoDRILCgNyYW0YCCABKA0SFAoMb3JkZXJfbnVtYmVyGAkgASgJEiMKBmxhYmVscxgKIAEoCzITLmZpdHMuYXBpLnYxLkxhYmVscxIOCgZiYWNrdXAYCyABKAgSFAoMYXZhaWxhYmlsaXR5GAwgASgJEhQKDHNlcnZpY2VjbGFzcxgNIAEoCRJACgd3aW5kb3dzGA4gASgLMi0uZml0cy5hcGkudm0udjEuVk1TZXJ2aWNlQ3JlYXRlV2luZG93c1JlcXVlc3RIABI8CgVsaW51eBgPIAEoCzIrLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZUNyZWF0ZUxpbnV4UmVxdWVzdEgAQg8KBnZtdHlwZRIFukgCCAFCBwoFX25hbWUigQEKCUxpbnV4RGlzaxITCgthdXRvX2V4dGVuZBgBIAEoCBIXCgpzaXplX2luX2diGAIgASgESACIAQESDQoFbGFiZWwYBCABKAkSGAoLbW91bnRfcG9pbnQYBSABKAlIAYgBAUINCgtfc2l6ZV9pbl9nYkIOCgxfbW91bnRfcG9pbnQigwEKC1dpbmRvd3NEaXNrEhMKC2F1dG9fZXh0ZW5kGAEgASgIEhcKCnNpemVfaW5fZ2IYAiABKARIAIgBARIYCgtkcml2ZWxldHRlchgDIAEoCUgBiAEBEg0KBWxhYmVsGAQgASgJQg0KC19zaXplX2luX2diQg4KDF9kcml2ZWxldHRlciIZChdWTVNlcnZpY2VDcmVhdGVSZXNwb25zZSJuChZWTVNlcnZpY2VVcGRhdGVSZXF1ZXN0Eh4KDHByb2plY3RfdXVpZBgBIAEoCUIIukgFcgOwAQESNAoLdXBkYXRlX21ldGEYAiABKAsyFy5maXRzLmFwaS52MS5VcGRhdGVNZXRhQga6SAPIAQEiGQoXVk1TZXJ2aWNlVXBkYXRlUmVzcG9uc2UibAoUVk1TZXJ2aWNlTGlzdFJlcXVlc3QSEwoGdGVuYW50GAEgASgJSACIAQESIwoMcHJvamVjdF91dWlkGAIgASgJQgi6SAVyA7ABAUgBiAEBQgkKB190ZW5hbnRCDwoNX3Byb2plY3RfdXVpZCJAChVWTVNlcnZpY2VMaXN0UmVzcG9uc2USJwoDdm1zGAEgAygLMhouZml0cy5hcGkudm0udjEuVk1JbnN0YW5jZSIzChZWTVNlcnZpY2VEZWxldGVSZXF1ZXN0EhkKB3Byb2plY3QYASABKAlCCLpIBXIDsAEBIhkKF1ZNU2VydmljZURlbGV0ZVJlc3BvbnNlMoEECglWTVNlcnZpY2USXQoDR2V0EiMuZml0cy5hcGkudm0udjEuVk1TZXJ2aWNlR2V0UmVxdWVzdBokLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZUdldFJlc3BvbnNlIgvK8xgDAQID4PMYAhJlCgZDcmVhdGUSJi5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VDcmVhdGVSZXF1ZXN0GicuZml0cy5hcGkudm0udjEuVk1TZXJ2aWNlQ3JlYXRlUmVzcG9uc2UiCsrzGAIBAuDzGAESZQoGVXBkYXRlEiYuZml0cy5hcGkudm0udjEuVk1TZXJ2aWNlVXBkYXRlUmVxdWVzdBonLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZVVwZGF0ZVJlc3BvbnNlIgrK8xgCAQLg8xgBEmAKBExpc3QSJC5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VMaXN0UmVxdWVzdBolLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZUxpc3RSZXNwb25zZSILyvMYAwECA+DzGAISZQoGRGVsZXRlEiYuZml0cy5hcGkudm0udjEuVk1TZXJ2aWNlRGVsZXRlUmVxdWVzdBonLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZURlbGV0ZVJlc3BvbnNlIgrK8xgCAQLg8xgBQqUBChJjb20uZml0cy5hcGkudm0udjFCB1ZtUHJvdG9QAVorZ2l0aHViLmNvbS9maS10cy9hcGkvZ28vZml0cy9hcGkvdm0vdjE7dm12MaICA0ZBVqoCDkZpdHMuQXBpLlZtLlYxygIORml0c1xBcGlcVm1cVjHiAhpGaXRzXEFwaVxWbVxWMVxHUEJNZXRhZGF0YeoCEUZpdHM6OkFwaTo6Vm06OlYxYgZwcm90bzM", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules, file_fits_api_vm_v1_vlan]);
 
 /**
  * VM Instance Messages
@@ -49,9 +49,16 @@ export type VMInstance = Message<"fits.api.vm.v1.VMInstance"> & {
   fqdn: string;
 
   /**
+   * Tenant this VM belongs to.
+   *
+   * @generated from field: string tenant = 4;
+   */
+  tenant: string;
+
+  /**
    * UUID of the project this VM belongs to.
    *
-   * @generated from field: string project_uuid = 4;
+   * @generated from field: string project_uuid = 5;
    */
   projectUuid: string;
 
@@ -59,7 +66,7 @@ export type VMInstance = Message<"fits.api.vm.v1.VMInstance"> & {
    * UUID of the operating system image installed on the VM.
    * Resolve the human-readable title via the OS endpoint.
    *
-   * @generated from field: string os_uuid = 5;
+   * @generated from field: string os_uuid = 6;
    */
   osUuid: string;
 
@@ -68,77 +75,77 @@ export type VMInstance = Message<"fits.api.vm.v1.VMInstance"> & {
    * The VM is automatically scheduled into one pod within the chosen location;
    * users select the city but not the specific datacenter.
    *
-   * @generated from field: string location_uuid = 6;
+   * @generated from field: string location_uuid = 7;
    */
   locationUuid: string;
 
   /**
    * TODO: Contact UUID – not yet implemented; open discussion with FCN (#23).
    *
-   * @generated from field: string contact_uuid = 7;
+   * @generated from field: string contact_uuid = 8;
    */
   contactUuid: string;
 
   /**
    * Number of CPU cores.
    *
-   * @generated from field: uint32 cpu = 8;
+   * @generated from field: uint32 cpu = 9;
    */
   cpu: number;
 
   /**
    * RAM in GB.
    *
-   * @generated from field: uint32 ram = 9;
+   * @generated from field: uint32 ram = 10;
    */
   ram: number;
 
   /**
    * Internal reference number provided by the user, e.g. a ticket ID.
    *
-   * @generated from field: string order_number = 10;
+   * @generated from field: string order_number = 11;
    */
   orderNumber: string;
 
   /**
    * Whether the order was placed by FITS (true) or self-service by the user (false).
    *
-   * @generated from field: bool contract = 11;
+   * @generated from field: bool contract = 12;
    */
   contract: boolean;
 
   /**
    * Whether backup is enabled.
    *
-   * @generated from field: bool backup = 12;
+   * @generated from field: bool backup = 13;
    */
   backup: boolean;
 
   /**
    * Availability level: v0, v1, v2, v3 (higher value = higher availability).
    *
-   * @generated from field: string availability = 13;
+   * @generated from field: string availability = 14;
    */
   availability: string;
 
   /**
    * Service class: sz1, sz2, sz3 (higher value = higher tier).
    *
-   * @generated from field: string serviceclass = 14;
+   * @generated from field: string serviceclass = 15;
    */
   serviceclass: string;
 
   /**
    * Status of the ongoing operation.
    *
-   * @generated from field: string status = 25;
+   * @generated from field: string status = 16;
    */
   status: string;
 
   /**
    * Additional information about the current status.
    *
-   * @generated from field: string status_info = 16;
+   * @generated from field: string status_info = 17;
    */
   statusInfo: string;
 
@@ -151,7 +158,7 @@ export type VMInstance = Message<"fits.api.vm.v1.VMInstance"> & {
     /**
      * Windows-specific settings (domain + disks).
      *
-     * @generated from field: fits.api.vm.v1.WindowsDetails windows_details = 17;
+     * @generated from field: fits.api.vm.v1.WindowsDetails windows_details = 18;
      */
     value: WindowsDetails;
     case: "windowsDetails";
@@ -159,7 +166,7 @@ export type VMInstance = Message<"fits.api.vm.v1.VMInstance"> & {
     /**
      * Linux-specific settings (LDAP + disks).
      *
-     * @generated from field: fits.api.vm.v1.LinuxDetails linux_details = 18;
+     * @generated from field: fits.api.vm.v1.LinuxDetails linux_details = 19;
      */
     value: LinuxDetails;
     case: "linuxDetails";
@@ -168,14 +175,14 @@ export type VMInstance = Message<"fits.api.vm.v1.VMInstance"> & {
   /**
    * Network interfaces attached to the VM (IPv4 only).
    *
-   * @generated from field: repeated fits.api.vm.v1.NetworkInterface interfaces = 19;
+   * @generated from field: repeated fits.api.vm.v1.NetworkInterface interfaces = 20;
    */
   interfaces: NetworkInterface[];
 
   /**
    * VLAN the VM is attached to.
    *
-   * @generated from field: fits.api.vm.v1.Vlan vlan = 20;
+   * @generated from field: fits.api.vm.v1.Vlan vlan = 21;
    */
   vlan?: Vlan | undefined;
 };

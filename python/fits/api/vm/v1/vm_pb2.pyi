@@ -11,10 +11,11 @@ from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class VMInstance(_message.Message):
-    __slots__ = ("uuid", "meta", "fqdn", "project_uuid", "os_uuid", "location_uuid", "contact_uuid", "cpu", "ram", "order_number", "contract", "backup", "availability", "serviceclass", "status", "status_info", "windows_details", "linux_details", "interfaces", "vlan")
+    __slots__ = ("uuid", "meta", "fqdn", "tenant", "project_uuid", "os_uuid", "location_uuid", "contact_uuid", "cpu", "ram", "order_number", "contract", "backup", "availability", "serviceclass", "status", "status_info", "windows_details", "linux_details", "interfaces", "vlan")
     UUID_FIELD_NUMBER: _ClassVar[int]
     META_FIELD_NUMBER: _ClassVar[int]
     FQDN_FIELD_NUMBER: _ClassVar[int]
+    TENANT_FIELD_NUMBER: _ClassVar[int]
     PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
     OS_UUID_FIELD_NUMBER: _ClassVar[int]
     LOCATION_UUID_FIELD_NUMBER: _ClassVar[int]
@@ -35,6 +36,7 @@ class VMInstance(_message.Message):
     uuid: str
     meta: _common_pb2.Meta
     fqdn: str
+    tenant: str
     project_uuid: str
     os_uuid: str
     location_uuid: str
@@ -52,7 +54,7 @@ class VMInstance(_message.Message):
     linux_details: LinuxDetails
     interfaces: _containers.RepeatedCompositeFieldContainer[NetworkInterface]
     vlan: _vlan_pb2.Vlan
-    def __init__(self, uuid: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., fqdn: _Optional[str] = ..., project_uuid: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., order_number: _Optional[str] = ..., contract: _Optional[bool] = ..., backup: _Optional[bool] = ..., availability: _Optional[str] = ..., serviceclass: _Optional[str] = ..., status: _Optional[str] = ..., status_info: _Optional[str] = ..., windows_details: _Optional[_Union[WindowsDetails, _Mapping]] = ..., linux_details: _Optional[_Union[LinuxDetails, _Mapping]] = ..., interfaces: _Optional[_Iterable[_Union[NetworkInterface, _Mapping]]] = ..., vlan: _Optional[_Union[_vlan_pb2.Vlan, _Mapping]] = ...) -> None: ...
+    def __init__(self, uuid: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., fqdn: _Optional[str] = ..., tenant: _Optional[str] = ..., project_uuid: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., order_number: _Optional[str] = ..., contract: _Optional[bool] = ..., backup: _Optional[bool] = ..., availability: _Optional[str] = ..., serviceclass: _Optional[str] = ..., status: _Optional[str] = ..., status_info: _Optional[str] = ..., windows_details: _Optional[_Union[WindowsDetails, _Mapping]] = ..., linux_details: _Optional[_Union[LinuxDetails, _Mapping]] = ..., interfaces: _Optional[_Iterable[_Union[NetworkInterface, _Mapping]]] = ..., vlan: _Optional[_Union[_vlan_pb2.Vlan, _Mapping]] = ...) -> None: ...
 
 class LinuxDetails(_message.Message):
     __slots__ = ("disks", "ldap_uuid", "ldap_fqdn")
