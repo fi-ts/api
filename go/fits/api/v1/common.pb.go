@@ -647,6 +647,71 @@ func (x *UpdateMeta) GetLockingStrategy() OptimisticLockingStrategy {
 	return OptimisticLockingStrategy_OPTIMISTIC_LOCKING_STRATEGY_UNSPECIFIED
 }
 
+// ValidationError describes a single validation problem reported by an upstream API.
+// Used to surface structured validation errors (e.g. HTTP 422) returned by backends.
+type ValidationError struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Location of the validation error within the request, e.g. ["body", "tenant_uuid"]
+	Loc []string `protobuf:"bytes,1,rep,name=loc,proto3" json:"loc,omitempty"`
+	// Human readable error message
+	Msg string `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
+	// Type of the validation error, e.g. "value_error"
+	Type          string `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ValidationError) Reset() {
+	*x = ValidationError{}
+	mi := &file_fits_api_v1_common_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ValidationError) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ValidationError) ProtoMessage() {}
+
+func (x *ValidationError) ProtoReflect() protoreflect.Message {
+	mi := &file_fits_api_v1_common_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ValidationError.ProtoReflect.Descriptor instead.
+func (*ValidationError) Descriptor() ([]byte, []int) {
+	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *ValidationError) GetLoc() []string {
+	if x != nil {
+		return x.Loc
+	}
+	return nil
+}
+
+func (x *ValidationError) GetMsg() string {
+	if x != nil {
+		return x.Msg
+	}
+	return ""
+}
+
+func (x *ValidationError) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
 var file_fits_api_v1_common_proto_extTypes = []protoimpl.ExtensionInfo{
 	{
 		ExtendedType:  (*descriptorpb.MethodOptions)(nil),
@@ -762,7 +827,11 @@ const file_fits_api_v1_common_proto_rawDesc = "" +
 	"UpdateMeta\x129\n" +
 	"\n" +
 	"updated_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12[\n" +
-	"\x10locking_strategy\x18\x02 \x01(\x0e2&.fits.api.v1.OptimisticLockingStrategyB\b\xbaH\x05\x82\x01\x02\x10\x01R\x0flockingStrategy*\x87\x01\n" +
+	"\x10locking_strategy\x18\x02 \x01(\x0e2&.fits.api.v1.OptimisticLockingStrategyB\b\xbaH\x05\x82\x01\x02\x10\x01R\x0flockingStrategy\"I\n" +
+	"\x0fValidationError\x12\x10\n" +
+	"\x03loc\x18\x01 \x03(\tR\x03loc\x12\x10\n" +
+	"\x03msg\x18\x02 \x01(\tR\x03msg\x12\x12\n" +
+	"\x04type\x18\x03 \x01(\tR\x04type*\x87\x01\n" +
 	"\n" +
 	"TenantRole\x12\x1b\n" +
 	"\x17TENANT_ROLE_UNSPECIFIED\x10\x00\x12\x15\n" +
@@ -816,7 +885,7 @@ func file_fits_api_v1_common_proto_rawDescGZIP() []byte {
 }
 
 var file_fits_api_v1_common_proto_enumTypes = make([]protoimpl.EnumInfo, 6)
-var file_fits_api_v1_common_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_fits_api_v1_common_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_fits_api_v1_common_proto_goTypes = []any{
 	(TenantRole)(0),                       // 0: fits.api.v1.TenantRole
 	(ProjectRole)(0),                      // 1: fits.api.v1.ProjectRole
@@ -829,25 +898,26 @@ var file_fits_api_v1_common_proto_goTypes = []any{
 	(*Meta)(nil),                          // 8: fits.api.v1.Meta
 	(*UpdateLabels)(nil),                  // 9: fits.api.v1.UpdateLabels
 	(*UpdateMeta)(nil),                    // 10: fits.api.v1.UpdateMeta
-	nil,                                   // 11: fits.api.v1.Labels.LabelsEntry
-	(*timestamppb.Timestamp)(nil),         // 12: google.protobuf.Timestamp
-	(*descriptorpb.MethodOptions)(nil),    // 13: google.protobuf.MethodOptions
-	(*descriptorpb.EnumValueOptions)(nil), // 14: google.protobuf.EnumValueOptions
+	(*ValidationError)(nil),               // 11: fits.api.v1.ValidationError
+	nil,                                   // 12: fits.api.v1.Labels.LabelsEntry
+	(*timestamppb.Timestamp)(nil),         // 13: google.protobuf.Timestamp
+	(*descriptorpb.MethodOptions)(nil),    // 14: google.protobuf.MethodOptions
+	(*descriptorpb.EnumValueOptions)(nil), // 15: google.protobuf.EnumValueOptions
 }
 var file_fits_api_v1_common_proto_depIdxs = []int32{
-	11, // 0: fits.api.v1.Labels.labels:type_name -> fits.api.v1.Labels.LabelsEntry
+	12, // 0: fits.api.v1.Labels.labels:type_name -> fits.api.v1.Labels.LabelsEntry
 	7,  // 1: fits.api.v1.Meta.labels:type_name -> fits.api.v1.Labels
-	12, // 2: fits.api.v1.Meta.created_at:type_name -> google.protobuf.Timestamp
-	12, // 3: fits.api.v1.Meta.updated_at:type_name -> google.protobuf.Timestamp
+	13, // 2: fits.api.v1.Meta.created_at:type_name -> google.protobuf.Timestamp
+	13, // 3: fits.api.v1.Meta.updated_at:type_name -> google.protobuf.Timestamp
 	7,  // 4: fits.api.v1.UpdateLabels.update:type_name -> fits.api.v1.Labels
-	12, // 5: fits.api.v1.UpdateMeta.updated_at:type_name -> google.protobuf.Timestamp
+	13, // 5: fits.api.v1.UpdateMeta.updated_at:type_name -> google.protobuf.Timestamp
 	5,  // 6: fits.api.v1.UpdateMeta.locking_strategy:type_name -> fits.api.v1.OptimisticLockingStrategy
-	13, // 7: fits.api.v1.tenant_roles:extendee -> google.protobuf.MethodOptions
-	13, // 8: fits.api.v1.project_roles:extendee -> google.protobuf.MethodOptions
-	13, // 9: fits.api.v1.admin_roles:extendee -> google.protobuf.MethodOptions
-	13, // 10: fits.api.v1.visibility:extendee -> google.protobuf.MethodOptions
-	13, // 11: fits.api.v1.auditing:extendee -> google.protobuf.MethodOptions
-	14, // 12: fits.api.v1.enum_string_value:extendee -> google.protobuf.EnumValueOptions
+	14, // 7: fits.api.v1.tenant_roles:extendee -> google.protobuf.MethodOptions
+	14, // 8: fits.api.v1.project_roles:extendee -> google.protobuf.MethodOptions
+	14, // 9: fits.api.v1.admin_roles:extendee -> google.protobuf.MethodOptions
+	14, // 10: fits.api.v1.visibility:extendee -> google.protobuf.MethodOptions
+	14, // 11: fits.api.v1.auditing:extendee -> google.protobuf.MethodOptions
+	15, // 12: fits.api.v1.enum_string_value:extendee -> google.protobuf.EnumValueOptions
 	0,  // 13: fits.api.v1.tenant_roles:type_name -> fits.api.v1.TenantRole
 	1,  // 14: fits.api.v1.project_roles:type_name -> fits.api.v1.ProjectRole
 	2,  // 15: fits.api.v1.admin_roles:type_name -> fits.api.v1.AdminRole
@@ -874,7 +944,7 @@ func file_fits_api_v1_common_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_fits_api_v1_common_proto_rawDesc), len(file_fits_api_v1_common_proto_rawDesc)),
 			NumEnums:      6,
-			NumMessages:   6,
+			NumMessages:   7,
 			NumExtensions: 6,
 			NumServices:   0,
 		},
