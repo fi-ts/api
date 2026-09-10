@@ -10,6 +10,10 @@ import fits.api.v1.tenant_connect as api_tenant_connect
 import fits.api.v1.token_connect as api_token_connect
 import fits.api.v1.version_connect as api_version_connect
 
+import fits.apivm.v1.location_connect as apivm_location_connect
+import fits.apivm.v1.os_connect as apivm_os_connect
+import fits.apivm.v1.stagetype_connect as apivm_stagetype_connect
+import fits.apivm.v1.vlan_connect as apivm_vlan_connect
 import fits.apivm.v1.vm_connect as apivm_vm_connect
 
 
@@ -71,6 +75,18 @@ class Client:
             self._client = client
             self._interceptors = list(interceptors)
 
+
+        def location(self):
+            return apivm_location_connect.LocationServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
+
+        def os(self):
+            return apivm_os_connect.OSServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
+
+        def stagetype(self):
+            return apivm_stagetype_connect.StageTypeServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
+
+        def vlan(self):
+            return apivm_vlan_connect.VlanServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
         def vm(self):
             return apivm_vm_connect.VMServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)

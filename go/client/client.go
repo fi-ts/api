@@ -40,11 +40,19 @@ type (
 	}
 
 	Apivmv1 interface {
+		Location() vmv1connect.LocationServiceClient
+		OS() vmv1connect.OSServiceClient
+		StageType() vmv1connect.StageTypeServiceClient
+		Vlan() vmv1connect.VlanServiceClient
 		VM() vmv1connect.VMServiceClient
 	}
 
 	apivmv1 struct {
-		vmservice vmv1connect.VMServiceClient
+		locationservice  vmv1connect.LocationServiceClient
+		osservice        vmv1connect.OSServiceClient
+		stagetypeservice vmv1connect.StageTypeServiceClient
+		vlanservice      vmv1connect.VlanServiceClient
+		vmservice        vmv1connect.VMServiceClient
 	}
 )
 
@@ -120,6 +128,30 @@ func (c *apiv1) Version() apiv1connect.VersionServiceClient {
 
 func (c *client) Apivmv1() Apivmv1 {
 	a := &apivmv1{
+		locationservice: vmv1connect.NewLocationServiceClient(
+			c.config.HttpClient(),
+			c.config.BaseURL,
+			connect.WithInterceptors(c.interceptors...),
+			compress.WithAll(compress.LevelBalanced),
+		),
+		osservice: vmv1connect.NewOSServiceClient(
+			c.config.HttpClient(),
+			c.config.BaseURL,
+			connect.WithInterceptors(c.interceptors...),
+			compress.WithAll(compress.LevelBalanced),
+		),
+		stagetypeservice: vmv1connect.NewStageTypeServiceClient(
+			c.config.HttpClient(),
+			c.config.BaseURL,
+			connect.WithInterceptors(c.interceptors...),
+			compress.WithAll(compress.LevelBalanced),
+		),
+		vlanservice: vmv1connect.NewVlanServiceClient(
+			c.config.HttpClient(),
+			c.config.BaseURL,
+			connect.WithInterceptors(c.interceptors...),
+			compress.WithAll(compress.LevelBalanced),
+		),
 		vmservice: vmv1connect.NewVMServiceClient(
 			c.config.HttpClient(),
 			c.config.BaseURL,
@@ -130,6 +162,18 @@ func (c *client) Apivmv1() Apivmv1 {
 	return a
 }
 
+func (c *apivmv1) Location() vmv1connect.LocationServiceClient {
+	return c.locationservice
+}
+func (c *apivmv1) OS() vmv1connect.OSServiceClient {
+	return c.osservice
+}
+func (c *apivmv1) StageType() vmv1connect.StageTypeServiceClient {
+	return c.stagetypeservice
+}
+func (c *apivmv1) Vlan() vmv1connect.VlanServiceClient {
+	return c.vlanservice
+}
 func (c *apivmv1) VM() vmv1connect.VMServiceClient {
 	return c.vmservice
 }
