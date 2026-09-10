@@ -8,47 +8,176 @@ import { file_buf_validate_validate } from "../../../../buf/validate/validate_pb
 import type { Labels, Meta, UpdateMeta } from "../../v1/common_pb";
 import { file_fits_api_v1_common } from "../../v1/common_pb";
 import { file_fits_api_v1_predefined_rules } from "../../v1/predefined_rules_pb";
+import type { Vlan } from "./vlan_pb";
+import { file_fits_api_vm_v1_vlan } from "./vlan_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file fits/api/vm/v1/vm.proto.
  */
 export const file_fits_api_vm_v1_vm: GenFile = /*@__PURE__*/
-  fileDesc("ChdmaXRzL2FwaS92bS92MS92bS5wcm90bxIOZml0cy5hcGkudm0udjEiewoKVk1JbnN0YW5jZRIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIfCgRtZXRhGAIgASgLMhEuZml0cy5hcGkudjEuTWV0YRIZCgRuYW1lGAMgASgJQgu6SAhyBsCzrrECARIZCgdwcm9qZWN0GAQgASgJQgi6SAVyA7ABASJIChNWTVNlcnZpY2VHZXRSZXF1ZXN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEhkKB3Byb2plY3QYAiABKAlCCLpIBXIDsAEBIj4KFFZNU2VydmljZUdldFJlc3BvbnNlEiYKAnZtGAEgASgLMhouZml0cy5hcGkudm0udjEuVk1JbnN0YW5jZSJpCh1WTVNlcnZpY2VDcmVhdGVXaW5kb3dzUmVxdWVzdBIdCgtkb21haW5fdXVpZBgBIAEoCUIIukgFcgOwAQESKQoEZGlzaxgCIAEoCzIbLmZpdHMuYXBpLnZtLnYxLldpbmRvd3NEaXNrImMKG1ZNU2VydmljZUNyZWF0ZUxpbnV4UmVxdWVzdBIbCglsZGFwX3V1aWQYASABKAlCCLpIBXIDsAEBEicKBGRpc2sYAiABKAsyGS5maXRzLmFwaS52bS52MS5MaW51eERpc2si/AMKFlZNU2VydmljZUNyZWF0ZVJlcXVlc3QSHgoMcHJvamVjdF91dWlkGAEgASgJQgi6SAVyA7ABARIeCgRuYW1lGAIgASgJQgu6SAhyBsCzrrECAUgBiAEBEgsKA2NwdRgDIAEoDRILCgNyYW0YBCABKA0SGQoHb3NfdXVpZBgFIAEoCUIIukgFcgOwAQESGwoJdmxhbl91dWlkGAYgASgJQgi6SAVyA7ABARIfCg1sb2NhdGlvbl91dWlkGAcgASgJQgi6SAVyA7ABARIeCgxjb250YWN0X3V1aWQYCCABKAlCCLpIBXIDsAEBEiMKBmxhYmVscxgKIAEoCzITLmZpdHMuYXBpLnYxLkxhYmVscxIUCgxvcmRlcl9udW1iZXIYCyABKAkSDgoGYmFja3VwGAwgASgIEhQKDGF2YWlsYWJpbGl0eRgNIAEoCRIUCgxzZXJ2aWNlY2xhc3MYDiABKAkSQAoHd2luZG93cxgVIAEoCzItLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZUNyZWF0ZVdpbmRvd3NSZXF1ZXN0SAASPAoFbGludXgYFiABKAsyKy5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VDcmVhdGVMaW51eFJlcXVlc3RIAEIPCgZ2bXR5cGUSBbpIAggBQgcKBV9uYW1lIoEBCglMaW51eERpc2sSEwoLYXV0b19leHRlbmQYASABKAgSFwoKc2l6ZV9pbl9nYhgCIAEoBEgAiAEBEg0KBWxhYmVsGAQgASgJEhgKC21vdW50X3BvaW50GAUgASgJSAGIAQFCDQoLX3NpemVfaW5fZ2JCDgoMX21vdW50X3BvaW50IoMBCgtXaW5kb3dzRGlzaxITCgthdXRvX2V4dGVuZBgBIAEoCBIXCgpzaXplX2luX2diGAIgASgESACIAQESGAoLZHJpdmVsZXR0ZXIYAyABKAlIAYgBARINCgVsYWJlbBgEIAEoCUINCgtfc2l6ZV9pbl9nYkIOCgxfZHJpdmVsZXR0ZXIiGQoXVk1TZXJ2aWNlQ3JlYXRlUmVzcG9uc2UiaQoWVk1TZXJ2aWNlVXBkYXRlUmVxdWVzdBIZCgdwcm9qZWN0GAEgASgJQgi6SAVyA7ABARI0Cgt1cGRhdGVfbWV0YRgCIAEoCzIXLmZpdHMuYXBpLnYxLlVwZGF0ZU1ldGFCBrpIA8gBASIZChdWTVNlcnZpY2VVcGRhdGVSZXNwb25zZSIxChRWTVNlcnZpY2VMaXN0UmVxdWVzdBIZCgdwcm9qZWN0GAEgASgJQgi6SAVyA7ABASIXChVWTVNlcnZpY2VMaXN0UmVzcG9uc2UiMwoWVk1TZXJ2aWNlRGVsZXRlUmVxdWVzdBIZCgdwcm9qZWN0GAEgASgJQgi6SAVyA7ABASIZChdWTVNlcnZpY2VEZWxldGVSZXNwb25zZTKBBAoJVk1TZXJ2aWNlEl0KA0dldBIjLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZUdldFJlcXVlc3QaJC5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VHZXRSZXNwb25zZSILyvMYAwECA+DzGAISZQoGQ3JlYXRlEiYuZml0cy5hcGkudm0udjEuVk1TZXJ2aWNlQ3JlYXRlUmVxdWVzdBonLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZUNyZWF0ZVJlc3BvbnNlIgrK8xgCAQLg8xgBEmUKBlVwZGF0ZRImLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZVVwZGF0ZVJlcXVlc3QaJy5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VVcGRhdGVSZXNwb25zZSIKyvMYAgEC4PMYARJgCgRMaXN0EiQuZml0cy5hcGkudm0udjEuVk1TZXJ2aWNlTGlzdFJlcXVlc3QaJS5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VMaXN0UmVzcG9uc2UiC8rzGAMBAgPg8xgCEmUKBkRlbGV0ZRImLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZURlbGV0ZVJlcXVlc3QaJy5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VEZWxldGVSZXNwb25zZSIKyvMYAgEC4PMYAUKlAQoSY29tLmZpdHMuYXBpLnZtLnYxQgdWbVByb3RvUAFaK2dpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL3ZtL3YxO3ZtdjGiAgNGQVaqAg5GaXRzLkFwaS5WbS5WMcoCDkZpdHNcQXBpXFZtXFYx4gIaRml0c1xBcGlcVm1cVjFcR1BCTWV0YWRhdGHqAhFGaXRzOjpBcGk6OlZtOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
+  fileDesc("ChdmaXRzL2FwaS92bS92MS92bS5wcm90bxIOZml0cy5hcGkudm0udjEi3QQKClZNSW5zdGFuY2USFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESHwoEbWV0YRgCIAEoCzIRLmZpdHMuYXBpLnYxLk1ldGESGQoEZnFkbhgDIAEoCUILukgIcgbAs66xAgESHgoMcHJvamVjdF91dWlkGAQgASgJQgi6SAVyA7ABARIZCgdvc191dWlkGAUgASgJQgi6SAVyA7ABARIfCg1sb2NhdGlvbl91dWlkGAYgASgJQgi6SAVyA7ABARIeCgxjb250YWN0X3V1aWQYByABKAlCCLpIBXIDsAEBEgsKA2NwdRgIIAEoDRILCgNyYW0YCSABKA0SFAoMb3JkZXJfbnVtYmVyGAogASgJEhAKCGNvbnRyYWN0GAsgASgIEg4KBmJhY2t1cBgMIAEoCBIUCgxhdmFpbGFiaWxpdHkYDSABKAkSFAoMc2VydmljZWNsYXNzGA4gASgJEg4KBnN0YXR1cxgZIAEoCRITCgtzdGF0dXNfaW5mbxgQIAEoCRI5Cg93aW5kb3dzX2RldGFpbHMYESABKAsyHi5maXRzLmFwaS52bS52MS5XaW5kb3dzRGV0YWlsc0gAEjUKDWxpbnV4X2RldGFpbHMYEiABKAsyHC5maXRzLmFwaS52bS52MS5MaW51eERldGFpbHNIABI0CgppbnRlcmZhY2VzGBMgAygLMiAuZml0cy5hcGkudm0udjEuTmV0d29ya0ludGVyZmFjZRIiCgR2bGFuGBQgASgLMhQuZml0cy5hcGkudm0udjEuVmxhbkIQCgdkZXRhaWxzEgW6SAIIASJ1CgxMaW51eERldGFpbHMSKAoFZGlza3MYASADKAsyGS5maXRzLmFwaS52bS52MS5MaW51eERpc2sSGwoJbGRhcF91dWlkGAIgASgJQgi6SAVyA7ABARIeCglsZGFwX2ZxZG4YAyABKAlCC7pICHIGwLOusQIBIn0KDldpbmRvd3NEZXRhaWxzEioKBWRpc2tzGAEgAygLMhsuZml0cy5hcGkudm0udjEuV2luZG93c0Rpc2sSHQoLZG9tYWluX3V1aWQYAiABKAlCCLpIBXIDsAEBEiAKC2RvbWFpbl9mcWRuGAMgASgJQgu6SAhyBsCzrrECASJeChBOZXR3b3JrSW50ZXJmYWNlEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEh4KCWlwYWRkcmVzcxgCIAEoCUILukgIcgbos66xAgESEgoKbWFjYWRkcmVzcxgDIAEoCSJIChNWTVNlcnZpY2VHZXRSZXF1ZXN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEhkKB3Byb2plY3QYAiABKAlCCLpIBXIDsAEBIj4KFFZNU2VydmljZUdldFJlc3BvbnNlEiYKAnZtGAEgASgLMhouZml0cy5hcGkudm0udjEuVk1JbnN0YW5jZSJpCh1WTVNlcnZpY2VDcmVhdGVXaW5kb3dzUmVxdWVzdBIdCgtkb21haW5fdXVpZBgBIAEoCUIIukgFcgOwAQESKQoEZGlzaxgCIAEoCzIbLmZpdHMuYXBpLnZtLnYxLldpbmRvd3NEaXNrImMKG1ZNU2VydmljZUNyZWF0ZUxpbnV4UmVxdWVzdBIbCglsZGFwX3V1aWQYASABKAlCCLpIBXIDsAEBEicKBGRpc2sYAiABKAsyGS5maXRzLmFwaS52bS52MS5MaW51eERpc2si/AMKFlZNU2VydmljZUNyZWF0ZVJlcXVlc3QSHgoMcHJvamVjdF91dWlkGAEgASgJQgi6SAVyA7ABARIeCgRuYW1lGAIgASgJQgu6SAhyBsCzrrECAUgBiAEBEhkKB29zX3V1aWQYAyABKAlCCLpIBXIDsAEBEhsKCXZsYW5fdXVpZBgEIAEoCUIIukgFcgOwAQESHwoNbG9jYXRpb25fdXVpZBgFIAEoCUIIukgFcgOwAQESHgoMY29udGFjdF91dWlkGAYgASgJQgi6SAVyA7ABARILCgNjcHUYByABKA0SCwoDcmFtGAggASgNEhQKDG9yZGVyX251bWJlchgJIAEoCRIjCgZsYWJlbHMYCiABKAsyEy5maXRzLmFwaS52MS5MYWJlbHMSDgoGYmFja3VwGAsgASgIEhQKDGF2YWlsYWJpbGl0eRgMIAEoCRIUCgxzZXJ2aWNlY2xhc3MYDSABKAkSQAoHd2luZG93cxgOIAEoCzItLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZUNyZWF0ZVdpbmRvd3NSZXF1ZXN0SAASPAoFbGludXgYDyABKAsyKy5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VDcmVhdGVMaW51eFJlcXVlc3RIAEIPCgZ2bXR5cGUSBbpIAggBQgcKBV9uYW1lIoEBCglMaW51eERpc2sSEwoLYXV0b19leHRlbmQYASABKAgSFwoKc2l6ZV9pbl9nYhgCIAEoBEgAiAEBEg0KBWxhYmVsGAQgASgJEhgKC21vdW50X3BvaW50GAUgASgJSAGIAQFCDQoLX3NpemVfaW5fZ2JCDgoMX21vdW50X3BvaW50IoMBCgtXaW5kb3dzRGlzaxITCgthdXRvX2V4dGVuZBgBIAEoCBIXCgpzaXplX2luX2diGAIgASgESACIAQESGAoLZHJpdmVsZXR0ZXIYAyABKAlIAYgBARINCgVsYWJlbBgEIAEoCUINCgtfc2l6ZV9pbl9nYkIOCgxfZHJpdmVsZXR0ZXIiGQoXVk1TZXJ2aWNlQ3JlYXRlUmVzcG9uc2UibgoWVk1TZXJ2aWNlVXBkYXRlUmVxdWVzdBIeCgxwcm9qZWN0X3V1aWQYASABKAlCCLpIBXIDsAEBEjQKC3VwZGF0ZV9tZXRhGAIgASgLMhcuZml0cy5hcGkudjEuVXBkYXRlTWV0YUIGukgDyAEBIhkKF1ZNU2VydmljZVVwZGF0ZVJlc3BvbnNlImwKFFZNU2VydmljZUxpc3RSZXF1ZXN0EhMKBnRlbmFudBgBIAEoCUgAiAEBEiMKDHByb2plY3RfdXVpZBgCIAEoCUIIukgFcgOwAQFIAYgBAUIJCgdfdGVuYW50Qg8KDV9wcm9qZWN0X3V1aWQiQAoVVk1TZXJ2aWNlTGlzdFJlc3BvbnNlEicKA3ZtcxgBIAMoCzIaLmZpdHMuYXBpLnZtLnYxLlZNSW5zdGFuY2UiMwoWVk1TZXJ2aWNlRGVsZXRlUmVxdWVzdBIZCgdwcm9qZWN0GAEgASgJQgi6SAVyA7ABASIZChdWTVNlcnZpY2VEZWxldGVSZXNwb25zZTKBBAoJVk1TZXJ2aWNlEl0KA0dldBIjLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZUdldFJlcXVlc3QaJC5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VHZXRSZXNwb25zZSILyvMYAwECA+DzGAISZQoGQ3JlYXRlEiYuZml0cy5hcGkudm0udjEuVk1TZXJ2aWNlQ3JlYXRlUmVxdWVzdBonLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZUNyZWF0ZVJlc3BvbnNlIgrK8xgCAQLg8xgBEmUKBlVwZGF0ZRImLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZVVwZGF0ZVJlcXVlc3QaJy5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VVcGRhdGVSZXNwb25zZSIKyvMYAgEC4PMYARJgCgRMaXN0EiQuZml0cy5hcGkudm0udjEuVk1TZXJ2aWNlTGlzdFJlcXVlc3QaJS5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VMaXN0UmVzcG9uc2UiC8rzGAMBAgPg8xgCEmUKBkRlbGV0ZRImLmZpdHMuYXBpLnZtLnYxLlZNU2VydmljZURlbGV0ZVJlcXVlc3QaJy5maXRzLmFwaS52bS52MS5WTVNlcnZpY2VEZWxldGVSZXNwb25zZSIKyvMYAgEC4PMYAUKlAQoSY29tLmZpdHMuYXBpLnZtLnYxQgdWbVByb3RvUAFaK2dpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL3ZtL3YxO3ZtdjGiAgNGQVaqAg5GaXRzLkFwaS5WbS5WMcoCDkZpdHNcQXBpXFZtXFYx4gIaRml0c1xBcGlcVm1cVjFcR1BCTWV0YWRhdGHqAhFGaXRzOjpBcGk6OlZtOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules, file_fits_api_vm_v1_vlan]);
 
 /**
  * VM Instance Messages
+ * A VM instance as returned by the API.
  *
  * @generated from message fits.api.vm.v1.VMInstance
  */
 export type VMInstance = Message<"fits.api.vm.v1.VMInstance"> & {
   /**
-   * Uuid of this VM
+   * UUID of this VM.
    *
    * @generated from field: string uuid = 1;
    */
   uuid: string;
 
   /**
-   * Meta for this VM
+   * Metadata for this VM.
+   * TODO dates are available in the nulink db, but not passed through yet.
    *
    * @generated from field: fits.api.v1.Meta meta = 2;
    */
   meta?: Meta | undefined;
 
   /**
-   * Name of this VM
+   * FQDN of the VM. Derived from the optional name set at creation,
+   * or generated by the backend if none was provided.
    *
-   * @generated from field: string name = 3;
+   * @generated from field: string fqdn = 3;
    */
-  name: string;
+  fqdn: string;
 
   /**
-   * Project where this VM belongs to
+   * UUID of the project this VM belongs to.
    *
-   * @generated from field: string project = 4;
+   * @generated from field: string project_uuid = 4;
    */
-  project: string;
+  projectUuid: string;
+
+  /**
+   * UUID of the operating system image installed on the VM.
+   * Resolve the human-readable title via the OS endpoint.
+   *
+   * @generated from field: string os_uuid = 5;
+   */
+  osUuid: string;
+
+  /**
+   * UUID of the datacenter location.
+   * The VM is automatically scheduled into one pod within the chosen location;
+   * users select the city but not the specific datacenter.
+   *
+   * @generated from field: string location_uuid = 6;
+   */
+  locationUuid: string;
+
+  /**
+   * TODO: Contact UUID – not yet implemented; open discussion with FCN (#23).
+   *
+   * @generated from field: string contact_uuid = 7;
+   */
+  contactUuid: string;
+
+  /**
+   * Number of CPU cores.
+   *
+   * @generated from field: uint32 cpu = 8;
+   */
+  cpu: number;
+
+  /**
+   * RAM in GB.
+   *
+   * @generated from field: uint32 ram = 9;
+   */
+  ram: number;
+
+  /**
+   * Internal reference number provided by the user, e.g. a ticket ID.
+   *
+   * @generated from field: string order_number = 10;
+   */
+  orderNumber: string;
+
+  /**
+   * Whether the order was placed by FITS (true) or self-service by the user (false).
+   *
+   * @generated from field: bool contract = 11;
+   */
+  contract: boolean;
+
+  /**
+   * Whether backup is enabled.
+   *
+   * @generated from field: bool backup = 12;
+   */
+  backup: boolean;
+
+  /**
+   * Availability level: v0, v1, v2, v3 (higher value = higher availability).
+   *
+   * @generated from field: string availability = 13;
+   */
+  availability: string;
+
+  /**
+   * Service class: sz1, sz2, sz3 (higher value = higher tier).
+   *
+   * @generated from field: string serviceclass = 14;
+   */
+  serviceclass: string;
+
+  /**
+   * Status of the ongoing operation.
+   *
+   * @generated from field: string status = 25;
+   */
+  status: string;
+
+  /**
+   * Additional information about the current status.
+   *
+   * @generated from field: string status_info = 16;
+   */
+  statusInfo: string;
+
+  /**
+   * OS-specific configuration. Exactly one must be set.
+   *
+   * @generated from oneof fits.api.vm.v1.VMInstance.details
+   */
+  details: {
+    /**
+     * Windows-specific settings (domain + disks).
+     *
+     * @generated from field: fits.api.vm.v1.WindowsDetails windows_details = 17;
+     */
+    value: WindowsDetails;
+    case: "windowsDetails";
+  } | {
+    /**
+     * Linux-specific settings (LDAP + disks).
+     *
+     * @generated from field: fits.api.vm.v1.LinuxDetails linux_details = 18;
+     */
+    value: LinuxDetails;
+    case: "linuxDetails";
+  } | { case: undefined; value?: undefined };
+
+  /**
+   * Network interfaces attached to the VM (IPv4 only).
+   *
+   * @generated from field: repeated fits.api.vm.v1.NetworkInterface interfaces = 19;
+   */
+  interfaces: NetworkInterface[];
+
+  /**
+   * VLAN the VM is attached to.
+   *
+   * @generated from field: fits.api.vm.v1.Vlan vlan = 20;
+   */
+  vlan?: Vlan | undefined;
 };
 
 /**
@@ -57,6 +186,115 @@ export type VMInstance = Message<"fits.api.vm.v1.VMInstance"> & {
  */
 export const VMInstanceSchema: GenMessage<VMInstance> = /*@__PURE__*/
   messageDesc(file_fits_api_vm_v1_vm, 0);
+
+/**
+ * Linux-specific VM details.
+ *
+ * @generated from message fits.api.vm.v1.LinuxDetails
+ */
+export type LinuxDetails = Message<"fits.api.vm.v1.LinuxDetails"> & {
+  /**
+   * Disks configured on the Linux VM.
+   *
+   * @generated from field: repeated fits.api.vm.v1.LinuxDisk disks = 1;
+   */
+  disks: LinuxDisk[];
+
+  /**
+   * UUID of the LDAP directory the VM is integrated with.
+   *
+   * @generated from field: string ldap_uuid = 2;
+   */
+  ldapUuid: string;
+
+  /**
+   * Linux-specific FQDN. Derived from the optional name set at creation,
+   * or generated by the backend if none was provided.
+   *
+   * @generated from field: string ldap_fqdn = 3;
+   */
+  ldapFqdn: string;
+};
+
+/**
+ * Describes the message fits.api.vm.v1.LinuxDetails.
+ * Use `create(LinuxDetailsSchema)` to create a new message.
+ */
+export const LinuxDetailsSchema: GenMessage<LinuxDetails> = /*@__PURE__*/
+  messageDesc(file_fits_api_vm_v1_vm, 1);
+
+/**
+ * Windows-specific VM details.
+ *
+ * @generated from message fits.api.vm.v1.WindowsDetails
+ */
+export type WindowsDetails = Message<"fits.api.vm.v1.WindowsDetails"> & {
+  /**
+   * Disks configured on the Windows VM.
+   *
+   * @generated from field: repeated fits.api.vm.v1.WindowsDisk disks = 1;
+   */
+  disks: WindowsDisk[];
+
+  /**
+   * UUID of the Windows domain the VM has joined.
+   *
+   * @generated from field: string domain_uuid = 2;
+   */
+  domainUuid: string;
+
+  /**
+   * Windows-specific FQDN. Derived from the optional name set at creation,
+   * or generated by the backend if none was provided.
+   *
+   * @generated from field: string domain_fqdn = 3;
+   */
+  domainFqdn: string;
+};
+
+/**
+ * Describes the message fits.api.vm.v1.WindowsDetails.
+ * Use `create(WindowsDetailsSchema)` to create a new message.
+ */
+export const WindowsDetailsSchema: GenMessage<WindowsDetails> = /*@__PURE__*/
+  messageDesc(file_fits_api_vm_v1_vm, 2);
+
+/**
+ * A network interface of a VM. IPv4 only; IPv6 is not yet supported.
+ *
+ * @generated from message fits.api.vm.v1.NetworkInterface
+ */
+export type NetworkInterface = Message<"fits.api.vm.v1.NetworkInterface"> & {
+  /**
+   * UUID of this interface.
+   *
+   * @generated from field: string uuid = 1;
+   */
+  uuid: string;
+
+  /**
+   * IPv4 address assigned to this interface.
+   *
+   * @generated from field: string ipaddress = 2;
+   */
+  ipaddress: string;
+
+  /**
+   * MAC address of this interface.
+   *
+   * TODO validation
+   *
+   * @generated from field: string macaddress = 3;
+   */
+  macaddress: string;
+};
+
+/**
+ * Describes the message fits.api.vm.v1.NetworkInterface.
+ * Use `create(NetworkInterfaceSchema)` to create a new message.
+ */
+export const NetworkInterfaceSchema: GenMessage<NetworkInterface> = /*@__PURE__*/
+  messageDesc(file_fits_api_vm_v1_vm, 3);
 
 /**
  * VMServiceGetRequest TODO
@@ -84,7 +322,7 @@ export type VMServiceGetRequest = Message<"fits.api.vm.v1.VMServiceGetRequest"> 
  * Use `create(VMServiceGetRequestSchema)` to create a new message.
  */
 export const VMServiceGetRequestSchema: GenMessage<VMServiceGetRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_vm_v1_vm, 1);
+  messageDesc(file_fits_api_vm_v1_vm, 4);
 
 /**
  * VMServiceGetResponse TODO
@@ -105,23 +343,23 @@ export type VMServiceGetResponse = Message<"fits.api.vm.v1.VMServiceGetResponse"
  * Use `create(VMServiceGetResponseSchema)` to create a new message.
  */
 export const VMServiceGetResponseSchema: GenMessage<VMServiceGetResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_vm_v1_vm, 2);
+  messageDesc(file_fits_api_vm_v1_vm, 5);
 
 /**
- * Windows-specific create request parts
+ * Windows-specific create request parts.
  *
  * @generated from message fits.api.vm.v1.VMServiceCreateWindowsRequest
  */
 export type VMServiceCreateWindowsRequest = Message<"fits.api.vm.v1.VMServiceCreateWindowsRequest"> & {
   /**
-   * Domain UUID
+   * UUID of the Windows domain the VM should join. Required.
    *
    * @generated from field: string domain_uuid = 1;
    */
   domainUuid: string;
 
   /**
-   * // Windows Disk
+   * Disk configuration for the Windows VM.
    *
    * @generated from field: fits.api.vm.v1.WindowsDisk disk = 2;
    */
@@ -133,23 +371,23 @@ export type VMServiceCreateWindowsRequest = Message<"fits.api.vm.v1.VMServiceCre
  * Use `create(VMServiceCreateWindowsRequestSchema)` to create a new message.
  */
 export const VMServiceCreateWindowsRequestSchema: GenMessage<VMServiceCreateWindowsRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_vm_v1_vm, 3);
+  messageDesc(file_fits_api_vm_v1_vm, 6);
 
 /**
- * Linux-specific create request parts
+ * Linux-specific create request parts.
  *
  * @generated from message fits.api.vm.v1.VMServiceCreateLinuxRequest
  */
 export type VMServiceCreateLinuxRequest = Message<"fits.api.vm.v1.VMServiceCreateLinuxRequest"> & {
   /**
-   * LDAP UUID
+   * UUID of the LDAP directory the VM should integrate with. Required.
    *
    * @generated from field: string ldap_uuid = 1;
    */
   ldapUuid: string;
 
   /**
-   * Linux Disk
+   * Disk configuration for the Linux VM.
    *
    * @generated from field: fits.api.vm.v1.LinuxDisk disk = 2;
    */
@@ -161,134 +399,129 @@ export type VMServiceCreateLinuxRequest = Message<"fits.api.vm.v1.VMServiceCreat
  * Use `create(VMServiceCreateLinuxRequestSchema)` to create a new message.
  */
 export const VMServiceCreateLinuxRequestSchema: GenMessage<VMServiceCreateLinuxRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_vm_v1_vm, 4);
+  messageDesc(file_fits_api_vm_v1_vm, 7);
 
 /**
- * VMServiceCreateRequest TODO
+ * Request to create a new VM instance.
  *
  * @generated from message fits.api.vm.v1.VMServiceCreateRequest
  */
 export type VMServiceCreateRequest = Message<"fits.api.vm.v1.VMServiceCreateRequest"> & {
   /**
-   * Project of the VM
+   * UUID of the project this VM belongs to. Required.
    *
    * @generated from field: string project_uuid = 1;
    */
   projectUuid: string;
 
   /**
-   * Name of the VM
+   * Optional name for the VM. The FQDN is derived from this value.
    *
    * @generated from field: optional string name = 2;
    */
   name?: string | undefined;
 
   /**
-   * Number of CPUs of this VM
+   * UUID of the operating system image to install. Required.
    *
-   * @generated from field: uint32 cpu = 3;
-   */
-  cpu: number;
-
-  /**
-   * RAM of the VM in GB (TODO 2^n validation)
-   *
-   * @generated from field: uint32 ram = 4;
-   */
-  ram: number;
-
-  /**
-   * OS Uuid of the OS to install in the VM instance
-   *
-   * @generated from field: string os_uuid = 5;
+   * @generated from field: string os_uuid = 3;
    */
   osUuid: string;
 
   /**
-   * VLAN Uuid of the VLAN to install in the VM instance into
+   * UUID of the VLAN network to attach the VM to. Required.
+   * Obtainable via the VLAN list endpoint.
    *
-   * @generated from field: string vlan_uuid = 6;
+   * @generated from field: string vlan_uuid = 4;
    */
   vlanUuid: string;
 
   /**
-   * Location Uuid of the datacenter location to install in the VM instance
+   * UUID of the datacenter location. Required.
+   * The VM is automatically scheduled into one data center within the chosen location;
+   * users select the city but not the specific datacenter.
    *
-   * @generated from field: string location_uuid = 7;
+   * @generated from field: string location_uuid = 5;
    */
   locationUuid: string;
 
   /**
-   * Contact Uuid of who is the responsible contact of the VM instance
-   * TODO hier ist noch Klärungsbedarf. Ansprechpartner hängt nicht mal an einem echten user im system
-   * TODO sondern sind einfach nur Kontaktdaten, die an die Entity hingehängt wird.
-   * TODO aktuell hängt dies in der nulink api
-   * TODO labels als Option?
-   * TODO what about dsgvo?
-   * TODO daten im service now?
-   * TODO eventuell im tenant-apiserver Kontakte erlauben?
-   * TODO was macht FCN? wäre das für sie auch sinnvoll?
-   * TODO is required
+   * TODO: Contact UUID – open discussion with FCN on how to model responsible contacts.
+   * GDPR considerations pending. May become a dedicated /contact endpoint.
    *
-   * @generated from field: string contact_uuid = 8;
+   * @generated from field: string contact_uuid = 6;
    */
   contactUuid: string;
 
   /**
-   * Replaces optional ContractNumber, TransactionNumber, TechnicalKey, AccountingKey
+   * Number of CPU cores.
+   *
+   * @generated from field: uint32 cpu = 7;
+   */
+  cpu: number;
+
+  /**
+   * RAM in GB. Must be a power of 2.
+   *
+   * @generated from field: uint32 ram = 8;
+   */
+  ram: number;
+
+  /**
+   * Internal reference number provided by the user, e.g. a ticket ID. Free text. Required.
+   *
+   * @generated from field: string order_number = 9;
+   */
+  orderNumber: string;
+
+  /**
+   * Optional key-value labels for accounting purposes
+   * (e.g. contract number, transaction number, technical key, accounting key).
    *
    * @generated from field: fits.api.v1.Labels labels = 10;
    */
   labels?: Labels | undefined;
 
   /**
-   * Order number muss unbedingt mitgegeben werden
-   * Hängt sogar z.b. am VM restart.
-   * Wird für gewöhnlich vom User angegeben.
+   * Whether backup is enabled. Simple on/off toggle; no distinct backup plans. Required.
    *
-   * @generated from field: string order_number = 11;
-   */
-  orderNumber: string;
-
-  /**
-   * Currently no different backup plans, just true or false
-   *
-   * @generated from field: bool backup = 12;
+   * @generated from field: bool backup = 11;
    */
   backup: boolean;
 
   /**
-   * V0, V1, V2, V3 -> highest=best
+   * Availability level: v0, v1, v2, v3 (higher value = higher availability). Required.
    *
-   * @generated from field: string availability = 13;
+   * @generated from field: string availability = 12;
    */
   availability: string;
 
   /**
-   * SZ1, SZ2, SZ3 -> highest=best
+   * Service class: sz1, sz2, sz3 (higher value = higher tier). Required.
+   * Only certain combinations with availability are valid; enforced by the backend.
    *
-   * @generated from field: string serviceclass = 14;
+   * @generated from field: string serviceclass = 13;
    */
   serviceclass: string;
 
   /**
-   * TODO differentiation Linux/Windows
+   * Specifies the OS type and its associated configuration. Exactly one must be set.
    *
    * @generated from oneof fits.api.vm.v1.VMServiceCreateRequest.vmtype
    */
   vmtype: {
     /**
-     * Windows Disk and Domain
+     * Windows-specific settings (domain + disk).
      *
-     * @generated from field: fits.api.vm.v1.VMServiceCreateWindowsRequest windows = 21;
+     * @generated from field: fits.api.vm.v1.VMServiceCreateWindowsRequest windows = 14;
      */
     value: VMServiceCreateWindowsRequest;
     case: "windows";
   } | {
     /**
-     * Linux Disk and LDAP
+     * Linux-specific settings (LDAP + disk).
      *
-     * @generated from field: fits.api.vm.v1.VMServiceCreateLinuxRequest linux = 22;
+     * @generated from field: fits.api.vm.v1.VMServiceCreateLinuxRequest linux = 15;
      */
     value: VMServiceCreateLinuxRequest;
     case: "linux";
@@ -300,41 +533,37 @@ export type VMServiceCreateRequest = Message<"fits.api.vm.v1.VMServiceCreateRequ
  * Use `create(VMServiceCreateRequestSchema)` to create a new message.
  */
 export const VMServiceCreateRequestSchema: GenMessage<VMServiceCreateRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_vm_v1_vm, 5);
+  messageDesc(file_fits_api_vm_v1_vm, 8);
 
 /**
- * LinuxDisk
+ * Disk configuration for a Linux VM.
  *
  * @generated from message fits.api.vm.v1.LinuxDisk
  */
 export type LinuxDisk = Message<"fits.api.vm.v1.LinuxDisk"> & {
   /**
-   * AutoExtend if set to true the disk grows automatically
+   * If true, the disk grows automatically when space runs low.
    *
    * @generated from field: bool auto_extend = 1;
    */
   autoExtend: boolean;
 
   /**
-   * Size if the disk in GB
-   *
-   * TODO discuss how this could be optional
+   * Size of the disk in GB.
    *
    * @generated from field: optional uint64 size_in_gb = 2;
    */
   sizeInGb?: bigint | undefined;
 
   /**
-   * Label of the disk
+   * Label (name) of the disk.
    *
    * @generated from field: string label = 4;
    */
   label: string;
 
   /**
-   * MountPoint where this disk should be mounted
-   *
-   * TODO this requires a Filesystem on the disk ?
+   * Filesystem path where this disk should be mounted (e.g. "/data").
    *
    * @generated from field: optional string mount_point = 5;
    */
@@ -346,39 +575,37 @@ export type LinuxDisk = Message<"fits.api.vm.v1.LinuxDisk"> & {
  * Use `create(LinuxDiskSchema)` to create a new message.
  */
 export const LinuxDiskSchema: GenMessage<LinuxDisk> = /*@__PURE__*/
-  messageDesc(file_fits_api_vm_v1_vm, 6);
+  messageDesc(file_fits_api_vm_v1_vm, 9);
 
 /**
- * WindowsDisk
+ * Disk configuration for a Windows VM.
  *
  * @generated from message fits.api.vm.v1.WindowsDisk
  */
 export type WindowsDisk = Message<"fits.api.vm.v1.WindowsDisk"> & {
   /**
-   * AutoExtend if set to true the disk grows automatically
+   * If true, the disk grows automatically when space runs low.
    *
    * @generated from field: bool auto_extend = 1;
    */
   autoExtend: boolean;
 
   /**
-   * Size if the disk in GB
-   *
-   * TODO discuss how this could be optional
+   * Size of the disk in GB.
    *
    * @generated from field: optional uint64 size_in_gb = 2;
    */
   sizeInGb?: bigint | undefined;
 
   /**
-   * DriveLetter where this disk should be assigned
+   * Drive letter assigned to this disk (e.g. "D").
    *
    * @generated from field: optional string driveletter = 3;
    */
   driveletter?: string | undefined;
 
   /**
-   * Label of the disk
+   * Label (name) of the disk.
    *
    * @generated from field: string label = 4;
    */
@@ -390,7 +617,7 @@ export type WindowsDisk = Message<"fits.api.vm.v1.WindowsDisk"> & {
  * Use `create(WindowsDiskSchema)` to create a new message.
  */
 export const WindowsDiskSchema: GenMessage<WindowsDisk> = /*@__PURE__*/
-  messageDesc(file_fits_api_vm_v1_vm, 7);
+  messageDesc(file_fits_api_vm_v1_vm, 10);
 
 /**
  * VMServiceCreateResponse TODO
@@ -405,7 +632,7 @@ export type VMServiceCreateResponse = Message<"fits.api.vm.v1.VMServiceCreateRes
  * Use `create(VMServiceCreateResponseSchema)` to create a new message.
  */
 export const VMServiceCreateResponseSchema: GenMessage<VMServiceCreateResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_vm_v1_vm, 8);
+  messageDesc(file_fits_api_vm_v1_vm, 11);
 
 /**
  * VMServiceUpdateRequest TODO
@@ -416,9 +643,9 @@ export type VMServiceUpdateRequest = Message<"fits.api.vm.v1.VMServiceUpdateRequ
   /**
    * Project of the VM
    *
-   * @generated from field: string project = 1;
+   * @generated from field: string project_uuid = 1;
    */
-  project: string;
+  projectUuid: string;
 
   /**
    * UpdateMeta contains the timestamp and strategy to be used in this update request.
@@ -433,7 +660,7 @@ export type VMServiceUpdateRequest = Message<"fits.api.vm.v1.VMServiceUpdateRequ
  * Use `create(VMServiceUpdateRequestSchema)` to create a new message.
  */
 export const VMServiceUpdateRequestSchema: GenMessage<VMServiceUpdateRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_vm_v1_vm, 9);
+  messageDesc(file_fits_api_vm_v1_vm, 12);
 
 /**
  * VMServiceUpdateResponse TODO
@@ -448,20 +675,27 @@ export type VMServiceUpdateResponse = Message<"fits.api.vm.v1.VMServiceUpdateRes
  * Use `create(VMServiceUpdateResponseSchema)` to create a new message.
  */
 export const VMServiceUpdateResponseSchema: GenMessage<VMServiceUpdateResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_vm_v1_vm, 10);
+  messageDesc(file_fits_api_vm_v1_vm, 13);
 
 /**
- * VMServiceListRequest TODO
+ * VMServiceListRequest
  *
  * @generated from message fits.api.vm.v1.VMServiceListRequest
  */
 export type VMServiceListRequest = Message<"fits.api.vm.v1.VMServiceListRequest"> & {
   /**
+   * Tenant of the VM
+   *
+   * @generated from field: optional string tenant = 1;
+   */
+  tenant?: string | undefined;
+
+  /**
    * Project of the VM
    *
-   * @generated from field: string project = 1;
+   * @generated from field: optional string project_uuid = 2;
    */
-  project: string;
+  projectUuid?: string | undefined;
 };
 
 /**
@@ -469,14 +703,20 @@ export type VMServiceListRequest = Message<"fits.api.vm.v1.VMServiceListRequest"
  * Use `create(VMServiceListRequestSchema)` to create a new message.
  */
 export const VMServiceListRequestSchema: GenMessage<VMServiceListRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_vm_v1_vm, 11);
+  messageDesc(file_fits_api_vm_v1_vm, 14);
 
 /**
- * VMServiceListResponse TODO
+ * VMServiceListResponse
  *
  * @generated from message fits.api.vm.v1.VMServiceListResponse
  */
 export type VMServiceListResponse = Message<"fits.api.vm.v1.VMServiceListResponse"> & {
+  /**
+   * List of VM instances
+   *
+   * @generated from field: repeated fits.api.vm.v1.VMInstance vms = 1;
+   */
+  vms: VMInstance[];
 };
 
 /**
@@ -484,7 +724,7 @@ export type VMServiceListResponse = Message<"fits.api.vm.v1.VMServiceListRespons
  * Use `create(VMServiceListResponseSchema)` to create a new message.
  */
 export const VMServiceListResponseSchema: GenMessage<VMServiceListResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_vm_v1_vm, 12);
+  messageDesc(file_fits_api_vm_v1_vm, 15);
 
 /**
  * VMServiceDeleteRequest TODO
@@ -505,7 +745,7 @@ export type VMServiceDeleteRequest = Message<"fits.api.vm.v1.VMServiceDeleteRequ
  * Use `create(VMServiceDeleteRequestSchema)` to create a new message.
  */
 export const VMServiceDeleteRequestSchema: GenMessage<VMServiceDeleteRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_vm_v1_vm, 13);
+  messageDesc(file_fits_api_vm_v1_vm, 16);
 
 /**
  * VMServiceDeleteResponse TODO
@@ -520,7 +760,7 @@ export type VMServiceDeleteResponse = Message<"fits.api.vm.v1.VMServiceDeleteRes
  * Use `create(VMServiceDeleteResponseSchema)` to create a new message.
  */
 export const VMServiceDeleteResponseSchema: GenMessage<VMServiceDeleteResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_vm_v1_vm, 14);
+  messageDesc(file_fits_api_vm_v1_vm, 17);
 
 /**
  * VMService provides VM CRUD perations.
