@@ -102,8 +102,8 @@ enum TokenType {
 message TokenServiceCreateRequest {
   // Description of the token
   string description = 1 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
-  // Permissions is a list of service methods this token can be used for
-  repeated MethodPermission permissions = 2 [(buf.validate.field).repeated.max_items = 100];
+  // Permissions is a list of service methods this token can be used for.
+  repeated PermissionsByVisibility permissions = 2 [(buf.validate.field).repeated.max_items = 100];
   // Expires gives the duration since now, after which this token can not be used anymore
   google.protobuf.Duration expires = 3 [(buf.validate.field).duration = {
     lt: {seconds: 31536001}
@@ -155,6 +155,60 @@ message MethodPermission {
   repeated string methods = 2 [(buf.validate.field).repeated.max_items = 500];
 }
 
+// PermissionsByVisibility contains method permissions by visibility.
+message PermissionsByVisibility {
+  // Visibility defines the visibility of the requested method permissions.
+  oneof visibility {
+    // PublicPermissions carries public method permissions.
+    PublicPermissions public = 1;
+    // SelfPermissions carries self method permissions.
+    SelfPermissions self = 2;
+    // ProjectPermissions carries project method permissions.
+    ProjectPermissions project = 3;
+    // TenantPermissions carries tenant method permissions.
+    TenantPermissions tenant = 4;
+    // AdminPermissions carries admin method permissions.
+    AdminPermissions admin = 5;
+  }
+}
+
+// PublicPermissions carries public method permissions.
+message PublicPermissions {
+  // Methods which should be accessible.
+  repeated string methods = 2 [(buf.validate.field).repeated.max_items = 500];
+}
+
+// SelfPermissions carries self method permissions.
+message SelfPermissions {
+  // Methods which should be accessible.
+  repeated string methods = 2 [(buf.validate.field).repeated.max_items = 500];
+}
+
+// ProjectPermissions carries project method permissions.
+message ProjectPermissions {
+  // Project scope for the permissions.
+  // Asterisk (*) can be specified to match any subject.
+  string project = 1 [(buf.validate.field).string.(fits.api.v1.is_project_subject_permission) = true];
+  // Methods which should be accessible.
+  repeated string methods = 2 [(buf.validate.field).repeated.max_items = 500];
+}
+
+// TenantPermissions carries tenant method permissions.
+message TenantPermissions {
+  // Login of the tenant.
+  // Asterisk (*) can be specified to match any subject.
+  string login = 1 [(buf.validate.field).string.(fits.api.v1.is_tenant_subject_permission) = true];
+
+  // Methods which should be accessible.
+  repeated string methods = 2 [(buf.validate.field).repeated.max_items = 500];
+}
+
+// AdminPermissions carries admin method permissions.
+message AdminPermissions {
+  // Methods which should be accessible.
+  repeated string methods = 2 [(buf.validate.field).repeated.max_items = 500];
+}
+
 // TokenServiceCreateResponse is the response payload of a token create request
 message TokenServiceCreateResponse {
   // Token which was created
@@ -190,8 +244,8 @@ message TokenServiceUpdateRequest {
   UpdateMeta update_meta = 2 [(buf.validate.field).required = false];
   // Description is a user given description of this token.
   optional string description = 3 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
-  // Permissions is a list of service methods this token can be used for
-  repeated MethodPermission permissions = 4;
+  // Permissions is a list of service methods this token can be used for.
+  repeated PermissionsByVisibility permissions = 4;
   // ProjectRoles associates a project id with the corresponding role of the token owner
   map<string, ProjectRole> project_roles = 5 [
     (buf.validate.field).map = {

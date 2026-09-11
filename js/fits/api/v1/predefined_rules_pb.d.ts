@@ -53,6 +53,24 @@ export declare const is_ip_or_hostname: GenExtension<StringRules, boolean>;
  */
 export declare const trimmed: GenExtension<StringRules, boolean>;
 /**
+ * IsTenantLogin returns true if name field satisfies our requirements.
+ *
+ * @generated from extension: optional bool is_tenant_login = 80048962;
+ */
+export declare const is_tenant_login: GenExtension<StringRules, boolean>;
+/**
+ * IsTenantSubjectPermission returns true if name field satisfies our requirements.
+ *
+ * @generated from extension: optional bool is_tenant_subject_permission = 80048963;
+ */
+export declare const is_tenant_subject_permission: GenExtension<StringRules, boolean>;
+/**
+ * IsProjectSubjectPermission returns true if name field satisfies our requirements.
+ *
+ * @generated from extension: optional bool is_project_subject_permission = 80048964;
+ */
+export declare const is_project_subject_permission: GenExtension<StringRules, boolean>;
+/**
  * Prefixes validates if a slice of prefixes in string form are valid
  *
  * @generated from extension: optional bool prefixes = 80058951;
@@ -88,3 +106,15 @@ export declare const keys_and_values_trimmed: GenExtension<MapRules, boolean>;
  * @generated from extension: optional bool keys_trimmed = 80068952;
  */
 export declare const keys_trimmed: GenExtension<MapRules, boolean>;
+/**
+ * ProjectRolesKeysValid ensures that project roles keys met our requirements.
+ *
+ * @generated from extension: optional bool project_roles_keys_valid = 80068953;
+ */
+export declare const project_roles_keys_valid: GenExtension<MapRules, boolean>;
+/**
+ * TenantRolesKeysValid ensures that tenant roles keys met our requirements.
+ *
+ * @generated from extension: optional bool tenant_roles_keys_valid = 80068954;
+ */
+export declare const tenant_roles_keys_valid: GenExtension<MapRules, boolean>;

@@ -19,6 +19,12 @@ IS_IP_OR_HOSTNAME_FIELD_NUMBER: _ClassVar[int]
 is_ip_or_hostname: _descriptor.FieldDescriptor
 TRIMMED_FIELD_NUMBER: _ClassVar[int]
 trimmed: _descriptor.FieldDescriptor
+IS_TENANT_LOGIN_FIELD_NUMBER: _ClassVar[int]
+is_tenant_login: _descriptor.FieldDescriptor
+IS_TENANT_SUBJECT_PERMISSION_FIELD_NUMBER: _ClassVar[int]
+is_tenant_subject_permission: _descriptor.FieldDescriptor
+IS_PROJECT_SUBJECT_PERMISSION_FIELD_NUMBER: _ClassVar[int]
+is_project_subject_permission: _descriptor.FieldDescriptor
 PREFIXES_FIELD_NUMBER: _ClassVar[int]
 prefixes: _descriptor.FieldDescriptor
 IPS_FIELD_NUMBER: _ClassVar[int]
@@ -31,3 +37,7 @@ KEYS_AND_VALUES_TRIMMED_FIELD_NUMBER: _ClassVar[int]
 keys_and_values_trimmed: _descriptor.FieldDescriptor
 KEYS_TRIMMED_FIELD_NUMBER: _ClassVar[int]
 keys_trimmed: _descriptor.FieldDescriptor
+PROJECT_ROLES_KEYS_VALID_FIELD_NUMBER: _ClassVar[int]
+project_roles_keys_valid: _descriptor.FieldDescriptor
+TENANT_ROLES_KEYS_VALID_FIELD_NUMBER: _ClassVar[int]
+tenant_roles_keys_valid: _descriptor.FieldDescriptor
