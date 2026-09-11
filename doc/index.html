@@ -236,6 +236,26 @@
                   <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
                 </li>
               
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
               
             </ul>
           </li>
@@ -447,7 +467,31 @@
             <ul>
               
                 <li>
+                  <a href="#fits.api.v1.AdminPermissions"><span class="badge">M</span>AdminPermissions</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.v1.MethodPermission"><span class="badge">M</span>MethodPermission</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.PermissionsByVisibility"><span class="badge">M</span>PermissionsByVisibility</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ProjectPermissions"><span class="badge">M</span>ProjectPermissions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.PublicPermissions"><span class="badge">M</span>PublicPermissions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.SelfPermissions"><span class="badge">M</span>SelfPermissions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantPermissions"><span class="badge">M</span>TenantPermissions</a>
                 </li>
               
                 <li>
@@ -764,6 +808,22 @@
               </tr>
             
               <tr>
+                <td>project_roles_keys_valid</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.MapRules">.buf.validate.MapRules</a></td>
+                <td>80068953</td>
+                <td><p>ProjectRolesKeysValid ensures that project roles keys met our requirements.</p></td>
+              </tr>
+            
+              <tr>
+                <td>tenant_roles_keys_valid</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.MapRules">.buf.validate.MapRules</a></td>
+                <td>80068954</td>
+                <td><p>TenantRolesKeysValid ensures that tenant roles keys met our requirements.</p></td>
+              </tr>
+            
+              <tr>
                 <td>all_trimmed</td>
                 <td><a href="#bool">bool</a></td>
                 <td><a href="#buf.validate.RepeatedRules">.buf.validate.RepeatedRules</a></td>
@@ -833,6 +893,30 @@
                 <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
                 <td>80048955</td>
                 <td><p>IsPrefix validates if the given string is a valid prefix</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_project_subject_permission</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80048964</td>
+                <td><p>IsProjectSubjectPermission returns true if name field satisfies our requirements.</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_tenant_login</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80048962</td>
+                <td><p>IsTenantLogin returns true if name field satisfies our requirements.</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_tenant_subject_permission</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80048963</td>
+                <td><p>IsTenantSubjectPermission returns true if name field satisfies our requirements.</p></td>
               </tr>
             
               <tr>
@@ -2241,6 +2325,30 @@ Will be equal with project most of the time </p></td>
       <p></p>
 
       
+        <h3 id="fits.api.v1.AdminPermissions">AdminPermissions</h3>
+        <p>AdminPermissions carries admin method permissions.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>methods</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Methods which should be accessible. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="fits.api.v1.MethodPermission">MethodPermission</h3>
         <p>MethodPermission is a mapping from a subject/project to a service method</p>
 
@@ -2268,6 +2376,170 @@ otherwise either a projectid or a tenant login should be specified </p></td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p>Methods which should be accessible </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.PermissionsByVisibility">PermissionsByVisibility</h3>
+        <p>PermissionsByVisibility contains method permissions by visibility.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>public</td>
+                  <td><a href="#fits.api.v1.PublicPermissions">PublicPermissions</a></td>
+                  <td></td>
+                  <td><p>PublicPermissions carries public method permissions. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>self</td>
+                  <td><a href="#fits.api.v1.SelfPermissions">SelfPermissions</a></td>
+                  <td></td>
+                  <td><p>SelfPermissions carries self method permissions. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#fits.api.v1.ProjectPermissions">ProjectPermissions</a></td>
+                  <td></td>
+                  <td><p>ProjectPermissions carries project method permissions. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#fits.api.v1.TenantPermissions">TenantPermissions</a></td>
+                  <td></td>
+                  <td><p>TenantPermissions carries tenant method permissions. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>admin</td>
+                  <td><a href="#fits.api.v1.AdminPermissions">AdminPermissions</a></td>
+                  <td></td>
+                  <td><p>AdminPermissions carries admin method permissions. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.ProjectPermissions">ProjectPermissions</h3>
+        <p>ProjectPermissions carries project method permissions.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Project scope for the permissions.
+Asterisk (*) can be specified to match any subject. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>methods</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Methods which should be accessible. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.PublicPermissions">PublicPermissions</h3>
+        <p>PublicPermissions carries public method permissions.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>methods</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Methods which should be accessible. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.SelfPermissions">SelfPermissions</h3>
+        <p>SelfPermissions carries self method permissions.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>methods</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Methods which should be accessible. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TenantPermissions">TenantPermissions</h3>
+        <p>TenantPermissions carries tenant method permissions.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>login</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Login of the tenant.
+Asterisk (*) can be specified to match any subject. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>methods</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Methods which should be accessible. </p></td>
                 </tr>
               
             </tbody>
@@ -2452,9 +2724,9 @@ otherwise either a projectid or a tenant login should be specified </p></td>
               
                 <tr>
                   <td>permissions</td>
-                  <td><a href="#fits.api.v1.MethodPermission">MethodPermission</a></td>
+                  <td><a href="#fits.api.v1.PermissionsByVisibility">PermissionsByVisibility</a></td>
                   <td>repeated</td>
-                  <td><p>Permissions is a list of service methods this token can be used for </p></td>
+                  <td><p>Permissions is a list of service methods this token can be used for. </p></td>
                 </tr>
               
                 <tr>
@@ -2774,9 +3046,9 @@ TokenUpdate is not guarded with optlock in the backend </p></td>
               
                 <tr>
                   <td>permissions</td>
-                  <td><a href="#fits.api.v1.MethodPermission">MethodPermission</a></td>
+                  <td><a href="#fits.api.v1.PermissionsByVisibility">PermissionsByVisibility</a></td>
                   <td>repeated</td>
-                  <td><p>Permissions is a list of service methods this token can be used for </p></td>
+                  <td><p>Permissions is a list of service methods this token can be used for. </p></td>
                 </tr>
               
                 <tr>

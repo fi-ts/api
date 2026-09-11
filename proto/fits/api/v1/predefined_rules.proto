@@ -56,6 +56,25 @@ extend buf.validate.StringRules {
     message: "value must not start or end with whitespace"
     expression: "this.trim().size() == this.size()"
   }];
+  // IsTenantLogin returns true if name field satisfies our requirements.
+  optional bool is_tenant_login = 80048962 [(buf.validate.predefined).cel = {
+    id: "string.is_tenant_login"
+    message: "must be within 2 and 128 characters"
+    expression: "this.size() >= 2 && this.size() <= 128"
+  }];
+
+  // IsTenantSubjectPermission returns true if name field satisfies our requirements.
+  optional bool is_tenant_subject_permission = 80048963 [(buf.validate.predefined).cel = {
+    id: "string.is_tenant_subject_permission"
+    message: "must be '*' or within 2 and 128 characters"
+    expression: "this == '*' || this.size() >= 2 && this.size() <= 128"
+  }];
+  // IsProjectSubjectPermission returns true if name field satisfies our requirements.
+  optional bool is_project_subject_permission = 80048964 [(buf.validate.predefined).cel = {
+    id: "string.is_project_subject_permission"
+    message: "must be '*' or a uuid"
+    expression: "this == '*' || this.matches('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')"
+  }];
 }
 
 extend buf.validate.RepeatedRules {
@@ -97,5 +116,17 @@ extend buf.validate.MapRules {
     id: "map.keys_trimmed"
     message: "keys must not start or end with whitespace"
     expression: "this.all(k, k.trim().size() == k.size())"
+  }];
+  // ProjectRolesKeysValid ensures that project roles keys met our requirements.
+  optional bool project_roles_keys_valid = 80068953 [(buf.validate.predefined).cel = {
+    id: "project_roles.key.valid"
+    message: "subject must be a '*', or a valid UUID"
+    expression: "this.all(k, k == '*' || k.matches('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'))"
+  }];
+  // TenantRolesKeysValid ensures that tenant roles keys met our requirements.
+  optional bool tenant_roles_keys_valid = 80068954 [(buf.validate.predefined).cel = {
+    id: "tenant_roles.key.valid"
+    message: "subject must be '*' or between 2 and 128 characters"
+    expression: "this.all(k, k == '*' || this.size() >= 2 || this.size() <=128 )"
   }];
 }
