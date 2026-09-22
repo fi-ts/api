@@ -6,7 +6,7 @@ import "buf/validate/validate.proto";
 import "fits/api/v1/common.proto";
 import "fits/api/v1/predefined_rules.proto";
 
-// VLANService lists VLANs avaiable for VM instances.
+// VLANService lists VLANs available for VM instances.
 service VlanService {
   // Returns a list of all VLANs available for a tenant.
   rpc List(VlanServiceListRequest) returns (VlanServiceListResponse) {
