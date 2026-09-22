@@ -7,7 +7,6 @@ import "fits/api/v1/common.proto";
 import "fits/api/v1/predefined_rules.proto";
 
 // StageTypeService lists stage types available for VM instances.
-// TODO wurde besprochen am 09.09.26
 service StageTypeService {
   // Returns a list of all stage types available for a tenant.
   rpc List(StageTypeServiceListRequest) returns (StageTypeServiceListResponse) {
@@ -18,7 +17,7 @@ service StageTypeService {
   }
 }
 
-// Maps to the upstream NucleusDBStageTypes model.
+// StageType is the definition of available stage types. (Development, Test, Integration, Production)
 message StageType {
   // Uuid of this stage type
   string uuid = 1 [(buf.validate.field).string.uuid = true];
@@ -27,11 +26,10 @@ message StageType {
 }
 
 // StageTypeServiceListRequest is the request payload for a stage type list request.
-// Maps to the upstream TenantInputModel.
 message StageTypeServiceListRequest {}
 
 // StageTypeServiceListResponse is the response payload for a stage type list request
 message StageTypeServiceListResponse {
   // The available stage types
-  repeated StageType stagetypes = 1;
+  repeated StageType stage_types = 1;
 }

@@ -13,10 +13,10 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/vm/v1/stagetype.proto.
  */
 export const file_fits_api_vm_v1_stagetype: GenFile = /*@__PURE__*/
-  fileDesc("Ch5maXRzL2FwaS92bS92MS9zdGFnZXR5cGUucHJvdG8SDmZpdHMuYXBpLnZtLnYxIj8KCVN0YWdlVHlwZRIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIaCgV0aXRsZRgCIAEoCUILukgIcgbAs66xAgEiHQobU3RhZ2VUeXBlU2VydmljZUxpc3RSZXF1ZXN0Ik0KHFN0YWdlVHlwZVNlcnZpY2VMaXN0UmVzcG9uc2USLQoKc3RhZ2V0eXBlcxgBIAMoCzIZLmZpdHMuYXBpLnZtLnYxLlN0YWdlVHlwZTKCAQoQU3RhZ2VUeXBlU2VydmljZRJuCgRMaXN0EisuZml0cy5hcGkudm0udjEuU3RhZ2VUeXBlU2VydmljZUxpc3RSZXF1ZXN0GiwuZml0cy5hcGkudm0udjEuU3RhZ2VUeXBlU2VydmljZUxpc3RSZXNwb25zZSILyvMYAwECA+DzGAJCrAEKEmNvbS5maXRzLmFwaS52bS52MUIOU3RhZ2V0eXBlUHJvdG9QAVorZ2l0aHViLmNvbS9maS10cy9hcGkvZ28vZml0cy9hcGkvdm0vdjE7dm12MaICA0ZBVqoCDkZpdHMuQXBpLlZtLlYxygIORml0c1xBcGlcVm1cVjHiAhpGaXRzXEFwaVxWbVxWMVxHUEJNZXRhZGF0YeoCEUZpdHM6OkFwaTo6Vm06OlYxYgZwcm90bzM", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
+  fileDesc("Ch5maXRzL2FwaS92bS92MS9zdGFnZXR5cGUucHJvdG8SDmZpdHMuYXBpLnZtLnYxIj8KCVN0YWdlVHlwZRIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIaCgV0aXRsZRgCIAEoCUILukgIcgbAs66xAgEiHQobU3RhZ2VUeXBlU2VydmljZUxpc3RSZXF1ZXN0Ik4KHFN0YWdlVHlwZVNlcnZpY2VMaXN0UmVzcG9uc2USLgoLc3RhZ2VfdHlwZXMYASADKAsyGS5maXRzLmFwaS52bS52MS5TdGFnZVR5cGUyggEKEFN0YWdlVHlwZVNlcnZpY2USbgoETGlzdBIrLmZpdHMuYXBpLnZtLnYxLlN0YWdlVHlwZVNlcnZpY2VMaXN0UmVxdWVzdBosLmZpdHMuYXBpLnZtLnYxLlN0YWdlVHlwZVNlcnZpY2VMaXN0UmVzcG9uc2UiC8rzGAMBAgPg8xgCQqwBChJjb20uZml0cy5hcGkudm0udjFCDlN0YWdldHlwZVByb3RvUAFaK2dpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL3ZtL3YxO3ZtdjGiAgNGQVaqAg5GaXRzLkFwaS5WbS5WMcoCDkZpdHNcQXBpXFZtXFYx4gIaRml0c1xBcGlcVm1cVjFcR1BCTWV0YWRhdGHqAhFGaXRzOjpBcGk6OlZtOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
 
 /**
- * Maps to the upstream NucleusDBStageTypes model.
+ * StageType is the definition of available stage types. (Development, Test, Integration, Production)
  *
  * @generated from message fits.api.vm.v1.StageType
  */
@@ -45,7 +45,6 @@ export const StageTypeSchema: GenMessage<StageType> = /*@__PURE__*/
 
 /**
  * StageTypeServiceListRequest is the request payload for a stage type list request.
- * Maps to the upstream TenantInputModel.
  *
  * @generated from message fits.api.vm.v1.StageTypeServiceListRequest
  */
@@ -68,9 +67,9 @@ export type StageTypeServiceListResponse = Message<"fits.api.vm.v1.StageTypeServ
   /**
    * The available stage types
    *
-   * @generated from field: repeated fits.api.vm.v1.StageType stagetypes = 1;
+   * @generated from field: repeated fits.api.vm.v1.StageType stage_types = 1;
    */
-  stagetypes: StageType[];
+  stageTypes: StageType[];
 };
 
 /**
@@ -82,7 +81,6 @@ export const StageTypeServiceListResponseSchema: GenMessage<StageTypeServiceList
 
 /**
  * StageTypeService lists stage types available for VM instances.
- * TODO wurde besprochen am 09.09.26
  *
  * @generated from service fits.api.vm.v1.StageTypeService
  */

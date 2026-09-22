@@ -79,12 +79,9 @@ func (x *Location) GetTitle() string {
 }
 
 // LocationServiceListRequest is the request payload for a location list request.
-// The upstream nulink API accepts no body or parameters, so this is intentionally empty.
-// TODO pro tenant anders. FITS darf beide RZ, sonst nur eines, logik dazu in nu-link
 type LocationServiceListRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Tenant to list available locations for
-	// TODO Tobias baut in nulink-api ein
 	Tenant        string `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -177,10 +174,10 @@ var File_fits_api_vm_v1_location_proto protoreflect.FileDescriptor
 
 const file_fits_api_vm_v1_location_proto_rawDesc = "" +
 	"\n" +
-	"\x1dfits/api/vm/v1/location.proto\x12\x0efits.api.vm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\">\n" +
+	"\x1dfits/api/vm/v1/location.proto\x12\x0efits.api.vm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"K\n" +
 	"\bLocation\x12\x1c\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\"A\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12!\n" +
+	"\x05title\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x05title\"A\n" +
 	"\x1aLocationServiceListRequest\x12#\n" +
 	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\"U\n" +
 	"\x1bLocationServiceListResponse\x126\n" +

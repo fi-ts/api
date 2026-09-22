@@ -27,7 +27,7 @@ from fits.api.v1 import common_pb2 as fits_dot_api_dot_v1_dot_common__pb2
 from fits.api.v1 import predefined_rules_pb2 as fits_dot_api_dot_v1_dot_predefined__rules__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1e\x66its/api/vm/v1/stagetype.proto\x12\x0e\x66its.api.vm.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"L\n\tStageType\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12!\n\x05title\x18\x02 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x05title\"\x1d\n\x1bStageTypeServiceListRequest\"Y\n\x1cStageTypeServiceListResponse\x12\x39\n\nstagetypes\x18\x01 \x03(\x0b\x32\x19.fits.api.vm.v1.StageTypeR\nstagetypes2\x82\x01\n\x10StageTypeService\x12n\n\x04List\x12+.fits.api.vm.v1.StageTypeServiceListRequest\x1a,.fits.api.vm.v1.StageTypeServiceListResponse\"\x0b\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x42\xac\x01\n\x12\x63om.fits.api.vm.v1B\x0eStagetypeProtoP\x01Z+github.com/fi-ts/api/go/fits/api/vm/v1;vmv1\xa2\x02\x03\x46\x41V\xaa\x02\x0e\x46its.Api.Vm.V1\xca\x02\x0e\x46its\\Api\\Vm\\V1\xe2\x02\x1a\x46its\\Api\\Vm\\V1\\GPBMetadata\xea\x02\x11\x46its::Api::Vm::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1e\x66its/api/vm/v1/stagetype.proto\x12\x0e\x66its.api.vm.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"L\n\tStageType\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12!\n\x05title\x18\x02 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x05title\"\x1d\n\x1bStageTypeServiceListRequest\"Z\n\x1cStageTypeServiceListResponse\x12:\n\x0bstage_types\x18\x01 \x03(\x0b\x32\x19.fits.api.vm.v1.StageTypeR\nstageTypes2\x82\x01\n\x10StageTypeService\x12n\n\x04List\x12+.fits.api.vm.v1.StageTypeServiceListRequest\x1a,.fits.api.vm.v1.StageTypeServiceListResponse\"\x0b\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x42\xac\x01\n\x12\x63om.fits.api.vm.v1B\x0eStagetypeProtoP\x01Z+github.com/fi-ts/api/go/fits/api/vm/v1;vmv1\xa2\x02\x03\x46\x41V\xaa\x02\x0e\x46its.Api.Vm.V1\xca\x02\x0e\x46its\\Api\\Vm\\V1\xe2\x02\x1a\x46its\\Api\\Vm\\V1\\GPBMetadata\xea\x02\x11\x46its::Api::Vm::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -46,7 +46,7 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_STAGETYPESERVICELISTREQUEST']._serialized_start=219
   _globals['_STAGETYPESERVICELISTREQUEST']._serialized_end=248
   _globals['_STAGETYPESERVICELISTRESPONSE']._serialized_start=250
-  _globals['_STAGETYPESERVICELISTRESPONSE']._serialized_end=339
-  _globals['_STAGETYPESERVICE']._serialized_start=342
-  _globals['_STAGETYPESERVICE']._serialized_end=472
+  _globals['_STAGETYPESERVICELISTRESPONSE']._serialized_end=340
+  _globals['_STAGETYPESERVICE']._serialized_start=343
+  _globals['_STAGETYPESERVICE']._serialized_end=473
 # @@protoc_insertion_point(module_scope)

@@ -3,6 +3,7 @@ from fits.api.v1 import common_pb2 as _common_pb2
 from fits.api.v1 import predefined_rules_pb2 as _predefined_rules_pb2
 from fits.api.vm.v1 import vlan_pb2 as _vlan_pb2
 from google.protobuf.internal import containers as _containers
+from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from collections.abc import Iterable as _Iterable, Mapping as _Mapping
@@ -10,51 +11,29 @@ from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 
 DESCRIPTOR: _descriptor.FileDescriptor
 
-class VMInstance(_message.Message):
-    __slots__ = ("uuid", "meta", "fqdn", "tenant", "project_uuid", "os_uuid", "location_uuid", "contact_uuid", "cpu", "ram", "order_number", "contract", "backup", "availability", "serviceclass", "status", "status_info", "windows_details", "linux_details", "interfaces", "vlan")
-    UUID_FIELD_NUMBER: _ClassVar[int]
-    META_FIELD_NUMBER: _ClassVar[int]
-    FQDN_FIELD_NUMBER: _ClassVar[int]
-    TENANT_FIELD_NUMBER: _ClassVar[int]
-    PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
-    OS_UUID_FIELD_NUMBER: _ClassVar[int]
-    LOCATION_UUID_FIELD_NUMBER: _ClassVar[int]
-    CONTACT_UUID_FIELD_NUMBER: _ClassVar[int]
-    CPU_FIELD_NUMBER: _ClassVar[int]
-    RAM_FIELD_NUMBER: _ClassVar[int]
-    ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
-    CONTRACT_FIELD_NUMBER: _ClassVar[int]
-    BACKUP_FIELD_NUMBER: _ClassVar[int]
-    AVAILABILITY_FIELD_NUMBER: _ClassVar[int]
-    SERVICECLASS_FIELD_NUMBER: _ClassVar[int]
-    STATUS_FIELD_NUMBER: _ClassVar[int]
-    STATUS_INFO_FIELD_NUMBER: _ClassVar[int]
-    WINDOWS_DETAILS_FIELD_NUMBER: _ClassVar[int]
-    LINUX_DETAILS_FIELD_NUMBER: _ClassVar[int]
-    INTERFACES_FIELD_NUMBER: _ClassVar[int]
-    VLAN_FIELD_NUMBER: _ClassVar[int]
-    uuid: str
-    meta: _common_pb2.Meta
-    fqdn: str
-    tenant: str
-    project_uuid: str
-    os_uuid: str
-    location_uuid: str
-    contact_uuid: str
-    cpu: int
-    ram: int
-    order_number: str
-    contract: bool
-    backup: bool
-    availability: str
-    serviceclass: str
-    status: str
-    status_info: str
-    windows_details: WindowsDetails
-    linux_details: LinuxDetails
-    interfaces: _containers.RepeatedCompositeFieldContainer[NetworkInterface]
-    vlan: _vlan_pb2.Vlan
-    def __init__(self, uuid: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., fqdn: _Optional[str] = ..., tenant: _Optional[str] = ..., project_uuid: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., order_number: _Optional[str] = ..., contract: _Optional[bool] = ..., backup: _Optional[bool] = ..., availability: _Optional[str] = ..., serviceclass: _Optional[str] = ..., status: _Optional[str] = ..., status_info: _Optional[str] = ..., windows_details: _Optional[_Union[WindowsDetails, _Mapping]] = ..., linux_details: _Optional[_Union[LinuxDetails, _Mapping]] = ..., interfaces: _Optional[_Iterable[_Union[NetworkInterface, _Mapping]]] = ..., vlan: _Optional[_Union[_vlan_pb2.Vlan, _Mapping]] = ...) -> None: ...
+class Availability(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+    __slots__ = ()
+    AVAILABILITY_UNSPECIFIED: _ClassVar[Availability]
+    AVAILABILITY_V0: _ClassVar[Availability]
+    AVAILABILITY_V1: _ClassVar[Availability]
+    AVAILABILITY_V2: _ClassVar[Availability]
+    AVAILABILITY_V3: _ClassVar[Availability]
+
+class ServiceClass(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+    __slots__ = ()
+    SERVICE_CLASS_UNSPECIFIED: _ClassVar[ServiceClass]
+    SERVICE_CLASS_SZ1: _ClassVar[ServiceClass]
+    SERVICE_CLASS_SZ2: _ClassVar[ServiceClass]
+    SERVICE_CLASS_SZ3: _ClassVar[ServiceClass]
+AVAILABILITY_UNSPECIFIED: Availability
+AVAILABILITY_V0: Availability
+AVAILABILITY_V1: Availability
+AVAILABILITY_V2: Availability
+AVAILABILITY_V3: Availability
+SERVICE_CLASS_UNSPECIFIED: ServiceClass
+SERVICE_CLASS_SZ1: ServiceClass
+SERVICE_CLASS_SZ2: ServiceClass
+SERVICE_CLASS_SZ3: ServiceClass
 
 class LinuxDetails(_message.Message):
     __slots__ = ("disks", "ldap_uuid", "ldap_fqdn")
@@ -86,13 +65,59 @@ class NetworkInterface(_message.Message):
     macaddress: str
     def __init__(self, uuid: _Optional[str] = ..., ipaddress: _Optional[str] = ..., macaddress: _Optional[str] = ...) -> None: ...
 
-class VMServiceGetRequest(_message.Message):
-    __slots__ = ("uuid", "project")
+class VMInstance(_message.Message):
+    __slots__ = ("uuid", "meta", "fqdn", "tenant", "project_uuid", "os_uuid", "location_uuid", "contact_uuid", "cpu", "ram", "backup", "status", "status_info", "availability", "serviceclass", "windows_details", "linux_details", "interfaces", "vlan", "order_number", "contract")
     UUID_FIELD_NUMBER: _ClassVar[int]
-    PROJECT_FIELD_NUMBER: _ClassVar[int]
+    META_FIELD_NUMBER: _ClassVar[int]
+    FQDN_FIELD_NUMBER: _ClassVar[int]
+    TENANT_FIELD_NUMBER: _ClassVar[int]
+    PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
+    OS_UUID_FIELD_NUMBER: _ClassVar[int]
+    LOCATION_UUID_FIELD_NUMBER: _ClassVar[int]
+    CONTACT_UUID_FIELD_NUMBER: _ClassVar[int]
+    CPU_FIELD_NUMBER: _ClassVar[int]
+    RAM_FIELD_NUMBER: _ClassVar[int]
+    BACKUP_FIELD_NUMBER: _ClassVar[int]
+    STATUS_FIELD_NUMBER: _ClassVar[int]
+    STATUS_INFO_FIELD_NUMBER: _ClassVar[int]
+    AVAILABILITY_FIELD_NUMBER: _ClassVar[int]
+    SERVICECLASS_FIELD_NUMBER: _ClassVar[int]
+    WINDOWS_DETAILS_FIELD_NUMBER: _ClassVar[int]
+    LINUX_DETAILS_FIELD_NUMBER: _ClassVar[int]
+    INTERFACES_FIELD_NUMBER: _ClassVar[int]
+    VLAN_FIELD_NUMBER: _ClassVar[int]
+    ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
+    CONTRACT_FIELD_NUMBER: _ClassVar[int]
     uuid: str
-    project: str
-    def __init__(self, uuid: _Optional[str] = ..., project: _Optional[str] = ...) -> None: ...
+    meta: _common_pb2.Meta
+    fqdn: str
+    tenant: str
+    project_uuid: str
+    os_uuid: str
+    location_uuid: str
+    contact_uuid: str
+    cpu: int
+    ram: int
+    backup: bool
+    status: str
+    status_info: str
+    availability: Availability
+    serviceclass: ServiceClass
+    windows_details: WindowsDetails
+    linux_details: LinuxDetails
+    interfaces: _containers.RepeatedCompositeFieldContainer[NetworkInterface]
+    vlan: _vlan_pb2.Vlan
+    order_number: str
+    contract: bool
+    def __init__(self, uuid: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., fqdn: _Optional[str] = ..., tenant: _Optional[str] = ..., project_uuid: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., backup: _Optional[bool] = ..., status: _Optional[str] = ..., status_info: _Optional[str] = ..., availability: _Optional[_Union[Availability, str]] = ..., serviceclass: _Optional[_Union[ServiceClass, str]] = ..., windows_details: _Optional[_Union[WindowsDetails, _Mapping]] = ..., linux_details: _Optional[_Union[LinuxDetails, _Mapping]] = ..., interfaces: _Optional[_Iterable[_Union[NetworkInterface, _Mapping]]] = ..., vlan: _Optional[_Union[_vlan_pb2.Vlan, _Mapping]] = ..., order_number: _Optional[str] = ..., contract: _Optional[bool] = ...) -> None: ...
+
+class VMServiceGetRequest(_message.Message):
+    __slots__ = ("uuid", "tenant")
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    TENANT_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    tenant: str
+    def __init__(self, uuid: _Optional[str] = ..., tenant: _Optional[str] = ...) -> None: ...
 
 class VMServiceGetResponse(_message.Message):
     __slots__ = ("vm",)
@@ -101,20 +126,20 @@ class VMServiceGetResponse(_message.Message):
     def __init__(self, vm: _Optional[_Union[VMInstance, _Mapping]] = ...) -> None: ...
 
 class VMServiceCreateWindowsRequest(_message.Message):
-    __slots__ = ("domain_uuid", "disk")
+    __slots__ = ("domain_uuid", "disks")
     DOMAIN_UUID_FIELD_NUMBER: _ClassVar[int]
-    DISK_FIELD_NUMBER: _ClassVar[int]
+    DISKS_FIELD_NUMBER: _ClassVar[int]
     domain_uuid: str
-    disk: WindowsDisk
-    def __init__(self, domain_uuid: _Optional[str] = ..., disk: _Optional[_Union[WindowsDisk, _Mapping]] = ...) -> None: ...
+    disks: _containers.RepeatedCompositeFieldContainer[WindowsDisk]
+    def __init__(self, domain_uuid: _Optional[str] = ..., disks: _Optional[_Iterable[_Union[WindowsDisk, _Mapping]]] = ...) -> None: ...
 
 class VMServiceCreateLinuxRequest(_message.Message):
-    __slots__ = ("ldap_uuid", "disk")
+    __slots__ = ("ldap_uuid", "disks")
     LDAP_UUID_FIELD_NUMBER: _ClassVar[int]
-    DISK_FIELD_NUMBER: _ClassVar[int]
+    DISKS_FIELD_NUMBER: _ClassVar[int]
     ldap_uuid: str
-    disk: LinuxDisk
-    def __init__(self, ldap_uuid: _Optional[str] = ..., disk: _Optional[_Union[LinuxDisk, _Mapping]] = ...) -> None: ...
+    disks: _containers.RepeatedCompositeFieldContainer[LinuxDisk]
+    def __init__(self, ldap_uuid: _Optional[str] = ..., disks: _Optional[_Iterable[_Union[LinuxDisk, _Mapping]]] = ...) -> None: ...
 
 class VMServiceCreateRequest(_message.Message):
     __slots__ = ("project_uuid", "name", "os_uuid", "vlan_uuid", "location_uuid", "contact_uuid", "cpu", "ram", "order_number", "labels", "backup", "availability", "serviceclass", "windows", "linux")
@@ -144,59 +169,91 @@ class VMServiceCreateRequest(_message.Message):
     order_number: str
     labels: _common_pb2.Labels
     backup: bool
-    availability: str
-    serviceclass: str
+    availability: Availability
+    serviceclass: ServiceClass
     windows: VMServiceCreateWindowsRequest
     linux: VMServiceCreateLinuxRequest
-    def __init__(self, project_uuid: _Optional[str] = ..., name: _Optional[str] = ..., os_uuid: _Optional[str] = ..., vlan_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., order_number: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.Labels, _Mapping]] = ..., backup: _Optional[bool] = ..., availability: _Optional[str] = ..., serviceclass: _Optional[str] = ..., windows: _Optional[_Union[VMServiceCreateWindowsRequest, _Mapping]] = ..., linux: _Optional[_Union[VMServiceCreateLinuxRequest, _Mapping]] = ...) -> None: ...
+    def __init__(self, project_uuid: _Optional[str] = ..., name: _Optional[str] = ..., os_uuid: _Optional[str] = ..., vlan_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., order_number: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.Labels, _Mapping]] = ..., backup: _Optional[bool] = ..., availability: _Optional[_Union[Availability, str]] = ..., serviceclass: _Optional[_Union[ServiceClass, str]] = ..., windows: _Optional[_Union[VMServiceCreateWindowsRequest, _Mapping]] = ..., linux: _Optional[_Union[VMServiceCreateLinuxRequest, _Mapping]] = ...) -> None: ...
 
 class LinuxDisk(_message.Message):
-    __slots__ = ("auto_extend", "size_in_gb", "label", "mount_point")
-    AUTO_EXTEND_FIELD_NUMBER: _ClassVar[int]
-    SIZE_IN_GB_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("uuid", "label", "auto_extend", "size", "mount_point")
+    UUID_FIELD_NUMBER: _ClassVar[int]
     LABEL_FIELD_NUMBER: _ClassVar[int]
+    AUTO_EXTEND_FIELD_NUMBER: _ClassVar[int]
+    SIZE_FIELD_NUMBER: _ClassVar[int]
     MOUNT_POINT_FIELD_NUMBER: _ClassVar[int]
-    auto_extend: bool
-    size_in_gb: int
+    uuid: str
     label: str
+    auto_extend: bool
+    size: int
     mount_point: str
-    def __init__(self, auto_extend: _Optional[bool] = ..., size_in_gb: _Optional[int] = ..., label: _Optional[str] = ..., mount_point: _Optional[str] = ...) -> None: ...
+    def __init__(self, uuid: _Optional[str] = ..., label: _Optional[str] = ..., auto_extend: _Optional[bool] = ..., size: _Optional[int] = ..., mount_point: _Optional[str] = ...) -> None: ...
 
 class WindowsDisk(_message.Message):
-    __slots__ = ("auto_extend", "size_in_gb", "driveletter", "label")
-    AUTO_EXTEND_FIELD_NUMBER: _ClassVar[int]
-    SIZE_IN_GB_FIELD_NUMBER: _ClassVar[int]
-    DRIVELETTER_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("uuid", "label", "auto_extend", "size", "driveletter")
+    UUID_FIELD_NUMBER: _ClassVar[int]
     LABEL_FIELD_NUMBER: _ClassVar[int]
-    auto_extend: bool
-    size_in_gb: int
-    driveletter: str
+    AUTO_EXTEND_FIELD_NUMBER: _ClassVar[int]
+    SIZE_FIELD_NUMBER: _ClassVar[int]
+    DRIVELETTER_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
     label: str
-    def __init__(self, auto_extend: _Optional[bool] = ..., size_in_gb: _Optional[int] = ..., driveletter: _Optional[str] = ..., label: _Optional[str] = ...) -> None: ...
+    auto_extend: bool
+    size: int
+    driveletter: str
+    def __init__(self, uuid: _Optional[str] = ..., label: _Optional[str] = ..., auto_extend: _Optional[bool] = ..., size: _Optional[int] = ..., driveletter: _Optional[str] = ...) -> None: ...
 
 class VMServiceCreateResponse(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...
 
 class VMServiceUpdateRequest(_message.Message):
-    __slots__ = ("project_uuid", "update_meta")
-    PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("uuid", "project", "order_number", "update_meta", "performance_class", "service_class", "contact")
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    PROJECT_FIELD_NUMBER: _ClassVar[int]
+    ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
     UPDATE_META_FIELD_NUMBER: _ClassVar[int]
-    project_uuid: str
+    PERFORMANCE_CLASS_FIELD_NUMBER: _ClassVar[int]
+    SERVICE_CLASS_FIELD_NUMBER: _ClassVar[int]
+    CONTACT_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    project: str
+    order_number: str
     update_meta: _common_pb2.UpdateMeta
-    def __init__(self, project_uuid: _Optional[str] = ..., update_meta: _Optional[_Union[_common_pb2.UpdateMeta, _Mapping]] = ...) -> None: ...
+    performance_class: PerformanceClassChange
+    service_class: ServiceClassChange
+    contact: ContactChange
+    def __init__(self, uuid: _Optional[str] = ..., project: _Optional[str] = ..., order_number: _Optional[str] = ..., update_meta: _Optional[_Union[_common_pb2.UpdateMeta, _Mapping]] = ..., performance_class: _Optional[_Union[PerformanceClassChange, _Mapping]] = ..., service_class: _Optional[_Union[ServiceClassChange, _Mapping]] = ..., contact: _Optional[_Union[ContactChange, _Mapping]] = ...) -> None: ...
+
+class PerformanceClassChange(_message.Message):
+    __slots__ = ("cpu", "ram")
+    CPU_FIELD_NUMBER: _ClassVar[int]
+    RAM_FIELD_NUMBER: _ClassVar[int]
+    cpu: int
+    ram: int
+    def __init__(self, cpu: _Optional[int] = ..., ram: _Optional[int] = ...) -> None: ...
+
+class ServiceClassChange(_message.Message):
+    __slots__ = ("serviceclass",)
+    SERVICECLASS_FIELD_NUMBER: _ClassVar[int]
+    serviceclass: ServiceClass
+    def __init__(self, serviceclass: _Optional[_Union[ServiceClass, str]] = ...) -> None: ...
+
+class ContactChange(_message.Message):
+    __slots__ = ("contact_uuid",)
+    CONTACT_UUID_FIELD_NUMBER: _ClassVar[int]
+    contact_uuid: str
+    def __init__(self, contact_uuid: _Optional[str] = ...) -> None: ...
 
 class VMServiceUpdateResponse(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...
 
 class VMServiceListRequest(_message.Message):
-    __slots__ = ("tenant", "project_uuid")
+    __slots__ = ("tenant",)
     TENANT_FIELD_NUMBER: _ClassVar[int]
-    PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
     tenant: str
-    project_uuid: str
-    def __init__(self, tenant: _Optional[str] = ..., project_uuid: _Optional[str] = ...) -> None: ...
+    def __init__(self, tenant: _Optional[str] = ...) -> None: ...
 
 class VMServiceListResponse(_message.Message):
     __slots__ = ("vms",)
@@ -205,11 +262,157 @@ class VMServiceListResponse(_message.Message):
     def __init__(self, vms: _Optional[_Iterable[_Union[VMInstance, _Mapping]]] = ...) -> None: ...
 
 class VMServiceDeleteRequest(_message.Message):
-    __slots__ = ("project",)
+    __slots__ = ("project", "uuid", "order_number")
     PROJECT_FIELD_NUMBER: _ClassVar[int]
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
     project: str
-    def __init__(self, project: _Optional[str] = ...) -> None: ...
+    uuid: str
+    order_number: str
+    def __init__(self, project: _Optional[str] = ..., uuid: _Optional[str] = ..., order_number: _Optional[str] = ...) -> None: ...
 
 class VMServiceDeleteResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class VMServiceValidateCreateRequest(_message.Message):
+    __slots__ = ("create",)
+    CREATE_FIELD_NUMBER: _ClassVar[int]
+    create: VMServiceCreateRequest
+    def __init__(self, create: _Optional[_Union[VMServiceCreateRequest, _Mapping]] = ...) -> None: ...
+
+class VMServiceValidateCreateResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class VMServiceValidateAddDiskRequest(_message.Message):
+    __slots__ = ("add_disk",)
+    ADD_DISK_FIELD_NUMBER: _ClassVar[int]
+    add_disk: VMServiceAddDiskRequest
+    def __init__(self, add_disk: _Optional[_Union[VMServiceAddDiskRequest, _Mapping]] = ...) -> None: ...
+
+class VMServiceValidateAddDiskResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class VMServiceValidateUpdateDiskRequest(_message.Message):
+    __slots__ = ("update_disk",)
+    UPDATE_DISK_FIELD_NUMBER: _ClassVar[int]
+    update_disk: VMServiceUpdateDiskRequest
+    def __init__(self, update_disk: _Optional[_Union[VMServiceUpdateDiskRequest, _Mapping]] = ...) -> None: ...
+
+class VMServiceValidateUpdateDiskResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class VMServiceAddDiskResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class VMServiceUpdateDiskResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class VMServiceDeleteDiskResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class VMServiceAddDiskRequest(_message.Message):
+    __slots__ = ("uuid", "project", "order_number", "linux", "windows")
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    PROJECT_FIELD_NUMBER: _ClassVar[int]
+    ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
+    LINUX_FIELD_NUMBER: _ClassVar[int]
+    WINDOWS_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    project: str
+    order_number: str
+    linux: LinuxDisk
+    windows: WindowsDisk
+    def __init__(self, uuid: _Optional[str] = ..., project: _Optional[str] = ..., order_number: _Optional[str] = ..., linux: _Optional[_Union[LinuxDisk, _Mapping]] = ..., windows: _Optional[_Union[WindowsDisk, _Mapping]] = ...) -> None: ...
+
+class VMServiceUpdateDiskRequest(_message.Message):
+    __slots__ = ("uuid", "disk_uuid", "project", "order_number", "auto_extend", "size")
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    DISK_UUID_FIELD_NUMBER: _ClassVar[int]
+    PROJECT_FIELD_NUMBER: _ClassVar[int]
+    ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
+    AUTO_EXTEND_FIELD_NUMBER: _ClassVar[int]
+    SIZE_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    disk_uuid: str
+    project: str
+    order_number: str
+    auto_extend: bool
+    size: int
+    def __init__(self, uuid: _Optional[str] = ..., disk_uuid: _Optional[str] = ..., project: _Optional[str] = ..., order_number: _Optional[str] = ..., auto_extend: _Optional[bool] = ..., size: _Optional[int] = ...) -> None: ...
+
+class VMServiceDeleteDiskRequest(_message.Message):
+    __slots__ = ("uuid", "disk_uuid", "project", "order_number")
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    DISK_UUID_FIELD_NUMBER: _ClassVar[int]
+    PROJECT_FIELD_NUMBER: _ClassVar[int]
+    ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    disk_uuid: str
+    project: str
+    order_number: str
+    def __init__(self, uuid: _Optional[str] = ..., disk_uuid: _Optional[str] = ..., project: _Optional[str] = ..., order_number: _Optional[str] = ...) -> None: ...
+
+class VMServiceAddIPResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class VMServiceMoveIPResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class VMServiceDeleteIPResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class VMServiceAddIPRequest(_message.Message):
+    __slots__ = ("uuid", "project", "order_number")
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    PROJECT_FIELD_NUMBER: _ClassVar[int]
+    ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    project: str
+    order_number: str
+    def __init__(self, uuid: _Optional[str] = ..., project: _Optional[str] = ..., order_number: _Optional[str] = ...) -> None: ...
+
+class VMServiceMoveIPRequest(_message.Message):
+    __slots__ = ("uuid", "interface_uuid", "project", "order_number", "target_vm_uuid")
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    INTERFACE_UUID_FIELD_NUMBER: _ClassVar[int]
+    PROJECT_FIELD_NUMBER: _ClassVar[int]
+    ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
+    TARGET_VM_UUID_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    interface_uuid: str
+    project: str
+    order_number: str
+    target_vm_uuid: str
+    def __init__(self, uuid: _Optional[str] = ..., interface_uuid: _Optional[str] = ..., project: _Optional[str] = ..., order_number: _Optional[str] = ..., target_vm_uuid: _Optional[str] = ...) -> None: ...
+
+class VMServiceDeleteIPRequest(_message.Message):
+    __slots__ = ("uuid", "interface_uuid", "project", "order_number")
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    INTERFACE_UUID_FIELD_NUMBER: _ClassVar[int]
+    PROJECT_FIELD_NUMBER: _ClassVar[int]
+    ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    interface_uuid: str
+    project: str
+    order_number: str
+    def __init__(self, uuid: _Optional[str] = ..., interface_uuid: _Optional[str] = ..., project: _Optional[str] = ..., order_number: _Optional[str] = ...) -> None: ...
+
+class VMServiceValidateAddIPRequest(_message.Message):
+    __slots__ = ("add_ip",)
+    ADD_IP_FIELD_NUMBER: _ClassVar[int]
+    add_ip: VMServiceAddIPRequest
+    def __init__(self, add_ip: _Optional[_Union[VMServiceAddIPRequest, _Mapping]] = ...) -> None: ...
+
+class VMServiceValidateAddIPResponse(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...

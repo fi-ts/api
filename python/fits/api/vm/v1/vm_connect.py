@@ -33,6 +33,36 @@ class VMService(Protocol):
     async def delete(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
+    async def add_disk(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddDiskResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
+    async def update_disk(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceUpdateDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceUpdateDiskResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
+    async def delete_disk(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteDiskResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
+    async def add_i_p(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddIPRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddIPResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
+    async def move_i_p(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceMoveIPRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceMoveIPResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
+    async def delete_i_p(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteIPRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteIPResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
+    async def validate_create(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateCreateResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
+    async def validate_add_disk(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddDiskResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
+    async def validate_update_disk(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateUpdateDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateUpdateDiskResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
+    async def validate_add_i_p(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddIPRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddIPResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
 
 class VMServiceASGIApplication(ConnectASGIApplication[VMService]):
     def __init__(self, service: VMService | AsyncGenerator[VMService], *, interceptors: Iterable[Interceptor]=(), read_max_bytes: int | None = None, compressions: Iterable[Compression] | None = None, codecs: Iterable[Codec] | None = None) -> None:
@@ -88,6 +118,106 @@ class VMServiceASGIApplication(ConnectASGIApplication[VMService]):
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=svc.delete,
+                ),
+                "/fits.api.vm.v1.VMService/AddDisk": Endpoint.unary(
+                    method=MethodInfo(
+                        name="AddDisk",
+                        service_name="fits.api.vm.v1.VMService",
+                        input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddDiskRequest,
+                        output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddDiskResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.add_disk,
+                ),
+                "/fits.api.vm.v1.VMService/UpdateDisk": Endpoint.unary(
+                    method=MethodInfo(
+                        name="UpdateDisk",
+                        service_name="fits.api.vm.v1.VMService",
+                        input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceUpdateDiskRequest,
+                        output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceUpdateDiskResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.update_disk,
+                ),
+                "/fits.api.vm.v1.VMService/DeleteDisk": Endpoint.unary(
+                    method=MethodInfo(
+                        name="DeleteDisk",
+                        service_name="fits.api.vm.v1.VMService",
+                        input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteDiskRequest,
+                        output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteDiskResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.delete_disk,
+                ),
+                "/fits.api.vm.v1.VMService/AddIP": Endpoint.unary(
+                    method=MethodInfo(
+                        name="AddIP",
+                        service_name="fits.api.vm.v1.VMService",
+                        input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddIPRequest,
+                        output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddIPResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.add_i_p,
+                ),
+                "/fits.api.vm.v1.VMService/MoveIP": Endpoint.unary(
+                    method=MethodInfo(
+                        name="MoveIP",
+                        service_name="fits.api.vm.v1.VMService",
+                        input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceMoveIPRequest,
+                        output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceMoveIPResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.move_i_p,
+                ),
+                "/fits.api.vm.v1.VMService/DeleteIP": Endpoint.unary(
+                    method=MethodInfo(
+                        name="DeleteIP",
+                        service_name="fits.api.vm.v1.VMService",
+                        input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteIPRequest,
+                        output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteIPResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.delete_i_p,
+                ),
+                "/fits.api.vm.v1.VMService/ValidateCreate": Endpoint.unary(
+                    method=MethodInfo(
+                        name="ValidateCreate",
+                        service_name="fits.api.vm.v1.VMService",
+                        input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateCreateRequest,
+                        output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateCreateResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.validate_create,
+                ),
+                "/fits.api.vm.v1.VMService/ValidateAddDisk": Endpoint.unary(
+                    method=MethodInfo(
+                        name="ValidateAddDisk",
+                        service_name="fits.api.vm.v1.VMService",
+                        input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddDiskRequest,
+                        output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddDiskResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.validate_add_disk,
+                ),
+                "/fits.api.vm.v1.VMService/ValidateUpdateDisk": Endpoint.unary(
+                    method=MethodInfo(
+                        name="ValidateUpdateDisk",
+                        service_name="fits.api.vm.v1.VMService",
+                        input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateUpdateDiskRequest,
+                        output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateUpdateDiskResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.validate_update_disk,
+                ),
+                "/fits.api.vm.v1.VMService/ValidateAddIP": Endpoint.unary(
+                    method=MethodInfo(
+                        name="ValidateAddIP",
+                        service_name="fits.api.vm.v1.VMService",
+                        input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddIPRequest,
+                        output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddIPResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.validate_add_i_p,
                 ),
             },
             interceptors=interceptors,
@@ -203,6 +333,206 @@ class VMServiceClient(ConnectClient):
             timeout_ms=timeout_ms,
         )
 
+    async def add_disk(
+        self,
+        request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddDiskRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddDiskResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="AddDisk",
+                service_name="fits.api.vm.v1.VMService",
+                input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddDiskRequest,
+                output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddDiskResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    async def update_disk(
+        self,
+        request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceUpdateDiskRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceUpdateDiskResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="UpdateDisk",
+                service_name="fits.api.vm.v1.VMService",
+                input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceUpdateDiskRequest,
+                output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceUpdateDiskResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    async def delete_disk(
+        self,
+        request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteDiskRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteDiskResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="DeleteDisk",
+                service_name="fits.api.vm.v1.VMService",
+                input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteDiskRequest,
+                output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteDiskResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    async def add_i_p(
+        self,
+        request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddIPRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddIPResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="AddIP",
+                service_name="fits.api.vm.v1.VMService",
+                input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddIPRequest,
+                output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddIPResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    async def move_i_p(
+        self,
+        request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceMoveIPRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceMoveIPResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="MoveIP",
+                service_name="fits.api.vm.v1.VMService",
+                input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceMoveIPRequest,
+                output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceMoveIPResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    async def delete_i_p(
+        self,
+        request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteIPRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteIPResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="DeleteIP",
+                service_name="fits.api.vm.v1.VMService",
+                input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteIPRequest,
+                output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteIPResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    async def validate_create(
+        self,
+        request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateCreateRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateCreateResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="ValidateCreate",
+                service_name="fits.api.vm.v1.VMService",
+                input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateCreateRequest,
+                output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateCreateResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    async def validate_add_disk(
+        self,
+        request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddDiskRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddDiskResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="ValidateAddDisk",
+                service_name="fits.api.vm.v1.VMService",
+                input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddDiskRequest,
+                output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddDiskResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    async def validate_update_disk(
+        self,
+        request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateUpdateDiskRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateUpdateDiskResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="ValidateUpdateDisk",
+                service_name="fits.api.vm.v1.VMService",
+                input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateUpdateDiskRequest,
+                output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateUpdateDiskResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    async def validate_add_i_p(
+        self,
+        request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddIPRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddIPResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="ValidateAddIP",
+                service_name="fits.api.vm.v1.VMService",
+                input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddIPRequest,
+                output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddIPResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
 
 
 
@@ -217,6 +547,26 @@ class VMServiceSync(Protocol):
     def list(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceListRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceListResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def delete(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def add_disk(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddDiskResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def update_disk(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceUpdateDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceUpdateDiskResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def delete_disk(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteDiskResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def add_i_p(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddIPRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddIPResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def move_i_p(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceMoveIPRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceMoveIPResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def delete_i_p(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteIPRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteIPResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def validate_create(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateCreateResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def validate_add_disk(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddDiskResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def validate_update_disk(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateUpdateDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateUpdateDiskResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def validate_add_i_p(self, request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddIPRequest, ctx: RequestContext) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddIPResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
 
@@ -273,6 +623,106 @@ class VMServiceWSGIApplication(ConnectWSGIApplication):
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=service.delete,
+                ),
+                "/fits.api.vm.v1.VMService/AddDisk": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="AddDisk",
+                        service_name="fits.api.vm.v1.VMService",
+                        input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddDiskRequest,
+                        output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddDiskResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.add_disk,
+                ),
+                "/fits.api.vm.v1.VMService/UpdateDisk": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="UpdateDisk",
+                        service_name="fits.api.vm.v1.VMService",
+                        input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceUpdateDiskRequest,
+                        output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceUpdateDiskResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.update_disk,
+                ),
+                "/fits.api.vm.v1.VMService/DeleteDisk": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="DeleteDisk",
+                        service_name="fits.api.vm.v1.VMService",
+                        input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteDiskRequest,
+                        output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteDiskResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.delete_disk,
+                ),
+                "/fits.api.vm.v1.VMService/AddIP": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="AddIP",
+                        service_name="fits.api.vm.v1.VMService",
+                        input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddIPRequest,
+                        output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddIPResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.add_i_p,
+                ),
+                "/fits.api.vm.v1.VMService/MoveIP": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="MoveIP",
+                        service_name="fits.api.vm.v1.VMService",
+                        input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceMoveIPRequest,
+                        output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceMoveIPResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.move_i_p,
+                ),
+                "/fits.api.vm.v1.VMService/DeleteIP": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="DeleteIP",
+                        service_name="fits.api.vm.v1.VMService",
+                        input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteIPRequest,
+                        output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteIPResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.delete_i_p,
+                ),
+                "/fits.api.vm.v1.VMService/ValidateCreate": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="ValidateCreate",
+                        service_name="fits.api.vm.v1.VMService",
+                        input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateCreateRequest,
+                        output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateCreateResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.validate_create,
+                ),
+                "/fits.api.vm.v1.VMService/ValidateAddDisk": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="ValidateAddDisk",
+                        service_name="fits.api.vm.v1.VMService",
+                        input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddDiskRequest,
+                        output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddDiskResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.validate_add_disk,
+                ),
+                "/fits.api.vm.v1.VMService/ValidateUpdateDisk": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="ValidateUpdateDisk",
+                        service_name="fits.api.vm.v1.VMService",
+                        input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateUpdateDiskRequest,
+                        output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateUpdateDiskResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.validate_update_disk,
+                ),
+                "/fits.api.vm.v1.VMService/ValidateAddIP": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="ValidateAddIP",
+                        service_name="fits.api.vm.v1.VMService",
+                        input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddIPRequest,
+                        output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddIPResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.validate_add_i_p,
                 ),
             },
             interceptors=interceptors,
@@ -382,6 +832,206 @@ class VMServiceClientSync(ConnectClientSync):
                 service_name="fits.api.vm.v1.VMService",
                 input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteRequest,
                 output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def add_disk(
+        self,
+        request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddDiskRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddDiskResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="AddDisk",
+                service_name="fits.api.vm.v1.VMService",
+                input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddDiskRequest,
+                output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddDiskResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def update_disk(
+        self,
+        request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceUpdateDiskRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceUpdateDiskResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="UpdateDisk",
+                service_name="fits.api.vm.v1.VMService",
+                input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceUpdateDiskRequest,
+                output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceUpdateDiskResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def delete_disk(
+        self,
+        request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteDiskRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteDiskResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="DeleteDisk",
+                service_name="fits.api.vm.v1.VMService",
+                input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteDiskRequest,
+                output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteDiskResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def add_i_p(
+        self,
+        request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddIPRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddIPResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="AddIP",
+                service_name="fits.api.vm.v1.VMService",
+                input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddIPRequest,
+                output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceAddIPResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def move_i_p(
+        self,
+        request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceMoveIPRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceMoveIPResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="MoveIP",
+                service_name="fits.api.vm.v1.VMService",
+                input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceMoveIPRequest,
+                output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceMoveIPResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def delete_i_p(
+        self,
+        request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteIPRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteIPResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="DeleteIP",
+                service_name="fits.api.vm.v1.VMService",
+                input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteIPRequest,
+                output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceDeleteIPResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def validate_create(
+        self,
+        request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateCreateRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateCreateResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="ValidateCreate",
+                service_name="fits.api.vm.v1.VMService",
+                input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateCreateRequest,
+                output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateCreateResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def validate_add_disk(
+        self,
+        request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddDiskRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddDiskResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="ValidateAddDisk",
+                service_name="fits.api.vm.v1.VMService",
+                input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddDiskRequest,
+                output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddDiskResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def validate_update_disk(
+        self,
+        request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateUpdateDiskRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateUpdateDiskResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="ValidateUpdateDisk",
+                service_name="fits.api.vm.v1.VMService",
+                input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateUpdateDiskRequest,
+                output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateUpdateDiskResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def validate_add_i_p(
+        self,
+        request: fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddIPRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddIPResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="ValidateAddIP",
+                service_name="fits.api.vm.v1.VMService",
+                input=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddIPRequest,
+                output=fits_dot_api_dot_vm_dot_v1_dot_vm__pb2.VMServiceValidateAddIPResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,

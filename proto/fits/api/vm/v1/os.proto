@@ -4,11 +4,11 @@ package fits.api.vm.v1;
 
 import "buf/validate/validate.proto";
 import "fits/api/v1/common.proto";
+import "fits/api/v1/predefined_rules.proto";
 
 // OSService lists operating systems available for VM instances.
-// TODO wurde besprochen am 09.09.26
 service OSService {
-  // Returns a list of all OSs.
+  // Returns a list of all operating systems.
   rpc List(OSServiceListRequest) returns (OSServiceListResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_OWNER;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
@@ -22,26 +22,18 @@ message OS {
   // Uuid of this OS
   string uuid = 1 [(buf.validate.field).string.uuid = true];
   // Title of the OS
-  string title = 2;
+  string title = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // Type of the OS
-  string type = 3;
+  string type = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // Version of the OS
-  string version = 4;
-
-  // type NucleusDBOss struct {
-  // 	OsTitle   string              `json:"os_title"`
-  // 	OsType    string              `json:"os_type"`
-  // 	OsUuid    *openapi_types.UUID `json:"os_uuid,omitempty"`
-  // 	OsVersion string              `json:"os_version"`
-  // }
+  string version = 4 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
 }
 
 // OSServiceListRequest is the request payload for a OS list request.
-// The upstream nulink API accepts no body or parameters, so this is intentionally empty.
 message OSServiceListRequest {}
 
 // OSServiceListResponse is the response payload for a OS list request
 message OSServiceListResponse {
-  // The available OSs
-  repeated OS oss = 1;
+  // The available operating systems
+  repeated OS operating_systems = 1;
 }

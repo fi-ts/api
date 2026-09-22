@@ -22,7 +22,7 @@ class StageTypeServiceListRequest(_message.Message):
     def __init__(self) -> None: ...
 
 class StageTypeServiceListResponse(_message.Message):
-    __slots__ = ("stagetypes",)
-    STAGETYPES_FIELD_NUMBER: _ClassVar[int]
-    stagetypes: _containers.RepeatedCompositeFieldContainer[StageType]
-    def __init__(self, stagetypes: _Optional[_Iterable[_Union[StageType, _Mapping]]] = ...) -> None: ...
+    __slots__ = ("stage_types",)
+    STAGE_TYPES_FIELD_NUMBER: _ClassVar[int]
+    stage_types: _containers.RepeatedCompositeFieldContainer[StageType]
+    def __init__(self, stage_types: _Optional[_Iterable[_Union[StageType, _Mapping]]] = ...) -> None: ...

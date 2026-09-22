@@ -1,5 +1,6 @@
 from buf.validate import validate_pb2 as _validate_pb2
 from fits.api.v1 import common_pb2 as _common_pb2
+from fits.api.v1 import predefined_rules_pb2 as _predefined_rules_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
@@ -25,7 +26,7 @@ class OSServiceListRequest(_message.Message):
     def __init__(self) -> None: ...
 
 class OSServiceListResponse(_message.Message):
-    __slots__ = ("oss",)
-    OSS_FIELD_NUMBER: _ClassVar[int]
-    oss: _containers.RepeatedCompositeFieldContainer[OS]
-    def __init__(self, oss: _Optional[_Iterable[_Union[OS, _Mapping]]] = ...) -> None: ...
+    __slots__ = ("operating_systems",)
+    OPERATING_SYSTEMS_FIELD_NUMBER: _ClassVar[int]
+    operating_systems: _containers.RepeatedCompositeFieldContainer[OS]
+    def __init__(self, operating_systems: _Optional[_Iterable[_Union[OS, _Mapping]]] = ...) -> None: ...

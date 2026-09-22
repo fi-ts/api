@@ -39,7 +39,7 @@ const (
 
 // LocationServiceClient is a client for the fits.api.vm.v1.LocationService service.
 type LocationServiceClient interface {
-	// Returns a list of all datacenter locations.
+	// Returns a list of all datacenter locations available for a tenant.
 	List(context.Context, *v1.LocationServiceListRequest) (*v1.LocationServiceListResponse, error)
 }
 
@@ -79,7 +79,7 @@ func (c *locationServiceClient) List(ctx context.Context, req *v1.LocationServic
 
 // LocationServiceHandler is an implementation of the fits.api.vm.v1.LocationService service.
 type LocationServiceHandler interface {
-	// Returns a list of all datacenter locations.
+	// Returns a list of all datacenter locations available for a tenant.
 	List(context.Context, *v1.LocationServiceListRequest) (*v1.LocationServiceListResponse, error)
 }
 

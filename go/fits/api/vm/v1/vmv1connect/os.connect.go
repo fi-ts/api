@@ -39,7 +39,7 @@ const (
 
 // OSServiceClient is a client for the fits.api.vm.v1.OSService service.
 type OSServiceClient interface {
-	// Returns a list of all OSs.
+	// Returns a list of all operating systems.
 	List(context.Context, *v1.OSServiceListRequest) (*v1.OSServiceListResponse, error)
 }
 
@@ -79,7 +79,7 @@ func (c *oSServiceClient) List(ctx context.Context, req *v1.OSServiceListRequest
 
 // OSServiceHandler is an implementation of the fits.api.vm.v1.OSService service.
 type OSServiceHandler interface {
-	// Returns a list of all OSs.
+	// Returns a list of all operating systems.
 	List(context.Context, *v1.OSServiceListRequest) (*v1.OSServiceListResponse, error)
 }
 

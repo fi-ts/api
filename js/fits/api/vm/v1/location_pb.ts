@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/vm/v1/location.proto.
  */
 export const file_fits_api_vm_v1_location: GenFile = /*@__PURE__*/
-  fileDesc("Ch1maXRzL2FwaS92bS92MS9sb2NhdGlvbi5wcm90bxIOZml0cy5hcGkudm0udjEiMQoITG9jYXRpb24SFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESDQoFdGl0bGUYAiABKAkiOQoaTG9jYXRpb25TZXJ2aWNlTGlzdFJlcXVlc3QSGwoGdGVuYW50GAEgASgJQgu6SAhyBsCzrrECASJKChtMb2NhdGlvblNlcnZpY2VMaXN0UmVzcG9uc2USKwoJbG9jYXRpb25zGAEgAygLMhguZml0cy5hcGkudm0udjEuTG9jYXRpb24yfwoPTG9jYXRpb25TZXJ2aWNlEmwKBExpc3QSKi5maXRzLmFwaS52bS52MS5Mb2NhdGlvblNlcnZpY2VMaXN0UmVxdWVzdBorLmZpdHMuYXBpLnZtLnYxLkxvY2F0aW9uU2VydmljZUxpc3RSZXNwb25zZSILyvMYAwECA+DzGAJCqwEKEmNvbS5maXRzLmFwaS52bS52MUINTG9jYXRpb25Qcm90b1ABWitnaXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS92bS92MTt2bXYxogIDRkFWqgIORml0cy5BcGkuVm0uVjHKAg5GaXRzXEFwaVxWbVxWMeICGkZpdHNcQXBpXFZtXFYxXEdQQk1ldGFkYXRh6gIRRml0czo6QXBpOjpWbTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
+  fileDesc("Ch1maXRzL2FwaS92bS92MS9sb2NhdGlvbi5wcm90bxIOZml0cy5hcGkudm0udjEiPgoITG9jYXRpb24SFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESGgoFdGl0bGUYAiABKAlCC7pICHIGwLOusQIBIjkKGkxvY2F0aW9uU2VydmljZUxpc3RSZXF1ZXN0EhsKBnRlbmFudBgBIAEoCUILukgIcgbAs66xAgEiSgobTG9jYXRpb25TZXJ2aWNlTGlzdFJlc3BvbnNlEisKCWxvY2F0aW9ucxgBIAMoCzIYLmZpdHMuYXBpLnZtLnYxLkxvY2F0aW9uMn8KD0xvY2F0aW9uU2VydmljZRJsCgRMaXN0EiouZml0cy5hcGkudm0udjEuTG9jYXRpb25TZXJ2aWNlTGlzdFJlcXVlc3QaKy5maXRzLmFwaS52bS52MS5Mb2NhdGlvblNlcnZpY2VMaXN0UmVzcG9uc2UiC8rzGAMBAgPg8xgCQqsBChJjb20uZml0cy5hcGkudm0udjFCDUxvY2F0aW9uUHJvdG9QAVorZ2l0aHViLmNvbS9maS10cy9hcGkvZ28vZml0cy9hcGkvdm0vdjE7dm12MaICA0ZBVqoCDkZpdHMuQXBpLlZtLlYxygIORml0c1xBcGlcVm1cVjHiAhpGaXRzXEFwaVxWbVxWMVxHUEJNZXRhZGF0YeoCEUZpdHM6OkFwaTo6Vm06OlYxYgZwcm90bzM", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
 
 /**
  * Location is the definition of an available datacenter location for VM instances
@@ -45,15 +45,12 @@ export const LocationSchema: GenMessage<Location> = /*@__PURE__*/
 
 /**
  * LocationServiceListRequest is the request payload for a location list request.
- * The upstream nulink API accepts no body or parameters, so this is intentionally empty.
- * TODO pro tenant anders. FITS darf beide RZ, sonst nur eines, logik dazu in nu-link
  *
  * @generated from message fits.api.vm.v1.LocationServiceListRequest
  */
 export type LocationServiceListRequest = Message<"fits.api.vm.v1.LocationServiceListRequest"> & {
   /**
    * Tenant to list available locations for
-   * TODO Tobias baut in nulink-api ein
    *
    * @generated from field: string tenant = 1;
    */
@@ -89,16 +86,13 @@ export const LocationServiceListResponseSchema: GenMessage<LocationServiceListRe
   messageDesc(file_fits_api_vm_v1_location, 2);
 
 /**
- * LocationService lists datacenter locations available for VM instances.
- * TODO wurde besprochen am 09.09.26
- * TODO muss zu "Pod" werden. User erstellen eine VM nicht pro location, sondern pro Pod
- * TODO Ein Pod ist fest an einer location verankert.
+ * LocationService lists datacenter locations available for VM instances, scoped per tenant.
  *
  * @generated from service fits.api.vm.v1.LocationService
  */
 export const LocationService: GenService<{
   /**
-   * Returns a list of all datacenter locations.
+   * Returns a list of all datacenter locations available for a tenant.
    *
    * @generated from rpc fits.api.vm.v1.LocationService.List
    */

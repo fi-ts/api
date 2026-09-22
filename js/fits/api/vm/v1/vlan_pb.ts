@@ -5,7 +5,6 @@
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../../../buf/validate/validate_pb";
-import type { ValidationError } from "../../v1/common_pb";
 import { file_fits_api_v1_common } from "../../v1/common_pb";
 import { file_fits_api_v1_predefined_rules } from "../../v1/predefined_rules_pb";
 import type { Message } from "@bufbuild/protobuf";
@@ -14,13 +13,10 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/vm/v1/vlan.proto.
  */
 export const file_fits_api_vm_v1_vlan: GenFile = /*@__PURE__*/
-  fileDesc("ChlmaXRzL2FwaS92bS92MS92bGFuLnByb3RvEg5maXRzLmFwaS52bS52MSLWAgoEVmxhbhIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIKCgJpZBgCIAEoBRIUCgxzdWJuZXRfdGl0bGUYAyABKAkSDgoGc3VibmV0GAQgASgJEhIKCnN1Ym5ldG1hc2sYBSABKAkSDwoHZ2F0ZXdheRgGIAEoCRIWCg5pcF9yYW5nZV9zdGFydBgHIAEoCRIUCgxpcF9yYW5nZV9lbmQYCCABKAkSEAoIdXNlX2RoY3AYCSABKAgSEQoJcG9kX3RpdGxlGAogASgJEhoKCHBvZF91dWlkGAsgASgJQgi6SAVyA7ABARIYChBzdGFnZV90eXBlX3RpdGxlGAwgASgJEiEKD3N0YWdlX3R5cGVfdXVpZBgNIAEoCUIIukgFcgOwAQESHQoLdGVuYW50X3V1aWQYDiABKAlCCLpIBXIDsAEBEhQKDHRlbmFudF90aXRsZRgPIAEoCSI1ChZWbGFuU2VydmljZUxpc3RSZXF1ZXN0EhsKBnRlbmFudBgBIAEoCUILukgIcgbAs66xAgEidwoXVmxhblNlcnZpY2VMaXN0UmVzcG9uc2USIwoFdmxhbnMYASADKAsyFC5maXRzLmFwaS52bS52MS5WbGFuEjcKEXZhbGlkYXRpb25fZXJyb3JzGAIgAygLMhwuZml0cy5hcGkudjEuVmFsaWRhdGlvbkVycm9yMnMKC1ZsYW5TZXJ2aWNlEmQKBExpc3QSJi5maXRzLmFwaS52bS52MS5WbGFuU2VydmljZUxpc3RSZXF1ZXN0GicuZml0cy5hcGkudm0udjEuVmxhblNlcnZpY2VMaXN0UmVzcG9uc2UiC8rzGAMBAgPg8xgCQqcBChJjb20uZml0cy5hcGkudm0udjFCCVZsYW5Qcm90b1ABWitnaXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS92bS92MTt2bXYxogIDRkFWqgIORml0cy5BcGkuVm0uVjHKAg5GaXRzXEFwaVxWbVxWMeICGkZpdHNcQXBpXFZtXFYxXEdQQk1ldGFkYXRh6gIRRml0czo6QXBpOjpWbTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
+  fileDesc("ChlmaXRzL2FwaS92bS92MS92bGFuLnByb3RvEg5maXRzLmFwaS52bS52MSK6AgoEVmxhbhIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIKCgJpZBgCIAEoBRIhCgxzdWJuZXRfdGl0bGUYAyABKAlCC7pICHIGwLOusQIBEg4KBnN1Ym5ldBgEIAEoCRISCgpzdWJuZXRtYXNrGAUgASgJEg8KB2dhdGV3YXkYBiABKAkSFgoOaXBfcmFuZ2Vfc3RhcnQYByABKAkSFAoMaXBfcmFuZ2VfZW5kGAggASgJEhAKCHVzZV9kaGNwGAkgASgIEiQKDWxvY2F0aW9uX3V1aWQYDSABKAlCCLpIBXIDsAEBSACIAQESIQoPc3RhZ2VfdHlwZV91dWlkGA4gASgJQgi6SAVyA7ABARIbCgZ0ZW5hbnQYDyABKAlCC7pICHIGwLOusQIBQhAKDl9sb2NhdGlvbl91dWlkIjUKFlZsYW5TZXJ2aWNlTGlzdFJlcXVlc3QSGwoGdGVuYW50GAEgASgJQgu6SAhyBsCzrrECASI+ChdWbGFuU2VydmljZUxpc3RSZXNwb25zZRIjCgV2bGFucxgBIAMoCzIULmZpdHMuYXBpLnZtLnYxLlZsYW4ycwoLVmxhblNlcnZpY2USZAoETGlzdBImLmZpdHMuYXBpLnZtLnYxLlZsYW5TZXJ2aWNlTGlzdFJlcXVlc3QaJy5maXRzLmFwaS52bS52MS5WbGFuU2VydmljZUxpc3RSZXNwb25zZSILyvMYAwECA+DzGAJCpwEKEmNvbS5maXRzLmFwaS52bS52MUIJVmxhblByb3RvUAFaK2dpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL3ZtL3YxO3ZtdjGiAgNGQVaqAg5GaXRzLkFwaS5WbS5WMcoCDkZpdHNcQXBpXFZtXFYx4gIaRml0c1xBcGlcVm1cVjFcR1BCTWV0YWRhdGHqAhFGaXRzOjpBcGk6OlZtOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
 
 /**
  * Vlan is a VLAN that a VM can be connected to.
- * Maps to the upstream NucleusDBVlans model.
- * TODO evaluate which of the uuid fields are really optional; the upstream API
- * spec does not make this clear, so we validate them strictly for now.
  *
  * @generated from message fits.api.vm.v1.Vlan
  */
@@ -89,46 +85,25 @@ export type Vlan = Message<"fits.api.vm.v1.Vlan"> & {
   useDhcp: boolean;
 
   /**
-   * Title of the pod this VLAN belongs to
+   * TODO instead of the pod title, could we have the location_uuid?
    *
-   * @generated from field: string pod_title = 10;
+   * @generated from field: optional string location_uuid = 13;
    */
-  podTitle: string;
-
-  /**
-   * Uuid of the pod this VLAN belongs to
-   *
-   * @generated from field: string pod_uuid = 11;
-   */
-  podUuid: string;
-
-  /**
-   * Title of the stage type of this VLAN
-   *
-   * @generated from field: string stage_type_title = 12;
-   */
-  stageTypeTitle: string;
+  locationUuid?: string | undefined;
 
   /**
    * Uuid of the stage type of this VLAN
    *
-   * @generated from field: string stage_type_uuid = 13;
+   * @generated from field: string stage_type_uuid = 14;
    */
   stageTypeUuid: string;
 
   /**
-   * Uuid of the tenant this VLAN belongs to
+   * Tenant this VLAN belongs to.
    *
-   * @generated from field: string tenant_uuid = 14;
+   * @generated from field: string tenant = 15;
    */
-  tenantUuid: string;
-
-  /**
-   * Title of the tenant this VLAN belongs to
-   *
-   * @generated from field: string tenant_title = 15;
-   */
-  tenantTitle: string;
+  tenant: string;
 };
 
 /**
@@ -140,16 +115,12 @@ export const VlanSchema: GenMessage<Vlan> = /*@__PURE__*/
 
 /**
  * VlanServiceListRequest is the request payload for a VLAN list request.
- * Maps to the upstream TenantInputModel.
  *
  * @generated from message fits.api.vm.v1.VlanServiceListRequest
  */
 export type VlanServiceListRequest = Message<"fits.api.vm.v1.VlanServiceListRequest"> & {
   /**
    * Tenant to list available VLANs for
-   *
-   * Note: the upstream model also has a requested_by field, which is intentionally
-   * omitted here because it is added by the auth layer from the request context.
    *
    * @generated from field: string tenant = 1;
    */
@@ -175,14 +146,6 @@ export type VlanServiceListResponse = Message<"fits.api.vm.v1.VlanServiceListRes
    * @generated from field: repeated fits.api.vm.v1.Vlan vlans = 1;
    */
   vlans: Vlan[];
-
-  /**
-   * Validation errors returned by the upstream API when the request is rejected (HTTP 422)
-   * TODO this is just a test
-   *
-   * @generated from field: repeated fits.api.v1.ValidationError validation_errors = 2;
-   */
-  validationErrors: ValidationError[];
 };
 
 /**
@@ -194,7 +157,6 @@ export const VlanServiceListResponseSchema: GenMessage<VlanServiceListResponse> 
 
 /**
  * VLANService lists VLANs avaiable for VM instances.
- * TODO wurde besprochen am 09.09.26
  *
  * @generated from service fits.api.vm.v1.VlanService
  */

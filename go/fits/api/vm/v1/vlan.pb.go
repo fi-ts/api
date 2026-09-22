@@ -8,7 +8,7 @@ package vmv1
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
-	v1 "github.com/fi-ts/api/go/fits/api/v1"
+	_ "github.com/fi-ts/api/go/fits/api/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -24,9 +24,6 @@ const (
 )
 
 // Vlan is a VLAN that a VM can be connected to.
-// Maps to the upstream NucleusDBVlans model.
-// TODO evaluate which of the uuid fields are really optional; the upstream API
-// spec does not make this clear, so we validate them strictly for now.
 type Vlan struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Uuid of this VLAN
@@ -47,18 +44,12 @@ type Vlan struct {
 	IpRangeEnd string `protobuf:"bytes,8,opt,name=ip_range_end,json=ipRangeEnd,proto3" json:"ip_range_end,omitempty"`
 	// Whether DHCP is used on this VLAN
 	UseDhcp bool `protobuf:"varint,9,opt,name=use_dhcp,json=useDhcp,proto3" json:"use_dhcp,omitempty"`
-	// Title of the pod this VLAN belongs to
-	PodTitle string `protobuf:"bytes,10,opt,name=pod_title,json=podTitle,proto3" json:"pod_title,omitempty"`
-	// Uuid of the pod this VLAN belongs to
-	PodUuid string `protobuf:"bytes,11,opt,name=pod_uuid,json=podUuid,proto3" json:"pod_uuid,omitempty"`
-	// Title of the stage type of this VLAN
-	StageTypeTitle string `protobuf:"bytes,12,opt,name=stage_type_title,json=stageTypeTitle,proto3" json:"stage_type_title,omitempty"`
+	// TODO instead of the pod title, could we have the location_uuid?
+	LocationUuid *string `protobuf:"bytes,13,opt,name=location_uuid,json=locationUuid,proto3,oneof" json:"location_uuid,omitempty"`
 	// Uuid of the stage type of this VLAN
-	StageTypeUuid string `protobuf:"bytes,13,opt,name=stage_type_uuid,json=stageTypeUuid,proto3" json:"stage_type_uuid,omitempty"`
-	// Uuid of the tenant this VLAN belongs to
-	TenantUuid string `protobuf:"bytes,14,opt,name=tenant_uuid,json=tenantUuid,proto3" json:"tenant_uuid,omitempty"`
-	// Title of the tenant this VLAN belongs to
-	TenantTitle   string `protobuf:"bytes,15,opt,name=tenant_title,json=tenantTitle,proto3" json:"tenant_title,omitempty"`
+	StageTypeUuid string `protobuf:"bytes,14,opt,name=stage_type_uuid,json=stageTypeUuid,proto3" json:"stage_type_uuid,omitempty"`
+	// Tenant this VLAN belongs to.
+	Tenant        string `protobuf:"bytes,15,opt,name=tenant,proto3" json:"tenant,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -156,23 +147,9 @@ func (x *Vlan) GetUseDhcp() bool {
 	return false
 }
 
-func (x *Vlan) GetPodTitle() string {
-	if x != nil {
-		return x.PodTitle
-	}
-	return ""
-}
-
-func (x *Vlan) GetPodUuid() string {
-	if x != nil {
-		return x.PodUuid
-	}
-	return ""
-}
-
-func (x *Vlan) GetStageTypeTitle() string {
-	if x != nil {
-		return x.StageTypeTitle
+func (x *Vlan) GetLocationUuid() string {
+	if x != nil && x.LocationUuid != nil {
+		return *x.LocationUuid
 	}
 	return ""
 }
@@ -184,22 +161,14 @@ func (x *Vlan) GetStageTypeUuid() string {
 	return ""
 }
 
-func (x *Vlan) GetTenantUuid() string {
+func (x *Vlan) GetTenant() string {
 	if x != nil {
-		return x.TenantUuid
-	}
-	return ""
-}
-
-func (x *Vlan) GetTenantTitle() string {
-	if x != nil {
-		return x.TenantTitle
+		return x.Tenant
 	}
 	return ""
 }
 
 // VlanServiceListRequest is the request payload for a VLAN list request.
-// Maps to the upstream TenantInputModel.
 type VlanServiceListRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Tenant to list available VLANs for
@@ -249,12 +218,9 @@ func (x *VlanServiceListRequest) GetTenant() string {
 type VlanServiceListResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The available VLANs
-	Vlans []*Vlan `protobuf:"bytes,1,rep,name=vlans,proto3" json:"vlans,omitempty"`
-	// Validation errors returned by the upstream API when the request is rejected (HTTP 422)
-	// TODO this is just a test
-	ValidationErrors []*v1.ValidationError `protobuf:"bytes,2,rep,name=validation_errors,json=validationErrors,proto3" json:"validation_errors,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	Vlans         []*Vlan `protobuf:"bytes,1,rep,name=vlans,proto3" json:"vlans,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *VlanServiceListResponse) Reset() {
@@ -294,22 +260,15 @@ func (x *VlanServiceListResponse) GetVlans() []*Vlan {
 	return nil
 }
 
-func (x *VlanServiceListResponse) GetValidationErrors() []*v1.ValidationError {
-	if x != nil {
-		return x.ValidationErrors
-	}
-	return nil
-}
-
 var File_fits_api_vm_v1_vlan_proto protoreflect.FileDescriptor
 
 const file_fits_api_vm_v1_vlan_proto_rawDesc = "" +
 	"\n" +
-	"\x19fits/api/vm/v1/vlan.proto\x12\x0efits.api.vm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xf8\x03\n" +
+	"\x19fits/api/vm/v1/vlan.proto\x12\x0efits.api.vm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xb6\x03\n" +
 	"\x04Vlan\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x0e\n" +
-	"\x02id\x18\x02 \x01(\x05R\x02id\x12!\n" +
-	"\fsubnet_title\x18\x03 \x01(\tR\vsubnetTitle\x12\x16\n" +
+	"\x02id\x18\x02 \x01(\x05R\x02id\x12.\n" +
+	"\fsubnet_title\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\vsubnetTitle\x12\x16\n" +
 	"\x06subnet\x18\x04 \x01(\tR\x06subnet\x12\x1e\n" +
 	"\n" +
 	"subnetmask\x18\x05 \x01(\tR\n" +
@@ -318,20 +277,15 @@ const file_fits_api_vm_v1_vlan_proto_rawDesc = "" +
 	"\x0eip_range_start\x18\a \x01(\tR\fipRangeStart\x12 \n" +
 	"\fip_range_end\x18\b \x01(\tR\n" +
 	"ipRangeEnd\x12\x19\n" +
-	"\buse_dhcp\x18\t \x01(\bR\auseDhcp\x12\x1b\n" +
-	"\tpod_title\x18\n" +
-	" \x01(\tR\bpodTitle\x12#\n" +
-	"\bpod_uuid\x18\v \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\apodUuid\x12(\n" +
-	"\x10stage_type_title\x18\f \x01(\tR\x0estageTypeTitle\x120\n" +
-	"\x0fstage_type_uuid\x18\r \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rstageTypeUuid\x12)\n" +
-	"\vtenant_uuid\x18\x0e \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\n" +
-	"tenantUuid\x12!\n" +
-	"\ftenant_title\x18\x0f \x01(\tR\vtenantTitle\"=\n" +
+	"\buse_dhcp\x18\t \x01(\bR\auseDhcp\x122\n" +
+	"\rlocation_uuid\x18\r \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\flocationUuid\x88\x01\x01\x120\n" +
+	"\x0fstage_type_uuid\x18\x0e \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rstageTypeUuid\x12#\n" +
+	"\x06tenant\x18\x0f \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenantB\x10\n" +
+	"\x0e_location_uuid\"=\n" +
 	"\x16VlanServiceListRequest\x12#\n" +
-	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\"\x90\x01\n" +
+	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\"E\n" +
 	"\x17VlanServiceListResponse\x12*\n" +
-	"\x05vlans\x18\x01 \x03(\v2\x14.fits.api.vm.v1.VlanR\x05vlans\x12I\n" +
-	"\x11validation_errors\x18\x02 \x03(\v2\x1c.fits.api.v1.ValidationErrorR\x10validationErrors2s\n" +
+	"\x05vlans\x18\x01 \x03(\v2\x14.fits.api.vm.v1.VlanR\x05vlans2s\n" +
 	"\vVlanService\x12d\n" +
 	"\x04List\x12&.fits.api.vm.v1.VlanServiceListRequest\x1a'.fits.api.vm.v1.VlanServiceListResponse\"\v\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02B\xa7\x01\n" +
 	"\x12com.fits.api.vm.v1B\tVlanProtoP\x01Z+github.com/fi-ts/api/go/fits/api/vm/v1;vmv1\xa2\x02\x03FAV\xaa\x02\x0eFits.Api.Vm.V1\xca\x02\x0eFits\\Api\\Vm\\V1\xe2\x02\x1aFits\\Api\\Vm\\V1\\GPBMetadata\xea\x02\x11Fits::Api::Vm::V1b\x06proto3"
@@ -353,18 +307,16 @@ var file_fits_api_vm_v1_vlan_proto_goTypes = []any{
 	(*Vlan)(nil),                    // 0: fits.api.vm.v1.Vlan
 	(*VlanServiceListRequest)(nil),  // 1: fits.api.vm.v1.VlanServiceListRequest
 	(*VlanServiceListResponse)(nil), // 2: fits.api.vm.v1.VlanServiceListResponse
-	(*v1.ValidationError)(nil),      // 3: fits.api.v1.ValidationError
 }
 var file_fits_api_vm_v1_vlan_proto_depIdxs = []int32{
 	0, // 0: fits.api.vm.v1.VlanServiceListResponse.vlans:type_name -> fits.api.vm.v1.Vlan
-	3, // 1: fits.api.vm.v1.VlanServiceListResponse.validation_errors:type_name -> fits.api.v1.ValidationError
-	1, // 2: fits.api.vm.v1.VlanService.List:input_type -> fits.api.vm.v1.VlanServiceListRequest
-	2, // 3: fits.api.vm.v1.VlanService.List:output_type -> fits.api.vm.v1.VlanServiceListResponse
-	3, // [3:4] is the sub-list for method output_type
-	2, // [2:3] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	1, // 1: fits.api.vm.v1.VlanService.List:input_type -> fits.api.vm.v1.VlanServiceListRequest
+	2, // 2: fits.api.vm.v1.VlanService.List:output_type -> fits.api.vm.v1.VlanServiceListResponse
+	2, // [2:3] is the sub-list for method output_type
+	1, // [1:2] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_vm_v1_vlan_proto_init() }
@@ -372,6 +324,7 @@ func file_fits_api_vm_v1_vlan_proto_init() {
 	if File_fits_api_vm_v1_vlan_proto != nil {
 		return
 	}
+	file_fits_api_vm_v1_vlan_proto_msgTypes[0].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

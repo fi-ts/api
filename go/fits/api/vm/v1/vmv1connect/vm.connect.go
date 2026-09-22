@@ -43,6 +43,29 @@ const (
 	VMServiceListProcedure = "/fits.api.vm.v1.VMService/List"
 	// VMServiceDeleteProcedure is the fully-qualified name of the VMService's Delete RPC.
 	VMServiceDeleteProcedure = "/fits.api.vm.v1.VMService/Delete"
+	// VMServiceAddDiskProcedure is the fully-qualified name of the VMService's AddDisk RPC.
+	VMServiceAddDiskProcedure = "/fits.api.vm.v1.VMService/AddDisk"
+	// VMServiceUpdateDiskProcedure is the fully-qualified name of the VMService's UpdateDisk RPC.
+	VMServiceUpdateDiskProcedure = "/fits.api.vm.v1.VMService/UpdateDisk"
+	// VMServiceDeleteDiskProcedure is the fully-qualified name of the VMService's DeleteDisk RPC.
+	VMServiceDeleteDiskProcedure = "/fits.api.vm.v1.VMService/DeleteDisk"
+	// VMServiceAddIPProcedure is the fully-qualified name of the VMService's AddIP RPC.
+	VMServiceAddIPProcedure = "/fits.api.vm.v1.VMService/AddIP"
+	// VMServiceMoveIPProcedure is the fully-qualified name of the VMService's MoveIP RPC.
+	VMServiceMoveIPProcedure = "/fits.api.vm.v1.VMService/MoveIP"
+	// VMServiceDeleteIPProcedure is the fully-qualified name of the VMService's DeleteIP RPC.
+	VMServiceDeleteIPProcedure = "/fits.api.vm.v1.VMService/DeleteIP"
+	// VMServiceValidateCreateProcedure is the fully-qualified name of the VMService's ValidateCreate
+	// RPC.
+	VMServiceValidateCreateProcedure = "/fits.api.vm.v1.VMService/ValidateCreate"
+	// VMServiceValidateAddDiskProcedure is the fully-qualified name of the VMService's ValidateAddDisk
+	// RPC.
+	VMServiceValidateAddDiskProcedure = "/fits.api.vm.v1.VMService/ValidateAddDisk"
+	// VMServiceValidateUpdateDiskProcedure is the fully-qualified name of the VMService's
+	// ValidateUpdateDisk RPC.
+	VMServiceValidateUpdateDiskProcedure = "/fits.api.vm.v1.VMService/ValidateUpdateDisk"
+	// VMServiceValidateAddIPProcedure is the fully-qualified name of the VMService's ValidateAddIP RPC.
+	VMServiceValidateAddIPProcedure = "/fits.api.vm.v1.VMService/ValidateAddIP"
 )
 
 // VMServiceClient is a client for the fits.api.vm.v1.VMService service.
@@ -57,6 +80,27 @@ type VMServiceClient interface {
 	List(context.Context, *v1.VMServiceListRequest) (*v1.VMServiceListResponse, error)
 	// Deletes a VM.
 	Delete(context.Context, *v1.VMServiceDeleteRequest) (*v1.VMServiceDeleteResponse, error)
+	// Orders an additional data disk for a VM.
+	AddDisk(context.Context, *v1.VMServiceAddDiskRequest) (*v1.VMServiceAddDiskResponse, error)
+	// Changes the size or auto-extend behavior of an existing data disk.
+	UpdateDisk(context.Context, *v1.VMServiceUpdateDiskRequest) (*v1.VMServiceUpdateDiskResponse, error)
+	// Cancels a data disk.
+	DeleteDisk(context.Context, *v1.VMServiceDeleteDiskRequest) (*v1.VMServiceDeleteDiskResponse, error)
+	// Orders an additional IP address for a VM.
+	AddIP(context.Context, *v1.VMServiceAddIPRequest) (*v1.VMServiceAddIPResponse, error)
+	// Moves an IP address from one VM to another.
+	MoveIP(context.Context, *v1.VMServiceMoveIPRequest) (*v1.VMServiceMoveIPResponse, error)
+	// Deletes an IP address from a VM.
+	DeleteIP(context.Context, *v1.VMServiceDeleteIPRequest) (*v1.VMServiceDeleteIPResponse, error)
+	// Validates a VM create request without creating anything. Intended for
+	// form pre-checks; the create endpoint validates again before executing.
+	ValidateCreate(context.Context, *v1.VMServiceValidateCreateRequest) (*v1.VMServiceValidateCreateResponse, error)
+	// Validates an AddDisk request without ordering anything.
+	ValidateAddDisk(context.Context, *v1.VMServiceValidateAddDiskRequest) (*v1.VMServiceValidateAddDiskResponse, error)
+	// Validates an UpdateDisk request without changing anything.
+	ValidateUpdateDisk(context.Context, *v1.VMServiceValidateUpdateDiskRequest) (*v1.VMServiceValidateUpdateDiskResponse, error)
+	// Validates an AddIP request without ordering anything.
+	ValidateAddIP(context.Context, *v1.VMServiceValidateAddIPRequest) (*v1.VMServiceValidateAddIPResponse, error)
 }
 
 // NewVMServiceClient constructs a client for the fits.api.vm.v1.VMService service. By default, it
@@ -100,16 +144,86 @@ func NewVMServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...c
 			connect.WithSchema(vMServiceMethods.ByName("Delete")),
 			connect.WithClientOptions(opts...),
 		),
+		addDisk: connect.NewClient[v1.VMServiceAddDiskRequest, v1.VMServiceAddDiskResponse](
+			httpClient,
+			baseURL+VMServiceAddDiskProcedure,
+			connect.WithSchema(vMServiceMethods.ByName("AddDisk")),
+			connect.WithClientOptions(opts...),
+		),
+		updateDisk: connect.NewClient[v1.VMServiceUpdateDiskRequest, v1.VMServiceUpdateDiskResponse](
+			httpClient,
+			baseURL+VMServiceUpdateDiskProcedure,
+			connect.WithSchema(vMServiceMethods.ByName("UpdateDisk")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteDisk: connect.NewClient[v1.VMServiceDeleteDiskRequest, v1.VMServiceDeleteDiskResponse](
+			httpClient,
+			baseURL+VMServiceDeleteDiskProcedure,
+			connect.WithSchema(vMServiceMethods.ByName("DeleteDisk")),
+			connect.WithClientOptions(opts...),
+		),
+		addIP: connect.NewClient[v1.VMServiceAddIPRequest, v1.VMServiceAddIPResponse](
+			httpClient,
+			baseURL+VMServiceAddIPProcedure,
+			connect.WithSchema(vMServiceMethods.ByName("AddIP")),
+			connect.WithClientOptions(opts...),
+		),
+		moveIP: connect.NewClient[v1.VMServiceMoveIPRequest, v1.VMServiceMoveIPResponse](
+			httpClient,
+			baseURL+VMServiceMoveIPProcedure,
+			connect.WithSchema(vMServiceMethods.ByName("MoveIP")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteIP: connect.NewClient[v1.VMServiceDeleteIPRequest, v1.VMServiceDeleteIPResponse](
+			httpClient,
+			baseURL+VMServiceDeleteIPProcedure,
+			connect.WithSchema(vMServiceMethods.ByName("DeleteIP")),
+			connect.WithClientOptions(opts...),
+		),
+		validateCreate: connect.NewClient[v1.VMServiceValidateCreateRequest, v1.VMServiceValidateCreateResponse](
+			httpClient,
+			baseURL+VMServiceValidateCreateProcedure,
+			connect.WithSchema(vMServiceMethods.ByName("ValidateCreate")),
+			connect.WithClientOptions(opts...),
+		),
+		validateAddDisk: connect.NewClient[v1.VMServiceValidateAddDiskRequest, v1.VMServiceValidateAddDiskResponse](
+			httpClient,
+			baseURL+VMServiceValidateAddDiskProcedure,
+			connect.WithSchema(vMServiceMethods.ByName("ValidateAddDisk")),
+			connect.WithClientOptions(opts...),
+		),
+		validateUpdateDisk: connect.NewClient[v1.VMServiceValidateUpdateDiskRequest, v1.VMServiceValidateUpdateDiskResponse](
+			httpClient,
+			baseURL+VMServiceValidateUpdateDiskProcedure,
+			connect.WithSchema(vMServiceMethods.ByName("ValidateUpdateDisk")),
+			connect.WithClientOptions(opts...),
+		),
+		validateAddIP: connect.NewClient[v1.VMServiceValidateAddIPRequest, v1.VMServiceValidateAddIPResponse](
+			httpClient,
+			baseURL+VMServiceValidateAddIPProcedure,
+			connect.WithSchema(vMServiceMethods.ByName("ValidateAddIP")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // vMServiceClient implements VMServiceClient.
 type vMServiceClient struct {
-	get    *connect.Client[v1.VMServiceGetRequest, v1.VMServiceGetResponse]
-	create *connect.Client[v1.VMServiceCreateRequest, v1.VMServiceCreateResponse]
-	update *connect.Client[v1.VMServiceUpdateRequest, v1.VMServiceUpdateResponse]
-	list   *connect.Client[v1.VMServiceListRequest, v1.VMServiceListResponse]
-	delete *connect.Client[v1.VMServiceDeleteRequest, v1.VMServiceDeleteResponse]
+	get                *connect.Client[v1.VMServiceGetRequest, v1.VMServiceGetResponse]
+	create             *connect.Client[v1.VMServiceCreateRequest, v1.VMServiceCreateResponse]
+	update             *connect.Client[v1.VMServiceUpdateRequest, v1.VMServiceUpdateResponse]
+	list               *connect.Client[v1.VMServiceListRequest, v1.VMServiceListResponse]
+	delete             *connect.Client[v1.VMServiceDeleteRequest, v1.VMServiceDeleteResponse]
+	addDisk            *connect.Client[v1.VMServiceAddDiskRequest, v1.VMServiceAddDiskResponse]
+	updateDisk         *connect.Client[v1.VMServiceUpdateDiskRequest, v1.VMServiceUpdateDiskResponse]
+	deleteDisk         *connect.Client[v1.VMServiceDeleteDiskRequest, v1.VMServiceDeleteDiskResponse]
+	addIP              *connect.Client[v1.VMServiceAddIPRequest, v1.VMServiceAddIPResponse]
+	moveIP             *connect.Client[v1.VMServiceMoveIPRequest, v1.VMServiceMoveIPResponse]
+	deleteIP           *connect.Client[v1.VMServiceDeleteIPRequest, v1.VMServiceDeleteIPResponse]
+	validateCreate     *connect.Client[v1.VMServiceValidateCreateRequest, v1.VMServiceValidateCreateResponse]
+	validateAddDisk    *connect.Client[v1.VMServiceValidateAddDiskRequest, v1.VMServiceValidateAddDiskResponse]
+	validateUpdateDisk *connect.Client[v1.VMServiceValidateUpdateDiskRequest, v1.VMServiceValidateUpdateDiskResponse]
+	validateAddIP      *connect.Client[v1.VMServiceValidateAddIPRequest, v1.VMServiceValidateAddIPResponse]
 }
 
 // Get calls fits.api.vm.v1.VMService.Get.
@@ -157,6 +271,96 @@ func (c *vMServiceClient) Delete(ctx context.Context, req *v1.VMServiceDeleteReq
 	return nil, err
 }
 
+// AddDisk calls fits.api.vm.v1.VMService.AddDisk.
+func (c *vMServiceClient) AddDisk(ctx context.Context, req *v1.VMServiceAddDiskRequest) (*v1.VMServiceAddDiskResponse, error) {
+	response, err := c.addDisk.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
+// UpdateDisk calls fits.api.vm.v1.VMService.UpdateDisk.
+func (c *vMServiceClient) UpdateDisk(ctx context.Context, req *v1.VMServiceUpdateDiskRequest) (*v1.VMServiceUpdateDiskResponse, error) {
+	response, err := c.updateDisk.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
+// DeleteDisk calls fits.api.vm.v1.VMService.DeleteDisk.
+func (c *vMServiceClient) DeleteDisk(ctx context.Context, req *v1.VMServiceDeleteDiskRequest) (*v1.VMServiceDeleteDiskResponse, error) {
+	response, err := c.deleteDisk.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
+// AddIP calls fits.api.vm.v1.VMService.AddIP.
+func (c *vMServiceClient) AddIP(ctx context.Context, req *v1.VMServiceAddIPRequest) (*v1.VMServiceAddIPResponse, error) {
+	response, err := c.addIP.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
+// MoveIP calls fits.api.vm.v1.VMService.MoveIP.
+func (c *vMServiceClient) MoveIP(ctx context.Context, req *v1.VMServiceMoveIPRequest) (*v1.VMServiceMoveIPResponse, error) {
+	response, err := c.moveIP.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
+// DeleteIP calls fits.api.vm.v1.VMService.DeleteIP.
+func (c *vMServiceClient) DeleteIP(ctx context.Context, req *v1.VMServiceDeleteIPRequest) (*v1.VMServiceDeleteIPResponse, error) {
+	response, err := c.deleteIP.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
+// ValidateCreate calls fits.api.vm.v1.VMService.ValidateCreate.
+func (c *vMServiceClient) ValidateCreate(ctx context.Context, req *v1.VMServiceValidateCreateRequest) (*v1.VMServiceValidateCreateResponse, error) {
+	response, err := c.validateCreate.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
+// ValidateAddDisk calls fits.api.vm.v1.VMService.ValidateAddDisk.
+func (c *vMServiceClient) ValidateAddDisk(ctx context.Context, req *v1.VMServiceValidateAddDiskRequest) (*v1.VMServiceValidateAddDiskResponse, error) {
+	response, err := c.validateAddDisk.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
+// ValidateUpdateDisk calls fits.api.vm.v1.VMService.ValidateUpdateDisk.
+func (c *vMServiceClient) ValidateUpdateDisk(ctx context.Context, req *v1.VMServiceValidateUpdateDiskRequest) (*v1.VMServiceValidateUpdateDiskResponse, error) {
+	response, err := c.validateUpdateDisk.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
+// ValidateAddIP calls fits.api.vm.v1.VMService.ValidateAddIP.
+func (c *vMServiceClient) ValidateAddIP(ctx context.Context, req *v1.VMServiceValidateAddIPRequest) (*v1.VMServiceValidateAddIPResponse, error) {
+	response, err := c.validateAddIP.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
 // VMServiceHandler is an implementation of the fits.api.vm.v1.VMService service.
 type VMServiceHandler interface {
 	// Returns the VM with the specified UUID.
@@ -169,6 +373,27 @@ type VMServiceHandler interface {
 	List(context.Context, *v1.VMServiceListRequest) (*v1.VMServiceListResponse, error)
 	// Deletes a VM.
 	Delete(context.Context, *v1.VMServiceDeleteRequest) (*v1.VMServiceDeleteResponse, error)
+	// Orders an additional data disk for a VM.
+	AddDisk(context.Context, *v1.VMServiceAddDiskRequest) (*v1.VMServiceAddDiskResponse, error)
+	// Changes the size or auto-extend behavior of an existing data disk.
+	UpdateDisk(context.Context, *v1.VMServiceUpdateDiskRequest) (*v1.VMServiceUpdateDiskResponse, error)
+	// Cancels a data disk.
+	DeleteDisk(context.Context, *v1.VMServiceDeleteDiskRequest) (*v1.VMServiceDeleteDiskResponse, error)
+	// Orders an additional IP address for a VM.
+	AddIP(context.Context, *v1.VMServiceAddIPRequest) (*v1.VMServiceAddIPResponse, error)
+	// Moves an IP address from one VM to another.
+	MoveIP(context.Context, *v1.VMServiceMoveIPRequest) (*v1.VMServiceMoveIPResponse, error)
+	// Deletes an IP address from a VM.
+	DeleteIP(context.Context, *v1.VMServiceDeleteIPRequest) (*v1.VMServiceDeleteIPResponse, error)
+	// Validates a VM create request without creating anything. Intended for
+	// form pre-checks; the create endpoint validates again before executing.
+	ValidateCreate(context.Context, *v1.VMServiceValidateCreateRequest) (*v1.VMServiceValidateCreateResponse, error)
+	// Validates an AddDisk request without ordering anything.
+	ValidateAddDisk(context.Context, *v1.VMServiceValidateAddDiskRequest) (*v1.VMServiceValidateAddDiskResponse, error)
+	// Validates an UpdateDisk request without changing anything.
+	ValidateUpdateDisk(context.Context, *v1.VMServiceValidateUpdateDiskRequest) (*v1.VMServiceValidateUpdateDiskResponse, error)
+	// Validates an AddIP request without ordering anything.
+	ValidateAddIP(context.Context, *v1.VMServiceValidateAddIPRequest) (*v1.VMServiceValidateAddIPResponse, error)
 }
 
 // NewVMServiceHandler builds an HTTP handler from the service implementation. It returns the path
@@ -208,6 +433,66 @@ func NewVMServiceHandler(svc VMServiceHandler, opts ...connect.HandlerOption) (s
 		connect.WithSchema(vMServiceMethods.ByName("Delete")),
 		connect.WithHandlerOptions(opts...),
 	)
+	vMServiceAddDiskHandler := connect.NewUnaryHandlerSimple(
+		VMServiceAddDiskProcedure,
+		svc.AddDisk,
+		connect.WithSchema(vMServiceMethods.ByName("AddDisk")),
+		connect.WithHandlerOptions(opts...),
+	)
+	vMServiceUpdateDiskHandler := connect.NewUnaryHandlerSimple(
+		VMServiceUpdateDiskProcedure,
+		svc.UpdateDisk,
+		connect.WithSchema(vMServiceMethods.ByName("UpdateDisk")),
+		connect.WithHandlerOptions(opts...),
+	)
+	vMServiceDeleteDiskHandler := connect.NewUnaryHandlerSimple(
+		VMServiceDeleteDiskProcedure,
+		svc.DeleteDisk,
+		connect.WithSchema(vMServiceMethods.ByName("DeleteDisk")),
+		connect.WithHandlerOptions(opts...),
+	)
+	vMServiceAddIPHandler := connect.NewUnaryHandlerSimple(
+		VMServiceAddIPProcedure,
+		svc.AddIP,
+		connect.WithSchema(vMServiceMethods.ByName("AddIP")),
+		connect.WithHandlerOptions(opts...),
+	)
+	vMServiceMoveIPHandler := connect.NewUnaryHandlerSimple(
+		VMServiceMoveIPProcedure,
+		svc.MoveIP,
+		connect.WithSchema(vMServiceMethods.ByName("MoveIP")),
+		connect.WithHandlerOptions(opts...),
+	)
+	vMServiceDeleteIPHandler := connect.NewUnaryHandlerSimple(
+		VMServiceDeleteIPProcedure,
+		svc.DeleteIP,
+		connect.WithSchema(vMServiceMethods.ByName("DeleteIP")),
+		connect.WithHandlerOptions(opts...),
+	)
+	vMServiceValidateCreateHandler := connect.NewUnaryHandlerSimple(
+		VMServiceValidateCreateProcedure,
+		svc.ValidateCreate,
+		connect.WithSchema(vMServiceMethods.ByName("ValidateCreate")),
+		connect.WithHandlerOptions(opts...),
+	)
+	vMServiceValidateAddDiskHandler := connect.NewUnaryHandlerSimple(
+		VMServiceValidateAddDiskProcedure,
+		svc.ValidateAddDisk,
+		connect.WithSchema(vMServiceMethods.ByName("ValidateAddDisk")),
+		connect.WithHandlerOptions(opts...),
+	)
+	vMServiceValidateUpdateDiskHandler := connect.NewUnaryHandlerSimple(
+		VMServiceValidateUpdateDiskProcedure,
+		svc.ValidateUpdateDisk,
+		connect.WithSchema(vMServiceMethods.ByName("ValidateUpdateDisk")),
+		connect.WithHandlerOptions(opts...),
+	)
+	vMServiceValidateAddIPHandler := connect.NewUnaryHandlerSimple(
+		VMServiceValidateAddIPProcedure,
+		svc.ValidateAddIP,
+		connect.WithSchema(vMServiceMethods.ByName("ValidateAddIP")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/fits.api.vm.v1.VMService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case VMServiceGetProcedure:
@@ -220,6 +505,26 @@ func NewVMServiceHandler(svc VMServiceHandler, opts ...connect.HandlerOption) (s
 			vMServiceListHandler.ServeHTTP(w, r)
 		case VMServiceDeleteProcedure:
 			vMServiceDeleteHandler.ServeHTTP(w, r)
+		case VMServiceAddDiskProcedure:
+			vMServiceAddDiskHandler.ServeHTTP(w, r)
+		case VMServiceUpdateDiskProcedure:
+			vMServiceUpdateDiskHandler.ServeHTTP(w, r)
+		case VMServiceDeleteDiskProcedure:
+			vMServiceDeleteDiskHandler.ServeHTTP(w, r)
+		case VMServiceAddIPProcedure:
+			vMServiceAddIPHandler.ServeHTTP(w, r)
+		case VMServiceMoveIPProcedure:
+			vMServiceMoveIPHandler.ServeHTTP(w, r)
+		case VMServiceDeleteIPProcedure:
+			vMServiceDeleteIPHandler.ServeHTTP(w, r)
+		case VMServiceValidateCreateProcedure:
+			vMServiceValidateCreateHandler.ServeHTTP(w, r)
+		case VMServiceValidateAddDiskProcedure:
+			vMServiceValidateAddDiskHandler.ServeHTTP(w, r)
+		case VMServiceValidateUpdateDiskProcedure:
+			vMServiceValidateUpdateDiskHandler.ServeHTTP(w, r)
+		case VMServiceValidateAddIPProcedure:
+			vMServiceValidateAddIPHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -247,4 +552,44 @@ func (UnimplementedVMServiceHandler) List(context.Context, *v1.VMServiceListRequ
 
 func (UnimplementedVMServiceHandler) Delete(context.Context, *v1.VMServiceDeleteRequest) (*v1.VMServiceDeleteResponse, error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.vm.v1.VMService.Delete is not implemented"))
+}
+
+func (UnimplementedVMServiceHandler) AddDisk(context.Context, *v1.VMServiceAddDiskRequest) (*v1.VMServiceAddDiskResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.vm.v1.VMService.AddDisk is not implemented"))
+}
+
+func (UnimplementedVMServiceHandler) UpdateDisk(context.Context, *v1.VMServiceUpdateDiskRequest) (*v1.VMServiceUpdateDiskResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.vm.v1.VMService.UpdateDisk is not implemented"))
+}
+
+func (UnimplementedVMServiceHandler) DeleteDisk(context.Context, *v1.VMServiceDeleteDiskRequest) (*v1.VMServiceDeleteDiskResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.vm.v1.VMService.DeleteDisk is not implemented"))
+}
+
+func (UnimplementedVMServiceHandler) AddIP(context.Context, *v1.VMServiceAddIPRequest) (*v1.VMServiceAddIPResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.vm.v1.VMService.AddIP is not implemented"))
+}
+
+func (UnimplementedVMServiceHandler) MoveIP(context.Context, *v1.VMServiceMoveIPRequest) (*v1.VMServiceMoveIPResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.vm.v1.VMService.MoveIP is not implemented"))
+}
+
+func (UnimplementedVMServiceHandler) DeleteIP(context.Context, *v1.VMServiceDeleteIPRequest) (*v1.VMServiceDeleteIPResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.vm.v1.VMService.DeleteIP is not implemented"))
+}
+
+func (UnimplementedVMServiceHandler) ValidateCreate(context.Context, *v1.VMServiceValidateCreateRequest) (*v1.VMServiceValidateCreateResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.vm.v1.VMService.ValidateCreate is not implemented"))
+}
+
+func (UnimplementedVMServiceHandler) ValidateAddDisk(context.Context, *v1.VMServiceValidateAddDiskRequest) (*v1.VMServiceValidateAddDiskResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.vm.v1.VMService.ValidateAddDisk is not implemented"))
+}
+
+func (UnimplementedVMServiceHandler) ValidateUpdateDisk(context.Context, *v1.VMServiceValidateUpdateDiskRequest) (*v1.VMServiceValidateUpdateDiskResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.vm.v1.VMService.ValidateUpdateDisk is not implemented"))
+}
+
+func (UnimplementedVMServiceHandler) ValidateAddIP(context.Context, *v1.VMServiceValidateAddIPRequest) (*v1.VMServiceValidateAddIPResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.vm.v1.VMService.ValidateAddIP is not implemented"))
 }

@@ -6,13 +6,14 @@ import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegen
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../../../buf/validate/validate_pb";
 import { file_fits_api_v1_common } from "../../v1/common_pb";
+import { file_fits_api_v1_predefined_rules } from "../../v1/predefined_rules_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file fits/api/vm/v1/os.proto.
  */
 export const file_fits_api_vm_v1_os: GenFile = /*@__PURE__*/
-  fileDesc("ChdmaXRzL2FwaS92bS92MS9vcy5wcm90bxIOZml0cy5hcGkudm0udjEiSgoCT1MSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESDQoFdGl0bGUYAiABKAkSDAoEdHlwZRgDIAEoCRIPCgd2ZXJzaW9uGAQgASgJIhYKFE9TU2VydmljZUxpc3RSZXF1ZXN0IjgKFU9TU2VydmljZUxpc3RSZXNwb25zZRIfCgNvc3MYASADKAsyEi5maXRzLmFwaS52bS52MS5PUzJtCglPU1NlcnZpY2USYAoETGlzdBIkLmZpdHMuYXBpLnZtLnYxLk9TU2VydmljZUxpc3RSZXF1ZXN0GiUuZml0cy5hcGkudm0udjEuT1NTZXJ2aWNlTGlzdFJlc3BvbnNlIgvK8xgDAQID4PMYAkKlAQoSY29tLmZpdHMuYXBpLnZtLnYxQgdPc1Byb3RvUAFaK2dpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL3ZtL3YxO3ZtdjGiAgNGQVaqAg5GaXRzLkFwaS5WbS5WMcoCDkZpdHNcQXBpXFZtXFYx4gIaRml0c1xBcGlcVm1cVjFcR1BCTWV0YWRhdGHqAhFGaXRzOjpBcGk6OlZtOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_common]);
+  fileDesc("ChdmaXRzL2FwaS92bS92MS9vcy5wcm90bxIOZml0cy5hcGkudm0udjEicQoCT1MSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESGgoFdGl0bGUYAiABKAlCC7pICHIGwLOusQIBEhkKBHR5cGUYAyABKAlCC7pICHIGwLOusQIBEhwKB3ZlcnNpb24YBCABKAlCC7pICHIGwLOusQIBIhYKFE9TU2VydmljZUxpc3RSZXF1ZXN0IkYKFU9TU2VydmljZUxpc3RSZXNwb25zZRItChFvcGVyYXRpbmdfc3lzdGVtcxgBIAMoCzISLmZpdHMuYXBpLnZtLnYxLk9TMm0KCU9TU2VydmljZRJgCgRMaXN0EiQuZml0cy5hcGkudm0udjEuT1NTZXJ2aWNlTGlzdFJlcXVlc3QaJS5maXRzLmFwaS52bS52MS5PU1NlcnZpY2VMaXN0UmVzcG9uc2UiC8rzGAMBAgPg8xgCQqUBChJjb20uZml0cy5hcGkudm0udjFCB09zUHJvdG9QAVorZ2l0aHViLmNvbS9maS10cy9hcGkvZ28vZml0cy9hcGkvdm0vdjE7dm12MaICA0ZBVqoCDkZpdHMuQXBpLlZtLlYxygIORml0c1xBcGlcVm1cVjHiAhpGaXRzXEFwaVxWbVxWMVxHUEJNZXRhZGF0YeoCEUZpdHM6OkFwaTo6Vm06OlYxYgZwcm90bzM", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
 
 /**
  * OS is the definition of an available OS for VM instances
@@ -58,7 +59,6 @@ export const OSSchema: GenMessage<OS> = /*@__PURE__*/
 
 /**
  * OSServiceListRequest is the request payload for a OS list request.
- * The upstream nulink API accepts no body or parameters, so this is intentionally empty.
  *
  * @generated from message fits.api.vm.v1.OSServiceListRequest
  */
@@ -79,11 +79,11 @@ export const OSServiceListRequestSchema: GenMessage<OSServiceListRequest> = /*@_
  */
 export type OSServiceListResponse = Message<"fits.api.vm.v1.OSServiceListResponse"> & {
   /**
-   * The available OSs
+   * The available operating systems
    *
-   * @generated from field: repeated fits.api.vm.v1.OS oss = 1;
+   * @generated from field: repeated fits.api.vm.v1.OS operating_systems = 1;
    */
-  oss: OS[];
+  operatingSystems: OS[];
 };
 
 /**
@@ -95,13 +95,12 @@ export const OSServiceListResponseSchema: GenMessage<OSServiceListResponse> = /*
 
 /**
  * OSService lists operating systems available for VM instances.
- * TODO wurde besprochen am 09.09.26
  *
  * @generated from service fits.api.vm.v1.OSService
  */
 export const OSService: GenService<{
   /**
-   * Returns a list of all OSs.
+   * Returns a list of all operating systems.
    *
    * @generated from rpc fits.api.vm.v1.OSService.List
    */

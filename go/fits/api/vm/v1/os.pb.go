@@ -97,7 +97,6 @@ func (x *OS) GetVersion() string {
 }
 
 // OSServiceListRequest is the request payload for a OS list request.
-// The upstream nulink API accepts no body or parameters, so this is intentionally empty.
 type OSServiceListRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -137,10 +136,10 @@ func (*OSServiceListRequest) Descriptor() ([]byte, []int) {
 // OSServiceListResponse is the response payload for a OS list request
 type OSServiceListResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The available OSs
-	Oss           []*OS `protobuf:"bytes,1,rep,name=oss,proto3" json:"oss,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	// The available operating systems
+	OperatingSystems []*OS `protobuf:"bytes,1,rep,name=operating_systems,json=operatingSystems,proto3" json:"operating_systems,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *OSServiceListResponse) Reset() {
@@ -173,9 +172,9 @@ func (*OSServiceListResponse) Descriptor() ([]byte, []int) {
 	return file_fits_api_vm_v1_os_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *OSServiceListResponse) GetOss() []*OS {
+func (x *OSServiceListResponse) GetOperatingSystems() []*OS {
 	if x != nil {
-		return x.Oss
+		return x.OperatingSystems
 	}
 	return nil
 }
@@ -184,15 +183,15 @@ var File_fits_api_vm_v1_os_proto protoreflect.FileDescriptor
 
 const file_fits_api_vm_v1_os_proto_rawDesc = "" +
 	"\n" +
-	"\x17fits/api/vm/v1/os.proto\x12\x0efits.api.vm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\"f\n" +
+	"\x17fits/api/vm/v1/os.proto\x12\x0efits.api.vm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\x8d\x01\n" +
 	"\x02OS\x12\x1c\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\x12\x12\n" +
-	"\x04type\x18\x03 \x01(\tR\x04type\x12\x18\n" +
-	"\aversion\x18\x04 \x01(\tR\aversion\"\x16\n" +
-	"\x14OSServiceListRequest\"=\n" +
-	"\x15OSServiceListResponse\x12$\n" +
-	"\x03oss\x18\x01 \x03(\v2\x12.fits.api.vm.v1.OSR\x03oss2m\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12!\n" +
+	"\x05title\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x05title\x12\x1f\n" +
+	"\x04type\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x04type\x12%\n" +
+	"\aversion\x18\x04 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\aversion\"\x16\n" +
+	"\x14OSServiceListRequest\"X\n" +
+	"\x15OSServiceListResponse\x12?\n" +
+	"\x11operating_systems\x18\x01 \x03(\v2\x12.fits.api.vm.v1.OSR\x10operatingSystems2m\n" +
 	"\tOSService\x12`\n" +
 	"\x04List\x12$.fits.api.vm.v1.OSServiceListRequest\x1a%.fits.api.vm.v1.OSServiceListResponse\"\v\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02B\xa5\x01\n" +
 	"\x12com.fits.api.vm.v1B\aOsProtoP\x01Z+github.com/fi-ts/api/go/fits/api/vm/v1;vmv1\xa2\x02\x03FAV\xaa\x02\x0eFits.Api.Vm.V1\xca\x02\x0eFits\\Api\\Vm\\V1\xe2\x02\x1aFits\\Api\\Vm\\V1\\GPBMetadata\xea\x02\x11Fits::Api::Vm::V1b\x06proto3"
@@ -216,7 +215,7 @@ var file_fits_api_vm_v1_os_proto_goTypes = []any{
 	(*OSServiceListResponse)(nil), // 2: fits.api.vm.v1.OSServiceListResponse
 }
 var file_fits_api_vm_v1_os_proto_depIdxs = []int32{
-	0, // 0: fits.api.vm.v1.OSServiceListResponse.oss:type_name -> fits.api.vm.v1.OS
+	0, // 0: fits.api.vm.v1.OSServiceListResponse.operating_systems:type_name -> fits.api.vm.v1.OS
 	1, // 1: fits.api.vm.v1.OSService.List:input_type -> fits.api.vm.v1.OSServiceListRequest
 	2, // 2: fits.api.vm.v1.OSService.List:output_type -> fits.api.vm.v1.OSServiceListResponse
 	2, // [2:3] is the sub-list for method output_type

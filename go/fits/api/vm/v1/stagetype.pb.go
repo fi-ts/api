@@ -23,7 +23,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Maps to the upstream NucleusDBStageTypes model.
+// StageType is the definition of available stage types. (Development, Test, Integration, Production)
 type StageType struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Uuid of this stage type
@@ -79,7 +79,6 @@ func (x *StageType) GetTitle() string {
 }
 
 // StageTypeServiceListRequest is the request payload for a stage type list request.
-// Maps to the upstream TenantInputModel.
 type StageTypeServiceListRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -120,7 +119,7 @@ func (*StageTypeServiceListRequest) Descriptor() ([]byte, []int) {
 type StageTypeServiceListResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The available stage types
-	Stagetypes    []*StageType `protobuf:"bytes,1,rep,name=stagetypes,proto3" json:"stagetypes,omitempty"`
+	StageTypes    []*StageType `protobuf:"bytes,1,rep,name=stage_types,json=stageTypes,proto3" json:"stage_types,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -155,9 +154,9 @@ func (*StageTypeServiceListResponse) Descriptor() ([]byte, []int) {
 	return file_fits_api_vm_v1_stagetype_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *StageTypeServiceListResponse) GetStagetypes() []*StageType {
+func (x *StageTypeServiceListResponse) GetStageTypes() []*StageType {
 	if x != nil {
-		return x.Stagetypes
+		return x.StageTypes
 	}
 	return nil
 }
@@ -170,11 +169,10 @@ const file_fits_api_vm_v1_stagetype_proto_rawDesc = "" +
 	"\tStageType\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12!\n" +
 	"\x05title\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x05title\"\x1d\n" +
-	"\x1bStageTypeServiceListRequest\"Y\n" +
-	"\x1cStageTypeServiceListResponse\x129\n" +
-	"\n" +
-	"stagetypes\x18\x01 \x03(\v2\x19.fits.api.vm.v1.StageTypeR\n" +
-	"stagetypes2\x82\x01\n" +
+	"\x1bStageTypeServiceListRequest\"Z\n" +
+	"\x1cStageTypeServiceListResponse\x12:\n" +
+	"\vstage_types\x18\x01 \x03(\v2\x19.fits.api.vm.v1.StageTypeR\n" +
+	"stageTypes2\x82\x01\n" +
 	"\x10StageTypeService\x12n\n" +
 	"\x04List\x12+.fits.api.vm.v1.StageTypeServiceListRequest\x1a,.fits.api.vm.v1.StageTypeServiceListResponse\"\v\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02B\xac\x01\n" +
 	"\x12com.fits.api.vm.v1B\x0eStagetypeProtoP\x01Z+github.com/fi-ts/api/go/fits/api/vm/v1;vmv1\xa2\x02\x03FAV\xaa\x02\x0eFits.Api.Vm.V1\xca\x02\x0eFits\\Api\\Vm\\V1\xe2\x02\x1aFits\\Api\\Vm\\V1\\GPBMetadata\xea\x02\x11Fits::Api::Vm::V1b\x06proto3"
@@ -198,7 +196,7 @@ var file_fits_api_vm_v1_stagetype_proto_goTypes = []any{
 	(*StageTypeServiceListResponse)(nil), // 2: fits.api.vm.v1.StageTypeServiceListResponse
 }
 var file_fits_api_vm_v1_stagetype_proto_depIdxs = []int32{
-	0, // 0: fits.api.vm.v1.StageTypeServiceListResponse.stagetypes:type_name -> fits.api.vm.v1.StageType
+	0, // 0: fits.api.vm.v1.StageTypeServiceListResponse.stage_types:type_name -> fits.api.vm.v1.StageType
 	1, // 1: fits.api.vm.v1.StageTypeService.List:input_type -> fits.api.vm.v1.StageTypeServiceListRequest
 	2, // 2: fits.api.vm.v1.StageTypeService.List:output_type -> fits.api.vm.v1.StageTypeServiceListResponse
 	2, // [2:3] is the sub-list for method output_type
