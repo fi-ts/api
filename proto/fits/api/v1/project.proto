@@ -5,7 +5,6 @@ package fits.api.v1;
 import "buf/validate/validate.proto";
 import "fits/api/v1/common.proto";
 import "fits/api/v1/predefined_rules.proto";
-import "google/protobuf/timestamp.proto";
 
 // ProjectService provides project management operations.
 service ProjectService {
@@ -55,6 +54,9 @@ message Project {
   string tenant = 5;
   // AvatarUrl of the Project
   optional string avatar_url = 6;
+  // Slug is an immutable identifier of the project.
+  // Guaranteed to be unique within a tenant.
+  string slug = 7;
 }
 
 // ProjectServiceListRequest is the request payload to list all projects
