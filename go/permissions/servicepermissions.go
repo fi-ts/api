@@ -25,13 +25,11 @@ func GetServicePermissions() *ServicePermissions {
 			Tenant: Tenant{
 				v1.TenantRole_TENANT_ROLE_OWNER: map[string]struct{}{
 					"/fits.api.v1.ProjectService/Create": {},
-					"/fits.api.v1.TenantService/Delete":  {},
 					"/fits.api.v1.TenantService/Get":     {},
 					"/fits.api.v1.TenantService/Update":  {},
 				},
 				v1.TenantRole_TENANT_ROLE_EDITOR: map[string]struct{}{
 					"/fits.api.v1.ProjectService/Create": {},
-					"/fits.api.v1.TenantService/Delete":  {},
 					"/fits.api.v1.TenantService/Get":     {},
 					"/fits.api.v1.TenantService/Update":  {},
 				},
@@ -83,8 +81,6 @@ func GetServicePermissions() *ServicePermissions {
 			"/fits.api.v1.ProjectService/Get":                                {},
 			"/fits.api.v1.ProjectService/List":                               {},
 			"/fits.api.v1.ProjectService/Update":                             {},
-			"/fits.api.v1.TenantService/Create":                              {},
-			"/fits.api.v1.TenantService/Delete":                              {},
 			"/fits.api.v1.TenantService/Get":                                 {},
 			"/fits.api.v1.TenantService/List":                                {},
 			"/fits.api.v1.TenantService/Update":                              {},
@@ -106,7 +102,6 @@ func GetServicePermissions() *ServicePermissions {
 			Self: map[string]bool{
 				"/fits.api.v1.MethodService/TokenScopedList": true,
 				"/fits.api.v1.ProjectService/List":           true,
-				"/fits.api.v1.TenantService/Create":          true,
 				"/fits.api.v1.TenantService/List":            true,
 				"/fits.api.v1.TokenService/Get":              true,
 				"/fits.api.v1.TokenService/List":             true,
@@ -115,7 +110,6 @@ func GetServicePermissions() *ServicePermissions {
 			Admin: map[string]bool{},
 			Tenant: map[string]bool{
 				"/fits.api.v1.ProjectService/Create": true,
-				"/fits.api.v1.TenantService/Delete":  true,
 				"/fits.api.v1.TenantService/Get":     true,
 				"/fits.api.v1.TenantService/Update":  true,
 			},
@@ -144,8 +138,6 @@ func GetServicePermissions() *ServicePermissions {
 			"/fits.api.v1.ProjectService/Get":            false,
 			"/fits.api.v1.ProjectService/List":           false,
 			"/fits.api.v1.ProjectService/Update":         true,
-			"/fits.api.v1.TenantService/Create":          true,
-			"/fits.api.v1.TenantService/Delete":          true,
 			"/fits.api.v1.TenantService/Get":             false,
 			"/fits.api.v1.TenantService/List":            false,
 			"/fits.api.v1.TenantService/Update":          true,

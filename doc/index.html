@@ -608,22 +608,6 @@
                 </li>
               
                 <li>
-                  <a href="#fits.api.v1.TenantServiceCreateRequest"><span class="badge">M</span>TenantServiceCreateRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.v1.TenantServiceCreateResponse"><span class="badge">M</span>TenantServiceCreateResponse</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.v1.TenantServiceDeleteRequest"><span class="badge">M</span>TenantServiceDeleteRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.v1.TenantServiceDeleteResponse"><span class="badge">M</span>TenantServiceDeleteResponse</a>
-                </li>
-              
-                <li>
                   <a href="#fits.api.v1.TenantServiceGetRequest"><span class="badge">M</span>TenantServiceGetRequest</a>
                 </li>
               
@@ -3275,130 +3259,6 @@ TODO: is login really a good name? </p></td>
 
         
       
-        <h3 id="fits.api.v1.TenantServiceCreateRequest">TenantServiceCreateRequest</h3>
-        <p>TenantServiceCreateRequest is the request payload of the tenant create request</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Name of this tenant </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>Description of this tenant </p></td>
-                </tr>
-              
-                <tr>
-                  <td>email</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>Email of the tenant, if not set will be inherited from the creator </p></td>
-                </tr>
-              
-                <tr>
-                  <td>avatar_url</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>AvatarUrl of the tenant </p></td>
-                </tr>
-              
-                <tr>
-                  <td>labels</td>
-                  <td><a href="#fits.api.v1.Labels">Labels</a></td>
-                  <td></td>
-                  <td><p>Labels on the tenant </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="fits.api.v1.TenantServiceCreateResponse">TenantServiceCreateResponse</h3>
-        <p>TenantServiceCreateResponse is the response payload of the tenant create request</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>tenant</td>
-                  <td><a href="#fits.api.v1.Tenant">Tenant</a></td>
-                  <td></td>
-                  <td><p>Tenant is the tenant </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="fits.api.v1.TenantServiceDeleteRequest">TenantServiceDeleteRequest</h3>
-        <p>TenantServiceDeleteRequest is the request payload of the tenant delete request</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>login</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Login of the tenant </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="fits.api.v1.TenantServiceDeleteResponse">TenantServiceDeleteResponse</h3>
-        <p>TenantServiceDeleteResponse is the response payload of the tenant delete request</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>tenant</td>
-                  <td><a href="#fits.api.v1.Tenant">Tenant</a></td>
-                  <td></td>
-                  <td><p>Tenant is the tenant </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="fits.api.v1.TenantServiceGetRequest">TenantServiceGetRequest</h3>
         <p>TenantServiceGetRequest is the request payload of the tenant get request</p>
 
@@ -3614,13 +3474,6 @@ TODO: is login really a good name? </p></td>
           <tbody>
             
               <tr>
-                <td>Create</td>
-                <td><a href="#fits.api.v1.TenantServiceCreateRequest">TenantServiceCreateRequest</a></td>
-                <td><a href="#fits.api.v1.TenantServiceCreateResponse">TenantServiceCreateResponse</a></td>
-                <td><p>Creates a new tenant.</p></td>
-              </tr>
-            
-              <tr>
                 <td>List</td>
                 <td><a href="#fits.api.v1.TenantServiceListRequest">TenantServiceListRequest</a></td>
                 <td><a href="#fits.api.v1.TenantServiceListResponse">TenantServiceListResponse</a></td>
@@ -3639,13 +3492,6 @@ TODO: is login really a good name? </p></td>
                 <td><a href="#fits.api.v1.TenantServiceUpdateRequest">TenantServiceUpdateRequest</a></td>
                 <td><a href="#fits.api.v1.TenantServiceUpdateResponse">TenantServiceUpdateResponse</a></td>
                 <td><p>Update a tenant</p></td>
-              </tr>
-            
-              <tr>
-                <td>Delete</td>
-                <td><a href="#fits.api.v1.TenantServiceDeleteRequest">TenantServiceDeleteRequest</a></td>
-                <td><a href="#fits.api.v1.TenantServiceDeleteResponse">TenantServiceDeleteResponse</a></td>
-                <td><p>Delete a tenant</p></td>
               </tr>
             
           </tbody>
