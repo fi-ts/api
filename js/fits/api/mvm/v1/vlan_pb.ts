@@ -89,8 +89,7 @@ export const VLANSchema: GenMessage<VLAN> = /*@__PURE__*/
 export type VLANServiceListRequest = Message<"fits.api.mvm.v1.VLANServiceListRequest"> & {
   /**
    * Tenant to list available VLANs for
-   *
-   * TODO should be filterable by project as well
+   * TODO should be filtered by project instead, see https://github.com/fi-ts/fco-apiserver/issues/39
    *
    * @generated from field: string tenant = 1;
    */

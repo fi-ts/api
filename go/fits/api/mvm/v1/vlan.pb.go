@@ -130,7 +130,8 @@ func (x *VLAN) GetTenant() string {
 type VLANServiceListRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Tenant to list available VLANs for
-	Tenant        string `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"` // TODO should be filterable by project as well
+	// TODO should be filtered by project instead, see https://github.com/fi-ts/fco-apiserver/issues/39
+	Tenant        string `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
