@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"connectrpc.com/connect"
+	"google.golang.org/genproto/googleapis/rpc/errdetails"
 	"google.golang.org/grpc/status"
 
 	"github.com/google/go-cmp/cmp"
@@ -220,6 +221,56 @@ func WrapConnectErr(c connect.Code, underlying error) *connect.Error {
 	}
 
 	return connect.NewError(c, underlying)
+}
+
+// ValidationError describes a single validation problem reported by an
+// upstream API (e.g. an HTTP 422 body from nulink).
+type ValidationError struct {
+	// Loc is the path of the offending field within the upstream request,
+	// e.g. ["body", "serviceclass"].
+	Loc []string
+	// Msg is a human readable description of the problem.
+	Msg string
+	// Type is the upstream error type, e.g. "value_error".
+	Type string
+}
+
+// UpstreamValidation builds an InvalidArgument connect.Error for upstream
+// validation rejections (HTTP 422). It attaches the standard google.rpc error
+// details so clients can render per-field problems uniformly:
+//
+//   - BadRequest with one FieldViolation per error (field = dotted loc path,
+//     description = upstream message)
+//   - ErrorInfo identifying the upstream domain and the error type
+//
+// The top-level message stays generic; the structured content lives in the
+// details. This mirrors how buf.validate failures surface locally, so clients
+// see one uniform shape for "your input was wrong" regardless of which layer
+// rejected it.
+func UpstreamValidation(domain, op string, errs []ValidationError) *connect.Error {
+	err := connect.NewError(connect.CodeInvalidArgument,
+		fmt.Errorf("%s rejected %s with %d validation error(s)", domain, op, len(errs)))
+	if len(errs) == 0 {
+		return err
+	}
+
+	violations := make([]*errdetails.BadRequest_FieldViolation, 0, len(errs))
+	for _, e := range errs {
+		violations = append(violations, &errdetails.BadRequest_FieldViolation{
+			Field:       strings.Join(e.Loc, "."),
+			Description: e.Msg,
+		})
+	}
+	if d, derr := connect.NewErrorDetail(&errdetails.BadRequest{FieldViolations: violations}); derr == nil {
+		err.AddDetail(d)
+	}
+	if d, derr := connect.NewErrorDetail(&errdetails.ErrorInfo{
+		Reason: strings.ToUpper(errs[0].Type),
+		Domain: domain,
+	}); derr == nil {
+		err.AddDetail(d)
+	}
+	return err
 }
 
 // ConnectErrorComparer returns a go-cmp Option for comparing *connect.Error values.

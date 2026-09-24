@@ -19,6 +19,8 @@ IS_IP_OR_HOSTNAME_FIELD_NUMBER: _ClassVar[int]
 is_ip_or_hostname: _descriptor.FieldDescriptor
 TRIMMED_FIELD_NUMBER: _ClassVar[int]
 trimmed: _descriptor.FieldDescriptor
+IS_IPV4_CIDR_FIELD_NUMBER: _ClassVar[int]
+is_ipv4_cidr: _descriptor.FieldDescriptor
 PREFIXES_FIELD_NUMBER: _ClassVar[int]
 prefixes: _descriptor.FieldDescriptor
 IPS_FIELD_NUMBER: _ClassVar[int]
