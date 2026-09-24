@@ -48,6 +48,13 @@ export type Project = Message<"fits.api.v1.Project"> & {
      * @generated from field: optional string avatar_url = 6;
      */
     avatarUrl?: string | undefined;
+    /**
+     * Slug is an immutable identifier of the project.
+     * Guaranteed to be unique within a tenant.
+     *
+     * @generated from field: string slug = 7;
+     */
+    slug: string;
 };
 /**
  * Describes the message fits.api.v1.Project.

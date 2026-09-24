@@ -10,7 +10,6 @@ import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	_ "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -38,7 +37,10 @@ type Project struct {
 	// Tenant this project belongs to
 	Tenant string `protobuf:"bytes,5,opt,name=tenant,proto3" json:"tenant,omitempty"`
 	// AvatarUrl of the Project
-	AvatarUrl     *string `protobuf:"bytes,6,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty"`
+	AvatarUrl *string `protobuf:"bytes,6,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty"`
+	// Slug is an immutable identifier of the project.
+	// Guaranteed to be unique within a tenant.
+	Slug          string `protobuf:"bytes,7,opt,name=slug,proto3" json:"slug,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -111,6 +113,13 @@ func (x *Project) GetTenant() string {
 func (x *Project) GetAvatarUrl() string {
 	if x != nil && x.AvatarUrl != nil {
 		return *x.AvatarUrl
+	}
+	return ""
+}
+
+func (x *Project) GetSlug() string {
+	if x != nil {
+		return x.Slug
 	}
 	return ""
 }
@@ -688,7 +697,7 @@ var File_fits_api_v1_project_proto protoreflect.FileDescriptor
 
 const file_fits_api_v1_project_proto_rawDesc = "" +
 	"\n" +
-	"\x19fits/api/v1/project.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xdf\x01\n" +
+	"\x19fits/api/v1/project.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xf3\x01\n" +
 	"\aProject\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12%\n" +
 	"\x04meta\x18\x02 \x01(\v2\x11.fits.api.v1.MetaR\x04meta\x12\x1f\n" +
@@ -696,7 +705,8 @@ const file_fits_api_v1_project_proto_rawDesc = "" +
 	"\vdescription\x18\x04 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\vdescription\x12\x16\n" +
 	"\x06tenant\x18\x05 \x01(\tR\x06tenant\x12\"\n" +
 	"\n" +
-	"avatar_url\x18\x06 \x01(\tH\x00R\tavatarUrl\x88\x01\x01B\r\n" +
+	"avatar_url\x18\x06 \x01(\tH\x00R\tavatarUrl\x88\x01\x01\x12\x12\n" +
+	"\x04slug\x18\a \x01(\tR\x04slugB\r\n" +
 	"\v_avatar_url\"\xd8\x01\n" +
 	"\x19ProjectServiceListRequest\x12\x13\n" +
 	"\x02id\x18\x01 \x01(\tH\x00R\x02id\x88\x01\x01\x12$\n" +
