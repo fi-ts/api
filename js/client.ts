@@ -5,6 +5,18 @@ import type { Client as ConnectClient } from "@connectrpc/connect";
 import { createConnectTransport } from "@connectrpc/connect-web";
 
 
+import { LocationService as Apimvmv1LocationService } from "./fits/api/mvm/v1/location_pb";
+
+import { MVMService as Apimvmv1MVMService } from "./fits/api/mvm/v1/mvm_pb";
+
+import { OSService as Apimvmv1OSService } from "./fits/api/mvm/v1/os_pb";
+
+import { StageTypeService as Apimvmv1StageTypeService } from "./fits/api/mvm/v1/stagetype_pb";
+
+import { VLANService as Apimvmv1VLANService } from "./fits/api/mvm/v1/vlan_pb";
+
+
+
 import { HealthService as Apiv1HealthService } from "./fits/api/v1/health_pb";
 
 import { IPService as Apiv1IPService } from "./fits/api/v1/ip_pb";
@@ -21,18 +33,6 @@ import { VersionService as Apiv1VersionService } from "./fits/api/v1/version_pb"
 
 
 
-import { LocationService as Apivmv1LocationService } from "./fits/api/vm/v1/location_pb";
-
-import { OSService as Apivmv1OSService } from "./fits/api/vm/v1/os_pb";
-
-import { StageTypeService as Apivmv1StageTypeService } from "./fits/api/vm/v1/stagetype_pb";
-
-import { VlanService as Apivmv1VlanService } from "./fits/api/vm/v1/vlan_pb";
-
-import { VMService as Apivmv1VMService } from "./fits/api/vm/v1/vm_pb";
-
-
-
 export interface ClientConfig {
   baseUrl: string;
   token?: string;
@@ -41,9 +41,24 @@ export interface ClientConfig {
 
 export interface Client {
 
+  apimvmv1(): Apimvmv1;
+
   apiv1(): Apiv1;
 
-  apivmv1(): Apivmv1;
+}
+
+
+export interface Apimvmv1 {
+
+  location(): ConnectClient<typeof Apimvmv1LocationService>;
+
+  mvm(): ConnectClient<typeof Apimvmv1MVMService>;
+
+  os(): ConnectClient<typeof Apimvmv1OSService>;
+
+  stageType(): ConnectClient<typeof Apimvmv1StageTypeService>;
+
+  vlan(): ConnectClient<typeof Apimvmv1VLANService>;
 
 }
 
@@ -63,21 +78,6 @@ export interface Apiv1 {
   token(): ConnectClient<typeof Apiv1TokenService>;
 
   version(): ConnectClient<typeof Apiv1VersionService>;
-
-}
-
-
-export interface Apivmv1 {
-
-  location(): ConnectClient<typeof Apivmv1LocationService>;
-
-  os(): ConnectClient<typeof Apivmv1OSService>;
-
-  stageType(): ConnectClient<typeof Apivmv1StageTypeService>;
-
-  vlan(): ConnectClient<typeof Apivmv1VlanService>;
-
-  vm(): ConnectClient<typeof Apivmv1VMService>;
 
 }
 
@@ -117,15 +117,22 @@ class ClientImpl implements Client {
   private transport: Transport;
 
 
-  private _apiv1?: Apiv1Impl;
+  private _apimvmv1?: Apimvmv1Impl;
 
-  private _apivmv1?: Apivmv1Impl;
+  private _apiv1?: Apiv1Impl;
 
 
   constructor(transport: Transport) {
     this.transport = transport;
   }
 
+
+  apimvmv1(): Apimvmv1 {
+    if (!this._apimvmv1) {
+      this._apimvmv1 = new Apimvmv1Impl(this.transport);
+    }
+    return this._apimvmv1;
+  }
 
   apiv1(): Apiv1 {
     if (!this._apiv1) {
@@ -134,11 +141,62 @@ class ClientImpl implements Client {
     return this._apiv1;
   }
 
-  apivmv1(): Apivmv1 {
-    if (!this._apivmv1) {
-      this._apivmv1 = new Apivmv1Impl(this.transport);
+}
+
+
+class Apimvmv1Impl implements Apimvmv1 {
+  private transport: Transport;
+
+
+  private _location?: ConnectClient<typeof Apimvmv1LocationService>;
+
+  private _mvm?: ConnectClient<typeof Apimvmv1MVMService>;
+
+  private _os?: ConnectClient<typeof Apimvmv1OSService>;
+
+  private _stageType?: ConnectClient<typeof Apimvmv1StageTypeService>;
+
+  private _vlan?: ConnectClient<typeof Apimvmv1VLANService>;
+
+
+  constructor(transport: Transport) {
+    this.transport = transport;
+  }
+
+
+  location(): ConnectClient<typeof Apimvmv1LocationService> {
+    if (!this._location) {
+      this._location = createClient(Apimvmv1LocationService, this.transport);
     }
-    return this._apivmv1;
+    return this._location;
+  }
+
+  mvm(): ConnectClient<typeof Apimvmv1MVMService> {
+    if (!this._mvm) {
+      this._mvm = createClient(Apimvmv1MVMService, this.transport);
+    }
+    return this._mvm;
+  }
+
+  os(): ConnectClient<typeof Apimvmv1OSService> {
+    if (!this._os) {
+      this._os = createClient(Apimvmv1OSService, this.transport);
+    }
+    return this._os;
+  }
+
+  stageType(): ConnectClient<typeof Apimvmv1StageTypeService> {
+    if (!this._stageType) {
+      this._stageType = createClient(Apimvmv1StageTypeService, this.transport);
+    }
+    return this._stageType;
+  }
+
+  vlan(): ConnectClient<typeof Apimvmv1VLANService> {
+    if (!this._vlan) {
+      this._vlan = createClient(Apimvmv1VLANService, this.transport);
+    }
+    return this._vlan;
   }
 
 }
@@ -215,64 +273,6 @@ class Apiv1Impl implements Apiv1 {
       this._version = createClient(Apiv1VersionService, this.transport);
     }
     return this._version;
-  }
-
-}
-
-
-class Apivmv1Impl implements Apivmv1 {
-  private transport: Transport;
-
-
-  private _location?: ConnectClient<typeof Apivmv1LocationService>;
-
-  private _os?: ConnectClient<typeof Apivmv1OSService>;
-
-  private _stageType?: ConnectClient<typeof Apivmv1StageTypeService>;
-
-  private _vlan?: ConnectClient<typeof Apivmv1VlanService>;
-
-  private _vm?: ConnectClient<typeof Apivmv1VMService>;
-
-
-  constructor(transport: Transport) {
-    this.transport = transport;
-  }
-
-
-  location(): ConnectClient<typeof Apivmv1LocationService> {
-    if (!this._location) {
-      this._location = createClient(Apivmv1LocationService, this.transport);
-    }
-    return this._location;
-  }
-
-  os(): ConnectClient<typeof Apivmv1OSService> {
-    if (!this._os) {
-      this._os = createClient(Apivmv1OSService, this.transport);
-    }
-    return this._os;
-  }
-
-  stageType(): ConnectClient<typeof Apivmv1StageTypeService> {
-    if (!this._stageType) {
-      this._stageType = createClient(Apivmv1StageTypeService, this.transport);
-    }
-    return this._stageType;
-  }
-
-  vlan(): ConnectClient<typeof Apivmv1VlanService> {
-    if (!this._vlan) {
-      this._vlan = createClient(Apivmv1VlanService, this.transport);
-    }
-    return this._vlan;
-  }
-
-  vm(): ConnectClient<typeof Apivmv1VMService> {
-    if (!this._vm) {
-      this._vm = createClient(Apivmv1VMService, this.transport);
-    }
-    return this._vm;
   }
 
 }
