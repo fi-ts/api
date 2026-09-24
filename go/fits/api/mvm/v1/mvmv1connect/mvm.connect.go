@@ -37,8 +37,6 @@ const (
 	MVMServiceGetProcedure = "/fits.api.mvm.v1.MVMService/Get"
 	// MVMServiceCreateProcedure is the fully-qualified name of the MVMService's Create RPC.
 	MVMServiceCreateProcedure = "/fits.api.mvm.v1.MVMService/Create"
-	// MVMServiceUpdateProcedure is the fully-qualified name of the MVMService's Update RPC.
-	MVMServiceUpdateProcedure = "/fits.api.mvm.v1.MVMService/Update"
 	// MVMServiceListProcedure is the fully-qualified name of the MVMService's List RPC.
 	MVMServiceListProcedure = "/fits.api.mvm.v1.MVMService/List"
 	// MVMServiceDeleteProcedure is the fully-qualified name of the MVMService's Delete RPC.
@@ -78,8 +76,6 @@ type MVMServiceClient interface {
 	Get(context.Context, *v1.MVMServiceGetRequest) (*v1.MVMServiceGetResponse, error)
 	// Creates a new MVM.
 	Create(context.Context, *v1.MVMServiceCreateRequest) (*v1.MVMServiceCreateResponse, error)
-	// Updates a MVM.
-	Update(context.Context, *v1.MVMServiceUpdateRequest) (*v1.MVMServiceUpdateResponse, error)
 	// Returns the list of all MVMs.
 	List(context.Context, *v1.MVMServiceListRequest) (*v1.MVMServiceListResponse, error)
 	// Deletes a MVM.
@@ -130,12 +126,6 @@ func NewMVMServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			httpClient,
 			baseURL+MVMServiceCreateProcedure,
 			connect.WithSchema(mVMServiceMethods.ByName("Create")),
-			connect.WithClientOptions(opts...),
-		),
-		update: connect.NewClient[v1.MVMServiceUpdateRequest, v1.MVMServiceUpdateResponse](
-			httpClient,
-			baseURL+MVMServiceUpdateProcedure,
-			connect.WithSchema(mVMServiceMethods.ByName("Update")),
 			connect.WithClientOptions(opts...),
 		),
 		list: connect.NewClient[v1.MVMServiceListRequest, v1.MVMServiceListResponse](
@@ -217,7 +207,6 @@ func NewMVMServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 type mVMServiceClient struct {
 	get                         *connect.Client[v1.MVMServiceGetRequest, v1.MVMServiceGetResponse]
 	create                      *connect.Client[v1.MVMServiceCreateRequest, v1.MVMServiceCreateResponse]
-	update                      *connect.Client[v1.MVMServiceUpdateRequest, v1.MVMServiceUpdateResponse]
 	list                        *connect.Client[v1.MVMServiceListRequest, v1.MVMServiceListResponse]
 	delete                      *connect.Client[v1.MVMServiceDeleteRequest, v1.MVMServiceDeleteResponse]
 	addDisk                     *connect.Client[v1.MVMServiceAddDiskRequest, v1.MVMServiceAddDiskResponse]
@@ -244,15 +233,6 @@ func (c *mVMServiceClient) Get(ctx context.Context, req *v1.MVMServiceGetRequest
 // Create calls fits.api.mvm.v1.MVMService.Create.
 func (c *mVMServiceClient) Create(ctx context.Context, req *v1.MVMServiceCreateRequest) (*v1.MVMServiceCreateResponse, error) {
 	response, err := c.create.CallUnary(ctx, connect.NewRequest(req))
-	if response != nil {
-		return response.Msg, err
-	}
-	return nil, err
-}
-
-// Update calls fits.api.mvm.v1.MVMService.Update.
-func (c *mVMServiceClient) Update(ctx context.Context, req *v1.MVMServiceUpdateRequest) (*v1.MVMServiceUpdateResponse, error) {
-	response, err := c.update.CallUnary(ctx, connect.NewRequest(req))
 	if response != nil {
 		return response.Msg, err
 	}
@@ -373,8 +353,6 @@ type MVMServiceHandler interface {
 	Get(context.Context, *v1.MVMServiceGetRequest) (*v1.MVMServiceGetResponse, error)
 	// Creates a new MVM.
 	Create(context.Context, *v1.MVMServiceCreateRequest) (*v1.MVMServiceCreateResponse, error)
-	// Updates a MVM.
-	Update(context.Context, *v1.MVMServiceUpdateRequest) (*v1.MVMServiceUpdateResponse, error)
 	// Returns the list of all MVMs.
 	List(context.Context, *v1.MVMServiceListRequest) (*v1.MVMServiceListResponse, error)
 	// Deletes a MVM.
@@ -421,12 +399,6 @@ func NewMVMServiceHandler(svc MVMServiceHandler, opts ...connect.HandlerOption) 
 		MVMServiceCreateProcedure,
 		svc.Create,
 		connect.WithSchema(mVMServiceMethods.ByName("Create")),
-		connect.WithHandlerOptions(opts...),
-	)
-	mVMServiceUpdateHandler := connect.NewUnaryHandlerSimple(
-		MVMServiceUpdateProcedure,
-		svc.Update,
-		connect.WithSchema(mVMServiceMethods.ByName("Update")),
 		connect.WithHandlerOptions(opts...),
 	)
 	mVMServiceListHandler := connect.NewUnaryHandlerSimple(
@@ -507,8 +479,6 @@ func NewMVMServiceHandler(svc MVMServiceHandler, opts ...connect.HandlerOption) 
 			mVMServiceGetHandler.ServeHTTP(w, r)
 		case MVMServiceCreateProcedure:
 			mVMServiceCreateHandler.ServeHTTP(w, r)
-		case MVMServiceUpdateProcedure:
-			mVMServiceUpdateHandler.ServeHTTP(w, r)
 		case MVMServiceListProcedure:
 			mVMServiceListHandler.ServeHTTP(w, r)
 		case MVMServiceDeleteProcedure:
@@ -548,10 +518,6 @@ func (UnimplementedMVMServiceHandler) Get(context.Context, *v1.MVMServiceGetRequ
 
 func (UnimplementedMVMServiceHandler) Create(context.Context, *v1.MVMServiceCreateRequest) (*v1.MVMServiceCreateResponse, error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.Create is not implemented"))
-}
-
-func (UnimplementedMVMServiceHandler) Update(context.Context, *v1.MVMServiceUpdateRequest) (*v1.MVMServiceUpdateResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.Update is not implemented"))
 }
 
 func (UnimplementedMVMServiceHandler) List(context.Context, *v1.MVMServiceListRequest) (*v1.MVMServiceListResponse, error) {

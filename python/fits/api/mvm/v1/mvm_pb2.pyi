@@ -227,48 +227,6 @@ class MVMServiceCreateResponse(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...
 
-class MVMServiceUpdateRequest(_message.Message):
-    __slots__ = ("uuid", "project", "order_number", "update_meta", "performance_class", "service_class", "contact")
-    UUID_FIELD_NUMBER: _ClassVar[int]
-    PROJECT_FIELD_NUMBER: _ClassVar[int]
-    ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
-    UPDATE_META_FIELD_NUMBER: _ClassVar[int]
-    PERFORMANCE_CLASS_FIELD_NUMBER: _ClassVar[int]
-    SERVICE_CLASS_FIELD_NUMBER: _ClassVar[int]
-    CONTACT_FIELD_NUMBER: _ClassVar[int]
-    uuid: str
-    project: str
-    order_number: str
-    update_meta: _common_pb2.UpdateMeta
-    performance_class: PerformanceClassChange
-    service_class: ServiceClassChange
-    contact: ContactChange
-    def __init__(self, uuid: _Optional[str] = ..., project: _Optional[str] = ..., order_number: _Optional[str] = ..., update_meta: _Optional[_Union[_common_pb2.UpdateMeta, _Mapping]] = ..., performance_class: _Optional[_Union[PerformanceClassChange, _Mapping]] = ..., service_class: _Optional[_Union[ServiceClassChange, _Mapping]] = ..., contact: _Optional[_Union[ContactChange, _Mapping]] = ...) -> None: ...
-
-class PerformanceClassChange(_message.Message):
-    __slots__ = ("cpu", "ram")
-    CPU_FIELD_NUMBER: _ClassVar[int]
-    RAM_FIELD_NUMBER: _ClassVar[int]
-    cpu: int
-    ram: int
-    def __init__(self, cpu: _Optional[int] = ..., ram: _Optional[int] = ...) -> None: ...
-
-class ServiceClassChange(_message.Message):
-    __slots__ = ("serviceclass",)
-    SERVICECLASS_FIELD_NUMBER: _ClassVar[int]
-    serviceclass: ServiceClass
-    def __init__(self, serviceclass: _Optional[_Union[ServiceClass, str]] = ...) -> None: ...
-
-class ContactChange(_message.Message):
-    __slots__ = ("contact_uuid",)
-    CONTACT_UUID_FIELD_NUMBER: _ClassVar[int]
-    contact_uuid: str
-    def __init__(self, contact_uuid: _Optional[str] = ...) -> None: ...
-
-class MVMServiceUpdateResponse(_message.Message):
-    __slots__ = ()
-    def __init__(self) -> None: ...
-
 class MVMServiceListRequest(_message.Message):
     __slots__ = ("tenant",)
     TENANT_FIELD_NUMBER: _ClassVar[int]
