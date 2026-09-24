@@ -463,22 +463,6 @@
                 </li>
               
                 <li>
-                  <a href="#fits.api.v1.TokenServiceCreateRequest"><span class="badge">M</span>TokenServiceCreateRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.v1.TokenServiceCreateRequest.ProjectRolesEntry"><span class="badge">M</span>TokenServiceCreateRequest.ProjectRolesEntry</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.v1.TokenServiceCreateRequest.TenantRolesEntry"><span class="badge">M</span>TokenServiceCreateRequest.TenantRolesEntry</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.v1.TokenServiceCreateResponse"><span class="badge">M</span>TokenServiceCreateResponse</a>
-                </li>
-              
-                <li>
                   <a href="#fits.api.v1.TokenServiceGetRequest"><span class="badge">M</span>TokenServiceGetRequest</a>
                 </li>
               
@@ -495,35 +479,11 @@
                 </li>
               
                 <li>
-                  <a href="#fits.api.v1.TokenServiceRefreshRequest"><span class="badge">M</span>TokenServiceRefreshRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.v1.TokenServiceRefreshResponse"><span class="badge">M</span>TokenServiceRefreshResponse</a>
-                </li>
-              
-                <li>
                   <a href="#fits.api.v1.TokenServiceRevokeRequest"><span class="badge">M</span>TokenServiceRevokeRequest</a>
                 </li>
               
                 <li>
                   <a href="#fits.api.v1.TokenServiceRevokeResponse"><span class="badge">M</span>TokenServiceRevokeResponse</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.v1.TokenServiceUpdateRequest"><span class="badge">M</span>TokenServiceUpdateRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.v1.TokenServiceUpdateRequest.ProjectRolesEntry"><span class="badge">M</span>TokenServiceUpdateRequest.ProjectRolesEntry</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.v1.TokenServiceUpdateRequest.TenantRolesEntry"><span class="badge">M</span>TokenServiceUpdateRequest.TenantRolesEntry</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.v1.TokenServiceUpdateResponse"><span class="badge">M</span>TokenServiceUpdateResponse</a>
                 </li>
               
               
@@ -2433,165 +2393,6 @@ otherwise either a projectid or a tenant login should be specified </p></td>
 
         
       
-        <h3 id="fits.api.v1.TokenServiceCreateRequest">TokenServiceCreateRequest</h3>
-        <p>TokenServiceCreateRequest is the request payload to create a token</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Description of the token </p></td>
-                </tr>
-              
-                <tr>
-                  <td>permissions</td>
-                  <td><a href="#fits.api.v1.MethodPermission">MethodPermission</a></td>
-                  <td>repeated</td>
-                  <td><p>Permissions is a list of service methods this token can be used for </p></td>
-                </tr>
-              
-                <tr>
-                  <td>expires</td>
-                  <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
-                  <td></td>
-                  <td><p>Expires gives the duration since now, after which this token can not be used anymore </p></td>
-                </tr>
-              
-                <tr>
-                  <td>project_roles</td>
-                  <td><a href="#fits.api.v1.TokenServiceCreateRequest.ProjectRolesEntry">TokenServiceCreateRequest.ProjectRolesEntry</a></td>
-                  <td>repeated</td>
-                  <td><p>ProjectRoles associates a project id with the corresponding role of the token owner </p></td>
-                </tr>
-              
-                <tr>
-                  <td>tenant_roles</td>
-                  <td><a href="#fits.api.v1.TokenServiceCreateRequest.TenantRolesEntry">TokenServiceCreateRequest.TenantRolesEntry</a></td>
-                  <td>repeated</td>
-                  <td><p>TenantRoles_associates a tenant id with the corresponding role of the token owner </p></td>
-                </tr>
-              
-                <tr>
-                  <td>admin_role</td>
-                  <td><a href="#fits.api.v1.AdminRole">AdminRole</a></td>
-                  <td>optional</td>
-                  <td><p>AdminRole defines the admin role of the token owner </p></td>
-                </tr>
-              
-                <tr>
-                  <td>labels</td>
-                  <td><a href="#fits.api.v1.Labels">Labels</a></td>
-                  <td></td>
-                  <td><p>Labels on this token </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="fits.api.v1.TokenServiceCreateRequest.ProjectRolesEntry">TokenServiceCreateRequest.ProjectRolesEntry</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>value</td>
-                  <td><a href="#fits.api.v1.ProjectRole">ProjectRole</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="fits.api.v1.TokenServiceCreateRequest.TenantRolesEntry">TokenServiceCreateRequest.TenantRolesEntry</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>value</td>
-                  <td><a href="#fits.api.v1.TenantRole">TenantRole</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="fits.api.v1.TokenServiceCreateResponse">TokenServiceCreateResponse</h3>
-        <p>TokenServiceCreateResponse is the response payload of a token create request</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>token</td>
-                  <td><a href="#fits.api.v1.Token">Token</a></td>
-                  <td></td>
-                  <td><p>Token which was created </p></td>
-                </tr>
-              
-                <tr>
-                  <td>secret</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Secret is the body if the jwt token, should be used in api requests as bearer token </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="fits.api.v1.TokenServiceGetRequest">TokenServiceGetRequest</h3>
         <p>TokenServiceGetRequest is the request payload of a token get request</p>
 
@@ -2671,44 +2472,6 @@ otherwise either a projectid or a tenant login should be specified </p></td>
 
         
       
-        <h3 id="fits.api.v1.TokenServiceRefreshRequest">TokenServiceRefreshRequest</h3>
-        <p>TokenServiceRefreshRequest is the request payload of a token refresh request</p><p>Permissions, Roles and Expiration duration and all other properties are inherited from the calling token.</p><p>The expiration duration will be calculated from the existing token (exp - iat)</p>
-
-        
-
-        
-      
-        <h3 id="fits.api.v1.TokenServiceRefreshResponse">TokenServiceRefreshResponse</h3>
-        <p>TokenServiceRefreshResponse is the response payload of a token refresh request</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>token</td>
-                  <td><a href="#fits.api.v1.Token">Token</a></td>
-                  <td></td>
-                  <td><p>Token which was refreshed </p></td>
-                </tr>
-              
-                <tr>
-                  <td>secret</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Secret is the body if the jwt token, should be used in api requests as bearer token </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="fits.api.v1.TokenServiceRevokeRequest">TokenServiceRevokeRequest</h3>
         <p>TokenServiceRevokeRequest is the request payload of a token revoke request</p>
 
@@ -2737,166 +2500,6 @@ otherwise either a projectid or a tenant login should be specified </p></td>
         <p>TokenServiceRevokeResponse is the response payload of a token revoke request</p>
 
         
-
-        
-      
-        <h3 id="fits.api.v1.TokenServiceUpdateRequest">TokenServiceUpdateRequest</h3>
-        <p>TokenServiceUpdateRequest is the request payload of a token update request</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>uuid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Uuid of the token to update </p></td>
-                </tr>
-              
-                <tr>
-                  <td>update_meta</td>
-                  <td><a href="#fits.api.v1.UpdateMeta">UpdateMeta</a></td>
-                  <td></td>
-                  <td><p>UpdateMeta contains the timestamp and strategy to be used in this update request
-TokenUpdate is not guarded with optlock in the backend </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>Description is a user given description of this token. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>permissions</td>
-                  <td><a href="#fits.api.v1.MethodPermission">MethodPermission</a></td>
-                  <td>repeated</td>
-                  <td><p>Permissions is a list of service methods this token can be used for </p></td>
-                </tr>
-              
-                <tr>
-                  <td>project_roles</td>
-                  <td><a href="#fits.api.v1.TokenServiceUpdateRequest.ProjectRolesEntry">TokenServiceUpdateRequest.ProjectRolesEntry</a></td>
-                  <td>repeated</td>
-                  <td><p>ProjectRoles associates a project id with the corresponding role of the token owner </p></td>
-                </tr>
-              
-                <tr>
-                  <td>tenant_roles</td>
-                  <td><a href="#fits.api.v1.TokenServiceUpdateRequest.TenantRolesEntry">TokenServiceUpdateRequest.TenantRolesEntry</a></td>
-                  <td>repeated</td>
-                  <td><p>TenantRoles associates a tenant id with the corresponding role of the token owner </p></td>
-                </tr>
-              
-                <tr>
-                  <td>admin_role</td>
-                  <td><a href="#fits.api.v1.AdminRole">AdminRole</a></td>
-                  <td>optional</td>
-                  <td><p>AdminRole defines the admin role of the token owner </p></td>
-                </tr>
-              
-                <tr>
-                  <td>labels</td>
-                  <td><a href="#fits.api.v1.UpdateLabels">UpdateLabels</a></td>
-                  <td></td>
-                  <td><p>Labels on this token </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="fits.api.v1.TokenServiceUpdateRequest.ProjectRolesEntry">TokenServiceUpdateRequest.ProjectRolesEntry</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>value</td>
-                  <td><a href="#fits.api.v1.ProjectRole">ProjectRole</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="fits.api.v1.TokenServiceUpdateRequest.TenantRolesEntry">TokenServiceUpdateRequest.TenantRolesEntry</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>value</td>
-                  <td><a href="#fits.api.v1.TenantRole">TenantRole</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="fits.api.v1.TokenServiceUpdateResponse">TokenServiceUpdateResponse</h3>
-        <p>TokenServiceUpdateResponse is the response payload of a token update request</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>token</td>
-                  <td><a href="#fits.api.v1.Token">Token</a></td>
-                  <td></td>
-                  <td><p>Token is the updated token </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
 
         
       
@@ -2951,20 +2554,6 @@ TokenUpdate is not guarded with optlock in the backend </p></td>
               </tr>
             
               <tr>
-                <td>Create</td>
-                <td><a href="#fits.api.v1.TokenServiceCreateRequest">TokenServiceCreateRequest</a></td>
-                <td><a href="#fits.api.v1.TokenServiceCreateResponse">TokenServiceCreateResponse</a></td>
-                <td><p>Creates a token to authenticate against the platform, the secret will be only visible in the response.</p></td>
-              </tr>
-            
-              <tr>
-                <td>Update</td>
-                <td><a href="#fits.api.v1.TokenServiceUpdateRequest">TokenServiceUpdateRequest</a></td>
-                <td><a href="#fits.api.v1.TokenServiceUpdateResponse">TokenServiceUpdateResponse</a></td>
-                <td><p>Updates a token.</p></td>
-              </tr>
-            
-              <tr>
                 <td>List</td>
                 <td><a href="#fits.api.v1.TokenServiceListRequest">TokenServiceListRequest</a></td>
                 <td><a href="#fits.api.v1.TokenServiceListResponse">TokenServiceListResponse</a></td>
@@ -2976,13 +2565,6 @@ TokenUpdate is not guarded with optlock in the backend </p></td>
                 <td><a href="#fits.api.v1.TokenServiceRevokeRequest">TokenServiceRevokeRequest</a></td>
                 <td><a href="#fits.api.v1.TokenServiceRevokeResponse">TokenServiceRevokeResponse</a></td>
                 <td><p>Revokes a token, no further usage is possible afterwards.</p></td>
-              </tr>
-            
-              <tr>
-                <td>Refresh</td>
-                <td><a href="#fits.api.v1.TokenServiceRefreshRequest">TokenServiceRefreshRequest</a></td>
-                <td><a href="#fits.api.v1.TokenServiceRefreshResponse">TokenServiceRefreshResponse</a></td>
-                <td><p>Refreshes a token, this will create a new token with the exact same permissions as the calling token contains.</p></td>
               </tr>
             
           </tbody>

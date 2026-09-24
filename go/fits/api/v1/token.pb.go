@@ -10,7 +10,6 @@ import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	durationpb "google.golang.org/protobuf/types/known/durationpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
@@ -224,106 +223,6 @@ func (x *Token) GetAdminRole() AdminRole {
 	return AdminRole_ADMIN_ROLE_UNSPECIFIED
 }
 
-// TokenServiceCreateRequest is the request payload to create a token
-type TokenServiceCreateRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Description of the token
-	Description string `protobuf:"bytes,1,opt,name=description,proto3" json:"description,omitempty"`
-	// Permissions is a list of service methods this token can be used for
-	Permissions []*MethodPermission `protobuf:"bytes,2,rep,name=permissions,proto3" json:"permissions,omitempty"`
-	// Expires gives the duration since now, after which this token can not be used anymore
-	Expires *durationpb.Duration `protobuf:"bytes,3,opt,name=expires,proto3" json:"expires,omitempty"`
-	// ProjectRoles associates a project id with the corresponding role of the token owner
-	ProjectRoles map[string]ProjectRole `protobuf:"bytes,4,rep,name=project_roles,json=projectRoles,proto3" json:"project_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.ProjectRole"`
-	// TenantRoles_associates a tenant id with the corresponding role of the token owner
-	TenantRoles map[string]TenantRole `protobuf:"bytes,5,rep,name=tenant_roles,json=tenantRoles,proto3" json:"tenant_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.TenantRole"`
-	// AdminRole defines the admin role of the token owner
-	AdminRole *AdminRole `protobuf:"varint,6,opt,name=admin_role,json=adminRole,proto3,enum=fits.api.v1.AdminRole,oneof" json:"admin_role,omitempty"`
-	// Labels on this token
-	Labels        *Labels `protobuf:"bytes,7,opt,name=labels,proto3" json:"labels,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TokenServiceCreateRequest) Reset() {
-	*x = TokenServiceCreateRequest{}
-	mi := &file_fits_api_v1_token_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TokenServiceCreateRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TokenServiceCreateRequest) ProtoMessage() {}
-
-func (x *TokenServiceCreateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_token_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TokenServiceCreateRequest.ProtoReflect.Descriptor instead.
-func (*TokenServiceCreateRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *TokenServiceCreateRequest) GetDescription() string {
-	if x != nil {
-		return x.Description
-	}
-	return ""
-}
-
-func (x *TokenServiceCreateRequest) GetPermissions() []*MethodPermission {
-	if x != nil {
-		return x.Permissions
-	}
-	return nil
-}
-
-func (x *TokenServiceCreateRequest) GetExpires() *durationpb.Duration {
-	if x != nil {
-		return x.Expires
-	}
-	return nil
-}
-
-func (x *TokenServiceCreateRequest) GetProjectRoles() map[string]ProjectRole {
-	if x != nil {
-		return x.ProjectRoles
-	}
-	return nil
-}
-
-func (x *TokenServiceCreateRequest) GetTenantRoles() map[string]TenantRole {
-	if x != nil {
-		return x.TenantRoles
-	}
-	return nil
-}
-
-func (x *TokenServiceCreateRequest) GetAdminRole() AdminRole {
-	if x != nil && x.AdminRole != nil {
-		return *x.AdminRole
-	}
-	return AdminRole_ADMIN_ROLE_UNSPECIFIED
-}
-
-func (x *TokenServiceCreateRequest) GetLabels() *Labels {
-	if x != nil {
-		return x.Labels
-	}
-	return nil
-}
-
 // MethodPermission is a mapping from a subject/project to a service method
 type MethodPermission struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -342,7 +241,7 @@ type MethodPermission struct {
 
 func (x *MethodPermission) Reset() {
 	*x = MethodPermission{}
-	mi := &file_fits_api_v1_token_proto_msgTypes[2]
+	mi := &file_fits_api_v1_token_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -354,7 +253,7 @@ func (x *MethodPermission) String() string {
 func (*MethodPermission) ProtoMessage() {}
 
 func (x *MethodPermission) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_token_proto_msgTypes[2]
+	mi := &file_fits_api_v1_token_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -367,7 +266,7 @@ func (x *MethodPermission) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MethodPermission.ProtoReflect.Descriptor instead.
 func (*MethodPermission) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{2}
+	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *MethodPermission) GetSubject() string {
@@ -384,61 +283,6 @@ func (x *MethodPermission) GetMethods() []string {
 	return nil
 }
 
-// TokenServiceCreateResponse is the response payload of a token create request
-type TokenServiceCreateResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Token which was created
-	Token *Token `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	// Secret is the body if the jwt token, should be used in api requests as bearer token
-	Secret        string `protobuf:"bytes,2,opt,name=secret,proto3" json:"secret,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TokenServiceCreateResponse) Reset() {
-	*x = TokenServiceCreateResponse{}
-	mi := &file_fits_api_v1_token_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TokenServiceCreateResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TokenServiceCreateResponse) ProtoMessage() {}
-
-func (x *TokenServiceCreateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_token_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TokenServiceCreateResponse.ProtoReflect.Descriptor instead.
-func (*TokenServiceCreateResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *TokenServiceCreateResponse) GetToken() *Token {
-	if x != nil {
-		return x.Token
-	}
-	return nil
-}
-
-func (x *TokenServiceCreateResponse) GetSecret() string {
-	if x != nil {
-		return x.Secret
-	}
-	return ""
-}
-
 // TokenServiceListRequest is the request payload to list tokens
 type TokenServiceListRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -448,7 +292,7 @@ type TokenServiceListRequest struct {
 
 func (x *TokenServiceListRequest) Reset() {
 	*x = TokenServiceListRequest{}
-	mi := &file_fits_api_v1_token_proto_msgTypes[4]
+	mi := &file_fits_api_v1_token_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -460,7 +304,7 @@ func (x *TokenServiceListRequest) String() string {
 func (*TokenServiceListRequest) ProtoMessage() {}
 
 func (x *TokenServiceListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_token_proto_msgTypes[4]
+	mi := &file_fits_api_v1_token_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -473,7 +317,7 @@ func (x *TokenServiceListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TokenServiceListRequest.ProtoReflect.Descriptor instead.
 func (*TokenServiceListRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{4}
+	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{2}
 }
 
 // TokenServiceListResponse is the response payload of a token list request
@@ -487,7 +331,7 @@ type TokenServiceListResponse struct {
 
 func (x *TokenServiceListResponse) Reset() {
 	*x = TokenServiceListResponse{}
-	mi := &file_fits_api_v1_token_proto_msgTypes[5]
+	mi := &file_fits_api_v1_token_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -499,7 +343,7 @@ func (x *TokenServiceListResponse) String() string {
 func (*TokenServiceListResponse) ProtoMessage() {}
 
 func (x *TokenServiceListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_token_proto_msgTypes[5]
+	mi := &file_fits_api_v1_token_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -512,7 +356,7 @@ func (x *TokenServiceListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TokenServiceListResponse.ProtoReflect.Descriptor instead.
 func (*TokenServiceListResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{5}
+	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *TokenServiceListResponse) GetTokens() []*Token {
@@ -533,7 +377,7 @@ type TokenServiceRevokeRequest struct {
 
 func (x *TokenServiceRevokeRequest) Reset() {
 	*x = TokenServiceRevokeRequest{}
-	mi := &file_fits_api_v1_token_proto_msgTypes[6]
+	mi := &file_fits_api_v1_token_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -545,7 +389,7 @@ func (x *TokenServiceRevokeRequest) String() string {
 func (*TokenServiceRevokeRequest) ProtoMessage() {}
 
 func (x *TokenServiceRevokeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_token_proto_msgTypes[6]
+	mi := &file_fits_api_v1_token_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -558,7 +402,7 @@ func (x *TokenServiceRevokeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TokenServiceRevokeRequest.ProtoReflect.Descriptor instead.
 func (*TokenServiceRevokeRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{6}
+	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *TokenServiceRevokeRequest) GetUuid() string {
@@ -577,7 +421,7 @@ type TokenServiceRevokeResponse struct {
 
 func (x *TokenServiceRevokeResponse) Reset() {
 	*x = TokenServiceRevokeResponse{}
-	mi := &file_fits_api_v1_token_proto_msgTypes[7]
+	mi := &file_fits_api_v1_token_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -589,7 +433,7 @@ func (x *TokenServiceRevokeResponse) String() string {
 func (*TokenServiceRevokeResponse) ProtoMessage() {}
 
 func (x *TokenServiceRevokeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_token_proto_msgTypes[7]
+	mi := &file_fits_api_v1_token_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -602,163 +446,7 @@ func (x *TokenServiceRevokeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TokenServiceRevokeResponse.ProtoReflect.Descriptor instead.
 func (*TokenServiceRevokeResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{7}
-}
-
-// TokenServiceUpdateRequest is the request payload of a token update request
-type TokenServiceUpdateRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Uuid of the token to update
-	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	// UpdateMeta contains the timestamp and strategy to be used in this update request
-	// TokenUpdate is not guarded with optlock in the backend
-	UpdateMeta *UpdateMeta `protobuf:"bytes,2,opt,name=update_meta,json=updateMeta,proto3" json:"update_meta,omitempty"`
-	// Description is a user given description of this token.
-	Description *string `protobuf:"bytes,3,opt,name=description,proto3,oneof" json:"description,omitempty"`
-	// Permissions is a list of service methods this token can be used for
-	Permissions []*MethodPermission `protobuf:"bytes,4,rep,name=permissions,proto3" json:"permissions,omitempty"`
-	// ProjectRoles associates a project id with the corresponding role of the token owner
-	ProjectRoles map[string]ProjectRole `protobuf:"bytes,5,rep,name=project_roles,json=projectRoles,proto3" json:"project_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.ProjectRole"`
-	// TenantRoles associates a tenant id with the corresponding role of the token owner
-	TenantRoles map[string]TenantRole `protobuf:"bytes,6,rep,name=tenant_roles,json=tenantRoles,proto3" json:"tenant_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.TenantRole"`
-	// AdminRole defines the admin role of the token owner
-	AdminRole *AdminRole `protobuf:"varint,7,opt,name=admin_role,json=adminRole,proto3,enum=fits.api.v1.AdminRole,oneof" json:"admin_role,omitempty"`
-	// Labels on this token
-	Labels        *UpdateLabels `protobuf:"bytes,8,opt,name=labels,proto3" json:"labels,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TokenServiceUpdateRequest) Reset() {
-	*x = TokenServiceUpdateRequest{}
-	mi := &file_fits_api_v1_token_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TokenServiceUpdateRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TokenServiceUpdateRequest) ProtoMessage() {}
-
-func (x *TokenServiceUpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_token_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TokenServiceUpdateRequest.ProtoReflect.Descriptor instead.
-func (*TokenServiceUpdateRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *TokenServiceUpdateRequest) GetUuid() string {
-	if x != nil {
-		return x.Uuid
-	}
-	return ""
-}
-
-func (x *TokenServiceUpdateRequest) GetUpdateMeta() *UpdateMeta {
-	if x != nil {
-		return x.UpdateMeta
-	}
-	return nil
-}
-
-func (x *TokenServiceUpdateRequest) GetDescription() string {
-	if x != nil && x.Description != nil {
-		return *x.Description
-	}
-	return ""
-}
-
-func (x *TokenServiceUpdateRequest) GetPermissions() []*MethodPermission {
-	if x != nil {
-		return x.Permissions
-	}
-	return nil
-}
-
-func (x *TokenServiceUpdateRequest) GetProjectRoles() map[string]ProjectRole {
-	if x != nil {
-		return x.ProjectRoles
-	}
-	return nil
-}
-
-func (x *TokenServiceUpdateRequest) GetTenantRoles() map[string]TenantRole {
-	if x != nil {
-		return x.TenantRoles
-	}
-	return nil
-}
-
-func (x *TokenServiceUpdateRequest) GetAdminRole() AdminRole {
-	if x != nil && x.AdminRole != nil {
-		return *x.AdminRole
-	}
-	return AdminRole_ADMIN_ROLE_UNSPECIFIED
-}
-
-func (x *TokenServiceUpdateRequest) GetLabels() *UpdateLabels {
-	if x != nil {
-		return x.Labels
-	}
-	return nil
-}
-
-// TokenServiceUpdateResponse is the response payload of a token update request
-type TokenServiceUpdateResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Token is the updated token
-	Token         *Token `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TokenServiceUpdateResponse) Reset() {
-	*x = TokenServiceUpdateResponse{}
-	mi := &file_fits_api_v1_token_proto_msgTypes[9]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TokenServiceUpdateResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TokenServiceUpdateResponse) ProtoMessage() {}
-
-func (x *TokenServiceUpdateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_token_proto_msgTypes[9]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TokenServiceUpdateResponse.ProtoReflect.Descriptor instead.
-func (*TokenServiceUpdateResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *TokenServiceUpdateResponse) GetToken() *Token {
-	if x != nil {
-		return x.Token
-	}
-	return nil
+	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{5}
 }
 
 // TokenServiceGetRequest is the request payload of a token get request
@@ -772,7 +460,7 @@ type TokenServiceGetRequest struct {
 
 func (x *TokenServiceGetRequest) Reset() {
 	*x = TokenServiceGetRequest{}
-	mi := &file_fits_api_v1_token_proto_msgTypes[10]
+	mi := &file_fits_api_v1_token_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -784,7 +472,7 @@ func (x *TokenServiceGetRequest) String() string {
 func (*TokenServiceGetRequest) ProtoMessage() {}
 
 func (x *TokenServiceGetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_token_proto_msgTypes[10]
+	mi := &file_fits_api_v1_token_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -797,7 +485,7 @@ func (x *TokenServiceGetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TokenServiceGetRequest.ProtoReflect.Descriptor instead.
 func (*TokenServiceGetRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{10}
+	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *TokenServiceGetRequest) GetUuid() string {
@@ -818,7 +506,7 @@ type TokenServiceGetResponse struct {
 
 func (x *TokenServiceGetResponse) Reset() {
 	*x = TokenServiceGetResponse{}
-	mi := &file_fits_api_v1_token_proto_msgTypes[11]
+	mi := &file_fits_api_v1_token_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -830,7 +518,7 @@ func (x *TokenServiceGetResponse) String() string {
 func (*TokenServiceGetResponse) ProtoMessage() {}
 
 func (x *TokenServiceGetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_token_proto_msgTypes[11]
+	mi := &file_fits_api_v1_token_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -843,7 +531,7 @@ func (x *TokenServiceGetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TokenServiceGetResponse.ProtoReflect.Descriptor instead.
 func (*TokenServiceGetResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{11}
+	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *TokenServiceGetResponse) GetToken() *Token {
@@ -853,105 +541,11 @@ func (x *TokenServiceGetResponse) GetToken() *Token {
 	return nil
 }
 
-// TokenServiceRefreshRequest is the request payload of a token refresh request
-// Permissions, Roles and Expiration duration and all other properties are inherited from the calling token.
-// The expiration duration will be calculated from the existing token (exp - iat)
-type TokenServiceRefreshRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TokenServiceRefreshRequest) Reset() {
-	*x = TokenServiceRefreshRequest{}
-	mi := &file_fits_api_v1_token_proto_msgTypes[12]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TokenServiceRefreshRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TokenServiceRefreshRequest) ProtoMessage() {}
-
-func (x *TokenServiceRefreshRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_token_proto_msgTypes[12]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TokenServiceRefreshRequest.ProtoReflect.Descriptor instead.
-func (*TokenServiceRefreshRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{12}
-}
-
-// TokenServiceRefreshResponse is the response payload of a token refresh request
-type TokenServiceRefreshResponse struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Token which was refreshed
-	Token *Token `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	// Secret is the body if the jwt token, should be used in api requests as bearer token
-	Secret        string `protobuf:"bytes,2,opt,name=secret,proto3" json:"secret,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TokenServiceRefreshResponse) Reset() {
-	*x = TokenServiceRefreshResponse{}
-	mi := &file_fits_api_v1_token_proto_msgTypes[13]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TokenServiceRefreshResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TokenServiceRefreshResponse) ProtoMessage() {}
-
-func (x *TokenServiceRefreshResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_token_proto_msgTypes[13]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TokenServiceRefreshResponse.ProtoReflect.Descriptor instead.
-func (*TokenServiceRefreshResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{13}
-}
-
-func (x *TokenServiceRefreshResponse) GetToken() *Token {
-	if x != nil {
-		return x.Token
-	}
-	return nil
-}
-
-func (x *TokenServiceRefreshResponse) GetSecret() string {
-	if x != nil {
-		return x.Secret
-	}
-	return ""
-}
-
 var File_fits_api_v1_token_proto protoreflect.FileDescriptor
 
 const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\n" +
-	"\x17fits/api/v1/token.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd5\a\n" +
+	"\x17fits/api/v1/token.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd5\a\n" +
 	"\x05Token\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x1e\n" +
 	"\x04user\x18\x02 \x01(\tB\n" +
@@ -975,75 +569,28 @@ const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12-\n" +
 	"\x05value\x18\x02 \x01(\x0e2\x17.fits.api.v1.TenantRoleR\x05value:\x028\x01:\x9f\x01\xbaH\x9b\x01\x1a\x98\x01\n" +
 	"\x1btoken.permissions.usertoken\x12)token type user must not have permissions\x1aN(this.token_type == 2 && this.permissions.size() == 0) || this.token_type != 2B\r\n" +
-	"\v_admin_role\"\x89\x06\n" +
-	"\x19TokenServiceCreateRequest\x12-\n" +
-	"\vdescription\x18\x01 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\vdescription\x12I\n" +
-	"\vpermissions\x18\x02 \x03(\v2\x1d.fits.api.v1.MethodPermissionB\b\xbaH\x05\x92\x01\x02\x10dR\vpermissions\x12G\n" +
-	"\aexpires\x18\x03 \x01(\v2\x19.google.protobuf.DurationB\x12\xbaH\x0f\xaa\x01\f\x1a\x05\b\x81\xe7\x84\x0f2\x03\b\xd8\x04R\aexpires\x12y\n" +
-	"\rproject_roles\x18\x04 \x03(\v28.fits.api.v1.TokenServiceCreateRequest.ProjectRolesEntryB\x1a\xbaH\x17\x9a\x01\x14\xc0\x95\xb8\xb1\x02\x01\"\x05r\x03\xb0\x01\x01*\x05\x82\x01\x02\x10\x01R\fprojectRoles\x12x\n" +
-	"\ftenant_roles\x18\x05 \x03(\v27.fits.api.v1.TokenServiceCreateRequest.TenantRolesEntryB\x1c\xbaH\x19\x9a\x01\x16\xc0\x95\xb8\xb1\x02\x01\"\ar\x05\x10\x03\x18\x80\x01*\x05\x82\x01\x02\x10\x01R\vtenantRoles\x12D\n" +
-	"\n" +
-	"admin_role\x18\x06 \x01(\x0e2\x16.fits.api.v1.AdminRoleB\b\xbaH\x05\x82\x01\x02\x10\x01H\x00R\tadminRole\x88\x01\x01\x12+\n" +
-	"\x06labels\x18\a \x01(\v2\x13.fits.api.v1.LabelsR\x06labels\x1aY\n" +
-	"\x11ProjectRolesEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12.\n" +
-	"\x05value\x18\x02 \x01(\x0e2\x18.fits.api.v1.ProjectRoleR\x05value:\x028\x01\x1aW\n" +
-	"\x10TenantRolesEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12-\n" +
-	"\x05value\x18\x02 \x01(\x0e2\x17.fits.api.v1.TenantRoleR\x05value:\x028\x01B\r\n" +
 	"\v_admin_role\"[\n" +
 	"\x10MethodPermission\x12\"\n" +
 	"\asubject\x18\x01 \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\asubject\x12#\n" +
-	"\amethods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\"^\n" +
-	"\x1aTokenServiceCreateResponse\x12(\n" +
-	"\x05token\x18\x01 \x01(\v2\x12.fits.api.v1.TokenR\x05token\x12\x16\n" +
-	"\x06secret\x18\x02 \x01(\tR\x06secret\"\x19\n" +
+	"\amethods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\"\x19\n" +
 	"\x17TokenServiceListRequest\"F\n" +
 	"\x18TokenServiceListResponse\x12*\n" +
 	"\x06tokens\x18\x01 \x03(\v2\x12.fits.api.v1.TokenR\x06tokens\"9\n" +
 	"\x19TokenServiceRevokeRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"\x1c\n" +
-	"\x1aTokenServiceRevokeResponse\"\xb1\x06\n" +
-	"\x19TokenServiceUpdateRequest\x12\x1c\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12@\n" +
-	"\vupdate_meta\x18\x02 \x01(\v2\x17.fits.api.v1.UpdateMetaB\x06\xbaH\x03\xc8\x01\x00R\n" +
-	"updateMeta\x122\n" +
-	"\vdescription\x18\x03 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01H\x00R\vdescription\x88\x01\x01\x12?\n" +
-	"\vpermissions\x18\x04 \x03(\v2\x1d.fits.api.v1.MethodPermissionR\vpermissions\x12y\n" +
-	"\rproject_roles\x18\x05 \x03(\v28.fits.api.v1.TokenServiceUpdateRequest.ProjectRolesEntryB\x1a\xbaH\x17\x9a\x01\x14\xc0\x95\xb8\xb1\x02\x01\"\x05r\x03\xb0\x01\x01*\x05\x82\x01\x02\x10\x01R\fprojectRoles\x12x\n" +
-	"\ftenant_roles\x18\x06 \x03(\v27.fits.api.v1.TokenServiceUpdateRequest.TenantRolesEntryB\x1c\xbaH\x19\x9a\x01\x16\xc0\x95\xb8\xb1\x02\x01\"\ar\x05\x10\x03\x18\x80\x01*\x05\x82\x01\x02\x10\x01R\vtenantRoles\x12D\n" +
-	"\n" +
-	"admin_role\x18\a \x01(\x0e2\x16.fits.api.v1.AdminRoleB\b\xbaH\x05\x82\x01\x02\x10\x01H\x01R\tadminRole\x88\x01\x01\x121\n" +
-	"\x06labels\x18\b \x01(\v2\x19.fits.api.v1.UpdateLabelsR\x06labels\x1aY\n" +
-	"\x11ProjectRolesEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12.\n" +
-	"\x05value\x18\x02 \x01(\x0e2\x18.fits.api.v1.ProjectRoleR\x05value:\x028\x01\x1aW\n" +
-	"\x10TenantRolesEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12-\n" +
-	"\x05value\x18\x02 \x01(\x0e2\x17.fits.api.v1.TenantRoleR\x05value:\x028\x01B\x0e\n" +
-	"\f_descriptionB\r\n" +
-	"\v_admin_role\"F\n" +
-	"\x1aTokenServiceUpdateResponse\x12(\n" +
-	"\x05token\x18\x01 \x01(\v2\x12.fits.api.v1.TokenR\x05token\"6\n" +
+	"\x1aTokenServiceRevokeResponse\"6\n" +
 	"\x16TokenServiceGetRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"C\n" +
 	"\x17TokenServiceGetResponse\x12(\n" +
-	"\x05token\x18\x01 \x01(\v2\x12.fits.api.v1.TokenR\x05token\"\x1c\n" +
-	"\x1aTokenServiceRefreshRequest\"_\n" +
-	"\x1bTokenServiceRefreshResponse\x12(\n" +
-	"\x05token\x18\x01 \x01(\v2\x12.fits.api.v1.TokenR\x05token\x12\x16\n" +
-	"\x06secret\x18\x02 \x01(\tR\x06secret*P\n" +
+	"\x05token\x18\x01 \x01(\v2\x12.fits.api.v1.TokenR\x05token*P\n" +
 	"\tTokenType\x12\x1a\n" +
 	"\x16TOKEN_TYPE_UNSPECIFIED\x10\x00\x12\x12\n" +
 	"\x0eTOKEN_TYPE_API\x10\x01\x12\x13\n" +
-	"\x0fTOKEN_TYPE_USER\x10\x022\xe0\x04\n" +
+	"\x0fTOKEN_TYPE_USER\x10\x022\xae\x02\n" +
 	"\fTokenService\x12Z\n" +
-	"\x03Get\x12#.fits.api.v1.TokenServiceGetRequest\x1a$.fits.api.v1.TokenServiceGetResponse\"\b\xd8\xf3\x18\x02\xe0\xf3\x18\x01\x12c\n" +
-	"\x06Create\x12&.fits.api.v1.TokenServiceCreateRequest\x1a'.fits.api.v1.TokenServiceCreateResponse\"\b\xd8\xf3\x18\x02\xe0\xf3\x18\x01\x12c\n" +
-	"\x06Update\x12&.fits.api.v1.TokenServiceUpdateRequest\x1a'.fits.api.v1.TokenServiceUpdateResponse\"\b\xd8\xf3\x18\x02\xe0\xf3\x18\x01\x12]\n" +
+	"\x03Get\x12#.fits.api.v1.TokenServiceGetRequest\x1a$.fits.api.v1.TokenServiceGetResponse\"\b\xd8\xf3\x18\x02\xe0\xf3\x18\x01\x12]\n" +
 	"\x04List\x12$.fits.api.v1.TokenServiceListRequest\x1a%.fits.api.v1.TokenServiceListResponse\"\b\xd8\xf3\x18\x02\xe0\xf3\x18\x01\x12c\n" +
-	"\x06Revoke\x12&.fits.api.v1.TokenServiceRevokeRequest\x1a'.fits.api.v1.TokenServiceRevokeResponse\"\b\xd8\xf3\x18\x02\xe0\xf3\x18\x01\x12f\n" +
-	"\aRefresh\x12'.fits.api.v1.TokenServiceRefreshRequest\x1a(.fits.api.v1.TokenServiceRefreshResponse\"\b\xd8\xf3\x18\x02\xe0\xf3\x18\x01B\x96\x01\n" +
+	"\x06Revoke\x12&.fits.api.v1.TokenServiceRevokeRequest\x1a'.fits.api.v1.TokenServiceRevokeResponse\"\b\xd8\xf3\x18\x02\xe0\xf3\x18\x01B\x96\x01\n" +
 	"\x0fcom.fits.api.v1B\n" +
 	"TokenProtoP\x01Z)github.com/fi-ts/api/go/fits/api/v1;apiv1\xa2\x02\x03FAX\xaa\x02\vFits.Api.V1\xca\x02\vFits\\Api\\V1\xe2\x02\x17Fits\\Api\\V1\\GPBMetadata\xea\x02\rFits::Api::V1b\x06proto3"
 
@@ -1060,88 +607,49 @@ func file_fits_api_v1_token_proto_rawDescGZIP() []byte {
 }
 
 var file_fits_api_v1_token_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_fits_api_v1_token_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
+var file_fits_api_v1_token_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_fits_api_v1_token_proto_goTypes = []any{
-	(TokenType)(0),                      // 0: fits.api.v1.TokenType
-	(*Token)(nil),                       // 1: fits.api.v1.Token
-	(*TokenServiceCreateRequest)(nil),   // 2: fits.api.v1.TokenServiceCreateRequest
-	(*MethodPermission)(nil),            // 3: fits.api.v1.MethodPermission
-	(*TokenServiceCreateResponse)(nil),  // 4: fits.api.v1.TokenServiceCreateResponse
-	(*TokenServiceListRequest)(nil),     // 5: fits.api.v1.TokenServiceListRequest
-	(*TokenServiceListResponse)(nil),    // 6: fits.api.v1.TokenServiceListResponse
-	(*TokenServiceRevokeRequest)(nil),   // 7: fits.api.v1.TokenServiceRevokeRequest
-	(*TokenServiceRevokeResponse)(nil),  // 8: fits.api.v1.TokenServiceRevokeResponse
-	(*TokenServiceUpdateRequest)(nil),   // 9: fits.api.v1.TokenServiceUpdateRequest
-	(*TokenServiceUpdateResponse)(nil),  // 10: fits.api.v1.TokenServiceUpdateResponse
-	(*TokenServiceGetRequest)(nil),      // 11: fits.api.v1.TokenServiceGetRequest
-	(*TokenServiceGetResponse)(nil),     // 12: fits.api.v1.TokenServiceGetResponse
-	(*TokenServiceRefreshRequest)(nil),  // 13: fits.api.v1.TokenServiceRefreshRequest
-	(*TokenServiceRefreshResponse)(nil), // 14: fits.api.v1.TokenServiceRefreshResponse
-	nil,                                 // 15: fits.api.v1.Token.ProjectRolesEntry
-	nil,                                 // 16: fits.api.v1.Token.TenantRolesEntry
-	nil,                                 // 17: fits.api.v1.TokenServiceCreateRequest.ProjectRolesEntry
-	nil,                                 // 18: fits.api.v1.TokenServiceCreateRequest.TenantRolesEntry
-	nil,                                 // 19: fits.api.v1.TokenServiceUpdateRequest.ProjectRolesEntry
-	nil,                                 // 20: fits.api.v1.TokenServiceUpdateRequest.TenantRolesEntry
-	(*Meta)(nil),                        // 21: fits.api.v1.Meta
-	(*timestamppb.Timestamp)(nil),       // 22: google.protobuf.Timestamp
-	(AdminRole)(0),                      // 23: fits.api.v1.AdminRole
-	(*durationpb.Duration)(nil),         // 24: google.protobuf.Duration
-	(*Labels)(nil),                      // 25: fits.api.v1.Labels
-	(*UpdateMeta)(nil),                  // 26: fits.api.v1.UpdateMeta
-	(*UpdateLabels)(nil),                // 27: fits.api.v1.UpdateLabels
-	(ProjectRole)(0),                    // 28: fits.api.v1.ProjectRole
-	(TenantRole)(0),                     // 29: fits.api.v1.TenantRole
+	(TokenType)(0),                     // 0: fits.api.v1.TokenType
+	(*Token)(nil),                      // 1: fits.api.v1.Token
+	(*MethodPermission)(nil),           // 2: fits.api.v1.MethodPermission
+	(*TokenServiceListRequest)(nil),    // 3: fits.api.v1.TokenServiceListRequest
+	(*TokenServiceListResponse)(nil),   // 4: fits.api.v1.TokenServiceListResponse
+	(*TokenServiceRevokeRequest)(nil),  // 5: fits.api.v1.TokenServiceRevokeRequest
+	(*TokenServiceRevokeResponse)(nil), // 6: fits.api.v1.TokenServiceRevokeResponse
+	(*TokenServiceGetRequest)(nil),     // 7: fits.api.v1.TokenServiceGetRequest
+	(*TokenServiceGetResponse)(nil),    // 8: fits.api.v1.TokenServiceGetResponse
+	nil,                                // 9: fits.api.v1.Token.ProjectRolesEntry
+	nil,                                // 10: fits.api.v1.Token.TenantRolesEntry
+	(*Meta)(nil),                       // 11: fits.api.v1.Meta
+	(*timestamppb.Timestamp)(nil),      // 12: google.protobuf.Timestamp
+	(AdminRole)(0),                     // 13: fits.api.v1.AdminRole
+	(ProjectRole)(0),                   // 14: fits.api.v1.ProjectRole
+	(TenantRole)(0),                    // 15: fits.api.v1.TenantRole
 }
 var file_fits_api_v1_token_proto_depIdxs = []int32{
-	21, // 0: fits.api.v1.Token.meta:type_name -> fits.api.v1.Meta
-	3,  // 1: fits.api.v1.Token.permissions:type_name -> fits.api.v1.MethodPermission
-	22, // 2: fits.api.v1.Token.expires:type_name -> google.protobuf.Timestamp
-	22, // 3: fits.api.v1.Token.issued_at:type_name -> google.protobuf.Timestamp
+	11, // 0: fits.api.v1.Token.meta:type_name -> fits.api.v1.Meta
+	2,  // 1: fits.api.v1.Token.permissions:type_name -> fits.api.v1.MethodPermission
+	12, // 2: fits.api.v1.Token.expires:type_name -> google.protobuf.Timestamp
+	12, // 3: fits.api.v1.Token.issued_at:type_name -> google.protobuf.Timestamp
 	0,  // 4: fits.api.v1.Token.token_type:type_name -> fits.api.v1.TokenType
-	15, // 5: fits.api.v1.Token.project_roles:type_name -> fits.api.v1.Token.ProjectRolesEntry
-	16, // 6: fits.api.v1.Token.tenant_roles:type_name -> fits.api.v1.Token.TenantRolesEntry
-	23, // 7: fits.api.v1.Token.admin_role:type_name -> fits.api.v1.AdminRole
-	3,  // 8: fits.api.v1.TokenServiceCreateRequest.permissions:type_name -> fits.api.v1.MethodPermission
-	24, // 9: fits.api.v1.TokenServiceCreateRequest.expires:type_name -> google.protobuf.Duration
-	17, // 10: fits.api.v1.TokenServiceCreateRequest.project_roles:type_name -> fits.api.v1.TokenServiceCreateRequest.ProjectRolesEntry
-	18, // 11: fits.api.v1.TokenServiceCreateRequest.tenant_roles:type_name -> fits.api.v1.TokenServiceCreateRequest.TenantRolesEntry
-	23, // 12: fits.api.v1.TokenServiceCreateRequest.admin_role:type_name -> fits.api.v1.AdminRole
-	25, // 13: fits.api.v1.TokenServiceCreateRequest.labels:type_name -> fits.api.v1.Labels
-	1,  // 14: fits.api.v1.TokenServiceCreateResponse.token:type_name -> fits.api.v1.Token
-	1,  // 15: fits.api.v1.TokenServiceListResponse.tokens:type_name -> fits.api.v1.Token
-	26, // 16: fits.api.v1.TokenServiceUpdateRequest.update_meta:type_name -> fits.api.v1.UpdateMeta
-	3,  // 17: fits.api.v1.TokenServiceUpdateRequest.permissions:type_name -> fits.api.v1.MethodPermission
-	19, // 18: fits.api.v1.TokenServiceUpdateRequest.project_roles:type_name -> fits.api.v1.TokenServiceUpdateRequest.ProjectRolesEntry
-	20, // 19: fits.api.v1.TokenServiceUpdateRequest.tenant_roles:type_name -> fits.api.v1.TokenServiceUpdateRequest.TenantRolesEntry
-	23, // 20: fits.api.v1.TokenServiceUpdateRequest.admin_role:type_name -> fits.api.v1.AdminRole
-	27, // 21: fits.api.v1.TokenServiceUpdateRequest.labels:type_name -> fits.api.v1.UpdateLabels
-	1,  // 22: fits.api.v1.TokenServiceUpdateResponse.token:type_name -> fits.api.v1.Token
-	1,  // 23: fits.api.v1.TokenServiceGetResponse.token:type_name -> fits.api.v1.Token
-	1,  // 24: fits.api.v1.TokenServiceRefreshResponse.token:type_name -> fits.api.v1.Token
-	28, // 25: fits.api.v1.Token.ProjectRolesEntry.value:type_name -> fits.api.v1.ProjectRole
-	29, // 26: fits.api.v1.Token.TenantRolesEntry.value:type_name -> fits.api.v1.TenantRole
-	28, // 27: fits.api.v1.TokenServiceCreateRequest.ProjectRolesEntry.value:type_name -> fits.api.v1.ProjectRole
-	29, // 28: fits.api.v1.TokenServiceCreateRequest.TenantRolesEntry.value:type_name -> fits.api.v1.TenantRole
-	28, // 29: fits.api.v1.TokenServiceUpdateRequest.ProjectRolesEntry.value:type_name -> fits.api.v1.ProjectRole
-	29, // 30: fits.api.v1.TokenServiceUpdateRequest.TenantRolesEntry.value:type_name -> fits.api.v1.TenantRole
-	11, // 31: fits.api.v1.TokenService.Get:input_type -> fits.api.v1.TokenServiceGetRequest
-	2,  // 32: fits.api.v1.TokenService.Create:input_type -> fits.api.v1.TokenServiceCreateRequest
-	9,  // 33: fits.api.v1.TokenService.Update:input_type -> fits.api.v1.TokenServiceUpdateRequest
-	5,  // 34: fits.api.v1.TokenService.List:input_type -> fits.api.v1.TokenServiceListRequest
-	7,  // 35: fits.api.v1.TokenService.Revoke:input_type -> fits.api.v1.TokenServiceRevokeRequest
-	13, // 36: fits.api.v1.TokenService.Refresh:input_type -> fits.api.v1.TokenServiceRefreshRequest
-	12, // 37: fits.api.v1.TokenService.Get:output_type -> fits.api.v1.TokenServiceGetResponse
-	4,  // 38: fits.api.v1.TokenService.Create:output_type -> fits.api.v1.TokenServiceCreateResponse
-	10, // 39: fits.api.v1.TokenService.Update:output_type -> fits.api.v1.TokenServiceUpdateResponse
-	6,  // 40: fits.api.v1.TokenService.List:output_type -> fits.api.v1.TokenServiceListResponse
-	8,  // 41: fits.api.v1.TokenService.Revoke:output_type -> fits.api.v1.TokenServiceRevokeResponse
-	14, // 42: fits.api.v1.TokenService.Refresh:output_type -> fits.api.v1.TokenServiceRefreshResponse
-	37, // [37:43] is the sub-list for method output_type
-	31, // [31:37] is the sub-list for method input_type
-	31, // [31:31] is the sub-list for extension type_name
-	31, // [31:31] is the sub-list for extension extendee
-	0,  // [0:31] is the sub-list for field type_name
+	9,  // 5: fits.api.v1.Token.project_roles:type_name -> fits.api.v1.Token.ProjectRolesEntry
+	10, // 6: fits.api.v1.Token.tenant_roles:type_name -> fits.api.v1.Token.TenantRolesEntry
+	13, // 7: fits.api.v1.Token.admin_role:type_name -> fits.api.v1.AdminRole
+	1,  // 8: fits.api.v1.TokenServiceListResponse.tokens:type_name -> fits.api.v1.Token
+	1,  // 9: fits.api.v1.TokenServiceGetResponse.token:type_name -> fits.api.v1.Token
+	14, // 10: fits.api.v1.Token.ProjectRolesEntry.value:type_name -> fits.api.v1.ProjectRole
+	15, // 11: fits.api.v1.Token.TenantRolesEntry.value:type_name -> fits.api.v1.TenantRole
+	7,  // 12: fits.api.v1.TokenService.Get:input_type -> fits.api.v1.TokenServiceGetRequest
+	3,  // 13: fits.api.v1.TokenService.List:input_type -> fits.api.v1.TokenServiceListRequest
+	5,  // 14: fits.api.v1.TokenService.Revoke:input_type -> fits.api.v1.TokenServiceRevokeRequest
+	8,  // 15: fits.api.v1.TokenService.Get:output_type -> fits.api.v1.TokenServiceGetResponse
+	4,  // 16: fits.api.v1.TokenService.List:output_type -> fits.api.v1.TokenServiceListResponse
+	6,  // 17: fits.api.v1.TokenService.Revoke:output_type -> fits.api.v1.TokenServiceRevokeResponse
+	15, // [15:18] is the sub-list for method output_type
+	12, // [12:15] is the sub-list for method input_type
+	12, // [12:12] is the sub-list for extension type_name
+	12, // [12:12] is the sub-list for extension extendee
+	0,  // [0:12] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_v1_token_proto_init() }
@@ -1152,15 +660,13 @@ func file_fits_api_v1_token_proto_init() {
 	file_fits_api_v1_common_proto_init()
 	file_fits_api_v1_predefined_rules_proto_init()
 	file_fits_api_v1_token_proto_msgTypes[0].OneofWrappers = []any{}
-	file_fits_api_v1_token_proto_msgTypes[1].OneofWrappers = []any{}
-	file_fits_api_v1_token_proto_msgTypes[8].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_fits_api_v1_token_proto_rawDesc), len(file_fits_api_v1_token_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   20,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

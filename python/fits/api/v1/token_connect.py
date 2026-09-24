@@ -21,19 +21,10 @@ class TokenService(Protocol):
     async def get(self, request: fits_dot_api_dot_v1_dot_token__pb2.TokenServiceGetRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_token__pb2.TokenServiceGetResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
-    async def create(self, request: fits_dot_api_dot_v1_dot_token__pb2.TokenServiceCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_token__pb2.TokenServiceCreateResponse:
-        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-
-    async def update(self, request: fits_dot_api_dot_v1_dot_token__pb2.TokenServiceUpdateRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_token__pb2.TokenServiceUpdateResponse:
-        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-
     async def list(self, request: fits_dot_api_dot_v1_dot_token__pb2.TokenServiceListRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_token__pb2.TokenServiceListResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
     async def revoke(self, request: fits_dot_api_dot_v1_dot_token__pb2.TokenServiceRevokeRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_token__pb2.TokenServiceRevokeResponse:
-        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-
-    async def refresh(self, request: fits_dot_api_dot_v1_dot_token__pb2.TokenServiceRefreshRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_token__pb2.TokenServiceRefreshResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
 
@@ -51,26 +42,6 @@ class TokenServiceASGIApplication(ConnectASGIApplication[TokenService]):
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=svc.get,
-                ),
-                "/fits.api.v1.TokenService/Create": Endpoint.unary(
-                    method=MethodInfo(
-                        name="Create",
-                        service_name="fits.api.v1.TokenService",
-                        input=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceCreateRequest,
-                        output=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceCreateResponse,
-                        idempotency_level=IdempotencyLevel.UNKNOWN,
-                    ),
-                    function=svc.create,
-                ),
-                "/fits.api.v1.TokenService/Update": Endpoint.unary(
-                    method=MethodInfo(
-                        name="Update",
-                        service_name="fits.api.v1.TokenService",
-                        input=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceUpdateRequest,
-                        output=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceUpdateResponse,
-                        idempotency_level=IdempotencyLevel.UNKNOWN,
-                    ),
-                    function=svc.update,
                 ),
                 "/fits.api.v1.TokenService/List": Endpoint.unary(
                     method=MethodInfo(
@@ -91,16 +62,6 @@ class TokenServiceASGIApplication(ConnectASGIApplication[TokenService]):
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=svc.revoke,
-                ),
-                "/fits.api.v1.TokenService/Refresh": Endpoint.unary(
-                    method=MethodInfo(
-                        name="Refresh",
-                        service_name="fits.api.v1.TokenService",
-                        input=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceRefreshRequest,
-                        output=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceRefreshResponse,
-                        idempotency_level=IdempotencyLevel.UNKNOWN,
-                    ),
-                    function=svc.refresh,
                 ),
             },
             interceptors=interceptors,
@@ -130,46 +91,6 @@ class TokenServiceClient(ConnectClient):
                 service_name="fits.api.v1.TokenService",
                 input=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceGetRequest,
                 output=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceGetResponse,
-                idempotency_level=IdempotencyLevel.UNKNOWN,
-            ),
-            headers=headers,
-            timeout_ms=timeout_ms,
-        )
-
-    async def create(
-        self,
-        request: fits_dot_api_dot_v1_dot_token__pb2.TokenServiceCreateRequest,
-        *,
-        headers: Headers | Mapping[str, str] | None = None,
-        timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_v1_dot_token__pb2.TokenServiceCreateResponse:
-        return await self.execute_unary(
-            request=request,
-            method=MethodInfo(
-                name="Create",
-                service_name="fits.api.v1.TokenService",
-                input=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceCreateRequest,
-                output=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceCreateResponse,
-                idempotency_level=IdempotencyLevel.UNKNOWN,
-            ),
-            headers=headers,
-            timeout_ms=timeout_ms,
-        )
-
-    async def update(
-        self,
-        request: fits_dot_api_dot_v1_dot_token__pb2.TokenServiceUpdateRequest,
-        *,
-        headers: Headers | Mapping[str, str] | None = None,
-        timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_v1_dot_token__pb2.TokenServiceUpdateResponse:
-        return await self.execute_unary(
-            request=request,
-            method=MethodInfo(
-                name="Update",
-                service_name="fits.api.v1.TokenService",
-                input=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceUpdateRequest,
-                output=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceUpdateResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
@@ -216,26 +137,6 @@ class TokenServiceClient(ConnectClient):
             timeout_ms=timeout_ms,
         )
 
-    async def refresh(
-        self,
-        request: fits_dot_api_dot_v1_dot_token__pb2.TokenServiceRefreshRequest,
-        *,
-        headers: Headers | Mapping[str, str] | None = None,
-        timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_v1_dot_token__pb2.TokenServiceRefreshResponse:
-        return await self.execute_unary(
-            request=request,
-            method=MethodInfo(
-                name="Refresh",
-                service_name="fits.api.v1.TokenService",
-                input=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceRefreshRequest,
-                output=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceRefreshResponse,
-                idempotency_level=IdempotencyLevel.UNKNOWN,
-            ),
-            headers=headers,
-            timeout_ms=timeout_ms,
-        )
-
 
 
 
@@ -243,15 +144,9 @@ class TokenServiceClient(ConnectClient):
 class TokenServiceSync(Protocol):
     def get(self, request: fits_dot_api_dot_v1_dot_token__pb2.TokenServiceGetRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_token__pb2.TokenServiceGetResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-    def create(self, request: fits_dot_api_dot_v1_dot_token__pb2.TokenServiceCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_token__pb2.TokenServiceCreateResponse:
-        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-    def update(self, request: fits_dot_api_dot_v1_dot_token__pb2.TokenServiceUpdateRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_token__pb2.TokenServiceUpdateResponse:
-        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def list(self, request: fits_dot_api_dot_v1_dot_token__pb2.TokenServiceListRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_token__pb2.TokenServiceListResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def revoke(self, request: fits_dot_api_dot_v1_dot_token__pb2.TokenServiceRevokeRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_token__pb2.TokenServiceRevokeResponse:
-        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-    def refresh(self, request: fits_dot_api_dot_v1_dot_token__pb2.TokenServiceRefreshRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_token__pb2.TokenServiceRefreshResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
 
@@ -268,26 +163,6 @@ class TokenServiceWSGIApplication(ConnectWSGIApplication):
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=service.get,
-                ),
-                "/fits.api.v1.TokenService/Create": EndpointSync.unary(
-                    method=MethodInfo(
-                        name="Create",
-                        service_name="fits.api.v1.TokenService",
-                        input=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceCreateRequest,
-                        output=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceCreateResponse,
-                        idempotency_level=IdempotencyLevel.UNKNOWN,
-                    ),
-                    function=service.create,
-                ),
-                "/fits.api.v1.TokenService/Update": EndpointSync.unary(
-                    method=MethodInfo(
-                        name="Update",
-                        service_name="fits.api.v1.TokenService",
-                        input=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceUpdateRequest,
-                        output=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceUpdateResponse,
-                        idempotency_level=IdempotencyLevel.UNKNOWN,
-                    ),
-                    function=service.update,
                 ),
                 "/fits.api.v1.TokenService/List": EndpointSync.unary(
                     method=MethodInfo(
@@ -308,16 +183,6 @@ class TokenServiceWSGIApplication(ConnectWSGIApplication):
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=service.revoke,
-                ),
-                "/fits.api.v1.TokenService/Refresh": EndpointSync.unary(
-                    method=MethodInfo(
-                        name="Refresh",
-                        service_name="fits.api.v1.TokenService",
-                        input=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceRefreshRequest,
-                        output=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceRefreshResponse,
-                        idempotency_level=IdempotencyLevel.UNKNOWN,
-                    ),
-                    function=service.refresh,
                 ),
             },
             interceptors=interceptors,
@@ -347,46 +212,6 @@ class TokenServiceClientSync(ConnectClientSync):
                 service_name="fits.api.v1.TokenService",
                 input=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceGetRequest,
                 output=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceGetResponse,
-                idempotency_level=IdempotencyLevel.UNKNOWN,
-            ),
-            headers=headers,
-            timeout_ms=timeout_ms,
-        )
-
-    def create(
-        self,
-        request: fits_dot_api_dot_v1_dot_token__pb2.TokenServiceCreateRequest,
-        *,
-        headers: Headers | Mapping[str, str] | None = None,
-        timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_v1_dot_token__pb2.TokenServiceCreateResponse:
-        return self.execute_unary(
-            request=request,
-            method=MethodInfo(
-                name="Create",
-                service_name="fits.api.v1.TokenService",
-                input=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceCreateRequest,
-                output=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceCreateResponse,
-                idempotency_level=IdempotencyLevel.UNKNOWN,
-            ),
-            headers=headers,
-            timeout_ms=timeout_ms,
-        )
-
-    def update(
-        self,
-        request: fits_dot_api_dot_v1_dot_token__pb2.TokenServiceUpdateRequest,
-        *,
-        headers: Headers | Mapping[str, str] | None = None,
-        timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_v1_dot_token__pb2.TokenServiceUpdateResponse:
-        return self.execute_unary(
-            request=request,
-            method=MethodInfo(
-                name="Update",
-                service_name="fits.api.v1.TokenService",
-                input=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceUpdateRequest,
-                output=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceUpdateResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
@@ -427,26 +252,6 @@ class TokenServiceClientSync(ConnectClientSync):
                 service_name="fits.api.v1.TokenService",
                 input=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceRevokeRequest,
                 output=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceRevokeResponse,
-                idempotency_level=IdempotencyLevel.UNKNOWN,
-            ),
-            headers=headers,
-            timeout_ms=timeout_ms,
-        )
-
-    def refresh(
-        self,
-        request: fits_dot_api_dot_v1_dot_token__pb2.TokenServiceRefreshRequest,
-        *,
-        headers: Headers | Mapping[str, str] | None = None,
-        timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_v1_dot_token__pb2.TokenServiceRefreshResponse:
-        return self.execute_unary(
-            request=request,
-            method=MethodInfo(
-                name="Refresh",
-                service_name="fits.api.v1.TokenService",
-                input=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceRefreshRequest,
-                output=fits_dot_api_dot_v1_dot_token__pb2.TokenServiceRefreshResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
