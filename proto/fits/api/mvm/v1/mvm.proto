@@ -133,6 +133,14 @@ enum ServiceClass {
   SERVICE_CLASS_SZ3 = 3 [(fits.api.v1.enum_string_value) = "SZ3"];
 }
 
+// MVMStatus specifies the status of a MVM.
+enum MVMStatus {
+  // MVM_STATUS_UNSPECIFIED is not specified.
+  MVM_STATUS_UNSPECIFIED = 0 [(fits.api.v1.enum_string_value) = ""];
+  // MVM_STATUS_ACTIVE is an active MVM.
+  MVM_STATUS_ACTIVE = 1 [(fits.api.v1.enum_string_value) = "active"];
+}
+
 // DiskType classifies a MVM disk by its lifecycle rules.
 // The upstream (nulink) API returns every disk of a MVM, including the
 // backend-provisioned OS disk, so that oversized OS disks stay billable.
@@ -201,8 +209,8 @@ message NetworkInterface {
   string macaddress = 3; // TODO: add validation
 }
 
-// A managed VM (MVM) instance as returned by the API.
-message MVMInstance {
+// ManagedVM is a managed VM instance as returned by the API.
+message ManagedVM {
   // UUID of this MVM.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
   // Metadata for this MVM.
@@ -227,10 +235,8 @@ message MVMInstance {
   // Whether backup is enabled.
   // TODO: the upstream (nulink) list/get models do not expose this; always false.
   bool backup = 11;
-  // Status of the ongoing operation.
-  // TODO: can we have an ENUM here? Active, Are deleted ones there? Are stopped ones accounted?
-  // Would have to be part of openapi spec, otherwise breaking changes couldn't be detected
-  string status = 12;
+  // Status of the MVM.
+  MVMStatus status = 12 [(buf.validate.field).enum.defined_only = true];
   // Additional information about the current status.
   string status_info = 13;
   // Availability level.
@@ -252,9 +258,6 @@ message MVMInstance {
   VLAN vlan = 19;
   // Internal reference number provided by the user, e.g. a ticket ID.
   string order_number = 20;
-  // True if the order was placed by FITS, false if self-service.
-  // TODO: maybe remove this field entirely.
-  bool contract = 21;
 }
 
 // Request to get a MVM by UUID.
@@ -268,7 +271,7 @@ message MVMServiceGetRequest {
 // Response containing the requested MVM.
 message MVMServiceGetResponse {
   // The MVM.
-  MVMInstance mvm = 1;
+  ManagedVM mvm = 1;
 }
 // Windows-specific create request parts.
 message MVMServiceCreateWindowsRequest {
@@ -289,7 +292,6 @@ message MVMServiceCreateLinuxRequest {
 }
 
 // Request to create a new MVM instance.
-// TODO: contract, billable and billing_start_date.
 message MVMServiceCreateRequest {
   // UUID of the project this MVM belongs to.
   string project_uuid = 1 [(buf.validate.field).string.uuid = true];
@@ -445,7 +447,7 @@ message MVMServiceListRequest {
 // Response containing the list of MVMs.
 message MVMServiceListResponse {
   // The MVM instances.
-  repeated MVMInstance mvms = 1;
+  repeated ManagedVM mvms = 1;
 }
 
 // Request to cancel a MVM instance.
