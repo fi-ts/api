@@ -27,7 +27,7 @@ from fits.api.v1 import common_pb2 as fits_dot_api_dot_v1_dot_common__pb2
 from fits.api.v1 import predefined_rules_pb2 as fits_dot_api_dot_v1_dot_predefined__rules__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1e\x66its/api/mvm/v1/location.proto\x12\x0f\x66its.api.mvm.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"K\n\x08Location\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12!\n\x05title\x18\x02 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x05title\"A\n\x1aLocationServiceListRequest\x12#\n\x06tenant\x18\x01 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\"V\n\x1bLocationServiceListResponse\x12\x37\n\tlocations\x18\x01 \x03(\x0b\x32\x19.fits.api.mvm.v1.LocationR\tlocations2\x81\x01\n\x0fLocationService\x12n\n\x04List\x12+.fits.api.mvm.v1.LocationServiceListRequest\x1a,.fits.api.mvm.v1.LocationServiceListResponse\"\x0b\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x42\xb2\x01\n\x13\x63om.fits.api.mvm.v1B\rLocationProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03\x46\x41M\xaa\x02\x0f\x46its.Api.Mvm.V1\xca\x02\x0f\x46its\\Api\\Mvm\\V1\xe2\x02\x1b\x46its\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12\x46its::Api::Mvm::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1e\x66its/api/mvm/v1/location.proto\x12\x0f\x66its.api.mvm.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"K\n\x08Location\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12!\n\x05title\x18\x02 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x05title\"A\n\x1aLocationServiceListRequest\x12#\n\x06tenant\x18\x01 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\"V\n\x1bLocationServiceListResponse\x12\x37\n\tlocations\x18\x01 \x03(\x0b\x32\x19.fits.api.mvm.v1.LocationR\tlocations2\x81\x01\n\x0fLocationService\x12n\n\x04List\x12+.fits.api.mvm.v1.LocationServiceListRequest\x1a,.fits.api.mvm.v1.LocationServiceListResponse\"\x0b\xc2\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x42\xb2\x01\n\x13\x63om.fits.api.mvm.v1B\rLocationProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03\x46\x41M\xaa\x02\x0f\x46its.Api.Mvm.V1\xca\x02\x0f\x46its\\Api\\Mvm\\V1\xe2\x02\x1b\x46its\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12\x46its::Api::Mvm::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -42,7 +42,7 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_LOCATIONSERVICELISTREQUEST'].fields_by_name['tenant']._loaded_options = None
   _globals['_LOCATIONSERVICELISTREQUEST'].fields_by_name['tenant']._serialized_options = b'\272H\010r\006\300\263\256\261\002\001'
   _globals['_LOCATIONSERVICE'].methods_by_name['List']._loaded_options = None
-  _globals['_LOCATIONSERVICE'].methods_by_name['List']._serialized_options = b'\312\363\030\003\001\002\003\340\363\030\002'
+  _globals['_LOCATIONSERVICE'].methods_by_name['List']._serialized_options = b'\302\363\030\003\001\002\003\340\363\030\002'
   _globals['_LOCATION']._serialized_start=142
   _globals['_LOCATION']._serialized_end=217
   _globals['_LOCATIONSERVICELISTREQUEST']._serialized_start=219

@@ -10,32 +10,22 @@ from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class VLAN(_message.Message):
-    __slots__ = ("uuid", "id", "subnet_title", "subnet", "subnetmask", "gateway", "ip_range_start", "ip_range_end", "use_dhcp", "location_uuid", "stage_type_uuid", "tenant")
+    __slots__ = ("uuid", "vlan_id", "subnet_title", "subnet_cidr", "location_uuid", "stage_type_uuid", "tenant")
     UUID_FIELD_NUMBER: _ClassVar[int]
-    ID_FIELD_NUMBER: _ClassVar[int]
+    VLAN_ID_FIELD_NUMBER: _ClassVar[int]
     SUBNET_TITLE_FIELD_NUMBER: _ClassVar[int]
-    SUBNET_FIELD_NUMBER: _ClassVar[int]
-    SUBNETMASK_FIELD_NUMBER: _ClassVar[int]
-    GATEWAY_FIELD_NUMBER: _ClassVar[int]
-    IP_RANGE_START_FIELD_NUMBER: _ClassVar[int]
-    IP_RANGE_END_FIELD_NUMBER: _ClassVar[int]
-    USE_DHCP_FIELD_NUMBER: _ClassVar[int]
+    SUBNET_CIDR_FIELD_NUMBER: _ClassVar[int]
     LOCATION_UUID_FIELD_NUMBER: _ClassVar[int]
     STAGE_TYPE_UUID_FIELD_NUMBER: _ClassVar[int]
     TENANT_FIELD_NUMBER: _ClassVar[int]
     uuid: str
-    id: int
+    vlan_id: int
     subnet_title: str
-    subnet: str
-    subnetmask: str
-    gateway: str
-    ip_range_start: str
-    ip_range_end: str
-    use_dhcp: bool
+    subnet_cidr: str
     location_uuid: str
     stage_type_uuid: str
     tenant: str
-    def __init__(self, uuid: _Optional[str] = ..., id: _Optional[int] = ..., subnet_title: _Optional[str] = ..., subnet: _Optional[str] = ..., subnetmask: _Optional[str] = ..., gateway: _Optional[str] = ..., ip_range_start: _Optional[str] = ..., ip_range_end: _Optional[str] = ..., use_dhcp: _Optional[bool] = ..., location_uuid: _Optional[str] = ..., stage_type_uuid: _Optional[str] = ..., tenant: _Optional[str] = ...) -> None: ...
+    def __init__(self, uuid: _Optional[str] = ..., vlan_id: _Optional[int] = ..., subnet_title: _Optional[str] = ..., subnet_cidr: _Optional[str] = ..., location_uuid: _Optional[str] = ..., stage_type_uuid: _Optional[str] = ..., tenant: _Optional[str] = ...) -> None: ...
 
 class VLANServiceListRequest(_message.Message):
     __slots__ = ("tenant",)

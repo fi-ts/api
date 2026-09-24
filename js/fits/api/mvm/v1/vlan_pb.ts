@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/mvm/v1/vlan.proto.
  */
 export const file_fits_api_mvm_v1_vlan: GenFile = /*@__PURE__*/
-  fileDesc("ChpmaXRzL2FwaS9tdm0vdjEvdmxhbi5wcm90bxIPZml0cy5hcGkubXZtLnYxIroCCgRWTEFOEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEgoKAmlkGAIgASgFEiEKDHN1Ym5ldF90aXRsZRgDIAEoCUILukgIcgbAs66xAgESDgoGc3VibmV0GAQgASgJEhIKCnN1Ym5ldG1hc2sYBSABKAkSDwoHZ2F0ZXdheRgGIAEoCRIWCg5pcF9yYW5nZV9zdGFydBgHIAEoCRIUCgxpcF9yYW5nZV9lbmQYCCABKAkSEAoIdXNlX2RoY3AYCSABKAgSJAoNbG9jYXRpb25fdXVpZBgNIAEoCUIIukgFcgOwAQFIAIgBARIhCg9zdGFnZV90eXBlX3V1aWQYDiABKAlCCLpIBXIDsAEBEhsKBnRlbmFudBgPIAEoCUILukgIcgbAs66xAgFCEAoOX2xvY2F0aW9uX3V1aWQiNQoWVkxBTlNlcnZpY2VMaXN0UmVxdWVzdBIbCgZ0ZW5hbnQYASABKAlCC7pICHIGwLOusQIBIj8KF1ZMQU5TZXJ2aWNlTGlzdFJlc3BvbnNlEiQKBXZsYW5zGAEgAygLMhUuZml0cy5hcGkubXZtLnYxLlZMQU4ydQoLVkxBTlNlcnZpY2USZgoETGlzdBInLmZpdHMuYXBpLm12bS52MS5WTEFOU2VydmljZUxpc3RSZXF1ZXN0GiguZml0cy5hcGkubXZtLnYxLlZMQU5TZXJ2aWNlTGlzdFJlc3BvbnNlIgvK8xgDAQID4PMYAkKuAQoTY29tLmZpdHMuYXBpLm12bS52MUIJVmxhblByb3RvUAFaLWdpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL212bS92MTttdm12MaICA0ZBTaoCD0ZpdHMuQXBpLk12bS5WMcoCD0ZpdHNcQXBpXE12bVxWMeICG0ZpdHNcQXBpXE12bVxWMVxHUEJNZXRhZGF0YeoCEkZpdHM6OkFwaTo6TXZtOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
+  fileDesc("ChpmaXRzL2FwaS9tdm0vdjEvdmxhbi5wcm90bxIPZml0cy5hcGkubXZtLnYxIuwBCgRWTEFOEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEg8KB3ZsYW5faWQYAiABKAUSIQoMc3VibmV0X3RpdGxlGAMgASgJQgu6SAhyBsCzrrECARIgCgtzdWJuZXRfY2lkchgEIAEoCUILukgIcgb4s66xAgESJAoNbG9jYXRpb25fdXVpZBgKIAEoCUIIukgFcgOwAQFIAIgBARIhCg9zdGFnZV90eXBlX3V1aWQYCyABKAlCCLpIBXIDsAEBEhsKBnRlbmFudBgMIAEoCUILukgIcgbAs66xAgFCEAoOX2xvY2F0aW9uX3V1aWQiNQoWVkxBTlNlcnZpY2VMaXN0UmVxdWVzdBIbCgZ0ZW5hbnQYASABKAlCC7pICHIGwLOusQIBIj8KF1ZMQU5TZXJ2aWNlTGlzdFJlc3BvbnNlEiQKBXZsYW5zGAEgAygLMhUuZml0cy5hcGkubXZtLnYxLlZMQU4ydQoLVkxBTlNlcnZpY2USZgoETGlzdBInLmZpdHMuYXBpLm12bS52MS5WTEFOU2VydmljZUxpc3RSZXF1ZXN0GiguZml0cy5hcGkubXZtLnYxLlZMQU5TZXJ2aWNlTGlzdFJlc3BvbnNlIgvC8xgDAQID4PMYAkKuAQoTY29tLmZpdHMuYXBpLm12bS52MUIJVmxhblByb3RvUAFaLWdpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL212bS92MTttdm12MaICA0ZBTaoCD0ZpdHMuQXBpLk12bS5WMcoCD0ZpdHNcQXBpXE12bVxWMeICG0ZpdHNcQXBpXE12bVxWMVxHUEJNZXRhZGF0YeoCEkZpdHM6OkFwaTo6TXZtOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
 
 /**
  * VLAN is a VLAN that a MVM can be connected to.
@@ -30,10 +30,11 @@ export type VLAN = Message<"fits.api.mvm.v1.VLAN"> & {
 
   /**
    * Id of this VLAN
+   * This is not a foreign key, this is the actual ID of the VLAN the network interface is attached to.
    *
-   * @generated from field: int32 id = 2;
+   * @generated from field: int32 vlan_id = 2;
    */
-  id: number;
+  vlanId: number;
 
   /**
    * Title of the subnet this VLAN belongs to
@@ -45,63 +46,30 @@ export type VLAN = Message<"fits.api.mvm.v1.VLAN"> & {
   /**
    * CIDR of the subnet this VLAN belongs to
    *
-   * @generated from field: string subnet = 4;
+   * @generated from field: string subnet_cidr = 4;
    */
-  subnet: string;
-
-  /**
-   * Subnetmask of this VLAN
-   *
-   * @generated from field: string subnetmask = 5;
-   */
-  subnetmask: string;
-
-  /**
-   * Gateway of this VLAN
-   *
-   * @generated from field: string gateway = 6;
-   */
-  gateway: string;
-
-  /**
-   * Start of the usable IP range of this VLAN
-   *
-   * @generated from field: string ip_range_start = 7;
-   */
-  ipRangeStart: string;
-
-  /**
-   * End of the usable IP range of this VLAN
-   *
-   * @generated from field: string ip_range_end = 8;
-   */
-  ipRangeEnd: string;
-
-  /**
-   * Whether DHCP is used on this VLAN
-   *
-   * @generated from field: bool use_dhcp = 9;
-   */
-  useDhcp: boolean;
+  subnetCidr: string;
 
   /**
    * TODO instead of the pod title, could we have the location_uuid?
    *
-   * @generated from field: optional string location_uuid = 13;
+   * @generated from field: optional string location_uuid = 10;
    */
   locationUuid?: string | undefined;
 
   /**
+   * TODO: instead of a stage type, this should be mapped to a project.
+   * TODO: this would have to be re-mapped in the customer onboarding
    * Uuid of the stage type of this VLAN
    *
-   * @generated from field: string stage_type_uuid = 14;
+   * @generated from field: string stage_type_uuid = 11;
    */
   stageTypeUuid: string;
 
   /**
    * Tenant this VLAN belongs to.
    *
-   * @generated from field: string tenant = 15;
+   * @generated from field: string tenant = 12;
    */
   tenant: string;
 };
@@ -121,6 +89,8 @@ export const VLANSchema: GenMessage<VLAN> = /*@__PURE__*/
 export type VLANServiceListRequest = Message<"fits.api.mvm.v1.VLANServiceListRequest"> & {
   /**
    * Tenant to list available VLANs for
+   *
+   * TODO should be filterable by project as well
    *
    * @generated from field: string tenant = 1;
    */

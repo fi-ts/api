@@ -2,8 +2,8 @@
 // @generated from file fits/api/mvm/v1/os.proto (package fits.api.mvm.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
+import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
+import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../../../buf/validate/validate_pb";
 import { file_fits_api_v1_common } from "../../v1/common_pb";
 import { file_fits_api_v1_predefined_rules } from "../../v1/predefined_rules_pb";
@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/mvm/v1/os.proto.
  */
 export const file_fits_api_mvm_v1_os: GenFile = /*@__PURE__*/
-  fileDesc("ChhmaXRzL2FwaS9tdm0vdjEvb3MucHJvdG8SD2ZpdHMuYXBpLm12bS52MSJxCgJPUxIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIaCgV0aXRsZRgCIAEoCUILukgIcgbAs66xAgESGQoEdHlwZRgDIAEoCUILukgIcgbAs66xAgESHAoHdmVyc2lvbhgEIAEoCUILukgIcgbAs66xAgEiFgoUT1NTZXJ2aWNlTGlzdFJlcXVlc3QiRwoVT1NTZXJ2aWNlTGlzdFJlc3BvbnNlEi4KEW9wZXJhdGluZ19zeXN0ZW1zGAEgAygLMhMuZml0cy5hcGkubXZtLnYxLk9TMm8KCU9TU2VydmljZRJiCgRMaXN0EiUuZml0cy5hcGkubXZtLnYxLk9TU2VydmljZUxpc3RSZXF1ZXN0GiYuZml0cy5hcGkubXZtLnYxLk9TU2VydmljZUxpc3RSZXNwb25zZSILyvMYAwECA+DzGAJCrAEKE2NvbS5maXRzLmFwaS5tdm0udjFCB09zUHJvdG9QAVotZ2l0aHViLmNvbS9maS10cy9hcGkvZ28vZml0cy9hcGkvbXZtL3YxO212bXYxogIDRkFNqgIPRml0cy5BcGkuTXZtLlYxygIPRml0c1xBcGlcTXZtXFYx4gIbRml0c1xBcGlcTXZtXFYxXEdQQk1ldGFkYXRh6gISRml0czo6QXBpOjpNdm06OlYxYgZwcm90bzM", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
+  fileDesc("ChhmaXRzL2FwaS9tdm0vdjEvb3MucHJvdG8SD2ZpdHMuYXBpLm12bS52MSJfCgJPUxIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIaCgV0aXRsZRgCIAEoCUILukgIcgbAs66xAgESJQoEdHlwZRgDIAEoDjIXLmZpdHMuYXBpLm12bS52MS5PU1R5cGUiFgoUT1NTZXJ2aWNlTGlzdFJlcXVlc3QiRwoVT1NTZXJ2aWNlTGlzdFJlc3BvbnNlEi4KEW9wZXJhdGluZ19zeXN0ZW1zGAEgAygLMhMuZml0cy5hcGkubXZtLnYxLk9TKmcKBk9TVHlwZRIdChNPU19UWVBFX1VOU1BFQ0lGSUVEEAAaBIKyGQASHAoNT1NfVFlQRV9MSU5VWBABGgmCshkFbGludXgSIAoPT1NfVFlQRV9XSU5ET1dTEAIaC4KyGQd3aW5kb3dzMmwKCU9TU2VydmljZRJfCgRMaXN0EiUuZml0cy5hcGkubXZtLnYxLk9TU2VydmljZUxpc3RSZXF1ZXN0GiYuZml0cy5hcGkubXZtLnYxLk9TU2VydmljZUxpc3RSZXNwb25zZSII2PMYAuDzGAJCrAEKE2NvbS5maXRzLmFwaS5tdm0udjFCB09zUHJvdG9QAVotZ2l0aHViLmNvbS9maS10cy9hcGkvZ28vZml0cy9hcGkvbXZtL3YxO212bXYxogIDRkFNqgIPRml0cy5BcGkuTXZtLlYxygIPRml0c1xBcGlcTXZtXFYx4gIbRml0c1xBcGlcTXZtXFYxXEdQQk1ldGFkYXRh6gISRml0czo6QXBpOjpNdm06OlYxYgZwcm90bzM", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
 
 /**
  * OS is the definition of an available OS for MVM instances.
@@ -22,32 +22,25 @@ export const file_fits_api_mvm_v1_os: GenFile = /*@__PURE__*/
  */
 export type OS = Message<"fits.api.mvm.v1.OS"> & {
   /**
-   * Uuid of this OS
+   * Uuid of this OS.
    *
    * @generated from field: string uuid = 1;
    */
   uuid: string;
 
   /**
-   * Title of the OS
+   * Title of the OS.
    *
    * @generated from field: string title = 2;
    */
   title: string;
 
   /**
-   * Type of the OS
+   * Type of the OS.
    *
-   * @generated from field: string type = 3;
+   * @generated from field: fits.api.mvm.v1.OSType type = 3;
    */
-  type: string;
-
-  /**
-   * Version of the OS
-   *
-   * @generated from field: string version = 4;
-   */
-  version: string;
+  type: OSType;
 };
 
 /**
@@ -79,7 +72,7 @@ export const OSServiceListRequestSchema: GenMessage<OSServiceListRequest> = /*@_
  */
 export type OSServiceListResponse = Message<"fits.api.mvm.v1.OSServiceListResponse"> & {
   /**
-   * The available operating systems
+   * The available operating systems.
    *
    * @generated from field: repeated fits.api.mvm.v1.OS operating_systems = 1;
    */
@@ -92,6 +85,40 @@ export type OSServiceListResponse = Message<"fits.api.mvm.v1.OSServiceListRespon
  */
 export const OSServiceListResponseSchema: GenMessage<OSServiceListResponse> = /*@__PURE__*/
   messageDesc(file_fits_api_mvm_v1_os, 2);
+
+/**
+ * OSType specifies the type of an operating system.
+ *
+ * @generated from enum fits.api.mvm.v1.OSType
+ */
+export enum OSType {
+  /**
+   * OS_TYPE_UNSPECIFIED is not specified.
+   *
+   * @generated from enum value: OS_TYPE_UNSPECIFIED = 0;
+   */
+  OS_TYPE_UNSPECIFIED = 0,
+
+  /**
+   * OS_TYPE_LINUX is a Linux operating system.
+   *
+   * @generated from enum value: OS_TYPE_LINUX = 1;
+   */
+  OS_TYPE_LINUX = 1,
+
+  /**
+   * OS_TYPE_WINDOWS is a Windows operating system.
+   *
+   * @generated from enum value: OS_TYPE_WINDOWS = 2;
+   */
+  OS_TYPE_WINDOWS = 2,
+}
+
+/**
+ * Describes the enum fits.api.mvm.v1.OSType.
+ */
+export const OSTypeSchema: GenEnum<OSType> = /*@__PURE__*/
+  enumDesc(file_fits_api_mvm_v1_os, 0);
 
 /**
  * OSService lists operating systems available for managed VM (MVM) instances.

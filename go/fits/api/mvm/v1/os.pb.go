@@ -23,17 +23,68 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// OSType specifies the type of an operating system.
+type OSType int32
+
+const (
+	// OS_TYPE_UNSPECIFIED is not specified.
+	OSType_OS_TYPE_UNSPECIFIED OSType = 0
+	// OS_TYPE_LINUX is a Linux operating system.
+	OSType_OS_TYPE_LINUX OSType = 1
+	// OS_TYPE_WINDOWS is a Windows operating system.
+	OSType_OS_TYPE_WINDOWS OSType = 2
+)
+
+// Enum value maps for OSType.
+var (
+	OSType_name = map[int32]string{
+		0: "OS_TYPE_UNSPECIFIED",
+		1: "OS_TYPE_LINUX",
+		2: "OS_TYPE_WINDOWS",
+	}
+	OSType_value = map[string]int32{
+		"OS_TYPE_UNSPECIFIED": 0,
+		"OS_TYPE_LINUX":       1,
+		"OS_TYPE_WINDOWS":     2,
+	}
+)
+
+func (x OSType) Enum() *OSType {
+	p := new(OSType)
+	*p = x
+	return p
+}
+
+func (x OSType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (OSType) Descriptor() protoreflect.EnumDescriptor {
+	return file_fits_api_mvm_v1_os_proto_enumTypes[0].Descriptor()
+}
+
+func (OSType) Type() protoreflect.EnumType {
+	return &file_fits_api_mvm_v1_os_proto_enumTypes[0]
+}
+
+func (x OSType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use OSType.Descriptor instead.
+func (OSType) EnumDescriptor() ([]byte, []int) {
+	return file_fits_api_mvm_v1_os_proto_rawDescGZIP(), []int{0}
+}
+
 // OS is the definition of an available OS for MVM instances.
 type OS struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Uuid of this OS
+	// Uuid of this OS.
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	// Title of the OS
+	// Title of the OS.
 	Title string `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	// Type of the OS
-	Type string `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
-	// Version of the OS
-	Version       string `protobuf:"bytes,4,opt,name=version,proto3" json:"version,omitempty"`
+	// Type of the OS.
+	Type          OSType `protobuf:"varint,3,opt,name=type,proto3,enum=fits.api.mvm.v1.OSType" json:"type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -82,18 +133,11 @@ func (x *OS) GetTitle() string {
 	return ""
 }
 
-func (x *OS) GetType() string {
+func (x *OS) GetType() OSType {
 	if x != nil {
 		return x.Type
 	}
-	return ""
-}
-
-func (x *OS) GetVersion() string {
-	if x != nil {
-		return x.Version
-	}
-	return ""
+	return OSType_OS_TYPE_UNSPECIFIED
 }
 
 // OSServiceListRequest is the request payload for a OS list request.
@@ -136,7 +180,7 @@ func (*OSServiceListRequest) Descriptor() ([]byte, []int) {
 // OSServiceListResponse is the response payload for a OS list request
 type OSServiceListResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The available operating systems
+	// The available operating systems.
 	OperatingSystems []*OS `protobuf:"bytes,1,rep,name=operating_systems,json=operatingSystems,proto3" json:"operating_systems,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
@@ -183,17 +227,20 @@ var File_fits_api_mvm_v1_os_proto protoreflect.FileDescriptor
 
 const file_fits_api_mvm_v1_os_proto_rawDesc = "" +
 	"\n" +
-	"\x18fits/api/mvm/v1/os.proto\x12\x0ffits.api.mvm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\x8d\x01\n" +
+	"\x18fits/api/mvm/v1/os.proto\x12\x0ffits.api.mvm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"r\n" +
 	"\x02OS\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12!\n" +
-	"\x05title\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x05title\x12\x1f\n" +
-	"\x04type\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x04type\x12%\n" +
-	"\aversion\x18\x04 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\aversion\"\x16\n" +
+	"\x05title\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x05title\x12+\n" +
+	"\x04type\x18\x03 \x01(\x0e2\x17.fits.api.mvm.v1.OSTypeR\x04type\"\x16\n" +
 	"\x14OSServiceListRequest\"Y\n" +
 	"\x15OSServiceListResponse\x12@\n" +
-	"\x11operating_systems\x18\x01 \x03(\v2\x13.fits.api.mvm.v1.OSR\x10operatingSystems2o\n" +
-	"\tOSService\x12b\n" +
-	"\x04List\x12%.fits.api.mvm.v1.OSServiceListRequest\x1a&.fits.api.mvm.v1.OSServiceListResponse\"\v\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02B\xac\x01\n" +
+	"\x11operating_systems\x18\x01 \x03(\v2\x13.fits.api.mvm.v1.OSR\x10operatingSystems*g\n" +
+	"\x06OSType\x12\x1d\n" +
+	"\x13OS_TYPE_UNSPECIFIED\x10\x00\x1a\x04\x82\xb2\x19\x00\x12\x1c\n" +
+	"\rOS_TYPE_LINUX\x10\x01\x1a\t\x82\xb2\x19\x05linux\x12 \n" +
+	"\x0fOS_TYPE_WINDOWS\x10\x02\x1a\v\x82\xb2\x19\awindows2l\n" +
+	"\tOSService\x12_\n" +
+	"\x04List\x12%.fits.api.mvm.v1.OSServiceListRequest\x1a&.fits.api.mvm.v1.OSServiceListResponse\"\b\xd8\xf3\x18\x02\xe0\xf3\x18\x02B\xac\x01\n" +
 	"\x13com.fits.api.mvm.v1B\aOsProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03FAM\xaa\x02\x0fFits.Api.Mvm.V1\xca\x02\x0fFits\\Api\\Mvm\\V1\xe2\x02\x1bFits\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12Fits::Api::Mvm::V1b\x06proto3"
 
 var (
@@ -208,21 +255,24 @@ func file_fits_api_mvm_v1_os_proto_rawDescGZIP() []byte {
 	return file_fits_api_mvm_v1_os_proto_rawDescData
 }
 
+var file_fits_api_mvm_v1_os_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_fits_api_mvm_v1_os_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_fits_api_mvm_v1_os_proto_goTypes = []any{
-	(*OS)(nil),                    // 0: fits.api.mvm.v1.OS
-	(*OSServiceListRequest)(nil),  // 1: fits.api.mvm.v1.OSServiceListRequest
-	(*OSServiceListResponse)(nil), // 2: fits.api.mvm.v1.OSServiceListResponse
+	(OSType)(0),                   // 0: fits.api.mvm.v1.OSType
+	(*OS)(nil),                    // 1: fits.api.mvm.v1.OS
+	(*OSServiceListRequest)(nil),  // 2: fits.api.mvm.v1.OSServiceListRequest
+	(*OSServiceListResponse)(nil), // 3: fits.api.mvm.v1.OSServiceListResponse
 }
 var file_fits_api_mvm_v1_os_proto_depIdxs = []int32{
-	0, // 0: fits.api.mvm.v1.OSServiceListResponse.operating_systems:type_name -> fits.api.mvm.v1.OS
-	1, // 1: fits.api.mvm.v1.OSService.List:input_type -> fits.api.mvm.v1.OSServiceListRequest
-	2, // 2: fits.api.mvm.v1.OSService.List:output_type -> fits.api.mvm.v1.OSServiceListResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	0, // 0: fits.api.mvm.v1.OS.type:type_name -> fits.api.mvm.v1.OSType
+	1, // 1: fits.api.mvm.v1.OSServiceListResponse.operating_systems:type_name -> fits.api.mvm.v1.OS
+	2, // 2: fits.api.mvm.v1.OSService.List:input_type -> fits.api.mvm.v1.OSServiceListRequest
+	3, // 3: fits.api.mvm.v1.OSService.List:output_type -> fits.api.mvm.v1.OSServiceListResponse
+	3, // [3:4] is the sub-list for method output_type
+	2, // [2:3] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_mvm_v1_os_proto_init() }
@@ -235,13 +285,14 @@ func file_fits_api_mvm_v1_os_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_fits_api_mvm_v1_os_proto_rawDesc), len(file_fits_api_mvm_v1_os_proto_rawDesc)),
-			NumEnums:      0,
+			NumEnums:      1,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_fits_api_mvm_v1_os_proto_goTypes,
 		DependencyIndexes: file_fits_api_mvm_v1_os_proto_depIdxs,
+		EnumInfos:         file_fits_api_mvm_v1_os_proto_enumTypes,
 		MessageInfos:      file_fits_api_mvm_v1_os_proto_msgTypes,
 	}.Build()
 	File_fits_api_mvm_v1_os_proto = out.File

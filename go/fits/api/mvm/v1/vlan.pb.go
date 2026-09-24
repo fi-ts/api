@@ -29,27 +29,20 @@ type VLAN struct {
 	// Uuid of this VLAN
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	// Id of this VLAN
-	Id int32 `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
+	// This is not a foreign key, this is the actual ID of the VLAN the network interface is attached to.
+	VlanId int32 `protobuf:"varint,2,opt,name=vlan_id,json=vlanId,proto3" json:"vlan_id,omitempty"`
 	// Title of the subnet this VLAN belongs to
 	SubnetTitle string `protobuf:"bytes,3,opt,name=subnet_title,json=subnetTitle,proto3" json:"subnet_title,omitempty"`
 	// CIDR of the subnet this VLAN belongs to
-	Subnet string `protobuf:"bytes,4,opt,name=subnet,proto3" json:"subnet,omitempty"`
-	// Subnetmask of this VLAN
-	Subnetmask string `protobuf:"bytes,5,opt,name=subnetmask,proto3" json:"subnetmask,omitempty"`
-	// Gateway of this VLAN
-	Gateway string `protobuf:"bytes,6,opt,name=gateway,proto3" json:"gateway,omitempty"`
-	// Start of the usable IP range of this VLAN
-	IpRangeStart string `protobuf:"bytes,7,opt,name=ip_range_start,json=ipRangeStart,proto3" json:"ip_range_start,omitempty"`
-	// End of the usable IP range of this VLAN
-	IpRangeEnd string `protobuf:"bytes,8,opt,name=ip_range_end,json=ipRangeEnd,proto3" json:"ip_range_end,omitempty"`
-	// Whether DHCP is used on this VLAN
-	UseDhcp bool `protobuf:"varint,9,opt,name=use_dhcp,json=useDhcp,proto3" json:"use_dhcp,omitempty"`
+	SubnetCidr string `protobuf:"bytes,4,opt,name=subnet_cidr,json=subnetCidr,proto3" json:"subnet_cidr,omitempty"`
 	// TODO instead of the pod title, could we have the location_uuid?
-	LocationUuid *string `protobuf:"bytes,13,opt,name=location_uuid,json=locationUuid,proto3,oneof" json:"location_uuid,omitempty"`
+	LocationUuid *string `protobuf:"bytes,10,opt,name=location_uuid,json=locationUuid,proto3,oneof" json:"location_uuid,omitempty"`
+	// TODO: instead of a stage type, this should be mapped to a project.
+	// TODO: this would have to be re-mapped in the customer onboarding
 	// Uuid of the stage type of this VLAN
-	StageTypeUuid string `protobuf:"bytes,14,opt,name=stage_type_uuid,json=stageTypeUuid,proto3" json:"stage_type_uuid,omitempty"`
+	StageTypeUuid string `protobuf:"bytes,11,opt,name=stage_type_uuid,json=stageTypeUuid,proto3" json:"stage_type_uuid,omitempty"`
 	// Tenant this VLAN belongs to.
-	Tenant        string `protobuf:"bytes,15,opt,name=tenant,proto3" json:"tenant,omitempty"`
+	Tenant        string `protobuf:"bytes,12,opt,name=tenant,proto3" json:"tenant,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -91,9 +84,9 @@ func (x *VLAN) GetUuid() string {
 	return ""
 }
 
-func (x *VLAN) GetId() int32 {
+func (x *VLAN) GetVlanId() int32 {
 	if x != nil {
-		return x.Id
+		return x.VlanId
 	}
 	return 0
 }
@@ -105,46 +98,11 @@ func (x *VLAN) GetSubnetTitle() string {
 	return ""
 }
 
-func (x *VLAN) GetSubnet() string {
+func (x *VLAN) GetSubnetCidr() string {
 	if x != nil {
-		return x.Subnet
+		return x.SubnetCidr
 	}
 	return ""
-}
-
-func (x *VLAN) GetSubnetmask() string {
-	if x != nil {
-		return x.Subnetmask
-	}
-	return ""
-}
-
-func (x *VLAN) GetGateway() string {
-	if x != nil {
-		return x.Gateway
-	}
-	return ""
-}
-
-func (x *VLAN) GetIpRangeStart() string {
-	if x != nil {
-		return x.IpRangeStart
-	}
-	return ""
-}
-
-func (x *VLAN) GetIpRangeEnd() string {
-	if x != nil {
-		return x.IpRangeEnd
-	}
-	return ""
-}
-
-func (x *VLAN) GetUseDhcp() bool {
-	if x != nil {
-		return x.UseDhcp
-	}
-	return false
 }
 
 func (x *VLAN) GetLocationUuid() string {
@@ -172,7 +130,7 @@ func (x *VLAN) GetTenant() string {
 type VLANServiceListRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Tenant to list available VLANs for
-	Tenant        string `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"`
+	Tenant        string `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"` // TODO should be filterable by project as well
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -264,30 +222,24 @@ var File_fits_api_mvm_v1_vlan_proto protoreflect.FileDescriptor
 
 const file_fits_api_mvm_v1_vlan_proto_rawDesc = "" +
 	"\n" +
-	"\x1afits/api/mvm/v1/vlan.proto\x12\x0ffits.api.mvm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xb6\x03\n" +
+	"\x1afits/api/mvm/v1/vlan.proto\x12\x0ffits.api.mvm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xb8\x02\n" +
 	"\x04VLAN\x12\x1c\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x0e\n" +
-	"\x02id\x18\x02 \x01(\x05R\x02id\x12.\n" +
-	"\fsubnet_title\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\vsubnetTitle\x12\x16\n" +
-	"\x06subnet\x18\x04 \x01(\tR\x06subnet\x12\x1e\n" +
-	"\n" +
-	"subnetmask\x18\x05 \x01(\tR\n" +
-	"subnetmask\x12\x18\n" +
-	"\agateway\x18\x06 \x01(\tR\agateway\x12$\n" +
-	"\x0eip_range_start\x18\a \x01(\tR\fipRangeStart\x12 \n" +
-	"\fip_range_end\x18\b \x01(\tR\n" +
-	"ipRangeEnd\x12\x19\n" +
-	"\buse_dhcp\x18\t \x01(\bR\auseDhcp\x122\n" +
-	"\rlocation_uuid\x18\r \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\flocationUuid\x88\x01\x01\x120\n" +
-	"\x0fstage_type_uuid\x18\x0e \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rstageTypeUuid\x12#\n" +
-	"\x06tenant\x18\x0f \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenantB\x10\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x17\n" +
+	"\avlan_id\x18\x02 \x01(\x05R\x06vlanId\x12.\n" +
+	"\fsubnet_title\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\vsubnetTitle\x12,\n" +
+	"\vsubnet_cidr\x18\x04 \x01(\tB\v\xbaH\br\x06\xf8\xb3\xae\xb1\x02\x01R\n" +
+	"subnetCidr\x122\n" +
+	"\rlocation_uuid\x18\n" +
+	" \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\flocationUuid\x88\x01\x01\x120\n" +
+	"\x0fstage_type_uuid\x18\v \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rstageTypeUuid\x12#\n" +
+	"\x06tenant\x18\f \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenantB\x10\n" +
 	"\x0e_location_uuid\"=\n" +
 	"\x16VLANServiceListRequest\x12#\n" +
 	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\"F\n" +
 	"\x17VLANServiceListResponse\x12+\n" +
 	"\x05vlans\x18\x01 \x03(\v2\x15.fits.api.mvm.v1.VLANR\x05vlans2u\n" +
 	"\vVLANService\x12f\n" +
-	"\x04List\x12'.fits.api.mvm.v1.VLANServiceListRequest\x1a(.fits.api.mvm.v1.VLANServiceListResponse\"\v\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02B\xae\x01\n" +
+	"\x04List\x12'.fits.api.mvm.v1.VLANServiceListRequest\x1a(.fits.api.mvm.v1.VLANServiceListResponse\"\v\xc2\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02B\xae\x01\n" +
 	"\x13com.fits.api.mvm.v1B\tVlanProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03FAM\xaa\x02\x0fFits.Api.Mvm.V1\xca\x02\x0fFits\\Api\\Mvm\\V1\xe2\x02\x1bFits\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12Fits::Api::Mvm::V1b\x06proto3"
 
 var (

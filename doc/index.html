@@ -236,6 +236,10 @@
                   <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
                 </li>
               
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
               
             </ul>
           </li>
@@ -585,6 +589,10 @@
                   <a href="#fits.api.mvm.v1.OSServiceListResponse"><span class="badge">M</span>OSServiceListResponse</a>
                 </li>
               
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.OSType"><span class="badge">E</span>OSType</a>
+                </li>
               
               
               
@@ -1108,6 +1116,14 @@
                 <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
                 <td>80048957</td>
                 <td><p>IsIpOrHostname validates that the given string is either a ip or a hostname</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_ipv4_cidr</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80048959</td>
+                <td><p>IsIpv4Cidr validates if the given string is a valid IPv4 CIDR, e.g. 10.0.0.0/24</p></td>
               </tr>
             
               <tr>
@@ -1690,7 +1706,7 @@ having a direct membership within the tenant.</p></td>
         
       
         <h3 id="fits.api.mvm.v1.LocationServiceListResponse">LocationServiceListResponse</h3>
-        <p>LocationServiceListResponse is the response payload for a location list request</p>
+        <p>LocationServiceListResponse is the response payload for a location list request.</p>
 
         
           <table class="field-table">
@@ -1764,10 +1780,11 @@ having a direct membership within the tenant.</p></td>
                 </tr>
               
                 <tr>
-                  <td>id</td>
+                  <td>vlan_id</td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
-                  <td><p>Id of this VLAN </p></td>
+                  <td><p>Id of this VLAN
+This is not a foreign key, this is the actual ID of the VLAN the network interface is attached to. </p></td>
                 </tr>
               
                 <tr>
@@ -1778,45 +1795,10 @@ having a direct membership within the tenant.</p></td>
                 </tr>
               
                 <tr>
-                  <td>subnet</td>
+                  <td>subnet_cidr</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>CIDR of the subnet this VLAN belongs to </p></td>
-                </tr>
-              
-                <tr>
-                  <td>subnetmask</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Subnetmask of this VLAN </p></td>
-                </tr>
-              
-                <tr>
-                  <td>gateway</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Gateway of this VLAN </p></td>
-                </tr>
-              
-                <tr>
-                  <td>ip_range_start</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Start of the usable IP range of this VLAN </p></td>
-                </tr>
-              
-                <tr>
-                  <td>ip_range_end</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>End of the usable IP range of this VLAN </p></td>
-                </tr>
-              
-                <tr>
-                  <td>use_dhcp</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Whether DHCP is used on this VLAN </p></td>
                 </tr>
               
                 <tr>
@@ -1830,7 +1812,9 @@ having a direct membership within the tenant.</p></td>
                   <td>stage_type_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Uuid of the stage type of this VLAN </p></td>
+                  <td><p>TODO: instead of a stage type, this should be mapped to a project.
+TODO: this would have to be re-mapped in the customer onboarding
+Uuid of the stage type of this VLAN </p></td>
                 </tr>
               
                 <tr>
@@ -1861,7 +1845,9 @@ having a direct membership within the tenant.</p></td>
                   <td>tenant</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Tenant to list available VLANs for </p></td>
+                  <td><p>Tenant to list available VLANs for
+
+TODO should be filterable by project as well </p></td>
                 </tr>
               
             </tbody>
@@ -3565,28 +3551,21 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                   <td>uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Uuid of this OS </p></td>
+                  <td><p>Uuid of this OS. </p></td>
                 </tr>
               
                 <tr>
                   <td>title</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Title of the OS </p></td>
+                  <td><p>Title of the OS. </p></td>
                 </tr>
               
                 <tr>
                   <td>type</td>
-                  <td><a href="#string">string</a></td>
+                  <td><a href="#fits.api.mvm.v1.OSType">OSType</a></td>
                   <td></td>
-                  <td><p>Type of the OS </p></td>
-                </tr>
-              
-                <tr>
-                  <td>version</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Version of the OS </p></td>
+                  <td><p>Type of the OS. </p></td>
                 </tr>
               
             </tbody>
@@ -3617,7 +3596,7 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                   <td>operating_systems</td>
                   <td><a href="#fits.api.mvm.v1.OS">OS</a></td>
                   <td>repeated</td>
-                  <td><p>The available operating systems </p></td>
+                  <td><p>The available operating systems. </p></td>
                 </tr>
               
             </tbody>
@@ -3628,6 +3607,35 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
         
       
 
+      
+        <h3 id="fits.api.mvm.v1.OSType">OSType</h3>
+        <p>OSType specifies the type of an operating system.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>OS_TYPE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>OS_TYPE_UNSPECIFIED is not specified.</p></td>
+              </tr>
+            
+              <tr>
+                <td>OS_TYPE_LINUX</td>
+                <td>1</td>
+                <td><p>OS_TYPE_LINUX is a Linux operating system.</p></td>
+              </tr>
+            
+              <tr>
+                <td>OS_TYPE_WINDOWS</td>
+                <td>2</td>
+                <td><p>OS_TYPE_WINDOWS is a Windows operating system.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
 
       
@@ -3729,7 +3737,7 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
 
       
         <h3 id="fits.api.mvm.v1.StageTypeService">StageTypeService</h3>
-        <p>StageTypeService lists stage types available for managed VM (MVM) instances.</p>
+        <p>TODO: this type may be completely removed, as VLANs could be project-scoped</p><p>StageTypeService lists stage types available for managed VM (MVM) instances.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>

@@ -80,6 +80,7 @@ export const StageTypeServiceListResponseSchema: GenMessage<StageTypeServiceList
   messageDesc(file_fits_api_mvm_v1_stagetype, 2);
 
 /**
+ * TODO: this type may be completely removed, as VLANs could be project-scoped
  * StageTypeService lists stage types available for managed VM (MVM) instances.
  *
  * @generated from service fits.api.mvm.v1.StageTypeService

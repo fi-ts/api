@@ -124,7 +124,7 @@ func (x *LocationServiceListRequest) GetTenant() string {
 	return ""
 }
 
-// LocationServiceListResponse is the response payload for a location list request
+// LocationServiceListResponse is the response payload for a location list request.
 type LocationServiceListResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The available locations
@@ -183,7 +183,7 @@ const file_fits_api_mvm_v1_location_proto_rawDesc = "" +
 	"\x1bLocationServiceListResponse\x127\n" +
 	"\tlocations\x18\x01 \x03(\v2\x19.fits.api.mvm.v1.LocationR\tlocations2\x81\x01\n" +
 	"\x0fLocationService\x12n\n" +
-	"\x04List\x12+.fits.api.mvm.v1.LocationServiceListRequest\x1a,.fits.api.mvm.v1.LocationServiceListResponse\"\v\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02B\xb2\x01\n" +
+	"\x04List\x12+.fits.api.mvm.v1.LocationServiceListRequest\x1a,.fits.api.mvm.v1.LocationServiceListResponse\"\v\xc2\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02B\xb2\x01\n" +
 	"\x13com.fits.api.mvm.v1B\rLocationProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03FAM\xaa\x02\x0fFits.Api.Mvm.V1\xca\x02\x0fFits\\Api\\Mvm\\V1\xe2\x02\x1bFits\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12Fits::Api::Mvm::V1b\x06proto3"
 
 var (

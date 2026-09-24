@@ -6,6 +6,7 @@ import "buf/validate/validate.proto";
 import "fits/api/v1/common.proto";
 import "fits/api/v1/predefined_rules.proto";
 
+// TODO: this type may be completely removed, as VLANs could be project-scoped
 // StageTypeService lists stage types available for managed VM (MVM) instances.
 service StageTypeService {
   // Returns a list of all stage types available for a tenant.
