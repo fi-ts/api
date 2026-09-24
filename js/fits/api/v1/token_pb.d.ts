@@ -1,6 +1,6 @@
 import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import type { AdminRole, Labels, Meta, ProjectRole, TenantRole, UpdateLabels, UpdateMeta } from "./common_pb";
-import type { Duration, Timestamp } from "@bufbuild/protobuf/wkt";
+import type { AdminRole, Meta, ProjectRole, TenantRole } from "./common_pb";
+import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file fits/api/v1/token.proto.
@@ -100,64 +100,6 @@ export type Token = Message<"fits.api.v1.Token"> & {
  */
 export declare const TokenSchema: GenMessage<Token>;
 /**
- * TokenServiceCreateRequest is the request payload to create a token
- *
- * @generated from message fits.api.v1.TokenServiceCreateRequest
- */
-export type TokenServiceCreateRequest = Message<"fits.api.v1.TokenServiceCreateRequest"> & {
-    /**
-     * Description of the token
-     *
-     * @generated from field: string description = 1;
-     */
-    description: string;
-    /**
-     * Permissions is a list of service methods this token can be used for
-     *
-     * @generated from field: repeated fits.api.v1.MethodPermission permissions = 2;
-     */
-    permissions: MethodPermission[];
-    /**
-     * Expires gives the duration since now, after which this token can not be used anymore
-     *
-     * @generated from field: google.protobuf.Duration expires = 3;
-     */
-    expires?: Duration | undefined;
-    /**
-     * ProjectRoles associates a project id with the corresponding role of the token owner
-     *
-     * @generated from field: map<string, fits.api.v1.ProjectRole> project_roles = 4;
-     */
-    projectRoles: {
-        [key: string]: ProjectRole;
-    };
-    /**
-     * TenantRoles_associates a tenant id with the corresponding role of the token owner
-     *
-     * @generated from field: map<string, fits.api.v1.TenantRole> tenant_roles = 5;
-     */
-    tenantRoles: {
-        [key: string]: TenantRole;
-    };
-    /**
-     * AdminRole defines the admin role of the token owner
-     *
-     * @generated from field: optional fits.api.v1.AdminRole admin_role = 6;
-     */
-    adminRole?: AdminRole | undefined;
-    /**
-     * Labels on this token
-     *
-     * @generated from field: fits.api.v1.Labels labels = 7;
-     */
-    labels?: Labels | undefined;
-};
-/**
- * Describes the message fits.api.v1.TokenServiceCreateRequest.
- * Use `create(TokenServiceCreateRequestSchema)` to create a new message.
- */
-export declare const TokenServiceCreateRequestSchema: GenMessage<TokenServiceCreateRequest>;
-/**
  * MethodPermission is a mapping from a subject/project to a service method
  *
  * @generated from message fits.api.v1.MethodPermission
@@ -186,30 +128,6 @@ export type MethodPermission = Message<"fits.api.v1.MethodPermission"> & {
  * Use `create(MethodPermissionSchema)` to create a new message.
  */
 export declare const MethodPermissionSchema: GenMessage<MethodPermission>;
-/**
- * TokenServiceCreateResponse is the response payload of a token create request
- *
- * @generated from message fits.api.v1.TokenServiceCreateResponse
- */
-export type TokenServiceCreateResponse = Message<"fits.api.v1.TokenServiceCreateResponse"> & {
-    /**
-     * Token which was created
-     *
-     * @generated from field: fits.api.v1.Token token = 1;
-     */
-    token?: Token | undefined;
-    /**
-     * Secret is the body if the jwt token, should be used in api requests as bearer token
-     *
-     * @generated from field: string secret = 2;
-     */
-    secret: string;
-};
-/**
- * Describes the message fits.api.v1.TokenServiceCreateResponse.
- * Use `create(TokenServiceCreateResponseSchema)` to create a new message.
- */
-export declare const TokenServiceCreateResponseSchema: GenMessage<TokenServiceCreateResponse>;
 /**
  * TokenServiceListRequest is the request payload to list tokens
  *
@@ -269,89 +187,6 @@ export type TokenServiceRevokeResponse = Message<"fits.api.v1.TokenServiceRevoke
  */
 export declare const TokenServiceRevokeResponseSchema: GenMessage<TokenServiceRevokeResponse>;
 /**
- * TokenServiceUpdateRequest is the request payload of a token update request
- *
- * @generated from message fits.api.v1.TokenServiceUpdateRequest
- */
-export type TokenServiceUpdateRequest = Message<"fits.api.v1.TokenServiceUpdateRequest"> & {
-    /**
-     * Uuid of the token to update
-     *
-     * @generated from field: string uuid = 1;
-     */
-    uuid: string;
-    /**
-     * UpdateMeta contains the timestamp and strategy to be used in this update request
-     * TokenUpdate is not guarded with optlock in the backend
-     *
-     * @generated from field: fits.api.v1.UpdateMeta update_meta = 2;
-     */
-    updateMeta?: UpdateMeta | undefined;
-    /**
-     * Description is a user given description of this token.
-     *
-     * @generated from field: optional string description = 3;
-     */
-    description?: string | undefined;
-    /**
-     * Permissions is a list of service methods this token can be used for
-     *
-     * @generated from field: repeated fits.api.v1.MethodPermission permissions = 4;
-     */
-    permissions: MethodPermission[];
-    /**
-     * ProjectRoles associates a project id with the corresponding role of the token owner
-     *
-     * @generated from field: map<string, fits.api.v1.ProjectRole> project_roles = 5;
-     */
-    projectRoles: {
-        [key: string]: ProjectRole;
-    };
-    /**
-     * TenantRoles associates a tenant id with the corresponding role of the token owner
-     *
-     * @generated from field: map<string, fits.api.v1.TenantRole> tenant_roles = 6;
-     */
-    tenantRoles: {
-        [key: string]: TenantRole;
-    };
-    /**
-     * AdminRole defines the admin role of the token owner
-     *
-     * @generated from field: optional fits.api.v1.AdminRole admin_role = 7;
-     */
-    adminRole?: AdminRole | undefined;
-    /**
-     * Labels on this token
-     *
-     * @generated from field: fits.api.v1.UpdateLabels labels = 8;
-     */
-    labels?: UpdateLabels | undefined;
-};
-/**
- * Describes the message fits.api.v1.TokenServiceUpdateRequest.
- * Use `create(TokenServiceUpdateRequestSchema)` to create a new message.
- */
-export declare const TokenServiceUpdateRequestSchema: GenMessage<TokenServiceUpdateRequest>;
-/**
- * TokenServiceUpdateResponse is the response payload of a token update request
- *
- * @generated from message fits.api.v1.TokenServiceUpdateResponse
- */
-export type TokenServiceUpdateResponse = Message<"fits.api.v1.TokenServiceUpdateResponse"> & {
-    /**
-     * Token is the updated token
-     *
-     * @generated from field: fits.api.v1.Token token = 1;
-     */
-    token?: Token | undefined;
-};
-/**
- * Describes the message fits.api.v1.TokenServiceUpdateResponse.
- * Use `create(TokenServiceUpdateResponseSchema)` to create a new message.
- */
-export declare const TokenServiceUpdateResponseSchema: GenMessage<TokenServiceUpdateResponse>;
-/**
  * TokenServiceGetRequest is the request payload of a token get request
  *
  * @generated from message fits.api.v1.TokenServiceGetRequest
@@ -387,43 +222,6 @@ export type TokenServiceGetResponse = Message<"fits.api.v1.TokenServiceGetRespon
  * Use `create(TokenServiceGetResponseSchema)` to create a new message.
  */
 export declare const TokenServiceGetResponseSchema: GenMessage<TokenServiceGetResponse>;
-/**
- * TokenServiceRefreshRequest is the request payload of a token refresh request
- * Permissions, Roles and Expiration duration and all other properties are inherited from the calling token.
- * The expiration duration will be calculated from the existing token (exp - iat)
- *
- * @generated from message fits.api.v1.TokenServiceRefreshRequest
- */
-export type TokenServiceRefreshRequest = Message<"fits.api.v1.TokenServiceRefreshRequest"> & {};
-/**
- * Describes the message fits.api.v1.TokenServiceRefreshRequest.
- * Use `create(TokenServiceRefreshRequestSchema)` to create a new message.
- */
-export declare const TokenServiceRefreshRequestSchema: GenMessage<TokenServiceRefreshRequest>;
-/**
- * TokenServiceRefreshResponse is the response payload of a token refresh request
- *
- * @generated from message fits.api.v1.TokenServiceRefreshResponse
- */
-export type TokenServiceRefreshResponse = Message<"fits.api.v1.TokenServiceRefreshResponse"> & {
-    /**
-     * Token which was refreshed
-     *
-     * @generated from field: fits.api.v1.Token token = 1;
-     */
-    token?: Token | undefined;
-    /**
-     * Secret is the body if the jwt token, should be used in api requests as bearer token
-     *
-     * @generated from field: string secret = 2;
-     */
-    secret: string;
-};
-/**
- * Describes the message fits.api.v1.TokenServiceRefreshResponse.
- * Use `create(TokenServiceRefreshResponseSchema)` to create a new message.
- */
-export declare const TokenServiceRefreshResponseSchema: GenMessage<TokenServiceRefreshResponse>;
 /**
  * TokenType specifies different use cases of tokens
  *
@@ -470,26 +268,6 @@ export declare const TokenService: GenService<{
         output: typeof TokenServiceGetResponseSchema;
     };
     /**
-     * Creates a token to authenticate against the platform, the secret will be only visible in the response.
-     *
-     * @generated from rpc fits.api.v1.TokenService.Create
-     */
-    create: {
-        methodKind: "unary";
-        input: typeof TokenServiceCreateRequestSchema;
-        output: typeof TokenServiceCreateResponseSchema;
-    };
-    /**
-     * Updates a token.
-     *
-     * @generated from rpc fits.api.v1.TokenService.Update
-     */
-    update: {
-        methodKind: "unary";
-        input: typeof TokenServiceUpdateRequestSchema;
-        output: typeof TokenServiceUpdateResponseSchema;
-    };
-    /**
      * Returns the list of all user tokens.
      *
      * @generated from rpc fits.api.v1.TokenService.List
@@ -508,15 +286,5 @@ export declare const TokenService: GenService<{
         methodKind: "unary";
         input: typeof TokenServiceRevokeRequestSchema;
         output: typeof TokenServiceRevokeResponseSchema;
-    };
-    /**
-     * Refreshes a token, this will create a new token with the exact same permissions as the calling token contains.
-     *
-     * @generated from rpc fits.api.v1.TokenService.Refresh
-     */
-    refresh: {
-        methodKind: "unary";
-        input: typeof TokenServiceRefreshRequestSchema;
-        output: typeof TokenServiceRefreshResponseSchema;
     };
 }>;

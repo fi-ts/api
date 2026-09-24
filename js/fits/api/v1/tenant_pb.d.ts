@@ -108,48 +108,6 @@ export type TenantServiceGetRequest = Message<"fits.api.v1.TenantServiceGetReque
  */
 export declare const TenantServiceGetRequestSchema: GenMessage<TenantServiceGetRequest>;
 /**
- * TenantServiceCreateRequest is the request payload of the tenant create request
- *
- * @generated from message fits.api.v1.TenantServiceCreateRequest
- */
-export type TenantServiceCreateRequest = Message<"fits.api.v1.TenantServiceCreateRequest"> & {
-    /**
-     * Name of this tenant
-     *
-     * @generated from field: string name = 1;
-     */
-    name: string;
-    /**
-     * Description of this tenant
-     *
-     * @generated from field: optional string description = 2;
-     */
-    description?: string | undefined;
-    /**
-     * Email of the tenant, if not set will be inherited from the creator
-     *
-     * @generated from field: optional string email = 3;
-     */
-    email?: string | undefined;
-    /**
-     * AvatarUrl of the tenant
-     *
-     * @generated from field: optional string avatar_url = 4;
-     */
-    avatarUrl?: string | undefined;
-    /**
-     * Labels on the tenant
-     *
-     * @generated from field: fits.api.v1.Labels labels = 5;
-     */
-    labels?: Labels | undefined;
-};
-/**
- * Describes the message fits.api.v1.TenantServiceCreateRequest.
- * Use `create(TenantServiceCreateRequestSchema)` to create a new message.
- */
-export declare const TenantServiceCreateRequestSchema: GenMessage<TenantServiceCreateRequest>;
-/**
  * TenantServiceUpdateRequest is the request payload of the tenant update request
  *
  * @generated from message fits.api.v1.TenantServiceUpdateRequest
@@ -204,24 +162,6 @@ export type TenantServiceUpdateRequest = Message<"fits.api.v1.TenantServiceUpdat
  */
 export declare const TenantServiceUpdateRequestSchema: GenMessage<TenantServiceUpdateRequest>;
 /**
- * TenantServiceDeleteRequest is the request payload of the tenant delete request
- *
- * @generated from message fits.api.v1.TenantServiceDeleteRequest
- */
-export type TenantServiceDeleteRequest = Message<"fits.api.v1.TenantServiceDeleteRequest"> & {
-    /**
-     * Login of the tenant
-     *
-     * @generated from field: string login = 1;
-     */
-    login: string;
-};
-/**
- * Describes the message fits.api.v1.TenantServiceDeleteRequest.
- * Use `create(TenantServiceDeleteRequestSchema)` to create a new message.
- */
-export declare const TenantServiceDeleteRequestSchema: GenMessage<TenantServiceDeleteRequest>;
-/**
  * TenantServiceGetResponse is the response payload of the tenant get request
  *
  * @generated from message fits.api.v1.TenantServiceGetResponse
@@ -258,24 +198,6 @@ export type TenantServiceListResponse = Message<"fits.api.v1.TenantServiceListRe
  */
 export declare const TenantServiceListResponseSchema: GenMessage<TenantServiceListResponse>;
 /**
- * TenantServiceCreateResponse is the response payload of the tenant create request
- *
- * @generated from message fits.api.v1.TenantServiceCreateResponse
- */
-export type TenantServiceCreateResponse = Message<"fits.api.v1.TenantServiceCreateResponse"> & {
-    /**
-     * Tenant is the tenant
-     *
-     * @generated from field: fits.api.v1.Tenant tenant = 1;
-     */
-    tenant?: Tenant | undefined;
-};
-/**
- * Describes the message fits.api.v1.TenantServiceCreateResponse.
- * Use `create(TenantServiceCreateResponseSchema)` to create a new message.
- */
-export declare const TenantServiceCreateResponseSchema: GenMessage<TenantServiceCreateResponse>;
-/**
  * TenantServiceUpdateResponse is the response payload of the tenant update request
  *
  * @generated from message fits.api.v1.TenantServiceUpdateResponse
@@ -294,39 +216,11 @@ export type TenantServiceUpdateResponse = Message<"fits.api.v1.TenantServiceUpda
  */
 export declare const TenantServiceUpdateResponseSchema: GenMessage<TenantServiceUpdateResponse>;
 /**
- * TenantServiceDeleteResponse is the response payload of the tenant delete request
- *
- * @generated from message fits.api.v1.TenantServiceDeleteResponse
- */
-export type TenantServiceDeleteResponse = Message<"fits.api.v1.TenantServiceDeleteResponse"> & {
-    /**
-     * Tenant is the tenant
-     *
-     * @generated from field: fits.api.v1.Tenant tenant = 1;
-     */
-    tenant?: Tenant | undefined;
-};
-/**
- * Describes the message fits.api.v1.TenantServiceDeleteResponse.
- * Use `create(TenantServiceDeleteResponseSchema)` to create a new message.
- */
-export declare const TenantServiceDeleteResponseSchema: GenMessage<TenantServiceDeleteResponse>;
-/**
  * TenantService provides tenant management operations.
  *
  * @generated from service fits.api.v1.TenantService
  */
 export declare const TenantService: GenService<{
-    /**
-     * Creates a new tenant.
-     *
-     * @generated from rpc fits.api.v1.TenantService.Create
-     */
-    create: {
-        methodKind: "unary";
-        input: typeof TenantServiceCreateRequestSchema;
-        output: typeof TenantServiceCreateResponseSchema;
-    };
     /**
      * Returns the list of tenants.
      *
@@ -356,15 +250,5 @@ export declare const TenantService: GenService<{
         methodKind: "unary";
         input: typeof TenantServiceUpdateRequestSchema;
         output: typeof TenantServiceUpdateResponseSchema;
-    };
-    /**
-     * Delete a tenant
-     *
-     * @generated from rpc fits.api.v1.TenantService.Delete
-     */
-    delete: {
-        methodKind: "unary";
-        input: typeof TenantServiceDeleteRequestSchema;
-        output: typeof TenantServiceDeleteResponseSchema;
     };
 }>;

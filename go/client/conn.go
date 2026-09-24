@@ -14,11 +14,9 @@ import (
 )
 
 const (
-	tokenRenewChecksDuringLifetime = 4
-	tokenFileRereadDuration        = 5 * time.Minute
-	TokenEnvName                   = "FCO_APIV1_TOKEN"
-	TokenFileEnvName               = "FCO_APIV1_TOKEN_FILE"
-	BaseURLEnvName                 = "FCO_APIV1_URL"
+	TokenEnvName     = "FCO_APIV1_TOKEN"
+	TokenFileEnvName = "FCO_APIV1_TOKEN_FILE"
+	BaseURLEnvName   = "FCO_APIV1_URL"
 )
 
 type (
@@ -34,33 +32,20 @@ type (
 		// If Tokenfile is specified, Token cannot be specified.
 		// Token renewal must be done from outside
 		TokenFile string
-		// Duration between token file re-reads, optional, defaults to 5min if not specified.
-		TokenFileRereadDuration time.Duration
 
 		// Optional client Interceptors
 		Interceptors []connect.Interceptor
 
 		UserAgent string
-		// TokenRenewal defines if and how the token should be renewed
-		TokenRenewal *TokenRenewal
 
 		// Transport optional, can be used to configure how the http transport works.
 		Transport http.RoundTripper
 
 		Log *slog.Logger
 
-		expiresAt         time.Time
-		issuedAt          time.Time
-		tokenFileLastRead time.Time
+		expiresAt time.Time
+		issuedAt  time.Time
 	}
-
-	TokenRenewal struct {
-		// PersistTokenFn is called to persist the newly fetched token
-		// token will not be persisted if not specified
-		PersistTokenFn PersistTokenFn
-	}
-
-	PersistTokenFn func(token string) error
 )
 
 func New(config *DialConfig) (Client, error) {
@@ -77,19 +62,11 @@ func New(config *DialConfig) (Client, error) {
 	if config.Token != "" {
 		authInterceptor := &authInterceptor{config: config}
 		c.interceptors = append(c.interceptors, authInterceptor)
-
-		if config.TokenRenewal != nil {
-			tokenRenewingInterceptor := &tokenRenewingInterceptor{config: config, client: c}
-			c.interceptors = append(c.interceptors, tokenRenewingInterceptor)
-		}
 	}
 
 	if config.TokenFile != "" {
 		authInterceptor := &authInterceptor{config: config}
 		c.interceptors = append(c.interceptors, authInterceptor)
-
-		tokenRenewingInterceptor := &tokenRenewingInterceptor{config: config, client: c}
-		c.interceptors = append(c.interceptors, tokenRenewingInterceptor)
 	}
 
 	if config.Log != nil {
@@ -136,18 +113,11 @@ func (dc *DialConfig) parse() error {
 	}
 
 	if dc.Token == "" && dc.TokenFile != "" {
-		if dc.TokenFileRereadDuration == 0 {
-			dc.TokenFileRereadDuration = tokenFileRereadDuration
-		}
-		if dc.TokenFileRereadDuration < time.Minute {
-			return fmt.Errorf("token file re-read duration must be greater than 1min")
-		}
 		content, err := os.ReadFile(dc.TokenFile)
 		if err != nil {
 			return err
 		}
 		dc.Token = string(content)
-		dc.tokenFileLastRead = time.Now()
 	}
 
 	if dc.Token == "" && dc.TokenFile == "" {

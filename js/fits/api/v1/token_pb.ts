@@ -5,18 +5,18 @@
 import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../../buf/validate/validate_pb";
-import type { AdminRole, Labels, Meta, ProjectRole, TenantRole, UpdateLabels, UpdateMeta } from "./common_pb";
+import type { AdminRole, Meta, ProjectRole, TenantRole } from "./common_pb";
 import { file_fits_api_v1_common } from "./common_pb";
 import { file_fits_api_v1_predefined_rules } from "./predefined_rules_pb";
-import type { Duration, Timestamp } from "@bufbuild/protobuf/wkt";
-import { file_google_protobuf_duration, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
+import type { Timestamp } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file fits/api/v1/token.proto.
  */
 export const file_fits_api_v1_token: GenFile = /*@__PURE__*/
-  fileDesc("ChdmaXRzL2FwaS92MS90b2tlbi5wcm90bxILZml0cy5hcGkudjEizQYKBVRva2VuEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEhgKBHVzZXIYAiABKAlCCrpIB3IFEAIYgAQSHwoEbWV0YRgDIAEoCzIRLmZpdHMuYXBpLnYxLk1ldGESIAoLZGVzY3JpcHRpb24YBCABKAlCC7pICHIGyLOusQIBEj0KC3Blcm1pc3Npb25zGAUgAygLMh0uZml0cy5hcGkudjEuTWV0aG9kUGVybWlzc2lvbkIJukgGkgEDEPQDEisKB2V4cGlyZXMYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi0KCWlzc3VlZF9hdBgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASNAoKdG9rZW5fdHlwZRgIIAEoDjIWLmZpdHMuYXBpLnYxLlRva2VuVHlwZUIIukgFggECEAESOwoNcHJvamVjdF9yb2xlcxgJIAMoCzIkLmZpdHMuYXBpLnYxLlRva2VuLlByb2plY3RSb2xlc0VudHJ5EjkKDHRlbmFudF9yb2xlcxgKIAMoCzIjLmZpdHMuYXBpLnYxLlRva2VuLlRlbmFudFJvbGVzRW50cnkSOQoKYWRtaW5fcm9sZRgLIAEoDjIWLmZpdHMuYXBpLnYxLkFkbWluUm9sZUIIukgFggECEAFIAIgBARpNChFQcm9qZWN0Um9sZXNFbnRyeRILCgNrZXkYASABKAkSJwoFdmFsdWUYAiABKA4yGC5maXRzLmFwaS52MS5Qcm9qZWN0Um9sZToCOAEaSwoQVGVuYW50Um9sZXNFbnRyeRILCgNrZXkYASABKAkSJgoFdmFsdWUYAiABKA4yFy5maXRzLmFwaS52MS5UZW5hbnRSb2xlOgI4ATqfAbpImwEamAEKG3Rva2VuLnBlcm1pc3Npb25zLnVzZXJ0b2tlbhIpdG9rZW4gdHlwZSB1c2VyIG11c3Qgbm90IGhhdmUgcGVybWlzc2lvbnMaTih0aGlzLnRva2VuX3R5cGUgPT0gMiAmJiB0aGlzLnBlcm1pc3Npb25zLnNpemUoKSA9PSAwKSB8fCB0aGlzLnRva2VuX3R5cGUgIT0gMkINCgtfYWRtaW5fcm9sZSKgBQoZVG9rZW5TZXJ2aWNlQ3JlYXRlUmVxdWVzdBIgCgtkZXNjcmlwdGlvbhgBIAEoCUILukgIcgbIs66xAgESPAoLcGVybWlzc2lvbnMYAiADKAsyHS5maXRzLmFwaS52MS5NZXRob2RQZXJtaXNzaW9uQgi6SAWSAQIQZBI+CgdleHBpcmVzGAMgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uQhK6SA+qAQwaBQiB54QPMgMI2AQSawoNcHJvamVjdF9yb2xlcxgEIAMoCzI4LmZpdHMuYXBpLnYxLlRva2VuU2VydmljZUNyZWF0ZVJlcXVlc3QuUHJvamVjdFJvbGVzRW50cnlCGrpIF5oBFMCVuLECASIFcgOwAQEqBYIBAhABEmsKDHRlbmFudF9yb2xlcxgFIAMoCzI3LmZpdHMuYXBpLnYxLlRva2VuU2VydmljZUNyZWF0ZVJlcXVlc3QuVGVuYW50Um9sZXNFbnRyeUIcukgZmgEWwJW4sQIBIgdyBRADGIABKgWCAQIQARI5CgphZG1pbl9yb2xlGAYgASgOMhYuZml0cy5hcGkudjEuQWRtaW5Sb2xlQgi6SAWCAQIQAUgAiAEBEiMKBmxhYmVscxgHIAEoCzITLmZpdHMuYXBpLnYxLkxhYmVscxpNChFQcm9qZWN0Um9sZXNFbnRyeRILCgNrZXkYASABKAkSJwoFdmFsdWUYAiABKA4yGC5maXRzLmFwaS52MS5Qcm9qZWN0Um9sZToCOAEaSwoQVGVuYW50Um9sZXNFbnRyeRILCgNrZXkYASABKAkSJgoFdmFsdWUYAiABKA4yFy5maXRzLmFwaS52MS5UZW5hbnRSb2xlOgI4AUINCgtfYWRtaW5fcm9sZSJJChBNZXRob2RQZXJtaXNzaW9uEhkKB3N1YmplY3QYASABKAlCCLpIBXIDGIACEhoKB21ldGhvZHMYAiADKAlCCbpIBpIBAxD0AyJPChpUb2tlblNlcnZpY2VDcmVhdGVSZXNwb25zZRIhCgV0b2tlbhgBIAEoCzISLmZpdHMuYXBpLnYxLlRva2VuEg4KBnNlY3JldBgCIAEoCSIZChdUb2tlblNlcnZpY2VMaXN0UmVxdWVzdCI+ChhUb2tlblNlcnZpY2VMaXN0UmVzcG9uc2USIgoGdG9rZW5zGAEgAygLMhIuZml0cy5hcGkudjEuVG9rZW4iMwoZVG9rZW5TZXJ2aWNlUmV2b2tlUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABASIcChpUb2tlblNlcnZpY2VSZXZva2VSZXNwb25zZSK/BQoZVG9rZW5TZXJ2aWNlVXBkYXRlUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARI0Cgt1cGRhdGVfbWV0YRgCIAEoCzIXLmZpdHMuYXBpLnYxLlVwZGF0ZU1ldGFCBrpIA8gBABIlCgtkZXNjcmlwdGlvbhgDIAEoCUILukgIcgbIs66xAgFIAIgBARIyCgtwZXJtaXNzaW9ucxgEIAMoCzIdLmZpdHMuYXBpLnYxLk1ldGhvZFBlcm1pc3Npb24SawoNcHJvamVjdF9yb2xlcxgFIAMoCzI4LmZpdHMuYXBpLnYxLlRva2VuU2VydmljZVVwZGF0ZVJlcXVlc3QuUHJvamVjdFJvbGVzRW50cnlCGrpIF5oBFMCVuLECASIFcgOwAQEqBYIBAhABEmsKDHRlbmFudF9yb2xlcxgGIAMoCzI3LmZpdHMuYXBpLnYxLlRva2VuU2VydmljZVVwZGF0ZVJlcXVlc3QuVGVuYW50Um9sZXNFbnRyeUIcukgZmgEWwJW4sQIBIgdyBRADGIABKgWCAQIQARI5CgphZG1pbl9yb2xlGAcgASgOMhYuZml0cy5hcGkudjEuQWRtaW5Sb2xlQgi6SAWCAQIQAUgBiAEBEikKBmxhYmVscxgIIAEoCzIZLmZpdHMuYXBpLnYxLlVwZGF0ZUxhYmVscxpNChFQcm9qZWN0Um9sZXNFbnRyeRILCgNrZXkYASABKAkSJwoFdmFsdWUYAiABKA4yGC5maXRzLmFwaS52MS5Qcm9qZWN0Um9sZToCOAEaSwoQVGVuYW50Um9sZXNFbnRyeRILCgNrZXkYASABKAkSJgoFdmFsdWUYAiABKA4yFy5maXRzLmFwaS52MS5UZW5hbnRSb2xlOgI4AUIOCgxfZGVzY3JpcHRpb25CDQoLX2FkbWluX3JvbGUiPwoaVG9rZW5TZXJ2aWNlVXBkYXRlUmVzcG9uc2USIQoFdG9rZW4YASABKAsyEi5maXRzLmFwaS52MS5Ub2tlbiIwChZUb2tlblNlcnZpY2VHZXRSZXF1ZXN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBIjwKF1Rva2VuU2VydmljZUdldFJlc3BvbnNlEiEKBXRva2VuGAEgASgLMhIuZml0cy5hcGkudjEuVG9rZW4iHAoaVG9rZW5TZXJ2aWNlUmVmcmVzaFJlcXVlc3QiUAobVG9rZW5TZXJ2aWNlUmVmcmVzaFJlc3BvbnNlEiEKBXRva2VuGAEgASgLMhIuZml0cy5hcGkudjEuVG9rZW4SDgoGc2VjcmV0GAIgASgJKlAKCVRva2VuVHlwZRIaChZUT0tFTl9UWVBFX1VOU1BFQ0lGSUVEEAASEgoOVE9LRU5fVFlQRV9BUEkQARITCg9UT0tFTl9UWVBFX1VTRVIQAjLgBAoMVG9rZW5TZXJ2aWNlEloKA0dldBIjLmZpdHMuYXBpLnYxLlRva2VuU2VydmljZUdldFJlcXVlc3QaJC5maXRzLmFwaS52MS5Ub2tlblNlcnZpY2VHZXRSZXNwb25zZSII2PMYAuDzGAESYwoGQ3JlYXRlEiYuZml0cy5hcGkudjEuVG9rZW5TZXJ2aWNlQ3JlYXRlUmVxdWVzdBonLmZpdHMuYXBpLnYxLlRva2VuU2VydmljZUNyZWF0ZVJlc3BvbnNlIgjY8xgC4PMYARJjCgZVcGRhdGUSJi5maXRzLmFwaS52MS5Ub2tlblNlcnZpY2VVcGRhdGVSZXF1ZXN0GicuZml0cy5hcGkudjEuVG9rZW5TZXJ2aWNlVXBkYXRlUmVzcG9uc2UiCNjzGALg8xgBEl0KBExpc3QSJC5maXRzLmFwaS52MS5Ub2tlblNlcnZpY2VMaXN0UmVxdWVzdBolLmZpdHMuYXBpLnYxLlRva2VuU2VydmljZUxpc3RSZXNwb25zZSII2PMYAuDzGAESYwoGUmV2b2tlEiYuZml0cy5hcGkudjEuVG9rZW5TZXJ2aWNlUmV2b2tlUmVxdWVzdBonLmZpdHMuYXBpLnYxLlRva2VuU2VydmljZVJldm9rZVJlc3BvbnNlIgjY8xgC4PMYARJmCgdSZWZyZXNoEicuZml0cy5hcGkudjEuVG9rZW5TZXJ2aWNlUmVmcmVzaFJlcXVlc3QaKC5maXRzLmFwaS52MS5Ub2tlblNlcnZpY2VSZWZyZXNoUmVzcG9uc2UiCNjzGALg8xgBQpYBCg9jb20uZml0cy5hcGkudjFCClRva2VuUHJvdG9QAVopZ2l0aHViLmNvbS9maS10cy9hcGkvZ28vZml0cy9hcGkvdjE7YXBpdjGiAgNGQViqAgtGaXRzLkFwaS5WMcoCC0ZpdHNcQXBpXFYx4gIXRml0c1xBcGlcVjFcR1BCTWV0YWRhdGHqAg1GaXRzOjpBcGk6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules, file_google_protobuf_duration, file_google_protobuf_timestamp]);
+  fileDesc("ChdmaXRzL2FwaS92MS90b2tlbi5wcm90bxILZml0cy5hcGkudjEizQYKBVRva2VuEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEhgKBHVzZXIYAiABKAlCCrpIB3IFEAIYgAQSHwoEbWV0YRgDIAEoCzIRLmZpdHMuYXBpLnYxLk1ldGESIAoLZGVzY3JpcHRpb24YBCABKAlCC7pICHIGyLOusQIBEj0KC3Blcm1pc3Npb25zGAUgAygLMh0uZml0cy5hcGkudjEuTWV0aG9kUGVybWlzc2lvbkIJukgGkgEDEPQDEisKB2V4cGlyZXMYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi0KCWlzc3VlZF9hdBgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASNAoKdG9rZW5fdHlwZRgIIAEoDjIWLmZpdHMuYXBpLnYxLlRva2VuVHlwZUIIukgFggECEAESOwoNcHJvamVjdF9yb2xlcxgJIAMoCzIkLmZpdHMuYXBpLnYxLlRva2VuLlByb2plY3RSb2xlc0VudHJ5EjkKDHRlbmFudF9yb2xlcxgKIAMoCzIjLmZpdHMuYXBpLnYxLlRva2VuLlRlbmFudFJvbGVzRW50cnkSOQoKYWRtaW5fcm9sZRgLIAEoDjIWLmZpdHMuYXBpLnYxLkFkbWluUm9sZUIIukgFggECEAFIAIgBARpNChFQcm9qZWN0Um9sZXNFbnRyeRILCgNrZXkYASABKAkSJwoFdmFsdWUYAiABKA4yGC5maXRzLmFwaS52MS5Qcm9qZWN0Um9sZToCOAEaSwoQVGVuYW50Um9sZXNFbnRyeRILCgNrZXkYASABKAkSJgoFdmFsdWUYAiABKA4yFy5maXRzLmFwaS52MS5UZW5hbnRSb2xlOgI4ATqfAbpImwEamAEKG3Rva2VuLnBlcm1pc3Npb25zLnVzZXJ0b2tlbhIpdG9rZW4gdHlwZSB1c2VyIG11c3Qgbm90IGhhdmUgcGVybWlzc2lvbnMaTih0aGlzLnRva2VuX3R5cGUgPT0gMiAmJiB0aGlzLnBlcm1pc3Npb25zLnNpemUoKSA9PSAwKSB8fCB0aGlzLnRva2VuX3R5cGUgIT0gMkINCgtfYWRtaW5fcm9sZSJJChBNZXRob2RQZXJtaXNzaW9uEhkKB3N1YmplY3QYASABKAlCCLpIBXIDGIACEhoKB21ldGhvZHMYAiADKAlCCbpIBpIBAxD0AyIZChdUb2tlblNlcnZpY2VMaXN0UmVxdWVzdCI+ChhUb2tlblNlcnZpY2VMaXN0UmVzcG9uc2USIgoGdG9rZW5zGAEgAygLMhIuZml0cy5hcGkudjEuVG9rZW4iMwoZVG9rZW5TZXJ2aWNlUmV2b2tlUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABASIcChpUb2tlblNlcnZpY2VSZXZva2VSZXNwb25zZSIwChZUb2tlblNlcnZpY2VHZXRSZXF1ZXN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBIjwKF1Rva2VuU2VydmljZUdldFJlc3BvbnNlEiEKBXRva2VuGAEgASgLMhIuZml0cy5hcGkudjEuVG9rZW4qUAoJVG9rZW5UeXBlEhoKFlRPS0VOX1RZUEVfVU5TUEVDSUZJRUQQABISCg5UT0tFTl9UWVBFX0FQSRABEhMKD1RPS0VOX1RZUEVfVVNFUhACMq4CCgxUb2tlblNlcnZpY2USWgoDR2V0EiMuZml0cy5hcGkudjEuVG9rZW5TZXJ2aWNlR2V0UmVxdWVzdBokLmZpdHMuYXBpLnYxLlRva2VuU2VydmljZUdldFJlc3BvbnNlIgjY8xgC4PMYARJdCgRMaXN0EiQuZml0cy5hcGkudjEuVG9rZW5TZXJ2aWNlTGlzdFJlcXVlc3QaJS5maXRzLmFwaS52MS5Ub2tlblNlcnZpY2VMaXN0UmVzcG9uc2UiCNjzGALg8xgBEmMKBlJldm9rZRImLmZpdHMuYXBpLnYxLlRva2VuU2VydmljZVJldm9rZVJlcXVlc3QaJy5maXRzLmFwaS52MS5Ub2tlblNlcnZpY2VSZXZva2VSZXNwb25zZSII2PMYAuDzGAFClgEKD2NvbS5maXRzLmFwaS52MUIKVG9rZW5Qcm90b1ABWilnaXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS92MTthcGl2MaICA0ZBWKoCC0ZpdHMuQXBpLlYxygILRml0c1xBcGlcVjHiAhdGaXRzXEFwaVxWMVxHUEJNZXRhZGF0YeoCDUZpdHM6OkFwaTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules, file_google_protobuf_timestamp]);
 
 /**
  * Token generates a jwt authentication token to access the api
@@ -121,69 +121,6 @@ export const TokenSchema: GenMessage<Token> = /*@__PURE__*/
   messageDesc(file_fits_api_v1_token, 0);
 
 /**
- * TokenServiceCreateRequest is the request payload to create a token
- *
- * @generated from message fits.api.v1.TokenServiceCreateRequest
- */
-export type TokenServiceCreateRequest = Message<"fits.api.v1.TokenServiceCreateRequest"> & {
-  /**
-   * Description of the token
-   *
-   * @generated from field: string description = 1;
-   */
-  description: string;
-
-  /**
-   * Permissions is a list of service methods this token can be used for
-   *
-   * @generated from field: repeated fits.api.v1.MethodPermission permissions = 2;
-   */
-  permissions: MethodPermission[];
-
-  /**
-   * Expires gives the duration since now, after which this token can not be used anymore
-   *
-   * @generated from field: google.protobuf.Duration expires = 3;
-   */
-  expires?: Duration | undefined;
-
-  /**
-   * ProjectRoles associates a project id with the corresponding role of the token owner
-   *
-   * @generated from field: map<string, fits.api.v1.ProjectRole> project_roles = 4;
-   */
-  projectRoles: { [key: string]: ProjectRole };
-
-  /**
-   * TenantRoles_associates a tenant id with the corresponding role of the token owner
-   *
-   * @generated from field: map<string, fits.api.v1.TenantRole> tenant_roles = 5;
-   */
-  tenantRoles: { [key: string]: TenantRole };
-
-  /**
-   * AdminRole defines the admin role of the token owner
-   *
-   * @generated from field: optional fits.api.v1.AdminRole admin_role = 6;
-   */
-  adminRole?: AdminRole | undefined;
-
-  /**
-   * Labels on this token
-   *
-   * @generated from field: fits.api.v1.Labels labels = 7;
-   */
-  labels?: Labels | undefined;
-};
-
-/**
- * Describes the message fits.api.v1.TokenServiceCreateRequest.
- * Use `create(TokenServiceCreateRequestSchema)` to create a new message.
- */
-export const TokenServiceCreateRequestSchema: GenMessage<TokenServiceCreateRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 1);
-
-/**
  * MethodPermission is a mapping from a subject/project to a service method
  *
  * @generated from message fits.api.v1.MethodPermission
@@ -214,35 +151,7 @@ export type MethodPermission = Message<"fits.api.v1.MethodPermission"> & {
  * Use `create(MethodPermissionSchema)` to create a new message.
  */
 export const MethodPermissionSchema: GenMessage<MethodPermission> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 2);
-
-/**
- * TokenServiceCreateResponse is the response payload of a token create request
- *
- * @generated from message fits.api.v1.TokenServiceCreateResponse
- */
-export type TokenServiceCreateResponse = Message<"fits.api.v1.TokenServiceCreateResponse"> & {
-  /**
-   * Token which was created
-   *
-   * @generated from field: fits.api.v1.Token token = 1;
-   */
-  token?: Token | undefined;
-
-  /**
-   * Secret is the body if the jwt token, should be used in api requests as bearer token
-   *
-   * @generated from field: string secret = 2;
-   */
-  secret: string;
-};
-
-/**
- * Describes the message fits.api.v1.TokenServiceCreateResponse.
- * Use `create(TokenServiceCreateResponseSchema)` to create a new message.
- */
-export const TokenServiceCreateResponseSchema: GenMessage<TokenServiceCreateResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 3);
+  messageDesc(file_fits_api_v1_token, 1);
 
 /**
  * TokenServiceListRequest is the request payload to list tokens
@@ -257,7 +166,7 @@ export type TokenServiceListRequest = Message<"fits.api.v1.TokenServiceListReque
  * Use `create(TokenServiceListRequestSchema)` to create a new message.
  */
 export const TokenServiceListRequestSchema: GenMessage<TokenServiceListRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 4);
+  messageDesc(file_fits_api_v1_token, 2);
 
 /**
  * TokenServiceListResponse is the response payload of a token list request
@@ -278,7 +187,7 @@ export type TokenServiceListResponse = Message<"fits.api.v1.TokenServiceListResp
  * Use `create(TokenServiceListResponseSchema)` to create a new message.
  */
 export const TokenServiceListResponseSchema: GenMessage<TokenServiceListResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 5);
+  messageDesc(file_fits_api_v1_token, 3);
 
 /**
  * TokenServiceRevokeRequest is the request payload of a token revoke request
@@ -299,7 +208,7 @@ export type TokenServiceRevokeRequest = Message<"fits.api.v1.TokenServiceRevokeR
  * Use `create(TokenServiceRevokeRequestSchema)` to create a new message.
  */
 export const TokenServiceRevokeRequestSchema: GenMessage<TokenServiceRevokeRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 6);
+  messageDesc(file_fits_api_v1_token, 4);
 
 /**
  * TokenServiceRevokeResponse is the response payload of a token revoke request
@@ -314,99 +223,7 @@ export type TokenServiceRevokeResponse = Message<"fits.api.v1.TokenServiceRevoke
  * Use `create(TokenServiceRevokeResponseSchema)` to create a new message.
  */
 export const TokenServiceRevokeResponseSchema: GenMessage<TokenServiceRevokeResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 7);
-
-/**
- * TokenServiceUpdateRequest is the request payload of a token update request
- *
- * @generated from message fits.api.v1.TokenServiceUpdateRequest
- */
-export type TokenServiceUpdateRequest = Message<"fits.api.v1.TokenServiceUpdateRequest"> & {
-  /**
-   * Uuid of the token to update
-   *
-   * @generated from field: string uuid = 1;
-   */
-  uuid: string;
-
-  /**
-   * UpdateMeta contains the timestamp and strategy to be used in this update request
-   * TokenUpdate is not guarded with optlock in the backend
-   *
-   * @generated from field: fits.api.v1.UpdateMeta update_meta = 2;
-   */
-  updateMeta?: UpdateMeta | undefined;
-
-  /**
-   * Description is a user given description of this token.
-   *
-   * @generated from field: optional string description = 3;
-   */
-  description?: string | undefined;
-
-  /**
-   * Permissions is a list of service methods this token can be used for
-   *
-   * @generated from field: repeated fits.api.v1.MethodPermission permissions = 4;
-   */
-  permissions: MethodPermission[];
-
-  /**
-   * ProjectRoles associates a project id with the corresponding role of the token owner
-   *
-   * @generated from field: map<string, fits.api.v1.ProjectRole> project_roles = 5;
-   */
-  projectRoles: { [key: string]: ProjectRole };
-
-  /**
-   * TenantRoles associates a tenant id with the corresponding role of the token owner
-   *
-   * @generated from field: map<string, fits.api.v1.TenantRole> tenant_roles = 6;
-   */
-  tenantRoles: { [key: string]: TenantRole };
-
-  /**
-   * AdminRole defines the admin role of the token owner
-   *
-   * @generated from field: optional fits.api.v1.AdminRole admin_role = 7;
-   */
-  adminRole?: AdminRole | undefined;
-
-  /**
-   * Labels on this token
-   *
-   * @generated from field: fits.api.v1.UpdateLabels labels = 8;
-   */
-  labels?: UpdateLabels | undefined;
-};
-
-/**
- * Describes the message fits.api.v1.TokenServiceUpdateRequest.
- * Use `create(TokenServiceUpdateRequestSchema)` to create a new message.
- */
-export const TokenServiceUpdateRequestSchema: GenMessage<TokenServiceUpdateRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 8);
-
-/**
- * TokenServiceUpdateResponse is the response payload of a token update request
- *
- * @generated from message fits.api.v1.TokenServiceUpdateResponse
- */
-export type TokenServiceUpdateResponse = Message<"fits.api.v1.TokenServiceUpdateResponse"> & {
-  /**
-   * Token is the updated token
-   *
-   * @generated from field: fits.api.v1.Token token = 1;
-   */
-  token?: Token | undefined;
-};
-
-/**
- * Describes the message fits.api.v1.TokenServiceUpdateResponse.
- * Use `create(TokenServiceUpdateResponseSchema)` to create a new message.
- */
-export const TokenServiceUpdateResponseSchema: GenMessage<TokenServiceUpdateResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 9);
+  messageDesc(file_fits_api_v1_token, 5);
 
 /**
  * TokenServiceGetRequest is the request payload of a token get request
@@ -427,7 +244,7 @@ export type TokenServiceGetRequest = Message<"fits.api.v1.TokenServiceGetRequest
  * Use `create(TokenServiceGetRequestSchema)` to create a new message.
  */
 export const TokenServiceGetRequestSchema: GenMessage<TokenServiceGetRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 10);
+  messageDesc(file_fits_api_v1_token, 6);
 
 /**
  * TokenServiceGetResponse is the response payload of a token get request
@@ -448,52 +265,7 @@ export type TokenServiceGetResponse = Message<"fits.api.v1.TokenServiceGetRespon
  * Use `create(TokenServiceGetResponseSchema)` to create a new message.
  */
 export const TokenServiceGetResponseSchema: GenMessage<TokenServiceGetResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 11);
-
-/**
- * TokenServiceRefreshRequest is the request payload of a token refresh request
- * Permissions, Roles and Expiration duration and all other properties are inherited from the calling token.
- * The expiration duration will be calculated from the existing token (exp - iat)
- *
- * @generated from message fits.api.v1.TokenServiceRefreshRequest
- */
-export type TokenServiceRefreshRequest = Message<"fits.api.v1.TokenServiceRefreshRequest"> & {
-};
-
-/**
- * Describes the message fits.api.v1.TokenServiceRefreshRequest.
- * Use `create(TokenServiceRefreshRequestSchema)` to create a new message.
- */
-export const TokenServiceRefreshRequestSchema: GenMessage<TokenServiceRefreshRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 12);
-
-/**
- * TokenServiceRefreshResponse is the response payload of a token refresh request
- *
- * @generated from message fits.api.v1.TokenServiceRefreshResponse
- */
-export type TokenServiceRefreshResponse = Message<"fits.api.v1.TokenServiceRefreshResponse"> & {
-  /**
-   * Token which was refreshed
-   *
-   * @generated from field: fits.api.v1.Token token = 1;
-   */
-  token?: Token | undefined;
-
-  /**
-   * Secret is the body if the jwt token, should be used in api requests as bearer token
-   *
-   * @generated from field: string secret = 2;
-   */
-  secret: string;
-};
-
-/**
- * Describes the message fits.api.v1.TokenServiceRefreshResponse.
- * Use `create(TokenServiceRefreshResponseSchema)` to create a new message.
- */
-export const TokenServiceRefreshResponseSchema: GenMessage<TokenServiceRefreshResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 13);
+  messageDesc(file_fits_api_v1_token, 7);
 
 /**
  * TokenType specifies different use cases of tokens
@@ -546,26 +318,6 @@ export const TokenService: GenService<{
     output: typeof TokenServiceGetResponseSchema;
   },
   /**
-   * Creates a token to authenticate against the platform, the secret will be only visible in the response.
-   *
-   * @generated from rpc fits.api.v1.TokenService.Create
-   */
-  create: {
-    methodKind: "unary";
-    input: typeof TokenServiceCreateRequestSchema;
-    output: typeof TokenServiceCreateResponseSchema;
-  },
-  /**
-   * Updates a token.
-   *
-   * @generated from rpc fits.api.v1.TokenService.Update
-   */
-  update: {
-    methodKind: "unary";
-    input: typeof TokenServiceUpdateRequestSchema;
-    output: typeof TokenServiceUpdateResponseSchema;
-  },
-  /**
    * Returns the list of all user tokens.
    *
    * @generated from rpc fits.api.v1.TokenService.List
@@ -584,16 +336,6 @@ export const TokenService: GenService<{
     methodKind: "unary";
     input: typeof TokenServiceRevokeRequestSchema;
     output: typeof TokenServiceRevokeResponseSchema;
-  },
-  /**
-   * Refreshes a token, this will create a new token with the exact same permissions as the calling token contains.
-   *
-   * @generated from rpc fits.api.v1.TokenService.Refresh
-   */
-  refresh: {
-    methodKind: "unary";
-    input: typeof TokenServiceRefreshRequestSchema;
-    output: typeof TokenServiceRefreshResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_fits_api_v1_token, 0);
