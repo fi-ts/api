@@ -387,6 +387,10 @@
             <ul>
               
                 <li>
+                  <a href="#fits.api.mvm.v1.ContactChange"><span class="badge">M</span>ContactChange</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.mvm.v1.LinuxDetails"><span class="badge">M</span>LinuxDetails</a>
                 </li>
               
@@ -483,6 +487,14 @@
                 </li>
               
                 <li>
+                  <a href="#fits.api.mvm.v1.MVMServiceUpdateRequest"><span class="badge">M</span>MVMServiceUpdateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.MVMServiceUpdateResponse"><span class="badge">M</span>MVMServiceUpdateResponse</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.mvm.v1.MVMServiceValidateAddDiskRequest"><span class="badge">M</span>MVMServiceValidateAddDiskRequest</a>
                 </li>
               
@@ -520,6 +532,14 @@
               
                 <li>
                   <a href="#fits.api.mvm.v1.NetworkInterface"><span class="badge">M</span>NetworkInterface</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.PerformanceClassChange"><span class="badge">M</span>PerformanceClassChange</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.ServiceClassChange"><span class="badge">M</span>ServiceClassChange</a>
                 </li>
               
                 <li>
@@ -1897,6 +1917,30 @@ TODO should be filtered by project instead, see https://github.com/fi-ts/fco-api
       <p></p>
 
       
+        <h3 id="fits.api.mvm.v1.ContactChange">ContactChange</h3>
+        <p>ContactChange is the payload for changing a MVM's contact person.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>contact_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the new contact. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="fits.api.mvm.v1.LinuxDetails">LinuxDetails</h3>
         <p>Linux-specific MVM details.</p>
 
@@ -2682,6 +2726,80 @@ TODO: can this be optional? </p></td>
 
         
       
+        <h3 id="fits.api.mvm.v1.MVMServiceUpdateRequest">MVMServiceUpdateRequest</h3>
+        <p>Request to change a mutable property of an existing MVM.</p><p>Exactly one action must be set; each maps onto its own upstream endpoint.</p><p>TODO: the oneof mirrors the upstream constraint (nulink has one endpoint per</p><p>action); combined changes would need</p><p>server-side fan-out without rollback.</p><p>TODO: clarify async semantics — this is a queued "request to update", not an</p><p>immediate update (e.g. disk changes are applied overnight). Consider</p><p>renaming to reflect that.</p><p>TODO: differentiate between fire-and-forget and queued actions in the API.</p><p>TODO: is it possible to expose the pending-change queue (list/cancel) to the caller?</p><p>TODO: clarify who enqueues the request and whether a pending change blocks</p><p>further edits (e.g. after AddDisk, until the change executes).</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the MVM to update. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Project the MVM belongs to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>order_number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Order reference for this operation.
+TODO: can this be optional? </p></td>
+                </tr>
+              
+                <tr>
+                  <td>update_meta</td>
+                  <td><a href="#fits.api.v1.UpdateMeta">fits.api.v1.UpdateMeta</a></td>
+                  <td></td>
+                  <td><p>Timestamp and strategy for this update. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>performance_class</td>
+                  <td><a href="#fits.api.mvm.v1.PerformanceClassChange">PerformanceClassChange</a></td>
+                  <td></td>
+                  <td><p>Change the CPU/RAM performance class. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>service_class</td>
+                  <td><a href="#fits.api.mvm.v1.ServiceClassChange">ServiceClassChange</a></td>
+                  <td></td>
+                  <td><p>Change the service class. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>contact</td>
+                  <td><a href="#fits.api.mvm.v1.ContactChange">ContactChange</a></td>
+                  <td></td>
+                  <td><p>Change the contact person. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.MVMServiceUpdateResponse">MVMServiceUpdateResponse</h3>
+        <p>Response for Update; an empty response means the change was accepted.</p>
+
+        
+
+        
+      
         <h3 id="fits.api.mvm.v1.MVMServiceValidateAddDiskRequest">MVMServiceValidateAddDiskRequest</h3>
         <p>Request to validate an AddDisk without ordering anything.</p>
 
@@ -3006,6 +3124,61 @@ TODO: add validation </p></td>
 
         
       
+        <h3 id="fits.api.mvm.v1.PerformanceClassChange">PerformanceClassChange</h3>
+        <p>PerformanceClassChange is the payload for changing a MVM's CPU and RAM.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>cpu</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Number of vCPUs (1-64). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ram</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>RAM size in GB. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.ServiceClassChange">ServiceClassChange</h3>
+        <p>ServiceClassChange is the payload for changing a MVM's service class.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>serviceclass</td>
+                  <td><a href="#fits.api.mvm.v1.ServiceClass">ServiceClass</a></td>
+                  <td></td>
+                  <td><p>Target service class. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="fits.api.mvm.v1.WindowsDetails">WindowsDetails</h3>
         <p>Windows-specific MVM details.</p>
 
@@ -3272,6 +3445,13 @@ deletable.</p></td>
                 <td><a href="#fits.api.mvm.v1.MVMServiceCreateRequest">MVMServiceCreateRequest</a></td>
                 <td><a href="#fits.api.mvm.v1.MVMServiceCreateResponse">MVMServiceCreateResponse</a></td>
                 <td><p>Creates a new MVM.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Update</td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceUpdateRequest">MVMServiceUpdateRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceUpdateResponse">MVMServiceUpdateResponse</a></td>
+                <td><p>Updates a MVM.</p></td>
               </tr>
             
               <tr>

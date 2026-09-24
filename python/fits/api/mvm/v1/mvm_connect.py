@@ -24,6 +24,9 @@ class MVMService(Protocol):
     async def create(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
+    async def update(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
     async def list(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
@@ -85,6 +88,16 @@ class MVMServiceASGIApplication(ConnectASGIApplication[MVMService]):
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=svc.create,
+                ),
+                "/fits.api.mvm.v1.MVMService/Update": Endpoint.unary(
+                    method=MethodInfo(
+                        name="Update",
+                        service_name="fits.api.mvm.v1.MVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.update,
                 ),
                 "/fits.api.mvm.v1.MVMService/List": Endpoint.unary(
                     method=MethodInfo(
@@ -254,6 +267,26 @@ class MVMServiceClient(ConnectClient):
                 service_name="fits.api.mvm.v1.MVMService",
                 input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateRequest,
                 output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    async def update(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="Update",
+                service_name="fits.api.mvm.v1.MVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
@@ -509,6 +542,8 @@ class MVMServiceSync(Protocol):
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def create(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def update(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def list(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def delete(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteResponse:
@@ -558,6 +593,16 @@ class MVMServiceWSGIApplication(ConnectWSGIApplication):
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=service.create,
+                ),
+                "/fits.api.mvm.v1.MVMService/Update": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="Update",
+                        service_name="fits.api.mvm.v1.MVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.update,
                 ),
                 "/fits.api.mvm.v1.MVMService/List": EndpointSync.unary(
                     method=MethodInfo(
@@ -727,6 +772,26 @@ class MVMServiceClientSync(ConnectClientSync):
                 service_name="fits.api.mvm.v1.MVMService",
                 input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateRequest,
                 output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def update(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="Update",
+                service_name="fits.api.mvm.v1.MVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,

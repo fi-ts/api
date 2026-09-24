@@ -22,7 +22,12 @@ service MVMService {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
-
+  // Updates a MVM.
+  rpc Update(MVMServiceUpdateRequest) returns (MVMServiceUpdateResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_OWNER;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
+  }
   // Returns the list of all MVMs.
   rpc List(MVMServiceListRequest) returns (MVMServiceListResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_OWNER;
@@ -372,6 +377,66 @@ message WindowsDisk {
 
 // Response for Create; an empty response means the MVM was accepted.
 message MVMServiceCreateResponse {}
+
+// Request to change a mutable property of an existing MVM.
+// Exactly one action must be set; each maps onto its own upstream endpoint.
+// TODO: the oneof mirrors the upstream constraint (nulink has one endpoint per
+// action); combined changes would need
+// server-side fan-out without rollback.
+// TODO: clarify async semantics — this is a queued "request to update", not an
+//       immediate update (e.g. disk changes are applied overnight). Consider
+//       renaming to reflect that.
+// TODO: differentiate between fire-and-forget and queued actions in the API.
+// TODO: is it possible to expose the pending-change queue (list/cancel) to the caller?
+// TODO: clarify who enqueues the request and whether a pending change blocks
+//       further edits (e.g. after AddDisk, until the change executes).
+message MVMServiceUpdateRequest {
+  // UUID of the MVM to update.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // Project the MVM belongs to.
+  string project = 2 [(buf.validate.field).string.uuid = true];
+  // Order reference for this operation.
+  // TODO: can this be optional?
+  string order_number = 3;
+  // Timestamp and strategy for this update.
+  fits.api.v1.UpdateMeta update_meta = 4 [(buf.validate.field).required = true];
+  // The change to apply.
+  oneof action {
+    option (buf.validate.oneof).required = true;
+    // Change the CPU/RAM performance class.
+    PerformanceClassChange performance_class = 5;
+    // Change the service class.
+    ServiceClassChange service_class = 6;
+    // Change the contact person.
+    ContactChange contact = 7;
+  }
+}
+
+// PerformanceClassChange is the payload for changing a MVM's CPU and RAM.
+message PerformanceClassChange {
+  // Number of vCPUs (1-64).
+  uint32 cpu = 1 [
+    (buf.validate.field).uint32.gte = 1,
+    (buf.validate.field).uint32.lte = 64
+  ];
+  // RAM size in GB.
+  uint32 ram = 2 [(buf.validate.field).uint32.gt = 0];
+}
+
+// ServiceClassChange is the payload for changing a MVM's service class.
+message ServiceClassChange {
+  // Target service class.
+  ServiceClass serviceclass = 1 [(buf.validate.field).enum.defined_only = true];
+}
+
+// ContactChange is the payload for changing a MVM's contact person.
+message ContactChange {
+  // UUID of the new contact.
+  string contact_uuid = 1 [(buf.validate.field).string.uuid = true];
+}
+
+// Response for Update; an empty response means the change was accepted.
+message MVMServiceUpdateResponse {}
 
 // Request to list MVMs.
 message MVMServiceListRequest {
