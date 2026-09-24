@@ -2,19 +2,19 @@
 
 import pyqwest
 
-import fits.apimvm.v1.location_connect as apimvm_location_connect
-import fits.apimvm.v1.mvm_connect as apimvm_mvm_connect
-import fits.apimvm.v1.os_connect as apimvm_os_connect
-import fits.apimvm.v1.stagetype_connect as apimvm_stagetype_connect
-import fits.apimvm.v1.vlan_connect as apimvm_vlan_connect
+import fits.api.mvm.v1.location_connect as fits_api_mvm_v1_location_connect
+import fits.api.mvm.v1.mvm_connect as fits_api_mvm_v1_mvm_connect
+import fits.api.mvm.v1.os_connect as fits_api_mvm_v1_os_connect
+import fits.api.mvm.v1.stagetype_connect as fits_api_mvm_v1_stagetype_connect
+import fits.api.mvm.v1.vlan_connect as fits_api_mvm_v1_vlan_connect
 
-import fits.api.v1.health_connect as api_health_connect
-import fits.api.v1.ip_connect as api_ip_connect
-import fits.api.v1.method_connect as api_method_connect
-import fits.api.v1.project_connect as api_project_connect
-import fits.api.v1.tenant_connect as api_tenant_connect
-import fits.api.v1.token_connect as api_token_connect
-import fits.api.v1.version_connect as api_version_connect
+import fits.api.v1.health_connect as fits_api_v1_health_connect
+import fits.api.v1.ip_connect as fits_api_v1_ip_connect
+import fits.api.v1.method_connect as fits_api_v1_method_connect
+import fits.api.v1.project_connect as fits_api_v1_project_connect
+import fits.api.v1.tenant_connect as fits_api_v1_tenant_connect
+import fits.api.v1.token_connect as fits_api_v1_token_connect
+import fits.api.v1.version_connect as fits_api_v1_version_connect
 
 
 
@@ -48,19 +48,19 @@ class Client:
 
 
         def location(self):
-            return apimvm_location_connect.LocationServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
+            return fits_api_mvm_v1_location_connect.LocationServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
         def mvm(self):
-            return apimvm_mvm_connect.MVMServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
+            return fits_api_mvm_v1_mvm_connect.MVMServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
         def os(self):
-            return apimvm_os_connect.OSServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
+            return fits_api_mvm_v1_os_connect.OSServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
         def stagetype(self):
-            return apimvm_stagetype_connect.StageTypeServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
+            return fits_api_mvm_v1_stagetype_connect.StageTypeServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
         def vlan(self):
-            return apimvm_vlan_connect.VLANServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
+            return fits_api_mvm_v1_vlan_connect.VLANServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
 
     class _Apiv1:
@@ -71,24 +71,24 @@ class Client:
 
 
         def health(self):
-            return api_health_connect.HealthServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
+            return fits_api_v1_health_connect.HealthServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
         def ip(self):
-            return api_ip_connect.IPServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
+            return fits_api_v1_ip_connect.IPServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
         def method(self):
-            return api_method_connect.MethodServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
+            return fits_api_v1_method_connect.MethodServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
         def project(self):
-            return api_project_connect.ProjectServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
+            return fits_api_v1_project_connect.ProjectServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
         def tenant(self):
-            return api_tenant_connect.TenantServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
+            return fits_api_v1_tenant_connect.TenantServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
         def token(self):
-            return api_token_connect.TokenServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
+            return fits_api_v1_token_connect.TokenServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
         def version(self):
-            return api_version_connect.VersionServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
+            return fits_api_v1_version_connect.VersionServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
 
