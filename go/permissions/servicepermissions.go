@@ -292,8 +292,8 @@ func GetTenantFromRequest(req connect.AnyRequest) (string, bool) {
 		return "", false
 	}
 	switch rq := req.Any().(type) {
-	case interface{ GetLogin() string }:
-		return rq.GetLogin(), true
+	case interface{ GetTenant() string }:
+		return rq.GetTenant(), true
 	}
 	return "", false
 }

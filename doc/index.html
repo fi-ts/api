@@ -1773,9 +1773,7 @@ This is not a foreign key, this is the actual ID of the VLAN the network interfa
                   <td>stage_type</td>
                   <td><a href="#fits.api.mvm.v1.StageType">StageType</a></td>
                   <td></td>
-                  <td><p>TODO: instead of a stage type, this should be mapped to a project.
-TODO: this would have to be re-mapped in the customer onboarding
-Stage type of this VLAN </p></td>
+                  <td><p>Stage type of this VLAN </p></td>
                 </tr>
               
                 <tr>
@@ -1806,8 +1804,14 @@ Stage type of this VLAN </p></td>
                   <td>tenant</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Tenant to list available VLANs for
-TODO should be filtered by project instead, see https://github.com/fi-ts/fco-apiserver/issues/39 </p></td>
+                  <td><p>Tenant to list available VLANs for (the tenant login) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>stage_type</td>
+                  <td><a href="#fits.api.mvm.v1.StageType">StageType</a></td>
+                  <td>optional</td>
+                  <td><p>StageType filters the listed VLANs by stage type </p></td>
                 </tr>
               
             </tbody>
@@ -5457,11 +5461,10 @@ TokenUpdate is not guarded with optlock in the backend </p></td>
             <tbody>
               
                 <tr>
-                  <td>login</td>
+                  <td>tenant</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Login is the tenant of this project
-TODO: is login really a good name? </p></td>
+                  <td><p>Tenant is the tenant of this project (the tenant login) </p></td>
                 </tr>
               
                 <tr>
@@ -5985,10 +5988,10 @@ TODO: is login really a good name? </p></td>
             <tbody>
               
                 <tr>
-                  <td>login</td>
+                  <td>tenant</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Login of the tenant </p></td>
+                  <td><p>Tenant is the login of the tenant </p></td>
                 </tr>
               
             </tbody>
@@ -6033,10 +6036,10 @@ TODO: is login really a good name? </p></td>
             <tbody>
               
                 <tr>
-                  <td>login</td>
+                  <td>tenant</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Login of the tenant </p></td>
+                  <td><p>Tenant is the login of the tenant </p></td>
                 </tr>
               
             </tbody>
@@ -6143,10 +6146,10 @@ TODO: is login really a good name? </p></td>
             <tbody>
               
                 <tr>
-                  <td>login</td>
+                  <td>tenant</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Login of the tenant </p></td>
+                  <td><p>Tenant is the login of the tenant </p></td>
                 </tr>
               
                 <tr>

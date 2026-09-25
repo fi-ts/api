@@ -99,13 +99,11 @@ type VLAN struct {
 	// CIDR of the subnet this VLAN belongs to
 	SubnetCidr string `protobuf:"bytes,4,opt,name=subnet_cidr,json=subnetCidr,proto3" json:"subnet_cidr,omitempty"`
 	// TODO instead of the pod title, could we have the location_uuid?
-	LocationUuid *string `protobuf:"bytes,10,opt,name=location_uuid,json=locationUuid,proto3,oneof" json:"location_uuid,omitempty"`
-	// TODO: instead of a stage type, this should be mapped to a project.
-	// TODO: this would have to be re-mapped in the customer onboarding
+	LocationUuid *string `protobuf:"bytes,5,opt,name=location_uuid,json=locationUuid,proto3,oneof" json:"location_uuid,omitempty"`
 	// Stage type of this VLAN
-	StageType StageType `protobuf:"varint,11,opt,name=stage_type,json=stageType,proto3,enum=fits.api.mvm.v1.StageType" json:"stage_type,omitempty"`
+	StageType StageType `protobuf:"varint,6,opt,name=stage_type,json=stageType,proto3,enum=fits.api.mvm.v1.StageType" json:"stage_type,omitempty"`
 	// Tenant this VLAN belongs to.
-	Tenant        string `protobuf:"bytes,12,opt,name=tenant,proto3" json:"tenant,omitempty"`
+	Tenant        string `protobuf:"bytes,7,opt,name=tenant,proto3" json:"tenant,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -192,9 +190,10 @@ func (x *VLAN) GetTenant() string {
 // VLANServiceListRequest is the request payload for a VLAN list request.
 type VLANServiceListRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Tenant to list available VLANs for
-	// TODO should be filtered by project instead, see https://github.com/fi-ts/fco-apiserver/issues/39
-	Tenant        string `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"`
+	// Tenant to list available VLANs for (the tenant login)
+	Tenant string `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"`
+	// StageType filters the listed VLANs by stage type
+	StageType     *StageType `protobuf:"varint,2,opt,name=stage_type,json=stageType,proto3,enum=fits.api.mvm.v1.StageType,oneof" json:"stage_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -234,6 +233,13 @@ func (x *VLANServiceListRequest) GetTenant() string {
 		return x.Tenant
 	}
 	return ""
+}
+
+func (x *VLANServiceListRequest) GetStageType() StageType {
+	if x != nil && x.StageType != nil {
+		return *x.StageType
+	}
+	return StageType_STAGE_TYPE_UNSPECIFIED
 }
 
 // VLANServiceListResponse is the response payload for a VLAN list request
@@ -293,14 +299,16 @@ const file_fits_api_mvm_v1_vlan_proto_rawDesc = "" +
 	"\fsubnet_title\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\vsubnetTitle\x12,\n" +
 	"\vsubnet_cidr\x18\x04 \x01(\tB\v\xbaH\br\x06\xf8\xb3\xae\xb1\x02\x01R\n" +
 	"subnetCidr\x122\n" +
-	"\rlocation_uuid\x18\n" +
-	" \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\flocationUuid\x88\x01\x01\x12C\n" +
+	"\rlocation_uuid\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\flocationUuid\x88\x01\x01\x12C\n" +
 	"\n" +
-	"stage_type\x18\v \x01(\x0e2\x1a.fits.api.mvm.v1.StageTypeB\b\xbaH\x05\x82\x01\x02\x10\x01R\tstageType\x12#\n" +
-	"\x06tenant\x18\f \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenantB\x10\n" +
-	"\x0e_location_uuid\"=\n" +
+	"stage_type\x18\x06 \x01(\x0e2\x1a.fits.api.mvm.v1.StageTypeB\b\xbaH\x05\x82\x01\x02\x10\x01R\tstageType\x12#\n" +
+	"\x06tenant\x18\a \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenantB\x10\n" +
+	"\x0e_location_uuid\"\x96\x01\n" +
 	"\x16VLANServiceListRequest\x12#\n" +
-	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\"F\n" +
+	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12H\n" +
+	"\n" +
+	"stage_type\x18\x02 \x01(\x0e2\x1a.fits.api.mvm.v1.StageTypeB\b\xbaH\x05\x82\x01\x02\x10\x01H\x00R\tstageType\x88\x01\x01B\r\n" +
+	"\v_stage_type\"F\n" +
 	"\x17VLANServiceListResponse\x12+\n" +
 	"\x05vlans\x18\x01 \x03(\v2\x15.fits.api.mvm.v1.VLANR\x05vlans*\xd1\x01\n" +
 	"\tStageType\x12 \n" +
@@ -336,14 +344,15 @@ var file_fits_api_mvm_v1_vlan_proto_goTypes = []any{
 }
 var file_fits_api_mvm_v1_vlan_proto_depIdxs = []int32{
 	0, // 0: fits.api.mvm.v1.VLAN.stage_type:type_name -> fits.api.mvm.v1.StageType
-	1, // 1: fits.api.mvm.v1.VLANServiceListResponse.vlans:type_name -> fits.api.mvm.v1.VLAN
-	2, // 2: fits.api.mvm.v1.VLANService.List:input_type -> fits.api.mvm.v1.VLANServiceListRequest
-	3, // 3: fits.api.mvm.v1.VLANService.List:output_type -> fits.api.mvm.v1.VLANServiceListResponse
-	3, // [3:4] is the sub-list for method output_type
-	2, // [2:3] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	0, // 1: fits.api.mvm.v1.VLANServiceListRequest.stage_type:type_name -> fits.api.mvm.v1.StageType
+	1, // 2: fits.api.mvm.v1.VLANServiceListResponse.vlans:type_name -> fits.api.mvm.v1.VLAN
+	2, // 3: fits.api.mvm.v1.VLANService.List:input_type -> fits.api.mvm.v1.VLANServiceListRequest
+	3, // 4: fits.api.mvm.v1.VLANService.List:output_type -> fits.api.mvm.v1.VLANServiceListResponse
+	4, // [4:5] is the sub-list for method output_type
+	3, // [3:4] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_mvm_v1_vlan_proto_init() }
@@ -352,6 +361,7 @@ func file_fits_api_mvm_v1_vlan_proto_init() {
 		return
 	}
 	file_fits_api_mvm_v1_vlan_proto_msgTypes[0].OneofWrappers = []any{}
+	file_fits_api_mvm_v1_vlan_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

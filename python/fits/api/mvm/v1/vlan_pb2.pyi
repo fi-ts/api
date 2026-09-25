@@ -42,10 +42,12 @@ class VLAN(_message.Message):
     def __init__(self, uuid: _Optional[str] = ..., vlan_id: _Optional[int] = ..., subnet_title: _Optional[str] = ..., subnet_cidr: _Optional[str] = ..., location_uuid: _Optional[str] = ..., stage_type: _Optional[_Union[StageType, str]] = ..., tenant: _Optional[str] = ...) -> None: ...
 
 class VLANServiceListRequest(_message.Message):
-    __slots__ = ("tenant",)
+    __slots__ = ("tenant", "stage_type")
     TENANT_FIELD_NUMBER: _ClassVar[int]
+    STAGE_TYPE_FIELD_NUMBER: _ClassVar[int]
     tenant: str
-    def __init__(self, tenant: _Optional[str] = ...) -> None: ...
+    stage_type: StageType
+    def __init__(self, tenant: _Optional[str] = ..., stage_type: _Optional[_Union[StageType, str]] = ...) -> None: ...
 
 class VLANServiceListResponse(_message.Message):
     __slots__ = ("vlans",)

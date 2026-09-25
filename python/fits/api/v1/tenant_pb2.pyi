@@ -38,10 +38,10 @@ class TenantServiceListRequest(_message.Message):
     def __init__(self, id: _Optional[str] = ..., name: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.Labels, _Mapping]] = ...) -> None: ...
 
 class TenantServiceGetRequest(_message.Message):
-    __slots__ = ("login",)
-    LOGIN_FIELD_NUMBER: _ClassVar[int]
-    login: str
-    def __init__(self, login: _Optional[str] = ...) -> None: ...
+    __slots__ = ("tenant",)
+    TENANT_FIELD_NUMBER: _ClassVar[int]
+    tenant: str
+    def __init__(self, tenant: _Optional[str] = ...) -> None: ...
 
 class TenantServiceCreateRequest(_message.Message):
     __slots__ = ("name", "description", "email", "avatar_url", "labels")
@@ -58,28 +58,28 @@ class TenantServiceCreateRequest(_message.Message):
     def __init__(self, name: _Optional[str] = ..., description: _Optional[str] = ..., email: _Optional[str] = ..., avatar_url: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.Labels, _Mapping]] = ...) -> None: ...
 
 class TenantServiceUpdateRequest(_message.Message):
-    __slots__ = ("login", "update_meta", "name", "email", "description", "avatar_url", "labels")
-    LOGIN_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("tenant", "update_meta", "name", "email", "description", "avatar_url", "labels")
+    TENANT_FIELD_NUMBER: _ClassVar[int]
     UPDATE_META_FIELD_NUMBER: _ClassVar[int]
     NAME_FIELD_NUMBER: _ClassVar[int]
     EMAIL_FIELD_NUMBER: _ClassVar[int]
     DESCRIPTION_FIELD_NUMBER: _ClassVar[int]
     AVATAR_URL_FIELD_NUMBER: _ClassVar[int]
     LABELS_FIELD_NUMBER: _ClassVar[int]
-    login: str
+    tenant: str
     update_meta: _common_pb2.UpdateMeta
     name: str
     email: str
     description: str
     avatar_url: str
     labels: _common_pb2.UpdateLabels
-    def __init__(self, login: _Optional[str] = ..., update_meta: _Optional[_Union[_common_pb2.UpdateMeta, _Mapping]] = ..., name: _Optional[str] = ..., email: _Optional[str] = ..., description: _Optional[str] = ..., avatar_url: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.UpdateLabels, _Mapping]] = ...) -> None: ...
+    def __init__(self, tenant: _Optional[str] = ..., update_meta: _Optional[_Union[_common_pb2.UpdateMeta, _Mapping]] = ..., name: _Optional[str] = ..., email: _Optional[str] = ..., description: _Optional[str] = ..., avatar_url: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.UpdateLabels, _Mapping]] = ...) -> None: ...
 
 class TenantServiceDeleteRequest(_message.Message):
-    __slots__ = ("login",)
-    LOGIN_FIELD_NUMBER: _ClassVar[int]
-    login: str
-    def __init__(self, login: _Optional[str] = ...) -> None: ...
+    __slots__ = ("tenant",)
+    TENANT_FIELD_NUMBER: _ClassVar[int]
+    tenant: str
+    def __init__(self, tenant: _Optional[str] = ...) -> None: ...
 
 class TenantServiceGetResponse(_message.Message):
     __slots__ = ("tenant",)

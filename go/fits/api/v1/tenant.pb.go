@@ -189,8 +189,8 @@ func (x *TenantServiceListRequest) GetLabels() *Labels {
 // TenantServiceGetRequest is the request payload of the tenant get request
 type TenantServiceGetRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Login of the tenant
-	Login         string `protobuf:"bytes,1,opt,name=login,proto3" json:"login,omitempty"`
+	// Tenant is the login of the tenant
+	Tenant        string `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -225,9 +225,9 @@ func (*TenantServiceGetRequest) Descriptor() ([]byte, []int) {
 	return file_fits_api_v1_tenant_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *TenantServiceGetRequest) GetLogin() string {
+func (x *TenantServiceGetRequest) GetTenant() string {
 	if x != nil {
-		return x.Login
+		return x.Tenant
 	}
 	return ""
 }
@@ -317,8 +317,8 @@ func (x *TenantServiceCreateRequest) GetLabels() *Labels {
 // TenantServiceUpdateRequest is the request payload of the tenant update request
 type TenantServiceUpdateRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Login of the tenant
-	Login string `protobuf:"bytes,1,opt,name=login,proto3" json:"login,omitempty"`
+	// Tenant is the login of the tenant
+	Tenant string `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"`
 	// UpdateMeta contains the timestamp and strategy to be used in this update request
 	UpdateMeta *UpdateMeta `protobuf:"bytes,2,opt,name=update_meta,json=updateMeta,proto3" json:"update_meta,omitempty"`
 	// Name of the tenant
@@ -365,9 +365,9 @@ func (*TenantServiceUpdateRequest) Descriptor() ([]byte, []int) {
 	return file_fits_api_v1_tenant_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *TenantServiceUpdateRequest) GetLogin() string {
+func (x *TenantServiceUpdateRequest) GetTenant() string {
 	if x != nil {
-		return x.Login
+		return x.Tenant
 	}
 	return ""
 }
@@ -417,8 +417,8 @@ func (x *TenantServiceUpdateRequest) GetLabels() *UpdateLabels {
 // TenantServiceDeleteRequest is the request payload of the tenant delete request
 type TenantServiceDeleteRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Login of the tenant
-	Login         string `protobuf:"bytes,1,opt,name=login,proto3" json:"login,omitempty"`
+	// Tenant is the login of the tenant
+	Tenant        string `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -453,9 +453,9 @@ func (*TenantServiceDeleteRequest) Descriptor() ([]byte, []int) {
 	return file_fits_api_v1_tenant_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *TenantServiceDeleteRequest) GetLogin() string {
+func (x *TenantServiceDeleteRequest) GetTenant() string {
 	if x != nil {
-		return x.Login
+		return x.Tenant
 	}
 	return ""
 }
@@ -711,9 +711,9 @@ const file_fits_api_v1_tenant_proto_rawDesc = "" +
 	"\x06labels\x18\x03 \x01(\v2\x13.fits.api.v1.LabelsH\x02R\x06labels\x88\x01\x01B\x05\n" +
 	"\x03_idB\a\n" +
 	"\x05_nameB\t\n" +
-	"\a_labels\"/\n" +
-	"\x17TenantServiceGetRequest\x12\x14\n" +
-	"\x05login\x18\x01 \x01(\tR\x05login\"\x8f\x02\n" +
+	"\a_labels\"1\n" +
+	"\x17TenantServiceGetRequest\x12\x16\n" +
+	"\x06tenant\x18\x01 \x01(\tR\x06tenant\"\x8f\x02\n" +
 	"\x1aTenantServiceCreateRequest\x12\x1f\n" +
 	"\x04name\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x04name\x122\n" +
 	"\vdescription\x18\x02 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01H\x00R\vdescription\x88\x01\x01\x12\"\n" +
@@ -723,9 +723,9 @@ const file_fits_api_v1_tenant_proto_rawDesc = "" +
 	"\x06labels\x18\x05 \x01(\v2\x13.fits.api.v1.LabelsR\x06labelsB\x0e\n" +
 	"\f_descriptionB\b\n" +
 	"\x06_emailB\r\n" +
-	"\v_avatar_url\"\x8b\x03\n" +
-	"\x1aTenantServiceUpdateRequest\x12\x14\n" +
-	"\x05login\x18\x01 \x01(\tR\x05login\x12@\n" +
+	"\v_avatar_url\"\x8d\x03\n" +
+	"\x1aTenantServiceUpdateRequest\x12\x16\n" +
+	"\x06tenant\x18\x01 \x01(\tR\x06tenant\x12@\n" +
 	"\vupdate_meta\x18\x02 \x01(\v2\x17.fits.api.v1.UpdateMetaB\x06\xbaH\x03\xc8\x01\x01R\n" +
 	"updateMeta\x12$\n" +
 	"\x04name\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01H\x00R\x04name\x88\x01\x01\x12\"\n" +
@@ -738,9 +738,9 @@ const file_fits_api_v1_tenant_proto_rawDesc = "" +
 	"\x06_emailB\x0e\n" +
 	"\f_descriptionB\r\n" +
 	"\v_avatar_urlB\t\n" +
-	"\a_labels\"2\n" +
-	"\x1aTenantServiceDeleteRequest\x12\x14\n" +
-	"\x05login\x18\x01 \x01(\tR\x05login\"G\n" +
+	"\a_labels\"4\n" +
+	"\x1aTenantServiceDeleteRequest\x12\x16\n" +
+	"\x06tenant\x18\x01 \x01(\tR\x06tenant\"G\n" +
 	"\x18TenantServiceGetResponse\x12+\n" +
 	"\x06tenant\x18\x01 \x01(\v2\x13.fits.api.v1.TenantR\x06tenant\"J\n" +
 	"\x19TenantServiceListResponse\x12-\n" +

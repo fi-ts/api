@@ -45,20 +45,19 @@ message VLAN {
   // CIDR of the subnet this VLAN belongs to
   string subnet_cidr = 4 [(buf.validate.field).string.(fits.api.v1.is_ipv4_cidr) = true];
   // TODO instead of the pod title, could we have the location_uuid?
-  optional string location_uuid = 10 [(buf.validate.field).string.uuid = true];
-  // TODO: instead of a stage type, this should be mapped to a project.
-  // TODO: this would have to be re-mapped in the customer onboarding
+  optional string location_uuid = 5 [(buf.validate.field).string.uuid = true];
   // Stage type of this VLAN
-  StageType stage_type = 11 [(buf.validate.field).enum.defined_only = true];
+  StageType stage_type = 6 [(buf.validate.field).enum.defined_only = true];
   // Tenant this VLAN belongs to.
-  string tenant = 12 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  string tenant = 7 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
 }
 
 // VLANServiceListRequest is the request payload for a VLAN list request.
 message VLANServiceListRequest {
-  // Tenant to list available VLANs for
-  // TODO should be filtered by project instead, see https://github.com/fi-ts/fco-apiserver/issues/39
+  // Tenant to list available VLANs for (the tenant login)
   string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // StageType filters the listed VLANs by stage type
+  optional StageType stage_type = 2 [(buf.validate.field).enum.defined_only = true];
 }
 
 // VLANServiceListResponse is the response payload for a VLAN list request

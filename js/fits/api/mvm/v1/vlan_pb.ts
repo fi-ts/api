@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/mvm/v1/vlan.proto.
  */
 export const file_fits_api_mvm_v1_vlan: GenFile = /*@__PURE__*/
-  fileDesc("ChpmaXRzL2FwaS9tdm0vdjEvdmxhbi5wcm90bxIPZml0cy5hcGkubXZtLnYxIoMCCgRWTEFOEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEg8KB3ZsYW5faWQYAiABKAUSIQoMc3VibmV0X3RpdGxlGAMgASgJQgu6SAhyBsCzrrECARIgCgtzdWJuZXRfY2lkchgEIAEoCUILukgIcgb4s66xAgESJAoNbG9jYXRpb25fdXVpZBgKIAEoCUIIukgFcgOwAQFIAIgBARI4CgpzdGFnZV90eXBlGAsgASgOMhouZml0cy5hcGkubXZtLnYxLlN0YWdlVHlwZUIIukgFggECEAESGwoGdGVuYW50GAwgASgJQgu6SAhyBsCzrrECAUIQCg5fbG9jYXRpb25fdXVpZCI1ChZWTEFOU2VydmljZUxpc3RSZXF1ZXN0EhsKBnRlbmFudBgBIAEoCUILukgIcgbAs66xAgEiPwoXVkxBTlNlcnZpY2VMaXN0UmVzcG9uc2USJAoFdmxhbnMYASADKAsyFS5maXRzLmFwaS5tdm0udjEuVkxBTirRAQoJU3RhZ2VUeXBlEiAKFlNUQUdFX1RZUEVfVU5TUEVDSUZJRUQQABoEgrIZABIrChZTVEFHRV9UWVBFX0RFVkVMT1BNRU5UEAEaD4KyGQtkZXZlbG9wbWVudBIdCg9TVEFHRV9UWVBFX1RFU1QQAhoIgrIZBHRlc3QSKwoWU1RBR0VfVFlQRV9JTlRFR1JBVElPThADGg+CshkLaW50ZWdyYXRpb24SKQoVU1RBR0VfVFlQRV9QUk9EVUNUSU9OEAQaDoKyGQpwcm9kdWN0aW9uMnUKC1ZMQU5TZXJ2aWNlEmYKBExpc3QSJy5maXRzLmFwaS5tdm0udjEuVkxBTlNlcnZpY2VMaXN0UmVxdWVzdBooLmZpdHMuYXBpLm12bS52MS5WTEFOU2VydmljZUxpc3RSZXNwb25zZSILwvMYAwECA+DzGAJCrgEKE2NvbS5maXRzLmFwaS5tdm0udjFCCVZsYW5Qcm90b1ABWi1naXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS9tdm0vdjE7bXZtdjGiAgNGQU2qAg9GaXRzLkFwaS5Ndm0uVjHKAg9GaXRzXEFwaVxNdm1cVjHiAhtGaXRzXEFwaVxNdm1cVjFcR1BCTWV0YWRhdGHqAhJGaXRzOjpBcGk6Ok12bTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
+  fileDesc("ChpmaXRzL2FwaS9tdm0vdjEvdmxhbi5wcm90bxIPZml0cy5hcGkubXZtLnYxIoMCCgRWTEFOEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEg8KB3ZsYW5faWQYAiABKAUSIQoMc3VibmV0X3RpdGxlGAMgASgJQgu6SAhyBsCzrrECARIgCgtzdWJuZXRfY2lkchgEIAEoCUILukgIcgb4s66xAgESJAoNbG9jYXRpb25fdXVpZBgFIAEoCUIIukgFcgOwAQFIAIgBARI4CgpzdGFnZV90eXBlGAYgASgOMhouZml0cy5hcGkubXZtLnYxLlN0YWdlVHlwZUIIukgFggECEAESGwoGdGVuYW50GAcgASgJQgu6SAhyBsCzrrECAUIQCg5fbG9jYXRpb25fdXVpZCKDAQoWVkxBTlNlcnZpY2VMaXN0UmVxdWVzdBIbCgZ0ZW5hbnQYASABKAlCC7pICHIGwLOusQIBEj0KCnN0YWdlX3R5cGUYAiABKA4yGi5maXRzLmFwaS5tdm0udjEuU3RhZ2VUeXBlQgi6SAWCAQIQAUgAiAEBQg0KC19zdGFnZV90eXBlIj8KF1ZMQU5TZXJ2aWNlTGlzdFJlc3BvbnNlEiQKBXZsYW5zGAEgAygLMhUuZml0cy5hcGkubXZtLnYxLlZMQU4q0QEKCVN0YWdlVHlwZRIgChZTVEFHRV9UWVBFX1VOU1BFQ0lGSUVEEAAaBIKyGQASKwoWU1RBR0VfVFlQRV9ERVZFTE9QTUVOVBABGg+CshkLZGV2ZWxvcG1lbnQSHQoPU1RBR0VfVFlQRV9URVNUEAIaCIKyGQR0ZXN0EisKFlNUQUdFX1RZUEVfSU5URUdSQVRJT04QAxoPgrIZC2ludGVncmF0aW9uEikKFVNUQUdFX1RZUEVfUFJPRFVDVElPThAEGg6CshkKcHJvZHVjdGlvbjJ1CgtWTEFOU2VydmljZRJmCgRMaXN0EicuZml0cy5hcGkubXZtLnYxLlZMQU5TZXJ2aWNlTGlzdFJlcXVlc3QaKC5maXRzLmFwaS5tdm0udjEuVkxBTlNlcnZpY2VMaXN0UmVzcG9uc2UiC8LzGAMBAgPg8xgCQq4BChNjb20uZml0cy5hcGkubXZtLnYxQglWbGFuUHJvdG9QAVotZ2l0aHViLmNvbS9maS10cy9hcGkvZ28vZml0cy9hcGkvbXZtL3YxO212bXYxogIDRkFNqgIPRml0cy5BcGkuTXZtLlYxygIPRml0c1xBcGlcTXZtXFYx4gIbRml0c1xBcGlcTXZtXFYxXEdQQk1ldGFkYXRh6gISRml0czo6QXBpOjpNdm06OlYxYgZwcm90bzM", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
 
 /**
  * VLAN is a VLAN that a MVM can be connected to.
@@ -53,23 +53,21 @@ export type VLAN = Message<"fits.api.mvm.v1.VLAN"> & {
   /**
    * TODO instead of the pod title, could we have the location_uuid?
    *
-   * @generated from field: optional string location_uuid = 10;
+   * @generated from field: optional string location_uuid = 5;
    */
   locationUuid?: string | undefined;
 
   /**
-   * TODO: instead of a stage type, this should be mapped to a project.
-   * TODO: this would have to be re-mapped in the customer onboarding
    * Stage type of this VLAN
    *
-   * @generated from field: fits.api.mvm.v1.StageType stage_type = 11;
+   * @generated from field: fits.api.mvm.v1.StageType stage_type = 6;
    */
   stageType: StageType;
 
   /**
    * Tenant this VLAN belongs to.
    *
-   * @generated from field: string tenant = 12;
+   * @generated from field: string tenant = 7;
    */
   tenant: string;
 };
@@ -88,12 +86,18 @@ export const VLANSchema: GenMessage<VLAN> = /*@__PURE__*/
  */
 export type VLANServiceListRequest = Message<"fits.api.mvm.v1.VLANServiceListRequest"> & {
   /**
-   * Tenant to list available VLANs for
-   * TODO should be filtered by project instead, see https://github.com/fi-ts/fco-apiserver/issues/39
+   * Tenant to list available VLANs for (the tenant login)
    *
    * @generated from field: string tenant = 1;
    */
   tenant: string;
+
+  /**
+   * StageType filters the listed VLANs by stage type
+   *
+   * @generated from field: optional fits.api.mvm.v1.StageType stage_type = 2;
+   */
+  stageType?: StageType | undefined;
 };
 
 /**

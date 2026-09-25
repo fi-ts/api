@@ -328,9 +328,8 @@ func (x *ProjectServiceGetResponse) GetProject() *Project {
 // ProjectServiceCreateRequest is the request payload to Create a project
 type ProjectServiceCreateRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Login is the tenant of this project
-	// TODO: is login really a good name?
-	Login string `protobuf:"bytes,1,opt,name=login,proto3" json:"login,omitempty"`
+	// Tenant is the tenant of this project (the tenant login)
+	Tenant string `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"`
 	// Name of this project, unique per tenant
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// Description of this project
@@ -373,9 +372,9 @@ func (*ProjectServiceCreateRequest) Descriptor() ([]byte, []int) {
 	return file_fits_api_v1_project_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *ProjectServiceCreateRequest) GetLogin() string {
+func (x *ProjectServiceCreateRequest) GetTenant() string {
 	if x != nil {
-		return x.Login
+		return x.Tenant
 	}
 	return ""
 }
@@ -711,9 +710,9 @@ const file_fits_api_v1_project_proto_rawDesc = "" +
 	"\x18ProjectServiceGetRequest\x12\"\n" +
 	"\aproject\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\aproject\"K\n" +
 	"\x19ProjectServiceGetResponse\x12.\n" +
-	"\aproject\x18\x01 \x01(\v2\x14.fits.api.v1.ProjectR\aproject\"\xf0\x01\n" +
-	"\x1bProjectServiceCreateRequest\x12!\n" +
-	"\x05login\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x05login\x12\x1f\n" +
+	"\aproject\x18\x01 \x01(\v2\x14.fits.api.v1.ProjectR\aproject\"\xf2\x01\n" +
+	"\x1bProjectServiceCreateRequest\x12#\n" +
+	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12\x1f\n" +
 	"\x04name\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x04name\x12-\n" +
 	"\vdescription\x18\x03 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\vdescription\x12\"\n" +
 	"\n" +

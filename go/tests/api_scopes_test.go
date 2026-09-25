@@ -100,7 +100,7 @@ func Test_APIScopes(t *testing.T) {
 	// err = validateProto("./testproto")
 
 	// errs := errors.Join(
-	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Add\" has apiv1.TenantRole but request payload \"WrongProjectServiceAddRequest\" does not have a login field"),
+	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Add\" has apiv1.TenantRole but request payload \"WrongProjectServiceAddRequest\" does not have a tenant field"),
 	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Get\" has apiv1.ProjectRole but request payload \"WrongProjectServiceGetRequest\" does not have a project field"),
 	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/List\" has no scope defined. one scope needs to be defined though. use one of the following scopes: [apiv1.AdminRole apiv1.ProjectRole apiv1.TenantRole apiv1.Visibility]"),
 	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Update\" does not have a update_meta field in WrongProjectServiceUpdateRequest"),
@@ -292,14 +292,14 @@ func validateProto(root string) error {
 								continue
 							}
 							for _, field := range mt.GetField() {
-								if field.GetName() == "login" {
+								if field.GetName() == "tenant" {
 									tenantFound = true
 								}
 							}
 							tenantRequest = mt.GetName()
 						}
 						if !tenantFound {
-							errs = append(errs, fmt.Errorf("api service method: %q has %s but request payload %q does not have a login field", methodName, trs, tenantRequest))
+							errs = append(errs, fmt.Errorf("api service method: %q has %s but request payload %q does not have a tenant field", methodName, trs, tenantRequest))
 						}
 					}
 				}
