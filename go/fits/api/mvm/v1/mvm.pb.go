@@ -735,8 +735,8 @@ type MVMServiceGetRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// UUID of the MVM.
 	Uuid *string `protobuf:"bytes,1,opt,name=uuid,proto3,oneof" json:"uuid,omitempty"`
-	// Tenant of the MVM.
-	Tenant        string `protobuf:"bytes,2,opt,name=tenant,proto3" json:"tenant,omitempty"`
+	// Slug of the project this MVM belongs to.
+	ProjectSlug   string `protobuf:"bytes,2,opt,name=project_slug,json=projectSlug,proto3" json:"project_slug,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -778,9 +778,9 @@ func (x *MVMServiceGetRequest) GetUuid() string {
 	return ""
 }
 
-func (x *MVMServiceGetRequest) GetTenant() string {
+func (x *MVMServiceGetRequest) GetProjectSlug() string {
 	if x != nil {
-		return x.Tenant
+		return x.ProjectSlug
 	}
 	return ""
 }
@@ -946,8 +946,8 @@ func (x *MVMServiceCreateLinuxRequest) GetDisks() []*LinuxDisk {
 // Request to create a new MVM instance.
 type MVMServiceCreateRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// UUID of the project this MVM belongs to.
-	ProjectUuid string `protobuf:"bytes,1,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
+	// Slug of the project this MVM belongs to.
+	ProjectSlug string `protobuf:"bytes,1,opt,name=project_slug,json=projectSlug,proto3" json:"project_slug,omitempty"`
 	// Optional name; the FQDN is derived from it.
 	Name *string `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
 	// UUID of the operating system image to install.
@@ -1015,9 +1015,9 @@ func (*MVMServiceCreateRequest) Descriptor() ([]byte, []int) {
 	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *MVMServiceCreateRequest) GetProjectUuid() string {
+func (x *MVMServiceCreateRequest) GetProjectSlug() string {
 	if x != nil {
-		return x.ProjectUuid
+		return x.ProjectSlug
 	}
 	return ""
 }
@@ -1383,8 +1383,8 @@ func (*MVMServiceCreateResponse) Descriptor() ([]byte, []int) {
 // Request to list MVMs.
 type MVMServiceListRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Tenant of the MVMs.
-	Tenant        *string `protobuf:"bytes,1,opt,name=tenant,proto3,oneof" json:"tenant,omitempty"`
+	// Slug of the project to list MVMs for.
+	ProjectSlug   string `protobuf:"bytes,1,opt,name=project_slug,json=projectSlug,proto3" json:"project_slug,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1419,9 +1419,9 @@ func (*MVMServiceListRequest) Descriptor() ([]byte, []int) {
 	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *MVMServiceListRequest) GetTenant() string {
-	if x != nil && x.Tenant != nil {
-		return *x.Tenant
+func (x *MVMServiceListRequest) GetProjectSlug() string {
+	if x != nil {
+		return x.ProjectSlug
 	}
 	return ""
 }
@@ -1475,8 +1475,8 @@ func (x *MVMServiceListResponse) GetMvms() []*ManagedVM {
 // Request to cancel a MVM instance.
 type MVMServiceDeleteRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Project the MVM belongs to.
-	Project string `protobuf:"bytes,1,opt,name=project,proto3" json:"project,omitempty"`
+	// Slug of the project the MVM belongs to.
+	ProjectSlug string `protobuf:"bytes,1,opt,name=project_slug,json=projectSlug,proto3" json:"project_slug,omitempty"`
 	// UUID of the MVM to delete.
 	Uuid string `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	// Order reference for this operation.
@@ -1516,9 +1516,9 @@ func (*MVMServiceDeleteRequest) Descriptor() ([]byte, []int) {
 	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *MVMServiceDeleteRequest) GetProject() string {
+func (x *MVMServiceDeleteRequest) GetProjectSlug() string {
 	if x != nil {
-		return x.Project
+		return x.ProjectSlug
 	}
 	return ""
 }
@@ -1939,8 +1939,8 @@ type MVMServiceAddDiskRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// UUID of the MVM to attach the disk to.
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	// Project the MVM belongs to.
-	Project string `protobuf:"bytes,2,opt,name=project,proto3" json:"project,omitempty"`
+	// Slug of the project the MVM belongs to.
+	ProjectSlug string `protobuf:"bytes,2,opt,name=project_slug,json=projectSlug,proto3" json:"project_slug,omitempty"`
 	// Order reference for this operation.
 	// TODO: can this be optional?
 	OrderNumber string `protobuf:"bytes,3,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
@@ -1992,9 +1992,9 @@ func (x *MVMServiceAddDiskRequest) GetUuid() string {
 	return ""
 }
 
-func (x *MVMServiceAddDiskRequest) GetProject() string {
+func (x *MVMServiceAddDiskRequest) GetProjectSlug() string {
 	if x != nil {
-		return x.Project
+		return x.ProjectSlug
 	}
 	return ""
 }
@@ -2057,8 +2057,8 @@ type MVMServiceUpdateDiskRequest struct {
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	// UUID of the disk to change.
 	DiskUuid string `protobuf:"bytes,2,opt,name=disk_uuid,json=diskUuid,proto3" json:"disk_uuid,omitempty"`
-	// Project the MVM belongs to.
-	Project string `protobuf:"bytes,3,opt,name=project,proto3" json:"project,omitempty"`
+	// Slug of the project the MVM belongs to.
+	ProjectSlug string `protobuf:"bytes,3,opt,name=project_slug,json=projectSlug,proto3" json:"project_slug,omitempty"`
 	// Order reference for this operation.
 	// TODO: can this be optional?
 	OrderNumber string `protobuf:"bytes,4,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
@@ -2114,9 +2114,9 @@ func (x *MVMServiceUpdateDiskRequest) GetDiskUuid() string {
 	return ""
 }
 
-func (x *MVMServiceUpdateDiskRequest) GetProject() string {
+func (x *MVMServiceUpdateDiskRequest) GetProjectSlug() string {
 	if x != nil {
-		return x.Project
+		return x.ProjectSlug
 	}
 	return ""
 }
@@ -2150,8 +2150,8 @@ type MVMServiceDeleteDiskRequest struct {
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	// UUID of the disk to cancel.
 	DiskUuid string `protobuf:"bytes,2,opt,name=disk_uuid,json=diskUuid,proto3" json:"disk_uuid,omitempty"`
-	// Project the MVM belongs to.
-	Project string `protobuf:"bytes,3,opt,name=project,proto3" json:"project,omitempty"`
+	// Slug of the project the MVM belongs to.
+	ProjectSlug string `protobuf:"bytes,3,opt,name=project_slug,json=projectSlug,proto3" json:"project_slug,omitempty"`
 	// Order reference for this operation.
 	// TODO: can this be optional?
 	OrderNumber   string `protobuf:"bytes,4,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
@@ -2203,9 +2203,9 @@ func (x *MVMServiceDeleteDiskRequest) GetDiskUuid() string {
 	return ""
 }
 
-func (x *MVMServiceDeleteDiskRequest) GetProject() string {
+func (x *MVMServiceDeleteDiskRequest) GetProjectSlug() string {
 	if x != nil {
-		return x.Project
+		return x.ProjectSlug
 	}
 	return ""
 }
@@ -2335,8 +2335,8 @@ type MVMServiceAddNetworkInterfaceRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// UUID of the MVM to attach the interface to.
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	// Project the MVM belongs to.
-	Project string `protobuf:"bytes,2,opt,name=project,proto3" json:"project,omitempty"`
+	// Slug of the project the MVM belongs to.
+	ProjectSlug string `protobuf:"bytes,2,opt,name=project_slug,json=projectSlug,proto3" json:"project_slug,omitempty"`
 	// Order reference for this operation.
 	// TODO: can this be optional?
 	OrderNumber   string `protobuf:"bytes,3,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
@@ -2381,9 +2381,9 @@ func (x *MVMServiceAddNetworkInterfaceRequest) GetUuid() string {
 	return ""
 }
 
-func (x *MVMServiceAddNetworkInterfaceRequest) GetProject() string {
+func (x *MVMServiceAddNetworkInterfaceRequest) GetProjectSlug() string {
 	if x != nil {
-		return x.Project
+		return x.ProjectSlug
 	}
 	return ""
 }
@@ -2402,8 +2402,8 @@ type MVMServiceMoveNetworkInterfaceRequest struct {
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	// UUID of the network interface holding the IP.
 	InterfaceUuid string `protobuf:"bytes,2,opt,name=interface_uuid,json=interfaceUuid,proto3" json:"interface_uuid,omitempty"`
-	// Project the MVM belongs to.
-	Project string `protobuf:"bytes,3,opt,name=project,proto3" json:"project,omitempty"`
+	// Slug of the project the MVM belongs to.
+	ProjectSlug string `protobuf:"bytes,3,opt,name=project_slug,json=projectSlug,proto3" json:"project_slug,omitempty"`
 	// Order reference for this operation.
 	// TODO: can this be optional?
 	OrderNumber string `protobuf:"bytes,4,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
@@ -2457,9 +2457,9 @@ func (x *MVMServiceMoveNetworkInterfaceRequest) GetInterfaceUuid() string {
 	return ""
 }
 
-func (x *MVMServiceMoveNetworkInterfaceRequest) GetProject() string {
+func (x *MVMServiceMoveNetworkInterfaceRequest) GetProjectSlug() string {
 	if x != nil {
-		return x.Project
+		return x.ProjectSlug
 	}
 	return ""
 }
@@ -2485,8 +2485,8 @@ type MVMServiceDeleteNetworkInterfaceRequest struct {
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	// UUID of the network interface holding the IP.
 	InterfaceUuid string `protobuf:"bytes,2,opt,name=interface_uuid,json=interfaceUuid,proto3" json:"interface_uuid,omitempty"`
-	// Project the MVM belongs to.
-	Project string `protobuf:"bytes,3,opt,name=project,proto3" json:"project,omitempty"`
+	// Slug of the project the MVM belongs to.
+	ProjectSlug string `protobuf:"bytes,3,opt,name=project_slug,json=projectSlug,proto3" json:"project_slug,omitempty"`
 	// Order reference for this operation.
 	// TODO: can this be optional?
 	OrderNumber   string `protobuf:"bytes,4,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
@@ -2538,9 +2538,9 @@ func (x *MVMServiceDeleteNetworkInterfaceRequest) GetInterfaceUuid() string {
 	return ""
 }
 
-func (x *MVMServiceDeleteNetworkInterfaceRequest) GetProject() string {
+func (x *MVMServiceDeleteNetworkInterfaceRequest) GetProjectSlug() string {
 	if x != nil {
-		return x.Project
+		return x.ProjectSlug
 	}
 	return ""
 }
@@ -2681,10 +2681,10 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"interfaces\x12)\n" +
 	"\x04vlan\x18\x13 \x01(\v2\x15.fits.api.mvm.v1.VLANR\x04vlan\x12!\n" +
 	"\forder_number\x18\x14 \x01(\tR\vorderNumberB\x10\n" +
-	"\adetails\x12\x05\xbaH\x02\b\x01\"g\n" +
+	"\adetails\x12\x05\xbaH\x02\b\x01\"r\n" +
 	"\x14MVMServiceGetRequest\x12!\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x04uuid\x88\x01\x01\x12#\n" +
-	"\x06tenant\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenantB\a\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x04uuid\x88\x01\x01\x12.\n" +
+	"\fproject_slug\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\vprojectSlugB\a\n" +
 	"\x05_uuid\"E\n" +
 	"\x15MVMServiceGetResponse\x12,\n" +
 	"\x03mvm\x18\x01 \x01(\v2\x1a.fits.api.mvm.v1.ManagedVMR\x03mvm\"\x89\x01\n" +
@@ -2694,9 +2694,9 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\x05disks\x18\x02 \x03(\v2\x1c.fits.api.mvm.v1.WindowsDiskB\b\xbaH\x05\x92\x01\x02\b\x01R\x05disks\"\x81\x01\n" +
 	"\x1cMVMServiceCreateLinuxRequest\x12%\n" +
 	"\tldap_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bldapUuid\x12:\n" +
-	"\x05disks\x18\x02 \x03(\v2\x1a.fits.api.mvm.v1.LinuxDiskB\b\xbaH\x05\x92\x01\x02\b\x01R\x05disks\"\xe7\x05\n" +
-	"\x17MVMServiceCreateRequest\x12+\n" +
-	"\fproject_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12$\n" +
+	"\x05disks\x18\x02 \x03(\v2\x1a.fits.api.mvm.v1.LinuxDiskB\b\xbaH\x05\x92\x01\x02\b\x01R\x05disks\"\xea\x05\n" +
+	"\x17MVMServiceCreateRequest\x12.\n" +
+	"\fproject_slug\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\vprojectSlug\x12$\n" +
 	"\x04name\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01H\x01R\x04name\x88\x01\x01\x12!\n" +
 	"\aos_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06osUuid\x12%\n" +
 	"\tvlan_uuid\x18\x04 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bvlanUuid\x12-\n" +
@@ -2741,14 +2741,13 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\f_driveletterB\f\n" +
 	"\n" +
 	"_disk_type\"\x1a\n" +
-	"\x18MVMServiceCreateResponse\"L\n" +
-	"\x15MVMServiceListRequest\x12(\n" +
-	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01H\x00R\x06tenant\x88\x01\x01B\t\n" +
-	"\a_tenant\"H\n" +
+	"\x18MVMServiceCreateResponse\"G\n" +
+	"\x15MVMServiceListRequest\x12.\n" +
+	"\fproject_slug\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\vprojectSlug\"H\n" +
 	"\x16MVMServiceListResponse\x12.\n" +
-	"\x04mvms\x18\x01 \x03(\v2\x1a.fits.api.mvm.v1.ManagedVMR\x04mvms\"~\n" +
-	"\x17MVMServiceDeleteRequest\x12\"\n" +
-	"\aproject\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\aproject\x12\x1c\n" +
+	"\x04mvms\x18\x01 \x03(\v2\x1a.fits.api.mvm.v1.ManagedVMR\x04mvms\"\x8a\x01\n" +
+	"\x17MVMServiceDeleteRequest\x12.\n" +
+	"\fproject_slug\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\vprojectSlug\x12\x1c\n" +
 	"\x04uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12!\n" +
 	"\forder_number\x18\x03 \x01(\tR\vorderNumber\"\x1a\n" +
 	"\x18MVMServiceDeleteResponse\"k\n" +
@@ -2764,46 +2763,46 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"$MVMServiceValidateUpdateDiskResponse\"\x1b\n" +
 	"\x19MVMServiceAddDiskResponse\"\x1e\n" +
 	"\x1cMVMServiceUpdateDiskResponse\"\x1e\n" +
-	"\x1cMVMServiceDeleteDiskResponse\"\xfc\x01\n" +
+	"\x1cMVMServiceDeleteDiskResponse\"\x88\x02\n" +
 	"\x18MVMServiceAddDiskRequest\x12\x1c\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\"\n" +
-	"\aproject\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\aproject\x12!\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12.\n" +
+	"\fproject_slug\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\vprojectSlug\x12!\n" +
 	"\forder_number\x18\x03 \x01(\tR\vorderNumber\x122\n" +
 	"\x05linux\x18\x04 \x01(\v2\x1a.fits.api.mvm.v1.LinuxDiskH\x00R\x05linux\x128\n" +
 	"\awindows\x18\x05 \x01(\v2\x1c.fits.api.mvm.v1.WindowsDiskH\x00R\awindowsB\r\n" +
-	"\x04disk\x12\x05\xbaH\x02\b\x01\"\x81\x02\n" +
+	"\x04disk\x12\x05\xbaH\x02\b\x01\"\x8d\x02\n" +
 	"\x1bMVMServiceUpdateDiskRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12%\n" +
-	"\tdisk_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bdiskUuid\x12\"\n" +
-	"\aproject\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\aproject\x12!\n" +
+	"\tdisk_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bdiskUuid\x12.\n" +
+	"\fproject_slug\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\vprojectSlug\x12!\n" +
 	"\forder_number\x18\x04 \x01(\tR\vorderNumber\x12$\n" +
 	"\vauto_extend\x18\x05 \x01(\bH\x00R\n" +
 	"autoExtend\x88\x01\x01\x12\x17\n" +
 	"\x04size\x18\x06 \x01(\x04H\x01R\x04size\x88\x01\x01B\x0e\n" +
 	"\f_auto_extendB\a\n" +
-	"\x05_size\"\xa9\x01\n" +
+	"\x05_size\"\xb5\x01\n" +
 	"\x1bMVMServiceDeleteDiskRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12%\n" +
-	"\tdisk_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bdiskUuid\x12\"\n" +
-	"\aproject\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\aproject\x12!\n" +
+	"\tdisk_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bdiskUuid\x12.\n" +
+	"\fproject_slug\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\vprojectSlug\x12!\n" +
 	"\forder_number\x18\x04 \x01(\tR\vorderNumber\"'\n" +
 	"%MVMServiceAddNetworkInterfaceResponse\"(\n" +
 	"&MVMServiceMoveNetworkInterfaceResponse\"*\n" +
-	"(MVMServiceDeleteNetworkInterfaceResponse\"\x8b\x01\n" +
+	"(MVMServiceDeleteNetworkInterfaceResponse\"\x97\x01\n" +
 	"$MVMServiceAddNetworkInterfaceRequest\x12\x1c\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\"\n" +
-	"\aproject\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\aproject\x12!\n" +
-	"\forder_number\x18\x03 \x01(\tR\vorderNumber\"\xef\x01\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12.\n" +
+	"\fproject_slug\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\vprojectSlug\x12!\n" +
+	"\forder_number\x18\x03 \x01(\tR\vorderNumber\"\xfb\x01\n" +
 	"%MVMServiceMoveNetworkInterfaceRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12/\n" +
-	"\x0einterface_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rinterfaceUuid\x12\"\n" +
-	"\aproject\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\aproject\x12!\n" +
+	"\x0einterface_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rinterfaceUuid\x12.\n" +
+	"\fproject_slug\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\vprojectSlug\x12!\n" +
 	"\forder_number\x18\x04 \x01(\tR\vorderNumber\x120\n" +
-	"\x0ftarget_mvm_uuid\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rtargetMvmUuid\"\xbf\x01\n" +
+	"\x0ftarget_mvm_uuid\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rtargetMvmUuid\"\xcb\x01\n" +
 	"'MVMServiceDeleteNetworkInterfaceRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12/\n" +
-	"\x0einterface_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rinterfaceUuid\x12\"\n" +
-	"\aproject\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\aproject\x12!\n" +
+	"\x0einterface_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rinterfaceUuid\x12.\n" +
+	"\fproject_slug\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\vprojectSlug\x12!\n" +
 	"\forder_number\x18\x04 \x01(\tR\vorderNumber\"\xa1\x01\n" +
 	",MVMServiceValidateAddNetworkInterfaceRequest\x12q\n" +
 	"\x15add_network_interface\x18\x01 \x01(\v25.fits.api.mvm.v1.MVMServiceAddNetworkInterfaceRequestB\x06\xbaH\x03\xc8\x01\x01R\x13addNetworkInterface\"/\n" +
@@ -3003,7 +3002,6 @@ func file_fits_api_mvm_v1_mvm_proto_init() {
 	}
 	file_fits_api_mvm_v1_mvm_proto_msgTypes[9].OneofWrappers = []any{}
 	file_fits_api_mvm_v1_mvm_proto_msgTypes[10].OneofWrappers = []any{}
-	file_fits_api_mvm_v1_mvm_proto_msgTypes[12].OneofWrappers = []any{}
 	file_fits_api_mvm_v1_mvm_proto_msgTypes[25].OneofWrappers = []any{
 		(*MVMServiceAddDiskRequest_Linux)(nil),
 		(*MVMServiceAddDiskRequest_Windows)(nil),

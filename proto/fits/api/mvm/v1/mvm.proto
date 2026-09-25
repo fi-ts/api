@@ -265,8 +265,8 @@ message ManagedVM {
 message MVMServiceGetRequest {
   // UUID of the MVM.
   optional string uuid = 1 [(buf.validate.field).string.uuid = true];
-  // Tenant of the MVM.
-  string tenant = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Slug of the project this MVM belongs to.
+  string project_slug = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
 }
 
 // Response containing the requested MVM.
@@ -294,8 +294,8 @@ message MVMServiceCreateLinuxRequest {
 
 // Request to create a new MVM instance.
 message MVMServiceCreateRequest {
-  // UUID of the project this MVM belongs to.
-  string project_uuid = 1 [(buf.validate.field).string.uuid = true];
+  // Slug of the project this MVM belongs to.
+  string project_slug = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // Optional name; the FQDN is derived from it.
   optional string name = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // UUID of the operating system image to install.
@@ -381,8 +381,8 @@ message MVMServiceCreateResponse {}
 
 // Request to list MVMs.
 message MVMServiceListRequest {
-  // Tenant of the MVMs.
-  optional string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Slug of the project to list MVMs for.
+  string project_slug = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
 }
 
 // Response containing the list of MVMs.
@@ -393,8 +393,8 @@ message MVMServiceListResponse {
 
 // Request to cancel a MVM instance.
 message MVMServiceDeleteRequest {
-  // Project the MVM belongs to.
-  string project = 1 [(buf.validate.field).string.uuid = true];
+  // Slug of the project the MVM belongs to.
+  string project_slug = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // UUID of the MVM to delete.
   string uuid = 2 [(buf.validate.field).string.uuid = true];
   // Order reference for this operation.
@@ -453,8 +453,8 @@ message MVMServiceDeleteDiskResponse {}
 message MVMServiceAddDiskRequest {
   // UUID of the MVM to attach the disk to.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
-  // Project the MVM belongs to.
-  string project = 2 [(buf.validate.field).string.uuid = true];
+  // Slug of the project the MVM belongs to.
+  string project_slug = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // Order reference for this operation.
   // TODO: can this be optional?
   string order_number = 3;
@@ -475,8 +475,8 @@ message MVMServiceUpdateDiskRequest {
   string uuid = 1 [(buf.validate.field).string.uuid = true];
   // UUID of the disk to change.
   string disk_uuid = 2 [(buf.validate.field).string.uuid = true];
-  // Project the MVM belongs to.
-  string project = 3 [(buf.validate.field).string.uuid = true];
+  // Slug of the project the MVM belongs to.
+  string project_slug = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // Order reference for this operation.
   // TODO: can this be optional?
   string order_number = 4;
@@ -493,8 +493,8 @@ message MVMServiceDeleteDiskRequest {
   string uuid = 1 [(buf.validate.field).string.uuid = true];
   // UUID of the disk to cancel.
   string disk_uuid = 2 [(buf.validate.field).string.uuid = true];
-  // Project the MVM belongs to.
-  string project = 3 [(buf.validate.field).string.uuid = true];
+  // Slug of the project the MVM belongs to.
+  string project_slug = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // Order reference for this operation.
   // TODO: can this be optional?
   string order_number = 4;
@@ -519,8 +519,8 @@ message MVMServiceDeleteNetworkInterfaceResponse {}
 message MVMServiceAddNetworkInterfaceRequest {
   // UUID of the MVM to attach the interface to.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
-  // Project the MVM belongs to.
-  string project = 2 [(buf.validate.field).string.uuid = true];
+  // Slug of the project the MVM belongs to.
+  string project_slug = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // Order reference for this operation.
   // TODO: can this be optional?
   string order_number = 3;
@@ -532,8 +532,8 @@ message MVMServiceMoveNetworkInterfaceRequest {
   string uuid = 1 [(buf.validate.field).string.uuid = true];
   // UUID of the network interface holding the IP.
   string interface_uuid = 2 [(buf.validate.field).string.uuid = true];
-  // Project the MVM belongs to.
-  string project = 3 [(buf.validate.field).string.uuid = true];
+  // Slug of the project the MVM belongs to.
+  string project_slug = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // Order reference for this operation.
   // TODO: can this be optional?
   string order_number = 4;
@@ -547,8 +547,8 @@ message MVMServiceDeleteNetworkInterfaceRequest {
   string uuid = 1 [(buf.validate.field).string.uuid = true];
   // UUID of the network interface holding the IP.
   string interface_uuid = 2 [(buf.validate.field).string.uuid = true];
-  // Project the MVM belongs to.
-  string project = 3 [(buf.validate.field).string.uuid = true];
+  // Slug of the project the MVM belongs to.
+  string project_slug = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // Order reference for this operation.
   // TODO: can this be optional?
   string order_number = 4;
