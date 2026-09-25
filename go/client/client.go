@@ -5,11 +5,13 @@ import (
 	"connectrpc.com/connect"
 	compress "github.com/klauspost/connect-compress/v2"
 
+	"github.com/fi-ts/api/go/fits/api/mvm/v1/mvmv1connect"
 	"github.com/fi-ts/api/go/fits/api/v1/apiv1connect"
 )
 
 type (
 	Client interface {
+		Apimvmv1() Apimvmv1
 		Apiv1() Apiv1
 	}
 	client struct {
@@ -17,6 +19,20 @@ type (
 
 		interceptors []connect.Interceptor
 	}
+	Apimvmv1 interface {
+		Location() mvmv1connect.LocationServiceClient
+		MVM() mvmv1connect.MVMServiceClient
+		OS() mvmv1connect.OSServiceClient
+		VLAN() mvmv1connect.VLANServiceClient
+	}
+
+	apimvmv1 struct {
+		locationservice mvmv1connect.LocationServiceClient
+		mvmservice      mvmv1connect.MVMServiceClient
+		osservice       mvmv1connect.OSServiceClient
+		vlanservice     mvmv1connect.VLANServiceClient
+	}
+
 	Apiv1 interface {
 		Health() apiv1connect.HealthServiceClient
 		IP() apiv1connect.IPServiceClient
@@ -37,6 +53,49 @@ type (
 		versionservice apiv1connect.VersionServiceClient
 	}
 )
+
+func (c *client) Apimvmv1() Apimvmv1 {
+	a := &apimvmv1{
+		locationservice: mvmv1connect.NewLocationServiceClient(
+			c.config.HttpClient(),
+			c.config.BaseURL,
+			connect.WithInterceptors(c.interceptors...),
+			compress.WithAll(compress.LevelBalanced),
+		),
+		mvmservice: mvmv1connect.NewMVMServiceClient(
+			c.config.HttpClient(),
+			c.config.BaseURL,
+			connect.WithInterceptors(c.interceptors...),
+			compress.WithAll(compress.LevelBalanced),
+		),
+		osservice: mvmv1connect.NewOSServiceClient(
+			c.config.HttpClient(),
+			c.config.BaseURL,
+			connect.WithInterceptors(c.interceptors...),
+			compress.WithAll(compress.LevelBalanced),
+		),
+		vlanservice: mvmv1connect.NewVLANServiceClient(
+			c.config.HttpClient(),
+			c.config.BaseURL,
+			connect.WithInterceptors(c.interceptors...),
+			compress.WithAll(compress.LevelBalanced),
+		),
+	}
+	return a
+}
+
+func (c *apimvmv1) Location() mvmv1connect.LocationServiceClient {
+	return c.locationservice
+}
+func (c *apimvmv1) MVM() mvmv1connect.MVMServiceClient {
+	return c.mvmservice
+}
+func (c *apimvmv1) OS() mvmv1connect.OSServiceClient {
+	return c.osservice
+}
+func (c *apimvmv1) VLAN() mvmv1connect.VLANServiceClient {
+	return c.vlanservice
+}
 
 func (c *client) Apiv1() Apiv1 {
 	a := &apiv1{

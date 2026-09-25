@@ -5,7 +5,6 @@ package fits.api.v1;
 import "buf/validate/validate.proto";
 import "fits/api/v1/common.proto";
 import "fits/api/v1/predefined_rules.proto";
-import "google/protobuf/timestamp.proto";
 
 // TenantService provides tenant management operations.
 service TenantService {
@@ -71,8 +70,8 @@ message TenantServiceListRequest {
 
 // TenantServiceGetRequest is the request payload of the tenant get request
 message TenantServiceGetRequest {
-  // Login of the tenant
-  string login = 1;
+  // Tenant is the login of the tenant
+  string tenant = 1;
 }
 
 // TenantServiceCreateRequest is the request payload of the tenant create request
@@ -91,8 +90,8 @@ message TenantServiceCreateRequest {
 
 // TenantServiceUpdateRequest is the request payload of the tenant update request
 message TenantServiceUpdateRequest {
-  // Login of the tenant
-  string login = 1;
+  // Tenant is the login of the tenant
+  string tenant = 1;
   // UpdateMeta contains the timestamp and strategy to be used in this update request
   UpdateMeta update_meta = 2 [(buf.validate.field).required = true];
   // Name of the tenant
@@ -109,8 +108,8 @@ message TenantServiceUpdateRequest {
 
 // TenantServiceDeleteRequest is the request payload of the tenant delete request
 message TenantServiceDeleteRequest {
-  // Login of the tenant
-  string login = 1;
+  // Tenant is the login of the tenant
+  string tenant = 1;
 }
 
 // TenantServiceGetResponse is the response payload of the tenant get request

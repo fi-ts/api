@@ -100,7 +100,7 @@ func Test_APIScopes(t *testing.T) {
 	// err = validateProto("./testproto")
 
 	// errs := errors.Join(
-	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Add\" has apiv1.TenantRole but request payload \"WrongProjectServiceAddRequest\" does not have a login field"),
+	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Add\" has apiv1.TenantRole but request payload \"WrongProjectServiceAddRequest\" does not have a tenant field"),
 	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Get\" has apiv1.ProjectRole but request payload \"WrongProjectServiceGetRequest\" does not have a project field"),
 	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/List\" has no scope defined. one scope needs to be defined though. use one of the following scopes: [apiv1.AdminRole apiv1.ProjectRole apiv1.TenantRole apiv1.Visibility]"),
 	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Update\" does not have a update_meta field in WrongProjectServiceUpdateRequest"),
@@ -233,6 +233,36 @@ func validateProto(root string) error {
 				// Sort all to have stable results
 				slices.Sort(allScopeNames)
 
+				// inputFields collects the fields of the request payload
+				// including the fields of nested messages defined in this file,
+				// so wrapped requests (e.g. Validate* carrying the real request)
+				// are checked as well.
+				inputFields := func() (fields []*descriptorpb.FieldDescriptorProto) {
+					byName := map[string][]*descriptorpb.FieldDescriptorProto{}
+					for _, mt := range fd.GetMessageType() {
+						byName[mt.GetName()] = mt.GetField()
+					}
+					visited := map[string]bool{}
+					var walk func(name string)
+					walk = func(name string) {
+						if visited[name] {
+							return
+						}
+						visited[name] = true
+						for _, f := range byName[name] {
+							fields = append(fields, f)
+							if tn := f.GetTypeName(); tn != "" {
+								// Same-file messages are referenced by their plain
+								// name, imported ones by a fully qualified name
+								// with a leading dot; only local messages matter here.
+								walk(strings.TrimPrefix(tn, "."))
+							}
+						}
+					}
+					walk(method.GetInputType())
+					return fields
+				}()
+
 				for _, mt := range fd.GetMessageType() {
 					if mt.GetName() != method.GetInputType() {
 						continue
@@ -268,38 +298,26 @@ func validateProto(root string) error {
 
 					if name == prs {
 						projectFound := false
-						projectRequest := ""
-						for _, mt := range fd.GetMessageType() {
-							if mt.GetName() != method.GetInputType() {
-								continue
+						// TODO: only accept project_slug once all services are
+						// streamlined to it (see ip.proto / project.proto).
+						for _, field := range inputFields {
+							if field.GetName() == "project" || field.GetName() == "project_uuid" || field.GetName() == "project_slug" {
+								projectFound = true
 							}
-							for _, field := range mt.GetField() {
-								if field.GetName() == "project" {
-									projectFound = true
-								}
-							}
-							projectRequest = mt.GetName()
 						}
 						if !projectFound {
-							errs = append(errs, fmt.Errorf("api service method: %q has %s but request payload %q does not have a project field", methodName, prs, projectRequest))
+							errs = append(errs, fmt.Errorf("api service method: %q has %s but request payload %q does not have a project field", methodName, prs, method.GetInputType()))
 						}
 					}
 					if name == trs {
 						tenantFound := false
-						tenantRequest := ""
-						for _, mt := range fd.GetMessageType() {
-							if mt.GetName() != method.GetInputType() {
-								continue
+						for _, field := range inputFields {
+							if field.GetName() == "tenant" {
+								tenantFound = true
 							}
-							for _, field := range mt.GetField() {
-								if field.GetName() == "login" {
-									tenantFound = true
-								}
-							}
-							tenantRequest = mt.GetName()
 						}
 						if !tenantFound {
-							errs = append(errs, fmt.Errorf("api service method: %q has %s but request payload %q does not have a login field", methodName, trs, tenantRequest))
+							errs = append(errs, fmt.Errorf("api service method: %q has %s but request payload %q does not have a tenant field", methodName, trs, method.GetInputType()))
 						}
 					}
 				}
