@@ -26,10 +26,13 @@ class ServiceClass(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     SERVICE_CLASS_SZ2: _ClassVar[ServiceClass]
     SERVICE_CLASS_SZ3: _ClassVar[ServiceClass]
 
-class MVMStatus(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+class Status(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
-    MVM_STATUS_UNSPECIFIED: _ClassVar[MVMStatus]
-    MVM_STATUS_ACTIVE: _ClassVar[MVMStatus]
+    STATUS_UNSPECIFIED: _ClassVar[Status]
+    STATUS_CREATING: _ClassVar[Status]
+    STATUS_ERROR: _ClassVar[Status]
+    STATUS_DELETED: _ClassVar[Status]
+    STATUS_ACTIVE: _ClassVar[Status]
 
 class DiskType(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
@@ -46,8 +49,11 @@ SERVICE_CLASS_UNSPECIFIED: ServiceClass
 SERVICE_CLASS_SZ1: ServiceClass
 SERVICE_CLASS_SZ2: ServiceClass
 SERVICE_CLASS_SZ3: ServiceClass
-MVM_STATUS_UNSPECIFIED: MVMStatus
-MVM_STATUS_ACTIVE: MVMStatus
+STATUS_UNSPECIFIED: Status
+STATUS_CREATING: Status
+STATUS_ERROR: Status
+STATUS_DELETED: Status
+STATUS_ACTIVE: Status
 DISK_TYPE_UNSPECIFIED: DiskType
 DISK_TYPE_OS: DiskType
 DISK_TYPE_SYSTEM: DiskType
@@ -116,7 +122,7 @@ class ManagedVM(_message.Message):
     cpu: int
     ram: int
     backup: bool
-    status: MVMStatus
+    status: Status
     status_info: str
     availability: Availability
     serviceclass: ServiceClass
@@ -125,7 +131,7 @@ class ManagedVM(_message.Message):
     interfaces: _containers.RepeatedCompositeFieldContainer[NetworkInterface]
     vlan: _vlan_pb2.VLAN
     order_number: str
-    def __init__(self, uuid: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., fqdn: _Optional[str] = ..., tenant: _Optional[str] = ..., project_uuid: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., backup: _Optional[bool] = ..., status: _Optional[_Union[MVMStatus, str]] = ..., status_info: _Optional[str] = ..., availability: _Optional[_Union[Availability, str]] = ..., serviceclass: _Optional[_Union[ServiceClass, str]] = ..., windows_details: _Optional[_Union[WindowsDetails, _Mapping]] = ..., linux_details: _Optional[_Union[LinuxDetails, _Mapping]] = ..., interfaces: _Optional[_Iterable[_Union[NetworkInterface, _Mapping]]] = ..., vlan: _Optional[_Union[_vlan_pb2.VLAN, _Mapping]] = ..., order_number: _Optional[str] = ...) -> None: ...
+    def __init__(self, uuid: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., fqdn: _Optional[str] = ..., tenant: _Optional[str] = ..., project_uuid: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., backup: _Optional[bool] = ..., status: _Optional[_Union[Status, str]] = ..., status_info: _Optional[str] = ..., availability: _Optional[_Union[Availability, str]] = ..., serviceclass: _Optional[_Union[ServiceClass, str]] = ..., windows_details: _Optional[_Union[WindowsDetails, _Mapping]] = ..., linux_details: _Optional[_Union[LinuxDetails, _Mapping]] = ..., interfaces: _Optional[_Iterable[_Union[NetworkInterface, _Mapping]]] = ..., vlan: _Optional[_Union[_vlan_pb2.VLAN, _Mapping]] = ..., order_number: _Optional[str] = ...) -> None: ...
 
 class MVMServiceGetRequest(_message.Message):
     __slots__ = ("uuid", "tenant")

@@ -17,6 +17,22 @@ service VLANService {
   }
 }
 
+// StageType specifies the fixed stage of a managed VM (MVM) instance or VLAN.
+// The set of stages is fixed upstream, so it is modeled as an enum instead of
+// a listable resource.
+enum StageType {
+  // STAGE_TYPE_UNSPECIFIED is not specified.
+  STAGE_TYPE_UNSPECIFIED = 0 [(fits.api.v1.enum_string_value) = ""];
+  // STAGE_TYPE_DEVELOPMENT is the development stage.
+  STAGE_TYPE_DEVELOPMENT = 1 [(fits.api.v1.enum_string_value) = "development"];
+  // STAGE_TYPE_TEST is the test stage.
+  STAGE_TYPE_TEST = 2 [(fits.api.v1.enum_string_value) = "test"];
+  // STAGE_TYPE_INTEGRATION is the integration stage.
+  STAGE_TYPE_INTEGRATION = 3 [(fits.api.v1.enum_string_value) = "integration"];
+  // STAGE_TYPE_PRODUCTION is the production stage.
+  STAGE_TYPE_PRODUCTION = 4 [(fits.api.v1.enum_string_value) = "production"];
+}
+
 // VLAN is a VLAN that a MVM can be connected to.
 message VLAN {
   // Uuid of this VLAN
@@ -32,8 +48,8 @@ message VLAN {
   optional string location_uuid = 10 [(buf.validate.field).string.uuid = true];
   // TODO: instead of a stage type, this should be mapped to a project.
   // TODO: this would have to be re-mapped in the customer onboarding
-  // Uuid of the stage type of this VLAN
-  string stage_type_uuid = 11 [(buf.validate.field).string.uuid = true];
+  // Stage type of this VLAN
+  StageType stage_type = 11 [(buf.validate.field).enum.defined_only = true];
   // Tenant this VLAN belongs to.
   string tenant = 12 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
 }

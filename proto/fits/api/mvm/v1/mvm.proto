@@ -128,12 +128,18 @@ enum ServiceClass {
   SERVICE_CLASS_SZ3 = 3 [(fits.api.v1.enum_string_value) = "SZ3"];
 }
 
-// MVMStatus specifies the status of a MVM.
-enum MVMStatus {
-  // MVM_STATUS_UNSPECIFIED is not specified.
-  MVM_STATUS_UNSPECIFIED = 0 [(fits.api.v1.enum_string_value) = ""];
-  // MVM_STATUS_ACTIVE is an active MVM.
-  MVM_STATUS_ACTIVE = 1 [(fits.api.v1.enum_string_value) = "active"];
+// Status specifies the status of a MVM.
+enum Status {
+  // STATUS_UNSPECIFIED is not specified.
+  STATUS_UNSPECIFIED = 0 [(fits.api.v1.enum_string_value) = ""];
+  // STATUS_CREATING: the VM hostname is reserved and provisioning has started.
+  STATUS_CREATING = 1 [(fits.api.v1.enum_string_value) = "creating"];
+  // STATUS_ERROR: the exact error status is derived from the request type.
+  STATUS_ERROR = 2 [(fits.api.v1.enum_string_value) = "error"];
+  // STATUS_DELETED: the VM is deleted.
+  STATUS_DELETED = 3 [(fits.api.v1.enum_string_value) = "deleted"];
+  // STATUS_ACTIVE: the VM is active.
+  STATUS_ACTIVE = 4 [(fits.api.v1.enum_string_value) = "active"];
 }
 
 // DiskType classifies a MVM disk by its lifecycle rules.
@@ -231,7 +237,7 @@ message ManagedVM {
   // TODO: the upstream (nulink) list/get models do not expose this; always false.
   bool backup = 11;
   // Status of the MVM.
-  MVMStatus status = 12 [(buf.validate.field).enum.defined_only = true];
+  Status status = 12 [(buf.validate.field).enum.defined_only = true];
   // Additional information about the current status.
   string status_info = 13;
   // Availability level.

@@ -27,7 +27,7 @@ from fits.api.v1 import common_pb2 as fits_dot_api_dot_v1_dot_common__pb2
 from fits.api.v1 import predefined_rules_pb2 as fits_dot_api_dot_v1_dot_predefined__rules__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1a\x66its/api/mvm/v1/vlan.proto\x12\x0f\x66its.api.mvm.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xb8\x02\n\x04VLAN\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x17\n\x07vlan_id\x18\x02 \x01(\x05R\x06vlanId\x12.\n\x0csubnet_title\x18\x03 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x0bsubnetTitle\x12,\n\x0bsubnet_cidr\x18\x04 \x01(\tB\x0b\xbaH\x08r\x06\xf8\xb3\xae\xb1\x02\x01R\nsubnetCidr\x12\x32\n\rlocation_uuid\x18\n \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01H\x00R\x0clocationUuid\x88\x01\x01\x12\x30\n\x0fstage_type_uuid\x18\x0b \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\rstageTypeUuid\x12#\n\x06tenant\x18\x0c \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenantB\x10\n\x0e_location_uuid\"=\n\x16VLANServiceListRequest\x12#\n\x06tenant\x18\x01 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\"F\n\x17VLANServiceListResponse\x12+\n\x05vlans\x18\x01 \x03(\x0b\x32\x15.fits.api.mvm.v1.VLANR\x05vlans2u\n\x0bVLANService\x12\x66\n\x04List\x12\'.fits.api.mvm.v1.VLANServiceListRequest\x1a(.fits.api.mvm.v1.VLANServiceListResponse\"\x0b\xc2\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x42\xae\x01\n\x13\x63om.fits.api.mvm.v1B\tVlanProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03\x46\x41M\xaa\x02\x0f\x46its.Api.Mvm.V1\xca\x02\x0f\x46its\\Api\\Mvm\\V1\xe2\x02\x1b\x46its\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12\x46its::Api::Mvm::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1a\x66its/api/mvm/v1/vlan.proto\x12\x0f\x66its.api.mvm.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xcb\x02\n\x04VLAN\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x17\n\x07vlan_id\x18\x02 \x01(\x05R\x06vlanId\x12.\n\x0csubnet_title\x18\x03 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x0bsubnetTitle\x12,\n\x0bsubnet_cidr\x18\x04 \x01(\tB\x0b\xbaH\x08r\x06\xf8\xb3\xae\xb1\x02\x01R\nsubnetCidr\x12\x32\n\rlocation_uuid\x18\n \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01H\x00R\x0clocationUuid\x88\x01\x01\x12\x43\n\nstage_type\x18\x0b \x01(\x0e\x32\x1a.fits.api.mvm.v1.StageTypeB\x08\xbaH\x05\x82\x01\x02\x10\x01R\tstageType\x12#\n\x06tenant\x18\x0c \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenantB\x10\n\x0e_location_uuid\"=\n\x16VLANServiceListRequest\x12#\n\x06tenant\x18\x01 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\"F\n\x17VLANServiceListResponse\x12+\n\x05vlans\x18\x01 \x03(\x0b\x32\x15.fits.api.mvm.v1.VLANR\x05vlans*\xd1\x01\n\tStageType\x12 \n\x16STAGE_TYPE_UNSPECIFIED\x10\x00\x1a\x04\x82\xb2\x19\x00\x12+\n\x16STAGE_TYPE_DEVELOPMENT\x10\x01\x1a\x0f\x82\xb2\x19\x0b\x64\x65velopment\x12\x1d\n\x0fSTAGE_TYPE_TEST\x10\x02\x1a\x08\x82\xb2\x19\x04test\x12+\n\x16STAGE_TYPE_INTEGRATION\x10\x03\x1a\x0f\x82\xb2\x19\x0bintegration\x12)\n\x15STAGE_TYPE_PRODUCTION\x10\x04\x1a\x0e\x82\xb2\x19\nproduction2u\n\x0bVLANService\x12\x66\n\x04List\x12\'.fits.api.mvm.v1.VLANServiceListRequest\x1a(.fits.api.mvm.v1.VLANServiceListResponse\"\x0b\xc2\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x42\xae\x01\n\x13\x63om.fits.api.mvm.v1B\tVlanProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03\x46\x41M\xaa\x02\x0f\x46its.Api.Mvm.V1\xca\x02\x0f\x46its\\Api\\Mvm\\V1\xe2\x02\x1b\x46its\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12\x46its::Api::Mvm::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -35,6 +35,16 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'fits.api.mvm.v1.vlan_pb2', 
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'\n\023com.fits.api.mvm.v1B\tVlanProtoP\001Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\242\002\003FAM\252\002\017Fits.Api.Mvm.V1\312\002\017Fits\\Api\\Mvm\\V1\342\002\033Fits\\Api\\Mvm\\V1\\GPBMetadata\352\002\022Fits::Api::Mvm::V1'
+  _globals['_STAGETYPE'].values_by_name["STAGE_TYPE_UNSPECIFIED"]._loaded_options = None
+  _globals['_STAGETYPE'].values_by_name["STAGE_TYPE_UNSPECIFIED"]._serialized_options = b'\202\262\031\000'
+  _globals['_STAGETYPE'].values_by_name["STAGE_TYPE_DEVELOPMENT"]._loaded_options = None
+  _globals['_STAGETYPE'].values_by_name["STAGE_TYPE_DEVELOPMENT"]._serialized_options = b'\202\262\031\013development'
+  _globals['_STAGETYPE'].values_by_name["STAGE_TYPE_TEST"]._loaded_options = None
+  _globals['_STAGETYPE'].values_by_name["STAGE_TYPE_TEST"]._serialized_options = b'\202\262\031\004test'
+  _globals['_STAGETYPE'].values_by_name["STAGE_TYPE_INTEGRATION"]._loaded_options = None
+  _globals['_STAGETYPE'].values_by_name["STAGE_TYPE_INTEGRATION"]._serialized_options = b'\202\262\031\013integration'
+  _globals['_STAGETYPE'].values_by_name["STAGE_TYPE_PRODUCTION"]._loaded_options = None
+  _globals['_STAGETYPE'].values_by_name["STAGE_TYPE_PRODUCTION"]._serialized_options = b'\202\262\031\nproduction'
   _globals['_VLAN'].fields_by_name['uuid']._loaded_options = None
   _globals['_VLAN'].fields_by_name['uuid']._serialized_options = b'\272H\005r\003\260\001\001'
   _globals['_VLAN'].fields_by_name['subnet_title']._loaded_options = None
@@ -43,20 +53,22 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_VLAN'].fields_by_name['subnet_cidr']._serialized_options = b'\272H\010r\006\370\263\256\261\002\001'
   _globals['_VLAN'].fields_by_name['location_uuid']._loaded_options = None
   _globals['_VLAN'].fields_by_name['location_uuid']._serialized_options = b'\272H\005r\003\260\001\001'
-  _globals['_VLAN'].fields_by_name['stage_type_uuid']._loaded_options = None
-  _globals['_VLAN'].fields_by_name['stage_type_uuid']._serialized_options = b'\272H\005r\003\260\001\001'
+  _globals['_VLAN'].fields_by_name['stage_type']._loaded_options = None
+  _globals['_VLAN'].fields_by_name['stage_type']._serialized_options = b'\272H\005\202\001\002\020\001'
   _globals['_VLAN'].fields_by_name['tenant']._loaded_options = None
   _globals['_VLAN'].fields_by_name['tenant']._serialized_options = b'\272H\010r\006\300\263\256\261\002\001'
   _globals['_VLANSERVICELISTREQUEST'].fields_by_name['tenant']._loaded_options = None
   _globals['_VLANSERVICELISTREQUEST'].fields_by_name['tenant']._serialized_options = b'\272H\010r\006\300\263\256\261\002\001'
   _globals['_VLANSERVICE'].methods_by_name['List']._loaded_options = None
   _globals['_VLANSERVICE'].methods_by_name['List']._serialized_options = b'\302\363\030\003\001\002\003\340\363\030\002'
+  _globals['_STAGETYPE']._serialized_start=608
+  _globals['_STAGETYPE']._serialized_end=817
   _globals['_VLAN']._serialized_start=139
-  _globals['_VLAN']._serialized_end=451
-  _globals['_VLANSERVICELISTREQUEST']._serialized_start=453
-  _globals['_VLANSERVICELISTREQUEST']._serialized_end=514
-  _globals['_VLANSERVICELISTRESPONSE']._serialized_start=516
-  _globals['_VLANSERVICELISTRESPONSE']._serialized_end=586
-  _globals['_VLANSERVICE']._serialized_start=588
-  _globals['_VLANSERVICE']._serialized_end=705
+  _globals['_VLAN']._serialized_end=470
+  _globals['_VLANSERVICELISTREQUEST']._serialized_start=472
+  _globals['_VLANSERVICELISTREQUEST']._serialized_end=533
+  _globals['_VLANSERVICELISTRESPONSE']._serialized_start=535
+  _globals['_VLANSERVICELISTRESPONSE']._serialized_end=605
+  _globals['_VLANSERVICE']._serialized_start=819
+  _globals['_VLANSERVICE']._serialized_end=936
 # @@protoc_insertion_point(module_scope)

@@ -23,16 +23,14 @@ type (
 		Location() mvmv1connect.LocationServiceClient
 		MVM() mvmv1connect.MVMServiceClient
 		OS() mvmv1connect.OSServiceClient
-		StageType() mvmv1connect.StageTypeServiceClient
 		VLAN() mvmv1connect.VLANServiceClient
 	}
 
 	apimvmv1 struct {
-		locationservice  mvmv1connect.LocationServiceClient
-		mvmservice       mvmv1connect.MVMServiceClient
-		osservice        mvmv1connect.OSServiceClient
-		stagetypeservice mvmv1connect.StageTypeServiceClient
-		vlanservice      mvmv1connect.VLANServiceClient
+		locationservice mvmv1connect.LocationServiceClient
+		mvmservice      mvmv1connect.MVMServiceClient
+		osservice       mvmv1connect.OSServiceClient
+		vlanservice     mvmv1connect.VLANServiceClient
 	}
 
 	Apiv1 interface {
@@ -76,12 +74,6 @@ func (c *client) Apimvmv1() Apimvmv1 {
 			connect.WithInterceptors(c.interceptors...),
 			compress.WithAll(compress.LevelBalanced),
 		),
-		stagetypeservice: mvmv1connect.NewStageTypeServiceClient(
-			c.config.HttpClient(),
-			c.config.BaseURL,
-			connect.WithInterceptors(c.interceptors...),
-			compress.WithAll(compress.LevelBalanced),
-		),
 		vlanservice: mvmv1connect.NewVLANServiceClient(
 			c.config.HttpClient(),
 			c.config.BaseURL,
@@ -100,9 +92,6 @@ func (c *apimvmv1) MVM() mvmv1connect.MVMServiceClient {
 }
 func (c *apimvmv1) OS() mvmv1connect.OSServiceClient {
 	return c.osservice
-}
-func (c *apimvmv1) StageType() mvmv1connect.StageTypeServiceClient {
-	return c.stagetypeservice
 }
 func (c *apimvmv1) VLAN() mvmv1connect.VLANServiceClient {
 	return c.vlanservice

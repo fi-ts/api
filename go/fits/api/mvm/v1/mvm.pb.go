@@ -142,52 +142,64 @@ func (ServiceClass) EnumDescriptor() ([]byte, []int) {
 	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{1}
 }
 
-// MVMStatus specifies the status of a MVM.
-type MVMStatus int32
+// Status specifies the status of a MVM.
+type Status int32
 
 const (
-	// MVM_STATUS_UNSPECIFIED is not specified.
-	MVMStatus_MVM_STATUS_UNSPECIFIED MVMStatus = 0
-	// MVM_STATUS_ACTIVE is an active MVM.
-	MVMStatus_MVM_STATUS_ACTIVE MVMStatus = 1
+	// STATUS_UNSPECIFIED is not specified.
+	Status_STATUS_UNSPECIFIED Status = 0
+	// STATUS_CREATING: the VM hostname is reserved and provisioning has started.
+	Status_STATUS_CREATING Status = 1
+	// STATUS_ERROR: the exact error status is derived from the request type.
+	Status_STATUS_ERROR Status = 2
+	// STATUS_DELETED: the VM is deleted.
+	Status_STATUS_DELETED Status = 3
+	// STATUS_ACTIVE: the VM is active.
+	Status_STATUS_ACTIVE Status = 4
 )
 
-// Enum value maps for MVMStatus.
+// Enum value maps for Status.
 var (
-	MVMStatus_name = map[int32]string{
-		0: "MVM_STATUS_UNSPECIFIED",
-		1: "MVM_STATUS_ACTIVE",
+	Status_name = map[int32]string{
+		0: "STATUS_UNSPECIFIED",
+		1: "STATUS_CREATING",
+		2: "STATUS_ERROR",
+		3: "STATUS_DELETED",
+		4: "STATUS_ACTIVE",
 	}
-	MVMStatus_value = map[string]int32{
-		"MVM_STATUS_UNSPECIFIED": 0,
-		"MVM_STATUS_ACTIVE":      1,
+	Status_value = map[string]int32{
+		"STATUS_UNSPECIFIED": 0,
+		"STATUS_CREATING":    1,
+		"STATUS_ERROR":       2,
+		"STATUS_DELETED":     3,
+		"STATUS_ACTIVE":      4,
 	}
 )
 
-func (x MVMStatus) Enum() *MVMStatus {
-	p := new(MVMStatus)
+func (x Status) Enum() *Status {
+	p := new(Status)
 	*p = x
 	return p
 }
 
-func (x MVMStatus) String() string {
+func (x Status) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (MVMStatus) Descriptor() protoreflect.EnumDescriptor {
+func (Status) Descriptor() protoreflect.EnumDescriptor {
 	return file_fits_api_mvm_v1_mvm_proto_enumTypes[2].Descriptor()
 }
 
-func (MVMStatus) Type() protoreflect.EnumType {
+func (Status) Type() protoreflect.EnumType {
 	return &file_fits_api_mvm_v1_mvm_proto_enumTypes[2]
 }
 
-func (x MVMStatus) Number() protoreflect.EnumNumber {
+func (x Status) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use MVMStatus.Descriptor instead.
-func (MVMStatus) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use Status.Descriptor instead.
+func (Status) EnumDescriptor() ([]byte, []int) {
 	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{2}
 }
 
@@ -494,7 +506,7 @@ type ManagedVM struct {
 	// TODO: the upstream (nulink) list/get models do not expose this; always false.
 	Backup bool `protobuf:"varint,11,opt,name=backup,proto3" json:"backup,omitempty"`
 	// Status of the MVM.
-	Status MVMStatus `protobuf:"varint,12,opt,name=status,proto3,enum=fits.api.mvm.v1.MVMStatus" json:"status,omitempty"`
+	Status Status `protobuf:"varint,12,opt,name=status,proto3,enum=fits.api.mvm.v1.Status" json:"status,omitempty"`
 	// Additional information about the current status.
 	StatusInfo string `protobuf:"bytes,13,opt,name=status_info,json=statusInfo,proto3" json:"status_info,omitempty"`
 	// Availability level.
@@ -626,11 +638,11 @@ func (x *ManagedVM) GetBackup() bool {
 	return false
 }
 
-func (x *ManagedVM) GetStatus() MVMStatus {
+func (x *ManagedVM) GetStatus() Status {
 	if x != nil {
 		return x.Status
 	}
-	return MVMStatus_MVM_STATUS_UNSPECIFIED
+	return Status_STATUS_UNSPECIFIED
 }
 
 func (x *ManagedVM) GetStatusInfo() string {
@@ -2643,7 +2655,7 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\tipaddress\x18\x02 \x01(\tB\v\xbaH\br\x06賮\xb1\x02\x01R\tipaddress\x12\x1e\n" +
 	"\n" +
 	"macaddress\x18\x03 \x01(\tR\n" +
-	"macaddress\"\xac\a\n" +
+	"macaddress\"\xa9\a\n" +
 	"\tManagedVM\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12%\n" +
 	"\x04meta\x18\x02 \x01(\v2\x11.fits.api.v1.MetaR\x04meta\x12\x1f\n" +
@@ -2656,8 +2668,8 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\x03cpu\x18\t \x01(\rR\x03cpu\x12\x10\n" +
 	"\x03ram\x18\n" +
 	" \x01(\rR\x03ram\x12\x16\n" +
-	"\x06backup\x18\v \x01(\bR\x06backup\x12<\n" +
-	"\x06status\x18\f \x01(\x0e2\x1a.fits.api.mvm.v1.MVMStatusB\b\xbaH\x05\x82\x01\x02\x10\x01R\x06status\x12\x1f\n" +
+	"\x06backup\x18\v \x01(\bR\x06backup\x129\n" +
+	"\x06status\x18\f \x01(\x0e2\x17.fits.api.mvm.v1.StatusB\b\xbaH\x05\x82\x01\x02\x10\x01R\x06status\x12\x1f\n" +
 	"\vstatus_info\x18\r \x01(\tR\n" +
 	"statusInfo\x12K\n" +
 	"\favailability\x18\x0e \x01(\x0e2\x1d.fits.api.mvm.v1.AvailabilityB\b\xbaH\x05\x82\x01\x02\x10\x01R\favailability\x12K\n" +
@@ -2806,10 +2818,13 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\x19SERVICE_CLASS_UNSPECIFIED\x10\x00\x1a\x04\x82\xb2\x19\x00\x12\x1e\n" +
 	"\x11SERVICE_CLASS_SZ1\x10\x01\x1a\a\x82\xb2\x19\x03SZ1\x12\x1e\n" +
 	"\x11SERVICE_CLASS_SZ2\x10\x02\x1a\a\x82\xb2\x19\x03SZ2\x12\x1e\n" +
-	"\x11SERVICE_CLASS_SZ3\x10\x03\x1a\a\x82\xb2\x19\x03SZ3*P\n" +
-	"\tMVMStatus\x12 \n" +
-	"\x16MVM_STATUS_UNSPECIFIED\x10\x00\x1a\x04\x82\xb2\x19\x00\x12!\n" +
-	"\x11MVM_STATUS_ACTIVE\x10\x01\x1a\n" +
+	"\x11SERVICE_CLASS_SZ3\x10\x03\x1a\a\x82\xb2\x19\x03SZ3*\xa6\x01\n" +
+	"\x06Status\x12\x1c\n" +
+	"\x12STATUS_UNSPECIFIED\x10\x00\x1a\x04\x82\xb2\x19\x00\x12!\n" +
+	"\x0fSTATUS_CREATING\x10\x01\x1a\f\x82\xb2\x19\bcreating\x12\x1b\n" +
+	"\fSTATUS_ERROR\x10\x02\x1a\t\x82\xb2\x19\x05error\x12\x1f\n" +
+	"\x0eSTATUS_DELETED\x10\x03\x1a\v\x82\xb2\x19\adeleted\x12\x1d\n" +
+	"\rSTATUS_ACTIVE\x10\x04\x1a\n" +
 	"\x82\xb2\x19\x06active*\x85\x01\n" +
 	"\bDiskType\x12\x1f\n" +
 	"\x15DISK_TYPE_UNSPECIFIED\x10\x00\x1a\x04\x82\xb2\x19\x00\x12\x18\n" +
@@ -2866,7 +2881,7 @@ var file_fits_api_mvm_v1_mvm_proto_msgTypes = make([]protoimpl.MessageInfo, 36)
 var file_fits_api_mvm_v1_mvm_proto_goTypes = []any{
 	(Availability)(0),                                     // 0: fits.api.mvm.v1.Availability
 	(ServiceClass)(0),                                     // 1: fits.api.mvm.v1.ServiceClass
-	(MVMStatus)(0),                                        // 2: fits.api.mvm.v1.MVMStatus
+	(Status)(0),                                           // 2: fits.api.mvm.v1.Status
 	(DiskType)(0),                                         // 3: fits.api.mvm.v1.DiskType
 	(*LinuxDetails)(nil),                                  // 4: fits.api.mvm.v1.LinuxDetails
 	(*WindowsDetails)(nil),                                // 5: fits.api.mvm.v1.WindowsDetails
@@ -2912,7 +2927,7 @@ var file_fits_api_mvm_v1_mvm_proto_depIdxs = []int32{
 	13, // 0: fits.api.mvm.v1.LinuxDetails.disks:type_name -> fits.api.mvm.v1.LinuxDisk
 	14, // 1: fits.api.mvm.v1.WindowsDetails.disks:type_name -> fits.api.mvm.v1.WindowsDisk
 	40, // 2: fits.api.mvm.v1.ManagedVM.meta:type_name -> fits.api.v1.Meta
-	2,  // 3: fits.api.mvm.v1.ManagedVM.status:type_name -> fits.api.mvm.v1.MVMStatus
+	2,  // 3: fits.api.mvm.v1.ManagedVM.status:type_name -> fits.api.mvm.v1.Status
 	0,  // 4: fits.api.mvm.v1.ManagedVM.availability:type_name -> fits.api.mvm.v1.Availability
 	1,  // 5: fits.api.mvm.v1.ManagedVM.serviceclass:type_name -> fits.api.mvm.v1.ServiceClass
 	5,  // 6: fits.api.mvm.v1.ManagedVM.windows_details:type_name -> fits.api.mvm.v1.WindowsDetails

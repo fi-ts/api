@@ -372,6 +372,10 @@
                 </li>
               
               
+                <li>
+                  <a href="#fits.api.mvm.v1.StageType"><span class="badge">E</span>StageType</a>
+                </li>
+              
               
               
                 <li>
@@ -540,11 +544,11 @@
                 </li>
               
                 <li>
-                  <a href="#fits.api.mvm.v1.MVMStatus"><span class="badge">E</span>MVMStatus</a>
+                  <a href="#fits.api.mvm.v1.ServiceClass"><span class="badge">E</span>ServiceClass</a>
                 </li>
               
                 <li>
-                  <a href="#fits.api.mvm.v1.ServiceClass"><span class="badge">E</span>ServiceClass</a>
+                  <a href="#fits.api.mvm.v1.Status"><span class="badge">E</span>Status</a>
                 </li>
               
               
@@ -582,33 +586,6 @@
               
                 <li>
                   <a href="#fits.api.mvm.v1.OSService"><span class="badge">S</span>OSService</a>
-                </li>
-              
-            </ul>
-          </li>
-        
-          
-          <li>
-            <a href="#fits%2fapi%2fmvm%2fv1%2fstagetype.proto">fits/api/mvm/v1/stagetype.proto</a>
-            <ul>
-              
-                <li>
-                  <a href="#fits.api.mvm.v1.StageType"><span class="badge">M</span>StageType</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.mvm.v1.StageTypeServiceListRequest"><span class="badge">M</span>StageTypeServiceListRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.mvm.v1.StageTypeServiceListResponse"><span class="badge">M</span>StageTypeServiceListResponse</a>
-                </li>
-              
-              
-              
-              
-                <li>
-                  <a href="#fits.api.mvm.v1.StageTypeService"><span class="badge">S</span>StageTypeService</a>
                 </li>
               
             </ul>
@@ -1793,12 +1770,12 @@ This is not a foreign key, this is the actual ID of the VLAN the network interfa
                 </tr>
               
                 <tr>
-                  <td>stage_type_uuid</td>
-                  <td><a href="#string">string</a></td>
+                  <td>stage_type</td>
+                  <td><a href="#fits.api.mvm.v1.StageType">StageType</a></td>
                   <td></td>
                   <td><p>TODO: instead of a stage type, this should be mapped to a project.
 TODO: this would have to be re-mapped in the customer onboarding
-Uuid of the stage type of this VLAN </p></td>
+Stage type of this VLAN </p></td>
                 </tr>
               
                 <tr>
@@ -1865,6 +1842,47 @@ TODO should be filtered by project instead, see https://github.com/fi-ts/fco-api
         
       
 
+      
+        <h3 id="fits.api.mvm.v1.StageType">StageType</h3>
+        <p>StageType specifies the fixed stage of a managed VM (MVM) instance or VLAN.</p><p>The set of stages is fixed upstream, so it is modeled as an enum instead of</p><p>a listable resource.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>STAGE_TYPE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>STAGE_TYPE_UNSPECIFIED is not specified.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STAGE_TYPE_DEVELOPMENT</td>
+                <td>1</td>
+                <td><p>STAGE_TYPE_DEVELOPMENT is the development stage.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STAGE_TYPE_TEST</td>
+                <td>2</td>
+                <td><p>STAGE_TYPE_TEST is the test stage.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STAGE_TYPE_INTEGRATION</td>
+                <td>3</td>
+                <td><p>STAGE_TYPE_INTEGRATION is the integration stage.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STAGE_TYPE_PRODUCTION</td>
+                <td>4</td>
+                <td><p>STAGE_TYPE_PRODUCTION is the production stage.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
 
       
@@ -2897,7 +2915,7 @@ TODO: the upstream (nulink) list/get models do not expose this; always false. </
               
                 <tr>
                   <td>status</td>
-                  <td><a href="#fits.api.mvm.v1.MVMStatus">MVMStatus</a></td>
+                  <td><a href="#fits.api.mvm.v1.Status">Status</a></td>
                   <td></td>
                   <td><p>Status of the MVM. </p></td>
                 </tr>
@@ -3190,29 +3208,6 @@ deletable.</p></td>
           </tbody>
         </table>
       
-        <h3 id="fits.api.mvm.v1.MVMStatus">MVMStatus</h3>
-        <p>MVMStatus specifies the status of a MVM.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>MVM_STATUS_UNSPECIFIED</td>
-                <td>0</td>
-                <td><p>MVM_STATUS_UNSPECIFIED is not specified.</p></td>
-              </tr>
-            
-              <tr>
-                <td>MVM_STATUS_ACTIVE</td>
-                <td>1</td>
-                <td><p>MVM_STATUS_ACTIVE is an active MVM.</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
         <h3 id="fits.api.mvm.v1.ServiceClass">ServiceClass</h3>
         <p>ServiceClass specifies the service tier of a MVM; higher value = higher tier.</p><p>Only certain combinations with Availability are valid.</p>
         <table class="enum-table">
@@ -3243,6 +3238,47 @@ deletable.</p></td>
                 <td>SERVICE_CLASS_SZ3</td>
                 <td>3</td>
                 <td><p>SERVICE_CLASS_SZ3 is service class SZ3.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="fits.api.mvm.v1.Status">Status</h3>
+        <p>Status specifies the status of a MVM.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>STATUS_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>STATUS_UNSPECIFIED is not specified.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STATUS_CREATING</td>
+                <td>1</td>
+                <td><p>STATUS_CREATING: the VM hostname is reserved and provisioning has started.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STATUS_ERROR</td>
+                <td>2</td>
+                <td><p>STATUS_ERROR: the exact error status is derived from the request type.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STATUS_DELETED</td>
+                <td>3</td>
+                <td><p>STATUS_DELETED: the VM is deleted.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STATUS_ACTIVE</td>
+                <td>4</td>
+                <td><p>STATUS_ACTIVE: the VM is active.</p></td>
               </tr>
             
           </tbody>
@@ -3490,101 +3526,6 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                 <td><a href="#fits.api.mvm.v1.OSServiceListRequest">OSServiceListRequest</a></td>
                 <td><a href="#fits.api.mvm.v1.OSServiceListResponse">OSServiceListResponse</a></td>
                 <td><p>Returns a list of all operating systems.</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-
-        
-    
-      
-      <div class="file-heading">
-        <h2 id="fits/api/mvm/v1/stagetype.proto">fits/api/mvm/v1/stagetype.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-      
-        <h3 id="fits.api.mvm.v1.StageType">StageType</h3>
-        <p>StageType is the definition of available stage types. (Development, Test, Integration, Production)</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>uuid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Uuid of this stage type </p></td>
-                </tr>
-              
-                <tr>
-                  <td>title</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>title of the stage type </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="fits.api.mvm.v1.StageTypeServiceListRequest">StageTypeServiceListRequest</h3>
-        <p>StageTypeServiceListRequest is the request payload for a stage type list request.</p>
-
-        
-
-        
-      
-        <h3 id="fits.api.mvm.v1.StageTypeServiceListResponse">StageTypeServiceListResponse</h3>
-        <p>StageTypeServiceListResponse is the response payload for a stage type list request</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>stage_types</td>
-                  <td><a href="#fits.api.mvm.v1.StageType">StageType</a></td>
-                  <td>repeated</td>
-                  <td><p>The available stage types </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-
-      
-
-      
-
-      
-        <h3 id="fits.api.mvm.v1.StageTypeService">StageTypeService</h3>
-        <p>TODO: this type may be completely removed, as VLANs could be project-scoped</p><p>StageTypeService lists stage types available for managed VM (MVM) instances.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>List</td>
-                <td><a href="#fits.api.mvm.v1.StageTypeServiceListRequest">StageTypeServiceListRequest</a></td>
-                <td><a href="#fits.api.mvm.v1.StageTypeServiceListResponse">StageTypeServiceListResponse</a></td>
-                <td><p>Returns a list of all stage types available for a tenant.</p></td>
               </tr>
             
           </tbody>

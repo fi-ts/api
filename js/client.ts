@@ -11,8 +11,6 @@ import { MVMService as Apimvmv1MVMService } from "./fits/api/mvm/v1/mvm_pb";
 
 import { OSService as Apimvmv1OSService } from "./fits/api/mvm/v1/os_pb";
 
-import { StageTypeService as Apimvmv1StageTypeService } from "./fits/api/mvm/v1/stagetype_pb";
-
 import { VLANService as Apimvmv1VLANService } from "./fits/api/mvm/v1/vlan_pb";
 
 
@@ -55,8 +53,6 @@ export interface Apimvmv1 {
   mvm(): ConnectClient<typeof Apimvmv1MVMService>;
 
   os(): ConnectClient<typeof Apimvmv1OSService>;
-
-  stageType(): ConnectClient<typeof Apimvmv1StageTypeService>;
 
   vlan(): ConnectClient<typeof Apimvmv1VLANService>;
 
@@ -154,8 +150,6 @@ class Apimvmv1Impl implements Apimvmv1 {
 
   private _os?: ConnectClient<typeof Apimvmv1OSService>;
 
-  private _stageType?: ConnectClient<typeof Apimvmv1StageTypeService>;
-
   private _vlan?: ConnectClient<typeof Apimvmv1VLANService>;
 
 
@@ -183,13 +177,6 @@ class Apimvmv1Impl implements Apimvmv1 {
       this._os = createClient(Apimvmv1OSService, this.transport);
     }
     return this._os;
-  }
-
-  stageType(): ConnectClient<typeof Apimvmv1StageTypeService> {
-    if (!this._stageType) {
-      this._stageType = createClient(Apimvmv1StageTypeService, this.transport);
-    }
-    return this._stageType;
   }
 
   vlan(): ConnectClient<typeof Apimvmv1VLANService> {
