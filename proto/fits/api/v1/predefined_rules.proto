@@ -139,6 +139,6 @@ extend buf.validate.MapRules {
   optional bool tenant_roles_keys_valid = 80068954 [(buf.validate.predefined).cel = {
     id: "tenant_roles.key.valid"
     message: "subject must be '*' or between 2 and 128 characters"
-    expression: "this.all(k, k == '*' || this.size() >= 2 || this.size() <=128 )"
+    expression: "this.all(k, k == '*' || k.size() >= 2 && k.size() <=128 )"
   }];
 }
