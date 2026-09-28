@@ -1,7 +1,6 @@
 from buf.validate import validate_pb2 as _validate_pb2
 from fits.api.v1 import common_pb2 as _common_pb2
 from fits.api.v1 import predefined_rules_pb2 as _predefined_rules_pb2
-from google.protobuf import timestamp_pb2 as _timestamp_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
@@ -57,18 +56,18 @@ class ProjectServiceGetResponse(_message.Message):
     def __init__(self, project: _Optional[_Union[Project, _Mapping]] = ...) -> None: ...
 
 class ProjectServiceCreateRequest(_message.Message):
-    __slots__ = ("login", "name", "description", "avatar_url", "labels")
-    LOGIN_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("tenant", "name", "description", "avatar_url", "labels")
+    TENANT_FIELD_NUMBER: _ClassVar[int]
     NAME_FIELD_NUMBER: _ClassVar[int]
     DESCRIPTION_FIELD_NUMBER: _ClassVar[int]
     AVATAR_URL_FIELD_NUMBER: _ClassVar[int]
     LABELS_FIELD_NUMBER: _ClassVar[int]
-    login: str
+    tenant: str
     name: str
     description: str
     avatar_url: str
     labels: _common_pb2.Labels
-    def __init__(self, login: _Optional[str] = ..., name: _Optional[str] = ..., description: _Optional[str] = ..., avatar_url: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.Labels, _Mapping]] = ...) -> None: ...
+    def __init__(self, tenant: _Optional[str] = ..., name: _Optional[str] = ..., description: _Optional[str] = ..., avatar_url: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.Labels, _Mapping]] = ...) -> None: ...
 
 class ProjectServiceCreateResponse(_message.Message):
     __slots__ = ("project",)

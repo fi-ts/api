@@ -17,6 +17,7 @@ import { ProjectService as Apiv1ProjectService } from "./fits/api/v1/project_pb"
 import { TenantService as Apiv1TenantService } from "./fits/api/v1/tenant_pb";
 import { TokenService as Apiv1TokenService } from "./fits/api/v1/token_pb";
 import { VersionService as Apiv1VersionService } from "./fits/api/v1/version_pb";
+import { VMService as Apivmv1VMService } from "./fits/api/vm/v1/vm_pb";
 function authInterceptor(token) {
     return (next) => (req) => __awaiter(this, void 0, void 0, function* () {
         req.header.set("Authorization", `Bearer ${token}`);
@@ -50,6 +51,12 @@ class ClientImpl {
             this._apiv1 = new Apiv1Impl(this.transport);
         }
         return this._apiv1;
+    }
+    apivmv1() {
+        if (!this._apivmv1) {
+            this._apivmv1 = new Apivmv1Impl(this.transport);
+        }
+        return this._apivmv1;
     }
 }
 class Apiv1Impl {
@@ -97,5 +104,16 @@ class Apiv1Impl {
             this._version = createClient(Apiv1VersionService, this.transport);
         }
         return this._version;
+    }
+}
+class Apivmv1Impl {
+    constructor(transport) {
+        this.transport = transport;
+    }
+    vm() {
+        if (!this._vm) {
+            this._vm = createClient(Apivmv1VMService, this.transport);
+        }
+        return this._vm;
     }
 }

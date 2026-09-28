@@ -5,7 +5,6 @@ package fits.api.v1;
 import "buf/validate/validate.proto";
 import "fits/api/v1/common.proto";
 import "fits/api/v1/predefined_rules.proto";
-import "google/protobuf/timestamp.proto";
 
 // ProjectService provides project management operations.
 service ProjectService {
@@ -89,9 +88,8 @@ message ProjectServiceGetResponse {
 
 // ProjectServiceCreateRequest is the request payload to Create a project
 message ProjectServiceCreateRequest {
-  // Login is the tenant of this project
-  // TODO: is login really a good name?
-  string login = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Tenant is the tenant of this project (the tenant login)
+  string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // Name of this project, unique per tenant
   string name = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // Description of this project

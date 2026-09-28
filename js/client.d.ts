@@ -7,6 +7,7 @@ import { ProjectService as Apiv1ProjectService } from "./fits/api/v1/project_pb"
 import { TenantService as Apiv1TenantService } from "./fits/api/v1/tenant_pb";
 import { TokenService as Apiv1TokenService } from "./fits/api/v1/token_pb";
 import { VersionService as Apiv1VersionService } from "./fits/api/v1/version_pb";
+import { VMService as Apivmv1VMService } from "./fits/api/vm/v1/vm_pb";
 export interface ClientConfig {
     baseUrl: string;
     token?: string;
@@ -14,6 +15,7 @@ export interface ClientConfig {
 }
 export interface Client {
     apiv1(): Apiv1;
+    apivmv1(): Apivmv1;
 }
 export interface Apiv1 {
     health(): ConnectClient<typeof Apiv1HealthService>;
@@ -23,5 +25,8 @@ export interface Apiv1 {
     tenant(): ConnectClient<typeof Apiv1TenantService>;
     token(): ConnectClient<typeof Apiv1TokenService>;
     version(): ConnectClient<typeof Apiv1VersionService>;
+}
+export interface Apivmv1 {
+    vm(): ConnectClient<typeof Apivmv1VMService>;
 }
 export declare function newClient(config: ClientConfig): Client;

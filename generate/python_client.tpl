@@ -4,7 +4,7 @@ import pyqwest
 
 {{ range $name, $api := . -}}
 {{ range $svc := $api.Services -}}
-import fits.{{ $name | trimSuffix "v1" }}.v1.{{ $svc.FileName | trimSuffix ".proto" | lower }}_connect as {{ $name | trimSuffix "v1" }}_{{ $svc.FileName | trimSuffix ".proto" | lower }}_connect
+import {{ $api.Path | trimPrefix "/" | replace "/" "." }}.{{ $svc.FileName | trimSuffix ".proto" | lower }}_connect as {{ $api.Path | trimPrefix "/" | replace "/" "_" }}_{{ $svc.FileName | trimSuffix ".proto" | lower }}_connect
 {{ end }}
 {{ end }}
 
@@ -35,6 +35,6 @@ class Client:
 
 {{ range $svc := $api.Services }}
         def {{ $svc.FileName | trimSuffix ".proto" | lower }}(self):
-            return {{ $name | trimSuffix "v1" }}_{{ $svc.FileName | trimSuffix ".proto" | lower }}_connect.{{ $svc.Name }}ClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
+            return {{ $api.Path | trimPrefix "/" | replace "/" "_" }}_{{ $svc.FileName | trimSuffix ".proto" | lower }}_connect.{{ $svc.Name }}ClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 {{ end }}
 {{ end }}

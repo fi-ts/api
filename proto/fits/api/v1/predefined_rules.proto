@@ -56,6 +56,12 @@ extend buf.validate.StringRules {
     message: "value must not start or end with whitespace"
     expression: "this.trim().size() == this.size()"
   }];
+  // IsIpv4Cidr validates if the given string is a valid IPv4 CIDR, e.g. 10.0.0.0/24
+  optional bool is_ipv4_cidr = 80048959 [(buf.validate.predefined).cel = {
+    id: "string.is_ipv4_cidr"
+    message: "must be a valid IPv4 CIDR, e.g. 10.0.0.0/24"
+    expression: "this.isIpPrefix() && !this.contains(':')"
+  }];
 }
 
 extend buf.validate.RepeatedRules {
