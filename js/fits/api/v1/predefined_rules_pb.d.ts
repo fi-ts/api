@@ -53,6 +53,12 @@ export declare const is_ip_or_hostname: GenExtension<StringRules, boolean>;
  */
 export declare const trimmed: GenExtension<StringRules, boolean>;
 /**
+ * IsProjectSlug enforces the string to be usable as a project slug.
+ *
+ * @generated from extension: optional bool is_project_slug = 80048959;
+ */
+export declare const is_project_slug: GenExtension<StringRules, boolean>;
+/**
  * Prefixes validates if a slice of prefixes in string form are valid
  *
  * @generated from extension: optional bool prefixes = 80058951;

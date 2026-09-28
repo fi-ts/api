@@ -56,6 +56,12 @@ extend buf.validate.StringRules {
     message: "value must not start or end with whitespace"
     expression: "this.trim().size() == this.size()"
   }];
+  // IsProjectSlug enforces the string to be usable as a project slug.
+  optional bool is_project_slug = 80048959 [(buf.validate.predefined).cel = {
+    id: "string.is_project_slug"
+    message: "must be a lowercase identifier"
+    expression: "this.matches('^([a-z][0-9A-Za-z]+$)') && this.size() >= 2 && this.size() <= 128"
+  }];
 }
 
 extend buf.validate.RepeatedRules {
