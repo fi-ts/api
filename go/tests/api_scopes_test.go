@@ -298,10 +298,10 @@ func validateProto(root string) error {
 
 					if name == prs {
 						projectFound := false
-						// TODO: only accept project_slug once all services are
-						// streamlined to it (see ip.proto / project.proto).
+						// TODO: all services should use project_uuid; drop the
+						// "project" fallback once every request is streamlined.
 						for _, field := range inputFields {
-							if field.GetName() == "project" || field.GetName() == "project_uuid" || field.GetName() == "project_slug" {
+							if field.GetName() == "project" || field.GetName() == "project_uuid" {
 								projectFound = true
 							}
 						}

@@ -131,12 +131,10 @@ func GetProjectFromRequest(req connect.AnyRequest) (string, bool) {
 		return "", false
 	}
 	switch rq := req.Any().(type) {
-	case interface{ GetProjectSlug() string }:
-		return rq.GetProjectSlug(), true
-	// TODO: drop the GetProjectUuid/GetProject fallbacks once all services
-	// are streamlined to project_slug.
 	case interface{ GetProjectUuid() string }:
 		return rq.GetProjectUuid(), true
+		// TODO: all services should use project_uuid; drop the GetProject
+		// fallback once every request is streamlined.
 	case interface{ GetProject() string }:
 		return rq.GetProject(), true
 	}
