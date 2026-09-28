@@ -109,7 +109,7 @@ type Token struct {
 	TokenType TokenType `protobuf:"varint,8,opt,name=token_type,json=tokenType,proto3,enum=fits.api.v1.TokenType" json:"token_type,omitempty"`
 	// ProjectRoles associates a project id with the corresponding role of the token owner
 	ProjectRoles map[string]ProjectRole `protobuf:"bytes,9,rep,name=project_roles,json=projectRoles,proto3" json:"project_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.ProjectRole"`
-	// TenantRoles associates a tenant id with the corresponding role of the token owner
+	// TenantRoles associates a tenant id with the corresponding role of the token owner.
 	TenantRoles map[string]TenantRole `protobuf:"bytes,10,rep,name=tenant_roles,json=tenantRoles,proto3" json:"tenant_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.TenantRole"`
 	// AdminRole defines the admin role of the token owner
 	AdminRole     *AdminRole `protobuf:"varint,11,opt,name=admin_role,json=adminRole,proto3,enum=fits.api.v1.AdminRole,oneof" json:"admin_role,omitempty"`
@@ -235,7 +235,7 @@ type TokenServiceCreateRequest struct {
 	Expires *durationpb.Duration `protobuf:"bytes,3,opt,name=expires,proto3" json:"expires,omitempty"`
 	// ProjectRoles associates a project id with the corresponding role of the token owner
 	ProjectRoles map[string]ProjectRole `protobuf:"bytes,4,rep,name=project_roles,json=projectRoles,proto3" json:"project_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.ProjectRole"`
-	// TenantRoles_associates a tenant id with the corresponding role of the token owner
+	// TenantRoles associates a tenant id with the corresponding role of the token owner.
 	TenantRoles map[string]TenantRole `protobuf:"bytes,5,rep,name=tenant_roles,json=tenantRoles,proto3" json:"tenant_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.TenantRole"`
 	// AdminRole defines the admin role of the token owner
 	AdminRole *AdminRole `protobuf:"varint,6,opt,name=admin_role,json=adminRole,proto3,enum=fits.api.v1.AdminRole,oneof" json:"admin_role,omitempty"`
@@ -1007,7 +1007,7 @@ type TokenServiceUpdateRequest struct {
 	Permissions []*PermissionsByVisibility `protobuf:"bytes,4,rep,name=permissions,proto3" json:"permissions,omitempty"`
 	// ProjectRoles associates a project id with the corresponding role of the token owner
 	ProjectRoles map[string]ProjectRole `protobuf:"bytes,5,rep,name=project_roles,json=projectRoles,proto3" json:"project_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.ProjectRole"`
-	// TenantRoles associates a tenant id with the corresponding role of the token owner
+	// TenantRoles associates a tenant id with the corresponding role of the token owner.
 	TenantRoles map[string]TenantRole `protobuf:"bytes,6,rep,name=tenant_roles,json=tenantRoles,proto3" json:"tenant_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.TenantRole"`
 	// AdminRole defines the admin role of the token owner
 	AdminRole *AdminRole `protobuf:"varint,7,opt,name=admin_role,json=adminRole,proto3,enum=fits.api.v1.AdminRole,oneof" json:"admin_role,omitempty"`
@@ -1339,7 +1339,7 @@ var File_fits_api_v1_token_proto protoreflect.FileDescriptor
 
 const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\n" +
-	"\x17fits/api/v1/token.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd5\a\n" +
+	"\x17fits/api/v1/token.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf0\a\n" +
 	"\x05Token\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x1e\n" +
 	"\x04user\x18\x02 \x01(\tB\n" +
@@ -1351,9 +1351,9 @@ const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\tissued_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\bissuedAt\x12?\n" +
 	"\n" +
 	"token_type\x18\b \x01(\x0e2\x16.fits.api.v1.TokenTypeB\b\xbaH\x05\x82\x01\x02\x10\x01R\ttokenType\x12I\n" +
-	"\rproject_roles\x18\t \x03(\v2$.fits.api.v1.Token.ProjectRolesEntryR\fprojectRoles\x12F\n" +
+	"\rproject_roles\x18\t \x03(\v2$.fits.api.v1.Token.ProjectRolesEntryR\fprojectRoles\x12a\n" +
 	"\ftenant_roles\x18\n" +
-	" \x03(\v2#.fits.api.v1.Token.TenantRolesEntryR\vtenantRoles\x12D\n" +
+	" \x03(\v2#.fits.api.v1.Token.TenantRolesEntryB\x19\xbaH\x16\x9a\x01\x13\xc0\x95\xb8\xb1\x02\x01Е\xb8\xb1\x02\x01*\x05\x82\x01\x02\x10\x01R\vtenantRoles\x12D\n" +
 	"\n" +
 	"admin_role\x18\v \x01(\x0e2\x16.fits.api.v1.AdminRoleB\b\xbaH\x05\x82\x01\x02\x10\x01H\x00R\tadminRole\x88\x01\x01\x1aY\n" +
 	"\x11ProjectRolesEntry\x12\x10\n" +
@@ -1363,13 +1363,13 @@ const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12-\n" +
 	"\x05value\x18\x02 \x01(\x0e2\x17.fits.api.v1.TenantRoleR\x05value:\x028\x01:\x9f\x01\xbaH\x9b\x01\x1a\x98\x01\n" +
 	"\x1btoken.permissions.usertoken\x12)token type user must not have permissions\x1aN(this.token_type == 2 && this.permissions.size() == 0) || this.token_type != 2B\r\n" +
-	"\v_admin_role\"\x90\x06\n" +
+	"\v_admin_role\"\x8d\x06\n" +
 	"\x19TokenServiceCreateRequest\x12-\n" +
 	"\vdescription\x18\x01 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\vdescription\x12P\n" +
 	"\vpermissions\x18\x02 \x03(\v2$.fits.api.v1.PermissionsByVisibilityB\b\xbaH\x05\x92\x01\x02\x10dR\vpermissions\x12G\n" +
 	"\aexpires\x18\x03 \x01(\v2\x19.google.protobuf.DurationB\x12\xbaH\x0f\xaa\x01\f\x1a\x05\b\x81\xe7\x84\x0f2\x03\b\xd8\x04R\aexpires\x12y\n" +
-	"\rproject_roles\x18\x04 \x03(\v28.fits.api.v1.TokenServiceCreateRequest.ProjectRolesEntryB\x1a\xbaH\x17\x9a\x01\x14\xc0\x95\xb8\xb1\x02\x01\"\x05r\x03\xb0\x01\x01*\x05\x82\x01\x02\x10\x01R\fprojectRoles\x12x\n" +
-	"\ftenant_roles\x18\x05 \x03(\v27.fits.api.v1.TokenServiceCreateRequest.TenantRolesEntryB\x1c\xbaH\x19\x9a\x01\x16\xc0\x95\xb8\xb1\x02\x01\"\ar\x05\x10\x03\x18\x80\x01*\x05\x82\x01\x02\x10\x01R\vtenantRoles\x12D\n" +
+	"\rproject_roles\x18\x04 \x03(\v28.fits.api.v1.TokenServiceCreateRequest.ProjectRolesEntryB\x1a\xbaH\x17\x9a\x01\x14\xc0\x95\xb8\xb1\x02\x01\"\x05r\x03\xb0\x01\x01*\x05\x82\x01\x02\x10\x01R\fprojectRoles\x12u\n" +
+	"\ftenant_roles\x18\x05 \x03(\v27.fits.api.v1.TokenServiceCreateRequest.TenantRolesEntryB\x19\xbaH\x16\x9a\x01\x13\xc0\x95\xb8\xb1\x02\x01Е\xb8\xb1\x02\x01*\x05\x82\x01\x02\x10\x01R\vtenantRoles\x12D\n" +
 	"\n" +
 	"admin_role\x18\x06 \x01(\x0e2\x16.fits.api.v1.AdminRoleB\b\xbaH\x05\x82\x01\x02\x10\x01H\x00R\tadminRole\x88\x01\x01\x12+\n" +
 	"\x06labels\x18\a \x01(\v2\x13.fits.api.v1.LabelsR\x06labels\x1aY\n" +
@@ -1411,15 +1411,15 @@ const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\x06tokens\x18\x01 \x03(\v2\x12.fits.api.v1.TokenR\x06tokens\"9\n" +
 	"\x19TokenServiceRevokeRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"\x1c\n" +
-	"\x1aTokenServiceRevokeResponse\"\xb8\x06\n" +
+	"\x1aTokenServiceRevokeResponse\"\xb5\x06\n" +
 	"\x19TokenServiceUpdateRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12@\n" +
 	"\vupdate_meta\x18\x02 \x01(\v2\x17.fits.api.v1.UpdateMetaB\x06\xbaH\x03\xc8\x01\x00R\n" +
 	"updateMeta\x122\n" +
 	"\vdescription\x18\x03 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01H\x00R\vdescription\x88\x01\x01\x12F\n" +
 	"\vpermissions\x18\x04 \x03(\v2$.fits.api.v1.PermissionsByVisibilityR\vpermissions\x12y\n" +
-	"\rproject_roles\x18\x05 \x03(\v28.fits.api.v1.TokenServiceUpdateRequest.ProjectRolesEntryB\x1a\xbaH\x17\x9a\x01\x14\xc0\x95\xb8\xb1\x02\x01\"\x05r\x03\xb0\x01\x01*\x05\x82\x01\x02\x10\x01R\fprojectRoles\x12x\n" +
-	"\ftenant_roles\x18\x06 \x03(\v27.fits.api.v1.TokenServiceUpdateRequest.TenantRolesEntryB\x1c\xbaH\x19\x9a\x01\x16\xc0\x95\xb8\xb1\x02\x01\"\ar\x05\x10\x03\x18\x80\x01*\x05\x82\x01\x02\x10\x01R\vtenantRoles\x12D\n" +
+	"\rproject_roles\x18\x05 \x03(\v28.fits.api.v1.TokenServiceUpdateRequest.ProjectRolesEntryB\x1a\xbaH\x17\x9a\x01\x14\xc0\x95\xb8\xb1\x02\x01\"\x05r\x03\xb0\x01\x01*\x05\x82\x01\x02\x10\x01R\fprojectRoles\x12u\n" +
+	"\ftenant_roles\x18\x06 \x03(\v27.fits.api.v1.TokenServiceUpdateRequest.TenantRolesEntryB\x19\xbaH\x16\x9a\x01\x13\xc0\x95\xb8\xb1\x02\x01Е\xb8\xb1\x02\x01*\x05\x82\x01\x02\x10\x01R\vtenantRoles\x12D\n" +
 	"\n" +
 	"admin_role\x18\a \x01(\x0e2\x16.fits.api.v1.AdminRoleB\b\xbaH\x05\x82\x01\x02\x10\x01H\x01R\tadminRole\x88\x01\x01\x121\n" +
 	"\x06labels\x18\b \x01(\v2\x19.fits.api.v1.UpdateLabelsR\x06labels\x1aY\n" +

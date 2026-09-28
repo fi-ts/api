@@ -82,8 +82,14 @@ message Token {
   TokenType token_type = 8 [(buf.validate.field).enum.defined_only = true];
   // ProjectRoles associates a project id with the corresponding role of the token owner
   map<string, ProjectRole> project_roles = 9;
-  // TenantRoles associates a tenant id with the corresponding role of the token owner
-  map<string, TenantRole> tenant_roles = 10;
+  // TenantRoles associates a tenant id with the corresponding role of the token owner.
+  map<string, TenantRole> tenant_roles = 10 [
+    (buf.validate.field).map.(fits.api.v1.tenant_roles_keys_valid) = true,
+    (buf.validate.field).map.values = {
+      enum: {defined_only: true}
+    },
+    (buf.validate.field).map.(fits.api.v1.keys_trimmed) = true
+  ];
   // AdminRole defines the admin role of the token owner
   optional AdminRole admin_role = 11 [(buf.validate.field).enum.defined_only = true];
 }
@@ -121,18 +127,11 @@ message TokenServiceCreateRequest {
     },
     (buf.validate.field).map.(fits.api.v1.keys_trimmed) = true
   ];
-  // TenantRoles_associates a tenant id with the corresponding role of the token owner
+  // TenantRoles associates a tenant id with the corresponding role of the token owner.
   map<string, TenantRole> tenant_roles = 5 [
-    (buf.validate.field).map = {
-      keys: {
-        string: {
-          min_len: 3
-          max_len: 128
-        }
-      }
-      values: {
-        enum: {defined_only: true}
-      }
+    (buf.validate.field).map.(fits.api.v1.tenant_roles_keys_valid) = true,
+    (buf.validate.field).map.values = {
+      enum: {defined_only: true}
     },
     (buf.validate.field).map.(fits.api.v1.keys_trimmed) = true
   ];
@@ -258,18 +257,11 @@ message TokenServiceUpdateRequest {
     },
     (buf.validate.field).map.(fits.api.v1.keys_trimmed) = true
   ];
-  // TenantRoles associates a tenant id with the corresponding role of the token owner
+  // TenantRoles associates a tenant id with the corresponding role of the token owner.
   map<string, TenantRole> tenant_roles = 6 [
-    (buf.validate.field).map = {
-      keys: {
-        string: {
-          min_len: 3
-          max_len: 128
-        }
-      }
-      values: {
-        enum: {defined_only: true}
-      }
+    (buf.validate.field).map.(fits.api.v1.tenant_roles_keys_valid) = true,
+    (buf.validate.field).map.values = {
+      enum: {defined_only: true}
     },
     (buf.validate.field).map.(fits.api.v1.keys_trimmed) = true
   ];

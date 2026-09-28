@@ -357,10 +357,10 @@ const file_fits_api_v1_predefined_rules_proto_rawDesc = "" +
 	"\x10map.keys_trimmed\x12*keys must not start or end with whitespace\x1a(this.all(k, k.trim().size() == k.size())R\vkeysTrimmed:\x92\x02\n" +
 	"\x18project_roles_keys_valid\x12\x16.buf.validate.MapRules\x18ق\x97& \x01(\bB\xbd\x01\xc2H\xb9\x01\n" +
 	"\xb6\x01\n" +
-	"\x17project_roles.key.valid\x12&subject must be a '*', or a valid UUID\x1asthis.all(k, k == '*' || k.matches('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'))R\x15projectRolesKeysValid:\xe8\x01\n" +
-	"\x17tenant_roles_keys_valid\x12\x16.buf.validate.MapRules\x18ڂ\x97& \x01(\bB\x95\x01\xc2H\x91\x01\n" +
-	"\x8e\x01\n" +
-	"\x16tenant_roles.key.valid\x123subject must be '*' or between 2 and 128 characters\x1a?this.all(k, k == '*' || this.size() >= 2 || this.size() <=128 )R\x14tenantRolesKeysValidB\xa0\x01\n" +
+	"\x17project_roles.key.valid\x12&subject must be a '*', or a valid UUID\x1asthis.all(k, k == '*' || k.matches('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'))R\x15projectRolesKeysValid:\xe2\x01\n" +
+	"\x17tenant_roles_keys_valid\x12\x16.buf.validate.MapRules\x18ڂ\x97& \x01(\bB\x8f\x01\xc2H\x8b\x01\n" +
+	"\x88\x01\n" +
+	"\x16tenant_roles.key.valid\x123subject must be '*' or between 2 and 128 characters\x1a9this.all(k, k == '*' || k.size() >= 2 && k.size() <=128 )R\x14tenantRolesKeysValidB\xa0\x01\n" +
 	"\x0fcom.fits.api.v1B\x14PredefinedRulesProtoP\x01Z)github.com/fi-ts/api/go/fits/api/v1;apiv1\xa2\x02\x03FAX\xaa\x02\vFits.Api.V1\xca\x02\vFits\\Api\\V1\xe2\x02\x17Fits\\Api\\V1\\GPBMetadata\xea\x02\rFits::Api::V1"
 
 var file_fits_api_v1_predefined_rules_proto_goTypes = []any{

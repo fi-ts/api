@@ -80,7 +80,7 @@ export type Token = Message<"fits.api.v1.Token"> & {
         [key: string]: ProjectRole;
     };
     /**
-     * TenantRoles associates a tenant id with the corresponding role of the token owner
+     * TenantRoles associates a tenant id with the corresponding role of the token owner.
      *
      * @generated from field: map<string, fits.api.v1.TenantRole> tenant_roles = 10;
      */
@@ -132,7 +132,7 @@ export type TokenServiceCreateRequest = Message<"fits.api.v1.TokenServiceCreateR
         [key: string]: ProjectRole;
     };
     /**
-     * TenantRoles_associates a tenant id with the corresponding role of the token owner
+     * TenantRoles associates a tenant id with the corresponding role of the token owner.
      *
      * @generated from field: map<string, fits.api.v1.TenantRole> tenant_roles = 5;
      */
@@ -473,7 +473,7 @@ export type TokenServiceUpdateRequest = Message<"fits.api.v1.TokenServiceUpdateR
         [key: string]: ProjectRole;
     };
     /**
-     * TenantRoles associates a tenant id with the corresponding role of the token owner
+     * TenantRoles associates a tenant id with the corresponding role of the token owner.
      *
      * @generated from field: map<string, fits.api.v1.TenantRole> tenant_roles = 6;
      */
