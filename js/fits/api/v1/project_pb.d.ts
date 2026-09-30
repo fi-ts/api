@@ -48,6 +48,13 @@ export type Project = Message<"fits.api.v1.Project"> & {
      * @generated from field: optional string avatar_url = 6;
      */
     avatarUrl?: string | undefined;
+    /**
+     * Slug is an immutable identifier of the project.
+     * Guaranteed to be unique within a tenant.
+     *
+     * @generated from field: string slug = 7;
+     */
+    slug: string;
 };
 /**
  * Describes the message fits.api.v1.Project.
@@ -151,12 +158,11 @@ export declare const ProjectServiceGetResponseSchema: GenMessage<ProjectServiceG
  */
 export type ProjectServiceCreateRequest = Message<"fits.api.v1.ProjectServiceCreateRequest"> & {
     /**
-     * Login is the tenant of this project
-     * TODO: is login really a good name?
+     * Tenant is the tenant of this project (the tenant login)
      *
-     * @generated from field: string login = 1;
+     * @generated from field: string tenant = 1;
      */
-    login: string;
+    tenant: string;
     /**
      * Name of this project, unique per tenant
      *

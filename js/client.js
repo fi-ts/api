@@ -10,6 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { createClient } from "@connectrpc/connect";
 import { createConnectTransport } from "@connectrpc/connect-web";
+import { LocationService as Apimvmv1LocationService } from "./fits/api/mvm/v1/location_pb";
+import { MVMService as Apimvmv1MVMService } from "./fits/api/mvm/v1/mvm_pb";
+import { OSService as Apimvmv1OSService } from "./fits/api/mvm/v1/os_pb";
+import { VLANService as Apimvmv1VLANService } from "./fits/api/mvm/v1/vlan_pb";
 import { HealthService as Apiv1HealthService } from "./fits/api/v1/health_pb";
 import { IPService as Apiv1IPService } from "./fits/api/v1/ip_pb";
 import { MethodService as Apiv1MethodService } from "./fits/api/v1/method_pb";
@@ -17,7 +21,6 @@ import { ProjectService as Apiv1ProjectService } from "./fits/api/v1/project_pb"
 import { TenantService as Apiv1TenantService } from "./fits/api/v1/tenant_pb";
 import { TokenService as Apiv1TokenService } from "./fits/api/v1/token_pb";
 import { VersionService as Apiv1VersionService } from "./fits/api/v1/version_pb";
-import { VMService as Apivmv1VMService } from "./fits/api/vm/v1/vm_pb";
 function authInterceptor(token) {
     return (next) => (req) => __awaiter(this, void 0, void 0, function* () {
         req.header.set("Authorization", `Bearer ${token}`);
@@ -46,17 +49,46 @@ class ClientImpl {
     constructor(transport) {
         this.transport = transport;
     }
+    apimvmv1() {
+        if (!this._apimvmv1) {
+            this._apimvmv1 = new Apimvmv1Impl(this.transport);
+        }
+        return this._apimvmv1;
+    }
     apiv1() {
         if (!this._apiv1) {
             this._apiv1 = new Apiv1Impl(this.transport);
         }
         return this._apiv1;
     }
-    apivmv1() {
-        if (!this._apivmv1) {
-            this._apivmv1 = new Apivmv1Impl(this.transport);
+}
+class Apimvmv1Impl {
+    constructor(transport) {
+        this.transport = transport;
+    }
+    location() {
+        if (!this._location) {
+            this._location = createClient(Apimvmv1LocationService, this.transport);
         }
-        return this._apivmv1;
+        return this._location;
+    }
+    mvm() {
+        if (!this._mvm) {
+            this._mvm = createClient(Apimvmv1MVMService, this.transport);
+        }
+        return this._mvm;
+    }
+    os() {
+        if (!this._os) {
+            this._os = createClient(Apimvmv1OSService, this.transport);
+        }
+        return this._os;
+    }
+    vlan() {
+        if (!this._vlan) {
+            this._vlan = createClient(Apimvmv1VLANService, this.transport);
+        }
+        return this._vlan;
     }
 }
 class Apiv1Impl {
@@ -104,16 +136,5 @@ class Apiv1Impl {
             this._version = createClient(Apiv1VersionService, this.transport);
         }
         return this._version;
-    }
-}
-class Apivmv1Impl {
-    constructor(transport) {
-        this.transport = transport;
-    }
-    vm() {
-        if (!this._vm) {
-            this._vm = createClient(Apivmv1VMService, this.transport);
-        }
-        return this._vm;
     }
 }

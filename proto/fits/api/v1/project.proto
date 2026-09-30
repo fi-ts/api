@@ -54,6 +54,9 @@ message Project {
   string tenant = 5;
   // AvatarUrl of the Project
   optional string avatar_url = 6;
+  // Slug is an immutable identifier of the project.
+  // Guaranteed to be unique within a tenant.
+  string slug = 7 [(buf.validate.field).string.(fits.api.v1.is_project_slug) = true];
 }
 
 // ProjectServiceListRequest is the request payload to list all projects
