@@ -3,7 +3,6 @@ syntax = "proto3";
 package fits.api.mvm.v1;
 
 import "buf/validate/validate.proto";
-import "fits/api/mvm/v1/vlan.proto";
 import "fits/api/v1/common.proto";
 import "fits/api/v1/predefined_rules.proto";
 
@@ -106,13 +105,13 @@ enum Availability {
   // AVAILABILITY_UNSPECIFIED is not specified.
   AVAILABILITY_UNSPECIFIED = 0 [(fits.api.v1.enum_string_value) = ""];
   // AVAILABILITY_V0 is availability level V0.
-  AVAILABILITY_V0 = 1 [(fits.api.v1.enum_string_value) = "V0"];
+  AVAILABILITY_V0 = 1 [(fits.api.v1.enum_string_value) = "v0"];
   // AVAILABILITY_V1 is availability level V1.
-  AVAILABILITY_V1 = 2 [(fits.api.v1.enum_string_value) = "V1"];
+  AVAILABILITY_V1 = 2 [(fits.api.v1.enum_string_value) = "v1"];
   // AVAILABILITY_V2 is availability level V2.
-  AVAILABILITY_V2 = 3 [(fits.api.v1.enum_string_value) = "V2"];
+  AVAILABILITY_V2 = 3 [(fits.api.v1.enum_string_value) = "v2"];
   // AVAILABILITY_V3 is availability level V3.
-  AVAILABILITY_V3 = 4 [(fits.api.v1.enum_string_value) = "V3"];
+  AVAILABILITY_V3 = 4 [(fits.api.v1.enum_string_value) = "v3"];
 }
 
 // ServiceClass specifies the service tier of a MVM; higher value = higher tier.
@@ -121,25 +120,27 @@ enum ServiceClass {
   // SERVICE_CLASS_UNSPECIFIED is not specified.
   SERVICE_CLASS_UNSPECIFIED = 0 [(fits.api.v1.enum_string_value) = ""];
   // SERVICE_CLASS_SZ1 is service class SZ1.
-  SERVICE_CLASS_SZ1 = 1 [(fits.api.v1.enum_string_value) = "SZ1"];
+  SERVICE_CLASS_SZ1 = 1 [(fits.api.v1.enum_string_value) = "sz1"];
   // SERVICE_CLASS_SZ2 is service class SZ2.
-  SERVICE_CLASS_SZ2 = 2 [(fits.api.v1.enum_string_value) = "SZ2"];
+  SERVICE_CLASS_SZ2 = 2 [(fits.api.v1.enum_string_value) = "sz2"];
   // SERVICE_CLASS_SZ3 is service class SZ3.
-  SERVICE_CLASS_SZ3 = 3 [(fits.api.v1.enum_string_value) = "SZ3"];
+  SERVICE_CLASS_SZ3 = 3 [(fits.api.v1.enum_string_value) = "sz3"];
 }
 
 // Status specifies the status of a MVM.
 enum Status {
   // STATUS_UNSPECIFIED is not specified.
   STATUS_UNSPECIFIED = 0 [(fits.api.v1.enum_string_value) = ""];
-  // STATUS_CREATING: the VM hostname is reserved and provisioning has started.
+  // STATUS_CREATING: the MVM hostname is reserved and provisioning has started.
   STATUS_CREATING = 1 [(fits.api.v1.enum_string_value) = "creating"];
+  // STATUS_ACTIVE: the MVM is active.
+  STATUS_ACTIVE = 2 [(fits.api.v1.enum_string_value) = "active"];
+  // STATUS_UPDATING: there is an ongoing operation for the MVM.
+  STATUS_UPDATING = 3 [(fits.api.v1.enum_string_value) = "updating"];
+  // STATUS_DELETED: the MVM is deleted.
+  STATUS_DELETED = 4 [(fits.api.v1.enum_string_value) = "deleted"];
   // STATUS_ERROR: the exact error status is derived from the request type.
-  STATUS_ERROR = 2 [(fits.api.v1.enum_string_value) = "error"];
-  // STATUS_DELETED: the VM is deleted.
-  STATUS_DELETED = 3 [(fits.api.v1.enum_string_value) = "deleted"];
-  // STATUS_ACTIVE: the VM is active.
-  STATUS_ACTIVE = 4 [(fits.api.v1.enum_string_value) = "active"];
+  STATUS_ERROR = 5 [(fits.api.v1.enum_string_value) = "error"];
 }
 
 // DiskType classifies a MVM disk by its lifecycle rules.
@@ -204,10 +205,20 @@ message WindowsDetails {
 message NetworkInterface {
   // UUID of this interface.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // UUID of the VLAN.
+  string vlan_uuid = 2 [(buf.validate.field).string.uuid = true];
   // IPv4 address assigned to this interface.
-  string ipaddress = 2 [(buf.validate.field).string.(fits.api.v1.is_ip_or_hostname) = true];
+  string ipaddress = 3 [(buf.validate.field).string.(fits.api.v1.is_ip_or_hostname) = true];
   // MAC address of this interface.
-  string macaddress = 3; // TODO: add validation
+  string macaddress = 4; // TODO: add validation
+}
+
+// The InitialNetworkInterface needs to be provided at creation of a MVM.
+// It provides the UUID of the target VLAN for the MVM's first network interface.
+// The created MVM comes with a NetworkInterface connected to this VLAN.
+message InitialNetworkInterface {
+  // UUID of the VLAN.
+  string vlan_uuid = 1 [(buf.validate.field).string.uuid = true];
 }
 
 // ManagedVM is a managed VM instance as returned by the API.
@@ -236,27 +247,26 @@ message ManagedVM {
   // Whether backup is enabled.
   // TODO: the upstream (nulink) list/get models do not expose this; always false.
   bool backup = 11;
+  // Whether the MVM is encrypted.
+  bool encrypted = 12;
   // Status of the MVM.
-  Status status = 12 [(buf.validate.field).enum.defined_only = true];
+  Status status = 13 [(buf.validate.field).enum.defined_only = true];
   // Additional information about the current status.
-  string status_info = 13;
+  string status_info = 14;
   // Availability level.
-  Availability availability = 14 [(buf.validate.field).enum.defined_only = true];
+  Availability availability = 15 [(buf.validate.field).enum.defined_only = true];
   // Service class.
-  ServiceClass serviceclass = 15 [(buf.validate.field).enum.defined_only = true];
+  ServiceClass serviceclass = 16 [(buf.validate.field).enum.defined_only = true];
   // OS-specific configuration.
   oneof details {
     option (buf.validate.oneof).required = true;
     // Windows-specific settings (domain + disks).
-    WindowsDetails windows_details = 16;
+    WindowsDetails windows_details = 17;
     // Linux-specific settings (LDAP + disks).
-    LinuxDetails linux_details = 17;
+    LinuxDetails linux_details = 18;
   }
   // Network interfaces attached to the MVM (IPv4 only).
-  repeated NetworkInterface interfaces = 18;
-  // VLAN the MVM is attached to.
-  // TODO: not exposed by the upstream (nulink) MVM records yet; always unset.
-  VLAN vlan = 19;
+  repeated NetworkInterface interfaces = 19;
   // Internal reference number provided by the user, e.g. a ticket ID.
   string order_number = 20;
 }
@@ -264,7 +274,7 @@ message ManagedVM {
 // Request to get a MVM by UUID.
 message MVMServiceGetRequest {
   // UUID of the MVM.
-  optional string uuid = 1 [(buf.validate.field).string.uuid = true];
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
   // UUID of the project this MVM belongs to.
   string project_uuid = 2 [(buf.validate.field).string.uuid = true];
 }
@@ -300,24 +310,23 @@ message MVMServiceCreateRequest {
   optional string name = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // UUID of the operating system image to install.
   string os_uuid = 3 [(buf.validate.field).string.uuid = true];
-  // UUID of the VLAN network to attach the MVM to.
-  string vlan_uuid = 4 [(buf.validate.field).string.uuid = true];
   // UUID of the datacenter location; the MVM is scheduled into one data center within it.
-  string location_uuid = 5 [(buf.validate.field).string.uuid = true];
+  string location_uuid = 4 [(buf.validate.field).string.uuid = true];
   // TODO: Contact UUID – open discussion with FCN; may become a dedicated /contact endpoint.
-  string contact_uuid = 6 [(buf.validate.field).string.uuid = true];
+  string contact_uuid = 5 [(buf.validate.field).string.uuid = true];
   // Number of CPU cores.
-  uint32 cpu = 7;
+  uint32 cpu = 6;
   // RAM in GB. Must be a power of 2.
-  uint32 ram = 8;
-  // Internal reference number provided by the user, e.g. a ticket ID.
-  // TODO: can this be optional?
-  string order_number = 9;
+  uint32 ram = 7;
+  // Customer reference for this operation provided by the user, e.g. a ticket ID.
+  string order_number = 8;
   // Optional key-value labels for accounting purposes.
   // (e.g. contract number, transaction number, technical key, accounting key).
-  fits.api.v1.Labels labels = 10;
+  fits.api.v1.Labels labels = 9;
   // Whether backup is enabled.
-  bool backup = 11;
+  bool backup = 10;
+  // Whether the MVM should be encrypted.
+  bool encrypted = 11;
   // Availability level.
   Availability availability = 12 [(buf.validate.field).enum.defined_only = true];
   // Service class; only certain combinations with availability are valid.
@@ -330,6 +339,8 @@ message MVMServiceCreateRequest {
     // Linux-specific settings (LDAP + disk).
     MVMServiceCreateLinuxRequest linux = 15;
   }
+  // Provides the target VLAN for the initial network interface.
+  InitialNetworkInterface initial_network_interface = 16;
 }
 
 // Disk configuration for a Linux MVM. See DiskType for the kinds of disks
@@ -397,8 +408,7 @@ message MVMServiceDeleteRequest {
   string project_uuid = 1 [(buf.validate.field).string.uuid = true];
   // UUID of the MVM to delete.
   string uuid = 2 [(buf.validate.field).string.uuid = true];
-  // Order reference for this operation.
-  // TODO: can this be optional?
+  // Customer reference for this operation.
   string order_number = 3;
 }
 
@@ -455,8 +465,7 @@ message MVMServiceAddDiskRequest {
   string uuid = 1 [(buf.validate.field).string.uuid = true];
   // UUID of the project the MVM belongs to.
   string project_uuid = 2 [(buf.validate.field).string.uuid = true];
-  // Order reference for this operation.
-  // TODO: can this be optional?
+  // Customer reference for this operation.
   string order_number = 3;
   // OS-specific disk specification; must match the MVM's OS type.
   oneof disk {
@@ -477,8 +486,7 @@ message MVMServiceUpdateDiskRequest {
   string disk_uuid = 2 [(buf.validate.field).string.uuid = true];
   // UUID of the project the MVM belongs to.
   string project_uuid = 3 [(buf.validate.field).string.uuid = true];
-  // Order reference for this operation.
-  // TODO: can this be optional?
+  // Customer reference for this operation.
   string order_number = 4;
   // New auto-extend behavior; unset keeps the current value.
   optional bool auto_extend = 5;
@@ -495,8 +503,7 @@ message MVMServiceDeleteDiskRequest {
   string disk_uuid = 2 [(buf.validate.field).string.uuid = true];
   // UUID of the project the MVM belongs to.
   string project_uuid = 3 [(buf.validate.field).string.uuid = true];
-  // Order reference for this operation.
-  // TODO: can this be optional?
+  // Customer reference for this operation.
   string order_number = 4;
 }
 
@@ -521,8 +528,7 @@ message MVMServiceAddNetworkInterfaceRequest {
   string uuid = 1 [(buf.validate.field).string.uuid = true];
   // UUID of the project the MVM belongs to.
   string project_uuid = 2 [(buf.validate.field).string.uuid = true];
-  // Order reference for this operation.
-  // TODO: can this be optional?
+  // Customer reference for this operation.
   string order_number = 3;
 }
 
@@ -534,8 +540,7 @@ message MVMServiceMoveNetworkInterfaceRequest {
   string interface_uuid = 2 [(buf.validate.field).string.uuid = true];
   // UUID of the project the MVM belongs to.
   string project_uuid = 3 [(buf.validate.field).string.uuid = true];
-  // Order reference for this operation.
-  // TODO: can this be optional?
+  // Customer reference for this operation.
   string order_number = 4;
   // UUID of the MVM to move the interface to.
   string target_mvm_uuid = 5 [(buf.validate.field).string.uuid = true];

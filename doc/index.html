@@ -360,39 +360,12 @@
         
           
           <li>
-            <a href="#fits%2fapi%2fmvm%2fv1%2fvlan.proto">fits/api/mvm/v1/vlan.proto</a>
-            <ul>
-              
-                <li>
-                  <a href="#fits.api.mvm.v1.VLAN"><span class="badge">M</span>VLAN</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.mvm.v1.VLANServiceListRequest"><span class="badge">M</span>VLANServiceListRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.mvm.v1.VLANServiceListResponse"><span class="badge">M</span>VLANServiceListResponse</a>
-                </li>
-              
-              
-                <li>
-                  <a href="#fits.api.mvm.v1.StageType"><span class="badge">E</span>StageType</a>
-                </li>
-              
-              
-              
-                <li>
-                  <a href="#fits.api.mvm.v1.VLANService"><span class="badge">S</span>VLANService</a>
-                </li>
-              
-            </ul>
-          </li>
-        
-          
-          <li>
             <a href="#fits%2fapi%2fmvm%2fv1%2fmvm.proto">fits/api/mvm/v1/mvm.proto</a>
             <ul>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.InitialNetworkInterface"><span class="badge">M</span>InitialNetworkInterface</a>
+                </li>
               
                 <li>
                   <a href="#fits.api.mvm.v1.LinuxDetails"><span class="badge">M</span>LinuxDetails</a>
@@ -590,6 +563,37 @@
               
                 <li>
                   <a href="#fits.api.mvm.v1.OSService"><span class="badge">S</span>OSService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#fits%2fapi%2fmvm%2fv1%2fvlan.proto">fits/api/mvm/v1/vlan.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.VLAN"><span class="badge">M</span>VLAN</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.VLANServiceListRequest"><span class="badge">M</span>VLANServiceListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.VLANServiceListResponse"><span class="badge">M</span>VLANServiceListResponse</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.StageType"><span class="badge">E</span>StageType</a>
+                </li>
+              
+              
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.VLANService"><span class="badge">S</span>VLANService</a>
                 </li>
               
             </ul>
@@ -1730,206 +1734,34 @@ having a direct membership within the tenant.</p></td>
     
       
       <div class="file-heading">
-        <h2 id="fits/api/mvm/v1/vlan.proto">fits/api/mvm/v1/vlan.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-      
-        <h3 id="fits.api.mvm.v1.VLAN">VLAN</h3>
-        <p>VLAN is a VLAN that a MVM can be connected to.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>uuid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Uuid of this VLAN </p></td>
-                </tr>
-              
-                <tr>
-                  <td>vlan_id</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>Id of this VLAN
-This is not a foreign key, this is the actual ID of the VLAN the network interface is attached to. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>subnet_title</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Title of the subnet this VLAN belongs to </p></td>
-                </tr>
-              
-                <tr>
-                  <td>subnet_cidr</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>CIDR of the subnet this VLAN belongs to </p></td>
-                </tr>
-              
-                <tr>
-                  <td>location_uuid</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>TODO instead of the pod title, could we have the location_uuid? </p></td>
-                </tr>
-              
-                <tr>
-                  <td>stage_type</td>
-                  <td><a href="#fits.api.mvm.v1.StageType">StageType</a></td>
-                  <td></td>
-                  <td><p>Stage type of this VLAN </p></td>
-                </tr>
-              
-                <tr>
-                  <td>tenant</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Tenant this VLAN belongs to. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="fits.api.mvm.v1.VLANServiceListRequest">VLANServiceListRequest</h3>
-        <p>VLANServiceListRequest is the request payload for a VLAN list request.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>tenant</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Tenant to list available VLANs for (the tenant login) </p></td>
-                </tr>
-              
-                <tr>
-                  <td>stage_type</td>
-                  <td><a href="#fits.api.mvm.v1.StageType">StageType</a></td>
-                  <td>optional</td>
-                  <td><p>StageType filters the listed VLANs by stage type </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="fits.api.mvm.v1.VLANServiceListResponse">VLANServiceListResponse</h3>
-        <p>VLANServiceListResponse is the response payload for a VLAN list request</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>vlans</td>
-                  <td><a href="#fits.api.mvm.v1.VLAN">VLAN</a></td>
-                  <td>repeated</td>
-                  <td><p>The available VLANs </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-
-      
-        <h3 id="fits.api.mvm.v1.StageType">StageType</h3>
-        <p>StageType specifies the fixed stage of a managed VM (MVM) instance or VLAN.</p><p>The set of stages is fixed upstream, so it is modeled as an enum instead of</p><p>a listable resource.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>STAGE_TYPE_UNSPECIFIED</td>
-                <td>0</td>
-                <td><p>STAGE_TYPE_UNSPECIFIED is not specified.</p></td>
-              </tr>
-            
-              <tr>
-                <td>STAGE_TYPE_DEVELOPMENT</td>
-                <td>1</td>
-                <td><p>STAGE_TYPE_DEVELOPMENT is the development stage.</p></td>
-              </tr>
-            
-              <tr>
-                <td>STAGE_TYPE_TEST</td>
-                <td>2</td>
-                <td><p>STAGE_TYPE_TEST is the test stage.</p></td>
-              </tr>
-            
-              <tr>
-                <td>STAGE_TYPE_INTEGRATION</td>
-                <td>3</td>
-                <td><p>STAGE_TYPE_INTEGRATION is the integration stage.</p></td>
-              </tr>
-            
-              <tr>
-                <td>STAGE_TYPE_PRODUCTION</td>
-                <td>4</td>
-                <td><p>STAGE_TYPE_PRODUCTION is the production stage.</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
-
-      
-
-      
-        <h3 id="fits.api.mvm.v1.VLANService">VLANService</h3>
-        <p>VLANService lists VLANs available for managed VM (MVM) instances.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>List</td>
-                <td><a href="#fits.api.mvm.v1.VLANServiceListRequest">VLANServiceListRequest</a></td>
-                <td><a href="#fits.api.mvm.v1.VLANServiceListResponse">VLANServiceListResponse</a></td>
-                <td><p>Returns a list of all VLANs available for a tenant.</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-
-        
-    
-      
-      <div class="file-heading">
         <h2 id="fits/api/mvm/v1/mvm.proto">fits/api/mvm/v1/mvm.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
+      
+        <h3 id="fits.api.mvm.v1.InitialNetworkInterface">InitialNetworkInterface</h3>
+        <p>The InitialNetworkInterface needs to be provided at creation of a MVM.</p><p>It provides the UUID of the target VLAN for the MVM's first network interface.</p><p>The created MVM comes with a NetworkInterface connected to this VLAN.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>vlan_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the VLAN. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
       
         <h3 id="fits.api.mvm.v1.LinuxDetails">LinuxDetails</h3>
         <p>Linux-specific MVM details.</p>
@@ -2061,8 +1893,7 @@ requests. </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Order reference for this operation.
-TODO: can this be optional? </p></td>
+                  <td><p>Customer reference for this operation. </p></td>
                 </tr>
               
                 <tr>
@@ -2121,8 +1952,7 @@ TODO: can this be optional? </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Order reference for this operation.
-TODO: can this be optional? </p></td>
+                  <td><p>Customer reference for this operation. </p></td>
                 </tr>
               
             </tbody>
@@ -2203,13 +2033,6 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>vlan_uuid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>UUID of the VLAN network to attach the MVM to. </p></td>
-                </tr>
-              
-                <tr>
                   <td>location_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -2241,8 +2064,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Internal reference number provided by the user, e.g. a ticket ID.
-TODO: can this be optional? </p></td>
+                  <td><p>Customer reference for this operation provided by the user, e.g. a ticket ID. </p></td>
                 </tr>
               
                 <tr>
@@ -2258,6 +2080,13 @@ TODO: can this be optional? </p></td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>Whether backup is enabled. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>encrypted</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether the MVM should be encrypted. </p></td>
                 </tr>
               
                 <tr>
@@ -2286,6 +2115,13 @@ TODO: can this be optional? </p></td>
                   <td><a href="#fits.api.mvm.v1.MVMServiceCreateLinuxRequest">MVMServiceCreateLinuxRequest</a></td>
                   <td></td>
                   <td><p>Linux-specific settings (LDAP &#43; disk). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>initial_network_interface</td>
+                  <td><a href="#fits.api.mvm.v1.InitialNetworkInterface">InitialNetworkInterface</a></td>
+                  <td></td>
+                  <td><p>Provides the target VLAN for the initial network interface. </p></td>
                 </tr>
               
             </tbody>
@@ -2369,8 +2205,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Order reference for this operation.
-TODO: can this be optional? </p></td>
+                  <td><p>Customer reference for this operation. </p></td>
                 </tr>
               
             </tbody>
@@ -2468,8 +2303,7 @@ TODO: can this be optional? </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Order reference for this operation.
-TODO: can this be optional? </p></td>
+                  <td><p>Customer reference for this operation. </p></td>
                 </tr>
               
             </tbody>
@@ -2499,7 +2333,7 @@ TODO: can this be optional? </p></td>
                 <tr>
                   <td>uuid</td>
                   <td><a href="#string">string</a></td>
-                  <td>optional</td>
+                  <td></td>
                   <td><p>UUID of the MVM. </p></td>
                 </tr>
               
@@ -2624,8 +2458,7 @@ TODO: can this be optional? </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Order reference for this operation.
-TODO: can this be optional? </p></td>
+                  <td><p>Customer reference for this operation. </p></td>
                 </tr>
               
                 <tr>
@@ -2684,8 +2517,7 @@ TODO: can this be optional? </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Order reference for this operation.
-TODO: can this be optional? </p></td>
+                  <td><p>Customer reference for this operation. </p></td>
                 </tr>
               
                 <tr>
@@ -2930,6 +2762,13 @@ TODO: the upstream (nulink) list/get models do not expose this; always false. </
                 </tr>
               
                 <tr>
+                  <td>encrypted</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether the MVM is encrypted. </p></td>
+                </tr>
+              
+                <tr>
                   <td>status</td>
                   <td><a href="#fits.api.mvm.v1.Status">Status</a></td>
                   <td></td>
@@ -2979,14 +2818,6 @@ TODO: the upstream (nulink) list/get models do not expose this; always false. </
                 </tr>
               
                 <tr>
-                  <td>vlan</td>
-                  <td><a href="#fits.api.mvm.v1.VLAN">VLAN</a></td>
-                  <td></td>
-                  <td><p>VLAN the MVM is attached to.
-TODO: not exposed by the upstream (nulink) MVM records yet; always unset. </p></td>
-                </tr>
-              
-                <tr>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -3015,6 +2846,13 @@ TODO: not exposed by the upstream (nulink) MVM records yet; always unset. </p></
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>UUID of this interface. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>vlan_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the VLAN. </p></td>
                 </tr>
               
                 <tr>
@@ -3276,25 +3114,31 @@ deletable.</p></td>
               <tr>
                 <td>STATUS_CREATING</td>
                 <td>1</td>
-                <td><p>STATUS_CREATING: the VM hostname is reserved and provisioning has started.</p></td>
-              </tr>
-            
-              <tr>
-                <td>STATUS_ERROR</td>
-                <td>2</td>
-                <td><p>STATUS_ERROR: the exact error status is derived from the request type.</p></td>
-              </tr>
-            
-              <tr>
-                <td>STATUS_DELETED</td>
-                <td>3</td>
-                <td><p>STATUS_DELETED: the VM is deleted.</p></td>
+                <td><p>STATUS_CREATING: the MVM hostname is reserved and provisioning has started.</p></td>
               </tr>
             
               <tr>
                 <td>STATUS_ACTIVE</td>
+                <td>2</td>
+                <td><p>STATUS_ACTIVE: the MVM is active.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STATUS_UPDATING</td>
+                <td>3</td>
+                <td><p>STATUS_UPDATING: there is an ongoing operation for the MVM.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STATUS_DELETED</td>
                 <td>4</td>
-                <td><p>STATUS_ACTIVE: the VM is active.</p></td>
+                <td><p>STATUS_DELETED: the MVM is deleted.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STATUS_ERROR</td>
+                <td>5</td>
+                <td><p>STATUS_ERROR: the exact error status is derived from the request type.</p></td>
               </tr>
             
           </tbody>
@@ -3542,6 +3386,202 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                 <td><a href="#fits.api.mvm.v1.OSServiceListRequest">OSServiceListRequest</a></td>
                 <td><a href="#fits.api.mvm.v1.OSServiceListResponse">OSServiceListResponse</a></td>
                 <td><p>Returns a list of all operating systems.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/mvm/v1/vlan.proto">fits/api/mvm/v1/vlan.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.mvm.v1.VLAN">VLAN</h3>
+        <p>VLAN is a VLAN that a MVM can be connected to.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Uuid of this VLAN </p></td>
+                </tr>
+              
+                <tr>
+                  <td>vlan_id</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Id of this VLAN
+This is not a foreign key, this is the actual ID of the VLAN the network interface is attached to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>subnet_title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Title of the subnet this VLAN belongs to </p></td>
+                </tr>
+              
+                <tr>
+                  <td>subnet_cidr</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>CIDR of the subnet this VLAN belongs to </p></td>
+                </tr>
+              
+                <tr>
+                  <td>location_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>TODO instead of the pod title, could we have the location_uuid? </p></td>
+                </tr>
+              
+                <tr>
+                  <td>stage_type</td>
+                  <td><a href="#fits.api.mvm.v1.StageType">StageType</a></td>
+                  <td></td>
+                  <td><p>Stage type of this VLAN </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant this VLAN belongs to. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.VLANServiceListRequest">VLANServiceListRequest</h3>
+        <p>VLANServiceListRequest is the request payload for a VLAN list request.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant to list available VLANs for (the tenant login) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>stage_type</td>
+                  <td><a href="#fits.api.mvm.v1.StageType">StageType</a></td>
+                  <td>optional</td>
+                  <td><p>StageType filters the listed VLANs by stage type </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.VLANServiceListResponse">VLANServiceListResponse</h3>
+        <p>VLANServiceListResponse is the response payload for a VLAN list request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>vlans</td>
+                  <td><a href="#fits.api.mvm.v1.VLAN">VLAN</a></td>
+                  <td>repeated</td>
+                  <td><p>The available VLANs </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="fits.api.mvm.v1.StageType">StageType</h3>
+        <p>StageType specifies the fixed stage of a managed VM (MVM) instance or VLAN.</p><p>The set of stages is fixed upstream, so it is modeled as an enum instead of</p><p>a listable resource.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>STAGE_TYPE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>STAGE_TYPE_UNSPECIFIED is not specified.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STAGE_TYPE_DEVELOPMENT</td>
+                <td>1</td>
+                <td><p>STAGE_TYPE_DEVELOPMENT is the development stage.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STAGE_TYPE_TEST</td>
+                <td>2</td>
+                <td><p>STAGE_TYPE_TEST is the test stage.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STAGE_TYPE_INTEGRATION</td>
+                <td>3</td>
+                <td><p>STAGE_TYPE_INTEGRATION is the integration stage.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STAGE_TYPE_PRODUCTION</td>
+                <td>4</td>
+                <td><p>STAGE_TYPE_PRODUCTION is the production stage.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+        <h3 id="fits.api.mvm.v1.VLANService">VLANService</h3>
+        <p>VLANService lists VLANs available for managed VM (MVM) instances.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#fits.api.mvm.v1.VLANServiceListRequest">VLANServiceListRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.VLANServiceListResponse">VLANServiceListResponse</a></td>
+                <td><p>Returns a list of all VLANs available for a tenant.</p></td>
               </tr>
             
           </tbody>
