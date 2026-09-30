@@ -259,10 +259,10 @@ const file_fits_api_v1_predefined_rules_proto_rawDesc = "" +
 	"\rvalid_address\x12&must be a valid IP address or hostname\x1a this.isIp() || this.isHostname()R\x0eisIpOrHostname:\x9d\x01\n" +
 	"\atrimmed\x12\x19.buf.validate.StringRules\x18\xbe\xe6\x95& \x01(\bBe\xc2Hb\n" +
 	"`\n" +
-	"\x0estring.trimmed\x12+value must not start or end with whitespace\x1a!this.trim().size() == this.size()R\atrimmed:\xd7\x01\n" +
-	"\x0fis_project_slug\x12\x19.buf.validate.StringRules\x18\xbf\xe6\x95& \x01(\bB\x90\x01\xc2H\x8c\x01\n" +
-	"\x89\x01\n" +
-	"\x16string.is_project_slug\x12\x1emust be a lowercase identifier\x1aOthis.matches('^([a-z][0-9A-Za-z]+$)') && this.size() >= 2 && this.size() <= 128R\risProjectSlug:\xb1\x01\n" +
+	"\x0estring.trimmed\x12+value must not start or end with whitespace\x1a!this.trim().size() == this.size()R\atrimmed:\xda\x01\n" +
+	"\x0fis_project_slug\x12\x19.buf.validate.StringRules\x18\xbf\xe6\x95& \x01(\bB\x93\x01\xc2H\x8f\x01\n" +
+	"\x8c\x01\n" +
+	"\x16string.is_project_slug\x12\x1emust be a lowercase identifier\x1aRthis.matches('^([a-z_][0-9A-Za-z_-]+$)') && this.size() >= 2 && this.size() <= 128R\risProjectSlug:\xb1\x01\n" +
 	"\fis_ipv4_cidr\x12\x19.buf.validate.StringRules\x18\xc0\xe6\x95& \x01(\bBq\xc2Hn\n" +
 	"l\n" +
 	"\x13string.is_ipv4_cidr\x12+must be a valid IPv4 CIDR, e.g. 10.0.0.0/24\x1a(this.isIpPrefix() && !this.contains(':')R\n" +
