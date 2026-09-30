@@ -21,6 +21,8 @@ TRIMMED_FIELD_NUMBER: _ClassVar[int]
 trimmed: _descriptor.FieldDescriptor
 IS_PROJECT_SLUG_FIELD_NUMBER: _ClassVar[int]
 is_project_slug: _descriptor.FieldDescriptor
+IS_IPV4_CIDR_FIELD_NUMBER: _ClassVar[int]
+is_ipv4_cidr: _descriptor.FieldDescriptor
 PREFIXES_FIELD_NUMBER: _ClassVar[int]
 prefixes: _descriptor.FieldDescriptor
 IPS_FIELD_NUMBER: _ClassVar[int]

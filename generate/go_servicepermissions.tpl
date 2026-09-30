@@ -120,8 +120,8 @@ func GetTenantFromRequest(req connect.AnyRequest) (string, bool) {
 		return "", false
 	}
 	switch rq := req.Any().(type) {
-	case interface{ GetLogin() string }:
-		return rq.GetLogin(), true
+	case interface{ GetTenant() string }:
+		return rq.GetTenant(), true
 	}
 	return "", false
 }
@@ -131,6 +131,10 @@ func GetProjectFromRequest(req connect.AnyRequest) (string, bool) {
 		return "", false
 	}
 	switch rq := req.Any().(type) {
+	case interface{ GetProjectUuid() string }:
+		return rq.GetProjectUuid(), true
+		// TODO: all services should use project_uuid; drop the GetProject
+		// fallback once every request is streamlined.
 	case interface{ GetProject() string }:
 		return rq.GetProject(), true
 	}

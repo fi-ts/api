@@ -158,12 +158,11 @@ export declare const ProjectServiceGetResponseSchema: GenMessage<ProjectServiceG
  */
 export type ProjectServiceCreateRequest = Message<"fits.api.v1.ProjectServiceCreateRequest"> & {
     /**
-     * Login is the tenant of this project
-     * TODO: is login really a good name?
+     * Tenant is the tenant of this project (the tenant login)
      *
-     * @generated from field: string login = 1;
+     * @generated from field: string tenant = 1;
      */
-    login: string;
+    tenant: string;
     /**
      * Name of this project, unique per tenant
      *

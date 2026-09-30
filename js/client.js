@@ -10,6 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { createClient } from "@connectrpc/connect";
 import { createConnectTransport } from "@connectrpc/connect-web";
+import { LocationService as Apimvmv1LocationService } from "./fits/api/mvm/v1/location_pb";
+import { MVMService as Apimvmv1MVMService } from "./fits/api/mvm/v1/mvm_pb";
+import { OSService as Apimvmv1OSService } from "./fits/api/mvm/v1/os_pb";
+import { VLANService as Apimvmv1VLANService } from "./fits/api/mvm/v1/vlan_pb";
 import { HealthService as Apiv1HealthService } from "./fits/api/v1/health_pb";
 import { IPService as Apiv1IPService } from "./fits/api/v1/ip_pb";
 import { MethodService as Apiv1MethodService } from "./fits/api/v1/method_pb";
@@ -45,11 +49,46 @@ class ClientImpl {
     constructor(transport) {
         this.transport = transport;
     }
+    apimvmv1() {
+        if (!this._apimvmv1) {
+            this._apimvmv1 = new Apimvmv1Impl(this.transport);
+        }
+        return this._apimvmv1;
+    }
     apiv1() {
         if (!this._apiv1) {
             this._apiv1 = new Apiv1Impl(this.transport);
         }
         return this._apiv1;
+    }
+}
+class Apimvmv1Impl {
+    constructor(transport) {
+        this.transport = transport;
+    }
+    location() {
+        if (!this._location) {
+            this._location = createClient(Apimvmv1LocationService, this.transport);
+        }
+        return this._location;
+    }
+    mvm() {
+        if (!this._mvm) {
+            this._mvm = createClient(Apimvmv1MVMService, this.transport);
+        }
+        return this._mvm;
+    }
+    os() {
+        if (!this._os) {
+            this._os = createClient(Apimvmv1OSService, this.transport);
+        }
+        return this._os;
+    }
+    vlan() {
+        if (!this._vlan) {
+            this._vlan = createClient(Apimvmv1VLANService, this.transport);
+        }
+        return this._vlan;
     }
 }
 class Apiv1Impl {
