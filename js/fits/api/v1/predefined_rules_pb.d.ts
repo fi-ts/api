@@ -1,5 +1,5 @@
 import type { GenExtension, GenFile } from "@bufbuild/protobuf/codegenv2";
-import type { MapRules, RepeatedRules, StringRules } from "../../../buf/validate/validate_pb";
+import type { MapRules, RepeatedRules, StringRules } from "../../../buf/validate/validate_pb.js";
 /**
  * Describes the file fits/api/v1/predefined_rules.proto.
  */
