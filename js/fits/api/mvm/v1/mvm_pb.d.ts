@@ -1,5 +1,4 @@
 import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import type { VLAN } from "./vlan_pb";
 import type { Labels, Meta } from "../../v1/common_pb";
 import type { Message } from "@bufbuild/protobuf";
 /**
@@ -79,9 +78,15 @@ export type NetworkInterface = Message<"fits.api.mvm.v1.NetworkInterface"> & {
      */
     uuid: string;
     /**
+     * UUID of the VLAN.
+     *
+     * @generated from field: string vlan_uuid = 2;
+     */
+    vlanUuid: string;
+    /**
      * IPv4 address assigned to this interface.
      *
-     * @generated from field: string ipaddress = 2;
+     * @generated from field: string ipaddress = 3;
      */
     ipaddress: string;
     /**
@@ -89,7 +94,7 @@ export type NetworkInterface = Message<"fits.api.mvm.v1.NetworkInterface"> & {
      *
      * TODO: add validation
      *
-     * @generated from field: string macaddress = 3;
+     * @generated from field: string macaddress = 4;
      */
     macaddress: string;
 };
@@ -98,6 +103,26 @@ export type NetworkInterface = Message<"fits.api.mvm.v1.NetworkInterface"> & {
  * Use `create(NetworkInterfaceSchema)` to create a new message.
  */
 export declare const NetworkInterfaceSchema: GenMessage<NetworkInterface>;
+/**
+ * The InitialNetworkInterface needs to be provided at creation of a MVM.
+ * It provides the UUID of the target VLAN for the MVM's first network interface.
+ * The created MVM comes with a NetworkInterface connected to this VLAN.
+ *
+ * @generated from message fits.api.mvm.v1.InitialNetworkInterface
+ */
+export type InitialNetworkInterface = Message<"fits.api.mvm.v1.InitialNetworkInterface"> & {
+    /**
+     * UUID of the VLAN.
+     *
+     * @generated from field: string vlan_uuid = 1;
+     */
+    vlanUuid: string;
+};
+/**
+ * Describes the message fits.api.mvm.v1.InitialNetworkInterface.
+ * Use `create(InitialNetworkInterfaceSchema)` to create a new message.
+ */
+export declare const InitialNetworkInterfaceSchema: GenMessage<InitialNetworkInterface>;
 /**
  * ManagedVM is a managed VM instance as returned by the API.
  *
@@ -173,27 +198,33 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
      */
     backup: boolean;
     /**
+     * Whether the MVM is encrypted.
+     *
+     * @generated from field: bool encrypted = 12;
+     */
+    encrypted: boolean;
+    /**
      * Status of the MVM.
      *
-     * @generated from field: fits.api.mvm.v1.Status status = 12;
+     * @generated from field: fits.api.mvm.v1.Status status = 13;
      */
     status: Status;
     /**
      * Additional information about the current status.
      *
-     * @generated from field: string status_info = 13;
+     * @generated from field: string status_info = 14;
      */
     statusInfo: string;
     /**
      * Availability level.
      *
-     * @generated from field: fits.api.mvm.v1.Availability availability = 14;
+     * @generated from field: fits.api.mvm.v1.Availability availability = 15;
      */
     availability: Availability;
     /**
      * Service class.
      *
-     * @generated from field: fits.api.mvm.v1.ServiceClass serviceclass = 15;
+     * @generated from field: fits.api.mvm.v1.ServiceClass serviceclass = 16;
      */
     serviceclass: ServiceClass;
     /**
@@ -205,7 +236,7 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
         /**
          * Windows-specific settings (domain + disks).
          *
-         * @generated from field: fits.api.mvm.v1.WindowsDetails windows_details = 16;
+         * @generated from field: fits.api.mvm.v1.WindowsDetails windows_details = 17;
          */
         value: WindowsDetails;
         case: "windowsDetails";
@@ -213,7 +244,7 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
         /**
          * Linux-specific settings (LDAP + disks).
          *
-         * @generated from field: fits.api.mvm.v1.LinuxDetails linux_details = 17;
+         * @generated from field: fits.api.mvm.v1.LinuxDetails linux_details = 18;
          */
         value: LinuxDetails;
         case: "linuxDetails";
@@ -224,16 +255,9 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
     /**
      * Network interfaces attached to the MVM (IPv4 only).
      *
-     * @generated from field: repeated fits.api.mvm.v1.NetworkInterface interfaces = 18;
+     * @generated from field: repeated fits.api.mvm.v1.NetworkInterface interfaces = 19;
      */
     interfaces: NetworkInterface[];
-    /**
-     * VLAN the MVM is attached to.
-     * TODO: not exposed by the upstream (nulink) MVM records yet; always unset.
-     *
-     * @generated from field: fits.api.mvm.v1.VLAN vlan = 19;
-     */
-    vlan?: VLAN | undefined;
     /**
      * Internal reference number provided by the user, e.g. a ticket ID.
      *
@@ -255,9 +279,9 @@ export type MVMServiceGetRequest = Message<"fits.api.mvm.v1.MVMServiceGetRequest
     /**
      * UUID of the MVM.
      *
-     * @generated from field: optional string uuid = 1;
+     * @generated from field: string uuid = 1;
      */
-    uuid?: string | undefined;
+    uuid: string;
     /**
      * UUID of the project this MVM belongs to.
      *
@@ -363,55 +387,54 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
      */
     osUuid: string;
     /**
-     * UUID of the VLAN network to attach the MVM to.
-     *
-     * @generated from field: string vlan_uuid = 4;
-     */
-    vlanUuid: string;
-    /**
      * UUID of the datacenter location; the MVM is scheduled into one data center within it.
      *
-     * @generated from field: string location_uuid = 5;
+     * @generated from field: string location_uuid = 4;
      */
     locationUuid: string;
     /**
      * TODO: Contact UUID – open discussion with FCN; may become a dedicated /contact endpoint.
      *
-     * @generated from field: string contact_uuid = 6;
+     * @generated from field: string contact_uuid = 5;
      */
     contactUuid: string;
     /**
      * Number of CPU cores.
      *
-     * @generated from field: uint32 cpu = 7;
+     * @generated from field: uint32 cpu = 6;
      */
     cpu: number;
     /**
      * RAM in GB. Must be a power of 2.
      *
-     * @generated from field: uint32 ram = 8;
+     * @generated from field: uint32 ram = 7;
      */
     ram: number;
     /**
-     * Internal reference number provided by the user, e.g. a ticket ID.
-     * TODO: can this be optional?
+     * Customer reference for this operation provided by the user, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 9;
+     * @generated from field: string order_number = 8;
      */
     orderNumber: string;
     /**
      * Optional key-value labels for accounting purposes.
      * (e.g. contract number, transaction number, technical key, accounting key).
      *
-     * @generated from field: fits.api.v1.Labels labels = 10;
+     * @generated from field: fits.api.v1.Labels labels = 9;
      */
     labels?: Labels | undefined;
     /**
      * Whether backup is enabled.
      *
-     * @generated from field: bool backup = 11;
+     * @generated from field: bool backup = 10;
      */
     backup: boolean;
+    /**
+     * Whether the MVM should be encrypted.
+     *
+     * @generated from field: bool encrypted = 11;
+     */
+    encrypted: boolean;
     /**
      * Availability level.
      *
@@ -449,6 +472,12 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
         case: undefined;
         value?: undefined;
     };
+    /**
+     * Provides the target VLAN for the initial network interface.
+     *
+     * @generated from field: fits.api.mvm.v1.InitialNetworkInterface initial_network_interface = 16;
+     */
+    initialNetworkInterface?: InitialNetworkInterface | undefined;
 };
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceCreateRequest.
@@ -629,8 +658,7 @@ export type MVMServiceDeleteRequest = Message<"fits.api.mvm.v1.MVMServiceDeleteR
      */
     uuid: string;
     /**
-     * Order reference for this operation.
-     * TODO: can this be optional?
+     * Customer reference for this operation.
      *
      * @generated from field: string order_number = 3;
      */
@@ -791,8 +819,7 @@ export type MVMServiceAddDiskRequest = Message<"fits.api.mvm.v1.MVMServiceAddDis
      */
     projectUuid: string;
     /**
-     * Order reference for this operation.
-     * TODO: can this be optional?
+     * Customer reference for this operation.
      *
      * @generated from field: string order_number = 3;
      */
@@ -854,8 +881,7 @@ export type MVMServiceUpdateDiskRequest = Message<"fits.api.mvm.v1.MVMServiceUpd
      */
     projectUuid: string;
     /**
-     * Order reference for this operation.
-     * TODO: can this be optional?
+     * Customer reference for this operation.
      *
      * @generated from field: string order_number = 4;
      */
@@ -904,8 +930,7 @@ export type MVMServiceDeleteDiskRequest = Message<"fits.api.mvm.v1.MVMServiceDel
      */
     projectUuid: string;
     /**
-     * Order reference for this operation.
-     * TODO: can this be optional?
+     * Customer reference for this operation.
      *
      * @generated from field: string order_number = 4;
      */
@@ -970,8 +995,7 @@ export type MVMServiceAddNetworkInterfaceRequest = Message<"fits.api.mvm.v1.MVMS
      */
     projectUuid: string;
     /**
-     * Order reference for this operation.
-     * TODO: can this be optional?
+     * Customer reference for this operation.
      *
      * @generated from field: string order_number = 3;
      */
@@ -1007,8 +1031,7 @@ export type MVMServiceMoveNetworkInterfaceRequest = Message<"fits.api.mvm.v1.MVM
      */
     projectUuid: string;
     /**
-     * Order reference for this operation.
-     * TODO: can this be optional?
+     * Customer reference for this operation.
      *
      * @generated from field: string order_number = 4;
      */
@@ -1181,29 +1204,35 @@ export declare enum Status {
      */
     UNSPECIFIED = 0,
     /**
-     * STATUS_CREATING: the VM hostname is reserved and provisioning has started.
+     * STATUS_CREATING: the MVM hostname is reserved and provisioning has started.
      *
      * @generated from enum value: STATUS_CREATING = 1;
      */
     CREATING = 1,
     /**
+     * STATUS_ACTIVE: the MVM is active.
+     *
+     * @generated from enum value: STATUS_ACTIVE = 2;
+     */
+    ACTIVE = 2,
+    /**
+     * STATUS_UPDATING: there is an ongoing operation for the MVM.
+     *
+     * @generated from enum value: STATUS_UPDATING = 3;
+     */
+    UPDATING = 3,
+    /**
+     * STATUS_DELETED: the MVM is deleted.
+     *
+     * @generated from enum value: STATUS_DELETED = 4;
+     */
+    DELETED = 4,
+    /**
      * STATUS_ERROR: the exact error status is derived from the request type.
      *
-     * @generated from enum value: STATUS_ERROR = 2;
+     * @generated from enum value: STATUS_ERROR = 5;
      */
-    ERROR = 2,
-    /**
-     * STATUS_DELETED: the VM is deleted.
-     *
-     * @generated from enum value: STATUS_DELETED = 3;
-     */
-    DELETED = 3,
-    /**
-     * STATUS_ACTIVE: the VM is active.
-     *
-     * @generated from enum value: STATUS_ACTIVE = 4;
-     */
-    ACTIVE = 4
+    ERROR = 5
 }
 /**
  * Describes the enum fits.api.mvm.v1.Status.

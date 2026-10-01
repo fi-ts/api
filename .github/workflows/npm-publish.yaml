@@ -4,6 +4,9 @@ on:
   release:
     types:
       - published
+  pull_request:
+    branches:
+      - main
 
 permissions:
   id-token: write # Required for OIDC
@@ -34,10 +37,22 @@ jobs:
         working-directory: js
         run: bun install --frozen-lockfile
 
+      - name: Derive pre-release version
+        if: github.event_name == 'pull_request'
+        working-directory: js
+        run: |
+          base_version="$(node -p 'require("./package.json").version')"
+          echo "VERSION=${base_version}-pr.${{ github.event.pull_request.number }}.$(git rev-parse --short=8 HEAD)" >> "$GITHUB_ENV"
+
       - name: build
         run: make build
 
-      - name: Publish to npm
+      - name: Publish Pre-Release to npm
+        if: github.event_name == 'pull_request'
+        working-directory: js
+        run: bunx npm@11.8.0 publish --provenance --access public --tag="pr-${{ github.event.pull_request.number }}" # workaround for bun not supporting trusted publishing of npm (https://github.com/oven-sh/bun/issues/15601)
+
+      - name: Publish Release to npm
+        if: github.event_name == 'release'
         working-directory: js
         run: bunx npm@11.8.0 publish --provenance # workaround for bun not supporting trusted publishing of npm (https://github.com/oven-sh/bun/issues/15601)
-        if: github.event_name == 'release'
