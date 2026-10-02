@@ -31,7 +31,7 @@ plugins:
   - remote: buf.build/bufbuild/es:v2.14.1
     include_imports: true
     out: ../js
-    opt: target=ts
+    opt: target=ts,import_extension=js
   # docs
   - remote: buf.build/community/pseudomuto-doc:v1.5.1
     out: ../doc

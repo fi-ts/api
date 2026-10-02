@@ -1,5 +1,5 @@
 import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import type { Labels, Meta } from "../../v1/common_pb";
+import type { Labels, Meta } from "../../v1/common_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file fits/api/mvm/v1/mvm.proto.
