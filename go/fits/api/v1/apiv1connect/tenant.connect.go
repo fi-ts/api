@@ -33,30 +33,22 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
-	// TenantServiceCreateProcedure is the fully-qualified name of the TenantService's Create RPC.
-	TenantServiceCreateProcedure = "/fits.api.v1.TenantService/Create"
 	// TenantServiceListProcedure is the fully-qualified name of the TenantService's List RPC.
 	TenantServiceListProcedure = "/fits.api.v1.TenantService/List"
 	// TenantServiceGetProcedure is the fully-qualified name of the TenantService's Get RPC.
 	TenantServiceGetProcedure = "/fits.api.v1.TenantService/Get"
 	// TenantServiceUpdateProcedure is the fully-qualified name of the TenantService's Update RPC.
 	TenantServiceUpdateProcedure = "/fits.api.v1.TenantService/Update"
-	// TenantServiceDeleteProcedure is the fully-qualified name of the TenantService's Delete RPC.
-	TenantServiceDeleteProcedure = "/fits.api.v1.TenantService/Delete"
 )
 
 // TenantServiceClient is a client for the fits.api.v1.TenantService service.
 type TenantServiceClient interface {
-	// Creates a new tenant.
-	Create(context.Context, *v1.TenantServiceCreateRequest) (*v1.TenantServiceCreateResponse, error)
 	// Returns the list of tenants.
 	List(context.Context, *v1.TenantServiceListRequest) (*v1.TenantServiceListResponse, error)
 	// Get a tenant
 	Get(context.Context, *v1.TenantServiceGetRequest) (*v1.TenantServiceGetResponse, error)
 	// Update a tenant
 	Update(context.Context, *v1.TenantServiceUpdateRequest) (*v1.TenantServiceUpdateResponse, error)
-	// Delete a tenant
-	Delete(context.Context, *v1.TenantServiceDeleteRequest) (*v1.TenantServiceDeleteResponse, error)
 }
 
 // NewTenantServiceClient constructs a client for the fits.api.v1.TenantService service. By default,
@@ -70,12 +62,6 @@ func NewTenantServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 	baseURL = strings.TrimRight(baseURL, "/")
 	tenantServiceMethods := v1.File_fits_api_v1_tenant_proto.Services().ByName("TenantService").Methods()
 	return &tenantServiceClient{
-		create: connect.NewClient[v1.TenantServiceCreateRequest, v1.TenantServiceCreateResponse](
-			httpClient,
-			baseURL+TenantServiceCreateProcedure,
-			connect.WithSchema(tenantServiceMethods.ByName("Create")),
-			connect.WithClientOptions(opts...),
-		),
 		list: connect.NewClient[v1.TenantServiceListRequest, v1.TenantServiceListResponse](
 			httpClient,
 			baseURL+TenantServiceListProcedure,
@@ -94,31 +80,14 @@ func NewTenantServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 			connect.WithSchema(tenantServiceMethods.ByName("Update")),
 			connect.WithClientOptions(opts...),
 		),
-		delete: connect.NewClient[v1.TenantServiceDeleteRequest, v1.TenantServiceDeleteResponse](
-			httpClient,
-			baseURL+TenantServiceDeleteProcedure,
-			connect.WithSchema(tenantServiceMethods.ByName("Delete")),
-			connect.WithClientOptions(opts...),
-		),
 	}
 }
 
 // tenantServiceClient implements TenantServiceClient.
 type tenantServiceClient struct {
-	create *connect.Client[v1.TenantServiceCreateRequest, v1.TenantServiceCreateResponse]
 	list   *connect.Client[v1.TenantServiceListRequest, v1.TenantServiceListResponse]
 	get    *connect.Client[v1.TenantServiceGetRequest, v1.TenantServiceGetResponse]
 	update *connect.Client[v1.TenantServiceUpdateRequest, v1.TenantServiceUpdateResponse]
-	delete *connect.Client[v1.TenantServiceDeleteRequest, v1.TenantServiceDeleteResponse]
-}
-
-// Create calls fits.api.v1.TenantService.Create.
-func (c *tenantServiceClient) Create(ctx context.Context, req *v1.TenantServiceCreateRequest) (*v1.TenantServiceCreateResponse, error) {
-	response, err := c.create.CallUnary(ctx, connect.NewRequest(req))
-	if response != nil {
-		return response.Msg, err
-	}
-	return nil, err
 }
 
 // List calls fits.api.v1.TenantService.List.
@@ -148,27 +117,14 @@ func (c *tenantServiceClient) Update(ctx context.Context, req *v1.TenantServiceU
 	return nil, err
 }
 
-// Delete calls fits.api.v1.TenantService.Delete.
-func (c *tenantServiceClient) Delete(ctx context.Context, req *v1.TenantServiceDeleteRequest) (*v1.TenantServiceDeleteResponse, error) {
-	response, err := c.delete.CallUnary(ctx, connect.NewRequest(req))
-	if response != nil {
-		return response.Msg, err
-	}
-	return nil, err
-}
-
 // TenantServiceHandler is an implementation of the fits.api.v1.TenantService service.
 type TenantServiceHandler interface {
-	// Creates a new tenant.
-	Create(context.Context, *v1.TenantServiceCreateRequest) (*v1.TenantServiceCreateResponse, error)
 	// Returns the list of tenants.
 	List(context.Context, *v1.TenantServiceListRequest) (*v1.TenantServiceListResponse, error)
 	// Get a tenant
 	Get(context.Context, *v1.TenantServiceGetRequest) (*v1.TenantServiceGetResponse, error)
 	// Update a tenant
 	Update(context.Context, *v1.TenantServiceUpdateRequest) (*v1.TenantServiceUpdateResponse, error)
-	// Delete a tenant
-	Delete(context.Context, *v1.TenantServiceDeleteRequest) (*v1.TenantServiceDeleteResponse, error)
 }
 
 // NewTenantServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -178,12 +134,6 @@ type TenantServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewTenantServiceHandler(svc TenantServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
 	tenantServiceMethods := v1.File_fits_api_v1_tenant_proto.Services().ByName("TenantService").Methods()
-	tenantServiceCreateHandler := connect.NewUnaryHandlerSimple(
-		TenantServiceCreateProcedure,
-		svc.Create,
-		connect.WithSchema(tenantServiceMethods.ByName("Create")),
-		connect.WithHandlerOptions(opts...),
-	)
 	tenantServiceListHandler := connect.NewUnaryHandlerSimple(
 		TenantServiceListProcedure,
 		svc.List,
@@ -202,24 +152,14 @@ func NewTenantServiceHandler(svc TenantServiceHandler, opts ...connect.HandlerOp
 		connect.WithSchema(tenantServiceMethods.ByName("Update")),
 		connect.WithHandlerOptions(opts...),
 	)
-	tenantServiceDeleteHandler := connect.NewUnaryHandlerSimple(
-		TenantServiceDeleteProcedure,
-		svc.Delete,
-		connect.WithSchema(tenantServiceMethods.ByName("Delete")),
-		connect.WithHandlerOptions(opts...),
-	)
 	return "/fits.api.v1.TenantService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case TenantServiceCreateProcedure:
-			tenantServiceCreateHandler.ServeHTTP(w, r)
 		case TenantServiceListProcedure:
 			tenantServiceListHandler.ServeHTTP(w, r)
 		case TenantServiceGetProcedure:
 			tenantServiceGetHandler.ServeHTTP(w, r)
 		case TenantServiceUpdateProcedure:
 			tenantServiceUpdateHandler.ServeHTTP(w, r)
-		case TenantServiceDeleteProcedure:
-			tenantServiceDeleteHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -228,10 +168,6 @@ func NewTenantServiceHandler(svc TenantServiceHandler, opts ...connect.HandlerOp
 
 // UnimplementedTenantServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedTenantServiceHandler struct{}
-
-func (UnimplementedTenantServiceHandler) Create(context.Context, *v1.TenantServiceCreateRequest) (*v1.TenantServiceCreateResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.v1.TenantService.Create is not implemented"))
-}
 
 func (UnimplementedTenantServiceHandler) List(context.Context, *v1.TenantServiceListRequest) (*v1.TenantServiceListResponse, error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.v1.TenantService.List is not implemented"))
@@ -243,8 +179,4 @@ func (UnimplementedTenantServiceHandler) Get(context.Context, *v1.TenantServiceG
 
 func (UnimplementedTenantServiceHandler) Update(context.Context, *v1.TenantServiceUpdateRequest) (*v1.TenantServiceUpdateResponse, error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.v1.TenantService.Update is not implemented"))
-}
-
-func (UnimplementedTenantServiceHandler) Delete(context.Context, *v1.TenantServiceDeleteRequest) (*v1.TenantServiceDeleteResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.v1.TenantService.Delete is not implemented"))
 }

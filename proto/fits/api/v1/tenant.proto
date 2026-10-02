@@ -8,11 +8,6 @@ import "fits/api/v1/predefined_rules.proto";
 
 // TenantService provides tenant management operations.
 service TenantService {
-  // Creates a new tenant.
-  rpc Create(TenantServiceCreateRequest) returns (TenantServiceCreateResponse) {
-    option (visibility) = VISIBILITY_SELF;
-    option (auditing) = AUDITING_INCLUDED;
-  }
   // Returns the list of tenants.
   rpc List(TenantServiceListRequest) returns (TenantServiceListResponse) {
     option (visibility) = VISIBILITY_SELF;
@@ -28,12 +23,6 @@ service TenantService {
   }
   // Update a tenant
   rpc Update(TenantServiceUpdateRequest) returns (TenantServiceUpdateResponse) {
-    option (tenant_roles) = TENANT_ROLE_OWNER;
-    option (tenant_roles) = TENANT_ROLE_EDITOR;
-    option (auditing) = AUDITING_INCLUDED;
-  }
-  // Delete a tenant
-  rpc Delete(TenantServiceDeleteRequest) returns (TenantServiceDeleteResponse) {
     option (tenant_roles) = TENANT_ROLE_OWNER;
     option (tenant_roles) = TENANT_ROLE_EDITOR;
     option (auditing) = AUDITING_INCLUDED;
@@ -74,20 +63,6 @@ message TenantServiceGetRequest {
   string tenant = 1;
 }
 
-// TenantServiceCreateRequest is the request payload of the tenant create request
-message TenantServiceCreateRequest {
-  // Name of this tenant
-  string name = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
-  // Description of this tenant
-  optional string description = 2 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
-  // Email of the tenant, if not set will be inherited from the creator
-  optional string email = 3 [(buf.validate.field).string.email = true];
-  // AvatarUrl of the tenant
-  optional string avatar_url = 4;
-  // Labels on the tenant
-  Labels labels = 5;
-}
-
 // TenantServiceUpdateRequest is the request payload of the tenant update request
 message TenantServiceUpdateRequest {
   // Tenant is the login of the tenant
@@ -106,12 +81,6 @@ message TenantServiceUpdateRequest {
   optional UpdateLabels labels = 7;
 }
 
-// TenantServiceDeleteRequest is the request payload of the tenant delete request
-message TenantServiceDeleteRequest {
-  // Tenant is the login of the tenant
-  string tenant = 1;
-}
-
 // TenantServiceGetResponse is the response payload of the tenant get request
 message TenantServiceGetResponse {
   // Tenant is the tenant
@@ -124,20 +93,8 @@ message TenantServiceListResponse {
   repeated Tenant tenants = 1;
 }
 
-// TenantServiceCreateResponse is the response payload of the tenant create request
-message TenantServiceCreateResponse {
-  // Tenant is the tenant
-  Tenant tenant = 1;
-}
-
 // TenantServiceUpdateResponse is the response payload of the tenant update request
 message TenantServiceUpdateResponse {
-  // Tenant is the tenant
-  Tenant tenant = 1;
-}
-
-// TenantServiceDeleteResponse is the response payload of the tenant delete request
-message TenantServiceDeleteResponse {
   // Tenant is the tenant
   Tenant tenant = 1;
 }
