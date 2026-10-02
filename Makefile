@@ -24,6 +24,7 @@ protolint:
 .PHONY: generate
 generate:
 	$(MAKE) -C generate generate
+	$(MAKE) -C js generate-js
 
 .PHONY: test
 test:

@@ -27,6 +27,9 @@ jobs:
           go-version-file: "go.mod"
           cache: false
 
+      - name: Setup bun
+        uses: oven-sh/setup-bun@v2
+
       - name: Generate
         run: make proto generate
 

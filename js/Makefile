@@ -17,6 +17,10 @@ ifeq ($(CI),true)
 endif
 	bun run build
 
+.PHONY: generate-js
+generate-js: install
+	bun run build
+
 .PHONY: test
 test:
 	bun test ./client-test.ts
