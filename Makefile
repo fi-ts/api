@@ -11,6 +11,7 @@ release: proto generate test build
 
 .PHONY: proto
 proto: protolint
+	$(MAKE) -C js clean
 	$(MAKE) -C go clean
 	$(MAKE) -C python clean
 	$(MAKE) -C proto protoc
