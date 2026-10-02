@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package fits.api.mvm.v1;
+
+import "buf/validate/validate.proto";
+import "fits/api/v1/common.proto";
+import "fits/api/v1/predefined_rules.proto";
+
+// VLANService lists VLANs available for managed VM (MVM) instances.
+service VLANService {
+  // Returns a list of all VLANs available for a tenant.
+  rpc List(VLANServiceListRequest) returns (VLANServiceListResponse) {
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_OWNER;
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_EDITOR;
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_VIEWER;
+    option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
+  }
+}
+
+// StageType specifies the fixed stage of a managed VM (MVM) instance or VLAN.
+// The set of stages is fixed upstream, so it is modeled as an enum instead of
+// a listable resource.
+enum StageType {
+  // STAGE_TYPE_UNSPECIFIED is not specified.
+  STAGE_TYPE_UNSPECIFIED = 0 [(fits.api.v1.enum_string_value) = ""];
+  // STAGE_TYPE_DEVELOPMENT is the development stage.
+  STAGE_TYPE_DEVELOPMENT = 1 [(fits.api.v1.enum_string_value) = "development"];
+  // STAGE_TYPE_TEST is the test stage.
+  STAGE_TYPE_TEST = 2 [(fits.api.v1.enum_string_value) = "test"];
+  // STAGE_TYPE_INTEGRATION is the integration stage.
+  STAGE_TYPE_INTEGRATION = 3 [(fits.api.v1.enum_string_value) = "integration"];
+  // STAGE_TYPE_PRODUCTION is the production stage.
+  STAGE_TYPE_PRODUCTION = 4 [(fits.api.v1.enum_string_value) = "production"];
+}
+
+// VLAN is a VLAN that a MVM can be connected to.
+message VLAN {
+  // Uuid of this VLAN
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // Id of this VLAN
+  // This is not a foreign key, this is the actual ID of the VLAN the network interface is attached to.
+  int32 vlan_id = 2;
+  // Title of the subnet this VLAN belongs to
+  string subnet_title = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // CIDR of the subnet this VLAN belongs to
+  string subnet_cidr = 4 [(buf.validate.field).string.(fits.api.v1.is_ipv4_cidr) = true];
+  // TODO instead of the pod title, could we have the location_uuid?
+  optional string location_uuid = 5 [(buf.validate.field).string.uuid = true];
+  // Stage type of this VLAN
+  StageType stage_type = 6 [(buf.validate.field).enum.defined_only = true];
+  // Tenant this VLAN belongs to.
+  string tenant = 7 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+}
+
+// VLANServiceListRequest is the request payload for a VLAN list request.
+message VLANServiceListRequest {
+  // Tenant to list available VLANs for (the tenant login)
+  string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // StageType filters the listed VLANs by stage type
+  optional StageType stage_type = 2 [(buf.validate.field).enum.defined_only = true];
+}
+
+// VLANServiceListResponse is the response payload for a VLAN list request
+message VLANServiceListResponse {
+  // The available VLANs
+  repeated VLAN vlans = 1;
+}

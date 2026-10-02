@@ -1,5 +1,5 @@
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import type { Labels, Meta, UpdateLabels, UpdateMeta } from "./common_pb";
+import type { Labels, Meta, UpdateLabels, UpdateMeta } from "./common_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file fits/api/v1/tenant.proto.
@@ -96,11 +96,11 @@ export declare const TenantServiceListRequestSchema: GenMessage<TenantServiceLis
  */
 export type TenantServiceGetRequest = Message<"fits.api.v1.TenantServiceGetRequest"> & {
     /**
-     * Login of the tenant
+     * Tenant is the login of the tenant
      *
-     * @generated from field: string login = 1;
+     * @generated from field: string tenant = 1;
      */
-    login: string;
+    tenant: string;
 };
 /**
  * Describes the message fits.api.v1.TenantServiceGetRequest.
@@ -114,11 +114,11 @@ export declare const TenantServiceGetRequestSchema: GenMessage<TenantServiceGetR
  */
 export type TenantServiceUpdateRequest = Message<"fits.api.v1.TenantServiceUpdateRequest"> & {
     /**
-     * Login of the tenant
+     * Tenant is the login of the tenant
      *
-     * @generated from field: string login = 1;
+     * @generated from field: string tenant = 1;
      */
-    login: string;
+    tenant: string;
     /**
      * UpdateMeta contains the timestamp and strategy to be used in this update request
      *

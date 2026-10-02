@@ -59,14 +59,14 @@ message TenantServiceListRequest {
 
 // TenantServiceGetRequest is the request payload of the tenant get request
 message TenantServiceGetRequest {
-  // Login of the tenant
-  string login = 1;
+  // Tenant is the login of the tenant
+  string tenant = 1;
 }
 
 // TenantServiceUpdateRequest is the request payload of the tenant update request
 message TenantServiceUpdateRequest {
-  // Login of the tenant
-  string login = 1;
+  // Tenant is the login of the tenant
+  string tenant = 1;
   // UpdateMeta contains the timestamp and strategy to be used in this update request
   UpdateMeta update_meta = 2 [(buf.validate.field).required = true];
   // Name of the tenant

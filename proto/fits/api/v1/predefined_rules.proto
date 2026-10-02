@@ -56,6 +56,18 @@ extend buf.validate.StringRules {
     message: "value must not start or end with whitespace"
     expression: "this.trim().size() == this.size()"
   }];
+  // IsProjectSlug enforces the string to be usable as a project slug.
+  optional bool is_project_slug = 80048959 [(buf.validate.predefined).cel = {
+    id: "string.is_project_slug"
+    message: "must be a lowercase identifier"
+    expression: "this.matches('^([a-z_][0-9A-Za-z_-]+$)') && this.size() >= 2 && this.size() <= 128"
+  }];
+  // IsIpv4Cidr validates if the given string is a valid IPv4 CIDR, e.g. 10.0.0.0/24
+  optional bool is_ipv4_cidr = 80048960 [(buf.validate.predefined).cel = {
+    id: "string.is_ipv4_cidr"
+    message: "must be a valid IPv4 CIDR, e.g. 10.0.0.0/24"
+    expression: "this.isIpPrefix() && !this.contains(':')"
+  }];
 }
 
 extend buf.validate.RepeatedRules {

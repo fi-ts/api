@@ -97,7 +97,7 @@ These options specify the RBAC of the api-endpoint.
 > [!CAUTION]
 >
 > If we use a Tenant or Project role, the request will be respectively scoped as Tenant or Project request.
-> Tenant-Requests must have the field **login**, which is the tenant id and specifies the tenant on which the service-method is scoped.
+> Tenant-Requests must have the field **tenant**, which is the tenant id and specifies the tenant on which the service-method is scoped.
 > Project-Requests must have the field **project**, which is the project id and specifies the project on which the service-method is scoped.
 
 ### Auditing

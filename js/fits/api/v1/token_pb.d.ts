@@ -1,5 +1,5 @@
 import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import type { AdminRole, Meta, ProjectRole, TenantRole } from "./common_pb";
+import type { AdminRole, Meta, ProjectRole, TenantRole } from "./common_pb.js";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 /**

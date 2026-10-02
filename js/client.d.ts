@@ -1,5 +1,9 @@
 import { Interceptor } from "@connectrpc/connect";
 import type { Client as ConnectClient } from "@connectrpc/connect";
+import { LocationService as Apimvmv1LocationService } from "./fits/api/mvm/v1/location_pb";
+import { MVMService as Apimvmv1MVMService } from "./fits/api/mvm/v1/mvm_pb";
+import { OSService as Apimvmv1OSService } from "./fits/api/mvm/v1/os_pb";
+import { VLANService as Apimvmv1VLANService } from "./fits/api/mvm/v1/vlan_pb";
 import { HealthService as Apiv1HealthService } from "./fits/api/v1/health_pb";
 import { IPService as Apiv1IPService } from "./fits/api/v1/ip_pb";
 import { MethodService as Apiv1MethodService } from "./fits/api/v1/method_pb";
@@ -13,7 +17,14 @@ export interface ClientConfig {
     interceptors?: Interceptor[];
 }
 export interface Client {
+    apimvmv1(): Apimvmv1;
     apiv1(): Apiv1;
+}
+export interface Apimvmv1 {
+    location(): ConnectClient<typeof Apimvmv1LocationService>;
+    mvm(): ConnectClient<typeof Apimvmv1MVMService>;
+    os(): ConnectClient<typeof Apimvmv1OSService>;
+    vlan(): ConnectClient<typeof Apimvmv1VLANService>;
 }
 export interface Apiv1 {
     health(): ConnectClient<typeof Apiv1HealthService>;

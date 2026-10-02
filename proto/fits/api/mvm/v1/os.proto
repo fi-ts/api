@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package fits.api.mvm.v1;
+
+import "buf/validate/validate.proto";
+import "fits/api/v1/common.proto";
+import "fits/api/v1/predefined_rules.proto";
+
+// OSService lists operating systems available for managed VM (MVM) instances.
+service OSService {
+  // Returns a list of all operating systems.
+  rpc List(OSServiceListRequest) returns (OSServiceListResponse) {
+    option (fits.api.v1.visibility) = VISIBILITY_SELF;
+    option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
+  }
+}
+
+// OSType specifies the type of an operating system.
+enum OSType {
+  // OS_TYPE_UNSPECIFIED is not specified.
+  OS_TYPE_UNSPECIFIED = 0 [(fits.api.v1.enum_string_value) = ""];
+  // OS_TYPE_LINUX is a Linux operating system.
+  OS_TYPE_LINUX = 1 [(fits.api.v1.enum_string_value) = "linux"];
+  // OS_TYPE_WINDOWS is a Windows operating system.
+  OS_TYPE_WINDOWS = 2 [(fits.api.v1.enum_string_value) = "windows"];
+}
+
+// OS is the definition of an available OS for MVM instances.
+message OS {
+  // Uuid of this OS.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // Title of the OS.
+  string title = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Type of the OS.
+  OSType type = 3;
+}
+
+// OSServiceListRequest is the request payload for a OS list request.
+message OSServiceListRequest {}
+
+// OSServiceListResponse is the response payload for a OS list request
+message OSServiceListResponse {
+  // The available operating systems.
+  repeated OS operating_systems = 1;
+}
