@@ -1,6 +1,6 @@
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import type { AdminRole, ProjectRole, TenantRole } from "./common_pb";
-import type { MethodPermission } from "./token_pb";
+import type { AdminRole, ProjectRole, TenantRole } from "./common_pb.js";
+import type { MethodPermission } from "./token_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file fits/api/v1/method.proto.
