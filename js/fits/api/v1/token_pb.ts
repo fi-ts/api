@@ -16,7 +16,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/v1/token.proto.
  */
 export const file_fits_api_v1_token: GenFile = /*@__PURE__*/
-  fileDesc("ChdmaXRzL2FwaS92MS90b2tlbi5wcm90bxILZml0cy5hcGkudjEizQYKBVRva2VuEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEhgKBHVzZXIYAiABKAlCCrpIB3IFEAIYgAQSHwoEbWV0YRgDIAEoCzIRLmZpdHMuYXBpLnYxLk1ldGESIAoLZGVzY3JpcHRpb24YBCABKAlCC7pICHIGyLOusQIBEj0KC3Blcm1pc3Npb25zGAUgAygLMh0uZml0cy5hcGkudjEuTWV0aG9kUGVybWlzc2lvbkIJukgGkgEDEPQDEisKB2V4cGlyZXMYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi0KCWlzc3VlZF9hdBgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASNAoKdG9rZW5fdHlwZRgIIAEoDjIWLmZpdHMuYXBpLnYxLlRva2VuVHlwZUIIukgFggECEAESOwoNcHJvamVjdF9yb2xlcxgJIAMoCzIkLmZpdHMuYXBpLnYxLlRva2VuLlByb2plY3RSb2xlc0VudHJ5EjkKDHRlbmFudF9yb2xlcxgKIAMoCzIjLmZpdHMuYXBpLnYxLlRva2VuLlRlbmFudFJvbGVzRW50cnkSOQoKYWRtaW5fcm9sZRgLIAEoDjIWLmZpdHMuYXBpLnYxLkFkbWluUm9sZUIIukgFggECEAFIAIgBARpNChFQcm9qZWN0Um9sZXNFbnRyeRILCgNrZXkYASABKAkSJwoFdmFsdWUYAiABKA4yGC5maXRzLmFwaS52MS5Qcm9qZWN0Um9sZToCOAEaSwoQVGVuYW50Um9sZXNFbnRyeRILCgNrZXkYASABKAkSJgoFdmFsdWUYAiABKA4yFy5maXRzLmFwaS52MS5UZW5hbnRSb2xlOgI4ATqfAbpImwEamAEKG3Rva2VuLnBlcm1pc3Npb25zLnVzZXJ0b2tlbhIpdG9rZW4gdHlwZSB1c2VyIG11c3Qgbm90IGhhdmUgcGVybWlzc2lvbnMaTih0aGlzLnRva2VuX3R5cGUgPT0gMiAmJiB0aGlzLnBlcm1pc3Npb25zLnNpemUoKSA9PSAwKSB8fCB0aGlzLnRva2VuX3R5cGUgIT0gMkINCgtfYWRtaW5fcm9sZSJJChBNZXRob2RQZXJtaXNzaW9uEhkKB3N1YmplY3QYASABKAlCCLpIBXIDGIACEhoKB21ldGhvZHMYAiADKAlCCbpIBpIBAxD0AyIZChdUb2tlblNlcnZpY2VMaXN0UmVxdWVzdCI+ChhUb2tlblNlcnZpY2VMaXN0UmVzcG9uc2USIgoGdG9rZW5zGAEgAygLMhIuZml0cy5hcGkudjEuVG9rZW4iMwoZVG9rZW5TZXJ2aWNlUmV2b2tlUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABASIcChpUb2tlblNlcnZpY2VSZXZva2VSZXNwb25zZSIwChZUb2tlblNlcnZpY2VHZXRSZXF1ZXN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBIjwKF1Rva2VuU2VydmljZUdldFJlc3BvbnNlEiEKBXRva2VuGAEgASgLMhIuZml0cy5hcGkudjEuVG9rZW4qUAoJVG9rZW5UeXBlEhoKFlRPS0VOX1RZUEVfVU5TUEVDSUZJRUQQABISCg5UT0tFTl9UWVBFX0FQSRABEhMKD1RPS0VOX1RZUEVfVVNFUhACMq4CCgxUb2tlblNlcnZpY2USWgoDR2V0EiMuZml0cy5hcGkudjEuVG9rZW5TZXJ2aWNlR2V0UmVxdWVzdBokLmZpdHMuYXBpLnYxLlRva2VuU2VydmljZUdldFJlc3BvbnNlIgjY8xgC4PMYARJdCgRMaXN0EiQuZml0cy5hcGkudjEuVG9rZW5TZXJ2aWNlTGlzdFJlcXVlc3QaJS5maXRzLmFwaS52MS5Ub2tlblNlcnZpY2VMaXN0UmVzcG9uc2UiCNjzGALg8xgBEmMKBlJldm9rZRImLmZpdHMuYXBpLnYxLlRva2VuU2VydmljZVJldm9rZVJlcXVlc3QaJy5maXRzLmFwaS52MS5Ub2tlblNlcnZpY2VSZXZva2VSZXNwb25zZSII2PMYAuDzGAFClgEKD2NvbS5maXRzLmFwaS52MUIKVG9rZW5Qcm90b1ABWilnaXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS92MTthcGl2MaICA0ZBWKoCC0ZpdHMuQXBpLlYxygILRml0c1xBcGlcVjHiAhdGaXRzXEFwaVxWMVxHUEJNZXRhZGF0YeoCDUZpdHM6OkFwaTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules, file_google_protobuf_timestamp]);
+  fileDesc("ChdmaXRzL2FwaS92MS90b2tlbi5wcm90bxILZml0cy5hcGkudjEi7wYKBVRva2VuEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEhgKBHVzZXIYAiABKAlCCrpIB3IFEAIYgAQSHwoEbWV0YRgDIAEoCzIRLmZpdHMuYXBpLnYxLk1ldGESIAoLZGVzY3JpcHRpb24YBCABKAlCC7pICHIGyLOusQIBEkQKC3Blcm1pc3Npb25zGAUgAygLMiQuZml0cy5hcGkudjEuUGVybWlzc2lvbnNCeVZpc2liaWxpdHlCCbpIBpIBAxD0AxIrCgdleHBpcmVzGAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBItCglpc3N1ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjQKCnRva2VuX3R5cGUYCCABKA4yFi5maXRzLmFwaS52MS5Ub2tlblR5cGVCCLpIBYIBAhABEjsKDXByb2plY3Rfcm9sZXMYCSADKAsyJC5maXRzLmFwaS52MS5Ub2tlbi5Qcm9qZWN0Um9sZXNFbnRyeRJUCgx0ZW5hbnRfcm9sZXMYCiADKAsyIy5maXRzLmFwaS52MS5Ub2tlbi5UZW5hbnRSb2xlc0VudHJ5Qhm6SBaaARPAlbixAgHQlbixAgEqBYIBAhABEjkKCmFkbWluX3JvbGUYCyABKA4yFi5maXRzLmFwaS52MS5BZG1pblJvbGVCCLpIBYIBAhABSACIAQEaTQoRUHJvamVjdFJvbGVzRW50cnkSCwoDa2V5GAEgASgJEicKBXZhbHVlGAIgASgOMhguZml0cy5hcGkudjEuUHJvamVjdFJvbGU6AjgBGksKEFRlbmFudFJvbGVzRW50cnkSCwoDa2V5GAEgASgJEiYKBXZhbHVlGAIgASgOMhcuZml0cy5hcGkudjEuVGVuYW50Um9sZToCOAE6nwG6SJsBGpgBCht0b2tlbi5wZXJtaXNzaW9ucy51c2VydG9rZW4SKXRva2VuIHR5cGUgdXNlciBtdXN0IG5vdCBoYXZlIHBlcm1pc3Npb25zGk4odGhpcy50b2tlbl90eXBlID09IDIgJiYgdGhpcy5wZXJtaXNzaW9ucy5zaXplKCkgPT0gMCkgfHwgdGhpcy50b2tlbl90eXBlICE9IDJCDQoLX2FkbWluX3JvbGUiSQoQTWV0aG9kUGVybWlzc2lvbhIZCgdzdWJqZWN0GAEgASgJQgi6SAVyAxiAAhIaCgdtZXRob2RzGAIgAygJQgm6SAaSAQMQ9AMinQIKF1Blcm1pc3Npb25zQnlWaXNpYmlsaXR5EjAKBnB1YmxpYxgBIAEoCzIeLmZpdHMuYXBpLnYxLlB1YmxpY1Blcm1pc3Npb25zSAASLAoEc2VsZhgCIAEoCzIcLmZpdHMuYXBpLnYxLlNlbGZQZXJtaXNzaW9uc0gAEjIKB3Byb2plY3QYAyABKAsyHy5maXRzLmFwaS52MS5Qcm9qZWN0UGVybWlzc2lvbnNIABIwCgZ0ZW5hbnQYBCABKAsyHi5maXRzLmFwaS52MS5UZW5hbnRQZXJtaXNzaW9uc0gAEi4KBWFkbWluGAUgASgLMh0uZml0cy5hcGkudjEuQWRtaW5QZXJtaXNzaW9uc0gAQgwKCnZpc2liaWxpdHkiLwoRUHVibGljUGVybWlzc2lvbnMSGgoHbWV0aG9kcxgBIAMoCUIJukgGkgEDEPQDIi0KD1NlbGZQZXJtaXNzaW9ucxIaCgdtZXRob2RzGAEgAygJQgm6SAaSAQMQ9AMiTgoSUHJvamVjdFBlcm1pc3Npb25zEhwKB3Byb2plY3QYASABKAlCC7pICHIGmLSusQIBEhoKB21ldGhvZHMYAiADKAlCCbpIBpIBAxD0AyJLChFUZW5hbnRQZXJtaXNzaW9ucxIaCgVsb2dpbhgBIAEoCUILukgIcgaQtK6xAgESGgoHbWV0aG9kcxgCIAMoCUIJukgGkgEDEPQDIi4KEEFkbWluUGVybWlzc2lvbnMSGgoHbWV0aG9kcxgBIAMoCUIJukgGkgEDEPQDIk8KGlRva2VuU2VydmljZUNyZWF0ZVJlc3BvbnNlEiEKBXRva2VuGAEgASgLMhIuZml0cy5hcGkudjEuVG9rZW4SDgoGc2VjcmV0GAIgASgJIhkKF1Rva2VuU2VydmljZUxpc3RSZXF1ZXN0Ij4KGFRva2VuU2VydmljZUxpc3RSZXNwb25zZRIiCgZ0b2tlbnMYASADKAsyEi5maXRzLmFwaS52MS5Ub2tlbiIzChlUb2tlblNlcnZpY2VSZXZva2VSZXF1ZXN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBIhwKGlRva2VuU2VydmljZVJldm9rZVJlc3BvbnNlIjAKFlRva2VuU2VydmljZUdldFJlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQEiPAoXVG9rZW5TZXJ2aWNlR2V0UmVzcG9uc2USIQoFdG9rZW4YASABKAsyEi5maXRzLmFwaS52MS5Ub2tlbipQCglUb2tlblR5cGUSGgoWVE9LRU5fVFlQRV9VTlNQRUNJRklFRBAAEhIKDlRPS0VOX1RZUEVfQVBJEAESEwoPVE9LRU5fVFlQRV9VU0VSEAIyrgIKDFRva2VuU2VydmljZRJaCgNHZXQSIy5maXRzLmFwaS52MS5Ub2tlblNlcnZpY2VHZXRSZXF1ZXN0GiQuZml0cy5hcGkudjEuVG9rZW5TZXJ2aWNlR2V0UmVzcG9uc2UiCNjzGALg8xgBEl0KBExpc3QSJC5maXRzLmFwaS52MS5Ub2tlblNlcnZpY2VMaXN0UmVxdWVzdBolLmZpdHMuYXBpLnYxLlRva2VuU2VydmljZUxpc3RSZXNwb25zZSII2PMYAuDzGAESYwoGUmV2b2tlEiYuZml0cy5hcGkudjEuVG9rZW5TZXJ2aWNlUmV2b2tlUmVxdWVzdBonLmZpdHMuYXBpLnYxLlRva2VuU2VydmljZVJldm9rZVJlc3BvbnNlIgjY8xgC4PMYAUKWAQoPY29tLmZpdHMuYXBpLnYxQgpUb2tlblByb3RvUAFaKWdpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL3YxO2FwaXYxogIDRkFYqgILRml0cy5BcGkuVjHKAgtGaXRzXEFwaVxWMeICF0ZpdHNcQXBpXFYxXEdQQk1ldGFkYXRh6gINRml0czo6QXBpOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules, file_google_protobuf_timestamp]);
 
 /**
  * Token generates a jwt authentication token to access the api
@@ -66,9 +66,9 @@ export type Token = Message<"fits.api.v1.Token"> & {
   /**
    * Permissions is a list of service methods this token can be used for
    *
-   * @generated from field: repeated fits.api.v1.MethodPermission permissions = 5;
+   * @generated from field: repeated fits.api.v1.PermissionsByVisibility permissions = 5;
    */
-  permissions: MethodPermission[];
+  permissions: PermissionsByVisibility[];
 
   /**
    * Expires gives the date in the future after which this token can not be used anymore
@@ -99,7 +99,7 @@ export type Token = Message<"fits.api.v1.Token"> & {
   projectRoles: { [key: string]: ProjectRole };
 
   /**
-   * TenantRoles associates a tenant id with the corresponding role of the token owner
+   * TenantRoles associates a tenant id with the corresponding role of the token owner.
    *
    * @generated from field: map<string, fits.api.v1.TenantRole> tenant_roles = 10;
    */
@@ -154,6 +154,216 @@ export const MethodPermissionSchema: GenMessage<MethodPermission> = /*@__PURE__*
   messageDesc(file_fits_api_v1_token, 1);
 
 /**
+ * PermissionsByVisibility contains method permissions by visibility.
+ *
+ * @generated from message fits.api.v1.PermissionsByVisibility
+ */
+export type PermissionsByVisibility = Message<"fits.api.v1.PermissionsByVisibility"> & {
+  /**
+   * Visibility defines the visibility of the requested method permissions.
+   *
+   * @generated from oneof fits.api.v1.PermissionsByVisibility.visibility
+   */
+  visibility: {
+    /**
+     * PublicPermissions carries public method permissions.
+     *
+     * @generated from field: fits.api.v1.PublicPermissions public = 1;
+     */
+    value: PublicPermissions;
+    case: "public";
+  } | {
+    /**
+     * SelfPermissions carries self method permissions.
+     *
+     * @generated from field: fits.api.v1.SelfPermissions self = 2;
+     */
+    value: SelfPermissions;
+    case: "self";
+  } | {
+    /**
+     * ProjectPermissions carries project method permissions.
+     *
+     * @generated from field: fits.api.v1.ProjectPermissions project = 3;
+     */
+    value: ProjectPermissions;
+    case: "project";
+  } | {
+    /**
+     * TenantPermissions carries tenant method permissions.
+     *
+     * @generated from field: fits.api.v1.TenantPermissions tenant = 4;
+     */
+    value: TenantPermissions;
+    case: "tenant";
+  } | {
+    /**
+     * AdminPermissions carries admin method permissions.
+     *
+     * @generated from field: fits.api.v1.AdminPermissions admin = 5;
+     */
+    value: AdminPermissions;
+    case: "admin";
+  } | { case: undefined; value?: undefined };
+};
+
+/**
+ * Describes the message fits.api.v1.PermissionsByVisibility.
+ * Use `create(PermissionsByVisibilitySchema)` to create a new message.
+ */
+export const PermissionsByVisibilitySchema: GenMessage<PermissionsByVisibility> = /*@__PURE__*/
+  messageDesc(file_fits_api_v1_token, 2);
+
+/**
+ * PublicPermissions carries public method permissions.
+ *
+ * @generated from message fits.api.v1.PublicPermissions
+ */
+export type PublicPermissions = Message<"fits.api.v1.PublicPermissions"> & {
+  /**
+   * Methods which should be accessible.
+   *
+   * @generated from field: repeated string methods = 1;
+   */
+  methods: string[];
+};
+
+/**
+ * Describes the message fits.api.v1.PublicPermissions.
+ * Use `create(PublicPermissionsSchema)` to create a new message.
+ */
+export const PublicPermissionsSchema: GenMessage<PublicPermissions> = /*@__PURE__*/
+  messageDesc(file_fits_api_v1_token, 3);
+
+/**
+ * SelfPermissions carries self method permissions.
+ *
+ * @generated from message fits.api.v1.SelfPermissions
+ */
+export type SelfPermissions = Message<"fits.api.v1.SelfPermissions"> & {
+  /**
+   * Methods which should be accessible.
+   *
+   * @generated from field: repeated string methods = 1;
+   */
+  methods: string[];
+};
+
+/**
+ * Describes the message fits.api.v1.SelfPermissions.
+ * Use `create(SelfPermissionsSchema)` to create a new message.
+ */
+export const SelfPermissionsSchema: GenMessage<SelfPermissions> = /*@__PURE__*/
+  messageDesc(file_fits_api_v1_token, 4);
+
+/**
+ * ProjectPermissions carries project method permissions.
+ *
+ * @generated from message fits.api.v1.ProjectPermissions
+ */
+export type ProjectPermissions = Message<"fits.api.v1.ProjectPermissions"> & {
+  /**
+   * Project scope for the permissions.
+   * Asterisk (*) can be specified to match any subject.
+   *
+   * @generated from field: string project = 1;
+   */
+  project: string;
+
+  /**
+   * Methods which should be accessible.
+   *
+   * @generated from field: repeated string methods = 2;
+   */
+  methods: string[];
+};
+
+/**
+ * Describes the message fits.api.v1.ProjectPermissions.
+ * Use `create(ProjectPermissionsSchema)` to create a new message.
+ */
+export const ProjectPermissionsSchema: GenMessage<ProjectPermissions> = /*@__PURE__*/
+  messageDesc(file_fits_api_v1_token, 5);
+
+/**
+ * TenantPermissions carries tenant method permissions.
+ *
+ * @generated from message fits.api.v1.TenantPermissions
+ */
+export type TenantPermissions = Message<"fits.api.v1.TenantPermissions"> & {
+  /**
+   * Login of the tenant.
+   * Asterisk (*) can be specified to match any subject.
+   *
+   * @generated from field: string login = 1;
+   */
+  login: string;
+
+  /**
+   * Methods which should be accessible.
+   *
+   * @generated from field: repeated string methods = 2;
+   */
+  methods: string[];
+};
+
+/**
+ * Describes the message fits.api.v1.TenantPermissions.
+ * Use `create(TenantPermissionsSchema)` to create a new message.
+ */
+export const TenantPermissionsSchema: GenMessage<TenantPermissions> = /*@__PURE__*/
+  messageDesc(file_fits_api_v1_token, 6);
+
+/**
+ * AdminPermissions carries admin method permissions.
+ *
+ * @generated from message fits.api.v1.AdminPermissions
+ */
+export type AdminPermissions = Message<"fits.api.v1.AdminPermissions"> & {
+  /**
+   * Methods which should be accessible.
+   *
+   * @generated from field: repeated string methods = 1;
+   */
+  methods: string[];
+};
+
+/**
+ * Describes the message fits.api.v1.AdminPermissions.
+ * Use `create(AdminPermissionsSchema)` to create a new message.
+ */
+export const AdminPermissionsSchema: GenMessage<AdminPermissions> = /*@__PURE__*/
+  messageDesc(file_fits_api_v1_token, 7);
+
+/**
+ * TokenServiceCreateResponse is the response payload of a token create request
+ *
+ * @generated from message fits.api.v1.TokenServiceCreateResponse
+ */
+export type TokenServiceCreateResponse = Message<"fits.api.v1.TokenServiceCreateResponse"> & {
+  /**
+   * Token which was created
+   *
+   * @generated from field: fits.api.v1.Token token = 1;
+   */
+  token?: Token | undefined;
+
+  /**
+   * Secret is the body if the jwt token, should be used in api requests as bearer token
+   *
+   * @generated from field: string secret = 2;
+   */
+  secret: string;
+};
+
+/**
+ * Describes the message fits.api.v1.TokenServiceCreateResponse.
+ * Use `create(TokenServiceCreateResponseSchema)` to create a new message.
+ */
+export const TokenServiceCreateResponseSchema: GenMessage<TokenServiceCreateResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_v1_token, 8);
+
+/**
  * TokenServiceListRequest is the request payload to list tokens
  *
  * @generated from message fits.api.v1.TokenServiceListRequest
@@ -166,7 +376,7 @@ export type TokenServiceListRequest = Message<"fits.api.v1.TokenServiceListReque
  * Use `create(TokenServiceListRequestSchema)` to create a new message.
  */
 export const TokenServiceListRequestSchema: GenMessage<TokenServiceListRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 2);
+  messageDesc(file_fits_api_v1_token, 9);
 
 /**
  * TokenServiceListResponse is the response payload of a token list request
@@ -187,7 +397,7 @@ export type TokenServiceListResponse = Message<"fits.api.v1.TokenServiceListResp
  * Use `create(TokenServiceListResponseSchema)` to create a new message.
  */
 export const TokenServiceListResponseSchema: GenMessage<TokenServiceListResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 3);
+  messageDesc(file_fits_api_v1_token, 10);
 
 /**
  * TokenServiceRevokeRequest is the request payload of a token revoke request
@@ -208,7 +418,7 @@ export type TokenServiceRevokeRequest = Message<"fits.api.v1.TokenServiceRevokeR
  * Use `create(TokenServiceRevokeRequestSchema)` to create a new message.
  */
 export const TokenServiceRevokeRequestSchema: GenMessage<TokenServiceRevokeRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 4);
+  messageDesc(file_fits_api_v1_token, 11);
 
 /**
  * TokenServiceRevokeResponse is the response payload of a token revoke request
@@ -223,7 +433,7 @@ export type TokenServiceRevokeResponse = Message<"fits.api.v1.TokenServiceRevoke
  * Use `create(TokenServiceRevokeResponseSchema)` to create a new message.
  */
 export const TokenServiceRevokeResponseSchema: GenMessage<TokenServiceRevokeResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 5);
+  messageDesc(file_fits_api_v1_token, 12);
 
 /**
  * TokenServiceGetRequest is the request payload of a token get request
@@ -244,7 +454,7 @@ export type TokenServiceGetRequest = Message<"fits.api.v1.TokenServiceGetRequest
  * Use `create(TokenServiceGetRequestSchema)` to create a new message.
  */
 export const TokenServiceGetRequestSchema: GenMessage<TokenServiceGetRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 6);
+  messageDesc(file_fits_api_v1_token, 13);
 
 /**
  * TokenServiceGetResponse is the response payload of a token get request
@@ -265,7 +475,7 @@ export type TokenServiceGetResponse = Message<"fits.api.v1.TokenServiceGetRespon
  * Use `create(TokenServiceGetResponseSchema)` to create a new message.
  */
 export const TokenServiceGetResponseSchema: GenMessage<TokenServiceGetResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 7);
+  messageDesc(file_fits_api_v1_token, 14);
 
 /**
  * TokenType specifies different use cases of tokens

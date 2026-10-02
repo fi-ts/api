@@ -9,7 +9,7 @@ import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 /**
  * Describes the file fits/api/v1/token.proto.
  */
-export const file_fits_api_v1_token = /*@__PURE__*/ fileDesc("ChdmaXRzL2FwaS92MS90b2tlbi5wcm90bxILZml0cy5hcGkudjEizQYKBVRva2VuEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEhgKBHVzZXIYAiABKAlCCrpIB3IFEAIYgAQSHwoEbWV0YRgDIAEoCzIRLmZpdHMuYXBpLnYxLk1ldGESIAoLZGVzY3JpcHRpb24YBCABKAlCC7pICHIGyLOusQIBEj0KC3Blcm1pc3Npb25zGAUgAygLMh0uZml0cy5hcGkudjEuTWV0aG9kUGVybWlzc2lvbkIJukgGkgEDEPQDEisKB2V4cGlyZXMYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi0KCWlzc3VlZF9hdBgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASNAoKdG9rZW5fdHlwZRgIIAEoDjIWLmZpdHMuYXBpLnYxLlRva2VuVHlwZUIIukgFggECEAESOwoNcHJvamVjdF9yb2xlcxgJIAMoCzIkLmZpdHMuYXBpLnYxLlRva2VuLlByb2plY3RSb2xlc0VudHJ5EjkKDHRlbmFudF9yb2xlcxgKIAMoCzIjLmZpdHMuYXBpLnYxLlRva2VuLlRlbmFudFJvbGVzRW50cnkSOQoKYWRtaW5fcm9sZRgLIAEoDjIWLmZpdHMuYXBpLnYxLkFkbWluUm9sZUIIukgFggECEAFIAIgBARpNChFQcm9qZWN0Um9sZXNFbnRyeRILCgNrZXkYASABKAkSJwoFdmFsdWUYAiABKA4yGC5maXRzLmFwaS52MS5Qcm9qZWN0Um9sZToCOAEaSwoQVGVuYW50Um9sZXNFbnRyeRILCgNrZXkYASABKAkSJgoFdmFsdWUYAiABKA4yFy5maXRzLmFwaS52MS5UZW5hbnRSb2xlOgI4ATqfAbpImwEamAEKG3Rva2VuLnBlcm1pc3Npb25zLnVzZXJ0b2tlbhIpdG9rZW4gdHlwZSB1c2VyIG11c3Qgbm90IGhhdmUgcGVybWlzc2lvbnMaTih0aGlzLnRva2VuX3R5cGUgPT0gMiAmJiB0aGlzLnBlcm1pc3Npb25zLnNpemUoKSA9PSAwKSB8fCB0aGlzLnRva2VuX3R5cGUgIT0gMkINCgtfYWRtaW5fcm9sZSJJChBNZXRob2RQZXJtaXNzaW9uEhkKB3N1YmplY3QYASABKAlCCLpIBXIDGIACEhoKB21ldGhvZHMYAiADKAlCCbpIBpIBAxD0AyIZChdUb2tlblNlcnZpY2VMaXN0UmVxdWVzdCI+ChhUb2tlblNlcnZpY2VMaXN0UmVzcG9uc2USIgoGdG9rZW5zGAEgAygLMhIuZml0cy5hcGkudjEuVG9rZW4iMwoZVG9rZW5TZXJ2aWNlUmV2b2tlUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABASIcChpUb2tlblNlcnZpY2VSZXZva2VSZXNwb25zZSIwChZUb2tlblNlcnZpY2VHZXRSZXF1ZXN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBIjwKF1Rva2VuU2VydmljZUdldFJlc3BvbnNlEiEKBXRva2VuGAEgASgLMhIuZml0cy5hcGkudjEuVG9rZW4qUAoJVG9rZW5UeXBlEhoKFlRPS0VOX1RZUEVfVU5TUEVDSUZJRUQQABISCg5UT0tFTl9UWVBFX0FQSRABEhMKD1RPS0VOX1RZUEVfVVNFUhACMq4CCgxUb2tlblNlcnZpY2USWgoDR2V0EiMuZml0cy5hcGkudjEuVG9rZW5TZXJ2aWNlR2V0UmVxdWVzdBokLmZpdHMuYXBpLnYxLlRva2VuU2VydmljZUdldFJlc3BvbnNlIgjY8xgC4PMYARJdCgRMaXN0EiQuZml0cy5hcGkudjEuVG9rZW5TZXJ2aWNlTGlzdFJlcXVlc3QaJS5maXRzLmFwaS52MS5Ub2tlblNlcnZpY2VMaXN0UmVzcG9uc2UiCNjzGALg8xgBEmMKBlJldm9rZRImLmZpdHMuYXBpLnYxLlRva2VuU2VydmljZVJldm9rZVJlcXVlc3QaJy5maXRzLmFwaS52MS5Ub2tlblNlcnZpY2VSZXZva2VSZXNwb25zZSII2PMYAuDzGAFClgEKD2NvbS5maXRzLmFwaS52MUIKVG9rZW5Qcm90b1ABWilnaXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS92MTthcGl2MaICA0ZBWKoCC0ZpdHMuQXBpLlYxygILRml0c1xBcGlcVjHiAhdGaXRzXEFwaVxWMVxHUEJNZXRhZGF0YeoCDUZpdHM6OkFwaTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules, file_google_protobuf_timestamp]);
+export const file_fits_api_v1_token = /*@__PURE__*/ fileDesc("ChdmaXRzL2FwaS92MS90b2tlbi5wcm90bxILZml0cy5hcGkudjEi7wYKBVRva2VuEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEhgKBHVzZXIYAiABKAlCCrpIB3IFEAIYgAQSHwoEbWV0YRgDIAEoCzIRLmZpdHMuYXBpLnYxLk1ldGESIAoLZGVzY3JpcHRpb24YBCABKAlCC7pICHIGyLOusQIBEkQKC3Blcm1pc3Npb25zGAUgAygLMiQuZml0cy5hcGkudjEuUGVybWlzc2lvbnNCeVZpc2liaWxpdHlCCbpIBpIBAxD0AxIrCgdleHBpcmVzGAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBItCglpc3N1ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjQKCnRva2VuX3R5cGUYCCABKA4yFi5maXRzLmFwaS52MS5Ub2tlblR5cGVCCLpIBYIBAhABEjsKDXByb2plY3Rfcm9sZXMYCSADKAsyJC5maXRzLmFwaS52MS5Ub2tlbi5Qcm9qZWN0Um9sZXNFbnRyeRJUCgx0ZW5hbnRfcm9sZXMYCiADKAsyIy5maXRzLmFwaS52MS5Ub2tlbi5UZW5hbnRSb2xlc0VudHJ5Qhm6SBaaARPAlbixAgHQlbixAgEqBYIBAhABEjkKCmFkbWluX3JvbGUYCyABKA4yFi5maXRzLmFwaS52MS5BZG1pblJvbGVCCLpIBYIBAhABSACIAQEaTQoRUHJvamVjdFJvbGVzRW50cnkSCwoDa2V5GAEgASgJEicKBXZhbHVlGAIgASgOMhguZml0cy5hcGkudjEuUHJvamVjdFJvbGU6AjgBGksKEFRlbmFudFJvbGVzRW50cnkSCwoDa2V5GAEgASgJEiYKBXZhbHVlGAIgASgOMhcuZml0cy5hcGkudjEuVGVuYW50Um9sZToCOAE6nwG6SJsBGpgBCht0b2tlbi5wZXJtaXNzaW9ucy51c2VydG9rZW4SKXRva2VuIHR5cGUgdXNlciBtdXN0IG5vdCBoYXZlIHBlcm1pc3Npb25zGk4odGhpcy50b2tlbl90eXBlID09IDIgJiYgdGhpcy5wZXJtaXNzaW9ucy5zaXplKCkgPT0gMCkgfHwgdGhpcy50b2tlbl90eXBlICE9IDJCDQoLX2FkbWluX3JvbGUiSQoQTWV0aG9kUGVybWlzc2lvbhIZCgdzdWJqZWN0GAEgASgJQgi6SAVyAxiAAhIaCgdtZXRob2RzGAIgAygJQgm6SAaSAQMQ9AMinQIKF1Blcm1pc3Npb25zQnlWaXNpYmlsaXR5EjAKBnB1YmxpYxgBIAEoCzIeLmZpdHMuYXBpLnYxLlB1YmxpY1Blcm1pc3Npb25zSAASLAoEc2VsZhgCIAEoCzIcLmZpdHMuYXBpLnYxLlNlbGZQZXJtaXNzaW9uc0gAEjIKB3Byb2plY3QYAyABKAsyHy5maXRzLmFwaS52MS5Qcm9qZWN0UGVybWlzc2lvbnNIABIwCgZ0ZW5hbnQYBCABKAsyHi5maXRzLmFwaS52MS5UZW5hbnRQZXJtaXNzaW9uc0gAEi4KBWFkbWluGAUgASgLMh0uZml0cy5hcGkudjEuQWRtaW5QZXJtaXNzaW9uc0gAQgwKCnZpc2liaWxpdHkiLwoRUHVibGljUGVybWlzc2lvbnMSGgoHbWV0aG9kcxgBIAMoCUIJukgGkgEDEPQDIi0KD1NlbGZQZXJtaXNzaW9ucxIaCgdtZXRob2RzGAEgAygJQgm6SAaSAQMQ9AMiTgoSUHJvamVjdFBlcm1pc3Npb25zEhwKB3Byb2plY3QYASABKAlCC7pICHIGmLSusQIBEhoKB21ldGhvZHMYAiADKAlCCbpIBpIBAxD0AyJLChFUZW5hbnRQZXJtaXNzaW9ucxIaCgVsb2dpbhgBIAEoCUILukgIcgaQtK6xAgESGgoHbWV0aG9kcxgCIAMoCUIJukgGkgEDEPQDIi4KEEFkbWluUGVybWlzc2lvbnMSGgoHbWV0aG9kcxgBIAMoCUIJukgGkgEDEPQDIk8KGlRva2VuU2VydmljZUNyZWF0ZVJlc3BvbnNlEiEKBXRva2VuGAEgASgLMhIuZml0cy5hcGkudjEuVG9rZW4SDgoGc2VjcmV0GAIgASgJIhkKF1Rva2VuU2VydmljZUxpc3RSZXF1ZXN0Ij4KGFRva2VuU2VydmljZUxpc3RSZXNwb25zZRIiCgZ0b2tlbnMYASADKAsyEi5maXRzLmFwaS52MS5Ub2tlbiIzChlUb2tlblNlcnZpY2VSZXZva2VSZXF1ZXN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBIhwKGlRva2VuU2VydmljZVJldm9rZVJlc3BvbnNlIjAKFlRva2VuU2VydmljZUdldFJlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQEiPAoXVG9rZW5TZXJ2aWNlR2V0UmVzcG9uc2USIQoFdG9rZW4YASABKAsyEi5maXRzLmFwaS52MS5Ub2tlbipQCglUb2tlblR5cGUSGgoWVE9LRU5fVFlQRV9VTlNQRUNJRklFRBAAEhIKDlRPS0VOX1RZUEVfQVBJEAESEwoPVE9LRU5fVFlQRV9VU0VSEAIyrgIKDFRva2VuU2VydmljZRJaCgNHZXQSIy5maXRzLmFwaS52MS5Ub2tlblNlcnZpY2VHZXRSZXF1ZXN0GiQuZml0cy5hcGkudjEuVG9rZW5TZXJ2aWNlR2V0UmVzcG9uc2UiCNjzGALg8xgBEl0KBExpc3QSJC5maXRzLmFwaS52MS5Ub2tlblNlcnZpY2VMaXN0UmVxdWVzdBolLmZpdHMuYXBpLnYxLlRva2VuU2VydmljZUxpc3RSZXNwb25zZSII2PMYAuDzGAESYwoGUmV2b2tlEiYuZml0cy5hcGkudjEuVG9rZW5TZXJ2aWNlUmV2b2tlUmVxdWVzdBonLmZpdHMuYXBpLnYxLlRva2VuU2VydmljZVJldm9rZVJlc3BvbnNlIgjY8xgC4PMYAUKWAQoPY29tLmZpdHMuYXBpLnYxQgpUb2tlblByb3RvUAFaKWdpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL3YxO2FwaXYxogIDRkFYqgILRml0cy5BcGkuVjHKAgtGaXRzXEFwaVxWMeICF0ZpdHNcQXBpXFYxXEdQQk1ldGFkYXRh6gINRml0czo6QXBpOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules, file_google_protobuf_timestamp]);
 /**
  * Describes the message fits.api.v1.Token.
  * Use `create(TokenSchema)` to create a new message.
@@ -21,35 +21,70 @@ export const TokenSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_token, 0);
  */
 export const MethodPermissionSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_token, 1);
 /**
+ * Describes the message fits.api.v1.PermissionsByVisibility.
+ * Use `create(PermissionsByVisibilitySchema)` to create a new message.
+ */
+export const PermissionsByVisibilitySchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_token, 2);
+/**
+ * Describes the message fits.api.v1.PublicPermissions.
+ * Use `create(PublicPermissionsSchema)` to create a new message.
+ */
+export const PublicPermissionsSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_token, 3);
+/**
+ * Describes the message fits.api.v1.SelfPermissions.
+ * Use `create(SelfPermissionsSchema)` to create a new message.
+ */
+export const SelfPermissionsSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_token, 4);
+/**
+ * Describes the message fits.api.v1.ProjectPermissions.
+ * Use `create(ProjectPermissionsSchema)` to create a new message.
+ */
+export const ProjectPermissionsSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_token, 5);
+/**
+ * Describes the message fits.api.v1.TenantPermissions.
+ * Use `create(TenantPermissionsSchema)` to create a new message.
+ */
+export const TenantPermissionsSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_token, 6);
+/**
+ * Describes the message fits.api.v1.AdminPermissions.
+ * Use `create(AdminPermissionsSchema)` to create a new message.
+ */
+export const AdminPermissionsSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_token, 7);
+/**
+ * Describes the message fits.api.v1.TokenServiceCreateResponse.
+ * Use `create(TokenServiceCreateResponseSchema)` to create a new message.
+ */
+export const TokenServiceCreateResponseSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_token, 8);
+/**
  * Describes the message fits.api.v1.TokenServiceListRequest.
  * Use `create(TokenServiceListRequestSchema)` to create a new message.
  */
-export const TokenServiceListRequestSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_token, 2);
+export const TokenServiceListRequestSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_token, 9);
 /**
  * Describes the message fits.api.v1.TokenServiceListResponse.
  * Use `create(TokenServiceListResponseSchema)` to create a new message.
  */
-export const TokenServiceListResponseSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_token, 3);
+export const TokenServiceListResponseSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_token, 10);
 /**
  * Describes the message fits.api.v1.TokenServiceRevokeRequest.
  * Use `create(TokenServiceRevokeRequestSchema)` to create a new message.
  */
-export const TokenServiceRevokeRequestSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_token, 4);
+export const TokenServiceRevokeRequestSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_token, 11);
 /**
  * Describes the message fits.api.v1.TokenServiceRevokeResponse.
  * Use `create(TokenServiceRevokeResponseSchema)` to create a new message.
  */
-export const TokenServiceRevokeResponseSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_token, 5);
+export const TokenServiceRevokeResponseSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_token, 12);
 /**
  * Describes the message fits.api.v1.TokenServiceGetRequest.
  * Use `create(TokenServiceGetRequestSchema)` to create a new message.
  */
-export const TokenServiceGetRequestSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_token, 6);
+export const TokenServiceGetRequestSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_token, 13);
 /**
  * Describes the message fits.api.v1.TokenServiceGetResponse.
  * Use `create(TokenServiceGetResponseSchema)` to create a new message.
  */
-export const TokenServiceGetResponseSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_token, 7);
+export const TokenServiceGetResponseSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_token, 14);
 /**
  * TokenType specifies different use cases of tokens
  *

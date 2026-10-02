@@ -53,14 +53,14 @@ class Token(_message.Message):
     user: str
     meta: _common_pb2.Meta
     description: str
-    permissions: _containers.RepeatedCompositeFieldContainer[MethodPermission]
+    permissions: _containers.RepeatedCompositeFieldContainer[PermissionsByVisibility]
     expires: _timestamp_pb2.Timestamp
     issued_at: _timestamp_pb2.Timestamp
     token_type: TokenType
     project_roles: _containers.ScalarMap[str, _common_pb2.ProjectRole]
     tenant_roles: _containers.ScalarMap[str, _common_pb2.TenantRole]
     admin_role: _common_pb2.AdminRole
-    def __init__(self, uuid: _Optional[str] = ..., user: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., description: _Optional[str] = ..., permissions: _Optional[_Iterable[_Union[MethodPermission, _Mapping]]] = ..., expires: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., issued_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., token_type: _Optional[_Union[TokenType, str]] = ..., project_roles: _Optional[_Mapping[str, _common_pb2.ProjectRole]] = ..., tenant_roles: _Optional[_Mapping[str, _common_pb2.TenantRole]] = ..., admin_role: _Optional[_Union[_common_pb2.AdminRole, str]] = ...) -> None: ...
+    def __init__(self, uuid: _Optional[str] = ..., user: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., description: _Optional[str] = ..., permissions: _Optional[_Iterable[_Union[PermissionsByVisibility, _Mapping]]] = ..., expires: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., issued_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., token_type: _Optional[_Union[TokenType, str]] = ..., project_roles: _Optional[_Mapping[str, _common_pb2.ProjectRole]] = ..., tenant_roles: _Optional[_Mapping[str, _common_pb2.TenantRole]] = ..., admin_role: _Optional[_Union[_common_pb2.AdminRole, str]] = ...) -> None: ...
 
 class MethodPermission(_message.Message):
     __slots__ = ("subject", "methods")
@@ -69,6 +69,62 @@ class MethodPermission(_message.Message):
     subject: str
     methods: _containers.RepeatedScalarFieldContainer[str]
     def __init__(self, subject: _Optional[str] = ..., methods: _Optional[_Iterable[str]] = ...) -> None: ...
+
+class PermissionsByVisibility(_message.Message):
+    __slots__ = ("public", "self", "project", "tenant", "admin")
+    PUBLIC_FIELD_NUMBER: _ClassVar[int]
+    SELF_FIELD_NUMBER: _ClassVar[int]
+    PROJECT_FIELD_NUMBER: _ClassVar[int]
+    TENANT_FIELD_NUMBER: _ClassVar[int]
+    ADMIN_FIELD_NUMBER: _ClassVar[int]
+    public: PublicPermissions
+    self: SelfPermissions
+    project: ProjectPermissions
+    tenant: TenantPermissions
+    admin: AdminPermissions
+    def __init__(self_, public: _Optional[_Union[PublicPermissions, _Mapping]] = ..., self: _Optional[_Union[SelfPermissions, _Mapping]] = ..., project: _Optional[_Union[ProjectPermissions, _Mapping]] = ..., tenant: _Optional[_Union[TenantPermissions, _Mapping]] = ..., admin: _Optional[_Union[AdminPermissions, _Mapping]] = ...) -> None: ...
+
+class PublicPermissions(_message.Message):
+    __slots__ = ("methods",)
+    METHODS_FIELD_NUMBER: _ClassVar[int]
+    methods: _containers.RepeatedScalarFieldContainer[str]
+    def __init__(self, methods: _Optional[_Iterable[str]] = ...) -> None: ...
+
+class SelfPermissions(_message.Message):
+    __slots__ = ("methods",)
+    METHODS_FIELD_NUMBER: _ClassVar[int]
+    methods: _containers.RepeatedScalarFieldContainer[str]
+    def __init__(self, methods: _Optional[_Iterable[str]] = ...) -> None: ...
+
+class ProjectPermissions(_message.Message):
+    __slots__ = ("project", "methods")
+    PROJECT_FIELD_NUMBER: _ClassVar[int]
+    METHODS_FIELD_NUMBER: _ClassVar[int]
+    project: str
+    methods: _containers.RepeatedScalarFieldContainer[str]
+    def __init__(self, project: _Optional[str] = ..., methods: _Optional[_Iterable[str]] = ...) -> None: ...
+
+class TenantPermissions(_message.Message):
+    __slots__ = ("login", "methods")
+    LOGIN_FIELD_NUMBER: _ClassVar[int]
+    METHODS_FIELD_NUMBER: _ClassVar[int]
+    login: str
+    methods: _containers.RepeatedScalarFieldContainer[str]
+    def __init__(self, login: _Optional[str] = ..., methods: _Optional[_Iterable[str]] = ...) -> None: ...
+
+class AdminPermissions(_message.Message):
+    __slots__ = ("methods",)
+    METHODS_FIELD_NUMBER: _ClassVar[int]
+    methods: _containers.RepeatedScalarFieldContainer[str]
+    def __init__(self, methods: _Optional[_Iterable[str]] = ...) -> None: ...
+
+class TokenServiceCreateResponse(_message.Message):
+    __slots__ = ("token", "secret")
+    TOKEN_FIELD_NUMBER: _ClassVar[int]
+    SECRET_FIELD_NUMBER: _ClassVar[int]
+    token: Token
+    secret: str
+    def __init__(self, token: _Optional[_Union[Token, _Mapping]] = ..., secret: _Optional[str] = ...) -> None: ...
 
 class TokenServiceListRequest(_message.Message):
     __slots__ = ()

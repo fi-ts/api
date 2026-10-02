@@ -57,7 +57,7 @@ message Token {
   // Description is a user given description of this token.
   string description = 4 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
   // Permissions is a list of service methods this token can be used for
-  repeated MethodPermission permissions = 5 [(buf.validate.field).repeated.max_items = 500];
+  repeated PermissionsByVisibility permissions = 5 [(buf.validate.field).repeated.max_items = 500];
   // Expires gives the date in the future after which this token can not be used anymore
   google.protobuf.Timestamp expires = 6;
   // IssuedAt gives the date when this token was created
@@ -66,8 +66,14 @@ message Token {
   TokenType token_type = 8 [(buf.validate.field).enum.defined_only = true];
   // ProjectRoles associates a project id with the corresponding role of the token owner
   map<string, ProjectRole> project_roles = 9;
-  // TenantRoles associates a tenant id with the corresponding role of the token owner
-  map<string, TenantRole> tenant_roles = 10;
+  // TenantRoles associates a tenant id with the corresponding role of the token owner.
+  map<string, TenantRole> tenant_roles = 10 [
+    (buf.validate.field).map.(fits.api.v1.tenant_roles_keys_valid) = true,
+    (buf.validate.field).map.(fits.api.v1.keys_trimmed) = true,
+    (buf.validate.field).map.values = {
+      enum: {defined_only: true}
+    }
+  ];
   // AdminRole defines the admin role of the token owner
   optional AdminRole admin_role = 11 [(buf.validate.field).enum.defined_only = true];
 }
@@ -93,6 +99,68 @@ message MethodPermission {
   string subject = 1 [(buf.validate.field).string = {max_len: 256}];
   // Methods which should be accessible
   repeated string methods = 2 [(buf.validate.field).repeated.max_items = 500];
+}
+
+// PermissionsByVisibility contains method permissions by visibility.
+message PermissionsByVisibility {
+  // Visibility defines the visibility of the requested method permissions.
+  oneof visibility {
+    // PublicPermissions carries public method permissions.
+    PublicPermissions public = 1;
+    // SelfPermissions carries self method permissions.
+    SelfPermissions self = 2;
+    // ProjectPermissions carries project method permissions.
+    ProjectPermissions project = 3;
+    // TenantPermissions carries tenant method permissions.
+    TenantPermissions tenant = 4;
+    // AdminPermissions carries admin method permissions.
+    AdminPermissions admin = 5;
+  }
+}
+
+// PublicPermissions carries public method permissions.
+message PublicPermissions {
+  // Methods which should be accessible.
+  repeated string methods = 1 [(buf.validate.field).repeated.max_items = 500];
+}
+
+// SelfPermissions carries self method permissions.
+message SelfPermissions {
+  // Methods which should be accessible.
+  repeated string methods = 1 [(buf.validate.field).repeated.max_items = 500];
+}
+
+// ProjectPermissions carries project method permissions.
+message ProjectPermissions {
+  // Project scope for the permissions.
+  // Asterisk (*) can be specified to match any subject.
+  string project = 1 [(buf.validate.field).string.(fits.api.v1.is_project_subject_permission) = true];
+  // Methods which should be accessible.
+  repeated string methods = 2 [(buf.validate.field).repeated.max_items = 500];
+}
+
+// TenantPermissions carries tenant method permissions.
+message TenantPermissions {
+  // Login of the tenant.
+  // Asterisk (*) can be specified to match any subject.
+  string login = 1 [(buf.validate.field).string.(fits.api.v1.is_tenant_subject_permission) = true];
+
+  // Methods which should be accessible.
+  repeated string methods = 2 [(buf.validate.field).repeated.max_items = 500];
+}
+
+// AdminPermissions carries admin method permissions.
+message AdminPermissions {
+  // Methods which should be accessible.
+  repeated string methods = 1 [(buf.validate.field).repeated.max_items = 500];
+}
+
+// TokenServiceCreateResponse is the response payload of a token create request
+message TokenServiceCreateResponse {
+  // Token which was created
+  Token token = 1;
+  // Secret is the body if the jwt token, should be used in api requests as bearer token
+  string secret = 2;
 }
 
 // TokenServiceListRequest is the request payload to list tokens

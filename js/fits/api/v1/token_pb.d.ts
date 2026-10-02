@@ -50,9 +50,9 @@ export type Token = Message<"fits.api.v1.Token"> & {
     /**
      * Permissions is a list of service methods this token can be used for
      *
-     * @generated from field: repeated fits.api.v1.MethodPermission permissions = 5;
+     * @generated from field: repeated fits.api.v1.PermissionsByVisibility permissions = 5;
      */
-    permissions: MethodPermission[];
+    permissions: PermissionsByVisibility[];
     /**
      * Expires gives the date in the future after which this token can not be used anymore
      *
@@ -80,7 +80,7 @@ export type Token = Message<"fits.api.v1.Token"> & {
         [key: string]: ProjectRole;
     };
     /**
-     * TenantRoles associates a tenant id with the corresponding role of the token owner
+     * TenantRoles associates a tenant id with the corresponding role of the token owner.
      *
      * @generated from field: map<string, fits.api.v1.TenantRole> tenant_roles = 10;
      */
@@ -128,6 +128,195 @@ export type MethodPermission = Message<"fits.api.v1.MethodPermission"> & {
  * Use `create(MethodPermissionSchema)` to create a new message.
  */
 export declare const MethodPermissionSchema: GenMessage<MethodPermission>;
+/**
+ * PermissionsByVisibility contains method permissions by visibility.
+ *
+ * @generated from message fits.api.v1.PermissionsByVisibility
+ */
+export type PermissionsByVisibility = Message<"fits.api.v1.PermissionsByVisibility"> & {
+    /**
+     * Visibility defines the visibility of the requested method permissions.
+     *
+     * @generated from oneof fits.api.v1.PermissionsByVisibility.visibility
+     */
+    visibility: {
+        /**
+         * PublicPermissions carries public method permissions.
+         *
+         * @generated from field: fits.api.v1.PublicPermissions public = 1;
+         */
+        value: PublicPermissions;
+        case: "public";
+    } | {
+        /**
+         * SelfPermissions carries self method permissions.
+         *
+         * @generated from field: fits.api.v1.SelfPermissions self = 2;
+         */
+        value: SelfPermissions;
+        case: "self";
+    } | {
+        /**
+         * ProjectPermissions carries project method permissions.
+         *
+         * @generated from field: fits.api.v1.ProjectPermissions project = 3;
+         */
+        value: ProjectPermissions;
+        case: "project";
+    } | {
+        /**
+         * TenantPermissions carries tenant method permissions.
+         *
+         * @generated from field: fits.api.v1.TenantPermissions tenant = 4;
+         */
+        value: TenantPermissions;
+        case: "tenant";
+    } | {
+        /**
+         * AdminPermissions carries admin method permissions.
+         *
+         * @generated from field: fits.api.v1.AdminPermissions admin = 5;
+         */
+        value: AdminPermissions;
+        case: "admin";
+    } | {
+        case: undefined;
+        value?: undefined;
+    };
+};
+/**
+ * Describes the message fits.api.v1.PermissionsByVisibility.
+ * Use `create(PermissionsByVisibilitySchema)` to create a new message.
+ */
+export declare const PermissionsByVisibilitySchema: GenMessage<PermissionsByVisibility>;
+/**
+ * PublicPermissions carries public method permissions.
+ *
+ * @generated from message fits.api.v1.PublicPermissions
+ */
+export type PublicPermissions = Message<"fits.api.v1.PublicPermissions"> & {
+    /**
+     * Methods which should be accessible.
+     *
+     * @generated from field: repeated string methods = 1;
+     */
+    methods: string[];
+};
+/**
+ * Describes the message fits.api.v1.PublicPermissions.
+ * Use `create(PublicPermissionsSchema)` to create a new message.
+ */
+export declare const PublicPermissionsSchema: GenMessage<PublicPermissions>;
+/**
+ * SelfPermissions carries self method permissions.
+ *
+ * @generated from message fits.api.v1.SelfPermissions
+ */
+export type SelfPermissions = Message<"fits.api.v1.SelfPermissions"> & {
+    /**
+     * Methods which should be accessible.
+     *
+     * @generated from field: repeated string methods = 1;
+     */
+    methods: string[];
+};
+/**
+ * Describes the message fits.api.v1.SelfPermissions.
+ * Use `create(SelfPermissionsSchema)` to create a new message.
+ */
+export declare const SelfPermissionsSchema: GenMessage<SelfPermissions>;
+/**
+ * ProjectPermissions carries project method permissions.
+ *
+ * @generated from message fits.api.v1.ProjectPermissions
+ */
+export type ProjectPermissions = Message<"fits.api.v1.ProjectPermissions"> & {
+    /**
+     * Project scope for the permissions.
+     * Asterisk (*) can be specified to match any subject.
+     *
+     * @generated from field: string project = 1;
+     */
+    project: string;
+    /**
+     * Methods which should be accessible.
+     *
+     * @generated from field: repeated string methods = 2;
+     */
+    methods: string[];
+};
+/**
+ * Describes the message fits.api.v1.ProjectPermissions.
+ * Use `create(ProjectPermissionsSchema)` to create a new message.
+ */
+export declare const ProjectPermissionsSchema: GenMessage<ProjectPermissions>;
+/**
+ * TenantPermissions carries tenant method permissions.
+ *
+ * @generated from message fits.api.v1.TenantPermissions
+ */
+export type TenantPermissions = Message<"fits.api.v1.TenantPermissions"> & {
+    /**
+     * Login of the tenant.
+     * Asterisk (*) can be specified to match any subject.
+     *
+     * @generated from field: string login = 1;
+     */
+    login: string;
+    /**
+     * Methods which should be accessible.
+     *
+     * @generated from field: repeated string methods = 2;
+     */
+    methods: string[];
+};
+/**
+ * Describes the message fits.api.v1.TenantPermissions.
+ * Use `create(TenantPermissionsSchema)` to create a new message.
+ */
+export declare const TenantPermissionsSchema: GenMessage<TenantPermissions>;
+/**
+ * AdminPermissions carries admin method permissions.
+ *
+ * @generated from message fits.api.v1.AdminPermissions
+ */
+export type AdminPermissions = Message<"fits.api.v1.AdminPermissions"> & {
+    /**
+     * Methods which should be accessible.
+     *
+     * @generated from field: repeated string methods = 1;
+     */
+    methods: string[];
+};
+/**
+ * Describes the message fits.api.v1.AdminPermissions.
+ * Use `create(AdminPermissionsSchema)` to create a new message.
+ */
+export declare const AdminPermissionsSchema: GenMessage<AdminPermissions>;
+/**
+ * TokenServiceCreateResponse is the response payload of a token create request
+ *
+ * @generated from message fits.api.v1.TokenServiceCreateResponse
+ */
+export type TokenServiceCreateResponse = Message<"fits.api.v1.TokenServiceCreateResponse"> & {
+    /**
+     * Token which was created
+     *
+     * @generated from field: fits.api.v1.Token token = 1;
+     */
+    token?: Token | undefined;
+    /**
+     * Secret is the body if the jwt token, should be used in api requests as bearer token
+     *
+     * @generated from field: string secret = 2;
+     */
+    secret: string;
+};
+/**
+ * Describes the message fits.api.v1.TokenServiceCreateResponse.
+ * Use `create(TokenServiceCreateResponseSchema)` to create a new message.
+ */
+export declare const TokenServiceCreateResponseSchema: GenMessage<TokenServiceCreateResponse>;
 /**
  * TokenServiceListRequest is the request payload to list tokens
  *

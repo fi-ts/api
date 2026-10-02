@@ -28,7 +28,7 @@ from fits.api.v1 import predefined_rules_pb2 as fits_dot_api_dot_v1_dot_predefin
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x17\x66its/api/v1/token.proto\x12\x0b\x66its.api.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd5\x07\n\x05Token\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x1e\n\x04user\x18\x02 \x01(\tB\n\xbaH\x07r\x05\x10\x02\x18\x80\x04R\x04user\x12%\n\x04meta\x18\x03 \x01(\x0b\x32\x11.fits.api.v1.MetaR\x04meta\x12-\n\x0b\x64\x65scription\x18\x04 \x01(\tB\x0b\xbaH\x08r\x06\xc8\xb3\xae\xb1\x02\x01R\x0b\x64\x65scription\x12J\n\x0bpermissions\x18\x05 \x03(\x0b\x32\x1d.fits.api.v1.MethodPermissionB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\x0bpermissions\x12\x34\n\x07\x65xpires\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x07\x65xpires\x12\x37\n\tissued_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x08issuedAt\x12?\n\ntoken_type\x18\x08 \x01(\x0e\x32\x16.fits.api.v1.TokenTypeB\x08\xbaH\x05\x82\x01\x02\x10\x01R\ttokenType\x12I\n\rproject_roles\x18\t \x03(\x0b\x32$.fits.api.v1.Token.ProjectRolesEntryR\x0cprojectRoles\x12\x46\n\x0ctenant_roles\x18\n \x03(\x0b\x32#.fits.api.v1.Token.TenantRolesEntryR\x0btenantRoles\x12\x44\n\nadmin_role\x18\x0b \x01(\x0e\x32\x16.fits.api.v1.AdminRoleB\x08\xbaH\x05\x82\x01\x02\x10\x01H\x00R\tadminRole\x88\x01\x01\x1aY\n\x11ProjectRolesEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12.\n\x05value\x18\x02 \x01(\x0e\x32\x18.fits.api.v1.ProjectRoleR\x05value:\x02\x38\x01\x1aW\n\x10TenantRolesEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12-\n\x05value\x18\x02 \x01(\x0e\x32\x17.fits.api.v1.TenantRoleR\x05value:\x02\x38\x01:\x9f\x01\xbaH\x9b\x01\x1a\x98\x01\n\x1btoken.permissions.usertoken\x12)token type user must not have permissions\x1aN(this.token_type == 2 && this.permissions.size() == 0) || this.token_type != 2B\r\n\x0b_admin_role\"[\n\x10MethodPermission\x12\"\n\x07subject\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\x18\x80\x02R\x07subject\x12#\n\x07methods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\x07methods\"\x19\n\x17TokenServiceListRequest\"F\n\x18TokenServiceListResponse\x12*\n\x06tokens\x18\x01 \x03(\x0b\x32\x12.fits.api.v1.TokenR\x06tokens\"9\n\x19TokenServiceRevokeRequest\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"\x1c\n\x1aTokenServiceRevokeResponse\"6\n\x16TokenServiceGetRequest\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"C\n\x17TokenServiceGetResponse\x12(\n\x05token\x18\x01 \x01(\x0b\x32\x12.fits.api.v1.TokenR\x05token*P\n\tTokenType\x12\x1a\n\x16TOKEN_TYPE_UNSPECIFIED\x10\x00\x12\x12\n\x0eTOKEN_TYPE_API\x10\x01\x12\x13\n\x0fTOKEN_TYPE_USER\x10\x02\x32\xae\x02\n\x0cTokenService\x12Z\n\x03Get\x12#.fits.api.v1.TokenServiceGetRequest\x1a$.fits.api.v1.TokenServiceGetResponse\"\x08\xd8\xf3\x18\x02\xe0\xf3\x18\x01\x12]\n\x04List\x12$.fits.api.v1.TokenServiceListRequest\x1a%.fits.api.v1.TokenServiceListResponse\"\x08\xd8\xf3\x18\x02\xe0\xf3\x18\x01\x12\x63\n\x06Revoke\x12&.fits.api.v1.TokenServiceRevokeRequest\x1a\'.fits.api.v1.TokenServiceRevokeResponse\"\x08\xd8\xf3\x18\x02\xe0\xf3\x18\x01\x42\x96\x01\n\x0f\x63om.fits.api.v1B\nTokenProtoP\x01Z)github.com/fi-ts/api/go/fits/api/v1;apiv1\xa2\x02\x03\x46\x41X\xaa\x02\x0b\x46its.Api.V1\xca\x02\x0b\x46its\\Api\\V1\xe2\x02\x17\x46its\\Api\\V1\\GPBMetadata\xea\x02\rFits::Api::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x17\x66its/api/v1/token.proto\x12\x0b\x66its.api.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf7\x07\n\x05Token\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x1e\n\x04user\x18\x02 \x01(\tB\n\xbaH\x07r\x05\x10\x02\x18\x80\x04R\x04user\x12%\n\x04meta\x18\x03 \x01(\x0b\x32\x11.fits.api.v1.MetaR\x04meta\x12-\n\x0b\x64\x65scription\x18\x04 \x01(\tB\x0b\xbaH\x08r\x06\xc8\xb3\xae\xb1\x02\x01R\x0b\x64\x65scription\x12Q\n\x0bpermissions\x18\x05 \x03(\x0b\x32$.fits.api.v1.PermissionsByVisibilityB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\x0bpermissions\x12\x34\n\x07\x65xpires\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x07\x65xpires\x12\x37\n\tissued_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x08issuedAt\x12?\n\ntoken_type\x18\x08 \x01(\x0e\x32\x16.fits.api.v1.TokenTypeB\x08\xbaH\x05\x82\x01\x02\x10\x01R\ttokenType\x12I\n\rproject_roles\x18\t \x03(\x0b\x32$.fits.api.v1.Token.ProjectRolesEntryR\x0cprojectRoles\x12\x61\n\x0ctenant_roles\x18\n \x03(\x0b\x32#.fits.api.v1.Token.TenantRolesEntryB\x19\xbaH\x16\x9a\x01\x13*\x05\x82\x01\x02\x10\x01\xc0\x95\xb8\xb1\x02\x01\xd0\x95\xb8\xb1\x02\x01R\x0btenantRoles\x12\x44\n\nadmin_role\x18\x0b \x01(\x0e\x32\x16.fits.api.v1.AdminRoleB\x08\xbaH\x05\x82\x01\x02\x10\x01H\x00R\tadminRole\x88\x01\x01\x1aY\n\x11ProjectRolesEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12.\n\x05value\x18\x02 \x01(\x0e\x32\x18.fits.api.v1.ProjectRoleR\x05value:\x02\x38\x01\x1aW\n\x10TenantRolesEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12-\n\x05value\x18\x02 \x01(\x0e\x32\x17.fits.api.v1.TenantRoleR\x05value:\x02\x38\x01:\x9f\x01\xbaH\x9b\x01\x1a\x98\x01\n\x1btoken.permissions.usertoken\x12)token type user must not have permissions\x1aN(this.token_type == 2 && this.permissions.size() == 0) || this.token_type != 2B\r\n\x0b_admin_role\"[\n\x10MethodPermission\x12\"\n\x07subject\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\x18\x80\x02R\x07subject\x12#\n\x07methods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\x07methods\"\xc3\x02\n\x17PermissionsByVisibility\x12\x38\n\x06public\x18\x01 \x01(\x0b\x32\x1e.fits.api.v1.PublicPermissionsH\x00R\x06public\x12\x32\n\x04self\x18\x02 \x01(\x0b\x32\x1c.fits.api.v1.SelfPermissionsH\x00R\x04self\x12;\n\x07project\x18\x03 \x01(\x0b\x32\x1f.fits.api.v1.ProjectPermissionsH\x00R\x07project\x12\x38\n\x06tenant\x18\x04 \x01(\x0b\x32\x1e.fits.api.v1.TenantPermissionsH\x00R\x06tenant\x12\x35\n\x05\x61\x64min\x18\x05 \x01(\x0b\x32\x1d.fits.api.v1.AdminPermissionsH\x00R\x05\x61\x64minB\x0c\n\nvisibility\"8\n\x11PublicPermissions\x12#\n\x07methods\x18\x01 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\x07methods\"6\n\x0fSelfPermissions\x12#\n\x07methods\x18\x01 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\x07methods\"`\n\x12ProjectPermissions\x12%\n\x07project\x18\x01 \x01(\tB\x0b\xbaH\x08r\x06\x98\xb4\xae\xb1\x02\x01R\x07project\x12#\n\x07methods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\x07methods\"[\n\x11TenantPermissions\x12!\n\x05login\x18\x01 \x01(\tB\x0b\xbaH\x08r\x06\x90\xb4\xae\xb1\x02\x01R\x05login\x12#\n\x07methods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\x07methods\"7\n\x10\x41\x64minPermissions\x12#\n\x07methods\x18\x01 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\x07methods\"^\n\x1aTokenServiceCreateResponse\x12(\n\x05token\x18\x01 \x01(\x0b\x32\x12.fits.api.v1.TokenR\x05token\x12\x16\n\x06secret\x18\x02 \x01(\tR\x06secret\"\x19\n\x17TokenServiceListRequest\"F\n\x18TokenServiceListResponse\x12*\n\x06tokens\x18\x01 \x03(\x0b\x32\x12.fits.api.v1.TokenR\x06tokens\"9\n\x19TokenServiceRevokeRequest\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"\x1c\n\x1aTokenServiceRevokeResponse\"6\n\x16TokenServiceGetRequest\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"C\n\x17TokenServiceGetResponse\x12(\n\x05token\x18\x01 \x01(\x0b\x32\x12.fits.api.v1.TokenR\x05token*P\n\tTokenType\x12\x1a\n\x16TOKEN_TYPE_UNSPECIFIED\x10\x00\x12\x12\n\x0eTOKEN_TYPE_API\x10\x01\x12\x13\n\x0fTOKEN_TYPE_USER\x10\x02\x32\xae\x02\n\x0cTokenService\x12Z\n\x03Get\x12#.fits.api.v1.TokenServiceGetRequest\x1a$.fits.api.v1.TokenServiceGetResponse\"\x08\xd8\xf3\x18\x02\xe0\xf3\x18\x01\x12]\n\x04List\x12$.fits.api.v1.TokenServiceListRequest\x1a%.fits.api.v1.TokenServiceListResponse\"\x08\xd8\xf3\x18\x02\xe0\xf3\x18\x01\x12\x63\n\x06Revoke\x12&.fits.api.v1.TokenServiceRevokeRequest\x1a\'.fits.api.v1.TokenServiceRevokeResponse\"\x08\xd8\xf3\x18\x02\xe0\xf3\x18\x01\x42\x96\x01\n\x0f\x63om.fits.api.v1B\nTokenProtoP\x01Z)github.com/fi-ts/api/go/fits/api/v1;apiv1\xa2\x02\x03\x46\x41X\xaa\x02\x0b\x46its.Api.V1\xca\x02\x0b\x46its\\Api\\V1\xe2\x02\x17\x46its\\Api\\V1\\GPBMetadata\xea\x02\rFits::Api::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -50,6 +50,8 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_TOKEN'].fields_by_name['permissions']._serialized_options = b'\272H\006\222\001\003\020\364\003'
   _globals['_TOKEN'].fields_by_name['token_type']._loaded_options = None
   _globals['_TOKEN'].fields_by_name['token_type']._serialized_options = b'\272H\005\202\001\002\020\001'
+  _globals['_TOKEN'].fields_by_name['tenant_roles']._loaded_options = None
+  _globals['_TOKEN'].fields_by_name['tenant_roles']._serialized_options = b'\272H\026\232\001\023*\005\202\001\002\020\001\300\225\270\261\002\001\320\225\270\261\002\001'
   _globals['_TOKEN'].fields_by_name['admin_role']._loaded_options = None
   _globals['_TOKEN'].fields_by_name['admin_role']._serialized_options = b'\272H\005\202\001\002\020\001'
   _globals['_TOKEN']._loaded_options = None
@@ -58,6 +60,20 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_METHODPERMISSION'].fields_by_name['subject']._serialized_options = b'\272H\005r\003\030\200\002'
   _globals['_METHODPERMISSION'].fields_by_name['methods']._loaded_options = None
   _globals['_METHODPERMISSION'].fields_by_name['methods']._serialized_options = b'\272H\006\222\001\003\020\364\003'
+  _globals['_PUBLICPERMISSIONS'].fields_by_name['methods']._loaded_options = None
+  _globals['_PUBLICPERMISSIONS'].fields_by_name['methods']._serialized_options = b'\272H\006\222\001\003\020\364\003'
+  _globals['_SELFPERMISSIONS'].fields_by_name['methods']._loaded_options = None
+  _globals['_SELFPERMISSIONS'].fields_by_name['methods']._serialized_options = b'\272H\006\222\001\003\020\364\003'
+  _globals['_PROJECTPERMISSIONS'].fields_by_name['project']._loaded_options = None
+  _globals['_PROJECTPERMISSIONS'].fields_by_name['project']._serialized_options = b'\272H\010r\006\230\264\256\261\002\001'
+  _globals['_PROJECTPERMISSIONS'].fields_by_name['methods']._loaded_options = None
+  _globals['_PROJECTPERMISSIONS'].fields_by_name['methods']._serialized_options = b'\272H\006\222\001\003\020\364\003'
+  _globals['_TENANTPERMISSIONS'].fields_by_name['login']._loaded_options = None
+  _globals['_TENANTPERMISSIONS'].fields_by_name['login']._serialized_options = b'\272H\010r\006\220\264\256\261\002\001'
+  _globals['_TENANTPERMISSIONS'].fields_by_name['methods']._loaded_options = None
+  _globals['_TENANTPERMISSIONS'].fields_by_name['methods']._serialized_options = b'\272H\006\222\001\003\020\364\003'
+  _globals['_ADMINPERMISSIONS'].fields_by_name['methods']._loaded_options = None
+  _globals['_ADMINPERMISSIONS'].fields_by_name['methods']._serialized_options = b'\272H\006\222\001\003\020\364\003'
   _globals['_TOKENSERVICEREVOKEREQUEST'].fields_by_name['uuid']._loaded_options = None
   _globals['_TOKENSERVICEREVOKEREQUEST'].fields_by_name['uuid']._serialized_options = b'\272H\005r\003\260\001\001'
   _globals['_TOKENSERVICEGETREQUEST'].fields_by_name['uuid']._loaded_options = None
@@ -68,28 +84,42 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_TOKENSERVICE'].methods_by_name['List']._serialized_options = b'\330\363\030\002\340\363\030\001'
   _globals['_TOKENSERVICE'].methods_by_name['Revoke']._loaded_options = None
   _globals['_TOKENSERVICE'].methods_by_name['Revoke']._serialized_options = b'\330\363\030\002\340\363\030\001'
-  _globals['_TOKENTYPE']._serialized_start=1554
-  _globals['_TOKENTYPE']._serialized_end=1634
+  _globals['_TOKENTYPE']._serialized_start=2372
+  _globals['_TOKENTYPE']._serialized_end=2452
   _globals['_TOKEN']._serialized_start=165
-  _globals['_TOKEN']._serialized_end=1146
-  _globals['_TOKEN_PROJECTROLESENTRY']._serialized_start=791
-  _globals['_TOKEN_PROJECTROLESENTRY']._serialized_end=880
-  _globals['_TOKEN_TENANTROLESENTRY']._serialized_start=882
-  _globals['_TOKEN_TENANTROLESENTRY']._serialized_end=969
-  _globals['_METHODPERMISSION']._serialized_start=1148
-  _globals['_METHODPERMISSION']._serialized_end=1239
-  _globals['_TOKENSERVICELISTREQUEST']._serialized_start=1241
-  _globals['_TOKENSERVICELISTREQUEST']._serialized_end=1266
-  _globals['_TOKENSERVICELISTRESPONSE']._serialized_start=1268
-  _globals['_TOKENSERVICELISTRESPONSE']._serialized_end=1338
-  _globals['_TOKENSERVICEREVOKEREQUEST']._serialized_start=1340
-  _globals['_TOKENSERVICEREVOKEREQUEST']._serialized_end=1397
-  _globals['_TOKENSERVICEREVOKERESPONSE']._serialized_start=1399
-  _globals['_TOKENSERVICEREVOKERESPONSE']._serialized_end=1427
-  _globals['_TOKENSERVICEGETREQUEST']._serialized_start=1429
-  _globals['_TOKENSERVICEGETREQUEST']._serialized_end=1483
-  _globals['_TOKENSERVICEGETRESPONSE']._serialized_start=1485
-  _globals['_TOKENSERVICEGETRESPONSE']._serialized_end=1552
-  _globals['_TOKENSERVICE']._serialized_start=1637
-  _globals['_TOKENSERVICE']._serialized_end=1939
+  _globals['_TOKEN']._serialized_end=1180
+  _globals['_TOKEN_PROJECTROLESENTRY']._serialized_start=825
+  _globals['_TOKEN_PROJECTROLESENTRY']._serialized_end=914
+  _globals['_TOKEN_TENANTROLESENTRY']._serialized_start=916
+  _globals['_TOKEN_TENANTROLESENTRY']._serialized_end=1003
+  _globals['_METHODPERMISSION']._serialized_start=1182
+  _globals['_METHODPERMISSION']._serialized_end=1273
+  _globals['_PERMISSIONSBYVISIBILITY']._serialized_start=1276
+  _globals['_PERMISSIONSBYVISIBILITY']._serialized_end=1599
+  _globals['_PUBLICPERMISSIONS']._serialized_start=1601
+  _globals['_PUBLICPERMISSIONS']._serialized_end=1657
+  _globals['_SELFPERMISSIONS']._serialized_start=1659
+  _globals['_SELFPERMISSIONS']._serialized_end=1713
+  _globals['_PROJECTPERMISSIONS']._serialized_start=1715
+  _globals['_PROJECTPERMISSIONS']._serialized_end=1811
+  _globals['_TENANTPERMISSIONS']._serialized_start=1813
+  _globals['_TENANTPERMISSIONS']._serialized_end=1904
+  _globals['_ADMINPERMISSIONS']._serialized_start=1906
+  _globals['_ADMINPERMISSIONS']._serialized_end=1961
+  _globals['_TOKENSERVICECREATERESPONSE']._serialized_start=1963
+  _globals['_TOKENSERVICECREATERESPONSE']._serialized_end=2057
+  _globals['_TOKENSERVICELISTREQUEST']._serialized_start=2059
+  _globals['_TOKENSERVICELISTREQUEST']._serialized_end=2084
+  _globals['_TOKENSERVICELISTRESPONSE']._serialized_start=2086
+  _globals['_TOKENSERVICELISTRESPONSE']._serialized_end=2156
+  _globals['_TOKENSERVICEREVOKEREQUEST']._serialized_start=2158
+  _globals['_TOKENSERVICEREVOKEREQUEST']._serialized_end=2215
+  _globals['_TOKENSERVICEREVOKERESPONSE']._serialized_start=2217
+  _globals['_TOKENSERVICEREVOKERESPONSE']._serialized_end=2245
+  _globals['_TOKENSERVICEGETREQUEST']._serialized_start=2247
+  _globals['_TOKENSERVICEGETREQUEST']._serialized_end=2301
+  _globals['_TOKENSERVICEGETRESPONSE']._serialized_start=2303
+  _globals['_TOKENSERVICEGETRESPONSE']._serialized_end=2370
+  _globals['_TOKENSERVICE']._serialized_start=2455
+  _globals['_TOKENSERVICE']._serialized_end=2757
 # @@protoc_insertion_point(module_scope)
