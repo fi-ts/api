@@ -68,12 +68,6 @@ extend buf.validate.StringRules {
     message: "must be a valid IPv4 CIDR, e.g. 10.0.0.0/24"
     expression: "this.isIpPrefix() && !this.contains(':')"
   }];
-  // IsTenantLogin returns true if name field satisfies our requirements.
-  optional bool is_tenant_login = 80048961 [(buf.validate.predefined).cel = {
-    id: "string.is_tenant_login"
-    message: "must be within 2 and 128 characters"
-    expression: "this.size() >= 2 && this.size() <= 128"
-  }];
 
   // IsTenantSubjectPermission returns true if name field satisfies our requirements.
   optional bool is_tenant_subject_permission = 80048962 [(buf.validate.predefined).cel = {

@@ -65,12 +65,6 @@ export declare const is_project_slug: GenExtension<StringRules, boolean>;
  */
 export declare const is_ipv4_cidr: GenExtension<StringRules, boolean>;
 /**
- * IsTenantLogin returns true if name field satisfies our requirements.
- *
- * @generated from extension: optional bool is_tenant_login = 80048961;
- */
-export declare const is_tenant_login: GenExtension<StringRules, boolean>;
-/**
  * IsTenantSubjectPermission returns true if name field satisfies our requirements.
  *
  * @generated from extension: optional bool is_tenant_subject_permission = 80048962;

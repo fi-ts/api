@@ -54,14 +54,14 @@ class Token(_message.Message):
     user: str
     meta: _common_pb2.Meta
     description: str
-    permissions: _containers.RepeatedCompositeFieldContainer[MethodPermission]
+    permissions: _containers.RepeatedCompositeFieldContainer[PermissionsByVisibility]
     expires: _timestamp_pb2.Timestamp
     issued_at: _timestamp_pb2.Timestamp
     token_type: TokenType
     project_roles: _containers.ScalarMap[str, _common_pb2.ProjectRole]
     tenant_roles: _containers.ScalarMap[str, _common_pb2.TenantRole]
     admin_role: _common_pb2.AdminRole
-    def __init__(self, uuid: _Optional[str] = ..., user: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., description: _Optional[str] = ..., permissions: _Optional[_Iterable[_Union[MethodPermission, _Mapping]]] = ..., expires: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., issued_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., token_type: _Optional[_Union[TokenType, str]] = ..., project_roles: _Optional[_Mapping[str, _common_pb2.ProjectRole]] = ..., tenant_roles: _Optional[_Mapping[str, _common_pb2.TenantRole]] = ..., admin_role: _Optional[_Union[_common_pb2.AdminRole, str]] = ...) -> None: ...
+    def __init__(self, uuid: _Optional[str] = ..., user: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., description: _Optional[str] = ..., permissions: _Optional[_Iterable[_Union[PermissionsByVisibility, _Mapping]]] = ..., expires: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., issued_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., token_type: _Optional[_Union[TokenType, str]] = ..., project_roles: _Optional[_Mapping[str, _common_pb2.ProjectRole]] = ..., tenant_roles: _Optional[_Mapping[str, _common_pb2.TenantRole]] = ..., admin_role: _Optional[_Union[_common_pb2.AdminRole, str]] = ...) -> None: ...
 
 class TokenServiceCreateRequest(_message.Message):
     __slots__ = ("description", "permissions", "expires", "project_roles", "tenant_roles", "admin_role", "labels")

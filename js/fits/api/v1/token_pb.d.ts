@@ -50,9 +50,9 @@ export type Token = Message<"fits.api.v1.Token"> & {
     /**
      * Permissions is a list of service methods this token can be used for
      *
-     * @generated from field: repeated fits.api.v1.MethodPermission permissions = 5;
+     * @generated from field: repeated fits.api.v1.PermissionsByVisibility permissions = 5;
      */
-    permissions: MethodPermission[];
+    permissions: PermissionsByVisibility[];
     /**
      * Expires gives the date in the future after which this token can not be used anymore
      *
@@ -256,7 +256,7 @@ export type PublicPermissions = Message<"fits.api.v1.PublicPermissions"> & {
     /**
      * Methods which should be accessible.
      *
-     * @generated from field: repeated string methods = 2;
+     * @generated from field: repeated string methods = 1;
      */
     methods: string[];
 };
@@ -274,7 +274,7 @@ export type SelfPermissions = Message<"fits.api.v1.SelfPermissions"> & {
     /**
      * Methods which should be accessible.
      *
-     * @generated from field: repeated string methods = 2;
+     * @generated from field: repeated string methods = 1;
      */
     methods: string[];
 };
@@ -342,7 +342,7 @@ export type AdminPermissions = Message<"fits.api.v1.AdminPermissions"> & {
     /**
      * Methods which should be accessible.
      *
-     * @generated from field: repeated string methods = 2;
+     * @generated from field: repeated string methods = 1;
      */
     methods: string[];
 };

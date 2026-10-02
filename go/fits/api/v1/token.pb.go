@@ -100,7 +100,7 @@ type Token struct {
 	// Description is a user given description of this token.
 	Description string `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
 	// Permissions is a list of service methods this token can be used for
-	Permissions []*MethodPermission `protobuf:"bytes,5,rep,name=permissions,proto3" json:"permissions,omitempty"`
+	Permissions []*PermissionsByVisibility `protobuf:"bytes,5,rep,name=permissions,proto3" json:"permissions,omitempty"`
 	// Expires gives the date in the future after which this token can not be used anymore
 	Expires *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=expires,proto3" json:"expires,omitempty"`
 	// IssuedAt gives the date when this token was created
@@ -175,7 +175,7 @@ func (x *Token) GetDescription() string {
 	return ""
 }
 
-func (x *Token) GetPermissions() []*MethodPermission {
+func (x *Token) GetPermissions() []*PermissionsByVisibility {
 	if x != nil {
 		return x.Permissions
 	}
@@ -526,7 +526,7 @@ func (*PermissionsByVisibility_Admin) isPermissionsByVisibility_Visibility() {}
 type PublicPermissions struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Methods which should be accessible.
-	Methods       []string `protobuf:"bytes,2,rep,name=methods,proto3" json:"methods,omitempty"`
+	Methods       []string `protobuf:"bytes,1,rep,name=methods,proto3" json:"methods,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -572,7 +572,7 @@ func (x *PublicPermissions) GetMethods() []string {
 type SelfPermissions struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Methods which should be accessible.
-	Methods       []string `protobuf:"bytes,2,rep,name=methods,proto3" json:"methods,omitempty"`
+	Methods       []string `protobuf:"bytes,1,rep,name=methods,proto3" json:"methods,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -730,7 +730,7 @@ func (x *TenantPermissions) GetMethods() []string {
 type AdminPermissions struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Methods which should be accessible.
-	Methods       []string `protobuf:"bytes,2,rep,name=methods,proto3" json:"methods,omitempty"`
+	Methods       []string `protobuf:"bytes,1,rep,name=methods,proto3" json:"methods,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1339,14 +1339,14 @@ var File_fits_api_v1_token_proto protoreflect.FileDescriptor
 
 const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\n" +
-	"\x17fits/api/v1/token.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf0\a\n" +
+	"\x17fits/api/v1/token.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf7\a\n" +
 	"\x05Token\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x1e\n" +
 	"\x04user\x18\x02 \x01(\tB\n" +
 	"\xbaH\ar\x05\x10\x02\x18\x80\x04R\x04user\x12%\n" +
 	"\x04meta\x18\x03 \x01(\v2\x11.fits.api.v1.MetaR\x04meta\x12-\n" +
-	"\vdescription\x18\x04 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\vdescription\x12J\n" +
-	"\vpermissions\x18\x05 \x03(\v2\x1d.fits.api.v1.MethodPermissionB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\vpermissions\x124\n" +
+	"\vdescription\x18\x04 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\vdescription\x12Q\n" +
+	"\vpermissions\x18\x05 \x03(\v2$.fits.api.v1.PermissionsByVisibilityB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\vpermissions\x124\n" +
 	"\aexpires\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\aexpires\x127\n" +
 	"\tissued_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\bissuedAt\x12?\n" +
 	"\n" +
@@ -1363,12 +1363,12 @@ const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12-\n" +
 	"\x05value\x18\x02 \x01(\x0e2\x17.fits.api.v1.TenantRoleR\x05value:\x028\x01:\x9f\x01\xbaH\x9b\x01\x1a\x98\x01\n" +
 	"\x1btoken.permissions.usertoken\x12)token type user must not have permissions\x1aN(this.token_type == 2 && this.permissions.size() == 0) || this.token_type != 2B\r\n" +
-	"\v_admin_role\"\x8d\x06\n" +
+	"\v_admin_role\"\x93\x06\n" +
 	"\x19TokenServiceCreateRequest\x12-\n" +
 	"\vdescription\x18\x01 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\vdescription\x12P\n" +
 	"\vpermissions\x18\x02 \x03(\v2$.fits.api.v1.PermissionsByVisibilityB\b\xbaH\x05\x92\x01\x02\x10dR\vpermissions\x12G\n" +
-	"\aexpires\x18\x03 \x01(\v2\x19.google.protobuf.DurationB\x12\xbaH\x0f\xaa\x01\f\x1a\x05\b\x81\xe7\x84\x0f2\x03\b\xd8\x04R\aexpires\x12y\n" +
-	"\rproject_roles\x18\x04 \x03(\v28.fits.api.v1.TokenServiceCreateRequest.ProjectRolesEntryB\x1a\xbaH\x17\x9a\x01\x14\xc0\x95\xb8\xb1\x02\x01\"\x05r\x03\xb0\x01\x01*\x05\x82\x01\x02\x10\x01R\fprojectRoles\x12u\n" +
+	"\aexpires\x18\x03 \x01(\v2\x19.google.protobuf.DurationB\x12\xbaH\x0f\xaa\x01\f\x1a\x05\b\x81\xe7\x84\x0f2\x03\b\xd8\x04R\aexpires\x12\x7f\n" +
+	"\rproject_roles\x18\x04 \x03(\v28.fits.api.v1.TokenServiceCreateRequest.ProjectRolesEntryB \xbaH\x1d\x9a\x01\x1a\xc0\x95\xb8\xb1\x02\x01ȕ\xb8\xb1\x02\x01\"\x05r\x03\xb0\x01\x01*\x05\x82\x01\x02\x10\x01R\fprojectRoles\x12u\n" +
 	"\ftenant_roles\x18\x05 \x03(\v27.fits.api.v1.TokenServiceCreateRequest.TenantRolesEntryB\x19\xbaH\x16\x9a\x01\x13\xc0\x95\xb8\xb1\x02\x01Е\xb8\xb1\x02\x01*\x05\x82\x01\x02\x10\x01R\vtenantRoles\x12D\n" +
 	"\n" +
 	"admin_role\x18\x06 \x01(\x0e2\x16.fits.api.v1.AdminRoleB\b\xbaH\x05\x82\x01\x02\x10\x01H\x00R\tadminRole\x88\x01\x01\x12+\n" +
@@ -1392,9 +1392,9 @@ const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\n" +
 	"visibility\"8\n" +
 	"\x11PublicPermissions\x12#\n" +
-	"\amethods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\"6\n" +
+	"\amethods\x18\x01 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\"6\n" +
 	"\x0fSelfPermissions\x12#\n" +
-	"\amethods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\"`\n" +
+	"\amethods\x18\x01 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\"`\n" +
 	"\x12ProjectPermissions\x12%\n" +
 	"\aproject\x18\x01 \x01(\tB\v\xbaH\br\x06\x98\xb4\xae\xb1\x02\x01R\aproject\x12#\n" +
 	"\amethods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\"[\n" +
@@ -1402,7 +1402,7 @@ const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\x05login\x18\x01 \x01(\tB\v\xbaH\br\x06\x90\xb4\xae\xb1\x02\x01R\x05login\x12#\n" +
 	"\amethods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\"7\n" +
 	"\x10AdminPermissions\x12#\n" +
-	"\amethods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\"^\n" +
+	"\amethods\x18\x01 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\"^\n" +
 	"\x1aTokenServiceCreateResponse\x12(\n" +
 	"\x05token\x18\x01 \x01(\v2\x12.fits.api.v1.TokenR\x05token\x12\x16\n" +
 	"\x06secret\x18\x02 \x01(\tR\x06secret\"\x19\n" +
@@ -1411,14 +1411,14 @@ const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\x06tokens\x18\x01 \x03(\v2\x12.fits.api.v1.TokenR\x06tokens\"9\n" +
 	"\x19TokenServiceRevokeRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"\x1c\n" +
-	"\x1aTokenServiceRevokeResponse\"\xb5\x06\n" +
+	"\x1aTokenServiceRevokeResponse\"\xbb\x06\n" +
 	"\x19TokenServiceUpdateRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12@\n" +
 	"\vupdate_meta\x18\x02 \x01(\v2\x17.fits.api.v1.UpdateMetaB\x06\xbaH\x03\xc8\x01\x00R\n" +
 	"updateMeta\x122\n" +
 	"\vdescription\x18\x03 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01H\x00R\vdescription\x88\x01\x01\x12F\n" +
-	"\vpermissions\x18\x04 \x03(\v2$.fits.api.v1.PermissionsByVisibilityR\vpermissions\x12y\n" +
-	"\rproject_roles\x18\x05 \x03(\v28.fits.api.v1.TokenServiceUpdateRequest.ProjectRolesEntryB\x1a\xbaH\x17\x9a\x01\x14\xc0\x95\xb8\xb1\x02\x01\"\x05r\x03\xb0\x01\x01*\x05\x82\x01\x02\x10\x01R\fprojectRoles\x12u\n" +
+	"\vpermissions\x18\x04 \x03(\v2$.fits.api.v1.PermissionsByVisibilityR\vpermissions\x12\x7f\n" +
+	"\rproject_roles\x18\x05 \x03(\v28.fits.api.v1.TokenServiceUpdateRequest.ProjectRolesEntryB \xbaH\x1d\x9a\x01\x1a\xc0\x95\xb8\xb1\x02\x01ȕ\xb8\xb1\x02\x01\"\x05r\x03\xb0\x01\x01*\x05\x82\x01\x02\x10\x01R\fprojectRoles\x12u\n" +
 	"\ftenant_roles\x18\x06 \x03(\v27.fits.api.v1.TokenServiceUpdateRequest.TenantRolesEntryB\x19\xbaH\x16\x9a\x01\x13\xc0\x95\xb8\xb1\x02\x01Е\xb8\xb1\x02\x01*\x05\x82\x01\x02\x10\x01R\vtenantRoles\x12D\n" +
 	"\n" +
 	"admin_role\x18\a \x01(\x0e2\x16.fits.api.v1.AdminRoleB\b\xbaH\x05\x82\x01\x02\x10\x01H\x01R\tadminRole\x88\x01\x01\x121\n" +
@@ -1509,7 +1509,7 @@ var file_fits_api_v1_token_proto_goTypes = []any{
 }
 var file_fits_api_v1_token_proto_depIdxs = []int32{
 	27, // 0: fits.api.v1.Token.meta:type_name -> fits.api.v1.Meta
-	3,  // 1: fits.api.v1.Token.permissions:type_name -> fits.api.v1.MethodPermission
+	4,  // 1: fits.api.v1.Token.permissions:type_name -> fits.api.v1.PermissionsByVisibility
 	28, // 2: fits.api.v1.Token.expires:type_name -> google.protobuf.Timestamp
 	28, // 3: fits.api.v1.Token.issued_at:type_name -> google.protobuf.Timestamp
 	0,  // 4: fits.api.v1.Token.token_type:type_name -> fits.api.v1.TokenType

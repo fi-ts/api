@@ -73,7 +73,7 @@ message Token {
   // Description is a user given description of this token.
   string description = 4 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
   // Permissions is a list of service methods this token can be used for
-  repeated MethodPermission permissions = 5 [(buf.validate.field).repeated.max_items = 500];
+  repeated PermissionsByVisibility permissions = 5 [(buf.validate.field).repeated.max_items = 500];
   // Expires gives the date in the future after which this token can not be used anymore
   google.protobuf.Timestamp expires = 6;
   // IssuedAt gives the date when this token was created
@@ -125,7 +125,8 @@ message TokenServiceCreateRequest {
         enum: {defined_only: true}
       }
     },
-    (buf.validate.field).map.(fits.api.v1.keys_trimmed) = true
+    (buf.validate.field).map.(fits.api.v1.keys_trimmed) = true,
+    (buf.validate.field).map.(fits.api.v1.project_roles_keys_valid) = true
   ];
   // TenantRoles associates a tenant id with the corresponding role of the token owner.
   map<string, TenantRole> tenant_roles = 5 [
@@ -174,13 +175,13 @@ message PermissionsByVisibility {
 // PublicPermissions carries public method permissions.
 message PublicPermissions {
   // Methods which should be accessible.
-  repeated string methods = 2 [(buf.validate.field).repeated.max_items = 500];
+  repeated string methods = 1 [(buf.validate.field).repeated.max_items = 500];
 }
 
 // SelfPermissions carries self method permissions.
 message SelfPermissions {
   // Methods which should be accessible.
-  repeated string methods = 2 [(buf.validate.field).repeated.max_items = 500];
+  repeated string methods = 1 [(buf.validate.field).repeated.max_items = 500];
 }
 
 // ProjectPermissions carries project method permissions.
@@ -205,7 +206,7 @@ message TenantPermissions {
 // AdminPermissions carries admin method permissions.
 message AdminPermissions {
   // Methods which should be accessible.
-  repeated string methods = 2 [(buf.validate.field).repeated.max_items = 500];
+  repeated string methods = 1 [(buf.validate.field).repeated.max_items = 500];
 }
 
 // TokenServiceCreateResponse is the response payload of a token create request
@@ -255,7 +256,8 @@ message TokenServiceUpdateRequest {
         enum: {defined_only: true}
       }
     },
-    (buf.validate.field).map.(fits.api.v1.keys_trimmed) = true
+    (buf.validate.field).map.(fits.api.v1.keys_trimmed) = true,
+    (buf.validate.field).map.(fits.api.v1.project_roles_keys_valid) = true
   ];
   // TenantRoles associates a tenant id with the corresponding role of the token owner.
   map<string, TenantRole> tenant_roles = 6 [
