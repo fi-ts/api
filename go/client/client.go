@@ -20,6 +20,8 @@ type (
 		interceptors []connect.Interceptor
 	}
 	Apimvmv1 interface {
+		Domain() mvmv1connect.DomainServiceClient
+		LDAP() mvmv1connect.LDAPServiceClient
 		Location() mvmv1connect.LocationServiceClient
 		MVM() mvmv1connect.MVMServiceClient
 		OS() mvmv1connect.OSServiceClient
@@ -27,6 +29,8 @@ type (
 	}
 
 	apimvmv1 struct {
+		domainservice   mvmv1connect.DomainServiceClient
+		ldapservice     mvmv1connect.LDAPServiceClient
 		locationservice mvmv1connect.LocationServiceClient
 		mvmservice      mvmv1connect.MVMServiceClient
 		osservice       mvmv1connect.OSServiceClient
@@ -56,6 +60,18 @@ type (
 
 func (c *client) Apimvmv1() Apimvmv1 {
 	a := &apimvmv1{
+		domainservice: mvmv1connect.NewDomainServiceClient(
+			c.config.HttpClient(),
+			c.config.BaseURL,
+			connect.WithInterceptors(c.interceptors...),
+			compress.WithAll(compress.LevelBalanced),
+		),
+		ldapservice: mvmv1connect.NewLDAPServiceClient(
+			c.config.HttpClient(),
+			c.config.BaseURL,
+			connect.WithInterceptors(c.interceptors...),
+			compress.WithAll(compress.LevelBalanced),
+		),
 		locationservice: mvmv1connect.NewLocationServiceClient(
 			c.config.HttpClient(),
 			c.config.BaseURL,
@@ -84,6 +100,12 @@ func (c *client) Apimvmv1() Apimvmv1 {
 	return a
 }
 
+func (c *apimvmv1) Domain() mvmv1connect.DomainServiceClient {
+	return c.domainservice
+}
+func (c *apimvmv1) LDAP() mvmv1connect.LDAPServiceClient {
+	return c.ldapservice
+}
 func (c *apimvmv1) Location() mvmv1connect.LocationServiceClient {
 	return c.locationservice
 }

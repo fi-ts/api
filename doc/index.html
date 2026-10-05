@@ -349,6 +349,60 @@
         
           
           <li>
+            <a href="#fits%2fapi%2fmvm%2fv1%2fdomain.proto">fits/api/mvm/v1/domain.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.Domain"><span class="badge">M</span>Domain</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.DomainServiceListRequest"><span class="badge">M</span>DomainServiceListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.DomainServiceListResponse"><span class="badge">M</span>DomainServiceListResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.DomainService"><span class="badge">S</span>DomainService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#fits%2fapi%2fmvm%2fv1%2fldap.proto">fits/api/mvm/v1/ldap.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.LDAP"><span class="badge">M</span>LDAP</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.LDAPServiceListRequest"><span class="badge">M</span>LDAPServiceListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.LDAPServiceListResponse"><span class="badge">M</span>LDAPServiceListResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.LDAPService"><span class="badge">S</span>LDAPService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#fits%2fapi%2fmvm%2fv1%2flocation.proto">fits/api/mvm/v1/location.proto</a>
             <ul>
               
@@ -601,10 +655,6 @@
                   <a href="#fits.api.mvm.v1.VLANServiceListResponse"><span class="badge">M</span>VLANServiceListResponse</a>
                 </li>
               
-              
-                <li>
-                  <a href="#fits.api.mvm.v1.StageType"><span class="badge">E</span>StageType</a>
-                </li>
               
               
               
@@ -1694,13 +1744,13 @@ having a direct membership within the tenant.</p></td>
     
       
       <div class="file-heading">
-        <h2 id="fits/api/mvm/v1/location.proto">fits/api/mvm/v1/location.proto</h2><a href="#title">Top</a>
+        <h2 id="fits/api/mvm/v1/domain.proto">fits/api/mvm/v1/domain.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
       
-        <h3 id="fits.api.mvm.v1.Location">Location</h3>
-        <p>Location is the definition of an available datacenter location for MVM instances.</p>
+        <h3 id="fits.api.mvm.v1.Domain">Domain</h3>
+        <p>Domain is a Windows domain a Windows MVM can join.</p>
 
         
           <table class="field-table">
@@ -1713,14 +1763,252 @@ having a direct membership within the tenant.</p></td>
                   <td>uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Uuid of this location </p></td>
+                  <td><p>UUID of this domain. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fqdn</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>FQDN of this domain. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant this domain belongs to. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.DomainServiceListRequest">DomainServiceListRequest</h3>
+        <p>DomainServiceListRequest is the request payload for a domain list request.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant to list available domains for. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.DomainServiceListResponse">DomainServiceListResponse</h3>
+        <p>DomainServiceListResponse is the response payload for a domain list request.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>domains</td>
+                  <td><a href="#fits.api.mvm.v1.Domain">Domain</a></td>
+                  <td>repeated</td>
+                  <td><p>The available domains. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="fits.api.mvm.v1.DomainService">DomainService</h3>
+        <p>DomainService lists Windows domains available for managed VM (MVM) instances.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#fits.api.mvm.v1.DomainServiceListRequest">DomainServiceListRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.DomainServiceListResponse">DomainServiceListResponse</a></td>
+                <td><p>Returns a list of all Windows domains available for a tenant.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/mvm/v1/ldap.proto">fits/api/mvm/v1/ldap.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.mvm.v1.LDAP">LDAP</h3>
+        <p>LDAP is an LDAP directory a Linux MVM can be integrated with.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of this LDAP directory. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fqdn</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>FQDN of this LDAP directory. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant this LDAP directory belongs to. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.LDAPServiceListRequest">LDAPServiceListRequest</h3>
+        <p>LDAPServiceListRequest is the request payload for an LDAP list request.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant to list available LDAP directories for. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.LDAPServiceListResponse">LDAPServiceListResponse</h3>
+        <p>LDAPServiceListResponse is the response payload for an LDAP list request.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>ldaps</td>
+                  <td><a href="#fits.api.mvm.v1.LDAP">LDAP</a></td>
+                  <td>repeated</td>
+                  <td><p>The available LDAP directories. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="fits.api.mvm.v1.LDAPService">LDAPService</h3>
+        <p>LDAPService lists LDAP directories available for managed VM (MVM) instances.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#fits.api.mvm.v1.LDAPServiceListRequest">LDAPServiceListRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.LDAPServiceListResponse">LDAPServiceListResponse</a></td>
+                <td><p>Returns a list of all LDAP directories available for a tenant.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/mvm/v1/location.proto">fits/api/mvm/v1/location.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.mvm.v1.Location">Location</h3>
+        <p>Location is an available datacenter location for MVM instances.</p><p>A fake "AUTO" location lets the backend pick a datacenter within a location.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of this location. </p></td>
                 </tr>
               
                 <tr>
                   <td>title</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>title of the location </p></td>
+                  <td><p>Title of the location, e.g. &#34;Nürnberg (RZ1)&#34;. </p></td>
                 </tr>
               
             </tbody>
@@ -3486,43 +3774,35 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                   <td>uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Uuid of this VLAN </p></td>
+                  <td><p>UUID of this VLAN. </p></td>
                 </tr>
               
                 <tr>
                   <td>vlan_id</td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
-                  <td><p>Id of this VLAN
-This is not a foreign key, this is the actual ID of the VLAN the network interface is attached to. </p></td>
+                  <td><p>ID of this VLAN. The actual VLAN ID a network interface is attached to. </p></td>
                 </tr>
               
                 <tr>
                   <td>subnet_title</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Title of the subnet this VLAN belongs to </p></td>
+                  <td><p>Title of the subnet this VLAN belongs to, including the stage type, e.g. &#34;pod01-vlan2001 (Production)&#34;. </p></td>
                 </tr>
               
                 <tr>
                   <td>subnet_cidr</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>CIDR of the subnet this VLAN belongs to </p></td>
+                  <td><p>CIDR of the subnet this VLAN belongs to. </p></td>
                 </tr>
               
                 <tr>
                   <td>location_uuid</td>
                   <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>TODO instead of the pod title, could we have the location_uuid? </p></td>
-                </tr>
-              
-                <tr>
-                  <td>stage_type</td>
-                  <td><a href="#fits.api.mvm.v1.StageType">StageType</a></td>
                   <td></td>
-                  <td><p>Stage type of this VLAN </p></td>
+                  <td><p>UUID of the location this VLAN belongs to. This is actually the FCE datacenter ID. </p></td>
                 </tr>
               
                 <tr>
@@ -3530,6 +3810,13 @@ This is not a foreign key, this is the actual ID of the VLAN the network interfa
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Tenant this VLAN belongs to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>domain_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>UUID of the Windows domain this VLAN is associated with. Only set for Windows. </p></td>
                 </tr>
               
             </tbody>
@@ -3553,14 +3840,21 @@ This is not a foreign key, this is the actual ID of the VLAN the network interfa
                   <td>tenant</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Tenant to list available VLANs for (the tenant login) </p></td>
+                  <td><p>Tenant to list available VLANs for (the tenant login). </p></td>
                 </tr>
               
                 <tr>
-                  <td>stage_type</td>
-                  <td><a href="#fits.api.mvm.v1.StageType">StageType</a></td>
+                  <td>location_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Filter the listed VLANs by location (the FCE datacenter ID). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>domain_uuid</td>
+                  <td><a href="#string">string</a></td>
                   <td>optional</td>
-                  <td><p>StageType filters the listed VLANs by stage type </p></td>
+                  <td><p>Filter the listed VLANs by the Windows domain they are associated with. </p></td>
                 </tr>
               
             </tbody>
@@ -3571,7 +3865,7 @@ This is not a foreign key, this is the actual ID of the VLAN the network interfa
         
       
         <h3 id="fits.api.mvm.v1.VLANServiceListResponse">VLANServiceListResponse</h3>
-        <p>VLANServiceListResponse is the response payload for a VLAN list request</p>
+        <p>VLANServiceListResponse is the response payload for a VLAN list request.</p>
 
         
           <table class="field-table">
@@ -3584,7 +3878,7 @@ This is not a foreign key, this is the actual ID of the VLAN the network interfa
                   <td>vlans</td>
                   <td><a href="#fits.api.mvm.v1.VLAN">VLAN</a></td>
                   <td>repeated</td>
-                  <td><p>The available VLANs </p></td>
+                  <td><p>The available VLANs. </p></td>
                 </tr>
               
             </tbody>
@@ -3595,47 +3889,6 @@ This is not a foreign key, this is the actual ID of the VLAN the network interfa
         
       
 
-      
-        <h3 id="fits.api.mvm.v1.StageType">StageType</h3>
-        <p>StageType specifies the fixed stage of a managed VM (MVM) instance or VLAN.</p><p>The set of stages is fixed upstream, so it is modeled as an enum instead of</p><p>a listable resource.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>STAGE_TYPE_UNSPECIFIED</td>
-                <td>0</td>
-                <td><p>STAGE_TYPE_UNSPECIFIED is not specified.</p></td>
-              </tr>
-            
-              <tr>
-                <td>STAGE_TYPE_DEVELOPMENT</td>
-                <td>1</td>
-                <td><p>STAGE_TYPE_DEVELOPMENT is the development stage.</p></td>
-              </tr>
-            
-              <tr>
-                <td>STAGE_TYPE_TEST</td>
-                <td>2</td>
-                <td><p>STAGE_TYPE_TEST is the test stage.</p></td>
-              </tr>
-            
-              <tr>
-                <td>STAGE_TYPE_INTEGRATION</td>
-                <td>3</td>
-                <td><p>STAGE_TYPE_INTEGRATION is the integration stage.</p></td>
-              </tr>
-            
-              <tr>
-                <td>STAGE_TYPE_PRODUCTION</td>
-                <td>4</td>
-                <td><p>STAGE_TYPE_PRODUCTION is the production stage.</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
       
 
       
