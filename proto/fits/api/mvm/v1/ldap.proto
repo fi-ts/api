@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package fits.api.mvm.v1;
+
+import "buf/validate/validate.proto";
+import "fits/api/v1/common.proto";
+import "fits/api/v1/predefined_rules.proto";
+
+// LDAPService lists LDAP directories available for managed VM (MVM) instances.
+service LDAPService {
+  // Returns a list of all LDAP directories available for a tenant.
+  rpc List(LDAPServiceListRequest) returns (LDAPServiceListResponse) {
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_OWNER;
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_EDITOR;
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_VIEWER;
+    option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
+  }
+}
+
+// LDAP is an LDAP directory a Linux MVM can be integrated with.
+message LDAP {
+  // UUID of this LDAP directory.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // FQDN of this LDAP directory.
+  string fqdn = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Tenant this LDAP directory belongs to.
+  string tenant = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+}
+
+// LDAPServiceListRequest is the request payload for an LDAP list request.
+message LDAPServiceListRequest {
+  // Tenant to list available LDAP directories for.
+  string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+}
+
+// LDAPServiceListResponse is the response payload for an LDAP list request.
+message LDAPServiceListResponse {
+  // The available LDAP directories.
+  repeated LDAP ldaps = 1;
+}

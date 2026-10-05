@@ -17,51 +17,36 @@ service VLANService {
   }
 }
 
-// StageType specifies the fixed stage of a managed VM (MVM) instance or VLAN.
-// The set of stages is fixed upstream, so it is modeled as an enum instead of
-// a listable resource.
-enum StageType {
-  // STAGE_TYPE_UNSPECIFIED is not specified.
-  STAGE_TYPE_UNSPECIFIED = 0 [(fits.api.v1.enum_string_value) = ""];
-  // STAGE_TYPE_DEVELOPMENT is the development stage.
-  STAGE_TYPE_DEVELOPMENT = 1 [(fits.api.v1.enum_string_value) = "development"];
-  // STAGE_TYPE_TEST is the test stage.
-  STAGE_TYPE_TEST = 2 [(fits.api.v1.enum_string_value) = "test"];
-  // STAGE_TYPE_INTEGRATION is the integration stage.
-  STAGE_TYPE_INTEGRATION = 3 [(fits.api.v1.enum_string_value) = "integration"];
-  // STAGE_TYPE_PRODUCTION is the production stage.
-  STAGE_TYPE_PRODUCTION = 4 [(fits.api.v1.enum_string_value) = "production"];
-}
-
 // VLAN is a VLAN that a MVM can be connected to.
 message VLAN {
-  // Uuid of this VLAN
+  // UUID of this VLAN.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
-  // Id of this VLAN
-  // This is not a foreign key, this is the actual ID of the VLAN the network interface is attached to.
+  // ID of this VLAN. The actual VLAN ID a network interface is attached to.
   int32 vlan_id = 2;
-  // Title of the subnet this VLAN belongs to
+  // Title of the subnet this VLAN belongs to, including the stage type, e.g. "pod01-vlan2001 (Production)".
   string subnet_title = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
-  // CIDR of the subnet this VLAN belongs to
+  // CIDR of the subnet this VLAN belongs to.
   string subnet_cidr = 4 [(buf.validate.field).string.(fits.api.v1.is_ipv4_cidr) = true];
-  // TODO instead of the pod title, could we have the location_uuid?
-  optional string location_uuid = 5 [(buf.validate.field).string.uuid = true];
-  // Stage type of this VLAN
-  StageType stage_type = 6 [(buf.validate.field).enum.defined_only = true];
+  // UUID of the location this VLAN belongs to. This is actually the FCE datacenter ID.
+  string location_uuid = 5 [(buf.validate.field).string.uuid = true];
   // Tenant this VLAN belongs to.
-  string tenant = 7 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  string tenant = 6 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // UUID of the Windows domain this VLAN is associated with. Only set for Windows.
+  optional string domain_uuid = 7 [(buf.validate.field).string.uuid = true];
 }
 
 // VLANServiceListRequest is the request payload for a VLAN list request.
 message VLANServiceListRequest {
-  // Tenant to list available VLANs for (the tenant login)
+  // Tenant to list available VLANs for (the tenant login).
   string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
-  // StageType filters the listed VLANs by stage type
-  optional StageType stage_type = 2 [(buf.validate.field).enum.defined_only = true];
+  // Filter the listed VLANs by location (the FCE datacenter ID).
+  string location_uuid = 2 [(buf.validate.field).string.uuid = true];
+  // Filter the listed VLANs by the Windows domain they are associated with.
+  optional string domain_uuid = 3 [(buf.validate.field).string.uuid = true];
 }
 
-// VLANServiceListResponse is the response payload for a VLAN list request
+// VLANServiceListResponse is the response payload for a VLAN list request.
 message VLANServiceListResponse {
-  // The available VLANs
+  // The available VLANs.
   repeated VLAN vlans = 1;
 }

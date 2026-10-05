@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package fits.api.mvm.v1;
+
+import "buf/validate/validate.proto";
+import "fits/api/v1/common.proto";
+import "fits/api/v1/predefined_rules.proto";
+
+// DomainService lists Windows domains available for managed VM (MVM) instances.
+service DomainService {
+  // Returns a list of all Windows domains available for a tenant.
+  rpc List(DomainServiceListRequest) returns (DomainServiceListResponse) {
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_OWNER;
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_EDITOR;
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_VIEWER;
+    option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
+  }
+}
+
+// Domain is a Windows domain a Windows MVM can join.
+message Domain {
+  // UUID of this domain.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // FQDN of this domain.
+  string fqdn = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Tenant this domain belongs to.
+  string tenant = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+}
+
+// DomainServiceListRequest is the request payload for a domain list request.
+message DomainServiceListRequest {
+  // Tenant to list available domains for.
+  string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+}
+
+// DomainServiceListResponse is the response payload for a domain list request.
+message DomainServiceListResponse {
+  // The available domains.
+  repeated Domain domains = 1;
+}

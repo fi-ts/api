@@ -17,11 +17,12 @@ service LocationService {
   }
 }
 
-// Location is the definition of an available datacenter location for MVM instances.
+// Location is an available datacenter location for MVM instances.
+// A fake "AUTO" location lets the backend pick a datacenter within a location.
 message Location {
-  // Uuid of this location
+  // UUID of this location.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
-  // title of the location
+  // Title of the location, e.g. "Nürnberg (RZ1)".
   string title = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
 }
 
