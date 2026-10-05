@@ -23,87 +23,23 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// StageType specifies the fixed stage of a managed VM (MVM) instance or VLAN.
-// The set of stages is fixed upstream, so it is modeled as an enum instead of
-// a listable resource.
-type StageType int32
-
-const (
-	// STAGE_TYPE_UNSPECIFIED is not specified.
-	StageType_STAGE_TYPE_UNSPECIFIED StageType = 0
-	// STAGE_TYPE_DEVELOPMENT is the development stage.
-	StageType_STAGE_TYPE_DEVELOPMENT StageType = 1
-	// STAGE_TYPE_TEST is the test stage.
-	StageType_STAGE_TYPE_TEST StageType = 2
-	// STAGE_TYPE_INTEGRATION is the integration stage.
-	StageType_STAGE_TYPE_INTEGRATION StageType = 3
-	// STAGE_TYPE_PRODUCTION is the production stage.
-	StageType_STAGE_TYPE_PRODUCTION StageType = 4
-)
-
-// Enum value maps for StageType.
-var (
-	StageType_name = map[int32]string{
-		0: "STAGE_TYPE_UNSPECIFIED",
-		1: "STAGE_TYPE_DEVELOPMENT",
-		2: "STAGE_TYPE_TEST",
-		3: "STAGE_TYPE_INTEGRATION",
-		4: "STAGE_TYPE_PRODUCTION",
-	}
-	StageType_value = map[string]int32{
-		"STAGE_TYPE_UNSPECIFIED": 0,
-		"STAGE_TYPE_DEVELOPMENT": 1,
-		"STAGE_TYPE_TEST":        2,
-		"STAGE_TYPE_INTEGRATION": 3,
-		"STAGE_TYPE_PRODUCTION":  4,
-	}
-)
-
-func (x StageType) Enum() *StageType {
-	p := new(StageType)
-	*p = x
-	return p
-}
-
-func (x StageType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (StageType) Descriptor() protoreflect.EnumDescriptor {
-	return file_fits_api_mvm_v1_vlan_proto_enumTypes[0].Descriptor()
-}
-
-func (StageType) Type() protoreflect.EnumType {
-	return &file_fits_api_mvm_v1_vlan_proto_enumTypes[0]
-}
-
-func (x StageType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use StageType.Descriptor instead.
-func (StageType) EnumDescriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_vlan_proto_rawDescGZIP(), []int{0}
-}
-
 // VLAN is a VLAN that a MVM can be connected to.
 type VLAN struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Uuid of this VLAN
+	// UUID of this VLAN.
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	// Id of this VLAN
-	// This is not a foreign key, this is the actual ID of the VLAN the network interface is attached to.
+	// ID of this VLAN. The actual VLAN ID a network interface is attached to.
 	VlanId int32 `protobuf:"varint,2,opt,name=vlan_id,json=vlanId,proto3" json:"vlan_id,omitempty"`
-	// Title of the subnet this VLAN belongs to
+	// Title of the subnet this VLAN belongs to, including the stage type, e.g. "pod01-vlan2001 (Production)".
 	SubnetTitle string `protobuf:"bytes,3,opt,name=subnet_title,json=subnetTitle,proto3" json:"subnet_title,omitempty"`
-	// CIDR of the subnet this VLAN belongs to
+	// CIDR of the subnet this VLAN belongs to.
 	SubnetCidr string `protobuf:"bytes,4,opt,name=subnet_cidr,json=subnetCidr,proto3" json:"subnet_cidr,omitempty"`
-	// TODO instead of the pod title, could we have the location_uuid?
-	LocationUuid *string `protobuf:"bytes,5,opt,name=location_uuid,json=locationUuid,proto3,oneof" json:"location_uuid,omitempty"`
-	// Stage type of this VLAN
-	StageType StageType `protobuf:"varint,6,opt,name=stage_type,json=stageType,proto3,enum=fits.api.mvm.v1.StageType" json:"stage_type,omitempty"`
+	// UUID of the location this VLAN belongs to. This is actually the FCE datacenter ID.
+	LocationUuid string `protobuf:"bytes,5,opt,name=location_uuid,json=locationUuid,proto3" json:"location_uuid,omitempty"`
 	// Tenant this VLAN belongs to.
-	Tenant        string `protobuf:"bytes,7,opt,name=tenant,proto3" json:"tenant,omitempty"`
+	Tenant string `protobuf:"bytes,6,opt,name=tenant,proto3" json:"tenant,omitempty"`
+	// UUID of the Windows domain this VLAN is associated with. Only set for Windows.
+	DomainUuid    *string `protobuf:"bytes,7,opt,name=domain_uuid,json=domainUuid,proto3,oneof" json:"domain_uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -167,17 +103,10 @@ func (x *VLAN) GetSubnetCidr() string {
 }
 
 func (x *VLAN) GetLocationUuid() string {
-	if x != nil && x.LocationUuid != nil {
-		return *x.LocationUuid
+	if x != nil {
+		return x.LocationUuid
 	}
 	return ""
-}
-
-func (x *VLAN) GetStageType() StageType {
-	if x != nil {
-		return x.StageType
-	}
-	return StageType_STAGE_TYPE_UNSPECIFIED
 }
 
 func (x *VLAN) GetTenant() string {
@@ -187,13 +116,22 @@ func (x *VLAN) GetTenant() string {
 	return ""
 }
 
+func (x *VLAN) GetDomainUuid() string {
+	if x != nil && x.DomainUuid != nil {
+		return *x.DomainUuid
+	}
+	return ""
+}
+
 // VLANServiceListRequest is the request payload for a VLAN list request.
 type VLANServiceListRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Tenant to list available VLANs for (the tenant login)
+	// Tenant to list available VLANs for (the tenant login).
 	Tenant string `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"`
-	// StageType filters the listed VLANs by stage type
-	StageType     *StageType `protobuf:"varint,2,opt,name=stage_type,json=stageType,proto3,enum=fits.api.mvm.v1.StageType,oneof" json:"stage_type,omitempty"`
+	// Filter the listed VLANs by location (the FCE datacenter ID).
+	LocationUuid string `protobuf:"bytes,2,opt,name=location_uuid,json=locationUuid,proto3" json:"location_uuid,omitempty"`
+	// Filter the listed VLANs by the Windows domain they are associated with.
+	DomainUuid    *string `protobuf:"bytes,3,opt,name=domain_uuid,json=domainUuid,proto3,oneof" json:"domain_uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -235,17 +173,24 @@ func (x *VLANServiceListRequest) GetTenant() string {
 	return ""
 }
 
-func (x *VLANServiceListRequest) GetStageType() StageType {
-	if x != nil && x.StageType != nil {
-		return *x.StageType
+func (x *VLANServiceListRequest) GetLocationUuid() string {
+	if x != nil {
+		return x.LocationUuid
 	}
-	return StageType_STAGE_TYPE_UNSPECIFIED
+	return ""
 }
 
-// VLANServiceListResponse is the response payload for a VLAN list request
+func (x *VLANServiceListRequest) GetDomainUuid() string {
+	if x != nil && x.DomainUuid != nil {
+		return *x.DomainUuid
+	}
+	return ""
+}
+
+// VLANServiceListResponse is the response payload for a VLAN list request.
 type VLANServiceListResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The available VLANs
+	// The available VLANs.
 	Vlans         []*VLAN `protobuf:"bytes,1,rep,name=vlans,proto3" json:"vlans,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -292,32 +237,26 @@ var File_fits_api_mvm_v1_vlan_proto protoreflect.FileDescriptor
 
 const file_fits_api_mvm_v1_vlan_proto_rawDesc = "" +
 	"\n" +
-	"\x1afits/api/mvm/v1/vlan.proto\x12\x0ffits.api.mvm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xcb\x02\n" +
+	"\x1afits/api/mvm/v1/vlan.proto\x12\x0ffits.api.mvm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xaf\x02\n" +
 	"\x04VLAN\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x17\n" +
 	"\avlan_id\x18\x02 \x01(\x05R\x06vlanId\x12.\n" +
 	"\fsubnet_title\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\vsubnetTitle\x12,\n" +
 	"\vsubnet_cidr\x18\x04 \x01(\tB\v\xbaH\br\x06\x80\xb4\xae\xb1\x02\x01R\n" +
-	"subnetCidr\x122\n" +
-	"\rlocation_uuid\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\flocationUuid\x88\x01\x01\x12C\n" +
-	"\n" +
-	"stage_type\x18\x06 \x01(\x0e2\x1a.fits.api.mvm.v1.StageTypeB\b\xbaH\x05\x82\x01\x02\x10\x01R\tstageType\x12#\n" +
-	"\x06tenant\x18\a \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenantB\x10\n" +
-	"\x0e_location_uuid\"\x96\x01\n" +
+	"subnetCidr\x12-\n" +
+	"\rlocation_uuid\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\flocationUuid\x12#\n" +
+	"\x06tenant\x18\x06 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12.\n" +
+	"\vdomain_uuid\x18\a \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\n" +
+	"domainUuid\x88\x01\x01B\x0e\n" +
+	"\f_domain_uuid\"\xac\x01\n" +
 	"\x16VLANServiceListRequest\x12#\n" +
-	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12H\n" +
-	"\n" +
-	"stage_type\x18\x02 \x01(\x0e2\x1a.fits.api.mvm.v1.StageTypeB\b\xbaH\x05\x82\x01\x02\x10\x01H\x00R\tstageType\x88\x01\x01B\r\n" +
-	"\v_stage_type\"F\n" +
+	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12-\n" +
+	"\rlocation_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\flocationUuid\x12.\n" +
+	"\vdomain_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\n" +
+	"domainUuid\x88\x01\x01B\x0e\n" +
+	"\f_domain_uuid\"F\n" +
 	"\x17VLANServiceListResponse\x12+\n" +
-	"\x05vlans\x18\x01 \x03(\v2\x15.fits.api.mvm.v1.VLANR\x05vlans*\xd1\x01\n" +
-	"\tStageType\x12 \n" +
-	"\x16STAGE_TYPE_UNSPECIFIED\x10\x00\x1a\x04\x82\xb2\x19\x00\x12+\n" +
-	"\x16STAGE_TYPE_DEVELOPMENT\x10\x01\x1a\x0f\x82\xb2\x19\vdevelopment\x12\x1d\n" +
-	"\x0fSTAGE_TYPE_TEST\x10\x02\x1a\b\x82\xb2\x19\x04test\x12+\n" +
-	"\x16STAGE_TYPE_INTEGRATION\x10\x03\x1a\x0f\x82\xb2\x19\vintegration\x12)\n" +
-	"\x15STAGE_TYPE_PRODUCTION\x10\x04\x1a\x0e\x82\xb2\x19\n" +
-	"production2u\n" +
+	"\x05vlans\x18\x01 \x03(\v2\x15.fits.api.mvm.v1.VLANR\x05vlans2u\n" +
 	"\vVLANService\x12f\n" +
 	"\x04List\x12'.fits.api.mvm.v1.VLANServiceListRequest\x1a(.fits.api.mvm.v1.VLANServiceListResponse\"\v\xc2\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02B\xae\x01\n" +
 	"\x13com.fits.api.mvm.v1B\tVlanProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03FAM\xaa\x02\x0fFits.Api.Mvm.V1\xca\x02\x0fFits\\Api\\Mvm\\V1\xe2\x02\x1bFits\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12Fits::Api::Mvm::V1b\x06proto3"
@@ -334,25 +273,21 @@ func file_fits_api_mvm_v1_vlan_proto_rawDescGZIP() []byte {
 	return file_fits_api_mvm_v1_vlan_proto_rawDescData
 }
 
-var file_fits_api_mvm_v1_vlan_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_fits_api_mvm_v1_vlan_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_fits_api_mvm_v1_vlan_proto_goTypes = []any{
-	(StageType)(0),                  // 0: fits.api.mvm.v1.StageType
-	(*VLAN)(nil),                    // 1: fits.api.mvm.v1.VLAN
-	(*VLANServiceListRequest)(nil),  // 2: fits.api.mvm.v1.VLANServiceListRequest
-	(*VLANServiceListResponse)(nil), // 3: fits.api.mvm.v1.VLANServiceListResponse
+	(*VLAN)(nil),                    // 0: fits.api.mvm.v1.VLAN
+	(*VLANServiceListRequest)(nil),  // 1: fits.api.mvm.v1.VLANServiceListRequest
+	(*VLANServiceListResponse)(nil), // 2: fits.api.mvm.v1.VLANServiceListResponse
 }
 var file_fits_api_mvm_v1_vlan_proto_depIdxs = []int32{
-	0, // 0: fits.api.mvm.v1.VLAN.stage_type:type_name -> fits.api.mvm.v1.StageType
-	0, // 1: fits.api.mvm.v1.VLANServiceListRequest.stage_type:type_name -> fits.api.mvm.v1.StageType
-	1, // 2: fits.api.mvm.v1.VLANServiceListResponse.vlans:type_name -> fits.api.mvm.v1.VLAN
-	2, // 3: fits.api.mvm.v1.VLANService.List:input_type -> fits.api.mvm.v1.VLANServiceListRequest
-	3, // 4: fits.api.mvm.v1.VLANService.List:output_type -> fits.api.mvm.v1.VLANServiceListResponse
-	4, // [4:5] is the sub-list for method output_type
-	3, // [3:4] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	0, // 0: fits.api.mvm.v1.VLANServiceListResponse.vlans:type_name -> fits.api.mvm.v1.VLAN
+	1, // 1: fits.api.mvm.v1.VLANService.List:input_type -> fits.api.mvm.v1.VLANServiceListRequest
+	2, // 2: fits.api.mvm.v1.VLANService.List:output_type -> fits.api.mvm.v1.VLANServiceListResponse
+	2, // [2:3] is the sub-list for method output_type
+	1, // [1:2] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_mvm_v1_vlan_proto_init() }
@@ -367,14 +302,13 @@ func file_fits_api_mvm_v1_vlan_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_fits_api_mvm_v1_vlan_proto_rawDesc), len(file_fits_api_mvm_v1_vlan_proto_rawDesc)),
-			NumEnums:      1,
+			NumEnums:      0,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_fits_api_mvm_v1_vlan_proto_goTypes,
 		DependencyIndexes: file_fits_api_mvm_v1_vlan_proto_depIdxs,
-		EnumInfos:         file_fits_api_mvm_v1_vlan_proto_enumTypes,
 		MessageInfos:      file_fits_api_mvm_v1_vlan_proto_msgTypes,
 	}.Build()
 	File_fits_api_mvm_v1_vlan_proto = out.File

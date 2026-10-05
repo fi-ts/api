@@ -16,20 +16,21 @@ export const file_fits_api_mvm_v1_location: GenFile = /*@__PURE__*/
   fileDesc("Ch5maXRzL2FwaS9tdm0vdjEvbG9jYXRpb24ucHJvdG8SD2ZpdHMuYXBpLm12bS52MSI+CghMb2NhdGlvbhIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIaCgV0aXRsZRgCIAEoCUILukgIcgbAs66xAgEiOQoaTG9jYXRpb25TZXJ2aWNlTGlzdFJlcXVlc3QSGwoGdGVuYW50GAEgASgJQgu6SAhyBsCzrrECASJLChtMb2NhdGlvblNlcnZpY2VMaXN0UmVzcG9uc2USLAoJbG9jYXRpb25zGAEgAygLMhkuZml0cy5hcGkubXZtLnYxLkxvY2F0aW9uMoEBCg9Mb2NhdGlvblNlcnZpY2USbgoETGlzdBIrLmZpdHMuYXBpLm12bS52MS5Mb2NhdGlvblNlcnZpY2VMaXN0UmVxdWVzdBosLmZpdHMuYXBpLm12bS52MS5Mb2NhdGlvblNlcnZpY2VMaXN0UmVzcG9uc2UiC8LzGAMBAgPg8xgCQrIBChNjb20uZml0cy5hcGkubXZtLnYxQg1Mb2NhdGlvblByb3RvUAFaLWdpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL212bS92MTttdm12MaICA0ZBTaoCD0ZpdHMuQXBpLk12bS5WMcoCD0ZpdHNcQXBpXE12bVxWMeICG0ZpdHNcQXBpXE12bVxWMVxHUEJNZXRhZGF0YeoCEkZpdHM6OkFwaTo6TXZtOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
 
 /**
- * Location is the definition of an available datacenter location for MVM instances.
+ * Location is an available datacenter location for MVM instances.
+ * A fake "AUTO" location lets the backend pick a datacenter within a location.
  *
  * @generated from message fits.api.mvm.v1.Location
  */
 export type Location = Message<"fits.api.mvm.v1.Location"> & {
   /**
-   * Uuid of this location
+   * UUID of this location.
    *
    * @generated from field: string uuid = 1;
    */
   uuid: string;
 
   /**
-   * title of the location
+   * Title of the location, e.g. "Nürnberg (RZ1)".
    *
    * @generated from field: string title = 2;
    */

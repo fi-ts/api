@@ -2,8 +2,8 @@
 // @generated from file fits/api/mvm/v1/vlan.proto (package fits.api.mvm.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
+import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
+import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../../../buf/validate/validate_pb.js";
 import { file_fits_api_v1_common } from "../../v1/common_pb.js";
 import { file_fits_api_v1_predefined_rules } from "../../v1/predefined_rules_pb.js";
@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/mvm/v1/vlan.proto.
  */
 export const file_fits_api_mvm_v1_vlan: GenFile = /*@__PURE__*/
-  fileDesc("ChpmaXRzL2FwaS9tdm0vdjEvdmxhbi5wcm90bxIPZml0cy5hcGkubXZtLnYxIoMCCgRWTEFOEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEg8KB3ZsYW5faWQYAiABKAUSIQoMc3VibmV0X3RpdGxlGAMgASgJQgu6SAhyBsCzrrECARIgCgtzdWJuZXRfY2lkchgEIAEoCUILukgIcgaAtK6xAgESJAoNbG9jYXRpb25fdXVpZBgFIAEoCUIIukgFcgOwAQFIAIgBARI4CgpzdGFnZV90eXBlGAYgASgOMhouZml0cy5hcGkubXZtLnYxLlN0YWdlVHlwZUIIukgFggECEAESGwoGdGVuYW50GAcgASgJQgu6SAhyBsCzrrECAUIQCg5fbG9jYXRpb25fdXVpZCKDAQoWVkxBTlNlcnZpY2VMaXN0UmVxdWVzdBIbCgZ0ZW5hbnQYASABKAlCC7pICHIGwLOusQIBEj0KCnN0YWdlX3R5cGUYAiABKA4yGi5maXRzLmFwaS5tdm0udjEuU3RhZ2VUeXBlQgi6SAWCAQIQAUgAiAEBQg0KC19zdGFnZV90eXBlIj8KF1ZMQU5TZXJ2aWNlTGlzdFJlc3BvbnNlEiQKBXZsYW5zGAEgAygLMhUuZml0cy5hcGkubXZtLnYxLlZMQU4q0QEKCVN0YWdlVHlwZRIgChZTVEFHRV9UWVBFX1VOU1BFQ0lGSUVEEAAaBIKyGQASKwoWU1RBR0VfVFlQRV9ERVZFTE9QTUVOVBABGg+CshkLZGV2ZWxvcG1lbnQSHQoPU1RBR0VfVFlQRV9URVNUEAIaCIKyGQR0ZXN0EisKFlNUQUdFX1RZUEVfSU5URUdSQVRJT04QAxoPgrIZC2ludGVncmF0aW9uEikKFVNUQUdFX1RZUEVfUFJPRFVDVElPThAEGg6CshkKcHJvZHVjdGlvbjJ1CgtWTEFOU2VydmljZRJmCgRMaXN0EicuZml0cy5hcGkubXZtLnYxLlZMQU5TZXJ2aWNlTGlzdFJlcXVlc3QaKC5maXRzLmFwaS5tdm0udjEuVkxBTlNlcnZpY2VMaXN0UmVzcG9uc2UiC8LzGAMBAgPg8xgCQq4BChNjb20uZml0cy5hcGkubXZtLnYxQglWbGFuUHJvdG9QAVotZ2l0aHViLmNvbS9maS10cy9hcGkvZ28vZml0cy9hcGkvbXZtL3YxO212bXYxogIDRkFNqgIPRml0cy5BcGkuTXZtLlYxygIPRml0c1xBcGlcTXZtXFYx4gIbRml0c1xBcGlcTXZtXFYxXEdQQk1ldGFkYXRh6gISRml0czo6QXBpOjpNdm06OlYxYgZwcm90bzM", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
+  fileDesc("ChpmaXRzL2FwaS9tdm0vdjEvdmxhbi5wcm90bxIPZml0cy5hcGkubXZtLnYxIuYBCgRWTEFOEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEg8KB3ZsYW5faWQYAiABKAUSIQoMc3VibmV0X3RpdGxlGAMgASgJQgu6SAhyBsCzrrECARIgCgtzdWJuZXRfY2lkchgEIAEoCUILukgIcgaAtK6xAgESHwoNbG9jYXRpb25fdXVpZBgFIAEoCUIIukgFcgOwAQESGwoGdGVuYW50GAYgASgJQgu6SAhyBsCzrrECARIiCgtkb21haW5fdXVpZBgHIAEoCUIIukgFcgOwAQFIAIgBAUIOCgxfZG9tYWluX3V1aWQiigEKFlZMQU5TZXJ2aWNlTGlzdFJlcXVlc3QSGwoGdGVuYW50GAEgASgJQgu6SAhyBsCzrrECARIfCg1sb2NhdGlvbl91dWlkGAIgASgJQgi6SAVyA7ABARIiCgtkb21haW5fdXVpZBgDIAEoCUIIukgFcgOwAQFIAIgBAUIOCgxfZG9tYWluX3V1aWQiPwoXVkxBTlNlcnZpY2VMaXN0UmVzcG9uc2USJAoFdmxhbnMYASADKAsyFS5maXRzLmFwaS5tdm0udjEuVkxBTjJ1CgtWTEFOU2VydmljZRJmCgRMaXN0EicuZml0cy5hcGkubXZtLnYxLlZMQU5TZXJ2aWNlTGlzdFJlcXVlc3QaKC5maXRzLmFwaS5tdm0udjEuVkxBTlNlcnZpY2VMaXN0UmVzcG9uc2UiC8LzGAMBAgPg8xgCQq4BChNjb20uZml0cy5hcGkubXZtLnYxQglWbGFuUHJvdG9QAVotZ2l0aHViLmNvbS9maS10cy9hcGkvZ28vZml0cy9hcGkvbXZtL3YxO212bXYxogIDRkFNqgIPRml0cy5BcGkuTXZtLlYxygIPRml0c1xBcGlcTXZtXFYx4gIbRml0c1xBcGlcTXZtXFYxXEdQQk1ldGFkYXRh6gISRml0czo6QXBpOjpNdm06OlYxYgZwcm90bzM", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
 
 /**
  * VLAN is a VLAN that a MVM can be connected to.
@@ -22,54 +22,53 @@ export const file_fits_api_mvm_v1_vlan: GenFile = /*@__PURE__*/
  */
 export type VLAN = Message<"fits.api.mvm.v1.VLAN"> & {
   /**
-   * Uuid of this VLAN
+   * UUID of this VLAN.
    *
    * @generated from field: string uuid = 1;
    */
   uuid: string;
 
   /**
-   * Id of this VLAN
-   * This is not a foreign key, this is the actual ID of the VLAN the network interface is attached to.
+   * ID of this VLAN. The actual VLAN ID a network interface is attached to.
    *
    * @generated from field: int32 vlan_id = 2;
    */
   vlanId: number;
 
   /**
-   * Title of the subnet this VLAN belongs to
+   * Title of the subnet this VLAN belongs to, including the stage type, e.g. "pod01-vlan2001 (Production)".
    *
    * @generated from field: string subnet_title = 3;
    */
   subnetTitle: string;
 
   /**
-   * CIDR of the subnet this VLAN belongs to
+   * CIDR of the subnet this VLAN belongs to.
    *
    * @generated from field: string subnet_cidr = 4;
    */
   subnetCidr: string;
 
   /**
-   * TODO instead of the pod title, could we have the location_uuid?
+   * UUID of the location this VLAN belongs to. This is actually the FCE datacenter ID.
    *
-   * @generated from field: optional string location_uuid = 5;
+   * @generated from field: string location_uuid = 5;
    */
-  locationUuid?: string | undefined;
-
-  /**
-   * Stage type of this VLAN
-   *
-   * @generated from field: fits.api.mvm.v1.StageType stage_type = 6;
-   */
-  stageType: StageType;
+  locationUuid: string;
 
   /**
    * Tenant this VLAN belongs to.
    *
-   * @generated from field: string tenant = 7;
+   * @generated from field: string tenant = 6;
    */
   tenant: string;
+
+  /**
+   * UUID of the Windows domain this VLAN is associated with. Only set for Windows.
+   *
+   * @generated from field: optional string domain_uuid = 7;
+   */
+  domainUuid?: string | undefined;
 };
 
 /**
@@ -86,18 +85,25 @@ export const VLANSchema: GenMessage<VLAN> = /*@__PURE__*/
  */
 export type VLANServiceListRequest = Message<"fits.api.mvm.v1.VLANServiceListRequest"> & {
   /**
-   * Tenant to list available VLANs for (the tenant login)
+   * Tenant to list available VLANs for (the tenant login).
    *
    * @generated from field: string tenant = 1;
    */
   tenant: string;
 
   /**
-   * StageType filters the listed VLANs by stage type
+   * Filter the listed VLANs by location (the FCE datacenter ID).
    *
-   * @generated from field: optional fits.api.mvm.v1.StageType stage_type = 2;
+   * @generated from field: string location_uuid = 2;
    */
-  stageType?: StageType | undefined;
+  locationUuid: string;
+
+  /**
+   * Filter the listed VLANs by the Windows domain they are associated with.
+   *
+   * @generated from field: optional string domain_uuid = 3;
+   */
+  domainUuid?: string | undefined;
 };
 
 /**
@@ -108,13 +114,13 @@ export const VLANServiceListRequestSchema: GenMessage<VLANServiceListRequest> = 
   messageDesc(file_fits_api_mvm_v1_vlan, 1);
 
 /**
- * VLANServiceListResponse is the response payload for a VLAN list request
+ * VLANServiceListResponse is the response payload for a VLAN list request.
  *
  * @generated from message fits.api.mvm.v1.VLANServiceListResponse
  */
 export type VLANServiceListResponse = Message<"fits.api.mvm.v1.VLANServiceListResponse"> & {
   /**
-   * The available VLANs
+   * The available VLANs.
    *
    * @generated from field: repeated fits.api.mvm.v1.VLAN vlans = 1;
    */
@@ -127,56 +133,6 @@ export type VLANServiceListResponse = Message<"fits.api.mvm.v1.VLANServiceListRe
  */
 export const VLANServiceListResponseSchema: GenMessage<VLANServiceListResponse> = /*@__PURE__*/
   messageDesc(file_fits_api_mvm_v1_vlan, 2);
-
-/**
- * StageType specifies the fixed stage of a managed VM (MVM) instance or VLAN.
- * The set of stages is fixed upstream, so it is modeled as an enum instead of
- * a listable resource.
- *
- * @generated from enum fits.api.mvm.v1.StageType
- */
-export enum StageType {
-  /**
-   * STAGE_TYPE_UNSPECIFIED is not specified.
-   *
-   * @generated from enum value: STAGE_TYPE_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
-
-  /**
-   * STAGE_TYPE_DEVELOPMENT is the development stage.
-   *
-   * @generated from enum value: STAGE_TYPE_DEVELOPMENT = 1;
-   */
-  DEVELOPMENT = 1,
-
-  /**
-   * STAGE_TYPE_TEST is the test stage.
-   *
-   * @generated from enum value: STAGE_TYPE_TEST = 2;
-   */
-  TEST = 2,
-
-  /**
-   * STAGE_TYPE_INTEGRATION is the integration stage.
-   *
-   * @generated from enum value: STAGE_TYPE_INTEGRATION = 3;
-   */
-  INTEGRATION = 3,
-
-  /**
-   * STAGE_TYPE_PRODUCTION is the production stage.
-   *
-   * @generated from enum value: STAGE_TYPE_PRODUCTION = 4;
-   */
-  PRODUCTION = 4,
-}
-
-/**
- * Describes the enum fits.api.mvm.v1.StageType.
- */
-export const StageTypeSchema: GenEnum<StageType> = /*@__PURE__*/
-  enumDesc(file_fits_api_mvm_v1_vlan, 0);
 
 /**
  * VLANService lists VLANs available for managed VM (MVM) instances.

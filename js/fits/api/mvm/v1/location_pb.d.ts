@@ -5,19 +5,20 @@ import type { Message } from "@bufbuild/protobuf";
  */
 export declare const file_fits_api_mvm_v1_location: GenFile;
 /**
- * Location is the definition of an available datacenter location for MVM instances.
+ * Location is an available datacenter location for MVM instances.
+ * A fake "AUTO" location lets the backend pick a datacenter within a location.
  *
  * @generated from message fits.api.mvm.v1.Location
  */
 export type Location = Message<"fits.api.mvm.v1.Location"> & {
     /**
-     * Uuid of this location
+     * UUID of this location.
      *
      * @generated from field: string uuid = 1;
      */
     uuid: string;
     /**
-     * title of the location
+     * Title of the location, e.g. "Nürnberg (RZ1)".
      *
      * @generated from field: string title = 2;
      */

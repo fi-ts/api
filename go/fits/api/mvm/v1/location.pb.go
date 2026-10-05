@@ -23,12 +23,13 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Location is the definition of an available datacenter location for MVM instances.
+// Location is an available datacenter location for MVM instances.
+// A fake "AUTO" location lets the backend pick a datacenter within a location.
 type Location struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Uuid of this location
+	// UUID of this location.
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	// title of the location
+	// Title of the location, e.g. "Nürnberg (RZ1)".
 	Title         string `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache

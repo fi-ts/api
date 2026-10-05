@@ -10,6 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { createClient } from "@connectrpc/connect";
 import { createConnectTransport } from "@connectrpc/connect-web";
+import { DomainService as Apimvmv1DomainService } from "./fits/api/mvm/v1/domain_pb";
+import { LDAPService as Apimvmv1LDAPService } from "./fits/api/mvm/v1/ldap_pb";
 import { LocationService as Apimvmv1LocationService } from "./fits/api/mvm/v1/location_pb";
 import { MVMService as Apimvmv1MVMService } from "./fits/api/mvm/v1/mvm_pb";
 import { OSService as Apimvmv1OSService } from "./fits/api/mvm/v1/os_pb";
@@ -65,6 +67,18 @@ class ClientImpl {
 class Apimvmv1Impl {
     constructor(transport) {
         this.transport = transport;
+    }
+    domain() {
+        if (!this._domain) {
+            this._domain = createClient(Apimvmv1DomainService, this.transport);
+        }
+        return this._domain;
+    }
+    ldap() {
+        if (!this._ldap) {
+            this._ldap = createClient(Apimvmv1LDAPService, this.transport);
+        }
+        return this._ldap;
     }
     location() {
         if (!this._location) {

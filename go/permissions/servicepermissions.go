@@ -8,6 +8,8 @@ import (
 
 func GetServices() []string {
 	return []string{
+		"fits.api.mvm.v1.DomainService",
+		"fits.api.mvm.v1.LDAPService",
 		"fits.api.mvm.v1.LocationService",
 		"fits.api.mvm.v1.MVMService",
 		"fits.api.mvm.v1.OSService",
@@ -28,6 +30,8 @@ func GetServicePermissions() *ServicePermissions {
 			Admin: Admin{},
 			Tenant: Tenant{
 				v1.TenantRole_TENANT_ROLE_OWNER: map[string]struct{}{
+					"/fits.api.mvm.v1.DomainService/List":   {},
+					"/fits.api.mvm.v1.LDAPService/List":     {},
 					"/fits.api.mvm.v1.LocationService/List": {},
 					"/fits.api.mvm.v1.VLANService/List":     {},
 					"/fits.api.v1.ProjectService/Create":    {},
@@ -35,6 +39,8 @@ func GetServicePermissions() *ServicePermissions {
 					"/fits.api.v1.TenantService/Update":     {},
 				},
 				v1.TenantRole_TENANT_ROLE_EDITOR: map[string]struct{}{
+					"/fits.api.mvm.v1.DomainService/List":   {},
+					"/fits.api.mvm.v1.LDAPService/List":     {},
 					"/fits.api.mvm.v1.LocationService/List": {},
 					"/fits.api.mvm.v1.VLANService/List":     {},
 					"/fits.api.v1.ProjectService/Create":    {},
@@ -42,6 +48,8 @@ func GetServicePermissions() *ServicePermissions {
 					"/fits.api.v1.TenantService/Update":     {},
 				},
 				v1.TenantRole_TENANT_ROLE_VIEWER: map[string]struct{}{
+					"/fits.api.mvm.v1.DomainService/List":   {},
+					"/fits.api.mvm.v1.LDAPService/List":     {},
 					"/fits.api.mvm.v1.LocationService/List": {},
 					"/fits.api.mvm.v1.VLANService/List":     {},
 					"/fits.api.v1.TenantService/Get":        {},
@@ -108,6 +116,8 @@ func GetServicePermissions() *ServicePermissions {
 			},
 		},
 		Methods: map[string]struct{}{
+			"/fits.api.mvm.v1.DomainService/List":                            {},
+			"/fits.api.mvm.v1.LDAPService/List":                              {},
 			"/fits.api.mvm.v1.LocationService/List":                          {},
 			"/fits.api.mvm.v1.MVMService/AddDisk":                            {},
 			"/fits.api.mvm.v1.MVMService/AddNetworkInterface":                {},
@@ -167,6 +177,8 @@ func GetServicePermissions() *ServicePermissions {
 			},
 			Admin: map[string]bool{},
 			Tenant: map[string]bool{
+				"/fits.api.mvm.v1.DomainService/List":   true,
+				"/fits.api.mvm.v1.LDAPService/List":     true,
 				"/fits.api.mvm.v1.LocationService/List": true,
 				"/fits.api.mvm.v1.VLANService/List":     true,
 				"/fits.api.v1.ProjectService/Create":    true,
@@ -199,6 +211,8 @@ func GetServicePermissions() *ServicePermissions {
 			},
 		},
 		Auditable: map[string]bool{
+			"/fits.api.mvm.v1.DomainService/List":                     false,
+			"/fits.api.mvm.v1.LDAPService/List":                       false,
 			"/fits.api.mvm.v1.LocationService/List":                   false,
 			"/fits.api.mvm.v1.MVMService/AddDisk":                     true,
 			"/fits.api.mvm.v1.MVMService/AddNetworkInterface":         true,
