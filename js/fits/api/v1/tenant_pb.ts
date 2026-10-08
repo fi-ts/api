@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/v1/tenant.proto.
  */
 export const file_fits_api_v1_tenant: GenFile = /*@__PURE__*/
-  fileDesc("ChhmaXRzL2FwaS92MS90ZW5hbnQucHJvdG8SC2ZpdHMuYXBpLnYxIqwBCgZUZW5hbnQSDQoFbG9naW4YASABKAkSHwoEbWV0YRgCIAEoCzIRLmZpdHMuYXBpLnYxLk1ldGESGQoEbmFtZRgDIAEoCUILukgIcgbAs66xAgESDQoFZW1haWwYBCABKAkSIAoLZGVzY3JpcHRpb24YBSABKAlCC7pICHIGyLOusQIBEhIKCmF2YXRhcl91cmwYBiABKAkSEgoKY3JlYXRlZF9ieRgHIAEoCSKQAQoYVGVuYW50U2VydmljZUxpc3RSZXF1ZXN0Eg8KAmlkGAEgASgJSACIAQESHgoEbmFtZRgCIAEoCUILukgIcgbAs66xAgFIAYgBARIoCgZsYWJlbHMYAyABKAsyEy5maXRzLmFwaS52MS5MYWJlbHNIAogBAUIFCgNfaWRCBwoFX25hbWVCCQoHX2xhYmVscyIpChdUZW5hbnRTZXJ2aWNlR2V0UmVxdWVzdBIOCgZ0ZW5hbnQYASABKAki4gEKGlRlbmFudFNlcnZpY2VDcmVhdGVSZXF1ZXN0EhkKBG5hbWUYASABKAlCC7pICHIGwLOusQIBEiUKC2Rlc2NyaXB0aW9uGAIgASgJQgu6SAhyBsizrrECAUgAiAEBEhsKBWVtYWlsGAMgASgJQge6SARyAmABSAGIAQESFwoKYXZhdGFyX3VybBgEIAEoCUgCiAEBEiMKBmxhYmVscxgFIAEoCzITLmZpdHMuYXBpLnYxLkxhYmVsc0IOCgxfZGVzY3JpcHRpb25CCAoGX2VtYWlsQg0KC19hdmF0YXJfdXJsIswCChpUZW5hbnRTZXJ2aWNlVXBkYXRlUmVxdWVzdBIOCgZ0ZW5hbnQYASABKAkSNAoLdXBkYXRlX21ldGEYAiABKAsyFy5maXRzLmFwaS52MS5VcGRhdGVNZXRhQga6SAPIAQESHgoEbmFtZRgDIAEoCUILukgIcgbAs66xAgFIAIgBARIbCgVlbWFpbBgEIAEoCUIHukgEcgJgAUgBiAEBEiUKC2Rlc2NyaXB0aW9uGAUgASgJQgu6SAhyBsizrrECAUgCiAEBEhcKCmF2YXRhcl91cmwYBiABKAlIA4gBARIuCgZsYWJlbHMYByABKAsyGS5maXRzLmFwaS52MS5VcGRhdGVMYWJlbHNIBIgBAUIHCgVfbmFtZUIICgZfZW1haWxCDgoMX2Rlc2NyaXB0aW9uQg0KC19hdmF0YXJfdXJsQgkKB19sYWJlbHMiLAoaVGVuYW50U2VydmljZURlbGV0ZVJlcXVlc3QSDgoGdGVuYW50GAEgASgJIj8KGFRlbmFudFNlcnZpY2VHZXRSZXNwb25zZRIjCgZ0ZW5hbnQYASABKAsyEy5maXRzLmFwaS52MS5UZW5hbnQiQQoZVGVuYW50U2VydmljZUxpc3RSZXNwb25zZRIkCgd0ZW5hbnRzGAEgAygLMhMuZml0cy5hcGkudjEuVGVuYW50IkIKG1RlbmFudFNlcnZpY2VDcmVhdGVSZXNwb25zZRIjCgZ0ZW5hbnQYASABKAsyEy5maXRzLmFwaS52MS5UZW5hbnQiQgobVGVuYW50U2VydmljZVVwZGF0ZVJlc3BvbnNlEiMKBnRlbmFudBgBIAEoCzITLmZpdHMuYXBpLnYxLlRlbmFudCJCChtUZW5hbnRTZXJ2aWNlRGVsZXRlUmVzcG9uc2USIwoGdGVuYW50GAEgASgLMhMuZml0cy5hcGkudjEuVGVuYW50MosECg1UZW5hbnRTZXJ2aWNlEmUKBkNyZWF0ZRInLmZpdHMuYXBpLnYxLlRlbmFudFNlcnZpY2VDcmVhdGVSZXF1ZXN0GiguZml0cy5hcGkudjEuVGVuYW50U2VydmljZUNyZWF0ZVJlc3BvbnNlIgjY8xgC4PMYARJfCgRMaXN0EiUuZml0cy5hcGkudjEuVGVuYW50U2VydmljZUxpc3RSZXF1ZXN0GiYuZml0cy5hcGkudjEuVGVuYW50U2VydmljZUxpc3RSZXNwb25zZSII2PMYAuDzGAISYAoDR2V0EiQuZml0cy5hcGkudjEuVGVuYW50U2VydmljZUdldFJlcXVlc3QaJS5maXRzLmFwaS52MS5UZW5hbnRTZXJ2aWNlR2V0UmVzcG9uc2UiDMLzGAQBAgME4PMYAhJnCgZVcGRhdGUSJy5maXRzLmFwaS52MS5UZW5hbnRTZXJ2aWNlVXBkYXRlUmVxdWVzdBooLmZpdHMuYXBpLnYxLlRlbmFudFNlcnZpY2VVcGRhdGVSZXNwb25zZSIKwvMYAgEC4PMYARJnCgZEZWxldGUSJy5maXRzLmFwaS52MS5UZW5hbnRTZXJ2aWNlRGVsZXRlUmVxdWVzdBooLmZpdHMuYXBpLnYxLlRlbmFudFNlcnZpY2VEZWxldGVSZXNwb25zZSIKwvMYAgEC4PMYAUKXAQoPY29tLmZpdHMuYXBpLnYxQgtUZW5hbnRQcm90b1ABWilnaXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS92MTthcGl2MaICA0ZBWKoCC0ZpdHMuQXBpLlYxygILRml0c1xBcGlcVjHiAhdGaXRzXEFwaVxWMVxHUEJNZXRhZGF0YeoCDUZpdHM6OkFwaTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
+  fileDesc("ChhmaXRzL2FwaS92MS90ZW5hbnQucHJvdG8SC2ZpdHMuYXBpLnYxIqwBCgZUZW5hbnQSDQoFbG9naW4YASABKAkSHwoEbWV0YRgCIAEoCzIRLmZpdHMuYXBpLnYxLk1ldGESGQoEbmFtZRgDIAEoCUILukgIcgbAs66xAgESDQoFZW1haWwYBCABKAkSIAoLZGVzY3JpcHRpb24YBSABKAlCC7pICHIGyLOusQIBEhIKCmF2YXRhcl91cmwYBiABKAkSEgoKY3JlYXRlZF9ieRgHIAEoCSKQAQoYVGVuYW50U2VydmljZUxpc3RSZXF1ZXN0Eg8KAmlkGAEgASgJSACIAQESHgoEbmFtZRgCIAEoCUILukgIcgbAs66xAgFIAYgBARIoCgZsYWJlbHMYAyABKAsyEy5maXRzLmFwaS52MS5MYWJlbHNIAogBAUIFCgNfaWRCBwoFX25hbWVCCQoHX2xhYmVscyIpChdUZW5hbnRTZXJ2aWNlR2V0UmVxdWVzdBIOCgZ0ZW5hbnQYASABKAkizAIKGlRlbmFudFNlcnZpY2VVcGRhdGVSZXF1ZXN0Eg4KBnRlbmFudBgBIAEoCRI0Cgt1cGRhdGVfbWV0YRgCIAEoCzIXLmZpdHMuYXBpLnYxLlVwZGF0ZU1ldGFCBrpIA8gBARIeCgRuYW1lGAMgASgJQgu6SAhyBsCzrrECAUgAiAEBEhsKBWVtYWlsGAQgASgJQge6SARyAmABSAGIAQESJQoLZGVzY3JpcHRpb24YBSABKAlCC7pICHIGyLOusQIBSAKIAQESFwoKYXZhdGFyX3VybBgGIAEoCUgDiAEBEi4KBmxhYmVscxgHIAEoCzIZLmZpdHMuYXBpLnYxLlVwZGF0ZUxhYmVsc0gEiAEBQgcKBV9uYW1lQggKBl9lbWFpbEIOCgxfZGVzY3JpcHRpb25CDQoLX2F2YXRhcl91cmxCCQoHX2xhYmVscyI/ChhUZW5hbnRTZXJ2aWNlR2V0UmVzcG9uc2USIwoGdGVuYW50GAEgASgLMhMuZml0cy5hcGkudjEuVGVuYW50IkEKGVRlbmFudFNlcnZpY2VMaXN0UmVzcG9uc2USJAoHdGVuYW50cxgBIAMoCzITLmZpdHMuYXBpLnYxLlRlbmFudCJCChtUZW5hbnRTZXJ2aWNlVXBkYXRlUmVzcG9uc2USIwoGdGVuYW50GAEgASgLMhMuZml0cy5hcGkudjEuVGVuYW50MrsCCg1UZW5hbnRTZXJ2aWNlEl8KBExpc3QSJS5maXRzLmFwaS52MS5UZW5hbnRTZXJ2aWNlTGlzdFJlcXVlc3QaJi5maXRzLmFwaS52MS5UZW5hbnRTZXJ2aWNlTGlzdFJlc3BvbnNlIgjY8xgC4PMYAhJgCgNHZXQSJC5maXRzLmFwaS52MS5UZW5hbnRTZXJ2aWNlR2V0UmVxdWVzdBolLmZpdHMuYXBpLnYxLlRlbmFudFNlcnZpY2VHZXRSZXNwb25zZSIMwvMYBAECAwTg8xgCEmcKBlVwZGF0ZRInLmZpdHMuYXBpLnYxLlRlbmFudFNlcnZpY2VVcGRhdGVSZXF1ZXN0GiguZml0cy5hcGkudjEuVGVuYW50U2VydmljZVVwZGF0ZVJlc3BvbnNlIgrC8xgCAQLg8xgBQpcBCg9jb20uZml0cy5hcGkudjFCC1RlbmFudFByb3RvUAFaKWdpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL3YxO2FwaXYxogIDRkFYqgILRml0cy5BcGkuVjHKAgtGaXRzXEFwaVxWMeICF0ZpdHNcQXBpXFYxXEdQQk1ldGFkYXRh6gINRml0czo6QXBpOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
 
 /**
  * Tenant is a customer of the platform
@@ -136,55 +136,6 @@ export const TenantServiceGetRequestSchema: GenMessage<TenantServiceGetRequest> 
   messageDesc(file_fits_api_v1_tenant, 2);
 
 /**
- * TenantServiceCreateRequest is the request payload of the tenant create request
- *
- * @generated from message fits.api.v1.TenantServiceCreateRequest
- */
-export type TenantServiceCreateRequest = Message<"fits.api.v1.TenantServiceCreateRequest"> & {
-  /**
-   * Name of this tenant
-   *
-   * @generated from field: string name = 1;
-   */
-  name: string;
-
-  /**
-   * Description of this tenant
-   *
-   * @generated from field: optional string description = 2;
-   */
-  description?: string | undefined;
-
-  /**
-   * Email of the tenant, if not set will be inherited from the creator
-   *
-   * @generated from field: optional string email = 3;
-   */
-  email?: string | undefined;
-
-  /**
-   * AvatarUrl of the tenant
-   *
-   * @generated from field: optional string avatar_url = 4;
-   */
-  avatarUrl?: string | undefined;
-
-  /**
-   * Labels on the tenant
-   *
-   * @generated from field: fits.api.v1.Labels labels = 5;
-   */
-  labels?: Labels | undefined;
-};
-
-/**
- * Describes the message fits.api.v1.TenantServiceCreateRequest.
- * Use `create(TenantServiceCreateRequestSchema)` to create a new message.
- */
-export const TenantServiceCreateRequestSchema: GenMessage<TenantServiceCreateRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_tenant, 3);
-
-/**
  * TenantServiceUpdateRequest is the request payload of the tenant update request
  *
  * @generated from message fits.api.v1.TenantServiceUpdateRequest
@@ -245,28 +196,7 @@ export type TenantServiceUpdateRequest = Message<"fits.api.v1.TenantServiceUpdat
  * Use `create(TenantServiceUpdateRequestSchema)` to create a new message.
  */
 export const TenantServiceUpdateRequestSchema: GenMessage<TenantServiceUpdateRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_tenant, 4);
-
-/**
- * TenantServiceDeleteRequest is the request payload of the tenant delete request
- *
- * @generated from message fits.api.v1.TenantServiceDeleteRequest
- */
-export type TenantServiceDeleteRequest = Message<"fits.api.v1.TenantServiceDeleteRequest"> & {
-  /**
-   * Tenant is the login of the tenant
-   *
-   * @generated from field: string tenant = 1;
-   */
-  tenant: string;
-};
-
-/**
- * Describes the message fits.api.v1.TenantServiceDeleteRequest.
- * Use `create(TenantServiceDeleteRequestSchema)` to create a new message.
- */
-export const TenantServiceDeleteRequestSchema: GenMessage<TenantServiceDeleteRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_tenant, 5);
+  messageDesc(file_fits_api_v1_tenant, 3);
 
 /**
  * TenantServiceGetResponse is the response payload of the tenant get request
@@ -287,7 +217,7 @@ export type TenantServiceGetResponse = Message<"fits.api.v1.TenantServiceGetResp
  * Use `create(TenantServiceGetResponseSchema)` to create a new message.
  */
 export const TenantServiceGetResponseSchema: GenMessage<TenantServiceGetResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_tenant, 6);
+  messageDesc(file_fits_api_v1_tenant, 4);
 
 /**
  * TenantServiceListResponse is the response payload of the tenant list request
@@ -308,28 +238,7 @@ export type TenantServiceListResponse = Message<"fits.api.v1.TenantServiceListRe
  * Use `create(TenantServiceListResponseSchema)` to create a new message.
  */
 export const TenantServiceListResponseSchema: GenMessage<TenantServiceListResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_tenant, 7);
-
-/**
- * TenantServiceCreateResponse is the response payload of the tenant create request
- *
- * @generated from message fits.api.v1.TenantServiceCreateResponse
- */
-export type TenantServiceCreateResponse = Message<"fits.api.v1.TenantServiceCreateResponse"> & {
-  /**
-   * Tenant is the tenant
-   *
-   * @generated from field: fits.api.v1.Tenant tenant = 1;
-   */
-  tenant?: Tenant | undefined;
-};
-
-/**
- * Describes the message fits.api.v1.TenantServiceCreateResponse.
- * Use `create(TenantServiceCreateResponseSchema)` to create a new message.
- */
-export const TenantServiceCreateResponseSchema: GenMessage<TenantServiceCreateResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_tenant, 8);
+  messageDesc(file_fits_api_v1_tenant, 5);
 
 /**
  * TenantServiceUpdateResponse is the response payload of the tenant update request
@@ -350,28 +259,7 @@ export type TenantServiceUpdateResponse = Message<"fits.api.v1.TenantServiceUpda
  * Use `create(TenantServiceUpdateResponseSchema)` to create a new message.
  */
 export const TenantServiceUpdateResponseSchema: GenMessage<TenantServiceUpdateResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_tenant, 9);
-
-/**
- * TenantServiceDeleteResponse is the response payload of the tenant delete request
- *
- * @generated from message fits.api.v1.TenantServiceDeleteResponse
- */
-export type TenantServiceDeleteResponse = Message<"fits.api.v1.TenantServiceDeleteResponse"> & {
-  /**
-   * Tenant is the tenant
-   *
-   * @generated from field: fits.api.v1.Tenant tenant = 1;
-   */
-  tenant?: Tenant | undefined;
-};
-
-/**
- * Describes the message fits.api.v1.TenantServiceDeleteResponse.
- * Use `create(TenantServiceDeleteResponseSchema)` to create a new message.
- */
-export const TenantServiceDeleteResponseSchema: GenMessage<TenantServiceDeleteResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_tenant, 10);
+  messageDesc(file_fits_api_v1_tenant, 6);
 
 /**
  * TenantService provides tenant management operations.
@@ -379,16 +267,6 @@ export const TenantServiceDeleteResponseSchema: GenMessage<TenantServiceDeleteRe
  * @generated from service fits.api.v1.TenantService
  */
 export const TenantService: GenService<{
-  /**
-   * Creates a new tenant.
-   *
-   * @generated from rpc fits.api.v1.TenantService.Create
-   */
-  create: {
-    methodKind: "unary";
-    input: typeof TenantServiceCreateRequestSchema;
-    output: typeof TenantServiceCreateResponseSchema;
-  },
   /**
    * Returns the list of tenants.
    *
@@ -418,16 +296,6 @@ export const TenantService: GenService<{
     methodKind: "unary";
     input: typeof TenantServiceUpdateRequestSchema;
     output: typeof TenantServiceUpdateResponseSchema;
-  },
-  /**
-   * Delete a tenant
-   *
-   * @generated from rpc fits.api.v1.TenantService.Delete
-   */
-  delete: {
-    methodKind: "unary";
-    input: typeof TenantServiceDeleteRequestSchema;
-    output: typeof TenantServiceDeleteResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_fits_api_v1_tenant, 0);

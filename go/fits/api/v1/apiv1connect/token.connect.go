@@ -35,32 +35,20 @@ const (
 const (
 	// TokenServiceGetProcedure is the fully-qualified name of the TokenService's Get RPC.
 	TokenServiceGetProcedure = "/fits.api.v1.TokenService/Get"
-	// TokenServiceCreateProcedure is the fully-qualified name of the TokenService's Create RPC.
-	TokenServiceCreateProcedure = "/fits.api.v1.TokenService/Create"
-	// TokenServiceUpdateProcedure is the fully-qualified name of the TokenService's Update RPC.
-	TokenServiceUpdateProcedure = "/fits.api.v1.TokenService/Update"
 	// TokenServiceListProcedure is the fully-qualified name of the TokenService's List RPC.
 	TokenServiceListProcedure = "/fits.api.v1.TokenService/List"
 	// TokenServiceRevokeProcedure is the fully-qualified name of the TokenService's Revoke RPC.
 	TokenServiceRevokeProcedure = "/fits.api.v1.TokenService/Revoke"
-	// TokenServiceRefreshProcedure is the fully-qualified name of the TokenService's Refresh RPC.
-	TokenServiceRefreshProcedure = "/fits.api.v1.TokenService/Refresh"
 )
 
 // TokenServiceClient is a client for the fits.api.v1.TokenService service.
 type TokenServiceClient interface {
 	// Returns the token with the specified UUID.
 	Get(context.Context, *v1.TokenServiceGetRequest) (*v1.TokenServiceGetResponse, error)
-	// Creates a token to authenticate against the platform, the secret will be only visible in the response.
-	Create(context.Context, *v1.TokenServiceCreateRequest) (*v1.TokenServiceCreateResponse, error)
-	// Updates a token.
-	Update(context.Context, *v1.TokenServiceUpdateRequest) (*v1.TokenServiceUpdateResponse, error)
 	// Returns the list of all user tokens.
 	List(context.Context, *v1.TokenServiceListRequest) (*v1.TokenServiceListResponse, error)
 	// Revokes a token, no further usage is possible afterwards.
 	Revoke(context.Context, *v1.TokenServiceRevokeRequest) (*v1.TokenServiceRevokeResponse, error)
-	// Refreshes a token, this will create a new token with the exact same permissions as the calling token contains.
-	Refresh(context.Context, *v1.TokenServiceRefreshRequest) (*v1.TokenServiceRefreshResponse, error)
 }
 
 // NewTokenServiceClient constructs a client for the fits.api.v1.TokenService service. By default,
@@ -80,18 +68,6 @@ func NewTokenServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 			connect.WithSchema(tokenServiceMethods.ByName("Get")),
 			connect.WithClientOptions(opts...),
 		),
-		create: connect.NewClient[v1.TokenServiceCreateRequest, v1.TokenServiceCreateResponse](
-			httpClient,
-			baseURL+TokenServiceCreateProcedure,
-			connect.WithSchema(tokenServiceMethods.ByName("Create")),
-			connect.WithClientOptions(opts...),
-		),
-		update: connect.NewClient[v1.TokenServiceUpdateRequest, v1.TokenServiceUpdateResponse](
-			httpClient,
-			baseURL+TokenServiceUpdateProcedure,
-			connect.WithSchema(tokenServiceMethods.ByName("Update")),
-			connect.WithClientOptions(opts...),
-		),
 		list: connect.NewClient[v1.TokenServiceListRequest, v1.TokenServiceListResponse](
 			httpClient,
 			baseURL+TokenServiceListProcedure,
@@ -104,46 +80,19 @@ func NewTokenServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 			connect.WithSchema(tokenServiceMethods.ByName("Revoke")),
 			connect.WithClientOptions(opts...),
 		),
-		refresh: connect.NewClient[v1.TokenServiceRefreshRequest, v1.TokenServiceRefreshResponse](
-			httpClient,
-			baseURL+TokenServiceRefreshProcedure,
-			connect.WithSchema(tokenServiceMethods.ByName("Refresh")),
-			connect.WithClientOptions(opts...),
-		),
 	}
 }
 
 // tokenServiceClient implements TokenServiceClient.
 type tokenServiceClient struct {
-	get     *connect.Client[v1.TokenServiceGetRequest, v1.TokenServiceGetResponse]
-	create  *connect.Client[v1.TokenServiceCreateRequest, v1.TokenServiceCreateResponse]
-	update  *connect.Client[v1.TokenServiceUpdateRequest, v1.TokenServiceUpdateResponse]
-	list    *connect.Client[v1.TokenServiceListRequest, v1.TokenServiceListResponse]
-	revoke  *connect.Client[v1.TokenServiceRevokeRequest, v1.TokenServiceRevokeResponse]
-	refresh *connect.Client[v1.TokenServiceRefreshRequest, v1.TokenServiceRefreshResponse]
+	get    *connect.Client[v1.TokenServiceGetRequest, v1.TokenServiceGetResponse]
+	list   *connect.Client[v1.TokenServiceListRequest, v1.TokenServiceListResponse]
+	revoke *connect.Client[v1.TokenServiceRevokeRequest, v1.TokenServiceRevokeResponse]
 }
 
 // Get calls fits.api.v1.TokenService.Get.
 func (c *tokenServiceClient) Get(ctx context.Context, req *v1.TokenServiceGetRequest) (*v1.TokenServiceGetResponse, error) {
 	response, err := c.get.CallUnary(ctx, connect.NewRequest(req))
-	if response != nil {
-		return response.Msg, err
-	}
-	return nil, err
-}
-
-// Create calls fits.api.v1.TokenService.Create.
-func (c *tokenServiceClient) Create(ctx context.Context, req *v1.TokenServiceCreateRequest) (*v1.TokenServiceCreateResponse, error) {
-	response, err := c.create.CallUnary(ctx, connect.NewRequest(req))
-	if response != nil {
-		return response.Msg, err
-	}
-	return nil, err
-}
-
-// Update calls fits.api.v1.TokenService.Update.
-func (c *tokenServiceClient) Update(ctx context.Context, req *v1.TokenServiceUpdateRequest) (*v1.TokenServiceUpdateResponse, error) {
-	response, err := c.update.CallUnary(ctx, connect.NewRequest(req))
 	if response != nil {
 		return response.Msg, err
 	}
@@ -168,29 +117,14 @@ func (c *tokenServiceClient) Revoke(ctx context.Context, req *v1.TokenServiceRev
 	return nil, err
 }
 
-// Refresh calls fits.api.v1.TokenService.Refresh.
-func (c *tokenServiceClient) Refresh(ctx context.Context, req *v1.TokenServiceRefreshRequest) (*v1.TokenServiceRefreshResponse, error) {
-	response, err := c.refresh.CallUnary(ctx, connect.NewRequest(req))
-	if response != nil {
-		return response.Msg, err
-	}
-	return nil, err
-}
-
 // TokenServiceHandler is an implementation of the fits.api.v1.TokenService service.
 type TokenServiceHandler interface {
 	// Returns the token with the specified UUID.
 	Get(context.Context, *v1.TokenServiceGetRequest) (*v1.TokenServiceGetResponse, error)
-	// Creates a token to authenticate against the platform, the secret will be only visible in the response.
-	Create(context.Context, *v1.TokenServiceCreateRequest) (*v1.TokenServiceCreateResponse, error)
-	// Updates a token.
-	Update(context.Context, *v1.TokenServiceUpdateRequest) (*v1.TokenServiceUpdateResponse, error)
 	// Returns the list of all user tokens.
 	List(context.Context, *v1.TokenServiceListRequest) (*v1.TokenServiceListResponse, error)
 	// Revokes a token, no further usage is possible afterwards.
 	Revoke(context.Context, *v1.TokenServiceRevokeRequest) (*v1.TokenServiceRevokeResponse, error)
-	// Refreshes a token, this will create a new token with the exact same permissions as the calling token contains.
-	Refresh(context.Context, *v1.TokenServiceRefreshRequest) (*v1.TokenServiceRefreshResponse, error)
 }
 
 // NewTokenServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -206,18 +140,6 @@ func NewTokenServiceHandler(svc TokenServiceHandler, opts ...connect.HandlerOpti
 		connect.WithSchema(tokenServiceMethods.ByName("Get")),
 		connect.WithHandlerOptions(opts...),
 	)
-	tokenServiceCreateHandler := connect.NewUnaryHandlerSimple(
-		TokenServiceCreateProcedure,
-		svc.Create,
-		connect.WithSchema(tokenServiceMethods.ByName("Create")),
-		connect.WithHandlerOptions(opts...),
-	)
-	tokenServiceUpdateHandler := connect.NewUnaryHandlerSimple(
-		TokenServiceUpdateProcedure,
-		svc.Update,
-		connect.WithSchema(tokenServiceMethods.ByName("Update")),
-		connect.WithHandlerOptions(opts...),
-	)
 	tokenServiceListHandler := connect.NewUnaryHandlerSimple(
 		TokenServiceListProcedure,
 		svc.List,
@@ -230,26 +152,14 @@ func NewTokenServiceHandler(svc TokenServiceHandler, opts ...connect.HandlerOpti
 		connect.WithSchema(tokenServiceMethods.ByName("Revoke")),
 		connect.WithHandlerOptions(opts...),
 	)
-	tokenServiceRefreshHandler := connect.NewUnaryHandlerSimple(
-		TokenServiceRefreshProcedure,
-		svc.Refresh,
-		connect.WithSchema(tokenServiceMethods.ByName("Refresh")),
-		connect.WithHandlerOptions(opts...),
-	)
 	return "/fits.api.v1.TokenService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case TokenServiceGetProcedure:
 			tokenServiceGetHandler.ServeHTTP(w, r)
-		case TokenServiceCreateProcedure:
-			tokenServiceCreateHandler.ServeHTTP(w, r)
-		case TokenServiceUpdateProcedure:
-			tokenServiceUpdateHandler.ServeHTTP(w, r)
 		case TokenServiceListProcedure:
 			tokenServiceListHandler.ServeHTTP(w, r)
 		case TokenServiceRevokeProcedure:
 			tokenServiceRevokeHandler.ServeHTTP(w, r)
-		case TokenServiceRefreshProcedure:
-			tokenServiceRefreshHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -263,22 +173,10 @@ func (UnimplementedTokenServiceHandler) Get(context.Context, *v1.TokenServiceGet
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.v1.TokenService.Get is not implemented"))
 }
 
-func (UnimplementedTokenServiceHandler) Create(context.Context, *v1.TokenServiceCreateRequest) (*v1.TokenServiceCreateResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.v1.TokenService.Create is not implemented"))
-}
-
-func (UnimplementedTokenServiceHandler) Update(context.Context, *v1.TokenServiceUpdateRequest) (*v1.TokenServiceUpdateResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.v1.TokenService.Update is not implemented"))
-}
-
 func (UnimplementedTokenServiceHandler) List(context.Context, *v1.TokenServiceListRequest) (*v1.TokenServiceListResponse, error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.v1.TokenService.List is not implemented"))
 }
 
 func (UnimplementedTokenServiceHandler) Revoke(context.Context, *v1.TokenServiceRevokeRequest) (*v1.TokenServiceRevokeResponse, error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.v1.TokenService.Revoke is not implemented"))
-}
-
-func (UnimplementedTokenServiceHandler) Refresh(context.Context, *v1.TokenServiceRefreshRequest) (*v1.TokenServiceRefreshResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.v1.TokenService.Refresh is not implemented"))
 }
