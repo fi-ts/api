@@ -11,6 +11,7 @@ release: proto generate test build
 
 .PHONY: proto
 proto: protolint
+	$(MAKE) -C js clean
 	$(MAKE) -C go clean
 	$(MAKE) -C python clean
 	$(MAKE) -C proto protoc
@@ -23,6 +24,7 @@ protolint:
 .PHONY: generate
 generate:
 	$(MAKE) -C generate generate
+	$(MAKE) -C js generate-js
 
 .PHONY: test
 test:
