@@ -260,6 +260,10 @@
                   <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
                 </li>
               
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
               
             </ul>
           </li>
@@ -1057,6 +1061,14 @@
                 <td><a href="#buf.validate.RepeatedRules">.buf.validate.RepeatedRules</a></td>
                 <td>80058953</td>
                 <td><p>AreHostAndPort validates if a slice of strings are all in the form of &lt;ip | host&gt;:&lt;port&gt;</p></td>
+              </tr>
+            
+              <tr>
+                <td>are_names</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.RepeatedRules">.buf.validate.RepeatedRules</a></td>
+                <td>80058955</td>
+                <td><p>Are Names returns true if all strings given are names</p></td>
               </tr>
             
               <tr>
@@ -4831,6 +4843,27 @@ Asterisk (*) can be specified to match any subject. </p></td>
                   <td><a href="#fits.api.v1.AdminRole">AdminRole</a></td>
                   <td>optional</td>
                   <td><p>AdminRole defines the admin role of the token owner </p></td>
+                </tr>
+              
+                <tr>
+                  <td>raw_roles</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>RawRoles are the raw roles transmitted by the OIDC provider. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name is the display name of the user the token was issued for. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Email is the email address of the user the token was issued for. </p></td>
                 </tr>
               
             </tbody>

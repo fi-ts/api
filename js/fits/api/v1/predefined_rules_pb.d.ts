@@ -101,6 +101,12 @@ export declare const are_host_and_port: GenExtension<RepeatedRules, boolean>;
  */
 export declare const all_trimmed: GenExtension<RepeatedRules, boolean>;
 /**
+ * Are Names returns true if all strings given are names
+ *
+ * @generated from extension: optional bool are_names = 80058955;
+ */
+export declare const are_names: GenExtension<RepeatedRules, boolean>;
+/**
  * Keys and Values trimmed enforces all map keys and values to be trimmed, e.g. no whitespaces at the begin and end
  *
  * @generated from extension: optional bool keys_and_values_trimmed = 80068951;

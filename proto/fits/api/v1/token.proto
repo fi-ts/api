@@ -76,6 +76,16 @@ message Token {
   ];
   // AdminRole defines the admin role of the token owner
   optional AdminRole admin_role = 11 [(buf.validate.field).enum.defined_only = true];
+  // RawRoles are the raw roles transmitted by the OIDC provider.
+  repeated string raw_roles = 12 [
+    (buf.validate.field).repeated.unique = true,
+    (buf.validate.field).repeated.(fits.api.v1.all_trimmed) = true,
+    (buf.validate.field).repeated.(fits.api.v1.are_names) = true
+  ];
+  // Name is the display name of the user the token was issued for.
+  string name = 13 [(buf.validate.field).string = {max_len: 256}];
+  // Email is the email address of the user the token was issued for.
+  string email = 14 [(buf.validate.field).string = {max_len: 256}];
 }
 
 // TokenType specifies different use cases of tokens

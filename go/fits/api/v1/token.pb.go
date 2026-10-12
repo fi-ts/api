@@ -111,7 +111,13 @@ type Token struct {
 	// TenantRoles associates a tenant id with the corresponding role of the token owner.
 	TenantRoles map[string]TenantRole `protobuf:"bytes,10,rep,name=tenant_roles,json=tenantRoles,proto3" json:"tenant_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.TenantRole"`
 	// AdminRole defines the admin role of the token owner
-	AdminRole     *AdminRole `protobuf:"varint,11,opt,name=admin_role,json=adminRole,proto3,enum=fits.api.v1.AdminRole,oneof" json:"admin_role,omitempty"`
+	AdminRole *AdminRole `protobuf:"varint,11,opt,name=admin_role,json=adminRole,proto3,enum=fits.api.v1.AdminRole,oneof" json:"admin_role,omitempty"`
+	// RawRoles are the raw roles transmitted by the OIDC provider.
+	RawRoles []string `protobuf:"bytes,12,rep,name=raw_roles,json=rawRoles,proto3" json:"raw_roles,omitempty"`
+	// Name is the display name of the user the token was issued for.
+	Name string `protobuf:"bytes,13,opt,name=name,proto3" json:"name,omitempty"`
+	// Email is the email address of the user the token was issued for.
+	Email         string `protobuf:"bytes,14,opt,name=email,proto3" json:"email,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -221,6 +227,27 @@ func (x *Token) GetAdminRole() AdminRole {
 		return *x.AdminRole
 	}
 	return AdminRole_ADMIN_ROLE_UNSPECIFIED
+}
+
+func (x *Token) GetRawRoles() []string {
+	if x != nil {
+		return x.RawRoles
+	}
+	return nil
+}
+
+func (x *Token) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Token) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
 }
 
 // MethodPermission is a mapping from a subject/project to a service method
@@ -988,7 +1015,7 @@ var File_fits_api_v1_token_proto protoreflect.FileDescriptor
 
 const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\n" +
-	"\x17fits/api/v1/token.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf7\a\n" +
+	"\x17fits/api/v1/token.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe8\b\n" +
 	"\x05Token\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x1e\n" +
 	"\x04user\x18\x02 \x01(\tB\n" +
@@ -1004,7 +1031,10 @@ const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\ftenant_roles\x18\n" +
 	" \x03(\v2#.fits.api.v1.Token.TenantRolesEntryB\x19\xbaH\x16\x9a\x01\x13\xc0\x95\xb8\xb1\x02\x01Е\xb8\xb1\x02\x01*\x05\x82\x01\x02\x10\x01R\vtenantRoles\x12D\n" +
 	"\n" +
-	"admin_role\x18\v \x01(\x0e2\x16.fits.api.v1.AdminRoleB\b\xbaH\x05\x82\x01\x02\x10\x01H\x00R\tadminRole\x88\x01\x01\x1aY\n" +
+	"admin_role\x18\v \x01(\x0e2\x16.fits.api.v1.AdminRoleB\b\xbaH\x05\x82\x01\x02\x10\x01H\x00R\tadminRole\x88\x01\x01\x121\n" +
+	"\traw_roles\x18\f \x03(\tB\x14\xbaH\x11\x92\x01\x0eФ\xb3\xb1\x02\x01ؤ\xb3\xb1\x02\x01\x18\x01R\brawRoles\x12\x1c\n" +
+	"\x04name\x18\r \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\x04name\x12\x1e\n" +
+	"\x05email\x18\x0e \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\x05email\x1aY\n" +
 	"\x11ProjectRolesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12.\n" +
 	"\x05value\x18\x02 \x01(\x0e2\x18.fits.api.v1.ProjectRoleR\x05value:\x028\x01\x1aW\n" +

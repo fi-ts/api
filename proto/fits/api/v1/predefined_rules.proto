@@ -108,6 +108,12 @@ extend buf.validate.RepeatedRules {
     message: "given values must not start or end with whitespace"
     expression: "this.all(m, m.trim().size() == m.size())"
   }];
+  // Are Names returns true if all strings given are names
+  optional bool are_names = 80058955 [(buf.validate.predefined).cel = {
+    id: "repeated.are_names"
+    message: "given names must be valid"
+    expression: "this.all(m, m.size() >= 2 && m.size() <= 128)"
+  }];
 }
 
 extend buf.validate.MapRules {

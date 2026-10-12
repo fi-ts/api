@@ -93,6 +93,24 @@ export type Token = Message<"fits.api.v1.Token"> & {
      * @generated from field: optional fits.api.v1.AdminRole admin_role = 11;
      */
     adminRole?: AdminRole | undefined;
+    /**
+     * RawRoles are the raw roles transmitted by the OIDC provider.
+     *
+     * @generated from field: repeated string raw_roles = 12;
+     */
+    rawRoles: string[];
+    /**
+     * Name is the display name of the user the token was issued for.
+     *
+     * @generated from field: string name = 13;
+     */
+    name: string;
+    /**
+     * Email is the email address of the user the token was issued for.
+     *
+     * @generated from field: string email = 14;
+     */
+    email: string;
 };
 /**
  * Describes the message fits.api.v1.Token.

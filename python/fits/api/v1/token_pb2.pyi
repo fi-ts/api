@@ -23,7 +23,7 @@ TOKEN_TYPE_API: TokenType
 TOKEN_TYPE_USER: TokenType
 
 class Token(_message.Message):
-    __slots__ = ("uuid", "user", "meta", "description", "permissions", "expires", "issued_at", "token_type", "project_roles", "tenant_roles", "admin_role")
+    __slots__ = ("uuid", "user", "meta", "description", "permissions", "expires", "issued_at", "token_type", "project_roles", "tenant_roles", "admin_role", "raw_roles", "name", "email")
     class ProjectRolesEntry(_message.Message):
         __slots__ = ("key", "value")
         KEY_FIELD_NUMBER: _ClassVar[int]
@@ -49,6 +49,9 @@ class Token(_message.Message):
     PROJECT_ROLES_FIELD_NUMBER: _ClassVar[int]
     TENANT_ROLES_FIELD_NUMBER: _ClassVar[int]
     ADMIN_ROLE_FIELD_NUMBER: _ClassVar[int]
+    RAW_ROLES_FIELD_NUMBER: _ClassVar[int]
+    NAME_FIELD_NUMBER: _ClassVar[int]
+    EMAIL_FIELD_NUMBER: _ClassVar[int]
     uuid: str
     user: str
     meta: _common_pb2.Meta
@@ -60,7 +63,10 @@ class Token(_message.Message):
     project_roles: _containers.ScalarMap[str, _common_pb2.ProjectRole]
     tenant_roles: _containers.ScalarMap[str, _common_pb2.TenantRole]
     admin_role: _common_pb2.AdminRole
-    def __init__(self, uuid: _Optional[str] = ..., user: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., description: _Optional[str] = ..., permissions: _Optional[_Iterable[_Union[PermissionsByVisibility, _Mapping]]] = ..., expires: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., issued_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., token_type: _Optional[_Union[TokenType, str]] = ..., project_roles: _Optional[_Mapping[str, _common_pb2.ProjectRole]] = ..., tenant_roles: _Optional[_Mapping[str, _common_pb2.TenantRole]] = ..., admin_role: _Optional[_Union[_common_pb2.AdminRole, str]] = ...) -> None: ...
+    raw_roles: _containers.RepeatedScalarFieldContainer[str]
+    name: str
+    email: str
+    def __init__(self, uuid: _Optional[str] = ..., user: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., description: _Optional[str] = ..., permissions: _Optional[_Iterable[_Union[PermissionsByVisibility, _Mapping]]] = ..., expires: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., issued_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., token_type: _Optional[_Union[TokenType, str]] = ..., project_roles: _Optional[_Mapping[str, _common_pb2.ProjectRole]] = ..., tenant_roles: _Optional[_Mapping[str, _common_pb2.TenantRole]] = ..., admin_role: _Optional[_Union[_common_pb2.AdminRole, str]] = ..., raw_roles: _Optional[_Iterable[str]] = ..., name: _Optional[str] = ..., email: _Optional[str] = ...) -> None: ...
 
 class MethodPermission(_message.Message):
     __slots__ = ("subject", "methods")
