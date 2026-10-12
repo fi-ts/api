@@ -18,9 +18,6 @@ import fits.api.v1.tenant_pb2 as fits_dot_api_dot_v1_dot_tenant__pb2
 
 
 class TenantService(Protocol):
-    async def create(self, request: fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceCreateResponse:
-        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-
     async def list(self, request: fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceListRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceListResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
@@ -30,25 +27,12 @@ class TenantService(Protocol):
     async def update(self, request: fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceUpdateRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceUpdateResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
-    async def delete(self, request: fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceDeleteRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceDeleteResponse:
-        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-
 
 class TenantServiceASGIApplication(ConnectASGIApplication[TenantService]):
     def __init__(self, service: TenantService | AsyncGenerator[TenantService], *, interceptors: Iterable[Interceptor]=(), read_max_bytes: int | None = None, compressions: Iterable[Compression] | None = None, codecs: Iterable[Codec] | None = None) -> None:
         super().__init__(
             service=service,
             endpoints=lambda svc: {
-                "/fits.api.v1.TenantService/Create": Endpoint.unary(
-                    method=MethodInfo(
-                        name="Create",
-                        service_name="fits.api.v1.TenantService",
-                        input=fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceCreateRequest,
-                        output=fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceCreateResponse,
-                        idempotency_level=IdempotencyLevel.UNKNOWN,
-                    ),
-                    function=svc.create,
-                ),
                 "/fits.api.v1.TenantService/List": Endpoint.unary(
                     method=MethodInfo(
                         name="List",
@@ -79,16 +63,6 @@ class TenantServiceASGIApplication(ConnectASGIApplication[TenantService]):
                     ),
                     function=svc.update,
                 ),
-                "/fits.api.v1.TenantService/Delete": Endpoint.unary(
-                    method=MethodInfo(
-                        name="Delete",
-                        service_name="fits.api.v1.TenantService",
-                        input=fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceDeleteRequest,
-                        output=fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceDeleteResponse,
-                        idempotency_level=IdempotencyLevel.UNKNOWN,
-                    ),
-                    function=svc.delete,
-                ),
             },
             interceptors=interceptors,
             read_max_bytes=read_max_bytes,
@@ -103,26 +77,6 @@ class TenantServiceASGIApplication(ConnectASGIApplication[TenantService]):
 
 
 class TenantServiceClient(ConnectClient):
-    async def create(
-        self,
-        request: fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceCreateRequest,
-        *,
-        headers: Headers | Mapping[str, str] | None = None,
-        timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceCreateResponse:
-        return await self.execute_unary(
-            request=request,
-            method=MethodInfo(
-                name="Create",
-                service_name="fits.api.v1.TenantService",
-                input=fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceCreateRequest,
-                output=fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceCreateResponse,
-                idempotency_level=IdempotencyLevel.UNKNOWN,
-            ),
-            headers=headers,
-            timeout_ms=timeout_ms,
-        )
-
     async def list(
         self,
         request: fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceListRequest,
@@ -183,40 +137,16 @@ class TenantServiceClient(ConnectClient):
             timeout_ms=timeout_ms,
         )
 
-    async def delete(
-        self,
-        request: fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceDeleteRequest,
-        *,
-        headers: Headers | Mapping[str, str] | None = None,
-        timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceDeleteResponse:
-        return await self.execute_unary(
-            request=request,
-            method=MethodInfo(
-                name="Delete",
-                service_name="fits.api.v1.TenantService",
-                input=fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceDeleteRequest,
-                output=fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceDeleteResponse,
-                idempotency_level=IdempotencyLevel.UNKNOWN,
-            ),
-            headers=headers,
-            timeout_ms=timeout_ms,
-        )
-
 
 
 
 
 class TenantServiceSync(Protocol):
-    def create(self, request: fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceCreateResponse:
-        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def list(self, request: fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceListRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceListResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def get(self, request: fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceGetRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceGetResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def update(self, request: fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceUpdateRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceUpdateResponse:
-        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-    def delete(self, request: fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceDeleteRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceDeleteResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
 
@@ -224,16 +154,6 @@ class TenantServiceWSGIApplication(ConnectWSGIApplication):
     def __init__(self, service: TenantServiceSync, interceptors: Iterable[InterceptorSync]=(), read_max_bytes: int | None = None, compressions: Iterable[Compression] | None = None, codecs: Iterable[Codec] | None = None) -> None:
         super().__init__(
             endpoints={
-                "/fits.api.v1.TenantService/Create": EndpointSync.unary(
-                    method=MethodInfo(
-                        name="Create",
-                        service_name="fits.api.v1.TenantService",
-                        input=fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceCreateRequest,
-                        output=fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceCreateResponse,
-                        idempotency_level=IdempotencyLevel.UNKNOWN,
-                    ),
-                    function=service.create,
-                ),
                 "/fits.api.v1.TenantService/List": EndpointSync.unary(
                     method=MethodInfo(
                         name="List",
@@ -264,16 +184,6 @@ class TenantServiceWSGIApplication(ConnectWSGIApplication):
                     ),
                     function=service.update,
                 ),
-                "/fits.api.v1.TenantService/Delete": EndpointSync.unary(
-                    method=MethodInfo(
-                        name="Delete",
-                        service_name="fits.api.v1.TenantService",
-                        input=fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceDeleteRequest,
-                        output=fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceDeleteResponse,
-                        idempotency_level=IdempotencyLevel.UNKNOWN,
-                    ),
-                    function=service.delete,
-                ),
             },
             interceptors=interceptors,
             read_max_bytes=read_max_bytes,
@@ -288,26 +198,6 @@ class TenantServiceWSGIApplication(ConnectWSGIApplication):
 
 
 class TenantServiceClientSync(ConnectClientSync):
-    def create(
-        self,
-        request: fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceCreateRequest,
-        *,
-        headers: Headers | Mapping[str, str] | None = None,
-        timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceCreateResponse:
-        return self.execute_unary(
-            request=request,
-            method=MethodInfo(
-                name="Create",
-                service_name="fits.api.v1.TenantService",
-                input=fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceCreateRequest,
-                output=fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceCreateResponse,
-                idempotency_level=IdempotencyLevel.UNKNOWN,
-            ),
-            headers=headers,
-            timeout_ms=timeout_ms,
-        )
-
     def list(
         self,
         request: fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceListRequest,
@@ -362,26 +252,6 @@ class TenantServiceClientSync(ConnectClientSync):
                 service_name="fits.api.v1.TenantService",
                 input=fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceUpdateRequest,
                 output=fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceUpdateResponse,
-                idempotency_level=IdempotencyLevel.UNKNOWN,
-            ),
-            headers=headers,
-            timeout_ms=timeout_ms,
-        )
-
-    def delete(
-        self,
-        request: fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceDeleteRequest,
-        *,
-        headers: Headers | Mapping[str, str] | None = None,
-        timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceDeleteResponse:
-        return self.execute_unary(
-            request=request,
-            method=MethodInfo(
-                name="Delete",
-                service_name="fits.api.v1.TenantService",
-                input=fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceDeleteRequest,
-                output=fits_dot_api_dot_v1_dot_tenant__pb2.TenantServiceDeleteResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,

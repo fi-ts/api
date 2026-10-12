@@ -43,20 +43,6 @@ class TenantServiceGetRequest(_message.Message):
     tenant: str
     def __init__(self, tenant: _Optional[str] = ...) -> None: ...
 
-class TenantServiceCreateRequest(_message.Message):
-    __slots__ = ("name", "description", "email", "avatar_url", "labels")
-    NAME_FIELD_NUMBER: _ClassVar[int]
-    DESCRIPTION_FIELD_NUMBER: _ClassVar[int]
-    EMAIL_FIELD_NUMBER: _ClassVar[int]
-    AVATAR_URL_FIELD_NUMBER: _ClassVar[int]
-    LABELS_FIELD_NUMBER: _ClassVar[int]
-    name: str
-    description: str
-    email: str
-    avatar_url: str
-    labels: _common_pb2.Labels
-    def __init__(self, name: _Optional[str] = ..., description: _Optional[str] = ..., email: _Optional[str] = ..., avatar_url: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.Labels, _Mapping]] = ...) -> None: ...
-
 class TenantServiceUpdateRequest(_message.Message):
     __slots__ = ("tenant", "update_meta", "name", "email", "description", "avatar_url", "labels")
     TENANT_FIELD_NUMBER: _ClassVar[int]
@@ -75,12 +61,6 @@ class TenantServiceUpdateRequest(_message.Message):
     labels: _common_pb2.UpdateLabels
     def __init__(self, tenant: _Optional[str] = ..., update_meta: _Optional[_Union[_common_pb2.UpdateMeta, _Mapping]] = ..., name: _Optional[str] = ..., email: _Optional[str] = ..., description: _Optional[str] = ..., avatar_url: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.UpdateLabels, _Mapping]] = ...) -> None: ...
 
-class TenantServiceDeleteRequest(_message.Message):
-    __slots__ = ("tenant",)
-    TENANT_FIELD_NUMBER: _ClassVar[int]
-    tenant: str
-    def __init__(self, tenant: _Optional[str] = ...) -> None: ...
-
 class TenantServiceGetResponse(_message.Message):
     __slots__ = ("tenant",)
     TENANT_FIELD_NUMBER: _ClassVar[int]
@@ -93,19 +73,7 @@ class TenantServiceListResponse(_message.Message):
     tenants: _containers.RepeatedCompositeFieldContainer[Tenant]
     def __init__(self, tenants: _Optional[_Iterable[_Union[Tenant, _Mapping]]] = ...) -> None: ...
 
-class TenantServiceCreateResponse(_message.Message):
-    __slots__ = ("tenant",)
-    TENANT_FIELD_NUMBER: _ClassVar[int]
-    tenant: Tenant
-    def __init__(self, tenant: _Optional[_Union[Tenant, _Mapping]] = ...) -> None: ...
-
 class TenantServiceUpdateResponse(_message.Message):
-    __slots__ = ("tenant",)
-    TENANT_FIELD_NUMBER: _ClassVar[int]
-    tenant: Tenant
-    def __init__(self, tenant: _Optional[_Union[Tenant, _Mapping]] = ...) -> None: ...
-
-class TenantServiceDeleteResponse(_message.Message):
     __slots__ = ("tenant",)
     TENANT_FIELD_NUMBER: _ClassVar[int]
     tenant: Tenant

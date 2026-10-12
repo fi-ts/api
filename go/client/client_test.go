@@ -26,7 +26,6 @@ func Test_Client(t *testing.T) {
 	synctest.Test(t, func(t *testing.T) {
 		tokenString, err := generateToken(2 * time.Second)
 		require.NoError(t, err)
-		var renewedToken string
 
 		c, err := client.New(&client.DialConfig{
 			BaseURL: "http://localhost",
@@ -51,17 +50,6 @@ func Test_Client(t *testing.T) {
 						},
 					},
 					{
-						WantRequest: &apiv1.TokenServiceRefreshRequest{},
-						WantResponse: func() connect.AnyResponse {
-							tokenString, err := generateToken(2 * time.Second)
-							require.NoError(t, err)
-
-							return connect.NewResponse(&apiv1.TokenServiceRefreshResponse{
-								Secret: tokenString,
-							})
-						},
-					},
-					{
 						WantRequest: &apiv1.VersionServiceGetRequest{},
 						WantResponse: func() connect.AnyResponse {
 							return connect.NewResponse(&apiv1.VersionServiceGetResponse{
@@ -71,12 +59,6 @@ func Test_Client(t *testing.T) {
 					},
 				}),
 			},
-			TokenRenewal: &client.TokenRenewal{
-				PersistTokenFn: func(token string) error {
-					renewedToken = token
-					return nil
-				},
-			},
 			Log: log,
 		})
 
@@ -85,22 +67,18 @@ func Test_Client(t *testing.T) {
 		require.NoError(t, err)
 		require.NotNil(t, v)
 		require.Equal(t, "1.0", v.Version.Version)
-		require.Empty(t, renewedToken)
 
 		time.Sleep(1 * time.Second)
 		v, err = c.Apiv1().Version().Get(t.Context(), &apiv1.VersionServiceGetRequest{})
 		require.NoError(t, err)
 		require.NotNil(t, v)
 		require.Equal(t, "1.0", v.Version.Version)
-		require.Empty(t, renewedToken)
 
 		time.Sleep(3 * time.Second)
 		v, err = c.Apiv1().Version().Get(t.Context(), &apiv1.VersionServiceGetRequest{})
 		require.NoError(t, err)
 		require.NotNil(t, v)
 		require.Equal(t, "1.0", v.Version.Version)
-		require.NotEmpty(t, renewedToken)
-		require.NotEqual(t, renewedToken, tokenString, "haven't changed")
 	})
 }
 
