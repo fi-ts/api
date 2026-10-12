@@ -30,7 +30,6 @@ type (
 		Token string
 		// Tokenfile path to a file containing the string representation of the token.
 		// If Tokenfile is specified, Token cannot be specified.
-		// Token renewal must be done from outside
 		TokenFile string
 
 		// Optional client Interceptors

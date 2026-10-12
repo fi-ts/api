@@ -165,14 +165,6 @@ message AdminPermissions {
   repeated string methods = 1 [(buf.validate.field).repeated.max_items = 500];
 }
 
-// TokenServiceCreateResponse is the response payload of a token create request
-message TokenServiceCreateResponse {
-  // Token which was created
-  Token token = 1;
-  // Secret is the body if the jwt token, should be used in api requests as bearer token
-  string secret = 2;
-}
-
 // TokenServiceListRequest is the request payload to list tokens
 message TokenServiceListRequest {}
 

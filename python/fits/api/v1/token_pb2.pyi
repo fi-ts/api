@@ -124,14 +124,6 @@ class AdminPermissions(_message.Message):
     methods: _containers.RepeatedScalarFieldContainer[str]
     def __init__(self, methods: _Optional[_Iterable[str]] = ...) -> None: ...
 
-class TokenServiceCreateResponse(_message.Message):
-    __slots__ = ("token", "secret")
-    TOKEN_FIELD_NUMBER: _ClassVar[int]
-    SECRET_FIELD_NUMBER: _ClassVar[int]
-    token: Token
-    secret: str
-    def __init__(self, token: _Optional[_Union[Token, _Mapping]] = ..., secret: _Optional[str] = ...) -> None: ...
-
 class TokenServiceListRequest(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...

@@ -312,30 +312,6 @@ export type AdminPermissions = Message<"fits.api.v1.AdminPermissions"> & {
  */
 export declare const AdminPermissionsSchema: GenMessage<AdminPermissions>;
 /**
- * TokenServiceCreateResponse is the response payload of a token create request
- *
- * @generated from message fits.api.v1.TokenServiceCreateResponse
- */
-export type TokenServiceCreateResponse = Message<"fits.api.v1.TokenServiceCreateResponse"> & {
-    /**
-     * Token which was created
-     *
-     * @generated from field: fits.api.v1.Token token = 1;
-     */
-    token?: Token | undefined;
-    /**
-     * Secret is the body if the jwt token, should be used in api requests as bearer token
-     *
-     * @generated from field: string secret = 2;
-     */
-    secret: string;
-};
-/**
- * Describes the message fits.api.v1.TokenServiceCreateResponse.
- * Use `create(TokenServiceCreateResponseSchema)` to create a new message.
- */
-export declare const TokenServiceCreateResponseSchema: GenMessage<TokenServiceCreateResponse>;
-/**
  * TokenServiceListRequest is the request payload to list tokens
  *
  * @generated from message fits.api.v1.TokenServiceListRequest
