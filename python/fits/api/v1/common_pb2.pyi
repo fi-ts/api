@@ -16,7 +16,7 @@ DESCRIPTOR: _descriptor.FileDescriptor
 class TenantRole(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
     TENANT_ROLE_UNSPECIFIED: _ClassVar[TenantRole]
-    TENANT_ROLE_OWNER: _ClassVar[TenantRole]
+    TENANT_ROLE_ADMIN: _ClassVar[TenantRole]
     TENANT_ROLE_EDITOR: _ClassVar[TenantRole]
     TENANT_ROLE_VIEWER: _ClassVar[TenantRole]
     TENANT_ROLE_GUEST: _ClassVar[TenantRole]
@@ -24,7 +24,7 @@ class TenantRole(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
 class ProjectRole(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
     PROJECT_ROLE_UNSPECIFIED: _ClassVar[ProjectRole]
-    PROJECT_ROLE_OWNER: _ClassVar[ProjectRole]
+    PROJECT_ROLE_ADMIN: _ClassVar[ProjectRole]
     PROJECT_ROLE_EDITOR: _ClassVar[ProjectRole]
     PROJECT_ROLE_VIEWER: _ClassVar[ProjectRole]
 
@@ -52,12 +52,12 @@ class OptimisticLockingStrategy(int, metaclass=_enum_type_wrapper.EnumTypeWrappe
     OPTIMISTIC_LOCKING_STRATEGY_CLIENT: _ClassVar[OptimisticLockingStrategy]
     OPTIMISTIC_LOCKING_STRATEGY_SERVER: _ClassVar[OptimisticLockingStrategy]
 TENANT_ROLE_UNSPECIFIED: TenantRole
-TENANT_ROLE_OWNER: TenantRole
+TENANT_ROLE_ADMIN: TenantRole
 TENANT_ROLE_EDITOR: TenantRole
 TENANT_ROLE_VIEWER: TenantRole
 TENANT_ROLE_GUEST: TenantRole
 PROJECT_ROLE_UNSPECIFIED: ProjectRole
-PROJECT_ROLE_OWNER: ProjectRole
+PROJECT_ROLE_ADMIN: ProjectRole
 PROJECT_ROLE_EDITOR: ProjectRole
 PROJECT_ROLE_VIEWER: ProjectRole
 ADMIN_ROLE_UNSPECIFIED: AdminRole

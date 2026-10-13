@@ -11,8 +11,8 @@ import "google/protobuf/timestamp.proto";
 enum TenantRole {
   // TENANT_ROLE_UNSPECIFIED is not specified
   TENANT_ROLE_UNSPECIFIED = 0;
-  // TENANT_ROLE_OWNER the logged in user needs at least owner role to call this method
-  TENANT_ROLE_OWNER = 1;
+  // TENANT_ROLE_ADMIN the logged in user needs at least admin role to call this method
+  TENANT_ROLE_ADMIN = 1;
   // TENANT_ROLE_EDITOR the logged in user needs at least editor role to call this method
   TENANT_ROLE_EDITOR = 2;
   // TENANT_ROLE_VIEWER the logged in user needs at least viewer role to call this method
@@ -27,8 +27,8 @@ enum TenantRole {
 enum ProjectRole {
   // PROJECT_ROLE_UNSPECIFIED is not specified
   PROJECT_ROLE_UNSPECIFIED = 0;
-  // PROJECT_ROLE_OWNER the logged in user needs at least owner role to call this method
-  PROJECT_ROLE_OWNER = 1;
+  // PROJECT_ROLE_ADMIN the logged in user needs at least admin role to call this method
+  PROJECT_ROLE_ADMIN = 1;
   // PROJECT_ROLE_EDITOR the logged in user needs at least editor role to call this method
   PROJECT_ROLE_EDITOR = 2;
   // PROJECT_ROLE_VIEWER the logged in user needs at least viewer role to call this method

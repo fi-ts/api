@@ -24,7 +24,7 @@ type (
 
 func (tenant) Get(methodOpts []*descriptorpb.UninterpretedOption) (scopes []string) {
 	scopes = getScopes(methodOpts, []string{
-		v1.TenantRole_TENANT_ROLE_OWNER.String(),
+		v1.TenantRole_TENANT_ROLE_ADMIN.String(),
 		v1.TenantRole_TENANT_ROLE_EDITOR.String(),
 		v1.TenantRole_TENANT_ROLE_VIEWER.String(),
 	})
@@ -33,7 +33,7 @@ func (tenant) Get(methodOpts []*descriptorpb.UninterpretedOption) (scopes []stri
 
 func (project) Get(methodOpts []*descriptorpb.UninterpretedOption) (scopes []string) {
 	scopes = getScopes(methodOpts, []string{
-		v1.ProjectRole_PROJECT_ROLE_OWNER.String(),
+		v1.ProjectRole_PROJECT_ROLE_ADMIN.String(),
 		v1.ProjectRole_PROJECT_ROLE_EDITOR.String(),
 		v1.ProjectRole_PROJECT_ROLE_VIEWER.String(),
 	})

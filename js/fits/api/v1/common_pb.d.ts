@@ -149,11 +149,11 @@ export declare enum TenantRole {
      */
     UNSPECIFIED = 0,
     /**
-     * TENANT_ROLE_OWNER the logged in user needs at least owner role to call this method
+     * TENANT_ROLE_ADMIN the logged in user needs at least admin role to call this method
      *
-     * @generated from enum value: TENANT_ROLE_OWNER = 1;
+     * @generated from enum value: TENANT_ROLE_ADMIN = 1;
      */
-    OWNER = 1,
+    ADMIN = 1,
     /**
      * TENANT_ROLE_EDITOR the logged in user needs at least editor role to call this method
      *
@@ -192,11 +192,11 @@ export declare enum ProjectRole {
      */
     UNSPECIFIED = 0,
     /**
-     * PROJECT_ROLE_OWNER the logged in user needs at least owner role to call this method
+     * PROJECT_ROLE_ADMIN the logged in user needs at least admin role to call this method
      *
-     * @generated from enum value: PROJECT_ROLE_OWNER = 1;
+     * @generated from enum value: PROJECT_ROLE_ADMIN = 1;
      */
-    OWNER = 1,
+    ADMIN = 1,
     /**
      * PROJECT_ROLE_EDITOR the logged in user needs at least editor role to call this method
      *

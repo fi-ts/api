@@ -30,8 +30,8 @@ type TenantRole int32
 const (
 	// TENANT_ROLE_UNSPECIFIED is not specified
 	TenantRole_TENANT_ROLE_UNSPECIFIED TenantRole = 0
-	// TENANT_ROLE_OWNER the logged in user needs at least owner role to call this method
-	TenantRole_TENANT_ROLE_OWNER TenantRole = 1
+	// TENANT_ROLE_ADMIN the logged in user needs at least admin role to call this method
+	TenantRole_TENANT_ROLE_ADMIN TenantRole = 1
 	// TENANT_ROLE_EDITOR the logged in user needs at least editor role to call this method
 	TenantRole_TENANT_ROLE_EDITOR TenantRole = 2
 	// TENANT_ROLE_VIEWER the logged in user needs at least viewer role to call this method
@@ -46,14 +46,14 @@ const (
 var (
 	TenantRole_name = map[int32]string{
 		0: "TENANT_ROLE_UNSPECIFIED",
-		1: "TENANT_ROLE_OWNER",
+		1: "TENANT_ROLE_ADMIN",
 		2: "TENANT_ROLE_EDITOR",
 		3: "TENANT_ROLE_VIEWER",
 		4: "TENANT_ROLE_GUEST",
 	}
 	TenantRole_value = map[string]int32{
 		"TENANT_ROLE_UNSPECIFIED": 0,
-		"TENANT_ROLE_OWNER":       1,
+		"TENANT_ROLE_ADMIN":       1,
 		"TENANT_ROLE_EDITOR":      2,
 		"TENANT_ROLE_VIEWER":      3,
 		"TENANT_ROLE_GUEST":       4,
@@ -93,8 +93,8 @@ type ProjectRole int32
 const (
 	// PROJECT_ROLE_UNSPECIFIED is not specified
 	ProjectRole_PROJECT_ROLE_UNSPECIFIED ProjectRole = 0
-	// PROJECT_ROLE_OWNER the logged in user needs at least owner role to call this method
-	ProjectRole_PROJECT_ROLE_OWNER ProjectRole = 1
+	// PROJECT_ROLE_ADMIN the logged in user needs at least admin role to call this method
+	ProjectRole_PROJECT_ROLE_ADMIN ProjectRole = 1
 	// PROJECT_ROLE_EDITOR the logged in user needs at least editor role to call this method
 	ProjectRole_PROJECT_ROLE_EDITOR ProjectRole = 2
 	// PROJECT_ROLE_VIEWER the logged in user needs at least viewer role to call this method
@@ -105,13 +105,13 @@ const (
 var (
 	ProjectRole_name = map[int32]string{
 		0: "PROJECT_ROLE_UNSPECIFIED",
-		1: "PROJECT_ROLE_OWNER",
+		1: "PROJECT_ROLE_ADMIN",
 		2: "PROJECT_ROLE_EDITOR",
 		3: "PROJECT_ROLE_VIEWER",
 	}
 	ProjectRole_value = map[string]int32{
 		"PROJECT_ROLE_UNSPECIFIED": 0,
-		"PROJECT_ROLE_OWNER":       1,
+		"PROJECT_ROLE_ADMIN":       1,
 		"PROJECT_ROLE_EDITOR":      2,
 		"PROJECT_ROLE_VIEWER":      3,
 	}
@@ -766,13 +766,13 @@ const file_fits_api_v1_common_proto_rawDesc = "" +
 	"\n" +
 	"TenantRole\x12\x1b\n" +
 	"\x17TENANT_ROLE_UNSPECIFIED\x10\x00\x12\x15\n" +
-	"\x11TENANT_ROLE_OWNER\x10\x01\x12\x16\n" +
+	"\x11TENANT_ROLE_ADMIN\x10\x01\x12\x16\n" +
 	"\x12TENANT_ROLE_EDITOR\x10\x02\x12\x16\n" +
 	"\x12TENANT_ROLE_VIEWER\x10\x03\x12\x15\n" +
 	"\x11TENANT_ROLE_GUEST\x10\x04*u\n" +
 	"\vProjectRole\x12\x1c\n" +
 	"\x18PROJECT_ROLE_UNSPECIFIED\x10\x00\x12\x16\n" +
-	"\x12PROJECT_ROLE_OWNER\x10\x01\x12\x17\n" +
+	"\x12PROJECT_ROLE_ADMIN\x10\x01\x12\x17\n" +
 	"\x13PROJECT_ROLE_EDITOR\x10\x02\x12\x17\n" +
 	"\x13PROJECT_ROLE_VIEWER\x10\x03*U\n" +
 	"\tAdminRole\x12\x1a\n" +

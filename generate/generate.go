@@ -158,7 +158,7 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 						auditable[methodName] = true
 						// Tenant
 						switch role := *methodOpt.IdentifierValue; role {
-						case v1.TenantRole_TENANT_ROLE_OWNER.String(), v1.TenantRole_TENANT_ROLE_EDITOR.String(), v1.TenantRole_TENANT_ROLE_VIEWER.String(), v1.TenantRole_TENANT_ROLE_GUEST.String():
+						case v1.TenantRole_TENANT_ROLE_ADMIN.String(), v1.TenantRole_TENANT_ROLE_EDITOR.String(), v1.TenantRole_TENANT_ROLE_VIEWER.String(), v1.TenantRole_TENANT_ROLE_GUEST.String():
 							apirole := v1.TenantRole(v1.TenantRole_value[role])
 							if methods := roles.Tenant[apirole]; methods == nil {
 								roles.Tenant[apirole] = permissions.Methods{}
@@ -168,7 +168,7 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 						case v1.TenantRole_TENANT_ROLE_UNSPECIFIED.String():
 							// noop
 						// Project
-						case v1.ProjectRole_PROJECT_ROLE_OWNER.String(), v1.ProjectRole_PROJECT_ROLE_EDITOR.String(), v1.ProjectRole_PROJECT_ROLE_VIEWER.String():
+						case v1.ProjectRole_PROJECT_ROLE_ADMIN.String(), v1.ProjectRole_PROJECT_ROLE_EDITOR.String(), v1.ProjectRole_PROJECT_ROLE_VIEWER.String():
 							apirole := v1.ProjectRole(v1.ProjectRole_value[role])
 							if methods := roles.Project[apirole]; methods == nil {
 								roles.Project[apirole] = permissions.Methods{}

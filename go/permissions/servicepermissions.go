@@ -29,7 +29,7 @@ func GetServicePermissions() *ServicePermissions {
 		Roles: Roles{
 			Admin: Admin{},
 			Tenant: Tenant{
-				v1.TenantRole_TENANT_ROLE_OWNER: map[string]struct{}{
+				v1.TenantRole_TENANT_ROLE_ADMIN: map[string]struct{}{
 					"/fits.api.mvm.v1.DomainService/List":   {},
 					"/fits.api.mvm.v1.LDAPService/List":     {},
 					"/fits.api.mvm.v1.LocationService/List": {},
@@ -59,7 +59,7 @@ func GetServicePermissions() *ServicePermissions {
 				},
 			},
 			Project: Project{
-				v1.ProjectRole_PROJECT_ROLE_OWNER: map[string]struct{}{
+				v1.ProjectRole_PROJECT_ROLE_ADMIN: map[string]struct{}{
 					"/fits.api.mvm.v1.MVMService/AddDisk":                     {},
 					"/fits.api.mvm.v1.MVMService/AddNetworkInterface":         {},
 					"/fits.api.mvm.v1.MVMService/Create":                      {},
