@@ -112,7 +112,7 @@ type Token struct {
 	TenantRoles map[string]TenantRole `protobuf:"bytes,10,rep,name=tenant_roles,json=tenantRoles,proto3" json:"tenant_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.TenantRole"`
 	// AdminRole defines the admin role of the token owner
 	AdminRole *AdminRole `protobuf:"varint,11,opt,name=admin_role,json=adminRole,proto3,enum=fits.api.v1.AdminRole,oneof" json:"admin_role,omitempty"`
-	// RawRoles are the raw roles transmitted by the OIDC provider.
+	// RawRoles are the normalized roles transmitted by the OIDC provider.
 	RawRoles []string `protobuf:"bytes,12,rep,name=raw_roles,json=rawRoles,proto3" json:"raw_roles,omitempty"`
 	// Name is the display name of the user the token was issued for.
 	Name string `protobuf:"bytes,13,opt,name=name,proto3" json:"name,omitempty"`

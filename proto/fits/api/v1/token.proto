@@ -76,7 +76,7 @@ message Token {
   ];
   // AdminRole defines the admin role of the token owner
   optional AdminRole admin_role = 11 [(buf.validate.field).enum.defined_only = true];
-  // RawRoles are the raw roles transmitted by the OIDC provider.
+  // RawRoles are the normalized roles transmitted by the OIDC provider.
   repeated string raw_roles = 12 [
     (buf.validate.field).repeated.unique = true,
     (buf.validate.field).repeated.(fits.api.v1.all_trimmed) = true,
