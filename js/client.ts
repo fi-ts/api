@@ -21,8 +21,6 @@ import { VLANService as Apimvmv1VLANService } from "./fits/api/mvm/v1/vlan_pb";
 
 import { HealthService as Apiv1HealthService } from "./fits/api/v1/health_pb";
 
-import { IPService as Apiv1IPService } from "./fits/api/v1/ip_pb";
-
 import { MethodService as Apiv1MethodService } from "./fits/api/v1/method_pb";
 
 import { ProjectService as Apiv1ProjectService } from "./fits/api/v1/project_pb";
@@ -70,8 +68,6 @@ export interface Apimvmv1 {
 export interface Apiv1 {
 
   health(): ConnectClient<typeof Apiv1HealthService>;
-
-  ip(): ConnectClient<typeof Apiv1IPService>;
 
   method(): ConnectClient<typeof Apiv1MethodService>;
 
@@ -221,8 +217,6 @@ class Apiv1Impl implements Apiv1 {
 
   private _health?: ConnectClient<typeof Apiv1HealthService>;
 
-  private _ip?: ConnectClient<typeof Apiv1IPService>;
-
   private _method?: ConnectClient<typeof Apiv1MethodService>;
 
   private _project?: ConnectClient<typeof Apiv1ProjectService>;
@@ -244,13 +238,6 @@ class Apiv1Impl implements Apiv1 {
       this._health = createClient(Apiv1HealthService, this.transport);
     }
     return this._health;
-  }
-
-  ip(): ConnectClient<typeof Apiv1IPService> {
-    if (!this._ip) {
-      this._ip = createClient(Apiv1IPService, this.transport);
-    }
-    return this._ip;
   }
 
   method(): ConnectClient<typeof Apiv1MethodService> {
