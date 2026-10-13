@@ -113,7 +113,7 @@ export type Token = Message<"fits.api.v1.Token"> & {
   adminRole?: AdminRole | undefined;
 
   /**
-   * RawRoles are the raw roles transmitted by the OIDC provider.
+   * RawRoles are the normalized roles transmitted by the OIDC provider.
    *
    * @generated from field: repeated string raw_roles = 12;
    */
