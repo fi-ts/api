@@ -36,9 +36,7 @@ type Tenant struct {
 	// Description of this tenant
 	Description string `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
 	// AvatarUrl of the tenant
-	AvatarUrl string `protobuf:"bytes,6,opt,name=avatar_url,json=avatarUrl,proto3" json:"avatar_url,omitempty"`
-	// CreatedBy stores who created this tenant
-	CreatedBy     string `protobuf:"bytes,7,opt,name=created_by,json=createdBy,proto3" json:"created_by,omitempty"`
+	AvatarUrl     string `protobuf:"bytes,6,opt,name=avatar_url,json=avatarUrl,proto3" json:"avatar_url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -111,13 +109,6 @@ func (x *Tenant) GetDescription() string {
 func (x *Tenant) GetAvatarUrl() string {
 	if x != nil {
 		return x.AvatarUrl
-	}
-	return ""
-}
-
-func (x *Tenant) GetCreatedBy() string {
-	if x != nil {
-		return x.CreatedBy
 	}
 	return ""
 }
@@ -474,7 +465,7 @@ var File_fits_api_v1_tenant_proto protoreflect.FileDescriptor
 
 const file_fits_api_v1_tenant_proto_rawDesc = "" +
 	"\n" +
-	"\x18fits/api/v1/tenant.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xe9\x01\n" +
+	"\x18fits/api/v1/tenant.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xd0\x01\n" +
 	"\x06Tenant\x12\x14\n" +
 	"\x05login\x18\x01 \x01(\tR\x05login\x12%\n" +
 	"\x04meta\x18\x02 \x01(\v2\x11.fits.api.v1.MetaR\x04meta\x12\x1f\n" +
@@ -482,9 +473,7 @@ const file_fits_api_v1_tenant_proto_rawDesc = "" +
 	"\x05email\x18\x04 \x01(\tR\x05email\x12-\n" +
 	"\vdescription\x18\x05 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\vdescription\x12\x1d\n" +
 	"\n" +
-	"avatar_url\x18\x06 \x01(\tR\tavatarUrl\x12\x1d\n" +
-	"\n" +
-	"created_by\x18\a \x01(\tR\tcreatedBy\"\xa2\x01\n" +
+	"avatar_url\x18\x06 \x01(\tR\tavatarUrlJ\x04\b\a\x10\b\"\xa2\x01\n" +
 	"\x18TenantServiceListRequest\x12\x13\n" +
 	"\x02id\x18\x01 \x01(\tH\x00R\x02id\x88\x01\x01\x12$\n" +
 	"\x04name\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01H\x01R\x04name\x88\x01\x01\x120\n" +

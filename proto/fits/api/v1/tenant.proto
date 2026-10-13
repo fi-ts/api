@@ -43,8 +43,7 @@ message Tenant {
   string description = 5 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
   // AvatarUrl of the tenant
   string avatar_url = 6;
-  // CreatedBy stores who created this tenant
-  string created_by = 7;
+  reserved 7;
 }
 
 // TenantServiceListRequest is the request payload of the tenant list request

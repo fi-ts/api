@@ -47,12 +47,6 @@ export type Tenant = Message<"fits.api.v1.Tenant"> & {
      * @generated from field: string avatar_url = 6;
      */
     avatarUrl: string;
-    /**
-     * CreatedBy stores who created this tenant
-     *
-     * @generated from field: string created_by = 7;
-     */
-    createdBy: string;
 };
 /**
  * Describes the message fits.api.v1.Tenant.
