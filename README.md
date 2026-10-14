@@ -5,7 +5,7 @@
 > [!IMPORTANT]
 > Please note that this repository is still in alpha stage. We will make a special announcement when this repository becomes GA.
 
-This is the API of [fi-ts.io](https://fi-ts.io), defined in the `fits.api.v1` proto package.
+This is the API of fi-ts.io, defined in the `fits.api.v1` proto package.
 
 ## Usage examples
 
