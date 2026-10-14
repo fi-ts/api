@@ -3,68 +3,98 @@
 [![Release](https://github.com/fi-ts/api/actions/workflows/main.yml/badge.svg)](https://github.com/fi-ts/api/actions/workflows/main.yml) [![go.dev reference](https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white&style=flat-square)](https://pkg.go.dev/github.com/fi-ts/api) ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/fi-ts/api) ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/fi-ts/api) [![Go Report Card](https://goreportcard.com/badge/github.com/fi-ts/api)](https://goreportcard.com/report/github.com/fi-ts/api)
 
 > [!IMPORTANT]
-> Please note that this repository is still in alpha stage. For now, the primary API is still defined in the [metal-api](https://github.com/fi-ts/metal-api) project. We will make a special announcement when this repository becomes GA.
+> Please note that this repository is still in alpha stage. We will make a special announcement when this repository becomes GA.
 
-This is the V2 API of [fi-ts.io](https://fi-ts.io) to implement [MEP-4](https://fi-ts.io/docs/MEP-4-multi-tenancy-for-the-metal-api).
+This is the API of fi-ts.io, defined in the `fits.api.v1` proto package.
 
 ## Usage examples
 
-Can be found in the [examples](examples/) folder.
+The API ships generated clients for Go, TypeScript and Python.
+
+**Go** ([`go/client`](go/client)):
+
+```go
+import (
+	"github.com/fi-ts/api/go/client"
+	apiv1 "github.com/fi-ts/api/go/fits/api/v1"
+)
+
+c, err := client.New(&client.DialConfig{
+	BaseURL: "https://api.fi-ts.io",
+	Token:   token,
+})
+version, err := c.Apiv1().Version().Get(ctx, &apiv1.VersionServiceGetRequest{})
+```
+
+**TypeScript** ([`js/client.ts`](js/client.ts)):
+
+```ts
+import { newClient } from "@fi-ts/api/client";
+
+const c = newClient({ baseUrl: "https://api.fi-ts.io", token });
+const version = await c.apiv1().version().get({});
+```
+
+**Python** ([`python/fits/client`](python/fits/client)):
+
+```python
+from fits.api.v1 import version_pb2
+from fits.client.client import Client
+
+c = Client(baseurl="https://api.fi-ts.io")
+version = c.apiv1().version().get(version_pb2.VersionServiceGetRequest())
+```
 
 ## Conventions
 
-Method options provide an intuitve and declarative way of providing annotations to service methods.
+Method options provide an intuitive and declarative way of providing annotations to service methods.
 These are used for scoping api-methods, which are getting utilized for authentication, authorization and auditing (mainly in interceptors).
 
 ### Motivational Example
 
 ```proto
-service IPService {
-  // Get an ip
-  rpc Get(IPServiceGetRequest) returns (IPServiceGetResponse) {
+service ProjectService {
+  // Returns the list of all accessible projects.
+  rpc List(ProjectServiceListRequest) returns (ProjectServiceListResponse) {
+    option (visibility) = VISIBILITY_SELF;
+    option (auditing) = AUDITING_EXCLUDED;
+  }
+  // Returns the project with the specified UUID.
+  rpc Get(ProjectServiceGetRequest) returns (ProjectServiceGetResponse) {
     option (project_roles) = PROJECT_ROLE_OWNER;
     option (project_roles) = PROJECT_ROLE_EDITOR;
     option (project_roles) = PROJECT_ROLE_VIEWER;
     option (auditing) = AUDITING_EXCLUDED;
   }
-  // Create an ip
-  rpc Create(IPServiceCreateRequest) returns (IPServiceCreateResponse) {
-    option (project_roles) = PROJECT_ROLE_OWNER;
-    option (project_roles) = PROJECT_ROLE_EDITOR;
+  // Create a project
+  rpc Create(ProjectServiceCreateRequest) returns (ProjectServiceCreateResponse) {
+    option (tenant_roles) = TENANT_ROLE_OWNER;
+    option (tenant_roles) = TENANT_ROLE_EDITOR;
+    option (auditing) = AUDITING_INCLUDED;
   }
 }
 
-// IPServiceCreateRequest is the request payload for a ip create request
-message IPServiceCreateRequest {
-  // Network from which the IP should be created
-  string network = 1 [(buf.validate.field).string = {
-    min_len: 2
-    max_len: 128
-  }];
-  // Project of the ip
-  string project = 2 [(buf.validate.field).string.uuid = true];
-  // Name of the ip
-  optional string name = 3 [(buf.validate.field).string.(metalstack.api.v2.is_name) = true];
-  // Description of the ip
-  optional string description = 4 [(buf.validate.field).string.(metalstack.api.v2.is_description) = true];
-  // IP if given try to create this ip if still available
-  optional string ip = 5 [(buf.validate.field).string.ip = true];
-  // Machine for which this ip should get created
-  optional string machine = 6 [(buf.validate.field).string.uuid = true];
-  // Labels to put onto the ip
-  optional Labels labels = 7;
-  // Type of the IP, ether ephemeral (default), or static
-  optional IPType type = 8 [(buf.validate.field).enum.defined_only = true];
-  // Addressfamily of the IP to create, defaults to ipv4
-  optional IPAddressFamily address_family = 9 [(buf.validate.field).enum.defined_only = true];
+// ProjectServiceCreateRequest is the request payload to create a project
+message ProjectServiceCreateRequest {
+  // Tenant is the tenant of this project (the tenant login)
+  string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Name of this project, unique per tenant
+  string name = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Description of this project
+  string description = 3 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
+  // Avatar URL of the project
+  optional string avatar_url = 4;
+  // Labels on the project
+  Labels labels = 5;
 }
 ```
 
 In this example we can see the motivation behind the method options.
 
-1. Get: can be issued by project owner, editor, viewer and is excluded from auditing
-2. Allocate: can be used by project owner, editor
-3. Both methods are project-scoped, since they are annotated by a project role -> Request object needs to have the **project** field in order to specify the target project of the service method
+1. List: is visible to the authenticated user only (`VISIBILITY_SELF`) and is excluded from auditing
+2. Get: is project-scoped, can be issued by project owner, editor and viewer, and is excluded from auditing
+3. Create: is tenant-scoped, can be issued by tenant owner and editor, and is audited
+4. Methods annotated with a project role are project-scoped, so the request object needs to have the **project** field to specify the target project of the service method; methods annotated with a tenant role are tenant-scoped and need the **tenant** field instead
 
 Further explanations are explained in the following.
 
@@ -72,23 +102,23 @@ Further explanations are explained in the following.
 
 These options specify the RBAC of the api-endpoint.
 
-| Option         | Description                                  | Values      | Explanation                                            |
-| -------------- | -------------------------------------------- | ----------- | ------------------------------------------------------ |
-| TENANT_ROLE\_  | Specifies the required tenant role           | UNSPECIFIED |                                                        |
-|                |                                              | OWNER       | tenant owner                                           |
-|                |                                              | EDITOR      | tenant editor                                          |
-|                |                                              | VIEWER      | tenant viewer                                          |
-|                |                                              | GUEST       | tenant guest                                           |
-| PROJECT_ROLE\_ | Specifies the required project role          | UNSPECIFIED |                                                        |
-|                |                                              | OWNER       | project owner                                          |
-|                |                                              | EDITOR      | project editor                                         |
-|                |                                              | VIEWER      | project viewer                                         |
-| OPERATOR_ROLE\_ | Specifies the required operator role         | UNSPECIFIED |                                                        |
-|                |                                              | EDITOR      | operator editor                                        |
-|                |                                              | VIEWER      | operator viewer                                        |
-| VISIBILITY\_   | Specifies the visibility of the api-endpoint | UNSPECIFIED |                                                        |
-|                |                                              | PUBLIC      | api-method is visible to public, a token is not needed |
-|                |                                              | SELF        | api-method is scoped to owner resources                |
+| Option           | Description                                  | Values      | Explanation                                            |
+| ---------------- | -------------------------------------------- | ----------- | ------------------------------------------------------ |
+| `tenant_roles`   | Specifies the required tenant role           | UNSPECIFIED |                                                        |
+|                  |                                              | OWNER       | tenant owner                                           |
+|                  |                                              | EDITOR      | tenant editor                                          |
+|                  |                                              | VIEWER      | tenant viewer                                          |
+|                  |                                              | GUEST       | tenant guest                                           |
+| `project_roles`  | Specifies the required project role          | UNSPECIFIED |                                                        |
+|                  |                                              | OWNER       | project owner                                          |
+|                  |                                              | EDITOR      | project editor                                         |
+|                  |                                              | VIEWER      | project viewer                                         |
+| `operator_roles` | Specifies the required operator role         | UNSPECIFIED |                                                        |
+|                  |                                              | EDITOR      | operator editor                                        |
+|                  |                                              | VIEWER      | operator viewer                                        |
+| `visibility`     | Specifies the visibility of the api-endpoint | UNSPECIFIED |                                                        |
+|                  |                                              | PUBLIC      | api-method is visible to public, a token is not needed |
+|                  |                                              | SELF        | api-method is scoped to owner resources                |
 
 > [!IMPORTANT]
 >
