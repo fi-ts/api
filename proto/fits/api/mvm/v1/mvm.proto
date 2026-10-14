@@ -238,14 +238,15 @@ message ManagedVM {
   string os_uuid = 6 [(buf.validate.field).string.uuid = true];
   // UUID of the datacenter location.
   string location_uuid = 7 [(buf.validate.field).string.uuid = true];
-  // TODO: Contact UUID – not yet implemented; open discussion with FCN (#23).
+  // UUID of the contact person responsible for this MVM.
+  // TODO: open discussion with FCN (#23) on whether this becomes a dedicated
+  // /contact endpoint.
   string contact_uuid = 8 [(buf.validate.field).string.uuid = true];
   // Number of CPU cores.
   uint32 cpu = 9;
   // RAM in GB.
   uint32 ram = 10;
   // Whether backup is enabled.
-  // TODO: the upstream (nulink) list/get models do not expose this; always false.
   bool backup = 11;
   // Whether the MVM is encrypted.
   bool encrypted = 12;

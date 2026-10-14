@@ -557,14 +557,15 @@ type ManagedVM struct {
 	OsUuid string `protobuf:"bytes,6,opt,name=os_uuid,json=osUuid,proto3" json:"os_uuid,omitempty"`
 	// UUID of the datacenter location.
 	LocationUuid string `protobuf:"bytes,7,opt,name=location_uuid,json=locationUuid,proto3" json:"location_uuid,omitempty"`
-	// TODO: Contact UUID – not yet implemented; open discussion with FCN (#23).
+	// UUID of the contact person responsible for this MVM.
+	// TODO: open discussion with FCN (#23) on whether this becomes a dedicated
+	// /contact endpoint.
 	ContactUuid string `protobuf:"bytes,8,opt,name=contact_uuid,json=contactUuid,proto3" json:"contact_uuid,omitempty"`
 	// Number of CPU cores.
 	Cpu uint32 `protobuf:"varint,9,opt,name=cpu,proto3" json:"cpu,omitempty"`
 	// RAM in GB.
 	Ram uint32 `protobuf:"varint,10,opt,name=ram,proto3" json:"ram,omitempty"`
 	// Whether backup is enabled.
-	// TODO: the upstream (nulink) list/get models do not expose this; always false.
 	Backup bool `protobuf:"varint,11,opt,name=backup,proto3" json:"backup,omitempty"`
 	// Whether the MVM is encrypted.
 	Encrypted bool `protobuf:"varint,12,opt,name=encrypted,proto3" json:"encrypted,omitempty"`

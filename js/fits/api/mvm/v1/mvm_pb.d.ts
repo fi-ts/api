@@ -173,7 +173,9 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
      */
     locationUuid: string;
     /**
-     * TODO: Contact UUID – not yet implemented; open discussion with FCN (#23).
+     * UUID of the contact person responsible for this MVM.
+     * TODO: open discussion with FCN (#23) on whether this becomes a dedicated
+     * /contact endpoint.
      *
      * @generated from field: string contact_uuid = 8;
      */
@@ -192,7 +194,6 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
     ram: number;
     /**
      * Whether backup is enabled.
-     * TODO: the upstream (nulink) list/get models do not expose this; always false.
      *
      * @generated from field: bool backup = 11;
      */
