@@ -215,34 +215,34 @@ export declare enum ProjectRole {
  */
 export declare const ProjectRoleSchema: GenEnum<ProjectRole>;
 /**
- * AdminRole specifies what role a logged in user needs to call this admin service
+ * OperatorRole specifies what role a logged in user needs to call this operator service
  *
- * @generated from enum fits.api.v1.AdminRole
+ * @generated from enum fits.api.v1.OperatorRole
  */
-export declare enum AdminRole {
+export declare enum OperatorRole {
     /**
-     * ADMIN_ROLE_UNSPECIFIED is not specified
+     * OPERATOR_ROLE_UNSPECIFIED is not specified
      *
-     * @generated from enum value: ADMIN_ROLE_UNSPECIFIED = 0;
+     * @generated from enum value: OPERATOR_ROLE_UNSPECIFIED = 0;
      */
     UNSPECIFIED = 0,
     /**
-     * ADMIN_ROLE_EDITOR the logged in user needs at least editor role to call this method
+     * OPERATOR_ROLE_EDITOR the logged in user needs at least editor role to call this method
      *
-     * @generated from enum value: ADMIN_ROLE_EDITOR = 1;
+     * @generated from enum value: OPERATOR_ROLE_EDITOR = 1;
      */
     EDITOR = 1,
     /**
-     * ADMIN_ROLE_VIEWER the logged in user needs at least viewer role to call this method
+     * OPERATOR_ROLE_VIEWER the logged in user needs at least viewer role to call this method
      *
-     * @generated from enum value: ADMIN_ROLE_VIEWER = 2;
+     * @generated from enum value: OPERATOR_ROLE_VIEWER = 2;
      */
     VIEWER = 2
 }
 /**
- * Describes the enum fits.api.v1.AdminRole.
+ * Describes the enum fits.api.v1.OperatorRole.
  */
-export declare const AdminRoleSchema: GenEnum<AdminRole>;
+export declare const OperatorRoleSchema: GenEnum<OperatorRole>;
 /**
  * Visibility of a method
  *
@@ -347,11 +347,11 @@ export declare const tenant_roles: GenExtension<MethodOptions, TenantRole[]>;
  */
 export declare const project_roles: GenExtension<MethodOptions, ProjectRole[]>;
 /**
- * AdminRoles are used to define which admin role a logged in user must provide to call this method
+ * OperatorRoles are used to define which operator role a logged in user must provide to call this method
  *
- * @generated from extension: repeated fits.api.v1.AdminRole admin_roles = 51002;
+ * @generated from extension: repeated fits.api.v1.OperatorRole operator_roles = 51002;
  */
-export declare const admin_roles: GenExtension<MethodOptions, AdminRole[]>;
+export declare const operator_roles: GenExtension<MethodOptions, OperatorRole[]>;
 /**
  * Visibility defines the visibility of this method, this is used to have public or self visible methods
  *

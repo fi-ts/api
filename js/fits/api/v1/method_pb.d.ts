@@ -1,5 +1,5 @@
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import type { AdminRole, ProjectRole, TenantRole } from "./common_pb.js";
+import type { OperatorRole, ProjectRole, TenantRole } from "./common_pb.js";
 import type { MethodPermission } from "./token_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 /**
@@ -75,11 +75,11 @@ export type MethodServiceTokenScopedListResponse = Message<"fits.api.v1.MethodSe
         [key: string]: TenantRole;
     };
     /**
-     * AdminRole defines the admin role of the token owner
+     * OperatorRole defines the operator role of the token owner
      *
-     * @generated from field: optional fits.api.v1.AdminRole admin_role = 4;
+     * @generated from field: optional fits.api.v1.OperatorRole operator_role = 4;
      */
-    adminRole?: AdminRole | undefined;
+    operatorRole?: OperatorRole | undefined;
 };
 /**
  * Describes the message fits.api.v1.MethodServiceTokenScopedListResponse.

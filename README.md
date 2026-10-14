@@ -83,9 +83,9 @@ These options specify the RBAC of the api-endpoint.
 |                |                                              | OWNER       | project owner                                          |
 |                |                                              | EDITOR      | project editor                                         |
 |                |                                              | VIEWER      | project viewer                                         |
-| ADMIN_ROLE\_   | Specifies the required admin role            | UNSPECIFIED |                                                        |
-|                |                                              | EDITOR      | admin editor                                           |
-|                |                                              | VIEWER      | admin viewer                                           |
+| OPERATOR_ROLE\_ | Specifies the required operator role         | UNSPECIFIED |                                                        |
+|                |                                              | EDITOR      | operator editor                                        |
+|                |                                              | VIEWER      | operator viewer                                        |
 | VISIBILITY\_   | Specifies the visibility of the api-endpoint | UNSPECIFIED |                                                        |
 |                |                                              | PUBLIC      | api-method is visible to public, a token is not needed |
 |                |                                              | SELF        | api-method is scoped to owner resources                |

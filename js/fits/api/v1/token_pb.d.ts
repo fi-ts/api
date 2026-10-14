@@ -1,5 +1,5 @@
 import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import type { AdminRole, Meta, ProjectRole, TenantRole } from "./common_pb.js";
+import type { Meta, OperatorRole, ProjectRole, TenantRole } from "./common_pb.js";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 /**
@@ -88,11 +88,11 @@ export type Token = Message<"fits.api.v1.Token"> & {
         [key: string]: TenantRole;
     };
     /**
-     * AdminRole defines the admin role of the token owner
+     * OperatorRole defines the operator role of the token owner
      *
-     * @generated from field: optional fits.api.v1.AdminRole admin_role = 11;
+     * @generated from field: optional fits.api.v1.OperatorRole operator_role = 11;
      */
-    adminRole?: AdminRole | undefined;
+    operatorRole?: OperatorRole | undefined;
     /**
      * RawRoles are the normalized roles transmitted by the OIDC provider.
      *

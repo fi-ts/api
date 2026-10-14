@@ -8,7 +8,7 @@ import { file_google_protobuf_descriptor, file_google_protobuf_timestamp } from 
 /**
  * Describes the file fits/api/v1/common.proto.
  */
-export const file_fits_api_v1_common = /*@__PURE__*/ fileDesc("ChhmaXRzL2FwaS92MS9jb21tb24ucHJvdG8SC2ZpdHMuYXBpLnYxIkIKBlBhZ2luZxIRCgRwYWdlGAEgASgESACIAQESEgoFY291bnQYAiABKARIAYgBAUIHCgVfcGFnZUIICgZfY291bnQiiAEKBkxhYmVscxJPCgZsYWJlbHMYASADKAsyHy5maXRzLmFwaS52MS5MYWJlbHMuTGFiZWxzRW50cnlCHrpIG5oBGLiVuLECASIHcgUQARiAAioHcgUQABiAAhotCgtMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIq8BCgRNZXRhEigKBmxhYmVscxgBIAEoCzITLmZpdHMuYXBpLnYxLkxhYmVsc0gAiAEBEi4KCmNyZWF0ZWRfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhIKCmdlbmVyYXRpb24YBCABKARCCQoHX2xhYmVscyJDCgxVcGRhdGVMYWJlbHMSIwoGdXBkYXRlGAEgASgLMhMuZml0cy5hcGkudjEuTGFiZWxzEg4KBnJlbW92ZRgCIAMoCSKIAQoKVXBkYXRlTWV0YRIuCgp1cGRhdGVkX2F0GAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBJKChBsb2NraW5nX3N0cmF0ZWd5GAIgASgOMiYuZml0cy5hcGkudjEuT3B0aW1pc3RpY0xvY2tpbmdTdHJhdGVneUIIukgFggECEAEqhwEKClRlbmFudFJvbGUSGwoXVEVOQU5UX1JPTEVfVU5TUEVDSUZJRUQQABIVChFURU5BTlRfUk9MRV9BRE1JThABEhYKElRFTkFOVF9ST0xFX0VESVRPUhACEhYKElRFTkFOVF9ST0xFX1ZJRVdFUhADEhUKEVRFTkFOVF9ST0xFX0dVRVNUEAQqdQoLUHJvamVjdFJvbGUSHAoYUFJPSkVDVF9ST0xFX1VOU1BFQ0lGSUVEEAASFgoSUFJPSkVDVF9ST0xFX0FETUlOEAESFwoTUFJPSkVDVF9ST0xFX0VESVRPUhACEhcKE1BST0pFQ1RfUk9MRV9WSUVXRVIQAypVCglBZG1pblJvbGUSGgoWQURNSU5fUk9MRV9VTlNQRUNJRklFRBAAEhUKEUFETUlOX1JPTEVfRURJVE9SEAESFQoRQURNSU5fUk9MRV9WSUVXRVIQAipUCgpWaXNpYmlsaXR5EhoKFlZJU0lCSUxJVFlfVU5TUEVDSUZJRUQQABIVChFWSVNJQklMSVRZX1BVQkxJQxABEhMKD1ZJU0lCSUxJVFlfU0VMRhACKlIKCEF1ZGl0aW5nEhgKFEFVRElUSU5HX1VOU1BFQ0lGSUVEEAASFQoRQVVESVRJTkdfSU5DTFVERUQQARIVChFBVURJVElOR19FWENMVURFRBACKpgBChlPcHRpbWlzdGljTG9ja2luZ1N0cmF0ZWd5EisKJ09QVElNSVNUSUNfTE9DS0lOR19TVFJBVEVHWV9VTlNQRUNJRklFRBAAEiYKIk9QVElNSVNUSUNfTE9DS0lOR19TVFJBVEVHWV9DTElFTlQQARImCiJPUFRJTUlTVElDX0xPQ0tJTkdfU1RSQVRFR1lfU0VSVkVSEAI6XAoMdGVuYW50X3JvbGVzEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYuI4DIAMoDjIXLmZpdHMuYXBpLnYxLlRlbmFudFJvbGVSC3RlbmFudFJvbGVzOl8KDXByb2plY3Rfcm9sZXMSHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxi5jgMgAygOMhguZml0cy5hcGkudjEuUHJvamVjdFJvbGVSDHByb2plY3RSb2xlczpZCgthZG1pbl9yb2xlcxIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGLqOAyADKA4yFi5maXRzLmFwaS52MS5BZG1pblJvbGVSCmFkbWluUm9sZXM6WQoKdmlzaWJpbGl0eRIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGLuOAyABKA4yFy5maXRzLmFwaS52MS5WaXNpYmlsaXR5Ugp2aXNpYmlsaXR5OlMKCGF1ZGl0aW5nEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYvI4DIAEoDjIVLmZpdHMuYXBpLnYxLkF1ZGl0aW5nUghhdWRpdGluZzpPChFlbnVtX3N0cmluZ192YWx1ZRIhLmdvb2dsZS5wcm90b2J1Zi5FbnVtVmFsdWVPcHRpb25zGKCWAyABKAlSD2VudW1TdHJpbmdWYWx1ZUKXAQoPY29tLmZpdHMuYXBpLnYxQgtDb21tb25Qcm90b1ABWilnaXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS92MTthcGl2MaICA0ZBWKoCC0ZpdHMuQXBpLlYxygILRml0c1xBcGlcVjHiAhdGaXRzXEFwaVxWMVxHUEJNZXRhZGF0YeoCDUZpdHM6OkFwaTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_predefined_rules, file_google_protobuf_descriptor, file_google_protobuf_timestamp]);
+export const file_fits_api_v1_common = /*@__PURE__*/ fileDesc("ChhmaXRzL2FwaS92MS9jb21tb24ucHJvdG8SC2ZpdHMuYXBpLnYxIkIKBlBhZ2luZxIRCgRwYWdlGAEgASgESACIAQESEgoFY291bnQYAiABKARIAYgBAUIHCgVfcGFnZUIICgZfY291bnQiiAEKBkxhYmVscxJPCgZsYWJlbHMYASADKAsyHy5maXRzLmFwaS52MS5MYWJlbHMuTGFiZWxzRW50cnlCHrpIG5oBGLiVuLECASIHcgUQARiAAioHcgUQABiAAhotCgtMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIq8BCgRNZXRhEigKBmxhYmVscxgBIAEoCzITLmZpdHMuYXBpLnYxLkxhYmVsc0gAiAEBEi4KCmNyZWF0ZWRfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhIKCmdlbmVyYXRpb24YBCABKARCCQoHX2xhYmVscyJDCgxVcGRhdGVMYWJlbHMSIwoGdXBkYXRlGAEgASgLMhMuZml0cy5hcGkudjEuTGFiZWxzEg4KBnJlbW92ZRgCIAMoCSKIAQoKVXBkYXRlTWV0YRIuCgp1cGRhdGVkX2F0GAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBJKChBsb2NraW5nX3N0cmF0ZWd5GAIgASgOMiYuZml0cy5hcGkudjEuT3B0aW1pc3RpY0xvY2tpbmdTdHJhdGVneUIIukgFggECEAEqhwEKClRlbmFudFJvbGUSGwoXVEVOQU5UX1JPTEVfVU5TUEVDSUZJRUQQABIVChFURU5BTlRfUk9MRV9BRE1JThABEhYKElRFTkFOVF9ST0xFX0VESVRPUhACEhYKElRFTkFOVF9ST0xFX1ZJRVdFUhADEhUKEVRFTkFOVF9ST0xFX0dVRVNUEAQqdQoLUHJvamVjdFJvbGUSHAoYUFJPSkVDVF9ST0xFX1VOU1BFQ0lGSUVEEAASFgoSUFJPSkVDVF9ST0xFX0FETUlOEAESFwoTUFJPSkVDVF9ST0xFX0VESVRPUhACEhcKE1BST0pFQ1RfUk9MRV9WSUVXRVIQAyphCgxPcGVyYXRvclJvbGUSHQoZT1BFUkFUT1JfUk9MRV9VTlNQRUNJRklFRBAAEhgKFE9QRVJBVE9SX1JPTEVfRURJVE9SEAESGAoUT1BFUkFUT1JfUk9MRV9WSUVXRVIQAipUCgpWaXNpYmlsaXR5EhoKFlZJU0lCSUxJVFlfVU5TUEVDSUZJRUQQABIVChFWSVNJQklMSVRZX1BVQkxJQxABEhMKD1ZJU0lCSUxJVFlfU0VMRhACKlIKCEF1ZGl0aW5nEhgKFEFVRElUSU5HX1VOU1BFQ0lGSUVEEAASFQoRQVVESVRJTkdfSU5DTFVERUQQARIVChFBVURJVElOR19FWENMVURFRBACKpgBChlPcHRpbWlzdGljTG9ja2luZ1N0cmF0ZWd5EisKJ09QVElNSVNUSUNfTE9DS0lOR19TVFJBVEVHWV9VTlNQRUNJRklFRBAAEiYKIk9QVElNSVNUSUNfTE9DS0lOR19TVFJBVEVHWV9DTElFTlQQARImCiJPUFRJTUlTVElDX0xPQ0tJTkdfU1RSQVRFR1lfU0VSVkVSEAI6XAoMdGVuYW50X3JvbGVzEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYuI4DIAMoDjIXLmZpdHMuYXBpLnYxLlRlbmFudFJvbGVSC3RlbmFudFJvbGVzOl8KDXByb2plY3Rfcm9sZXMSHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxi5jgMgAygOMhguZml0cy5hcGkudjEuUHJvamVjdFJvbGVSDHByb2plY3RSb2xlczpiCg5vcGVyYXRvcl9yb2xlcxIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGLqOAyADKA4yGS5maXRzLmFwaS52MS5PcGVyYXRvclJvbGVSDW9wZXJhdG9yUm9sZXM6WQoKdmlzaWJpbGl0eRIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGLuOAyABKA4yFy5maXRzLmFwaS52MS5WaXNpYmlsaXR5Ugp2aXNpYmlsaXR5OlMKCGF1ZGl0aW5nEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYvI4DIAEoDjIVLmZpdHMuYXBpLnYxLkF1ZGl0aW5nUghhdWRpdGluZzpPChFlbnVtX3N0cmluZ192YWx1ZRIhLmdvb2dsZS5wcm90b2J1Zi5FbnVtVmFsdWVPcHRpb25zGKCWAyABKAlSD2VudW1TdHJpbmdWYWx1ZUKXAQoPY29tLmZpdHMuYXBpLnYxQgtDb21tb25Qcm90b1ABWilnaXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS92MTthcGl2MaICA0ZBWKoCC0ZpdHMuQXBpLlYxygILRml0c1xBcGlcVjHiAhdGaXRzXEFwaVxWMVxHUEJNZXRhZGF0YeoCDUZpdHM6OkFwaTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_predefined_rules, file_google_protobuf_descriptor, file_google_protobuf_timestamp]);
 /**
  * Describes the message fits.api.v1.Paging.
  * Use `create(PagingSchema)` to create a new message.
@@ -115,35 +115,35 @@ export var ProjectRole;
  */
 export const ProjectRoleSchema = /*@__PURE__*/ enumDesc(file_fits_api_v1_common, 1);
 /**
- * AdminRole specifies what role a logged in user needs to call this admin service
+ * OperatorRole specifies what role a logged in user needs to call this operator service
  *
- * @generated from enum fits.api.v1.AdminRole
+ * @generated from enum fits.api.v1.OperatorRole
  */
-export var AdminRole;
-(function (AdminRole) {
+export var OperatorRole;
+(function (OperatorRole) {
     /**
-     * ADMIN_ROLE_UNSPECIFIED is not specified
+     * OPERATOR_ROLE_UNSPECIFIED is not specified
      *
-     * @generated from enum value: ADMIN_ROLE_UNSPECIFIED = 0;
+     * @generated from enum value: OPERATOR_ROLE_UNSPECIFIED = 0;
      */
-    AdminRole[AdminRole["UNSPECIFIED"] = 0] = "UNSPECIFIED";
+    OperatorRole[OperatorRole["UNSPECIFIED"] = 0] = "UNSPECIFIED";
     /**
-     * ADMIN_ROLE_EDITOR the logged in user needs at least editor role to call this method
+     * OPERATOR_ROLE_EDITOR the logged in user needs at least editor role to call this method
      *
-     * @generated from enum value: ADMIN_ROLE_EDITOR = 1;
+     * @generated from enum value: OPERATOR_ROLE_EDITOR = 1;
      */
-    AdminRole[AdminRole["EDITOR"] = 1] = "EDITOR";
+    OperatorRole[OperatorRole["EDITOR"] = 1] = "EDITOR";
     /**
-     * ADMIN_ROLE_VIEWER the logged in user needs at least viewer role to call this method
+     * OPERATOR_ROLE_VIEWER the logged in user needs at least viewer role to call this method
      *
-     * @generated from enum value: ADMIN_ROLE_VIEWER = 2;
+     * @generated from enum value: OPERATOR_ROLE_VIEWER = 2;
      */
-    AdminRole[AdminRole["VIEWER"] = 2] = "VIEWER";
-})(AdminRole || (AdminRole = {}));
+    OperatorRole[OperatorRole["VIEWER"] = 2] = "VIEWER";
+})(OperatorRole || (OperatorRole = {}));
 /**
- * Describes the enum fits.api.v1.AdminRole.
+ * Describes the enum fits.api.v1.OperatorRole.
  */
-export const AdminRoleSchema = /*@__PURE__*/ enumDesc(file_fits_api_v1_common, 2);
+export const OperatorRoleSchema = /*@__PURE__*/ enumDesc(file_fits_api_v1_common, 2);
 /**
  * Visibility of a method
  *
@@ -251,11 +251,11 @@ export const tenant_roles = /*@__PURE__*/ extDesc(file_fits_api_v1_common, 0);
  */
 export const project_roles = /*@__PURE__*/ extDesc(file_fits_api_v1_common, 1);
 /**
- * AdminRoles are used to define which admin role a logged in user must provide to call this method
+ * OperatorRoles are used to define which operator role a logged in user must provide to call this method
  *
- * @generated from extension: repeated fits.api.v1.AdminRole admin_roles = 51002;
+ * @generated from extension: repeated fits.api.v1.OperatorRole operator_roles = 51002;
  */
-export const admin_roles = /*@__PURE__*/ extDesc(file_fits_api_v1_common, 2);
+export const operator_roles = /*@__PURE__*/ extDesc(file_fits_api_v1_common, 2);
 /**
  * Visibility defines the visibility of this method, this is used to have public or self visible methods
  *

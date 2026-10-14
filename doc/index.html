@@ -299,11 +299,11 @@
               
               
                 <li>
-                  <a href="#fits.api.v1.AdminRole"><span class="badge">E</span>AdminRole</a>
+                  <a href="#fits.api.v1.Auditing"><span class="badge">E</span>Auditing</a>
                 </li>
               
                 <li>
-                  <a href="#fits.api.v1.Auditing"><span class="badge">E</span>Auditing</a>
+                  <a href="#fits.api.v1.OperatorRole"><span class="badge">E</span>OperatorRole</a>
                 </li>
               
                 <li>
@@ -1440,35 +1440,6 @@ must be part of the update request to ensure optimistic locking </p></td>
       
 
       
-        <h3 id="fits.api.v1.AdminRole">AdminRole</h3>
-        <p>AdminRole specifies what role a logged in user needs to call this admin service</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>ADMIN_ROLE_UNSPECIFIED</td>
-                <td>0</td>
-                <td><p>ADMIN_ROLE_UNSPECIFIED is not specified</p></td>
-              </tr>
-            
-              <tr>
-                <td>ADMIN_ROLE_EDITOR</td>
-                <td>1</td>
-                <td><p>ADMIN_ROLE_EDITOR the logged in user needs at least editor role to call this method</p></td>
-              </tr>
-            
-              <tr>
-                <td>ADMIN_ROLE_VIEWER</td>
-                <td>2</td>
-                <td><p>ADMIN_ROLE_VIEWER the logged in user needs at least viewer role to call this method</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
         <h3 id="fits.api.v1.Auditing">Auditing</h3>
         <p>Auditing option specified per service method</p><p>by default all service methods are included</p><p>add the auditing option if you want to exclude a method in auditing</p>
         <table class="enum-table">
@@ -1493,6 +1464,35 @@ must be part of the update request to ensure optimistic locking </p></td>
                 <td>AUDITING_EXCLUDED</td>
                 <td>2</td>
                 <td><p>AUDITING_EXCLUDED if a method is annotated with this, no calls are audited</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="fits.api.v1.OperatorRole">OperatorRole</h3>
+        <p>OperatorRole specifies what role a logged in user needs to call this operator service</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>OPERATOR_ROLE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>OPERATOR_ROLE_UNSPECIFIED is not specified</p></td>
+              </tr>
+            
+              <tr>
+                <td>OPERATOR_ROLE_EDITOR</td>
+                <td>1</td>
+                <td><p>OPERATOR_ROLE_EDITOR the logged in user needs at least editor role to call this method</p></td>
+              </tr>
+            
+              <tr>
+                <td>OPERATOR_ROLE_VIEWER</td>
+                <td>2</td>
+                <td><p>OPERATOR_ROLE_VIEWER the logged in user needs at least viewer role to call this method</p></td>
               </tr>
             
           </tbody>
@@ -1653,19 +1653,19 @@ having a direct membership within the tenant.</p></td>
               </tr>
             
               <tr>
-                <td>admin_roles</td>
-                <td><a href="#fits.api.v1.AdminRole">AdminRole</a></td>
-                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
-                <td>51002</td>
-                <td><p>AdminRoles are used to define which admin role a logged in user must provide to call this method</p></td>
-              </tr>
-            
-              <tr>
                 <td>auditing</td>
                 <td><a href="#fits.api.v1.Auditing">Auditing</a></td>
                 <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
                 <td>51004</td>
                 <td><p>Auditing defines if calls to this method should be audited or not</p></td>
+              </tr>
+            
+              <tr>
+                <td>operator_roles</td>
+                <td><a href="#fits.api.v1.OperatorRole">OperatorRole</a></td>
+                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
+                <td>51002</td>
+                <td><p>OperatorRoles are used to define which operator role a logged in user must provide to call this method</p></td>
               </tr>
             
               <tr>
@@ -5088,10 +5088,10 @@ Asterisk (*) can be specified to match any subject. </p></td>
                 </tr>
               
                 <tr>
-                  <td>admin_role</td>
-                  <td><a href="#fits.api.v1.AdminRole">AdminRole</a></td>
+                  <td>operator_role</td>
+                  <td><a href="#fits.api.v1.OperatorRole">OperatorRole</a></td>
                   <td>optional</td>
-                  <td><p>AdminRole defines the admin role of the token owner </p></td>
+                  <td><p>OperatorRole defines the operator role of the token owner </p></td>
                 </tr>
               
                 <tr>
@@ -5440,10 +5440,10 @@ Asterisk (*) can be specified to match any subject. </p></td>
                 </tr>
               
                 <tr>
-                  <td>admin_role</td>
-                  <td><a href="#fits.api.v1.AdminRole">AdminRole</a></td>
+                  <td>operator_role</td>
+                  <td><a href="#fits.api.v1.OperatorRole">OperatorRole</a></td>
                   <td>optional</td>
-                  <td><p>AdminRole defines the admin role of the token owner </p></td>
+                  <td><p>OperatorRole defines the operator role of the token owner </p></td>
                 </tr>
               
             </tbody>

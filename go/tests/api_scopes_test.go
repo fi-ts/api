@@ -18,7 +18,7 @@ import (
 type (
 	tenant     struct{}
 	project    struct{}
-	admin      struct{}
+	operator   struct{}
 	visibility struct{}
 )
 
@@ -40,10 +40,10 @@ func (project) Get(methodOpts []*descriptorpb.UninterpretedOption) (scopes []str
 	return
 }
 
-func (admin) Get(methodOpts []*descriptorpb.UninterpretedOption) (scopes []string) {
+func (operator) Get(methodOpts []*descriptorpb.UninterpretedOption) (scopes []string) {
 	scopes = getScopes(methodOpts, []string{
-		v1.AdminRole_ADMIN_ROLE_EDITOR.String(),
-		v1.AdminRole_ADMIN_ROLE_VIEWER.String(),
+		v1.OperatorRole_OPERATOR_ROLE_EDITOR.String(),
+		v1.OperatorRole_OPERATOR_ROLE_VIEWER.String(),
 	})
 	return
 }
@@ -102,11 +102,11 @@ func Test_APIScopes(t *testing.T) {
 	// errs := errors.Join(
 	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Add\" has apiv1.TenantRole but request payload \"WrongProjectServiceAddRequest\" does not have a tenant field"),
 	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Get\" has apiv1.ProjectRole but request payload \"WrongProjectServiceGetRequest\" does not have a project field"),
-	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/List\" has no scope defined. one scope needs to be defined though. use one of the following scopes: [apiv1.AdminRole apiv1.ProjectRole apiv1.TenantRole apiv1.Visibility]"),
+	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/List\" has no scope defined. one scope needs to be defined though. use one of the following scopes: [apiv1.OperatorRole apiv1.ProjectRole apiv1.TenantRole apiv1.Visibility]"),
 	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Update\" does not have a update_meta field in WrongProjectServiceUpdateRequest"),
-	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Update\" can not have apiv1.AdminRole ([ADMIN_ROLE_VIEWER]) and apiv1.ProjectRole ([PROJECT_ROLE_OWNER]) at the same time. only one scope is allowed."),
-	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Delete\" can not have apiv1.AdminRole ([ADMIN_ROLE_VIEWER]) and apiv1.Visibility ([VISIBILITY_PUBLIC]) at the same time. only one scope is allowed."),
-	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Charge\" has no scope defined. one scope needs to be defined though. use one of the following scopes: [apiv1.AdminRole apiv1.ProjectRole apiv1.TenantRole apiv1.Visibility]"),
+	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Update\" can not have apiv1.OperatorRole ([OPERATOR_ROLE_VIEWER]) and apiv1.ProjectRole ([PROJECT_ROLE_OWNER]) at the same time. only one scope is allowed."),
+	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Delete\" can not have apiv1.OperatorRole ([OPERATOR_ROLE_VIEWER]) and apiv1.Visibility ([VISIBILITY_PUBLIC]) at the same time. only one scope is allowed."),
+	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Charge\" has no scope defined. one scope needs to be defined though. use one of the following scopes: [apiv1.OperatorRole apiv1.ProjectRole apiv1.TenantRole apiv1.Visibility]"),
 	// )
 
 	// require.Equal(t, err, errs)
@@ -175,7 +175,7 @@ func validateProto(root string) error {
 	var (
 		tr v1.TenantRole
 		pr v1.ProjectRole
-		ar v1.AdminRole
+		ar v1.OperatorRole
 		vr v1.Visibility
 
 		trs = fmt.Sprintf("%T", tr)
@@ -209,7 +209,7 @@ func validateProto(root string) error {
 					scopes      = map[string][]string{
 						trs: tenant{}.Get(methodOpts),
 						prs: project{}.Get(methodOpts),
-						ars: admin{}.Get(methodOpts),
+						ars: operator{}.Get(methodOpts),
 						vrs: visibility{}.Get(methodOpts),
 					}
 					allScopeNames = func() (names []string) {

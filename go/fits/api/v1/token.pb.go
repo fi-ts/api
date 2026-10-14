@@ -110,8 +110,8 @@ type Token struct {
 	ProjectRoles map[string]ProjectRole `protobuf:"bytes,9,rep,name=project_roles,json=projectRoles,proto3" json:"project_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.ProjectRole"`
 	// TenantRoles associates a tenant id with the corresponding role of the token owner.
 	TenantRoles map[string]TenantRole `protobuf:"bytes,10,rep,name=tenant_roles,json=tenantRoles,proto3" json:"tenant_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.TenantRole"`
-	// AdminRole defines the admin role of the token owner
-	AdminRole *AdminRole `protobuf:"varint,11,opt,name=admin_role,json=adminRole,proto3,enum=fits.api.v1.AdminRole,oneof" json:"admin_role,omitempty"`
+	// OperatorRole defines the operator role of the token owner
+	OperatorRole *OperatorRole `protobuf:"varint,11,opt,name=operator_role,json=operatorRole,proto3,enum=fits.api.v1.OperatorRole,oneof" json:"operator_role,omitempty"`
 	// RawRoles are the normalized roles transmitted by the OIDC provider.
 	RawRoles []string `protobuf:"bytes,12,rep,name=raw_roles,json=rawRoles,proto3" json:"raw_roles,omitempty"`
 	// Name is the display name of the user the token was issued for.
@@ -222,11 +222,11 @@ func (x *Token) GetTenantRoles() map[string]TenantRole {
 	return nil
 }
 
-func (x *Token) GetAdminRole() AdminRole {
-	if x != nil && x.AdminRole != nil {
-		return *x.AdminRole
+func (x *Token) GetOperatorRole() OperatorRole {
+	if x != nil && x.OperatorRole != nil {
+		return *x.OperatorRole
 	}
-	return AdminRole_ADMIN_ROLE_UNSPECIFIED
+	return OperatorRole_OPERATOR_ROLE_UNSPECIFIED
 }
 
 func (x *Token) GetRawRoles() []string {
@@ -960,7 +960,7 @@ var File_fits_api_v1_token_proto protoreflect.FileDescriptor
 
 const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\n" +
-	"\x17fits/api/v1/token.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe8\b\n" +
+	"\x17fits/api/v1/token.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf4\b\n" +
 	"\x05Token\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x1e\n" +
 	"\x04user\x18\x02 \x01(\tB\n" +
@@ -974,9 +974,8 @@ const file_fits_api_v1_token_proto_rawDesc = "" +
 	"token_type\x18\b \x01(\x0e2\x16.fits.api.v1.TokenTypeB\b\xbaH\x05\x82\x01\x02\x10\x01R\ttokenType\x12I\n" +
 	"\rproject_roles\x18\t \x03(\v2$.fits.api.v1.Token.ProjectRolesEntryR\fprojectRoles\x12a\n" +
 	"\ftenant_roles\x18\n" +
-	" \x03(\v2#.fits.api.v1.Token.TenantRolesEntryB\x19\xbaH\x16\x9a\x01\x13\xc0\x95\xb8\xb1\x02\x01Е\xb8\xb1\x02\x01*\x05\x82\x01\x02\x10\x01R\vtenantRoles\x12D\n" +
-	"\n" +
-	"admin_role\x18\v \x01(\x0e2\x16.fits.api.v1.AdminRoleB\b\xbaH\x05\x82\x01\x02\x10\x01H\x00R\tadminRole\x88\x01\x01\x121\n" +
+	" \x03(\v2#.fits.api.v1.Token.TenantRolesEntryB\x19\xbaH\x16\x9a\x01\x13\xc0\x95\xb8\xb1\x02\x01Е\xb8\xb1\x02\x01*\x05\x82\x01\x02\x10\x01R\vtenantRoles\x12M\n" +
+	"\roperator_role\x18\v \x01(\x0e2\x19.fits.api.v1.OperatorRoleB\b\xbaH\x05\x82\x01\x02\x10\x01H\x00R\foperatorRole\x88\x01\x01\x121\n" +
 	"\traw_roles\x18\f \x03(\tB\x14\xbaH\x11\x92\x01\x0eФ\xb3\xb1\x02\x01ؤ\xb3\xb1\x02\x01\x18\x01R\brawRoles\x12\x1c\n" +
 	"\x04name\x18\r \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\x04name\x12\x1e\n" +
 	"\x05email\x18\x0e \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\x05email\x1aY\n" +
@@ -986,8 +985,8 @@ const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\x10TenantRolesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12-\n" +
 	"\x05value\x18\x02 \x01(\x0e2\x17.fits.api.v1.TenantRoleR\x05value:\x028\x01:\x9f\x01\xbaH\x9b\x01\x1a\x98\x01\n" +
-	"\x1btoken.permissions.usertoken\x12)token type user must not have permissions\x1aN(this.token_type == 2 && this.permissions.size() == 0) || this.token_type != 2B\r\n" +
-	"\v_admin_role\"[\n" +
+	"\x1btoken.permissions.usertoken\x12)token type user must not have permissions\x1aN(this.token_type == 2 && this.permissions.size() == 0) || this.token_type != 2B\x10\n" +
+	"\x0e_operator_role\"[\n" +
 	"\x10MethodPermission\x12\"\n" +
 	"\asubject\x18\x01 \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\asubject\x12#\n" +
 	"\amethods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\"\xc3\x02\n" +
@@ -1066,7 +1065,7 @@ var file_fits_api_v1_token_proto_goTypes = []any{
 	nil,                                // 16: fits.api.v1.Token.TenantRolesEntry
 	(*Meta)(nil),                       // 17: fits.api.v1.Meta
 	(*timestamppb.Timestamp)(nil),      // 18: google.protobuf.Timestamp
-	(AdminRole)(0),                     // 19: fits.api.v1.AdminRole
+	(OperatorRole)(0),                  // 19: fits.api.v1.OperatorRole
 	(ProjectRole)(0),                   // 20: fits.api.v1.ProjectRole
 	(TenantRole)(0),                    // 21: fits.api.v1.TenantRole
 }
@@ -1078,7 +1077,7 @@ var file_fits_api_v1_token_proto_depIdxs = []int32{
 	0,  // 4: fits.api.v1.Token.token_type:type_name -> fits.api.v1.TokenType
 	15, // 5: fits.api.v1.Token.project_roles:type_name -> fits.api.v1.Token.ProjectRolesEntry
 	16, // 6: fits.api.v1.Token.tenant_roles:type_name -> fits.api.v1.Token.TenantRolesEntry
-	19, // 7: fits.api.v1.Token.admin_role:type_name -> fits.api.v1.AdminRole
+	19, // 7: fits.api.v1.Token.operator_role:type_name -> fits.api.v1.OperatorRole
 	4,  // 8: fits.api.v1.PermissionsByVisibility.public:type_name -> fits.api.v1.PublicPermissions
 	5,  // 9: fits.api.v1.PermissionsByVisibility.self:type_name -> fits.api.v1.SelfPermissions
 	6,  // 10: fits.api.v1.PermissionsByVisibility.project:type_name -> fits.api.v1.ProjectPermissions

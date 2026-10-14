@@ -27,7 +27,7 @@ func GetServices() []string {
 func GetServicePermissions() *ServicePermissions {
 	return &ServicePermissions{
 		Roles: Roles{
-			Admin: Admin{},
+			Operator: Operator{},
 			Tenant: Tenant{
 				v1.TenantRole_TENANT_ROLE_ADMIN: map[string]struct{}{
 					"/fits.api.mvm.v1.DomainService/List":   {},
@@ -175,7 +175,7 @@ func GetServicePermissions() *ServicePermissions {
 				"/fits.api.v1.TokenService/List":             true,
 				"/fits.api.v1.TokenService/Revoke":           true,
 			},
-			Admin: map[string]bool{},
+			Operator: map[string]bool{},
 			Tenant: map[string]bool{
 				"/fits.api.mvm.v1.DomainService/List":   true,
 				"/fits.api.mvm.v1.LDAPService/List":     true,
@@ -264,8 +264,8 @@ func IsSelfScope(req connect.AnyRequest) bool {
 	return ok
 }
 
-func IsAdminScope(req connect.AnyRequest) bool {
-	_, ok := GetServicePermissions().Visibility.Admin[req.Spec().Procedure]
+func IsOperatorScope(req connect.AnyRequest) bool {
+	_, ok := GetServicePermissions().Visibility.Operator[req.Spec().Procedure]
 	return ok
 }
 
