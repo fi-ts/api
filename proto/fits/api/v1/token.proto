@@ -123,8 +123,8 @@ message PermissionsByVisibility {
     ProjectPermissions project = 3;
     // TenantPermissions carries tenant method permissions.
     TenantPermissions tenant = 4;
-    // AdminPermissions carries admin method permissions.
-    AdminPermissions admin = 5;
+    // OperatorPermissions carries operator method permissions.
+    OperatorPermissions operator = 5;
   }
 }
 
@@ -159,8 +159,8 @@ message TenantPermissions {
   repeated string methods = 2 [(buf.validate.field).repeated.max_items = 500];
 }
 
-// AdminPermissions carries admin method permissions.
-message AdminPermissions {
+// OperatorPermissions carries operator method permissions.
+message OperatorPermissions {
   // Methods which should be accessible.
   repeated string methods = 1 [(buf.validate.field).repeated.max_items = 500];
 }

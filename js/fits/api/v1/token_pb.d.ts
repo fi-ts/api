@@ -191,12 +191,12 @@ export type PermissionsByVisibility = Message<"fits.api.v1.PermissionsByVisibili
         case: "tenant";
     } | {
         /**
-         * AdminPermissions carries admin method permissions.
+         * OperatorPermissions carries operator method permissions.
          *
-         * @generated from field: fits.api.v1.AdminPermissions admin = 5;
+         * @generated from field: fits.api.v1.OperatorPermissions operator = 5;
          */
-        value: AdminPermissions;
-        case: "admin";
+        value: OperatorPermissions;
+        case: "operator";
     } | {
         case: undefined;
         value?: undefined;
@@ -294,11 +294,11 @@ export type TenantPermissions = Message<"fits.api.v1.TenantPermissions"> & {
  */
 export declare const TenantPermissionsSchema: GenMessage<TenantPermissions>;
 /**
- * AdminPermissions carries admin method permissions.
+ * OperatorPermissions carries operator method permissions.
  *
- * @generated from message fits.api.v1.AdminPermissions
+ * @generated from message fits.api.v1.OperatorPermissions
  */
-export type AdminPermissions = Message<"fits.api.v1.AdminPermissions"> & {
+export type OperatorPermissions = Message<"fits.api.v1.OperatorPermissions"> & {
     /**
      * Methods which should be accessible.
      *
@@ -307,10 +307,10 @@ export type AdminPermissions = Message<"fits.api.v1.AdminPermissions"> & {
     methods: string[];
 };
 /**
- * Describes the message fits.api.v1.AdminPermissions.
- * Use `create(AdminPermissionsSchema)` to create a new message.
+ * Describes the message fits.api.v1.OperatorPermissions.
+ * Use `create(OperatorPermissionsSchema)` to create a new message.
  */
-export declare const AdminPermissionsSchema: GenMessage<AdminPermissions>;
+export declare const OperatorPermissionsSchema: GenMessage<OperatorPermissions>;
 /**
  * TokenServiceListRequest is the request payload to list tokens
  *

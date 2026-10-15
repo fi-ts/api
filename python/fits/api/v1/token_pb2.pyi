@@ -77,18 +77,18 @@ class MethodPermission(_message.Message):
     def __init__(self, subject: _Optional[str] = ..., methods: _Optional[_Iterable[str]] = ...) -> None: ...
 
 class PermissionsByVisibility(_message.Message):
-    __slots__ = ("public", "self", "project", "tenant", "admin")
+    __slots__ = ("public", "self", "project", "tenant", "operator")
     PUBLIC_FIELD_NUMBER: _ClassVar[int]
     SELF_FIELD_NUMBER: _ClassVar[int]
     PROJECT_FIELD_NUMBER: _ClassVar[int]
     TENANT_FIELD_NUMBER: _ClassVar[int]
-    ADMIN_FIELD_NUMBER: _ClassVar[int]
+    OPERATOR_FIELD_NUMBER: _ClassVar[int]
     public: PublicPermissions
     self: SelfPermissions
     project: ProjectPermissions
     tenant: TenantPermissions
-    admin: AdminPermissions
-    def __init__(self_, public: _Optional[_Union[PublicPermissions, _Mapping]] = ..., self: _Optional[_Union[SelfPermissions, _Mapping]] = ..., project: _Optional[_Union[ProjectPermissions, _Mapping]] = ..., tenant: _Optional[_Union[TenantPermissions, _Mapping]] = ..., admin: _Optional[_Union[AdminPermissions, _Mapping]] = ...) -> None: ...
+    operator: OperatorPermissions
+    def __init__(self_, public: _Optional[_Union[PublicPermissions, _Mapping]] = ..., self: _Optional[_Union[SelfPermissions, _Mapping]] = ..., project: _Optional[_Union[ProjectPermissions, _Mapping]] = ..., tenant: _Optional[_Union[TenantPermissions, _Mapping]] = ..., operator: _Optional[_Union[OperatorPermissions, _Mapping]] = ...) -> None: ...
 
 class PublicPermissions(_message.Message):
     __slots__ = ("methods",)
@@ -118,7 +118,7 @@ class TenantPermissions(_message.Message):
     methods: _containers.RepeatedScalarFieldContainer[str]
     def __init__(self, login: _Optional[str] = ..., methods: _Optional[_Iterable[str]] = ...) -> None: ...
 
-class AdminPermissions(_message.Message):
+class OperatorPermissions(_message.Message):
     __slots__ = ("methods",)
     METHODS_FIELD_NUMBER: _ClassVar[int]
     methods: _containers.RepeatedScalarFieldContainer[str]

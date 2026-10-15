@@ -793,11 +793,11 @@
             <ul>
               
                 <li>
-                  <a href="#fits.api.v1.AdminPermissions"><span class="badge">M</span>AdminPermissions</a>
+                  <a href="#fits.api.v1.MethodPermission"><span class="badge">M</span>MethodPermission</a>
                 </li>
               
                 <li>
-                  <a href="#fits.api.v1.MethodPermission"><span class="badge">M</span>MethodPermission</a>
+                  <a href="#fits.api.v1.OperatorPermissions"><span class="badge">M</span>OperatorPermissions</a>
                 </li>
               
                 <li>
@@ -4783,30 +4783,6 @@ Will be equal with project most of the time </p></td>
       <p></p>
 
       
-        <h3 id="fits.api.v1.AdminPermissions">AdminPermissions</h3>
-        <p>AdminPermissions carries admin method permissions.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>methods</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>Methods which should be accessible. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="fits.api.v1.MethodPermission">MethodPermission</h3>
         <p>MethodPermission is a mapping from a subject/project to a service method</p>
 
@@ -4834,6 +4810,30 @@ otherwise either a projectid or a tenant login should be specified </p></td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p>Methods which should be accessible </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.OperatorPermissions">OperatorPermissions</h3>
+        <p>OperatorPermissions carries operator method permissions.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>methods</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Methods which should be accessible. </p></td>
                 </tr>
               
             </tbody>
@@ -4882,10 +4882,10 @@ otherwise either a projectid or a tenant login should be specified </p></td>
                 </tr>
               
                 <tr>
-                  <td>admin</td>
-                  <td><a href="#fits.api.v1.AdminPermissions">AdminPermissions</a></td>
+                  <td>operator</td>
+                  <td><a href="#fits.api.v1.OperatorPermissions">OperatorPermissions</a></td>
                   <td></td>
-                  <td><p>AdminPermissions carries admin method permissions. </p></td>
+                  <td><p>OperatorPermissions carries operator method permissions. </p></td>
                 </tr>
               
             </tbody>
