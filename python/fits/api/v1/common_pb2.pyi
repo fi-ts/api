@@ -16,7 +16,7 @@ DESCRIPTOR: _descriptor.FileDescriptor
 class TenantRole(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
     TENANT_ROLE_UNSPECIFIED: _ClassVar[TenantRole]
-    TENANT_ROLE_OWNER: _ClassVar[TenantRole]
+    TENANT_ROLE_ADMIN: _ClassVar[TenantRole]
     TENANT_ROLE_EDITOR: _ClassVar[TenantRole]
     TENANT_ROLE_VIEWER: _ClassVar[TenantRole]
     TENANT_ROLE_GUEST: _ClassVar[TenantRole]
@@ -24,15 +24,15 @@ class TenantRole(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
 class ProjectRole(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
     PROJECT_ROLE_UNSPECIFIED: _ClassVar[ProjectRole]
-    PROJECT_ROLE_OWNER: _ClassVar[ProjectRole]
+    PROJECT_ROLE_ADMIN: _ClassVar[ProjectRole]
     PROJECT_ROLE_EDITOR: _ClassVar[ProjectRole]
     PROJECT_ROLE_VIEWER: _ClassVar[ProjectRole]
 
-class AdminRole(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+class OperatorRole(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
-    ADMIN_ROLE_UNSPECIFIED: _ClassVar[AdminRole]
-    ADMIN_ROLE_EDITOR: _ClassVar[AdminRole]
-    ADMIN_ROLE_VIEWER: _ClassVar[AdminRole]
+    OPERATOR_ROLE_UNSPECIFIED: _ClassVar[OperatorRole]
+    OPERATOR_ROLE_EDITOR: _ClassVar[OperatorRole]
+    OPERATOR_ROLE_VIEWER: _ClassVar[OperatorRole]
 
 class Visibility(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
@@ -52,17 +52,17 @@ class OptimisticLockingStrategy(int, metaclass=_enum_type_wrapper.EnumTypeWrappe
     OPTIMISTIC_LOCKING_STRATEGY_CLIENT: _ClassVar[OptimisticLockingStrategy]
     OPTIMISTIC_LOCKING_STRATEGY_SERVER: _ClassVar[OptimisticLockingStrategy]
 TENANT_ROLE_UNSPECIFIED: TenantRole
-TENANT_ROLE_OWNER: TenantRole
+TENANT_ROLE_ADMIN: TenantRole
 TENANT_ROLE_EDITOR: TenantRole
 TENANT_ROLE_VIEWER: TenantRole
 TENANT_ROLE_GUEST: TenantRole
 PROJECT_ROLE_UNSPECIFIED: ProjectRole
-PROJECT_ROLE_OWNER: ProjectRole
+PROJECT_ROLE_ADMIN: ProjectRole
 PROJECT_ROLE_EDITOR: ProjectRole
 PROJECT_ROLE_VIEWER: ProjectRole
-ADMIN_ROLE_UNSPECIFIED: AdminRole
-ADMIN_ROLE_EDITOR: AdminRole
-ADMIN_ROLE_VIEWER: AdminRole
+OPERATOR_ROLE_UNSPECIFIED: OperatorRole
+OPERATOR_ROLE_EDITOR: OperatorRole
+OPERATOR_ROLE_VIEWER: OperatorRole
 VISIBILITY_UNSPECIFIED: Visibility
 VISIBILITY_PUBLIC: Visibility
 VISIBILITY_SELF: Visibility
@@ -76,8 +76,8 @@ TENANT_ROLES_FIELD_NUMBER: _ClassVar[int]
 tenant_roles: _descriptor.FieldDescriptor
 PROJECT_ROLES_FIELD_NUMBER: _ClassVar[int]
 project_roles: _descriptor.FieldDescriptor
-ADMIN_ROLES_FIELD_NUMBER: _ClassVar[int]
-admin_roles: _descriptor.FieldDescriptor
+OPERATOR_ROLES_FIELD_NUMBER: _ClassVar[int]
+operator_roles: _descriptor.FieldDescriptor
 VISIBILITY_FIELD_NUMBER: _ClassVar[int]
 visibility: _descriptor.FieldDescriptor
 AUDITING_FIELD_NUMBER: _ClassVar[int]

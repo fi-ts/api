@@ -10,7 +10,7 @@ import "fits/api/v1/predefined_rules.proto";
 service DomainService {
   // Returns a list of all Windows domains available for a tenant.
   rpc List(DomainServiceListRequest) returns (DomainServiceListResponse) {
-    option (fits.api.v1.tenant_roles) = TENANT_ROLE_OWNER;
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_ADMIN;
     option (fits.api.v1.tenant_roles) = TENANT_ROLE_EDITOR;
     option (fits.api.v1.tenant_roles) = TENANT_ROLE_VIEWER;
     option (fits.api.v1.auditing) = AUDITING_EXCLUDED;

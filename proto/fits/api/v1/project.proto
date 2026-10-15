@@ -15,25 +15,25 @@ service ProjectService {
   }
   // Returns the project with the specified UUID.
   rpc Get(ProjectServiceGetRequest) returns (ProjectServiceGetResponse) {
-    option (project_roles) = PROJECT_ROLE_OWNER;
+    option (project_roles) = PROJECT_ROLE_ADMIN;
     option (project_roles) = PROJECT_ROLE_EDITOR;
     option (project_roles) = PROJECT_ROLE_VIEWER;
     option (auditing) = AUDITING_EXCLUDED;
   }
   // Create a project
   rpc Create(ProjectServiceCreateRequest) returns (ProjectServiceCreateResponse) {
-    option (tenant_roles) = TENANT_ROLE_OWNER;
+    option (tenant_roles) = TENANT_ROLE_ADMIN;
     option (tenant_roles) = TENANT_ROLE_EDITOR;
     option (auditing) = AUDITING_INCLUDED;
   }
   // Delete a project
   rpc Delete(ProjectServiceDeleteRequest) returns (ProjectServiceDeleteResponse) {
-    option (project_roles) = PROJECT_ROLE_OWNER;
+    option (project_roles) = PROJECT_ROLE_ADMIN;
     option (auditing) = AUDITING_INCLUDED;
   }
   // Update a project
   rpc Update(ProjectServiceUpdateRequest) returns (ProjectServiceUpdateResponse) {
-    option (project_roles) = PROJECT_ROLE_OWNER;
+    option (project_roles) = PROJECT_ROLE_ADMIN;
     option (project_roles) = PROJECT_ROLE_EDITOR;
     option (auditing) = AUDITING_INCLUDED;
   }

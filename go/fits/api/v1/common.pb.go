@@ -30,8 +30,8 @@ type TenantRole int32
 const (
 	// TENANT_ROLE_UNSPECIFIED is not specified
 	TenantRole_TENANT_ROLE_UNSPECIFIED TenantRole = 0
-	// TENANT_ROLE_OWNER the logged in user needs at least owner role to call this method
-	TenantRole_TENANT_ROLE_OWNER TenantRole = 1
+	// TENANT_ROLE_ADMIN the logged in user needs at least admin role to call this method
+	TenantRole_TENANT_ROLE_ADMIN TenantRole = 1
 	// TENANT_ROLE_EDITOR the logged in user needs at least editor role to call this method
 	TenantRole_TENANT_ROLE_EDITOR TenantRole = 2
 	// TENANT_ROLE_VIEWER the logged in user needs at least viewer role to call this method
@@ -46,14 +46,14 @@ const (
 var (
 	TenantRole_name = map[int32]string{
 		0: "TENANT_ROLE_UNSPECIFIED",
-		1: "TENANT_ROLE_OWNER",
+		1: "TENANT_ROLE_ADMIN",
 		2: "TENANT_ROLE_EDITOR",
 		3: "TENANT_ROLE_VIEWER",
 		4: "TENANT_ROLE_GUEST",
 	}
 	TenantRole_value = map[string]int32{
 		"TENANT_ROLE_UNSPECIFIED": 0,
-		"TENANT_ROLE_OWNER":       1,
+		"TENANT_ROLE_ADMIN":       1,
 		"TENANT_ROLE_EDITOR":      2,
 		"TENANT_ROLE_VIEWER":      3,
 		"TENANT_ROLE_GUEST":       4,
@@ -93,8 +93,8 @@ type ProjectRole int32
 const (
 	// PROJECT_ROLE_UNSPECIFIED is not specified
 	ProjectRole_PROJECT_ROLE_UNSPECIFIED ProjectRole = 0
-	// PROJECT_ROLE_OWNER the logged in user needs at least owner role to call this method
-	ProjectRole_PROJECT_ROLE_OWNER ProjectRole = 1
+	// PROJECT_ROLE_ADMIN the logged in user needs at least admin role to call this method
+	ProjectRole_PROJECT_ROLE_ADMIN ProjectRole = 1
 	// PROJECT_ROLE_EDITOR the logged in user needs at least editor role to call this method
 	ProjectRole_PROJECT_ROLE_EDITOR ProjectRole = 2
 	// PROJECT_ROLE_VIEWER the logged in user needs at least viewer role to call this method
@@ -105,13 +105,13 @@ const (
 var (
 	ProjectRole_name = map[int32]string{
 		0: "PROJECT_ROLE_UNSPECIFIED",
-		1: "PROJECT_ROLE_OWNER",
+		1: "PROJECT_ROLE_ADMIN",
 		2: "PROJECT_ROLE_EDITOR",
 		3: "PROJECT_ROLE_VIEWER",
 	}
 	ProjectRole_value = map[string]int32{
 		"PROJECT_ROLE_UNSPECIFIED": 0,
-		"PROJECT_ROLE_OWNER":       1,
+		"PROJECT_ROLE_ADMIN":       1,
 		"PROJECT_ROLE_EDITOR":      2,
 		"PROJECT_ROLE_VIEWER":      3,
 	}
@@ -144,56 +144,56 @@ func (ProjectRole) EnumDescriptor() ([]byte, []int) {
 	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{1}
 }
 
-// AdminRole specifies what role a logged in user needs to call this admin service
-type AdminRole int32
+// OperatorRole specifies what role a logged in user needs to call this operator service
+type OperatorRole int32
 
 const (
-	// ADMIN_ROLE_UNSPECIFIED is not specified
-	AdminRole_ADMIN_ROLE_UNSPECIFIED AdminRole = 0
-	// ADMIN_ROLE_EDITOR the logged in user needs at least editor role to call this method
-	AdminRole_ADMIN_ROLE_EDITOR AdminRole = 1
-	// ADMIN_ROLE_VIEWER the logged in user needs at least viewer role to call this method
-	AdminRole_ADMIN_ROLE_VIEWER AdminRole = 2
+	// OPERATOR_ROLE_UNSPECIFIED is not specified
+	OperatorRole_OPERATOR_ROLE_UNSPECIFIED OperatorRole = 0
+	// OPERATOR_ROLE_EDITOR the logged in user needs at least editor role to call this method
+	OperatorRole_OPERATOR_ROLE_EDITOR OperatorRole = 1
+	// OPERATOR_ROLE_VIEWER the logged in user needs at least viewer role to call this method
+	OperatorRole_OPERATOR_ROLE_VIEWER OperatorRole = 2
 )
 
-// Enum value maps for AdminRole.
+// Enum value maps for OperatorRole.
 var (
-	AdminRole_name = map[int32]string{
-		0: "ADMIN_ROLE_UNSPECIFIED",
-		1: "ADMIN_ROLE_EDITOR",
-		2: "ADMIN_ROLE_VIEWER",
+	OperatorRole_name = map[int32]string{
+		0: "OPERATOR_ROLE_UNSPECIFIED",
+		1: "OPERATOR_ROLE_EDITOR",
+		2: "OPERATOR_ROLE_VIEWER",
 	}
-	AdminRole_value = map[string]int32{
-		"ADMIN_ROLE_UNSPECIFIED": 0,
-		"ADMIN_ROLE_EDITOR":      1,
-		"ADMIN_ROLE_VIEWER":      2,
+	OperatorRole_value = map[string]int32{
+		"OPERATOR_ROLE_UNSPECIFIED": 0,
+		"OPERATOR_ROLE_EDITOR":      1,
+		"OPERATOR_ROLE_VIEWER":      2,
 	}
 )
 
-func (x AdminRole) Enum() *AdminRole {
-	p := new(AdminRole)
+func (x OperatorRole) Enum() *OperatorRole {
+	p := new(OperatorRole)
 	*p = x
 	return p
 }
 
-func (x AdminRole) String() string {
+func (x OperatorRole) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (AdminRole) Descriptor() protoreflect.EnumDescriptor {
+func (OperatorRole) Descriptor() protoreflect.EnumDescriptor {
 	return file_fits_api_v1_common_proto_enumTypes[2].Descriptor()
 }
 
-func (AdminRole) Type() protoreflect.EnumType {
+func (OperatorRole) Type() protoreflect.EnumType {
 	return &file_fits_api_v1_common_proto_enumTypes[2]
 }
 
-func (x AdminRole) Number() protoreflect.EnumNumber {
+func (x OperatorRole) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use AdminRole.Descriptor instead.
-func (AdminRole) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use OperatorRole.Descriptor instead.
+func (OperatorRole) EnumDescriptor() ([]byte, []int) {
 	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{2}
 }
 
@@ -666,10 +666,10 @@ var file_fits_api_v1_common_proto_extTypes = []protoimpl.ExtensionInfo{
 	},
 	{
 		ExtendedType:  (*descriptorpb.MethodOptions)(nil),
-		ExtensionType: ([]AdminRole)(nil),
+		ExtensionType: ([]OperatorRole)(nil),
 		Field:         51002,
-		Name:          "fits.api.v1.admin_roles",
-		Tag:           "varint,51002,rep,packed,name=admin_roles,enum=fits.api.v1.AdminRole",
+		Name:          "fits.api.v1.operator_roles",
+		Tag:           "varint,51002,rep,packed,name=operator_roles,enum=fits.api.v1.OperatorRole",
 		Filename:      "fits/api/v1/common.proto",
 	},
 	{
@@ -708,10 +708,10 @@ var (
 	//
 	// repeated fits.api.v1.ProjectRole project_roles = 51001;
 	E_ProjectRoles = &file_fits_api_v1_common_proto_extTypes[1]
-	// AdminRoles are used to define which admin role a logged in user must provide to call this method
+	// OperatorRoles are used to define which operator role a logged in user must provide to call this method
 	//
-	// repeated fits.api.v1.AdminRole admin_roles = 51002;
-	E_AdminRoles = &file_fits_api_v1_common_proto_extTypes[2]
+	// repeated fits.api.v1.OperatorRole operator_roles = 51002;
+	E_OperatorRoles = &file_fits_api_v1_common_proto_extTypes[2]
 	// Visibility defines the visibility of this method, this is used to have public or self visible methods
 	//
 	// optional fits.api.v1.Visibility visibility = 51003;
@@ -766,19 +766,19 @@ const file_fits_api_v1_common_proto_rawDesc = "" +
 	"\n" +
 	"TenantRole\x12\x1b\n" +
 	"\x17TENANT_ROLE_UNSPECIFIED\x10\x00\x12\x15\n" +
-	"\x11TENANT_ROLE_OWNER\x10\x01\x12\x16\n" +
+	"\x11TENANT_ROLE_ADMIN\x10\x01\x12\x16\n" +
 	"\x12TENANT_ROLE_EDITOR\x10\x02\x12\x16\n" +
 	"\x12TENANT_ROLE_VIEWER\x10\x03\x12\x15\n" +
 	"\x11TENANT_ROLE_GUEST\x10\x04*u\n" +
 	"\vProjectRole\x12\x1c\n" +
 	"\x18PROJECT_ROLE_UNSPECIFIED\x10\x00\x12\x16\n" +
-	"\x12PROJECT_ROLE_OWNER\x10\x01\x12\x17\n" +
+	"\x12PROJECT_ROLE_ADMIN\x10\x01\x12\x17\n" +
 	"\x13PROJECT_ROLE_EDITOR\x10\x02\x12\x17\n" +
-	"\x13PROJECT_ROLE_VIEWER\x10\x03*U\n" +
-	"\tAdminRole\x12\x1a\n" +
-	"\x16ADMIN_ROLE_UNSPECIFIED\x10\x00\x12\x15\n" +
-	"\x11ADMIN_ROLE_EDITOR\x10\x01\x12\x15\n" +
-	"\x11ADMIN_ROLE_VIEWER\x10\x02*T\n" +
+	"\x13PROJECT_ROLE_VIEWER\x10\x03*a\n" +
+	"\fOperatorRole\x12\x1d\n" +
+	"\x19OPERATOR_ROLE_UNSPECIFIED\x10\x00\x12\x18\n" +
+	"\x14OPERATOR_ROLE_EDITOR\x10\x01\x12\x18\n" +
+	"\x14OPERATOR_ROLE_VIEWER\x10\x02*T\n" +
 	"\n" +
 	"Visibility\x12\x1a\n" +
 	"\x16VISIBILITY_UNSPECIFIED\x10\x00\x12\x15\n" +
@@ -793,9 +793,8 @@ const file_fits_api_v1_common_proto_rawDesc = "" +
 	"\"OPTIMISTIC_LOCKING_STRATEGY_CLIENT\x10\x01\x12&\n" +
 	"\"OPTIMISTIC_LOCKING_STRATEGY_SERVER\x10\x02:\\\n" +
 	"\ftenant_roles\x12\x1e.google.protobuf.MethodOptions\x18\xb8\x8e\x03 \x03(\x0e2\x17.fits.api.v1.TenantRoleR\vtenantRoles:_\n" +
-	"\rproject_roles\x12\x1e.google.protobuf.MethodOptions\x18\xb9\x8e\x03 \x03(\x0e2\x18.fits.api.v1.ProjectRoleR\fprojectRoles:Y\n" +
-	"\vadmin_roles\x12\x1e.google.protobuf.MethodOptions\x18\xba\x8e\x03 \x03(\x0e2\x16.fits.api.v1.AdminRoleR\n" +
-	"adminRoles:Y\n" +
+	"\rproject_roles\x12\x1e.google.protobuf.MethodOptions\x18\xb9\x8e\x03 \x03(\x0e2\x18.fits.api.v1.ProjectRoleR\fprojectRoles:b\n" +
+	"\x0eoperator_roles\x12\x1e.google.protobuf.MethodOptions\x18\xba\x8e\x03 \x03(\x0e2\x19.fits.api.v1.OperatorRoleR\roperatorRoles:Y\n" +
 	"\n" +
 	"visibility\x12\x1e.google.protobuf.MethodOptions\x18\xbb\x8e\x03 \x01(\x0e2\x17.fits.api.v1.VisibilityR\n" +
 	"visibility:S\n" +
@@ -820,7 +819,7 @@ var file_fits_api_v1_common_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_fits_api_v1_common_proto_goTypes = []any{
 	(TenantRole)(0),                       // 0: fits.api.v1.TenantRole
 	(ProjectRole)(0),                      // 1: fits.api.v1.ProjectRole
-	(AdminRole)(0),                        // 2: fits.api.v1.AdminRole
+	(OperatorRole)(0),                     // 2: fits.api.v1.OperatorRole
 	(Visibility)(0),                       // 3: fits.api.v1.Visibility
 	(Auditing)(0),                         // 4: fits.api.v1.Auditing
 	(OptimisticLockingStrategy)(0),        // 5: fits.api.v1.OptimisticLockingStrategy
@@ -844,13 +843,13 @@ var file_fits_api_v1_common_proto_depIdxs = []int32{
 	5,  // 6: fits.api.v1.UpdateMeta.locking_strategy:type_name -> fits.api.v1.OptimisticLockingStrategy
 	13, // 7: fits.api.v1.tenant_roles:extendee -> google.protobuf.MethodOptions
 	13, // 8: fits.api.v1.project_roles:extendee -> google.protobuf.MethodOptions
-	13, // 9: fits.api.v1.admin_roles:extendee -> google.protobuf.MethodOptions
+	13, // 9: fits.api.v1.operator_roles:extendee -> google.protobuf.MethodOptions
 	13, // 10: fits.api.v1.visibility:extendee -> google.protobuf.MethodOptions
 	13, // 11: fits.api.v1.auditing:extendee -> google.protobuf.MethodOptions
 	14, // 12: fits.api.v1.enum_string_value:extendee -> google.protobuf.EnumValueOptions
 	0,  // 13: fits.api.v1.tenant_roles:type_name -> fits.api.v1.TenantRole
 	1,  // 14: fits.api.v1.project_roles:type_name -> fits.api.v1.ProjectRole
-	2,  // 15: fits.api.v1.admin_roles:type_name -> fits.api.v1.AdminRole
+	2,  // 15: fits.api.v1.operator_roles:type_name -> fits.api.v1.OperatorRole
 	3,  // 16: fits.api.v1.visibility:type_name -> fits.api.v1.Visibility
 	4,  // 17: fits.api.v1.auditing:type_name -> fits.api.v1.Auditing
 	18, // [18:18] is the sub-list for method output_type

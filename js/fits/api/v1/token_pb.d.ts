@@ -1,5 +1,5 @@
 import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import type { AdminRole, Meta, ProjectRole, TenantRole } from "./common_pb.js";
+import type { Meta, OperatorRole, ProjectRole, TenantRole } from "./common_pb.js";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 /**
@@ -88,11 +88,11 @@ export type Token = Message<"fits.api.v1.Token"> & {
         [key: string]: TenantRole;
     };
     /**
-     * AdminRole defines the admin role of the token owner
+     * OperatorRole defines the operator role of the token owner
      *
-     * @generated from field: optional fits.api.v1.AdminRole admin_role = 11;
+     * @generated from field: optional fits.api.v1.OperatorRole operator_role = 11;
      */
-    adminRole?: AdminRole | undefined;
+    operatorRole?: OperatorRole | undefined;
     /**
      * RawRoles are the normalized roles transmitted by the OIDC provider.
      *
@@ -191,12 +191,12 @@ export type PermissionsByVisibility = Message<"fits.api.v1.PermissionsByVisibili
         case: "tenant";
     } | {
         /**
-         * AdminPermissions carries admin method permissions.
+         * OperatorPermissions carries operator method permissions.
          *
-         * @generated from field: fits.api.v1.AdminPermissions admin = 5;
+         * @generated from field: fits.api.v1.OperatorPermissions operator = 5;
          */
-        value: AdminPermissions;
-        case: "admin";
+        value: OperatorPermissions;
+        case: "operator";
     } | {
         case: undefined;
         value?: undefined;
@@ -294,11 +294,11 @@ export type TenantPermissions = Message<"fits.api.v1.TenantPermissions"> & {
  */
 export declare const TenantPermissionsSchema: GenMessage<TenantPermissions>;
 /**
- * AdminPermissions carries admin method permissions.
+ * OperatorPermissions carries operator method permissions.
  *
- * @generated from message fits.api.v1.AdminPermissions
+ * @generated from message fits.api.v1.OperatorPermissions
  */
-export type AdminPermissions = Message<"fits.api.v1.AdminPermissions"> & {
+export type OperatorPermissions = Message<"fits.api.v1.OperatorPermissions"> & {
     /**
      * Methods which should be accessible.
      *
@@ -307,10 +307,10 @@ export type AdminPermissions = Message<"fits.api.v1.AdminPermissions"> & {
     methods: string[];
 };
 /**
- * Describes the message fits.api.v1.AdminPermissions.
- * Use `create(AdminPermissionsSchema)` to create a new message.
+ * Describes the message fits.api.v1.OperatorPermissions.
+ * Use `create(OperatorPermissionsSchema)` to create a new message.
  */
-export declare const AdminPermissionsSchema: GenMessage<AdminPermissions>;
+export declare const OperatorPermissionsSchema: GenMessage<OperatorPermissions>;
 /**
  * TokenServiceListRequest is the request payload to list tokens
  *

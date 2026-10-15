@@ -111,9 +111,9 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 			return files, err
 		}
 		roles = permissions.Roles{
-			Admin:   permissions.Admin{},
-			Tenant:  permissions.Tenant{},
-			Project: permissions.Project{},
+			Operator: permissions.Operator{},
+			Tenant:   permissions.Tenant{},
+			Project:  permissions.Project{},
 		}
 		methods = permissions.Methods{
 			// Allow service reflection to list available methods
@@ -126,10 +126,10 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 				serverReflectionInfov1alpha1: true,
 				serverReflectionInfo:         true,
 			},
-			Self:    map[string]bool{},
-			Admin:   map[string]bool{},
-			Tenant:  map[string]bool{},
-			Project: map[string]bool{},
+			Self:     map[string]bool{},
+			Operator: map[string]bool{},
+			Tenant:   map[string]bool{},
+			Project:  map[string]bool{},
 		}
 		auditable = permissions.Auditable{}
 		services  = []string{}
@@ -158,7 +158,7 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 						auditable[methodName] = true
 						// Tenant
 						switch role := *methodOpt.IdentifierValue; role {
-						case v1.TenantRole_TENANT_ROLE_OWNER.String(), v1.TenantRole_TENANT_ROLE_EDITOR.String(), v1.TenantRole_TENANT_ROLE_VIEWER.String(), v1.TenantRole_TENANT_ROLE_GUEST.String():
+						case v1.TenantRole_TENANT_ROLE_ADMIN.String(), v1.TenantRole_TENANT_ROLE_EDITOR.String(), v1.TenantRole_TENANT_ROLE_VIEWER.String(), v1.TenantRole_TENANT_ROLE_GUEST.String():
 							apirole := v1.TenantRole(v1.TenantRole_value[role])
 							if methods := roles.Tenant[apirole]; methods == nil {
 								roles.Tenant[apirole] = permissions.Methods{}
@@ -168,7 +168,7 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 						case v1.TenantRole_TENANT_ROLE_UNSPECIFIED.String():
 							// noop
 						// Project
-						case v1.ProjectRole_PROJECT_ROLE_OWNER.String(), v1.ProjectRole_PROJECT_ROLE_EDITOR.String(), v1.ProjectRole_PROJECT_ROLE_VIEWER.String():
+						case v1.ProjectRole_PROJECT_ROLE_ADMIN.String(), v1.ProjectRole_PROJECT_ROLE_EDITOR.String(), v1.ProjectRole_PROJECT_ROLE_VIEWER.String():
 							apirole := v1.ProjectRole(v1.ProjectRole_value[role])
 							if methods := roles.Project[apirole]; methods == nil {
 								roles.Project[apirole] = permissions.Methods{}
@@ -177,15 +177,15 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 							visibility.Project[methodName] = true
 						case v1.ProjectRole_PROJECT_ROLE_UNSPECIFIED.String():
 							// noop
-						// Admin
-						case v1.AdminRole_ADMIN_ROLE_EDITOR.String(), v1.AdminRole_ADMIN_ROLE_VIEWER.String():
-							apirole := v1.AdminRole(v1.AdminRole_value[role])
-							if methods := roles.Admin[apirole]; methods == nil {
-								roles.Admin[apirole] = permissions.Methods{}
+						// Operator
+						case v1.OperatorRole_OPERATOR_ROLE_EDITOR.String(), v1.OperatorRole_OPERATOR_ROLE_VIEWER.String():
+							apirole := v1.OperatorRole(v1.OperatorRole_value[role])
+							if methods := roles.Operator[apirole]; methods == nil {
+								roles.Operator[apirole] = permissions.Methods{}
 							}
-							roles.Admin[apirole][methodName] = struct{}{}
-							visibility.Admin[methodName] = true
-						case v1.AdminRole_ADMIN_ROLE_UNSPECIFIED.String():
+							roles.Operator[apirole][methodName] = struct{}{}
+							visibility.Operator[methodName] = true
+						case v1.OperatorRole_OPERATOR_ROLE_UNSPECIFIED.String():
 							// noop
 						// Visibility
 						case v1.Visibility_VISIBILITY_PUBLIC.String():

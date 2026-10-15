@@ -110,8 +110,8 @@ type Token struct {
 	ProjectRoles map[string]ProjectRole `protobuf:"bytes,9,rep,name=project_roles,json=projectRoles,proto3" json:"project_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.ProjectRole"`
 	// TenantRoles associates a tenant id with the corresponding role of the token owner.
 	TenantRoles map[string]TenantRole `protobuf:"bytes,10,rep,name=tenant_roles,json=tenantRoles,proto3" json:"tenant_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.TenantRole"`
-	// AdminRole defines the admin role of the token owner
-	AdminRole *AdminRole `protobuf:"varint,11,opt,name=admin_role,json=adminRole,proto3,enum=fits.api.v1.AdminRole,oneof" json:"admin_role,omitempty"`
+	// OperatorRole defines the operator role of the token owner
+	OperatorRole *OperatorRole `protobuf:"varint,11,opt,name=operator_role,json=operatorRole,proto3,enum=fits.api.v1.OperatorRole,oneof" json:"operator_role,omitempty"`
 	// RawRoles are the normalized roles transmitted by the OIDC provider.
 	RawRoles []string `protobuf:"bytes,12,rep,name=raw_roles,json=rawRoles,proto3" json:"raw_roles,omitempty"`
 	// Name is the display name of the user the token was issued for.
@@ -222,11 +222,11 @@ func (x *Token) GetTenantRoles() map[string]TenantRole {
 	return nil
 }
 
-func (x *Token) GetAdminRole() AdminRole {
-	if x != nil && x.AdminRole != nil {
-		return *x.AdminRole
+func (x *Token) GetOperatorRole() OperatorRole {
+	if x != nil && x.OperatorRole != nil {
+		return *x.OperatorRole
 	}
-	return AdminRole_ADMIN_ROLE_UNSPECIFIED
+	return OperatorRole_OPERATOR_ROLE_UNSPECIFIED
 }
 
 func (x *Token) GetRawRoles() []string {
@@ -321,7 +321,7 @@ type PermissionsByVisibility struct {
 	//	*PermissionsByVisibility_Self
 	//	*PermissionsByVisibility_Project
 	//	*PermissionsByVisibility_Tenant
-	//	*PermissionsByVisibility_Admin
+	//	*PermissionsByVisibility_Operator
 	Visibility    isPermissionsByVisibility_Visibility `protobuf_oneof:"visibility"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -400,10 +400,10 @@ func (x *PermissionsByVisibility) GetTenant() *TenantPermissions {
 	return nil
 }
 
-func (x *PermissionsByVisibility) GetAdmin() *AdminPermissions {
+func (x *PermissionsByVisibility) GetOperator() *OperatorPermissions {
 	if x != nil {
-		if x, ok := x.Visibility.(*PermissionsByVisibility_Admin); ok {
-			return x.Admin
+		if x, ok := x.Visibility.(*PermissionsByVisibility_Operator); ok {
+			return x.Operator
 		}
 	}
 	return nil
@@ -433,9 +433,9 @@ type PermissionsByVisibility_Tenant struct {
 	Tenant *TenantPermissions `protobuf:"bytes,4,opt,name=tenant,proto3,oneof"`
 }
 
-type PermissionsByVisibility_Admin struct {
-	// AdminPermissions carries admin method permissions.
-	Admin *AdminPermissions `protobuf:"bytes,5,opt,name=admin,proto3,oneof"`
+type PermissionsByVisibility_Operator struct {
+	// OperatorPermissions carries operator method permissions.
+	Operator *OperatorPermissions `protobuf:"bytes,5,opt,name=operator,proto3,oneof"`
 }
 
 func (*PermissionsByVisibility_Public) isPermissionsByVisibility_Visibility() {}
@@ -446,7 +446,7 @@ func (*PermissionsByVisibility_Project) isPermissionsByVisibility_Visibility() {
 
 func (*PermissionsByVisibility_Tenant) isPermissionsByVisibility_Visibility() {}
 
-func (*PermissionsByVisibility_Admin) isPermissionsByVisibility_Visibility() {}
+func (*PermissionsByVisibility_Operator) isPermissionsByVisibility_Visibility() {}
 
 // PublicPermissions carries public method permissions.
 type PublicPermissions struct {
@@ -652,8 +652,8 @@ func (x *TenantPermissions) GetMethods() []string {
 	return nil
 }
 
-// AdminPermissions carries admin method permissions.
-type AdminPermissions struct {
+// OperatorPermissions carries operator method permissions.
+type OperatorPermissions struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Methods which should be accessible.
 	Methods       []string `protobuf:"bytes,1,rep,name=methods,proto3" json:"methods,omitempty"`
@@ -661,20 +661,20 @@ type AdminPermissions struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *AdminPermissions) Reset() {
-	*x = AdminPermissions{}
+func (x *OperatorPermissions) Reset() {
+	*x = OperatorPermissions{}
 	mi := &file_fits_api_v1_token_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *AdminPermissions) String() string {
+func (x *OperatorPermissions) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*AdminPermissions) ProtoMessage() {}
+func (*OperatorPermissions) ProtoMessage() {}
 
-func (x *AdminPermissions) ProtoReflect() protoreflect.Message {
+func (x *OperatorPermissions) ProtoReflect() protoreflect.Message {
 	mi := &file_fits_api_v1_token_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -686,12 +686,12 @@ func (x *AdminPermissions) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use AdminPermissions.ProtoReflect.Descriptor instead.
-func (*AdminPermissions) Descriptor() ([]byte, []int) {
+// Deprecated: Use OperatorPermissions.ProtoReflect.Descriptor instead.
+func (*OperatorPermissions) Descriptor() ([]byte, []int) {
 	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *AdminPermissions) GetMethods() []string {
+func (x *OperatorPermissions) GetMethods() []string {
 	if x != nil {
 		return x.Methods
 	}
@@ -960,7 +960,7 @@ var File_fits_api_v1_token_proto protoreflect.FileDescriptor
 
 const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\n" +
-	"\x17fits/api/v1/token.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe8\b\n" +
+	"\x17fits/api/v1/token.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf4\b\n" +
 	"\x05Token\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x1e\n" +
 	"\x04user\x18\x02 \x01(\tB\n" +
@@ -974,9 +974,8 @@ const file_fits_api_v1_token_proto_rawDesc = "" +
 	"token_type\x18\b \x01(\x0e2\x16.fits.api.v1.TokenTypeB\b\xbaH\x05\x82\x01\x02\x10\x01R\ttokenType\x12I\n" +
 	"\rproject_roles\x18\t \x03(\v2$.fits.api.v1.Token.ProjectRolesEntryR\fprojectRoles\x12a\n" +
 	"\ftenant_roles\x18\n" +
-	" \x03(\v2#.fits.api.v1.Token.TenantRolesEntryB\x19\xbaH\x16\x9a\x01\x13\xc0\x95\xb8\xb1\x02\x01Е\xb8\xb1\x02\x01*\x05\x82\x01\x02\x10\x01R\vtenantRoles\x12D\n" +
-	"\n" +
-	"admin_role\x18\v \x01(\x0e2\x16.fits.api.v1.AdminRoleB\b\xbaH\x05\x82\x01\x02\x10\x01H\x00R\tadminRole\x88\x01\x01\x121\n" +
+	" \x03(\v2#.fits.api.v1.Token.TenantRolesEntryB\x19\xbaH\x16\x9a\x01\x13\xc0\x95\xb8\xb1\x02\x01Е\xb8\xb1\x02\x01*\x05\x82\x01\x02\x10\x01R\vtenantRoles\x12M\n" +
+	"\roperator_role\x18\v \x01(\x0e2\x19.fits.api.v1.OperatorRoleB\b\xbaH\x05\x82\x01\x02\x10\x01H\x00R\foperatorRole\x88\x01\x01\x121\n" +
 	"\traw_roles\x18\f \x03(\tB\x14\xbaH\x11\x92\x01\x0eФ\xb3\xb1\x02\x01ؤ\xb3\xb1\x02\x01\x18\x01R\brawRoles\x12\x1c\n" +
 	"\x04name\x18\r \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\x04name\x12\x1e\n" +
 	"\x05email\x18\x0e \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\x05email\x1aY\n" +
@@ -986,17 +985,17 @@ const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\x10TenantRolesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12-\n" +
 	"\x05value\x18\x02 \x01(\x0e2\x17.fits.api.v1.TenantRoleR\x05value:\x028\x01:\x9f\x01\xbaH\x9b\x01\x1a\x98\x01\n" +
-	"\x1btoken.permissions.usertoken\x12)token type user must not have permissions\x1aN(this.token_type == 2 && this.permissions.size() == 0) || this.token_type != 2B\r\n" +
-	"\v_admin_role\"[\n" +
+	"\x1btoken.permissions.usertoken\x12)token type user must not have permissions\x1aN(this.token_type == 2 && this.permissions.size() == 0) || this.token_type != 2B\x10\n" +
+	"\x0e_operator_role\"[\n" +
 	"\x10MethodPermission\x12\"\n" +
 	"\asubject\x18\x01 \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\asubject\x12#\n" +
-	"\amethods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\"\xc3\x02\n" +
+	"\amethods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\"\xcc\x02\n" +
 	"\x17PermissionsByVisibility\x128\n" +
 	"\x06public\x18\x01 \x01(\v2\x1e.fits.api.v1.PublicPermissionsH\x00R\x06public\x122\n" +
 	"\x04self\x18\x02 \x01(\v2\x1c.fits.api.v1.SelfPermissionsH\x00R\x04self\x12;\n" +
 	"\aproject\x18\x03 \x01(\v2\x1f.fits.api.v1.ProjectPermissionsH\x00R\aproject\x128\n" +
-	"\x06tenant\x18\x04 \x01(\v2\x1e.fits.api.v1.TenantPermissionsH\x00R\x06tenant\x125\n" +
-	"\x05admin\x18\x05 \x01(\v2\x1d.fits.api.v1.AdminPermissionsH\x00R\x05adminB\f\n" +
+	"\x06tenant\x18\x04 \x01(\v2\x1e.fits.api.v1.TenantPermissionsH\x00R\x06tenant\x12>\n" +
+	"\boperator\x18\x05 \x01(\v2 .fits.api.v1.OperatorPermissionsH\x00R\boperatorB\f\n" +
 	"\n" +
 	"visibility\"8\n" +
 	"\x11PublicPermissions\x12#\n" +
@@ -1008,8 +1007,8 @@ const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\amethods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\"[\n" +
 	"\x11TenantPermissions\x12!\n" +
 	"\x05login\x18\x01 \x01(\tB\v\xbaH\br\x06\x90\xb4\xae\xb1\x02\x01R\x05login\x12#\n" +
-	"\amethods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\"7\n" +
-	"\x10AdminPermissions\x12#\n" +
+	"\amethods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\":\n" +
+	"\x13OperatorPermissions\x12#\n" +
 	"\amethods\x18\x01 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\"\x19\n" +
 	"\x17TokenServiceListRequest\"F\n" +
 	"\x18TokenServiceListResponse\x12*\n" +
@@ -1055,7 +1054,7 @@ var file_fits_api_v1_token_proto_goTypes = []any{
 	(*SelfPermissions)(nil),            // 5: fits.api.v1.SelfPermissions
 	(*ProjectPermissions)(nil),         // 6: fits.api.v1.ProjectPermissions
 	(*TenantPermissions)(nil),          // 7: fits.api.v1.TenantPermissions
-	(*AdminPermissions)(nil),           // 8: fits.api.v1.AdminPermissions
+	(*OperatorPermissions)(nil),        // 8: fits.api.v1.OperatorPermissions
 	(*TokenServiceListRequest)(nil),    // 9: fits.api.v1.TokenServiceListRequest
 	(*TokenServiceListResponse)(nil),   // 10: fits.api.v1.TokenServiceListResponse
 	(*TokenServiceRevokeRequest)(nil),  // 11: fits.api.v1.TokenServiceRevokeRequest
@@ -1066,7 +1065,7 @@ var file_fits_api_v1_token_proto_goTypes = []any{
 	nil,                                // 16: fits.api.v1.Token.TenantRolesEntry
 	(*Meta)(nil),                       // 17: fits.api.v1.Meta
 	(*timestamppb.Timestamp)(nil),      // 18: google.protobuf.Timestamp
-	(AdminRole)(0),                     // 19: fits.api.v1.AdminRole
+	(OperatorRole)(0),                  // 19: fits.api.v1.OperatorRole
 	(ProjectRole)(0),                   // 20: fits.api.v1.ProjectRole
 	(TenantRole)(0),                    // 21: fits.api.v1.TenantRole
 }
@@ -1078,12 +1077,12 @@ var file_fits_api_v1_token_proto_depIdxs = []int32{
 	0,  // 4: fits.api.v1.Token.token_type:type_name -> fits.api.v1.TokenType
 	15, // 5: fits.api.v1.Token.project_roles:type_name -> fits.api.v1.Token.ProjectRolesEntry
 	16, // 6: fits.api.v1.Token.tenant_roles:type_name -> fits.api.v1.Token.TenantRolesEntry
-	19, // 7: fits.api.v1.Token.admin_role:type_name -> fits.api.v1.AdminRole
+	19, // 7: fits.api.v1.Token.operator_role:type_name -> fits.api.v1.OperatorRole
 	4,  // 8: fits.api.v1.PermissionsByVisibility.public:type_name -> fits.api.v1.PublicPermissions
 	5,  // 9: fits.api.v1.PermissionsByVisibility.self:type_name -> fits.api.v1.SelfPermissions
 	6,  // 10: fits.api.v1.PermissionsByVisibility.project:type_name -> fits.api.v1.ProjectPermissions
 	7,  // 11: fits.api.v1.PermissionsByVisibility.tenant:type_name -> fits.api.v1.TenantPermissions
-	8,  // 12: fits.api.v1.PermissionsByVisibility.admin:type_name -> fits.api.v1.AdminPermissions
+	8,  // 12: fits.api.v1.PermissionsByVisibility.operator:type_name -> fits.api.v1.OperatorPermissions
 	1,  // 13: fits.api.v1.TokenServiceListResponse.tokens:type_name -> fits.api.v1.Token
 	1,  // 14: fits.api.v1.TokenServiceGetResponse.token:type_name -> fits.api.v1.Token
 	20, // 15: fits.api.v1.Token.ProjectRolesEntry.value:type_name -> fits.api.v1.ProjectRole
@@ -1114,7 +1113,7 @@ func file_fits_api_v1_token_proto_init() {
 		(*PermissionsByVisibility_Self)(nil),
 		(*PermissionsByVisibility_Project)(nil),
 		(*PermissionsByVisibility_Tenant)(nil),
-		(*PermissionsByVisibility_Admin)(nil),
+		(*PermissionsByVisibility_Operator)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

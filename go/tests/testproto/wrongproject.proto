@@ -6,18 +6,18 @@ import "fits.api.v1/common.proto";
 
 service WrongProjectService {
   rpc Add(WrongProjectServiceAddRequest) returns (WrongProjectServiceAddResponse) {
-    option (tenant_roles) = TENANT_ROLE_OWNER;
+    option (tenant_roles) = TENANT_ROLE_ADMIN;
   }
   rpc Get(WrongProjectServiceGetRequest) returns (WrongProjectServiceGetResponse) {
-    option (project_roles) = PROJECT_ROLE_OWNER;
+    option (project_roles) = PROJECT_ROLE_ADMIN;
   }
   rpc List(WrongProjectServiceListRequest) returns (WrongProjectServiceListResponse) {}
   rpc Update(WrongProjectServiceUpdateRequest) returns (WrongProjectServiceUpdateResponse) {
-    option (admin_roles) = ADMIN_ROLE_VIEWER;
-    option (project_roles) = PROJECT_ROLE_OWNER;
+    option (operator_roles) = OPERATOR_ROLE_VIEWER;
+    option (project_roles) = PROJECT_ROLE_ADMIN;
   }
   rpc Delete(WrongProjectServiceDeleteRequest) returns (WrongProjectServiceDeleteResponse) {
-    option (admin_roles) = ADMIN_ROLE_VIEWER;
+    option (operator_roles) = OPERATOR_ROLE_VIEWER;
     option (fits.api.v1.visibility) = VISIBILITY_PUBLIC;
   }
   rpc Charge(WrongProjectServiceChargeRequest) returns (WrongProjectServiceChargeResponse) {

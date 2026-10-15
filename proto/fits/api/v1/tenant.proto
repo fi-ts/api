@@ -15,7 +15,7 @@ service TenantService {
   }
   // Get a tenant
   rpc Get(TenantServiceGetRequest) returns (TenantServiceGetResponse) {
-    option (tenant_roles) = TENANT_ROLE_OWNER;
+    option (tenant_roles) = TENANT_ROLE_ADMIN;
     option (tenant_roles) = TENANT_ROLE_EDITOR;
     option (tenant_roles) = TENANT_ROLE_VIEWER;
     option (tenant_roles) = TENANT_ROLE_GUEST;
@@ -23,7 +23,7 @@ service TenantService {
   }
   // Update a tenant
   rpc Update(TenantServiceUpdateRequest) returns (TenantServiceUpdateResponse) {
-    option (tenant_roles) = TENANT_ROLE_OWNER;
+    option (tenant_roles) = TENANT_ROLE_ADMIN;
     option (tenant_roles) = TENANT_ROLE_EDITOR;
     option (auditing) = AUDITING_INCLUDED;
   }
