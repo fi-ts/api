@@ -46,6 +46,12 @@ export type DomainServiceListRequest = Message<"fits.api.mvm.v1.DomainServiceLis
      * @generated from field: string tenant = 1;
      */
     tenant: string;
+    /**
+     * Filter the listed domains by location (the FCE datacenter ID). A domain is only available in some datacenters.
+     *
+     * @generated from field: string location_uuid = 2;
+     */
+    locationUuid: string;
 };
 /**
  * Describes the message fits.api.mvm.v1.DomainServiceListRequest.
@@ -77,7 +83,7 @@ export declare const DomainServiceListResponseSchema: GenMessage<DomainServiceLi
  */
 export declare const DomainService: GenService<{
     /**
-     * Returns a list of all Windows domains available for a tenant.
+     * Returns a list of all Windows domains available for a tenant in a location.
      *
      * @generated from rpc fits.api.mvm.v1.DomainService.List
      */

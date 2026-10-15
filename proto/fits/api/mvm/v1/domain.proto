@@ -8,7 +8,7 @@ import "fits/api/v1/predefined_rules.proto";
 
 // DomainService lists Windows domains available for managed VM (MVM) instances.
 service DomainService {
-  // Returns a list of all Windows domains available for a tenant.
+  // Returns a list of all Windows domains available for a tenant in a location.
   rpc List(DomainServiceListRequest) returns (DomainServiceListResponse) {
     option (fits.api.v1.tenant_roles) = TENANT_ROLE_ADMIN;
     option (fits.api.v1.tenant_roles) = TENANT_ROLE_EDITOR;
@@ -31,6 +31,8 @@ message Domain {
 message DomainServiceListRequest {
   // Tenant to list available domains for.
   string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Filter the listed domains by location (the FCE datacenter ID). A domain is only available in some datacenters.
+  string location_uuid = 2 [(buf.validate.field).string.uuid = true];
 }
 
 // DomainServiceListResponse is the response payload for a domain list request.

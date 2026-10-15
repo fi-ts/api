@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/mvm/v1/domain.proto.
  */
 export const file_fits_api_mvm_v1_domain: GenFile = /*@__PURE__*/
-  fileDesc("ChxmaXRzL2FwaS9tdm0vdjEvZG9tYWluLnByb3RvEg9maXRzLmFwaS5tdm0udjEiWAoGRG9tYWluEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEhkKBGZxZG4YAiABKAlCC7pICHIGwLOusQIBEhsKBnRlbmFudBgDIAEoCUILukgIcgbAs66xAgEiNwoYRG9tYWluU2VydmljZUxpc3RSZXF1ZXN0EhsKBnRlbmFudBgBIAEoCUILukgIcgbAs66xAgEiRQoZRG9tYWluU2VydmljZUxpc3RSZXNwb25zZRIoCgdkb21haW5zGAEgAygLMhcuZml0cy5hcGkubXZtLnYxLkRvbWFpbjJ7Cg1Eb21haW5TZXJ2aWNlEmoKBExpc3QSKS5maXRzLmFwaS5tdm0udjEuRG9tYWluU2VydmljZUxpc3RSZXF1ZXN0GiouZml0cy5hcGkubXZtLnYxLkRvbWFpblNlcnZpY2VMaXN0UmVzcG9uc2UiC8LzGAMBAgPg8xgCQrABChNjb20uZml0cy5hcGkubXZtLnYxQgtEb21haW5Qcm90b1ABWi1naXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS9tdm0vdjE7bXZtdjGiAgNGQU2qAg9GaXRzLkFwaS5Ndm0uVjHKAg9GaXRzXEFwaVxNdm1cVjHiAhtGaXRzXEFwaVxNdm1cVjFcR1BCTWV0YWRhdGHqAhJGaXRzOjpBcGk6Ok12bTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
+  fileDesc("ChxmaXRzL2FwaS9tdm0vdjEvZG9tYWluLnByb3RvEg9maXRzLmFwaS5tdm0udjEiWAoGRG9tYWluEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEhkKBGZxZG4YAiABKAlCC7pICHIGwLOusQIBEhsKBnRlbmFudBgDIAEoCUILukgIcgbAs66xAgEiWAoYRG9tYWluU2VydmljZUxpc3RSZXF1ZXN0EhsKBnRlbmFudBgBIAEoCUILukgIcgbAs66xAgESHwoNbG9jYXRpb25fdXVpZBgCIAEoCUIIukgFcgOwAQEiRQoZRG9tYWluU2VydmljZUxpc3RSZXNwb25zZRIoCgdkb21haW5zGAEgAygLMhcuZml0cy5hcGkubXZtLnYxLkRvbWFpbjJ7Cg1Eb21haW5TZXJ2aWNlEmoKBExpc3QSKS5maXRzLmFwaS5tdm0udjEuRG9tYWluU2VydmljZUxpc3RSZXF1ZXN0GiouZml0cy5hcGkubXZtLnYxLkRvbWFpblNlcnZpY2VMaXN0UmVzcG9uc2UiC8LzGAMBAgPg8xgCQrABChNjb20uZml0cy5hcGkubXZtLnYxQgtEb21haW5Qcm90b1ABWi1naXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS9tdm0vdjE7bXZtdjGiAgNGQU2qAg9GaXRzLkFwaS5Ndm0uVjHKAg9GaXRzXEFwaVxNdm1cVjHiAhtGaXRzXEFwaVxNdm1cVjFcR1BCTWV0YWRhdGHqAhJGaXRzOjpBcGk6Ok12bTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
 
 /**
  * Domain is a Windows domain a Windows MVM can join.
@@ -62,6 +62,13 @@ export type DomainServiceListRequest = Message<"fits.api.mvm.v1.DomainServiceLis
    * @generated from field: string tenant = 1;
    */
   tenant: string;
+
+  /**
+   * Filter the listed domains by location (the FCE datacenter ID). A domain is only available in some datacenters.
+   *
+   * @generated from field: string location_uuid = 2;
+   */
+  locationUuid: string;
 };
 
 /**
@@ -99,7 +106,7 @@ export const DomainServiceListResponseSchema: GenMessage<DomainServiceListRespon
  */
 export const DomainService: GenService<{
   /**
-   * Returns a list of all Windows domains available for a tenant.
+   * Returns a list of all Windows domains available for a tenant in a location.
    *
    * @generated from rpc fits.api.mvm.v1.DomainService.List
    */

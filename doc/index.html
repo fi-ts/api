@@ -1760,6 +1760,13 @@ having a direct membership within the tenant.</p></td>
                   <td><p>Tenant to list available domains for. </p></td>
                 </tr>
               
+                <tr>
+                  <td>location_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Filter the listed domains by location (the FCE datacenter ID). A domain is only available in some datacenters. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -1809,7 +1816,7 @@ having a direct membership within the tenant.</p></td>
                 <td>List</td>
                 <td><a href="#fits.api.mvm.v1.DomainServiceListRequest">DomainServiceListRequest</a></td>
                 <td><a href="#fits.api.mvm.v1.DomainServiceListResponse">DomainServiceListResponse</a></td>
-                <td><p>Returns a list of all Windows domains available for a tenant.</p></td>
+                <td><p>Returns a list of all Windows domains available for a tenant in a location.</p></td>
               </tr>
             
           </tbody>

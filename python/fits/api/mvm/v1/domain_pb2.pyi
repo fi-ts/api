@@ -20,10 +20,12 @@ class Domain(_message.Message):
     def __init__(self, uuid: _Optional[str] = ..., fqdn: _Optional[str] = ..., tenant: _Optional[str] = ...) -> None: ...
 
 class DomainServiceListRequest(_message.Message):
-    __slots__ = ("tenant",)
+    __slots__ = ("tenant", "location_uuid")
     TENANT_FIELD_NUMBER: _ClassVar[int]
+    LOCATION_UUID_FIELD_NUMBER: _ClassVar[int]
     tenant: str
-    def __init__(self, tenant: _Optional[str] = ...) -> None: ...
+    location_uuid: str
+    def __init__(self, tenant: _Optional[str] = ..., location_uuid: _Optional[str] = ...) -> None: ...
 
 class DomainServiceListResponse(_message.Message):
     __slots__ = ("domains",)

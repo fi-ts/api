@@ -91,7 +91,9 @@ func (x *Domain) GetTenant() string {
 type DomainServiceListRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Tenant to list available domains for.
-	Tenant        string `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"`
+	Tenant string `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"`
+	// Filter the listed domains by location (the FCE datacenter ID). A domain is only available in some datacenters.
+	LocationUuid  string `protobuf:"bytes,2,opt,name=location_uuid,json=locationUuid,proto3" json:"location_uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -129,6 +131,13 @@ func (*DomainServiceListRequest) Descriptor() ([]byte, []int) {
 func (x *DomainServiceListRequest) GetTenant() string {
 	if x != nil {
 		return x.Tenant
+	}
+	return ""
+}
+
+func (x *DomainServiceListRequest) GetLocationUuid() string {
+	if x != nil {
+		return x.LocationUuid
 	}
 	return ""
 }
@@ -187,9 +196,10 @@ const file_fits_api_mvm_v1_domain_proto_rawDesc = "" +
 	"\x06Domain\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x1f\n" +
 	"\x04fqdn\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x04fqdn\x12#\n" +
-	"\x06tenant\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\"?\n" +
+	"\x06tenant\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\"n\n" +
 	"\x18DomainServiceListRequest\x12#\n" +
-	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\"N\n" +
+	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12-\n" +
+	"\rlocation_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\flocationUuid\"N\n" +
 	"\x19DomainServiceListResponse\x121\n" +
 	"\adomains\x18\x01 \x03(\v2\x17.fits.api.mvm.v1.DomainR\adomains2{\n" +
 	"\rDomainService\x12j\n" +
