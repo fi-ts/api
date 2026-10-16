@@ -21,6 +21,7 @@ func GetServices() []string {
 		"fits.api.v1.TenantService",
 		"fits.api.v1.TokenService",
 		"fits.api.v1.VersionService",
+		"fits.api.vm.v1.VMService",
 	}
 }
 
@@ -82,6 +83,11 @@ func GetServicePermissions() *ServicePermissions {
 					"/fits.api.v1.ProjectService/Delete":                      {},
 					"/fits.api.v1.ProjectService/Get":                         {},
 					"/fits.api.v1.ProjectService/Update":                      {},
+					"/fits.api.vm.v1.VMService/Create":                        {},
+					"/fits.api.vm.v1.VMService/Delete":                        {},
+					"/fits.api.vm.v1.VMService/Get":                           {},
+					"/fits.api.vm.v1.VMService/List":                          {},
+					"/fits.api.vm.v1.VMService/Update":                        {},
 				},
 				v1.ProjectRole_PROJECT_ROLE_EDITOR: map[string]struct{}{
 					"/fits.api.mvm.v1.MVMService/AddDisk":                     {},
@@ -105,6 +111,11 @@ func GetServicePermissions() *ServicePermissions {
 					"/fits.api.v1.IPService/Update":                           {},
 					"/fits.api.v1.ProjectService/Get":                         {},
 					"/fits.api.v1.ProjectService/Update":                      {},
+					"/fits.api.vm.v1.VMService/Create":                        {},
+					"/fits.api.vm.v1.VMService/Delete":                        {},
+					"/fits.api.vm.v1.VMService/Get":                           {},
+					"/fits.api.vm.v1.VMService/List":                          {},
+					"/fits.api.vm.v1.VMService/Update":                        {},
 				},
 				v1.ProjectRole_PROJECT_ROLE_VIEWER: map[string]struct{}{
 					"/fits.api.mvm.v1.MVMService/Get":  {},
@@ -112,6 +123,8 @@ func GetServicePermissions() *ServicePermissions {
 					"/fits.api.v1.IPService/Get":       {},
 					"/fits.api.v1.IPService/List":      {},
 					"/fits.api.v1.ProjectService/Get":  {},
+					"/fits.api.vm.v1.VMService/Get":    {},
+					"/fits.api.vm.v1.VMService/List":   {},
 				},
 			},
 		},
@@ -155,6 +168,11 @@ func GetServicePermissions() *ServicePermissions {
 			"/fits.api.v1.TokenService/List":                                 {},
 			"/fits.api.v1.TokenService/Revoke":                               {},
 			"/fits.api.v1.VersionService/Get":                                {},
+			"/fits.api.vm.v1.VMService/Create":                               {},
+			"/fits.api.vm.v1.VMService/Delete":                               {},
+			"/fits.api.vm.v1.VMService/Get":                                  {},
+			"/fits.api.vm.v1.VMService/List":                                 {},
+			"/fits.api.vm.v1.VMService/Update":                               {},
 			"/grpc.reflection.v1.ServerReflection/ServerReflectionInfo":      {},
 			"/grpc.reflection.v1alpha.ServerReflection/ServerReflectionInfo": {},
 		},
@@ -208,6 +226,11 @@ func GetServicePermissions() *ServicePermissions {
 				"/fits.api.v1.ProjectService/Delete":                      true,
 				"/fits.api.v1.ProjectService/Get":                         true,
 				"/fits.api.v1.ProjectService/Update":                      true,
+				"/fits.api.vm.v1.VMService/Create":                        true,
+				"/fits.api.vm.v1.VMService/Delete":                        true,
+				"/fits.api.vm.v1.VMService/Get":                           true,
+				"/fits.api.vm.v1.VMService/List":                          true,
+				"/fits.api.vm.v1.VMService/Update":                        true,
 			},
 		},
 		Auditable: map[string]bool{
@@ -250,6 +273,11 @@ func GetServicePermissions() *ServicePermissions {
 			"/fits.api.v1.TokenService/List":                          true,
 			"/fits.api.v1.TokenService/Revoke":                        true,
 			"/fits.api.v1.VersionService/Get":                         false,
+			"/fits.api.vm.v1.VMService/Create":                        true,
+			"/fits.api.vm.v1.VMService/Delete":                        true,
+			"/fits.api.vm.v1.VMService/Get":                           false,
+			"/fits.api.vm.v1.VMService/List":                          false,
+			"/fits.api.vm.v1.VMService/Update":                        true,
 		},
 	}
 }
