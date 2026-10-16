@@ -5,19 +5,16 @@ which is the Python equivalent of Go's TestClientInterceptor.
 """
 
 import pyqwest
-import pytest
-from connectrpc.interceptor import MetadataInterceptorSync
 from connectrpc.request import RequestContext
 from pyqwest.testing import WSGITransport
 
-from fits.api.v1 import ip_pb2
-from fits.api.v1.ip_connect import (
-    IPServiceClientSync,
-    IPServiceWSGIApplication,
+from fits.api.v1 import version_pb2
+from fits.api.v1.version_connect import (
+    VersionServiceClientSync,
+    VersionServiceWSGIApplication,
 )
-from fits.client.client import Client
 
-from .conftest import MockIPService, _build_combined_wsgi_app
+from .conftest import MockVersionService, _build_combined_wsgi_app
 
 
 class AuthInterceptor:
@@ -61,71 +58,57 @@ class TestInterceptor:
     Tests that an interceptor can intercept a call and verify request/response flow.
     """
 
-    def test_interceptor_receives_request(self, mock_ip_service):
+    def test_interceptor_receives_request(self, mock_version_service):
         """Interceptor can observe the service and method being called."""
-        ips = MockIPService()
-        from fits.api.v1.version_connect import VersionServiceWSGIApplication
-
-        class NoopVersion:
-            def get(self, request, ctx):
-                from fits.api.v1.version_pb2 import VersionServiceGetResponse, Version
-                return VersionServiceGetResponse(version=Version(version="0.0"))
+        vs = MockVersionService()
 
         services = {
-            "/fits.api.v1.VersionService": VersionServiceWSGIApplication(NoopVersion()),
-            "/fits.api.v1.IPService": IPServiceWSGIApplication(ips),
+            "/fits.api.v1.VersionService": VersionServiceWSGIApplication(vs),
         }
         transport = WSGITransport(_build_combined_wsgi_app(services))
 
         interceptor = RequestRecordingInterceptor()
 
-        svc = IPServiceClientSync(
+        svc = VersionServiceClientSync(
             "http://test",
             http_client=pyqwest.SyncClient(transport=transport),
             interceptors=[interceptor],
         )
 
         resp = svc.get(
-            request=ip_pb2.IPServiceGetRequest(ip="1.2.3.4"),
+            request=version_pb2.VersionServiceGetRequest(),
         )
 
-        assert resp.ip.ip == "1.2.3.4"
+        assert resp.version.version == "1.0"
         assert len(interceptor.calls) == 1
-        assert interceptor.calls[0] == ("fits.api.v1.IPService", "Get")
+        assert interceptor.calls[0] == ("fits.api.v1.VersionService", "Get")
 
     def test_auth_interceptor_injects_token(self):
         """Auth interceptor injects Authorization header that the server receives."""
-        ips = MockIPService()
-        from fits.api.v1.version_connect import VersionServiceWSGIApplication
-
-        class NoopVersion:
-            def get(self, request, ctx):
-                from fits.api.v1.version_pb2 import VersionServiceGetResponse, Version
-                return VersionServiceGetResponse(version=Version(version="0.0"))
+        vs = MockVersionService()
 
         services = {
-            "/fits.api.v1.VersionService": VersionServiceWSGIApplication(NoopVersion()),
-            "/fits.api.v1.IPService": IPServiceWSGIApplication(ips),
+            "/fits.api.v1.VersionService": VersionServiceWSGIApplication(vs),
         }
         transport = WSGITransport(_build_combined_wsgi_app(services))
 
-        svc = IPServiceClientSync(
+        svc = VersionServiceClientSync(
             "http://test",
             http_client=pyqwest.SyncClient(transport=transport),
             interceptors=[AuthInterceptor("my-secret-token")],
         )
 
-        resp = svc.get(request=ip_pb2.IPServiceGetRequest(ip="1.2.3.4"))
+        resp = svc.get(request=version_pb2.VersionServiceGetRequest())
 
-        assert resp.ip.ip == "1.2.3.4"
-        assert ips.received_auth == "Bearer my-secret-token"
+        assert resp.version.version == "1.0"
+        assert vs.received_auth == "Bearer my-secret-token"
 
-    def test_interceptor_on_client_wrapper(self, test_client, mock_ip_service):
+    def test_interceptor_on_client_wrapper(self, test_client, mock_version_service):
         """Client wrapper passes headers through to the underlying service."""
         token = "wrapper-test-token"
-        resp = test_client.apiv1().ip().get(
-            request=ip_pb2.IPServiceGetRequest(ip="5.6.7.8"),
+        resp = test_client.apiv1().version().get(
+            request=version_pb2.VersionServiceGetRequest(),
             headers={"authorization": f"Bearer {token}"},
         )
-        assert resp.ip.ip == "5.6.7.8"
-        assert mock_ip_service.received_auth == f"Bearer {token}"
+        assert resp.version.version == "1.0"
+        assert mock_version_service.received_auth == f"Bearer {token}"

@@ -10,7 +10,6 @@ import fits.api.mvm.v1.os_connect as fits_api_mvm_v1_os_connect
 import fits.api.mvm.v1.vlan_connect as fits_api_mvm_v1_vlan_connect
 
 import fits.api.v1.health_connect as fits_api_v1_health_connect
-import fits.api.v1.ip_connect as fits_api_v1_ip_connect
 import fits.api.v1.method_connect as fits_api_v1_method_connect
 import fits.api.v1.project_connect as fits_api_v1_project_connect
 import fits.api.v1.tenant_connect as fits_api_v1_tenant_connect
@@ -76,9 +75,6 @@ class Client:
 
         def health(self):
             return fits_api_v1_health_connect.HealthServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
-
-        def ip(self):
-            return fits_api_v1_ip_connect.IPServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
         def method(self):
             return fits_api_v1_method_connect.MethodServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
