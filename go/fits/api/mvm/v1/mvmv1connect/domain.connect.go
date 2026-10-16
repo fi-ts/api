@@ -39,7 +39,7 @@ const (
 
 // DomainServiceClient is a client for the fits.api.mvm.v1.DomainService service.
 type DomainServiceClient interface {
-	// Returns a list of all Windows domains available for a tenant.
+	// Returns a list of all Windows domains available for a tenant in a location.
 	List(context.Context, *v1.DomainServiceListRequest) (*v1.DomainServiceListResponse, error)
 }
 
@@ -79,7 +79,7 @@ func (c *domainServiceClient) List(ctx context.Context, req *v1.DomainServiceLis
 
 // DomainServiceHandler is an implementation of the fits.api.mvm.v1.DomainService service.
 type DomainServiceHandler interface {
-	// Returns a list of all Windows domains available for a tenant.
+	// Returns a list of all Windows domains available for a tenant in a location.
 	List(context.Context, *v1.DomainServiceListRequest) (*v1.DomainServiceListResponse, error)
 }
 

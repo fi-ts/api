@@ -34,7 +34,7 @@ type VLAN struct {
 	SubnetTitle string `protobuf:"bytes,3,opt,name=subnet_title,json=subnetTitle,proto3" json:"subnet_title,omitempty"`
 	// CIDR of the subnet this VLAN belongs to.
 	SubnetCidr string `protobuf:"bytes,4,opt,name=subnet_cidr,json=subnetCidr,proto3" json:"subnet_cidr,omitempty"`
-	// UUID of the location this VLAN belongs to. This is actually the FCE datacenter ID.
+	// UUID of the location this VLAN belongs to.
 	LocationUuid string `protobuf:"bytes,5,opt,name=location_uuid,json=locationUuid,proto3" json:"location_uuid,omitempty"`
 	// Tenant this VLAN belongs to.
 	Tenant string `protobuf:"bytes,6,opt,name=tenant,proto3" json:"tenant,omitempty"`
@@ -123,22 +123,68 @@ func (x *VLAN) GetDomainUuid() string {
 	return ""
 }
 
+// VLANQuery contains fields which can be specified to list specific VLANs.
+type VLANQuery struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Filter the listed VLANs by the Windows domain they are associated with.
+	DomainUuid    *string `protobuf:"bytes,1,opt,name=domain_uuid,json=domainUuid,proto3,oneof" json:"domain_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VLANQuery) Reset() {
+	*x = VLANQuery{}
+	mi := &file_fits_api_mvm_v1_vlan_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VLANQuery) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VLANQuery) ProtoMessage() {}
+
+func (x *VLANQuery) ProtoReflect() protoreflect.Message {
+	mi := &file_fits_api_mvm_v1_vlan_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VLANQuery.ProtoReflect.Descriptor instead.
+func (*VLANQuery) Descriptor() ([]byte, []int) {
+	return file_fits_api_mvm_v1_vlan_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *VLANQuery) GetDomainUuid() string {
+	if x != nil && x.DomainUuid != nil {
+		return *x.DomainUuid
+	}
+	return ""
+}
+
 // VLANServiceListRequest is the request payload for a VLAN list request.
 type VLANServiceListRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Tenant to list available VLANs for (the tenant login).
 	Tenant string `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"`
-	// Filter the listed VLANs by location (the FCE datacenter ID).
+	// Filter the listed VLANs by location.
 	LocationUuid string `protobuf:"bytes,2,opt,name=location_uuid,json=locationUuid,proto3" json:"location_uuid,omitempty"`
-	// Filter the listed VLANs by the Windows domain they are associated with.
-	DomainUuid    *string `protobuf:"bytes,3,opt,name=domain_uuid,json=domainUuid,proto3,oneof" json:"domain_uuid,omitempty"`
+	// Query to list one or more VLANs.
+	Query         *VLANQuery `protobuf:"bytes,3,opt,name=query,proto3" json:"query,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *VLANServiceListRequest) Reset() {
 	*x = VLANServiceListRequest{}
-	mi := &file_fits_api_mvm_v1_vlan_proto_msgTypes[1]
+	mi := &file_fits_api_mvm_v1_vlan_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -150,7 +196,7 @@ func (x *VLANServiceListRequest) String() string {
 func (*VLANServiceListRequest) ProtoMessage() {}
 
 func (x *VLANServiceListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_vlan_proto_msgTypes[1]
+	mi := &file_fits_api_mvm_v1_vlan_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -163,7 +209,7 @@ func (x *VLANServiceListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VLANServiceListRequest.ProtoReflect.Descriptor instead.
 func (*VLANServiceListRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_vlan_proto_rawDescGZIP(), []int{1}
+	return file_fits_api_mvm_v1_vlan_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *VLANServiceListRequest) GetTenant() string {
@@ -180,11 +226,11 @@ func (x *VLANServiceListRequest) GetLocationUuid() string {
 	return ""
 }
 
-func (x *VLANServiceListRequest) GetDomainUuid() string {
-	if x != nil && x.DomainUuid != nil {
-		return *x.DomainUuid
+func (x *VLANServiceListRequest) GetQuery() *VLANQuery {
+	if x != nil {
+		return x.Query
 	}
-	return ""
+	return nil
 }
 
 // VLANServiceListResponse is the response payload for a VLAN list request.
@@ -198,7 +244,7 @@ type VLANServiceListResponse struct {
 
 func (x *VLANServiceListResponse) Reset() {
 	*x = VLANServiceListResponse{}
-	mi := &file_fits_api_mvm_v1_vlan_proto_msgTypes[2]
+	mi := &file_fits_api_mvm_v1_vlan_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -210,7 +256,7 @@ func (x *VLANServiceListResponse) String() string {
 func (*VLANServiceListResponse) ProtoMessage() {}
 
 func (x *VLANServiceListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_vlan_proto_msgTypes[2]
+	mi := &file_fits_api_mvm_v1_vlan_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -223,7 +269,7 @@ func (x *VLANServiceListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VLANServiceListResponse.ProtoReflect.Descriptor instead.
 func (*VLANServiceListResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_vlan_proto_rawDescGZIP(), []int{2}
+	return file_fits_api_mvm_v1_vlan_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *VLANServiceListResponse) GetVlans() []*VLAN {
@@ -248,13 +294,15 @@ const file_fits_api_mvm_v1_vlan_proto_rawDesc = "" +
 	"\x06tenant\x18\x06 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12.\n" +
 	"\vdomain_uuid\x18\a \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\n" +
 	"domainUuid\x88\x01\x01B\x0e\n" +
-	"\f_domain_uuid\"\xac\x01\n" +
+	"\f_domain_uuid\"K\n" +
+	"\tVLANQuery\x12.\n" +
+	"\vdomain_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\n" +
+	"domainUuid\x88\x01\x01B\x0e\n" +
+	"\f_domain_uuid\"\x9e\x01\n" +
 	"\x16VLANServiceListRequest\x12#\n" +
 	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12-\n" +
-	"\rlocation_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\flocationUuid\x12.\n" +
-	"\vdomain_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\n" +
-	"domainUuid\x88\x01\x01B\x0e\n" +
-	"\f_domain_uuid\"F\n" +
+	"\rlocation_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\flocationUuid\x120\n" +
+	"\x05query\x18\x03 \x01(\v2\x1a.fits.api.mvm.v1.VLANQueryR\x05query\"F\n" +
 	"\x17VLANServiceListResponse\x12+\n" +
 	"\x05vlans\x18\x01 \x03(\v2\x15.fits.api.mvm.v1.VLANR\x05vlans2u\n" +
 	"\vVLANService\x12f\n" +
@@ -273,21 +321,23 @@ func file_fits_api_mvm_v1_vlan_proto_rawDescGZIP() []byte {
 	return file_fits_api_mvm_v1_vlan_proto_rawDescData
 }
 
-var file_fits_api_mvm_v1_vlan_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_fits_api_mvm_v1_vlan_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_fits_api_mvm_v1_vlan_proto_goTypes = []any{
 	(*VLAN)(nil),                    // 0: fits.api.mvm.v1.VLAN
-	(*VLANServiceListRequest)(nil),  // 1: fits.api.mvm.v1.VLANServiceListRequest
-	(*VLANServiceListResponse)(nil), // 2: fits.api.mvm.v1.VLANServiceListResponse
+	(*VLANQuery)(nil),               // 1: fits.api.mvm.v1.VLANQuery
+	(*VLANServiceListRequest)(nil),  // 2: fits.api.mvm.v1.VLANServiceListRequest
+	(*VLANServiceListResponse)(nil), // 3: fits.api.mvm.v1.VLANServiceListResponse
 }
 var file_fits_api_mvm_v1_vlan_proto_depIdxs = []int32{
-	0, // 0: fits.api.mvm.v1.VLANServiceListResponse.vlans:type_name -> fits.api.mvm.v1.VLAN
-	1, // 1: fits.api.mvm.v1.VLANService.List:input_type -> fits.api.mvm.v1.VLANServiceListRequest
-	2, // 2: fits.api.mvm.v1.VLANService.List:output_type -> fits.api.mvm.v1.VLANServiceListResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	1, // 0: fits.api.mvm.v1.VLANServiceListRequest.query:type_name -> fits.api.mvm.v1.VLANQuery
+	0, // 1: fits.api.mvm.v1.VLANServiceListResponse.vlans:type_name -> fits.api.mvm.v1.VLAN
+	2, // 2: fits.api.mvm.v1.VLANService.List:input_type -> fits.api.mvm.v1.VLANServiceListRequest
+	3, // 3: fits.api.mvm.v1.VLANService.List:output_type -> fits.api.mvm.v1.VLANServiceListResponse
+	3, // [3:4] is the sub-list for method output_type
+	2, // [2:3] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_mvm_v1_vlan_proto_init() }
@@ -303,7 +353,7 @@ func file_fits_api_mvm_v1_vlan_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_fits_api_mvm_v1_vlan_proto_rawDesc), len(file_fits_api_mvm_v1_vlan_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
