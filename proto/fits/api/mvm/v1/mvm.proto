@@ -127,20 +127,20 @@ enum ServiceClass {
   SERVICE_CLASS_SZ3 = 3 [(fits.api.v1.enum_string_value) = "sz3"];
 }
 
-// Status specifies the status of a MVM.
-enum Status {
-  // STATUS_UNSPECIFIED is not specified.
-  STATUS_UNSPECIFIED = 0 [(fits.api.v1.enum_string_value) = ""];
-  // STATUS_CREATING: the MVM hostname is reserved and provisioning has started.
-  STATUS_CREATING = 1 [(fits.api.v1.enum_string_value) = "creating"];
-  // STATUS_ACTIVE: the MVM is active.
-  STATUS_ACTIVE = 2 [(fits.api.v1.enum_string_value) = "active"];
-  // STATUS_UPDATING: there is an ongoing operation for the MVM.
-  STATUS_UPDATING = 3 [(fits.api.v1.enum_string_value) = "updating"];
-  // STATUS_DELETED: the MVM is deleted.
-  STATUS_DELETED = 4 [(fits.api.v1.enum_string_value) = "deleted"];
-  // STATUS_ERROR: the exact error status is derived from the request type.
-  STATUS_ERROR = 5 [(fits.api.v1.enum_string_value) = "error"];
+// State specifies the current state of a MVM.
+enum State {
+  // STATE_UNSPECIFIED is not specified.
+  STATE_UNSPECIFIED = 0 [(fits.api.v1.enum_string_value) = ""];
+  // STATE_CREATING: the MVM hostname is reserved and provisioning has started.
+  STATE_CREATING = 1 [(fits.api.v1.enum_string_value) = "creating"];
+  // STATE_ACTIVE: the MVM is active.
+  STATE_ACTIVE = 2 [(fits.api.v1.enum_string_value) = "active"];
+  // STATE_UPDATING: there is an ongoing operation for the MVM.
+  STATE_UPDATING = 3 [(fits.api.v1.enum_string_value) = "updating"];
+  // STATE_DELETED: the MVM is deleted.
+  STATE_DELETED = 4 [(fits.api.v1.enum_string_value) = "deleted"];
+  // STATE_ERROR: the exact error status is derived from the request type.
+  STATE_ERROR = 5 [(fits.api.v1.enum_string_value) = "error"];
 }
 
 // DiskType classifies a MVM disk by its lifecycle rules.
@@ -221,6 +221,14 @@ message InitialNetworkInterface {
   string vlan_uuid = 1 [(buf.validate.field).string.uuid = true];
 }
 
+// The status of the MVM.
+message Status {
+  // State of the MVM.
+  State state = 1 [(buf.validate.field).enum.defined_only = true];
+  // Additional information about the current status.
+  string info = 2 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
+}
+
 // ManagedVM is a managed VM instance as returned by the API.
 message ManagedVM {
   // UUID of this MVM.
@@ -249,25 +257,23 @@ message ManagedVM {
   // Whether the MVM is encrypted.
   bool encrypted = 12;
   // Status of the MVM.
-  Status status = 13 [(buf.validate.field).enum.defined_only = true];
-  // Additional information about the current status.
-  string status_info = 14;
+  Status status = 13;
   // Availability level.
-  Availability availability = 15 [(buf.validate.field).enum.defined_only = true];
+  Availability availability = 14 [(buf.validate.field).enum.defined_only = true];
   // Service class.
-  ServiceClass serviceclass = 16 [(buf.validate.field).enum.defined_only = true];
+  ServiceClass serviceclass = 15 [(buf.validate.field).enum.defined_only = true];
   // OS-specific configuration.
   oneof details {
     option (buf.validate.oneof).required = true;
     // Windows-specific settings (domain + disks).
-    WindowsDetails windows_details = 17;
+    WindowsDetails windows_details = 16;
     // Linux-specific settings (LDAP + disks).
-    LinuxDetails linux_details = 18;
+    LinuxDetails linux_details = 17;
   }
   // Network interfaces attached to the MVM (IPv4 only).
-  repeated NetworkInterface interfaces = 19;
+  repeated NetworkInterface interfaces = 18;
   // Internal reference number provided by the user, e.g. a ticket ID.
-  string order_number = 20;
+  string order_number = 19;
 }
 
 // Request to get a MVM by UUID.

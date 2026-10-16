@@ -578,6 +578,10 @@
                 </li>
               
                 <li>
+                  <a href="#fits.api.mvm.v1.Status"><span class="badge">M</span>Status</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.mvm.v1.WindowsDetails"><span class="badge">M</span>WindowsDetails</a>
                 </li>
               
@@ -599,7 +603,7 @@
                 </li>
               
                 <li>
-                  <a href="#fits.api.mvm.v1.Status"><span class="badge">E</span>Status</a>
+                  <a href="#fits.api.mvm.v1.State"><span class="badge">E</span>State</a>
                 </li>
               
               
@@ -3095,13 +3099,6 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
                 </tr>
               
                 <tr>
-                  <td>status_info</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Additional information about the current status. </p></td>
-                </tr>
-              
-                <tr>
                   <td>availability</td>
                   <td><a href="#fits.api.mvm.v1.Availability">Availability</a></td>
                   <td></td>
@@ -3188,6 +3185,37 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
                   <td><p>MAC address of this interface.
 
 TODO: add validation </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.Status">Status</h3>
+        <p>The status of the MVM.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>state</td>
+                  <td><a href="#fits.api.mvm.v1.State">State</a></td>
+                  <td></td>
+                  <td><p>State of the MVM. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>info</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Additional information about the current status. </p></td>
                 </tr>
               
             </tbody>
@@ -3414,8 +3442,8 @@ deletable.</p></td>
           </tbody>
         </table>
       
-        <h3 id="fits.api.mvm.v1.Status">Status</h3>
-        <p>Status specifies the status of a MVM.</p>
+        <h3 id="fits.api.mvm.v1.State">State</h3>
+        <p>State specifies the current state of a MVM.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -3423,39 +3451,39 @@ deletable.</p></td>
           <tbody>
             
               <tr>
-                <td>STATUS_UNSPECIFIED</td>
+                <td>STATE_UNSPECIFIED</td>
                 <td>0</td>
-                <td><p>STATUS_UNSPECIFIED is not specified.</p></td>
+                <td><p>STATE_UNSPECIFIED is not specified.</p></td>
               </tr>
             
               <tr>
-                <td>STATUS_CREATING</td>
+                <td>STATE_CREATING</td>
                 <td>1</td>
-                <td><p>STATUS_CREATING: the MVM hostname is reserved and provisioning has started.</p></td>
+                <td><p>STATE_CREATING: the MVM hostname is reserved and provisioning has started.</p></td>
               </tr>
             
               <tr>
-                <td>STATUS_ACTIVE</td>
+                <td>STATE_ACTIVE</td>
                 <td>2</td>
-                <td><p>STATUS_ACTIVE: the MVM is active.</p></td>
+                <td><p>STATE_ACTIVE: the MVM is active.</p></td>
               </tr>
             
               <tr>
-                <td>STATUS_UPDATING</td>
+                <td>STATE_UPDATING</td>
                 <td>3</td>
-                <td><p>STATUS_UPDATING: there is an ongoing operation for the MVM.</p></td>
+                <td><p>STATE_UPDATING: there is an ongoing operation for the MVM.</p></td>
               </tr>
             
               <tr>
-                <td>STATUS_DELETED</td>
+                <td>STATE_DELETED</td>
                 <td>4</td>
-                <td><p>STATUS_DELETED: the MVM is deleted.</p></td>
+                <td><p>STATE_DELETED: the MVM is deleted.</p></td>
               </tr>
             
               <tr>
-                <td>STATUS_ERROR</td>
+                <td>STATE_ERROR</td>
                 <td>5</td>
-                <td><p>STATUS_ERROR: the exact error status is derived from the request type.</p></td>
+                <td><p>STATE_ERROR: the exact error status is derived from the request type.</p></td>
               </tr>
             
           </tbody>
