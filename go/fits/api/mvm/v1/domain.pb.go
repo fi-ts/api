@@ -92,7 +92,7 @@ type DomainServiceListRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Tenant to list available domains for.
 	Tenant string `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"`
-	// Filter the listed domains by location (the FCE datacenter ID). A domain is only available in some datacenters.
+	// Filter the listed domains by location. A domain is only available in some datacenters.
 	LocationUuid  string `protobuf:"bytes,2,opt,name=location_uuid,json=locationUuid,proto3" json:"location_uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache

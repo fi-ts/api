@@ -558,8 +558,6 @@ type ManagedVM struct {
 	// UUID of the datacenter location.
 	LocationUuid string `protobuf:"bytes,7,opt,name=location_uuid,json=locationUuid,proto3" json:"location_uuid,omitempty"`
 	// UUID of the contact person responsible for this MVM.
-	// TODO: open discussion with FCN (#23) on whether this becomes a dedicated
-	// /contact endpoint.
 	ContactUuid string `protobuf:"bytes,8,opt,name=contact_uuid,json=contactUuid,proto3" json:"contact_uuid,omitempty"`
 	// Number of CPU cores.
 	Cpu uint32 `protobuf:"varint,9,opt,name=cpu,proto3" json:"cpu,omitempty"`
@@ -1015,7 +1013,7 @@ type MVMServiceCreateRequest struct {
 	OsUuid string `protobuf:"bytes,3,opt,name=os_uuid,json=osUuid,proto3" json:"os_uuid,omitempty"`
 	// UUID of the datacenter location; the MVM is scheduled into one data center within it.
 	LocationUuid string `protobuf:"bytes,4,opt,name=location_uuid,json=locationUuid,proto3" json:"location_uuid,omitempty"`
-	// TODO: Contact UUID – open discussion with FCN; may become a dedicated /contact endpoint.
+	// UUID of the contact person responsible for this MVM.
 	ContactUuid string `protobuf:"bytes,5,opt,name=contact_uuid,json=contactUuid,proto3" json:"contact_uuid,omitempty"`
 	// Number of CPU cores.
 	Cpu uint32 `protobuf:"varint,6,opt,name=cpu,proto3" json:"cpu,omitempty"`
@@ -1236,8 +1234,6 @@ type LinuxDisk struct {
 	// Kind of the disk; determines which operations are allowed on it.
 	// Provided by the client in create/add requests and populated by the
 	// API in responses.
-	// TODO: talk to FCE that we will provide the disk type in create/add
-	// requests.
 	DiskType      *DiskType `protobuf:"varint,6,opt,name=disk_type,json=diskType,proto3,enum=fits.api.mvm.v1.DiskType,oneof" json:"disk_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1333,8 +1329,6 @@ type WindowsDisk struct {
 	// Kind of the disk; determines which operations are allowed on it.
 	// Provided by the client in create/add requests and populated by the
 	// API in responses.
-	// TODO: talk to FCE that we will provide the disk type in create/add
-	// requests.
 	DiskType      *DiskType `protobuf:"varint,6,opt,name=disk_type,json=diskType,proto3,enum=fits.api.mvm.v1.DiskType,oneof" json:"disk_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -2551,7 +2545,6 @@ type MVMServiceDeleteNetworkInterfaceRequest struct {
 	// UUID of the project the MVM belongs to.
 	ProjectUuid string `protobuf:"bytes,3,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
 	// Order reference for this operation.
-	// TODO: can this be optional?
 	OrderNumber   string `protobuf:"bytes,4,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache

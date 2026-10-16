@@ -34,7 +34,7 @@ type VLAN struct {
 	SubnetTitle string `protobuf:"bytes,3,opt,name=subnet_title,json=subnetTitle,proto3" json:"subnet_title,omitempty"`
 	// CIDR of the subnet this VLAN belongs to.
 	SubnetCidr string `protobuf:"bytes,4,opt,name=subnet_cidr,json=subnetCidr,proto3" json:"subnet_cidr,omitempty"`
-	// UUID of the location this VLAN belongs to. This is actually the FCE datacenter ID.
+	// UUID of the location this VLAN belongs to.
 	LocationUuid string `protobuf:"bytes,5,opt,name=location_uuid,json=locationUuid,proto3" json:"location_uuid,omitempty"`
 	// Tenant this VLAN belongs to.
 	Tenant string `protobuf:"bytes,6,opt,name=tenant,proto3" json:"tenant,omitempty"`
@@ -128,7 +128,7 @@ type VLANServiceListRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Tenant to list available VLANs for (the tenant login).
 	Tenant string `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"`
-	// Filter the listed VLANs by location (the FCE datacenter ID).
+	// Filter the listed VLANs by location.
 	LocationUuid string `protobuf:"bytes,2,opt,name=location_uuid,json=locationUuid,proto3" json:"location_uuid,omitempty"`
 	// Filter the listed VLANs by the Windows domain they are associated with.
 	DomainUuid    *string `protobuf:"bytes,3,opt,name=domain_uuid,json=domainUuid,proto3,oneof" json:"domain_uuid,omitempty"`

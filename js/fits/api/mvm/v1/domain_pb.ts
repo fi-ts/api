@@ -64,7 +64,7 @@ export type DomainServiceListRequest = Message<"fits.api.mvm.v1.DomainServiceLis
   tenant: string;
 
   /**
-   * Filter the listed domains by location (the FCE datacenter ID). A domain is only available in some datacenters.
+   * Filter the listed domains by location. A domain is only available in some datacenters.
    *
    * @generated from field: string location_uuid = 2;
    */

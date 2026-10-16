@@ -239,8 +239,6 @@ message ManagedVM {
   // UUID of the datacenter location.
   string location_uuid = 7 [(buf.validate.field).string.uuid = true];
   // UUID of the contact person responsible for this MVM.
-  // TODO: open discussion with FCN (#23) on whether this becomes a dedicated
-  // /contact endpoint.
   string contact_uuid = 8 [(buf.validate.field).string.uuid = true];
   // Number of CPU cores.
   uint32 cpu = 9;
@@ -313,7 +311,7 @@ message MVMServiceCreateRequest {
   string os_uuid = 3 [(buf.validate.field).string.uuid = true];
   // UUID of the datacenter location; the MVM is scheduled into one data center within it.
   string location_uuid = 4 [(buf.validate.field).string.uuid = true];
-  // TODO: Contact UUID – open discussion with FCN; may become a dedicated /contact endpoint.
+  // UUID of the contact person responsible for this MVM.
   string contact_uuid = 5 [(buf.validate.field).string.uuid = true];
   // Number of CPU cores.
   uint32 cpu = 6;
@@ -361,8 +359,6 @@ message LinuxDisk {
   // Kind of the disk; determines which operations are allowed on it.
   // Provided by the client in create/add requests and populated by the
   // API in responses.
-  // TODO: talk to FCE that we will provide the disk type in create/add
-  // requests.
   optional DiskType disk_type = 6 [(buf.validate.field).enum.defined_only = true];
 }
 
@@ -383,8 +379,6 @@ message WindowsDisk {
   // Kind of the disk; determines which operations are allowed on it.
   // Provided by the client in create/add requests and populated by the
   // API in responses.
-  // TODO: talk to FCE that we will provide the disk type in create/add
-  // requests.
   optional DiskType disk_type = 6 [(buf.validate.field).enum.defined_only = true];
 }
 
@@ -556,7 +550,6 @@ message MVMServiceDeleteNetworkInterfaceRequest {
   // UUID of the project the MVM belongs to.
   string project_uuid = 3 [(buf.validate.field).string.uuid = true];
   // Order reference for this operation.
-  // TODO: can this be optional?
   string order_number = 4;
 }
 

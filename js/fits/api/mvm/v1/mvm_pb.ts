@@ -211,8 +211,6 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
 
   /**
    * UUID of the contact person responsible for this MVM.
-   * TODO: open discussion with FCN (#23) on whether this becomes a dedicated
-   * /contact endpoint.
    *
    * @generated from field: string contact_uuid = 8;
    */
@@ -461,7 +459,7 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
   locationUuid: string;
 
   /**
-   * TODO: Contact UUID – open discussion with FCN; may become a dedicated /contact endpoint.
+   * UUID of the contact person responsible for this MVM.
    *
    * @generated from field: string contact_uuid = 5;
    */
@@ -609,8 +607,6 @@ export type LinuxDisk = Message<"fits.api.mvm.v1.LinuxDisk"> & {
    * Kind of the disk; determines which operations are allowed on it.
    * Provided by the client in create/add requests and populated by the
    * API in responses.
-   * TODO: talk to FCE that we will provide the disk type in create/add
-   * requests.
    *
    * @generated from field: optional fits.api.mvm.v1.DiskType disk_type = 6;
    */
@@ -671,8 +667,6 @@ export type WindowsDisk = Message<"fits.api.mvm.v1.WindowsDisk"> & {
    * Kind of the disk; determines which operations are allowed on it.
    * Provided by the client in create/add requests and populated by the
    * API in responses.
-   * TODO: talk to FCE that we will provide the disk type in create/add
-   * requests.
    *
    * @generated from field: optional fits.api.mvm.v1.DiskType disk_type = 6;
    */
@@ -1264,7 +1258,6 @@ export type MVMServiceDeleteNetworkInterfaceRequest = Message<"fits.api.mvm.v1.M
 
   /**
    * Order reference for this operation.
-   * TODO: can this be optional?
    *
    * @generated from field: string order_number = 4;
    */

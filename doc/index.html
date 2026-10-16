@@ -1764,7 +1764,7 @@ having a direct membership within the tenant.</p></td>
                   <td>location_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Filter the listed domains by location (the FCE datacenter ID). A domain is only available in some datacenters. </p></td>
+                  <td><p>Filter the listed domains by location. A domain is only available in some datacenters. </p></td>
                 </tr>
               
             </tbody>
@@ -2176,9 +2176,7 @@ free-form for data disks. </p></td>
                   <td>optional</td>
                   <td><p>Kind of the disk; determines which operations are allowed on it.
 Provided by the client in create/add requests and populated by the
-API in responses.
-TODO: talk to FCE that we will provide the disk type in create/add
-requests. </p></td>
+API in responses. </p></td>
                 </tr>
               
             </tbody>
@@ -2366,7 +2364,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>contact_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>TODO: Contact UUID – open discussion with FCN; may become a dedicated /contact endpoint. </p></td>
+                  <td><p>UUID of the contact person responsible for this MVM. </p></td>
                 </tr>
               
                 <tr>
@@ -2580,8 +2578,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Order reference for this operation.
-TODO: can this be optional? </p></td>
+                  <td><p>Order reference for this operation. </p></td>
                 </tr>
               
             </tbody>
@@ -3059,9 +3056,7 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
                   <td>contact_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>UUID of the contact person responsible for this MVM.
-TODO: open discussion with FCN (#23) on whether this becomes a dedicated
-/contact endpoint. </p></td>
+                  <td><p>UUID of the contact person responsible for this MVM. </p></td>
                 </tr>
               
                 <tr>
@@ -3292,9 +3287,7 @@ for data disks. </p></td>
                   <td>optional</td>
                   <td><p>Kind of the disk; determines which operations are allowed on it.
 Provided by the client in create/add requests and populated by the
-API in responses.
-TODO: talk to FCE that we will provide the disk type in create/add
-requests. </p></td>
+API in responses. </p></td>
                 </tr>
               
             </tbody>
@@ -3766,7 +3759,7 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                   <td>location_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>UUID of the location this VLAN belongs to. This is actually the FCE datacenter ID. </p></td>
+                  <td><p>UUID of the location this VLAN belongs to. </p></td>
                 </tr>
               
                 <tr>
@@ -3811,7 +3804,7 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                   <td>location_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Filter the listed VLANs by location (the FCE datacenter ID). </p></td>
+                  <td><p>Filter the listed VLANs by location. </p></td>
                 </tr>
               
                 <tr>

@@ -35,7 +35,7 @@ export type VLAN = Message<"fits.api.mvm.v1.VLAN"> & {
      */
     subnetCidr: string;
     /**
-     * UUID of the location this VLAN belongs to. This is actually the FCE datacenter ID.
+     * UUID of the location this VLAN belongs to.
      *
      * @generated from field: string location_uuid = 5;
      */
@@ -71,7 +71,7 @@ export type VLANServiceListRequest = Message<"fits.api.mvm.v1.VLANServiceListReq
      */
     tenant: string;
     /**
-     * Filter the listed VLANs by location (the FCE datacenter ID).
+     * Filter the listed VLANs by location.
      *
      * @generated from field: string location_uuid = 2;
      */
