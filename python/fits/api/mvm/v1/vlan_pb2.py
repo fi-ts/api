@@ -27,7 +27,7 @@ from fits.api.v1 import common_pb2 as fits_dot_api_dot_v1_dot_common__pb2
 from fits.api.v1 import predefined_rules_pb2 as fits_dot_api_dot_v1_dot_predefined__rules__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1a\x66its/api/mvm/v1/vlan.proto\x12\x0f\x66its.api.mvm.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xaf\x02\n\x04VLAN\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x17\n\x07vlan_id\x18\x02 \x01(\x05R\x06vlanId\x12.\n\x0csubnet_title\x18\x03 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x0bsubnetTitle\x12,\n\x0bsubnet_cidr\x18\x04 \x01(\tB\x0b\xbaH\x08r\x06\x80\xb4\xae\xb1\x02\x01R\nsubnetCidr\x12-\n\rlocation_uuid\x18\x05 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x0clocationUuid\x12#\n\x06tenant\x18\x06 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12.\n\x0b\x64omain_uuid\x18\x07 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01H\x00R\ndomainUuid\x88\x01\x01\x42\x0e\n\x0c_domain_uuid\"\xac\x01\n\x16VLANServiceListRequest\x12#\n\x06tenant\x18\x01 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12-\n\rlocation_uuid\x18\x02 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x0clocationUuid\x12.\n\x0b\x64omain_uuid\x18\x03 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01H\x00R\ndomainUuid\x88\x01\x01\x42\x0e\n\x0c_domain_uuid\"F\n\x17VLANServiceListResponse\x12+\n\x05vlans\x18\x01 \x03(\x0b\x32\x15.fits.api.mvm.v1.VLANR\x05vlans2u\n\x0bVLANService\x12\x66\n\x04List\x12\'.fits.api.mvm.v1.VLANServiceListRequest\x1a(.fits.api.mvm.v1.VLANServiceListResponse\"\x0b\xc2\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x42\xae\x01\n\x13\x63om.fits.api.mvm.v1B\tVlanProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03\x46\x41M\xaa\x02\x0f\x46its.Api.Mvm.V1\xca\x02\x0f\x46its\\Api\\Mvm\\V1\xe2\x02\x1b\x46its\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12\x46its::Api::Mvm::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1a\x66its/api/mvm/v1/vlan.proto\x12\x0f\x66its.api.mvm.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xaf\x02\n\x04VLAN\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x17\n\x07vlan_id\x18\x02 \x01(\x05R\x06vlanId\x12.\n\x0csubnet_title\x18\x03 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x0bsubnetTitle\x12,\n\x0bsubnet_cidr\x18\x04 \x01(\tB\x0b\xbaH\x08r\x06\x80\xb4\xae\xb1\x02\x01R\nsubnetCidr\x12-\n\rlocation_uuid\x18\x05 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x0clocationUuid\x12#\n\x06tenant\x18\x06 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12.\n\x0b\x64omain_uuid\x18\x07 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01H\x00R\ndomainUuid\x88\x01\x01\x42\x0e\n\x0c_domain_uuid\"K\n\tVLANQuery\x12.\n\x0b\x64omain_uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01H\x00R\ndomainUuid\x88\x01\x01\x42\x0e\n\x0c_domain_uuid\"\x9e\x01\n\x16VLANServiceListRequest\x12#\n\x06tenant\x18\x01 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12-\n\rlocation_uuid\x18\x02 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x0clocationUuid\x12\x30\n\x05query\x18\x03 \x01(\x0b\x32\x1a.fits.api.mvm.v1.VLANQueryR\x05query\"F\n\x17VLANServiceListResponse\x12+\n\x05vlans\x18\x01 \x03(\x0b\x32\x15.fits.api.mvm.v1.VLANR\x05vlans2u\n\x0bVLANService\x12\x66\n\x04List\x12\'.fits.api.mvm.v1.VLANServiceListRequest\x1a(.fits.api.mvm.v1.VLANServiceListResponse\"\x0b\xc2\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x42\xae\x01\n\x13\x63om.fits.api.mvm.v1B\tVlanProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03\x46\x41M\xaa\x02\x0f\x46its.Api.Mvm.V1\xca\x02\x0f\x46its\\Api\\Mvm\\V1\xe2\x02\x1b\x46its\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12\x46its::Api::Mvm::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -47,20 +47,22 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_VLAN'].fields_by_name['tenant']._serialized_options = b'\272H\010r\006\300\263\256\261\002\001'
   _globals['_VLAN'].fields_by_name['domain_uuid']._loaded_options = None
   _globals['_VLAN'].fields_by_name['domain_uuid']._serialized_options = b'\272H\005r\003\260\001\001'
+  _globals['_VLANQUERY'].fields_by_name['domain_uuid']._loaded_options = None
+  _globals['_VLANQUERY'].fields_by_name['domain_uuid']._serialized_options = b'\272H\005r\003\260\001\001'
   _globals['_VLANSERVICELISTREQUEST'].fields_by_name['tenant']._loaded_options = None
   _globals['_VLANSERVICELISTREQUEST'].fields_by_name['tenant']._serialized_options = b'\272H\010r\006\300\263\256\261\002\001'
   _globals['_VLANSERVICELISTREQUEST'].fields_by_name['location_uuid']._loaded_options = None
   _globals['_VLANSERVICELISTREQUEST'].fields_by_name['location_uuid']._serialized_options = b'\272H\005r\003\260\001\001'
-  _globals['_VLANSERVICELISTREQUEST'].fields_by_name['domain_uuid']._loaded_options = None
-  _globals['_VLANSERVICELISTREQUEST'].fields_by_name['domain_uuid']._serialized_options = b'\272H\005r\003\260\001\001'
   _globals['_VLANSERVICE'].methods_by_name['List']._loaded_options = None
   _globals['_VLANSERVICE'].methods_by_name['List']._serialized_options = b'\302\363\030\003\001\002\003\340\363\030\002'
   _globals['_VLAN']._serialized_start=139
   _globals['_VLAN']._serialized_end=442
-  _globals['_VLANSERVICELISTREQUEST']._serialized_start=445
-  _globals['_VLANSERVICELISTREQUEST']._serialized_end=617
-  _globals['_VLANSERVICELISTRESPONSE']._serialized_start=619
-  _globals['_VLANSERVICELISTRESPONSE']._serialized_end=689
-  _globals['_VLANSERVICE']._serialized_start=691
-  _globals['_VLANSERVICE']._serialized_end=808
+  _globals['_VLANQUERY']._serialized_start=444
+  _globals['_VLANQUERY']._serialized_end=519
+  _globals['_VLANSERVICELISTREQUEST']._serialized_start=522
+  _globals['_VLANSERVICELISTREQUEST']._serialized_end=680
+  _globals['_VLANSERVICELISTRESPONSE']._serialized_start=682
+  _globals['_VLANSERVICELISTRESPONSE']._serialized_end=752
+  _globals['_VLANSERVICE']._serialized_start=754
+  _globals['_VLANSERVICE']._serialized_end=871
 # @@protoc_insertion_point(module_scope)

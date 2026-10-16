@@ -656,6 +656,10 @@
                 </li>
               
                 <li>
+                  <a href="#fits.api.mvm.v1.VLANQuery"><span class="badge">M</span>VLANQuery</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.mvm.v1.VLANServiceListRequest"><span class="badge">M</span>VLANServiceListRequest</a>
                 </li>
               
@@ -3811,6 +3815,30 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
 
         
       
+        <h3 id="fits.api.mvm.v1.VLANQuery">VLANQuery</h3>
+        <p>VLANQuery contains fields which can be specified to list specific VLANs.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>domain_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Filter the listed VLANs by the Windows domain they are associated with. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="fits.api.mvm.v1.VLANServiceListRequest">VLANServiceListRequest</h3>
         <p>VLANServiceListRequest is the request payload for a VLAN list request.</p>
 
@@ -3836,10 +3864,10 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                 </tr>
               
                 <tr>
-                  <td>domain_uuid</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>Filter the listed VLANs by the Windows domain they are associated with. </p></td>
+                  <td>query</td>
+                  <td><a href="#fits.api.mvm.v1.VLANQuery">VLANQuery</a></td>
+                  <td></td>
+                  <td><p>Query to list one or more VLANs. </p></td>
                 </tr>
               
             </tbody>

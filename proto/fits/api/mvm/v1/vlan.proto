@@ -35,14 +35,20 @@ message VLAN {
   optional string domain_uuid = 7 [(buf.validate.field).string.uuid = true];
 }
 
+// VLANQuery contains fields which can be specified to list specific VLANs.
+message VLANQuery {
+  // Filter the listed VLANs by the Windows domain they are associated with.
+  optional string domain_uuid = 1 [(buf.validate.field).string.uuid = true];
+}
+
 // VLANServiceListRequest is the request payload for a VLAN list request.
 message VLANServiceListRequest {
   // Tenant to list available VLANs for (the tenant login).
   string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // Filter the listed VLANs by location.
   string location_uuid = 2 [(buf.validate.field).string.uuid = true];
-  // Filter the listed VLANs by the Windows domain they are associated with.
-  optional string domain_uuid = 3 [(buf.validate.field).string.uuid = true];
+  // Query to list one or more VLANs.
+  VLANQuery query = 3;
 }
 
 // VLANServiceListResponse is the response payload for a VLAN list request.
