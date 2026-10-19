@@ -152,7 +152,9 @@ type MethodServiceTokenScopedListResponse struct {
 	// TenantRoles associates a tenant ID with the corresponding role of the token owner
 	TenantRoles map[string]TenantRole `protobuf:"bytes,3,rep,name=tenant_roles,json=tenantRoles,proto3" json:"tenant_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.TenantRole"`
 	// OperatorRole defines the operator role of the token owner
-	OperatorRole  *OperatorRole `protobuf:"varint,4,opt,name=operator_role,json=operatorRole,proto3,enum=fits.api.v1.OperatorRole,oneof" json:"operator_role,omitempty"`
+	OperatorRole *OperatorRole `protobuf:"varint,4,opt,name=operator_role,json=operatorRole,proto3,enum=fits.api.v1.OperatorRole,oneof" json:"operator_role,omitempty"`
+	// ProductRoles lists the product roles of the token owner
+	ProductRoles  []*ProductRoleAssignment `protobuf:"bytes,5,rep,name=product_roles,json=productRoles,proto3" json:"product_roles,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -215,6 +217,13 @@ func (x *MethodServiceTokenScopedListResponse) GetOperatorRole() OperatorRole {
 	return OperatorRole_OPERATOR_ROLE_UNSPECIFIED
 }
 
+func (x *MethodServiceTokenScopedListResponse) GetProductRoles() []*ProductRoleAssignment {
+	if x != nil {
+		return x.ProductRoles
+	}
+	return nil
+}
+
 var File_fits_api_v1_method_proto protoreflect.FileDescriptor
 
 const file_fits_api_v1_method_proto_rawDesc = "" +
@@ -223,12 +232,13 @@ const file_fits_api_v1_method_proto_rawDesc = "" +
 	"\x18MethodServiceListRequest\"5\n" +
 	"\x19MethodServiceListResponse\x12\x18\n" +
 	"\amethods\x18\x01 \x03(\tR\amethods\"%\n" +
-	"#MethodServiceTokenScopedListRequest\"\xcd\x04\n" +
+	"#MethodServiceTokenScopedListRequest\"\x96\x05\n" +
 	"$MethodServiceTokenScopedListResponse\x12?\n" +
 	"\vpermissions\x18\x01 \x03(\v2\x1d.fits.api.v1.MethodPermissionR\vpermissions\x12h\n" +
 	"\rproject_roles\x18\x02 \x03(\v2C.fits.api.v1.MethodServiceTokenScopedListResponse.ProjectRolesEntryR\fprojectRoles\x12e\n" +
 	"\ftenant_roles\x18\x03 \x03(\v2B.fits.api.v1.MethodServiceTokenScopedListResponse.TenantRolesEntryR\vtenantRoles\x12M\n" +
-	"\roperator_role\x18\x04 \x01(\x0e2\x19.fits.api.v1.OperatorRoleB\b\xbaH\x05\x82\x01\x02\x10\x01H\x00R\foperatorRole\x88\x01\x01\x1aY\n" +
+	"\roperator_role\x18\x04 \x01(\x0e2\x19.fits.api.v1.OperatorRoleB\b\xbaH\x05\x82\x01\x02\x10\x01H\x00R\foperatorRole\x88\x01\x01\x12G\n" +
+	"\rproduct_roles\x18\x05 \x03(\v2\".fits.api.v1.ProductRoleAssignmentR\fproductRoles\x1aY\n" +
 	"\x11ProjectRolesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12.\n" +
 	"\x05value\x18\x02 \x01(\x0e2\x18.fits.api.v1.ProjectRoleR\x05value:\x028\x01\x1aW\n" +
@@ -259,29 +269,31 @@ var file_fits_api_v1_method_proto_goTypes = []any{
 	(*MethodServiceListResponse)(nil),            // 1: fits.api.v1.MethodServiceListResponse
 	(*MethodServiceTokenScopedListRequest)(nil),  // 2: fits.api.v1.MethodServiceTokenScopedListRequest
 	(*MethodServiceTokenScopedListResponse)(nil), // 3: fits.api.v1.MethodServiceTokenScopedListResponse
-	nil,                      // 4: fits.api.v1.MethodServiceTokenScopedListResponse.ProjectRolesEntry
-	nil,                      // 5: fits.api.v1.MethodServiceTokenScopedListResponse.TenantRolesEntry
-	(*MethodPermission)(nil), // 6: fits.api.v1.MethodPermission
-	(OperatorRole)(0),        // 7: fits.api.v1.OperatorRole
-	(ProjectRole)(0),         // 8: fits.api.v1.ProjectRole
-	(TenantRole)(0),          // 9: fits.api.v1.TenantRole
+	nil,                           // 4: fits.api.v1.MethodServiceTokenScopedListResponse.ProjectRolesEntry
+	nil,                           // 5: fits.api.v1.MethodServiceTokenScopedListResponse.TenantRolesEntry
+	(*MethodPermission)(nil),      // 6: fits.api.v1.MethodPermission
+	(OperatorRole)(0),             // 7: fits.api.v1.OperatorRole
+	(*ProductRoleAssignment)(nil), // 8: fits.api.v1.ProductRoleAssignment
+	(ProjectRole)(0),              // 9: fits.api.v1.ProjectRole
+	(TenantRole)(0),               // 10: fits.api.v1.TenantRole
 }
 var file_fits_api_v1_method_proto_depIdxs = []int32{
-	6, // 0: fits.api.v1.MethodServiceTokenScopedListResponse.permissions:type_name -> fits.api.v1.MethodPermission
-	4, // 1: fits.api.v1.MethodServiceTokenScopedListResponse.project_roles:type_name -> fits.api.v1.MethodServiceTokenScopedListResponse.ProjectRolesEntry
-	5, // 2: fits.api.v1.MethodServiceTokenScopedListResponse.tenant_roles:type_name -> fits.api.v1.MethodServiceTokenScopedListResponse.TenantRolesEntry
-	7, // 3: fits.api.v1.MethodServiceTokenScopedListResponse.operator_role:type_name -> fits.api.v1.OperatorRole
-	8, // 4: fits.api.v1.MethodServiceTokenScopedListResponse.ProjectRolesEntry.value:type_name -> fits.api.v1.ProjectRole
-	9, // 5: fits.api.v1.MethodServiceTokenScopedListResponse.TenantRolesEntry.value:type_name -> fits.api.v1.TenantRole
-	0, // 6: fits.api.v1.MethodService.List:input_type -> fits.api.v1.MethodServiceListRequest
-	2, // 7: fits.api.v1.MethodService.TokenScopedList:input_type -> fits.api.v1.MethodServiceTokenScopedListRequest
-	1, // 8: fits.api.v1.MethodService.List:output_type -> fits.api.v1.MethodServiceListResponse
-	3, // 9: fits.api.v1.MethodService.TokenScopedList:output_type -> fits.api.v1.MethodServiceTokenScopedListResponse
-	8, // [8:10] is the sub-list for method output_type
-	6, // [6:8] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	6,  // 0: fits.api.v1.MethodServiceTokenScopedListResponse.permissions:type_name -> fits.api.v1.MethodPermission
+	4,  // 1: fits.api.v1.MethodServiceTokenScopedListResponse.project_roles:type_name -> fits.api.v1.MethodServiceTokenScopedListResponse.ProjectRolesEntry
+	5,  // 2: fits.api.v1.MethodServiceTokenScopedListResponse.tenant_roles:type_name -> fits.api.v1.MethodServiceTokenScopedListResponse.TenantRolesEntry
+	7,  // 3: fits.api.v1.MethodServiceTokenScopedListResponse.operator_role:type_name -> fits.api.v1.OperatorRole
+	8,  // 4: fits.api.v1.MethodServiceTokenScopedListResponse.product_roles:type_name -> fits.api.v1.ProductRoleAssignment
+	9,  // 5: fits.api.v1.MethodServiceTokenScopedListResponse.ProjectRolesEntry.value:type_name -> fits.api.v1.ProjectRole
+	10, // 6: fits.api.v1.MethodServiceTokenScopedListResponse.TenantRolesEntry.value:type_name -> fits.api.v1.TenantRole
+	0,  // 7: fits.api.v1.MethodService.List:input_type -> fits.api.v1.MethodServiceListRequest
+	2,  // 8: fits.api.v1.MethodService.TokenScopedList:input_type -> fits.api.v1.MethodServiceTokenScopedListRequest
+	1,  // 9: fits.api.v1.MethodService.List:output_type -> fits.api.v1.MethodServiceListResponse
+	3,  // 10: fits.api.v1.MethodService.TokenScopedList:output_type -> fits.api.v1.MethodServiceTokenScopedListResponse
+	9,  // [9:11] is the sub-list for method output_type
+	7,  // [7:9] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_v1_method_proto_init() }

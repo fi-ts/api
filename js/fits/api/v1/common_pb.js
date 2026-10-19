@@ -8,32 +8,37 @@ import { file_google_protobuf_descriptor, file_google_protobuf_timestamp } from 
 /**
  * Describes the file fits/api/v1/common.proto.
  */
-export const file_fits_api_v1_common = /*@__PURE__*/ fileDesc("ChhmaXRzL2FwaS92MS9jb21tb24ucHJvdG8SC2ZpdHMuYXBpLnYxIkIKBlBhZ2luZxIRCgRwYWdlGAEgASgESACIAQESEgoFY291bnQYAiABKARIAYgBAUIHCgVfcGFnZUIICgZfY291bnQiiAEKBkxhYmVscxJPCgZsYWJlbHMYASADKAsyHy5maXRzLmFwaS52MS5MYWJlbHMuTGFiZWxzRW50cnlCHrpIG5oBGLiVuLECASIHcgUQARiAAioHcgUQABiAAhotCgtMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIq8BCgRNZXRhEigKBmxhYmVscxgBIAEoCzITLmZpdHMuYXBpLnYxLkxhYmVsc0gAiAEBEi4KCmNyZWF0ZWRfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhIKCmdlbmVyYXRpb24YBCABKARCCQoHX2xhYmVscyJDCgxVcGRhdGVMYWJlbHMSIwoGdXBkYXRlGAEgASgLMhMuZml0cy5hcGkudjEuTGFiZWxzEg4KBnJlbW92ZRgCIAMoCSKIAQoKVXBkYXRlTWV0YRIuCgp1cGRhdGVkX2F0GAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBJKChBsb2NraW5nX3N0cmF0ZWd5GAIgASgOMiYuZml0cy5hcGkudjEuT3B0aW1pc3RpY0xvY2tpbmdTdHJhdGVneUIIukgFggECEAEqhwEKClRlbmFudFJvbGUSGwoXVEVOQU5UX1JPTEVfVU5TUEVDSUZJRUQQABIVChFURU5BTlRfUk9MRV9BRE1JThABEhYKElRFTkFOVF9ST0xFX0VESVRPUhACEhYKElRFTkFOVF9ST0xFX1ZJRVdFUhADEhUKEVRFTkFOVF9ST0xFX0dVRVNUEAQqdQoLUHJvamVjdFJvbGUSHAoYUFJPSkVDVF9ST0xFX1VOU1BFQ0lGSUVEEAASFgoSUFJPSkVDVF9ST0xFX0FETUlOEAESFwoTUFJPSkVDVF9ST0xFX0VESVRPUhACEhcKE1BST0pFQ1RfUk9MRV9WSUVXRVIQAyphCgxPcGVyYXRvclJvbGUSHQoZT1BFUkFUT1JfUk9MRV9VTlNQRUNJRklFRBAAEhgKFE9QRVJBVE9SX1JPTEVfRURJVE9SEAESGAoUT1BFUkFUT1JfUk9MRV9WSUVXRVIQAipUCgpWaXNpYmlsaXR5EhoKFlZJU0lCSUxJVFlfVU5TUEVDSUZJRUQQABIVChFWSVNJQklMSVRZX1BVQkxJQxABEhMKD1ZJU0lCSUxJVFlfU0VMRhACKlIKCEF1ZGl0aW5nEhgKFEFVRElUSU5HX1VOU1BFQ0lGSUVEEAASFQoRQVVESVRJTkdfSU5DTFVERUQQARIVChFBVURJVElOR19FWENMVURFRBACKpgBChlPcHRpbWlzdGljTG9ja2luZ1N0cmF0ZWd5EisKJ09QVElNSVNUSUNfTE9DS0lOR19TVFJBVEVHWV9VTlNQRUNJRklFRBAAEiYKIk9QVElNSVNUSUNfTE9DS0lOR19TVFJBVEVHWV9DTElFTlQQARImCiJPUFRJTUlTVElDX0xPQ0tJTkdfU1RSQVRFR1lfU0VSVkVSEAI6XAoMdGVuYW50X3JvbGVzEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYuI4DIAMoDjIXLmZpdHMuYXBpLnYxLlRlbmFudFJvbGVSC3RlbmFudFJvbGVzOl8KDXByb2plY3Rfcm9sZXMSHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxi5jgMgAygOMhguZml0cy5hcGkudjEuUHJvamVjdFJvbGVSDHByb2plY3RSb2xlczpiCg5vcGVyYXRvcl9yb2xlcxIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGLqOAyADKA4yGS5maXRzLmFwaS52MS5PcGVyYXRvclJvbGVSDW9wZXJhdG9yUm9sZXM6WQoKdmlzaWJpbGl0eRIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGLuOAyABKA4yFy5maXRzLmFwaS52MS5WaXNpYmlsaXR5Ugp2aXNpYmlsaXR5OlMKCGF1ZGl0aW5nEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYvI4DIAEoDjIVLmZpdHMuYXBpLnYxLkF1ZGl0aW5nUghhdWRpdGluZzpPChFlbnVtX3N0cmluZ192YWx1ZRIhLmdvb2dsZS5wcm90b2J1Zi5FbnVtVmFsdWVPcHRpb25zGKCWAyABKAlSD2VudW1TdHJpbmdWYWx1ZUKXAQoPY29tLmZpdHMuYXBpLnYxQgtDb21tb25Qcm90b1ABWilnaXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS92MTthcGl2MaICA0ZBWKoCC0ZpdHMuQXBpLlYxygILRml0c1xBcGlcVjHiAhdGaXRzXEFwaVxWMVxHUEJNZXRhZGF0YeoCDUZpdHM6OkFwaTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_predefined_rules, file_google_protobuf_descriptor, file_google_protobuf_timestamp]);
+export const file_fits_api_v1_common = /*@__PURE__*/ fileDesc("ChhmaXRzL2FwaS92MS9jb21tb24ucHJvdG8SC2ZpdHMuYXBpLnYxIroBChVQcm9kdWN0Um9sZUFzc2lnbm1lbnQSLwoHcHJvZHVjdBgBIAEoDjIULmZpdHMuYXBpLnYxLlByb2R1Y3RCCLpIBYIBAhABEh4KDHByb2R1Y3RfdXVpZBgCIAEoCUIIukgFcgMYgAISHgoMcHJvamVjdF91dWlkGAMgASgJQgi6SAVyA7ABARIwCgRyb2xlGAQgASgOMhguZml0cy5hcGkudjEuUHJvZHVjdFJvbGVCCLpIBYIBAhABIkIKBlBhZ2luZxIRCgRwYWdlGAEgASgESACIAQESEgoFY291bnQYAiABKARIAYgBAUIHCgVfcGFnZUIICgZfY291bnQiiAEKBkxhYmVscxJPCgZsYWJlbHMYASADKAsyHy5maXRzLmFwaS52MS5MYWJlbHMuTGFiZWxzRW50cnlCHrpIG5oBGLiVuLECASIHcgUQARiAAioHcgUQABiAAhotCgtMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIq8BCgRNZXRhEigKBmxhYmVscxgBIAEoCzITLmZpdHMuYXBpLnYxLkxhYmVsc0gAiAEBEi4KCmNyZWF0ZWRfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhIKCmdlbmVyYXRpb24YBCABKARCCQoHX2xhYmVscyJDCgxVcGRhdGVMYWJlbHMSIwoGdXBkYXRlGAEgASgLMhMuZml0cy5hcGkudjEuTGFiZWxzEg4KBnJlbW92ZRgCIAMoCSKIAQoKVXBkYXRlTWV0YRIuCgp1cGRhdGVkX2F0GAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBJKChBsb2NraW5nX3N0cmF0ZWd5GAIgASgOMiYuZml0cy5hcGkudjEuT3B0aW1pc3RpY0xvY2tpbmdTdHJhdGVneUIIukgFggECEAEqhwEKClRlbmFudFJvbGUSGwoXVEVOQU5UX1JPTEVfVU5TUEVDSUZJRUQQABIVChFURU5BTlRfUk9MRV9BRE1JThABEhYKElRFTkFOVF9ST0xFX0VESVRPUhACEhYKElRFTkFOVF9ST0xFX1ZJRVdFUhADEhUKEVRFTkFOVF9ST0xFX0dVRVNUEAQqdQoLUHJvamVjdFJvbGUSHAoYUFJPSkVDVF9ST0xFX1VOU1BFQ0lGSUVEEAASFgoSUFJPSkVDVF9ST0xFX0FETUlOEAESFwoTUFJPSkVDVF9ST0xFX0VESVRPUhACEhcKE1BST0pFQ1RfUk9MRV9WSUVXRVIQAyphCgxPcGVyYXRvclJvbGUSHQoZT1BFUkFUT1JfUk9MRV9VTlNQRUNJRklFRBAAEhgKFE9QRVJBVE9SX1JPTEVfRURJVE9SEAESGAoUT1BFUkFUT1JfUk9MRV9WSUVXRVIQAipKCgdQcm9kdWN0EhcKE1BST0RVQ1RfVU5TUEVDSUZJRUQQABIWChJQUk9EVUNUX01BTkFHRURfVk0QARIOCgpQUk9EVUNUX1ZNEAIqdQoLUHJvZHVjdFJvbGUSHAoYUFJPRFVDVF9ST0xFX1VOU1BFQ0lGSUVEEAASFgoSUFJPRFVDVF9ST0xFX0FETUlOEAESFwoTUFJPRFVDVF9ST0xFX0VESVRPUhACEhcKE1BST0RVQ1RfUk9MRV9WSUVXRVIQAypUCgpWaXNpYmlsaXR5EhoKFlZJU0lCSUxJVFlfVU5TUEVDSUZJRUQQABIVChFWSVNJQklMSVRZX1BVQkxJQxABEhMKD1ZJU0lCSUxJVFlfU0VMRhACKlIKCEF1ZGl0aW5nEhgKFEFVRElUSU5HX1VOU1BFQ0lGSUVEEAASFQoRQVVESVRJTkdfSU5DTFVERUQQARIVChFBVURJVElOR19FWENMVURFRBACKpgBChlPcHRpbWlzdGljTG9ja2luZ1N0cmF0ZWd5EisKJ09QVElNSVNUSUNfTE9DS0lOR19TVFJBVEVHWV9VTlNQRUNJRklFRBAAEiYKIk9QVElNSVNUSUNfTE9DS0lOR19TVFJBVEVHWV9DTElFTlQQARImCiJPUFRJTUlTVElDX0xPQ0tJTkdfU1RSQVRFR1lfU0VSVkVSEAI6XAoMdGVuYW50X3JvbGVzEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYuI4DIAMoDjIXLmZpdHMuYXBpLnYxLlRlbmFudFJvbGVSC3RlbmFudFJvbGVzOl8KDXByb2plY3Rfcm9sZXMSHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxi5jgMgAygOMhguZml0cy5hcGkudjEuUHJvamVjdFJvbGVSDHByb2plY3RSb2xlczpiCg5vcGVyYXRvcl9yb2xlcxIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGLqOAyADKA4yGS5maXRzLmFwaS52MS5PcGVyYXRvclJvbGVSDW9wZXJhdG9yUm9sZXM6WQoKdmlzaWJpbGl0eRIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGLuOAyABKA4yFy5maXRzLmFwaS52MS5WaXNpYmlsaXR5Ugp2aXNpYmlsaXR5OlMKCGF1ZGl0aW5nEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYvI4DIAEoDjIVLmZpdHMuYXBpLnYxLkF1ZGl0aW5nUghhdWRpdGluZzpfCg1wcm9kdWN0X3JvbGVzEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYvY4DIAMoDjIYLmZpdHMuYXBpLnYxLlByb2R1Y3RSb2xlUgxwcm9kdWN0Um9sZXM6UAoHcHJvZHVjdBIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGL6OAyABKA4yFC5maXRzLmFwaS52MS5Qcm9kdWN0Ugdwcm9kdWN0Ok8KEWVudW1fc3RyaW5nX3ZhbHVlEiEuZ29vZ2xlLnByb3RvYnVmLkVudW1WYWx1ZU9wdGlvbnMYoJYDIAEoCVIPZW51bVN0cmluZ1ZhbHVlQpcBCg9jb20uZml0cy5hcGkudjFCC0NvbW1vblByb3RvUAFaKWdpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL3YxO2FwaXYxogIDRkFYqgILRml0cy5BcGkuVjHKAgtGaXRzXEFwaVxWMeICF0ZpdHNcQXBpXFYxXEdQQk1ldGFkYXRh6gINRml0czo6QXBpOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_predefined_rules, file_google_protobuf_descriptor, file_google_protobuf_timestamp]);
+/**
+ * Describes the message fits.api.v1.ProductRoleAssignment.
+ * Use `create(ProductRoleAssignmentSchema)` to create a new message.
+ */
+export const ProductRoleAssignmentSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_common, 0);
 /**
  * Describes the message fits.api.v1.Paging.
  * Use `create(PagingSchema)` to create a new message.
  */
-export const PagingSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_common, 0);
+export const PagingSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_common, 1);
 /**
  * Describes the message fits.api.v1.Labels.
  * Use `create(LabelsSchema)` to create a new message.
  */
-export const LabelsSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_common, 1);
+export const LabelsSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_common, 2);
 /**
  * Describes the message fits.api.v1.Meta.
  * Use `create(MetaSchema)` to create a new message.
  */
-export const MetaSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_common, 2);
+export const MetaSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_common, 3);
 /**
  * Describes the message fits.api.v1.UpdateLabels.
  * Use `create(UpdateLabelsSchema)` to create a new message.
  */
-export const UpdateLabelsSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_common, 3);
+export const UpdateLabelsSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_common, 4);
 /**
  * Describes the message fits.api.v1.UpdateMeta.
  * Use `create(UpdateMetaSchema)` to create a new message.
  */
-export const UpdateMetaSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_common, 4);
+export const UpdateMetaSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_common, 5);
 /**
  * TenantRole specifies what role a logged in user needs to call this tenant scoped service
  *
@@ -145,6 +150,76 @@ export var OperatorRole;
  */
 export const OperatorRoleSchema = /*@__PURE__*/ enumDesc(file_fits_api_v1_common, 2);
 /**
+ * Product identifies the resource type a product scoped method acts on.
+ * A product is always a single resource instance within a project; its id is
+ * carried by the request as the `uuid` field, or `id` when it is not a uuid.
+ *
+ * @generated from enum fits.api.v1.Product
+ */
+export var Product;
+(function (Product) {
+    /**
+     * PRODUCT_UNSPECIFIED is not specified
+     *
+     * @generated from enum value: PRODUCT_UNSPECIFIED = 0;
+     */
+    Product[Product["UNSPECIFIED"] = 0] = "UNSPECIFIED";
+    /**
+     * PRODUCT_MANAGED_VM identifies a ManagedVM (fits.api.mvm.v1.ManagedVM)
+     *
+     * @generated from enum value: PRODUCT_MANAGED_VM = 1;
+     */
+    Product[Product["MANAGED_VM"] = 1] = "MANAGED_VM";
+    /**
+     * PRODUCT_VM identifies a VM (fits.api.vm.v1.VM)
+     *
+     * @generated from enum value: PRODUCT_VM = 2;
+     */
+    Product[Product["VM"] = 2] = "VM";
+})(Product || (Product = {}));
+/**
+ * Describes the enum fits.api.v1.Product.
+ */
+export const ProductSchema = /*@__PURE__*/ enumDesc(file_fits_api_v1_common, 3);
+/**
+ * ProductRole specifies what role a logged in user needs to call this product scoped service.
+ * Product roles are independent of project roles: a user may hold project read
+ * while holding product admin for a single product.
+ *
+ * @generated from enum fits.api.v1.ProductRole
+ */
+export var ProductRole;
+(function (ProductRole) {
+    /**
+     * PRODUCT_ROLE_UNSPECIFIED is not specified
+     *
+     * @generated from enum value: PRODUCT_ROLE_UNSPECIFIED = 0;
+     */
+    ProductRole[ProductRole["UNSPECIFIED"] = 0] = "UNSPECIFIED";
+    /**
+     * PRODUCT_ROLE_ADMIN the logged in user needs at least admin role to call this method
+     *
+     * @generated from enum value: PRODUCT_ROLE_ADMIN = 1;
+     */
+    ProductRole[ProductRole["ADMIN"] = 1] = "ADMIN";
+    /**
+     * PRODUCT_ROLE_EDITOR the logged in user needs at least editor role to call this method
+     *
+     * @generated from enum value: PRODUCT_ROLE_EDITOR = 2;
+     */
+    ProductRole[ProductRole["EDITOR"] = 2] = "EDITOR";
+    /**
+     * PRODUCT_ROLE_VIEWER the logged in user needs at least viewer role to call this method
+     *
+     * @generated from enum value: PRODUCT_ROLE_VIEWER = 3;
+     */
+    ProductRole[ProductRole["VIEWER"] = 3] = "VIEWER";
+})(ProductRole || (ProductRole = {}));
+/**
+ * Describes the enum fits.api.v1.ProductRole.
+ */
+export const ProductRoleSchema = /*@__PURE__*/ enumDesc(file_fits_api_v1_common, 4);
+/**
  * Visibility of a method
  *
  * @generated from enum fits.api.v1.Visibility
@@ -173,7 +248,7 @@ export var Visibility;
 /**
  * Describes the enum fits.api.v1.Visibility.
  */
-export const VisibilitySchema = /*@__PURE__*/ enumDesc(file_fits_api_v1_common, 3);
+export const VisibilitySchema = /*@__PURE__*/ enumDesc(file_fits_api_v1_common, 5);
 /**
  * Auditing option specified per service method
  * by default all service methods are included
@@ -205,7 +280,7 @@ export var Auditing;
 /**
  * Describes the enum fits.api.v1.Auditing.
  */
-export const AuditingSchema = /*@__PURE__*/ enumDesc(file_fits_api_v1_common, 4);
+export const AuditingSchema = /*@__PURE__*/ enumDesc(file_fits_api_v1_common, 6);
 /**
  * OptimisticLockingStrategy defines how optimistic locking should be handled.
  * It defaults to client side, which requires the UpdatedAt timestamp to be provided
@@ -237,7 +312,7 @@ export var OptimisticLockingStrategy;
 /**
  * Describes the enum fits.api.v1.OptimisticLockingStrategy.
  */
-export const OptimisticLockingStrategySchema = /*@__PURE__*/ enumDesc(file_fits_api_v1_common, 5);
+export const OptimisticLockingStrategySchema = /*@__PURE__*/ enumDesc(file_fits_api_v1_common, 7);
 /**
  * TenantRoles are used to define which tenant role a logged in user must provide to call this method
  *
@@ -269,8 +344,21 @@ export const visibility = /*@__PURE__*/ extDesc(file_fits_api_v1_common, 3);
  */
 export const auditing = /*@__PURE__*/ extDesc(file_fits_api_v1_common, 4);
 /**
+ * ProductRoles are used to define which product role a logged in user must provide to call this method
+ *
+ * @generated from extension: repeated fits.api.v1.ProductRole product_roles = 51005;
+ */
+export const product_roles = /*@__PURE__*/ extDesc(file_fits_api_v1_common, 5);
+/**
+ * Product defines the product a product scoped method acts on.
+ * Required whenever product_roles is set.
+ *
+ * @generated from extension: fits.api.v1.Product product = 51006;
+ */
+export const product = /*@__PURE__*/ extDesc(file_fits_api_v1_common, 6);
+/**
  * StringValue which can be set to a enum
  *
  * @generated from extension: string enum_string_value = 52000;
  */
-export const enum_string_value = /*@__PURE__*/ extDesc(file_fits_api_v1_common, 5);
+export const enum_string_value = /*@__PURE__*/ extDesc(file_fits_api_v1_common, 7);

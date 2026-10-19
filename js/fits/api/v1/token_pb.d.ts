@@ -1,5 +1,5 @@
 import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import type { Meta, OperatorRole, ProjectRole, TenantRole } from "./common_pb.js";
+import type { Meta, OperatorRole, ProductRoleAssignment, ProjectRole, TenantRole } from "./common_pb.js";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 /**
@@ -111,6 +111,12 @@ export type Token = Message<"fits.api.v1.Token"> & {
      * @generated from field: string email = 14;
      */
     email: string;
+    /**
+     * ProductRoles lists the product roles of the token owner
+     *
+     * @generated from field: repeated fits.api.v1.ProductRoleAssignment product_roles = 15;
+     */
+    productRoles: ProductRoleAssignment[];
 };
 /**
  * Describes the message fits.api.v1.Token.

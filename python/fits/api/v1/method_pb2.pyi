@@ -24,7 +24,7 @@ class MethodServiceTokenScopedListRequest(_message.Message):
     def __init__(self) -> None: ...
 
 class MethodServiceTokenScopedListResponse(_message.Message):
-    __slots__ = ("permissions", "project_roles", "tenant_roles", "operator_role")
+    __slots__ = ("permissions", "project_roles", "tenant_roles", "operator_role", "product_roles")
     class ProjectRolesEntry(_message.Message):
         __slots__ = ("key", "value")
         KEY_FIELD_NUMBER: _ClassVar[int]
@@ -43,8 +43,10 @@ class MethodServiceTokenScopedListResponse(_message.Message):
     PROJECT_ROLES_FIELD_NUMBER: _ClassVar[int]
     TENANT_ROLES_FIELD_NUMBER: _ClassVar[int]
     OPERATOR_ROLE_FIELD_NUMBER: _ClassVar[int]
+    PRODUCT_ROLES_FIELD_NUMBER: _ClassVar[int]
     permissions: _containers.RepeatedCompositeFieldContainer[_token_pb2.MethodPermission]
     project_roles: _containers.ScalarMap[str, _common_pb2.ProjectRole]
     tenant_roles: _containers.ScalarMap[str, _common_pb2.TenantRole]
     operator_role: _common_pb2.OperatorRole
-    def __init__(self, permissions: _Optional[_Iterable[_Union[_token_pb2.MethodPermission, _Mapping]]] = ..., project_roles: _Optional[_Mapping[str, _common_pb2.ProjectRole]] = ..., tenant_roles: _Optional[_Mapping[str, _common_pb2.TenantRole]] = ..., operator_role: _Optional[_Union[_common_pb2.OperatorRole, str]] = ...) -> None: ...
+    product_roles: _containers.RepeatedCompositeFieldContainer[_common_pb2.ProductRoleAssignment]
+    def __init__(self, permissions: _Optional[_Iterable[_Union[_token_pb2.MethodPermission, _Mapping]]] = ..., project_roles: _Optional[_Mapping[str, _common_pb2.ProjectRole]] = ..., tenant_roles: _Optional[_Mapping[str, _common_pb2.TenantRole]] = ..., operator_role: _Optional[_Union[_common_pb2.OperatorRole, str]] = ..., product_roles: _Optional[_Iterable[_Union[_common_pb2.ProductRoleAssignment, _Mapping]]] = ...) -> None: ...

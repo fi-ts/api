@@ -61,14 +61,14 @@ service ProjectService {
   }
   // Returns the project with the specified UUID.
   rpc Get(ProjectServiceGetRequest) returns (ProjectServiceGetResponse) {
-    option (project_roles) = PROJECT_ROLE_OWNER;
+    option (project_roles) = PROJECT_ROLE_ADMIN;
     option (project_roles) = PROJECT_ROLE_EDITOR;
     option (project_roles) = PROJECT_ROLE_VIEWER;
     option (auditing) = AUDITING_EXCLUDED;
   }
   // Create a project
   rpc Create(ProjectServiceCreateRequest) returns (ProjectServiceCreateResponse) {
-    option (tenant_roles) = TENANT_ROLE_OWNER;
+    option (tenant_roles) = TENANT_ROLE_ADMIN;
     option (tenant_roles) = TENANT_ROLE_EDITOR;
     option (auditing) = AUDITING_INCLUDED;
   }
@@ -92,8 +92,8 @@ message ProjectServiceCreateRequest {
 In this example we can see the motivation behind the method options.
 
 1. List: is visible to the authenticated user only (`VISIBILITY_SELF`) and is excluded from auditing
-2. Get: is project-scoped, can be issued by project owner, editor and viewer, and is excluded from auditing
-3. Create: is tenant-scoped, can be issued by tenant owner and editor, and is audited
+2. Get: is project-scoped, can be issued by project admin, editor and viewer, and is excluded from auditing
+3. Create: is tenant-scoped, can be issued by tenant admin and editor, and is audited
 4. Methods annotated with a project role are project-scoped, so the request object needs to have the **project** field to specify the target project of the service method; methods annotated with a tenant role are tenant-scoped and need the **tenant** field instead
 
 Further explanations are explained in the following.
@@ -105,14 +105,21 @@ These options specify the RBAC of the api-endpoint.
 | Option           | Description                                  | Values      | Explanation                                            |
 | ---------------- | -------------------------------------------- | ----------- | ------------------------------------------------------ |
 | `tenant_roles`   | Specifies the required tenant role           | UNSPECIFIED |                                                        |
-|                  |                                              | OWNER       | tenant owner                                           |
+|                  |                                              | ADMIN       | tenant admin                                           |
 |                  |                                              | EDITOR      | tenant editor                                          |
 |                  |                                              | VIEWER      | tenant viewer                                          |
 |                  |                                              | GUEST       | tenant guest                                           |
 | `project_roles`  | Specifies the required project role          | UNSPECIFIED |                                                        |
-|                  |                                              | OWNER       | project owner                                          |
+|                  |                                              | ADMIN       | project admin                                          |
 |                  |                                              | EDITOR      | project editor                                         |
 |                  |                                              | VIEWER      | project viewer                                         |
+| `product_roles`  | Specifies the required product role          | UNSPECIFIED |                                                        |
+|                  |                                              | ADMIN       | product admin                                          |
+|                  |                                              | EDITOR      | product editor                                         |
+|                  |                                              | VIEWER      | product viewer                                         |
+| `product`        | Specifies the product a product-scoped method acts on | UNSPECIFIED |                                               |
+|                  |                                              | MANAGED_VM  | a ManagedVM (fits.api.mvm.v1)                          |
+|                  |                                              | VM          | a VM (fits.api.vm.v1)                                  |
 | `operator_roles` | Specifies the required operator role         | UNSPECIFIED |                                                        |
 |                  |                                              | EDITOR      | operator editor                                        |
 |                  |                                              | VIEWER      | operator viewer                                        |
@@ -129,6 +136,12 @@ These options specify the RBAC of the api-endpoint.
 > If we use a Tenant or Project role, the request will be respectively scoped as Tenant or Project request.
 > Tenant-Requests must have the field **tenant**, which is the tenant id and specifies the tenant on which the service-method is scoped.
 > Project-Requests must have the field **project**, which is the project id and specifies the project on which the service-method is scoped.
+
+> [!CAUTION]
+>
+> Product-Requests are project scoped and act on a single product instance.
+> They must have the field **project_uuid** (the project context) and the product id field **uuid**, or **id** when the product id is not a uuid.
+> A method with `product_roles` must also declare `product`. Product roles are independent of project roles: a user may hold project read while holding product admin for a single product.
 
 ### Auditing
 

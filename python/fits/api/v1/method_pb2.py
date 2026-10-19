@@ -27,7 +27,7 @@ from fits.api.v1 import common_pb2 as fits_dot_api_dot_v1_dot_common__pb2
 from fits.api.v1 import token_pb2 as fits_dot_api_dot_v1_dot_token__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x18\x66its/api/v1/method.proto\x12\x0b\x66its.api.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\x1a\x17\x66its/api/v1/token.proto\"\x1a\n\x18MethodServiceListRequest\"5\n\x19MethodServiceListResponse\x12\x18\n\x07methods\x18\x01 \x03(\tR\x07methods\"%\n#MethodServiceTokenScopedListRequest\"\xcd\x04\n$MethodServiceTokenScopedListResponse\x12?\n\x0bpermissions\x18\x01 \x03(\x0b\x32\x1d.fits.api.v1.MethodPermissionR\x0bpermissions\x12h\n\rproject_roles\x18\x02 \x03(\x0b\x32\x43.fits.api.v1.MethodServiceTokenScopedListResponse.ProjectRolesEntryR\x0cprojectRoles\x12\x65\n\x0ctenant_roles\x18\x03 \x03(\x0b\x32\x42.fits.api.v1.MethodServiceTokenScopedListResponse.TenantRolesEntryR\x0btenantRoles\x12M\n\roperator_role\x18\x04 \x01(\x0e\x32\x19.fits.api.v1.OperatorRoleB\x08\xbaH\x05\x82\x01\x02\x10\x01H\x00R\x0coperatorRole\x88\x01\x01\x1aY\n\x11ProjectRolesEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12.\n\x05value\x18\x02 \x01(\x0e\x32\x18.fits.api.v1.ProjectRoleR\x05value:\x02\x38\x01\x1aW\n\x10TenantRolesEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12-\n\x05value\x18\x02 \x01(\x0e\x32\x17.fits.api.v1.TenantRoleR\x05value:\x02\x38\x01\x42\x10\n\x0e_operator_role2\xf3\x01\n\rMethodService\x12_\n\x04List\x12%.fits.api.v1.MethodServiceListRequest\x1a&.fits.api.v1.MethodServiceListResponse\"\x08\xd8\xf3\x18\x01\xe0\xf3\x18\x02\x12\x80\x01\n\x0fTokenScopedList\x12\x30.fits.api.v1.MethodServiceTokenScopedListRequest\x1a\x31.fits.api.v1.MethodServiceTokenScopedListResponse\"\x08\xd8\xf3\x18\x02\xe0\xf3\x18\x02\x42\x97\x01\n\x0f\x63om.fits.api.v1B\x0bMethodProtoP\x01Z)github.com/fi-ts/api/go/fits/api/v1;apiv1\xa2\x02\x03\x46\x41X\xaa\x02\x0b\x46its.Api.V1\xca\x02\x0b\x46its\\Api\\V1\xe2\x02\x17\x46its\\Api\\V1\\GPBMetadata\xea\x02\rFits::Api::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x18\x66its/api/v1/method.proto\x12\x0b\x66its.api.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\x1a\x17\x66its/api/v1/token.proto\"\x1a\n\x18MethodServiceListRequest\"5\n\x19MethodServiceListResponse\x12\x18\n\x07methods\x18\x01 \x03(\tR\x07methods\"%\n#MethodServiceTokenScopedListRequest\"\x96\x05\n$MethodServiceTokenScopedListResponse\x12?\n\x0bpermissions\x18\x01 \x03(\x0b\x32\x1d.fits.api.v1.MethodPermissionR\x0bpermissions\x12h\n\rproject_roles\x18\x02 \x03(\x0b\x32\x43.fits.api.v1.MethodServiceTokenScopedListResponse.ProjectRolesEntryR\x0cprojectRoles\x12\x65\n\x0ctenant_roles\x18\x03 \x03(\x0b\x32\x42.fits.api.v1.MethodServiceTokenScopedListResponse.TenantRolesEntryR\x0btenantRoles\x12M\n\roperator_role\x18\x04 \x01(\x0e\x32\x19.fits.api.v1.OperatorRoleB\x08\xbaH\x05\x82\x01\x02\x10\x01H\x00R\x0coperatorRole\x88\x01\x01\x12G\n\rproduct_roles\x18\x05 \x03(\x0b\x32\".fits.api.v1.ProductRoleAssignmentR\x0cproductRoles\x1aY\n\x11ProjectRolesEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12.\n\x05value\x18\x02 \x01(\x0e\x32\x18.fits.api.v1.ProjectRoleR\x05value:\x02\x38\x01\x1aW\n\x10TenantRolesEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12-\n\x05value\x18\x02 \x01(\x0e\x32\x17.fits.api.v1.TenantRoleR\x05value:\x02\x38\x01\x42\x10\n\x0e_operator_role2\xf3\x01\n\rMethodService\x12_\n\x04List\x12%.fits.api.v1.MethodServiceListRequest\x1a&.fits.api.v1.MethodServiceListResponse\"\x08\xd8\xf3\x18\x01\xe0\xf3\x18\x02\x12\x80\x01\n\x0fTokenScopedList\x12\x30.fits.api.v1.MethodServiceTokenScopedListRequest\x1a\x31.fits.api.v1.MethodServiceTokenScopedListResponse\"\x08\xd8\xf3\x18\x02\xe0\xf3\x18\x02\x42\x97\x01\n\x0f\x63om.fits.api.v1B\x0bMethodProtoP\x01Z)github.com/fi-ts/api/go/fits/api/v1;apiv1\xa2\x02\x03\x46\x41X\xaa\x02\x0b\x46its.Api.V1\xca\x02\x0b\x46its\\Api\\V1\xe2\x02\x17\x46its\\Api\\V1\\GPBMetadata\xea\x02\rFits::Api::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -52,11 +52,11 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_METHODSERVICETOKENSCOPEDLISTREQUEST']._serialized_start=204
   _globals['_METHODSERVICETOKENSCOPEDLISTREQUEST']._serialized_end=241
   _globals['_METHODSERVICETOKENSCOPEDLISTRESPONSE']._serialized_start=244
-  _globals['_METHODSERVICETOKENSCOPEDLISTRESPONSE']._serialized_end=833
-  _globals['_METHODSERVICETOKENSCOPEDLISTRESPONSE_PROJECTROLESENTRY']._serialized_start=637
-  _globals['_METHODSERVICETOKENSCOPEDLISTRESPONSE_PROJECTROLESENTRY']._serialized_end=726
-  _globals['_METHODSERVICETOKENSCOPEDLISTRESPONSE_TENANTROLESENTRY']._serialized_start=728
-  _globals['_METHODSERVICETOKENSCOPEDLISTRESPONSE_TENANTROLESENTRY']._serialized_end=815
-  _globals['_METHODSERVICE']._serialized_start=836
-  _globals['_METHODSERVICE']._serialized_end=1079
+  _globals['_METHODSERVICETOKENSCOPEDLISTRESPONSE']._serialized_end=906
+  _globals['_METHODSERVICETOKENSCOPEDLISTRESPONSE_PROJECTROLESENTRY']._serialized_start=710
+  _globals['_METHODSERVICETOKENSCOPEDLISTRESPONSE_PROJECTROLESENTRY']._serialized_end=799
+  _globals['_METHODSERVICETOKENSCOPEDLISTRESPONSE_TENANTROLESENTRY']._serialized_start=801
+  _globals['_METHODSERVICETOKENSCOPEDLISTRESPONSE_TENANTROLESENTRY']._serialized_end=888
+  _globals['_METHODSERVICE']._serialized_start=909
+  _globals['_METHODSERVICE']._serialized_end=1152
 # @@protoc_insertion_point(module_scope)
