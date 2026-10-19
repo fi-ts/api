@@ -35,7 +35,7 @@ export type VLAN = Message<"fits.api.mvm.v1.VLAN"> & {
      */
     subnetCidr: string;
     /**
-     * UUID of the location this VLAN belongs to. This is actually the FCE datacenter ID.
+     * UUID of the location this VLAN belongs to.
      *
      * @generated from field: string location_uuid = 5;
      */
@@ -59,6 +59,24 @@ export type VLAN = Message<"fits.api.mvm.v1.VLAN"> & {
  */
 export declare const VLANSchema: GenMessage<VLAN>;
 /**
+ * VLANQuery contains fields which can be specified to list specific VLANs.
+ *
+ * @generated from message fits.api.mvm.v1.VLANQuery
+ */
+export type VLANQuery = Message<"fits.api.mvm.v1.VLANQuery"> & {
+    /**
+     * Filter the listed VLANs by the Windows domain they are associated with.
+     *
+     * @generated from field: optional string domain_uuid = 1;
+     */
+    domainUuid?: string | undefined;
+};
+/**
+ * Describes the message fits.api.mvm.v1.VLANQuery.
+ * Use `create(VLANQuerySchema)` to create a new message.
+ */
+export declare const VLANQuerySchema: GenMessage<VLANQuery>;
+/**
  * VLANServiceListRequest is the request payload for a VLAN list request.
  *
  * @generated from message fits.api.mvm.v1.VLANServiceListRequest
@@ -71,17 +89,17 @@ export type VLANServiceListRequest = Message<"fits.api.mvm.v1.VLANServiceListReq
      */
     tenant: string;
     /**
-     * Filter the listed VLANs by location (the FCE datacenter ID).
+     * Filter the listed VLANs by location.
      *
      * @generated from field: string location_uuid = 2;
      */
     locationUuid: string;
     /**
-     * Filter the listed VLANs by the Windows domain they are associated with.
+     * Query to list one or more VLANs.
      *
-     * @generated from field: optional string domain_uuid = 3;
+     * @generated from field: fits.api.mvm.v1.VLANQuery query = 3;
      */
-    domainUuid?: string | undefined;
+    query?: VLANQuery | undefined;
 };
 /**
  * Describes the message fits.api.mvm.v1.VLANServiceListRequest.

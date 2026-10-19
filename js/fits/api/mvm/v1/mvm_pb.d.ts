@@ -124,6 +124,30 @@ export type InitialNetworkInterface = Message<"fits.api.mvm.v1.InitialNetworkInt
  */
 export declare const InitialNetworkInterfaceSchema: GenMessage<InitialNetworkInterface>;
 /**
+ * The status of the MVM.
+ *
+ * @generated from message fits.api.mvm.v1.Status
+ */
+export type Status = Message<"fits.api.mvm.v1.Status"> & {
+    /**
+     * State of the MVM.
+     *
+     * @generated from field: fits.api.mvm.v1.State state = 1;
+     */
+    state: State;
+    /**
+     * Additional information about the current status.
+     *
+     * @generated from field: string info = 2;
+     */
+    info: string;
+};
+/**
+ * Describes the message fits.api.mvm.v1.Status.
+ * Use `create(StatusSchema)` to create a new message.
+ */
+export declare const StatusSchema: GenMessage<Status>;
+/**
  * ManagedVM is a managed VM instance as returned by the API.
  *
  * @generated from message fits.api.mvm.v1.ManagedVM
@@ -173,7 +197,7 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
      */
     locationUuid: string;
     /**
-     * TODO: Contact UUID – not yet implemented; open discussion with FCN (#23).
+     * UUID of the contact person responsible for this MVM.
      *
      * @generated from field: string contact_uuid = 8;
      */
@@ -192,7 +216,6 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
     ram: number;
     /**
      * Whether backup is enabled.
-     * TODO: the upstream (nulink) list/get models do not expose this; always false.
      *
      * @generated from field: bool backup = 11;
      */
@@ -208,23 +231,17 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
      *
      * @generated from field: fits.api.mvm.v1.Status status = 13;
      */
-    status: Status;
-    /**
-     * Additional information about the current status.
-     *
-     * @generated from field: string status_info = 14;
-     */
-    statusInfo: string;
+    status?: Status | undefined;
     /**
      * Availability level.
      *
-     * @generated from field: fits.api.mvm.v1.Availability availability = 15;
+     * @generated from field: fits.api.mvm.v1.Availability availability = 14;
      */
     availability: Availability;
     /**
      * Service class.
      *
-     * @generated from field: fits.api.mvm.v1.ServiceClass serviceclass = 16;
+     * @generated from field: fits.api.mvm.v1.ServiceClass serviceclass = 15;
      */
     serviceclass: ServiceClass;
     /**
@@ -236,7 +253,7 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
         /**
          * Windows-specific settings (domain + disks).
          *
-         * @generated from field: fits.api.mvm.v1.WindowsDetails windows_details = 17;
+         * @generated from field: fits.api.mvm.v1.WindowsDetails windows_details = 16;
          */
         value: WindowsDetails;
         case: "windowsDetails";
@@ -244,7 +261,7 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
         /**
          * Linux-specific settings (LDAP + disks).
          *
-         * @generated from field: fits.api.mvm.v1.LinuxDetails linux_details = 18;
+         * @generated from field: fits.api.mvm.v1.LinuxDetails linux_details = 17;
          */
         value: LinuxDetails;
         case: "linuxDetails";
@@ -255,13 +272,13 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
     /**
      * Network interfaces attached to the MVM (IPv4 only).
      *
-     * @generated from field: repeated fits.api.mvm.v1.NetworkInterface interfaces = 19;
+     * @generated from field: repeated fits.api.mvm.v1.NetworkInterface interfaces = 18;
      */
     interfaces: NetworkInterface[];
     /**
      * Internal reference number provided by the user, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 20;
+     * @generated from field: string order_number = 19;
      */
     orderNumber: string;
 };
@@ -393,7 +410,7 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
      */
     locationUuid: string;
     /**
-     * TODO: Contact UUID – open discussion with FCN; may become a dedicated /contact endpoint.
+     * UUID of the contact person responsible for this MVM.
      *
      * @generated from field: string contact_uuid = 5;
      */
@@ -526,8 +543,6 @@ export type LinuxDisk = Message<"fits.api.mvm.v1.LinuxDisk"> & {
      * Kind of the disk; determines which operations are allowed on it.
      * Provided by the client in create/add requests and populated by the
      * API in responses.
-     * TODO: talk to FCE that we will provide the disk type in create/add
-     * requests.
      *
      * @generated from field: optional fits.api.mvm.v1.DiskType disk_type = 6;
      */
@@ -580,8 +595,6 @@ export type WindowsDisk = Message<"fits.api.mvm.v1.WindowsDisk"> & {
      * Kind of the disk; determines which operations are allowed on it.
      * Provided by the client in create/add requests and populated by the
      * API in responses.
-     * TODO: talk to FCE that we will provide the disk type in create/add
-     * requests.
      *
      * @generated from field: optional fits.api.mvm.v1.DiskType disk_type = 6;
      */
@@ -1074,7 +1087,6 @@ export type MVMServiceDeleteNetworkInterfaceRequest = Message<"fits.api.mvm.v1.M
     projectUuid: string;
     /**
      * Order reference for this operation.
-     * TODO: can this be optional?
      *
      * @generated from field: string order_number = 4;
      */
@@ -1192,52 +1204,52 @@ export declare enum ServiceClass {
  */
 export declare const ServiceClassSchema: GenEnum<ServiceClass>;
 /**
- * Status specifies the status of a MVM.
+ * State specifies the current state of a MVM.
  *
- * @generated from enum fits.api.mvm.v1.Status
+ * @generated from enum fits.api.mvm.v1.State
  */
-export declare enum Status {
+export declare enum State {
     /**
-     * STATUS_UNSPECIFIED is not specified.
+     * STATE_UNSPECIFIED is not specified.
      *
-     * @generated from enum value: STATUS_UNSPECIFIED = 0;
+     * @generated from enum value: STATE_UNSPECIFIED = 0;
      */
     UNSPECIFIED = 0,
     /**
-     * STATUS_CREATING: the MVM hostname is reserved and provisioning has started.
+     * STATE_CREATING: the MVM hostname is reserved and provisioning has started.
      *
-     * @generated from enum value: STATUS_CREATING = 1;
+     * @generated from enum value: STATE_CREATING = 1;
      */
     CREATING = 1,
     /**
-     * STATUS_ACTIVE: the MVM is active.
+     * STATE_ACTIVE: the MVM is active.
      *
-     * @generated from enum value: STATUS_ACTIVE = 2;
+     * @generated from enum value: STATE_ACTIVE = 2;
      */
     ACTIVE = 2,
     /**
-     * STATUS_UPDATING: there is an ongoing operation for the MVM.
+     * STATE_UPDATING: there is an ongoing operation for the MVM.
      *
-     * @generated from enum value: STATUS_UPDATING = 3;
+     * @generated from enum value: STATE_UPDATING = 3;
      */
     UPDATING = 3,
     /**
-     * STATUS_DELETED: the MVM is deleted.
+     * STATE_DELETED: the MVM is deleted.
      *
-     * @generated from enum value: STATUS_DELETED = 4;
+     * @generated from enum value: STATE_DELETED = 4;
      */
     DELETED = 4,
     /**
-     * STATUS_ERROR: the exact error status is derived from the request type.
+     * STATE_ERROR: the exact error status is derived from the request type.
      *
-     * @generated from enum value: STATUS_ERROR = 5;
+     * @generated from enum value: STATE_ERROR = 5;
      */
     ERROR = 5
 }
 /**
- * Describes the enum fits.api.mvm.v1.Status.
+ * Describes the enum fits.api.mvm.v1.State.
  */
-export declare const StatusSchema: GenEnum<Status>;
+export declare const StateSchema: GenEnum<State>;
 /**
  * DiskType classifies a MVM disk by its lifecycle rules.
  * The upstream (nulink) API returns every disk of a MVM, including the
