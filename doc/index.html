@@ -578,6 +578,10 @@
                 </li>
               
                 <li>
+                  <a href="#fits.api.mvm.v1.Status"><span class="badge">M</span>Status</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.mvm.v1.WindowsDetails"><span class="badge">M</span>WindowsDetails</a>
                 </li>
               
@@ -599,7 +603,7 @@
                 </li>
               
                 <li>
-                  <a href="#fits.api.mvm.v1.Status"><span class="badge">E</span>Status</a>
+                  <a href="#fits.api.mvm.v1.State"><span class="badge">E</span>State</a>
                 </li>
               
               
@@ -649,6 +653,10 @@
               
                 <li>
                   <a href="#fits.api.mvm.v1.VLAN"><span class="badge">M</span>VLAN</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.VLANQuery"><span class="badge">M</span>VLANQuery</a>
                 </li>
               
                 <li>
@@ -1689,6 +1697,13 @@ having a direct membership within the tenant.</p></td>
                   <td><p>Tenant to list available domains for. </p></td>
                 </tr>
               
+                <tr>
+                  <td>location_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Filter the listed domains by location. A domain is only available in some datacenters. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -1738,7 +1753,7 @@ having a direct membership within the tenant.</p></td>
                 <td>List</td>
                 <td><a href="#fits.api.mvm.v1.DomainServiceListRequest">DomainServiceListRequest</a></td>
                 <td><a href="#fits.api.mvm.v1.DomainServiceListResponse">DomainServiceListResponse</a></td>
-                <td><p>Returns a list of all Windows domains available for a tenant.</p></td>
+                <td><p>Returns a list of all Windows domains available for a tenant in a location.</p></td>
               </tr>
             
           </tbody>
@@ -2098,9 +2113,7 @@ free-form for data disks. </p></td>
                   <td>optional</td>
                   <td><p>Kind of the disk; determines which operations are allowed on it.
 Provided by the client in create/add requests and populated by the
-API in responses.
-TODO: talk to FCE that we will provide the disk type in create/add
-requests. </p></td>
+API in responses. </p></td>
                 </tr>
               
             </tbody>
@@ -2288,7 +2301,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>contact_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>TODO: Contact UUID – open discussion with FCN; may become a dedicated /contact endpoint. </p></td>
+                  <td><p>UUID of the contact person responsible for this MVM. </p></td>
                 </tr>
               
                 <tr>
@@ -2502,8 +2515,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Order reference for this operation.
-TODO: can this be optional? </p></td>
+                  <td><p>Order reference for this operation. </p></td>
                 </tr>
               
             </tbody>
@@ -2981,7 +2993,7 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
                   <td>contact_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>TODO: Contact UUID – not yet implemented; open discussion with FCN (#23). </p></td>
+                  <td><p>UUID of the contact person responsible for this MVM. </p></td>
                 </tr>
               
                 <tr>
@@ -3002,8 +3014,7 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
                   <td>backup</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Whether backup is enabled.
-TODO: the upstream (nulink) list/get models do not expose this; always false. </p></td>
+                  <td><p>Whether backup is enabled. </p></td>
                 </tr>
               
                 <tr>
@@ -3018,13 +3029,6 @@ TODO: the upstream (nulink) list/get models do not expose this; always false. </
                   <td><a href="#fits.api.mvm.v1.Status">Status</a></td>
                   <td></td>
                   <td><p>Status of the MVM. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>status_info</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Additional information about the current status. </p></td>
                 </tr>
               
                 <tr>
@@ -3114,6 +3118,37 @@ TODO: the upstream (nulink) list/get models do not expose this; always false. </
                   <td><p>MAC address of this interface.
 
 TODO: add validation </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.Status">Status</h3>
+        <p>The status of the MVM.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>state</td>
+                  <td><a href="#fits.api.mvm.v1.State">State</a></td>
+                  <td></td>
+                  <td><p>State of the MVM. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>info</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Additional information about the current status. </p></td>
                 </tr>
               
             </tbody>
@@ -3213,9 +3248,7 @@ for data disks. </p></td>
                   <td>optional</td>
                   <td><p>Kind of the disk; determines which operations are allowed on it.
 Provided by the client in create/add requests and populated by the
-API in responses.
-TODO: talk to FCE that we will provide the disk type in create/add
-requests. </p></td>
+API in responses. </p></td>
                 </tr>
               
             </tbody>
@@ -3342,8 +3375,8 @@ deletable.</p></td>
           </tbody>
         </table>
       
-        <h3 id="fits.api.mvm.v1.Status">Status</h3>
-        <p>Status specifies the status of a MVM.</p>
+        <h3 id="fits.api.mvm.v1.State">State</h3>
+        <p>State specifies the current state of a MVM.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -3351,39 +3384,39 @@ deletable.</p></td>
           <tbody>
             
               <tr>
-                <td>STATUS_UNSPECIFIED</td>
+                <td>STATE_UNSPECIFIED</td>
                 <td>0</td>
-                <td><p>STATUS_UNSPECIFIED is not specified.</p></td>
+                <td><p>STATE_UNSPECIFIED is not specified.</p></td>
               </tr>
             
               <tr>
-                <td>STATUS_CREATING</td>
+                <td>STATE_CREATING</td>
                 <td>1</td>
-                <td><p>STATUS_CREATING: the MVM hostname is reserved and provisioning has started.</p></td>
+                <td><p>STATE_CREATING: the MVM hostname is reserved and provisioning has started.</p></td>
               </tr>
             
               <tr>
-                <td>STATUS_ACTIVE</td>
+                <td>STATE_ACTIVE</td>
                 <td>2</td>
-                <td><p>STATUS_ACTIVE: the MVM is active.</p></td>
+                <td><p>STATE_ACTIVE: the MVM is active.</p></td>
               </tr>
             
               <tr>
-                <td>STATUS_UPDATING</td>
+                <td>STATE_UPDATING</td>
                 <td>3</td>
-                <td><p>STATUS_UPDATING: there is an ongoing operation for the MVM.</p></td>
+                <td><p>STATE_UPDATING: there is an ongoing operation for the MVM.</p></td>
               </tr>
             
               <tr>
-                <td>STATUS_DELETED</td>
+                <td>STATE_DELETED</td>
                 <td>4</td>
-                <td><p>STATUS_DELETED: the MVM is deleted.</p></td>
+                <td><p>STATE_DELETED: the MVM is deleted.</p></td>
               </tr>
             
               <tr>
-                <td>STATUS_ERROR</td>
+                <td>STATE_ERROR</td>
                 <td>5</td>
-                <td><p>STATUS_ERROR: the exact error status is derived from the request type.</p></td>
+                <td><p>STATE_ERROR: the exact error status is derived from the request type.</p></td>
               </tr>
             
           </tbody>
@@ -3687,7 +3720,7 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                   <td>location_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>UUID of the location this VLAN belongs to. This is actually the FCE datacenter ID. </p></td>
+                  <td><p>UUID of the location this VLAN belongs to. </p></td>
                 </tr>
               
                 <tr>
@@ -3702,6 +3735,30 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
                   <td><p>UUID of the Windows domain this VLAN is associated with. Only set for Windows. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.VLANQuery">VLANQuery</h3>
+        <p>VLANQuery contains fields which can be specified to list specific VLANs.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>domain_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Filter the listed VLANs by the Windows domain they are associated with. </p></td>
                 </tr>
               
             </tbody>
@@ -3732,14 +3789,14 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                   <td>location_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Filter the listed VLANs by location (the FCE datacenter ID). </p></td>
+                  <td><p>Filter the listed VLANs by location. </p></td>
                 </tr>
               
                 <tr>
-                  <td>domain_uuid</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>Filter the listed VLANs by the Windows domain they are associated with. </p></td>
+                  <td>query</td>
+                  <td><a href="#fits.api.mvm.v1.VLANQuery">VLANQuery</a></td>
+                  <td></td>
+                  <td><p>Query to list one or more VLANs. </p></td>
                 </tr>
               
             </tbody>

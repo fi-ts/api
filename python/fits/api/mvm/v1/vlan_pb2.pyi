@@ -27,15 +27,21 @@ class VLAN(_message.Message):
     domain_uuid: str
     def __init__(self, uuid: _Optional[str] = ..., vlan_id: _Optional[int] = ..., subnet_title: _Optional[str] = ..., subnet_cidr: _Optional[str] = ..., location_uuid: _Optional[str] = ..., tenant: _Optional[str] = ..., domain_uuid: _Optional[str] = ...) -> None: ...
 
+class VLANQuery(_message.Message):
+    __slots__ = ("domain_uuid",)
+    DOMAIN_UUID_FIELD_NUMBER: _ClassVar[int]
+    domain_uuid: str
+    def __init__(self, domain_uuid: _Optional[str] = ...) -> None: ...
+
 class VLANServiceListRequest(_message.Message):
-    __slots__ = ("tenant", "location_uuid", "domain_uuid")
+    __slots__ = ("tenant", "location_uuid", "query")
     TENANT_FIELD_NUMBER: _ClassVar[int]
     LOCATION_UUID_FIELD_NUMBER: _ClassVar[int]
-    DOMAIN_UUID_FIELD_NUMBER: _ClassVar[int]
+    QUERY_FIELD_NUMBER: _ClassVar[int]
     tenant: str
     location_uuid: str
-    domain_uuid: str
-    def __init__(self, tenant: _Optional[str] = ..., location_uuid: _Optional[str] = ..., domain_uuid: _Optional[str] = ...) -> None: ...
+    query: VLANQuery
+    def __init__(self, tenant: _Optional[str] = ..., location_uuid: _Optional[str] = ..., query: _Optional[_Union[VLANQuery, _Mapping]] = ...) -> None: ...
 
 class VLANServiceListResponse(_message.Message):
     __slots__ = ("vlans",)

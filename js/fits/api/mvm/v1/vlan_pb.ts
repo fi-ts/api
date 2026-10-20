@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/mvm/v1/vlan.proto.
  */
 export const file_fits_api_mvm_v1_vlan: GenFile = /*@__PURE__*/
-  fileDesc("ChpmaXRzL2FwaS9tdm0vdjEvdmxhbi5wcm90bxIPZml0cy5hcGkubXZtLnYxIuYBCgRWTEFOEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEg8KB3ZsYW5faWQYAiABKAUSIQoMc3VibmV0X3RpdGxlGAMgASgJQgu6SAhyBsCzrrECARIgCgtzdWJuZXRfY2lkchgEIAEoCUILukgIcgaAtK6xAgESHwoNbG9jYXRpb25fdXVpZBgFIAEoCUIIukgFcgOwAQESGwoGdGVuYW50GAYgASgJQgu6SAhyBsCzrrECARIiCgtkb21haW5fdXVpZBgHIAEoCUIIukgFcgOwAQFIAIgBAUIOCgxfZG9tYWluX3V1aWQiigEKFlZMQU5TZXJ2aWNlTGlzdFJlcXVlc3QSGwoGdGVuYW50GAEgASgJQgu6SAhyBsCzrrECARIfCg1sb2NhdGlvbl91dWlkGAIgASgJQgi6SAVyA7ABARIiCgtkb21haW5fdXVpZBgDIAEoCUIIukgFcgOwAQFIAIgBAUIOCgxfZG9tYWluX3V1aWQiPwoXVkxBTlNlcnZpY2VMaXN0UmVzcG9uc2USJAoFdmxhbnMYASADKAsyFS5maXRzLmFwaS5tdm0udjEuVkxBTjJ1CgtWTEFOU2VydmljZRJmCgRMaXN0EicuZml0cy5hcGkubXZtLnYxLlZMQU5TZXJ2aWNlTGlzdFJlcXVlc3QaKC5maXRzLmFwaS5tdm0udjEuVkxBTlNlcnZpY2VMaXN0UmVzcG9uc2UiC8LzGAMBAgPg8xgCQq4BChNjb20uZml0cy5hcGkubXZtLnYxQglWbGFuUHJvdG9QAVotZ2l0aHViLmNvbS9maS10cy9hcGkvZ28vZml0cy9hcGkvbXZtL3YxO212bXYxogIDRkFNqgIPRml0cy5BcGkuTXZtLlYxygIPRml0c1xBcGlcTXZtXFYx4gIbRml0c1xBcGlcTXZtXFYxXEdQQk1ldGFkYXRh6gISRml0czo6QXBpOjpNdm06OlYxYgZwcm90bzM", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
+  fileDesc("ChpmaXRzL2FwaS9tdm0vdjEvdmxhbi5wcm90bxIPZml0cy5hcGkubXZtLnYxIuYBCgRWTEFOEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEg8KB3ZsYW5faWQYAiABKAUSIQoMc3VibmV0X3RpdGxlGAMgASgJQgu6SAhyBsCzrrECARIgCgtzdWJuZXRfY2lkchgEIAEoCUILukgIcgaAtK6xAgESHwoNbG9jYXRpb25fdXVpZBgFIAEoCUIIukgFcgOwAQESGwoGdGVuYW50GAYgASgJQgu6SAhyBsCzrrECARIiCgtkb21haW5fdXVpZBgHIAEoCUIIukgFcgOwAQFIAIgBAUIOCgxfZG9tYWluX3V1aWQiPwoJVkxBTlF1ZXJ5EiIKC2RvbWFpbl91dWlkGAEgASgJQgi6SAVyA7ABAUgAiAEBQg4KDF9kb21haW5fdXVpZCKBAQoWVkxBTlNlcnZpY2VMaXN0UmVxdWVzdBIbCgZ0ZW5hbnQYASABKAlCC7pICHIGwLOusQIBEh8KDWxvY2F0aW9uX3V1aWQYAiABKAlCCLpIBXIDsAEBEikKBXF1ZXJ5GAMgASgLMhouZml0cy5hcGkubXZtLnYxLlZMQU5RdWVyeSI/ChdWTEFOU2VydmljZUxpc3RSZXNwb25zZRIkCgV2bGFucxgBIAMoCzIVLmZpdHMuYXBpLm12bS52MS5WTEFOMnUKC1ZMQU5TZXJ2aWNlEmYKBExpc3QSJy5maXRzLmFwaS5tdm0udjEuVkxBTlNlcnZpY2VMaXN0UmVxdWVzdBooLmZpdHMuYXBpLm12bS52MS5WTEFOU2VydmljZUxpc3RSZXNwb25zZSILwvMYAwECA+DzGAJCrgEKE2NvbS5maXRzLmFwaS5tdm0udjFCCVZsYW5Qcm90b1ABWi1naXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS9tdm0vdjE7bXZtdjGiAgNGQU2qAg9GaXRzLkFwaS5Ndm0uVjHKAg9GaXRzXEFwaVxNdm1cVjHiAhtGaXRzXEFwaVxNdm1cVjFcR1BCTWV0YWRhdGHqAhJGaXRzOjpBcGk6Ok12bTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
 
 /**
  * VLAN is a VLAN that a MVM can be connected to.
@@ -50,7 +50,7 @@ export type VLAN = Message<"fits.api.mvm.v1.VLAN"> & {
   subnetCidr: string;
 
   /**
-   * UUID of the location this VLAN belongs to. This is actually the FCE datacenter ID.
+   * UUID of the location this VLAN belongs to.
    *
    * @generated from field: string location_uuid = 5;
    */
@@ -79,6 +79,27 @@ export const VLANSchema: GenMessage<VLAN> = /*@__PURE__*/
   messageDesc(file_fits_api_mvm_v1_vlan, 0);
 
 /**
+ * VLANQuery contains fields which can be specified to list specific VLANs.
+ *
+ * @generated from message fits.api.mvm.v1.VLANQuery
+ */
+export type VLANQuery = Message<"fits.api.mvm.v1.VLANQuery"> & {
+  /**
+   * Filter the listed VLANs by the Windows domain they are associated with.
+   *
+   * @generated from field: optional string domain_uuid = 1;
+   */
+  domainUuid?: string | undefined;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.VLANQuery.
+ * Use `create(VLANQuerySchema)` to create a new message.
+ */
+export const VLANQuerySchema: GenMessage<VLANQuery> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_vlan, 1);
+
+/**
  * VLANServiceListRequest is the request payload for a VLAN list request.
  *
  * @generated from message fits.api.mvm.v1.VLANServiceListRequest
@@ -92,18 +113,18 @@ export type VLANServiceListRequest = Message<"fits.api.mvm.v1.VLANServiceListReq
   tenant: string;
 
   /**
-   * Filter the listed VLANs by location (the FCE datacenter ID).
+   * Filter the listed VLANs by location.
    *
    * @generated from field: string location_uuid = 2;
    */
   locationUuid: string;
 
   /**
-   * Filter the listed VLANs by the Windows domain they are associated with.
+   * Query to list one or more VLANs.
    *
-   * @generated from field: optional string domain_uuid = 3;
+   * @generated from field: fits.api.mvm.v1.VLANQuery query = 3;
    */
-  domainUuid?: string | undefined;
+  query?: VLANQuery | undefined;
 };
 
 /**
@@ -111,7 +132,7 @@ export type VLANServiceListRequest = Message<"fits.api.mvm.v1.VLANServiceListReq
  * Use `create(VLANServiceListRequestSchema)` to create a new message.
  */
 export const VLANServiceListRequestSchema: GenMessage<VLANServiceListRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_vlan, 1);
+  messageDesc(file_fits_api_mvm_v1_vlan, 2);
 
 /**
  * VLANServiceListResponse is the response payload for a VLAN list request.
@@ -132,7 +153,7 @@ export type VLANServiceListResponse = Message<"fits.api.mvm.v1.VLANServiceListRe
  * Use `create(VLANServiceListResponseSchema)` to create a new message.
  */
 export const VLANServiceListResponseSchema: GenMessage<VLANServiceListResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_vlan, 2);
+  messageDesc(file_fits_api_mvm_v1_vlan, 3);
 
 /**
  * VLANService lists VLANs available for managed VM (MVM) instances.
