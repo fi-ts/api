@@ -20,12 +20,10 @@ func TestInterceptor(t *testing.T) {
 		Interceptors: []connect.Interceptor{
 			client.NewTestInterceptor(t, []client.ClientCall{
 				{
-					WantRequest: &apiv1.IPServiceGetRequest{
-						Ip: "1.2.3.4",
-					},
+					WantRequest: &apiv1.VersionServiceGetRequest{},
 					WantResponse: func() connect.AnyResponse {
-						return connect.NewResponse(&apiv1.IPServiceGetResponse{
-							Ip: &apiv1.IP{Ip: "1.2.3.4"},
+						return connect.NewResponse(&apiv1.VersionServiceGetResponse{
+							Version: &apiv1.Version{Version: "1.0"},
 						})
 					},
 				},
@@ -36,14 +34,12 @@ func TestInterceptor(t *testing.T) {
 	})
 	require.NoError(t, err)
 
-	resp, err := cl.Apiv1().IP().Get(t.Context(), &apiv1.IPServiceGetRequest{
-		Ip: "1.2.3.4",
-	})
+	resp, err := cl.Apiv1().Version().Get(t.Context(), &apiv1.VersionServiceGetRequest{})
 	require.NoError(t, err)
 
-	if diff := cmp.Diff(&apiv1.IPServiceGetResponse{
-		Ip: &apiv1.IP{
-			Ip: "1.2.3.4",
+	if diff := cmp.Diff(&apiv1.VersionServiceGetResponse{
+		Version: &apiv1.Version{
+			Version: "1.0",
 		},
 	}, resp, protocmp.Transform(), client.IgnoreUnexported(), cmpopts.IgnoreTypes(protoimpl.MessageState{})); diff != "" {
 		t.Errorf("diff = %s", diff)

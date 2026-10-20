@@ -7,7 +7,6 @@ import { MVMService as Apimvmv1MVMService } from "./fits/api/mvm/v1/mvm_pb";
 import { OSService as Apimvmv1OSService } from "./fits/api/mvm/v1/os_pb";
 import { VLANService as Apimvmv1VLANService } from "./fits/api/mvm/v1/vlan_pb";
 import { HealthService as Apiv1HealthService } from "./fits/api/v1/health_pb";
-import { IPService as Apiv1IPService } from "./fits/api/v1/ip_pb";
 import { MethodService as Apiv1MethodService } from "./fits/api/v1/method_pb";
 import { ProjectService as Apiv1ProjectService } from "./fits/api/v1/project_pb";
 import { TenantService as Apiv1TenantService } from "./fits/api/v1/tenant_pb";
@@ -32,7 +31,6 @@ export interface Apimvmv1 {
 }
 export interface Apiv1 {
     health(): ConnectClient<typeof Apiv1HealthService>;
-    ip(): ConnectClient<typeof Apiv1IPService>;
     method(): ConnectClient<typeof Apiv1MethodService>;
     project(): ConnectClient<typeof Apiv1ProjectService>;
     tenant(): ConnectClient<typeof Apiv1TenantService>;

@@ -39,7 +39,6 @@ type (
 
 	Apiv1 interface {
 		Health() apiv1connect.HealthServiceClient
-		IP() apiv1connect.IPServiceClient
 		Method() apiv1connect.MethodServiceClient
 		Project() apiv1connect.ProjectServiceClient
 		Tenant() apiv1connect.TenantServiceClient
@@ -49,7 +48,6 @@ type (
 
 	apiv1 struct {
 		healthservice  apiv1connect.HealthServiceClient
-		ipservice      apiv1connect.IPServiceClient
 		methodservice  apiv1connect.MethodServiceClient
 		projectservice apiv1connect.ProjectServiceClient
 		tenantservice  apiv1connect.TenantServiceClient
@@ -127,12 +125,6 @@ func (c *client) Apiv1() Apiv1 {
 			connect.WithInterceptors(c.interceptors...),
 			compress.WithAll(compress.LevelBalanced),
 		),
-		ipservice: apiv1connect.NewIPServiceClient(
-			c.config.HttpClient(),
-			c.config.BaseURL,
-			connect.WithInterceptors(c.interceptors...),
-			compress.WithAll(compress.LevelBalanced),
-		),
 		methodservice: apiv1connect.NewMethodServiceClient(
 			c.config.HttpClient(),
 			c.config.BaseURL,
@@ -169,9 +161,6 @@ func (c *client) Apiv1() Apiv1 {
 
 func (c *apiv1) Health() apiv1connect.HealthServiceClient {
 	return c.healthservice
-}
-func (c *apiv1) IP() apiv1connect.IPServiceClient {
-	return c.ipservice
 }
 func (c *apiv1) Method() apiv1connect.MethodServiceClient {
 	return c.methodservice
