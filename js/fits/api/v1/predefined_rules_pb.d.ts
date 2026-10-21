@@ -53,12 +53,6 @@ export declare const is_ip_or_hostname: GenExtension<StringRules, boolean>;
  */
 export declare const trimmed: GenExtension<StringRules, boolean>;
 /**
- * IsProjectSlug enforces the string to be usable as a project slug.
- *
- * @generated from extension: optional bool is_project_slug = 80048959;
- */
-export declare const is_project_slug: GenExtension<StringRules, boolean>;
-/**
  * IsIpv4Cidr validates if the given string is a valid IPv4 CIDR, e.g. 10.0.0.0/24
  *
  * @generated from extension: optional bool is_ipv4_cidr = 80048960;

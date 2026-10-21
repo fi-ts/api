@@ -260,10 +260,6 @@
                   <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
                 </li>
               
-                <li>
-                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
-                </li>
-              
               
             </ul>
           </li>
@@ -672,6 +668,101 @@
               
                 <li>
                   <a href="#fits.api.mvm.v1.VLANService"><span class="badge">S</span>VLANService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#fits%2fapi%2fpcvm%2fv1%2fpcvm.proto">fits/api/pcvm/v1/pcvm.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.pcvm.v1.PublicCloudVM"><span class="badge">M</span>PublicCloudVM</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.pcvm.v1.PublicCloudVMQuery"><span class="badge">M</span>PublicCloudVMQuery</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest"><span class="badge">M</span>PublicCloudVMServiceCreateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.pcvm.v1.PublicCloudVMServiceCreateResponse"><span class="badge">M</span>PublicCloudVMServiceCreateResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.pcvm.v1.PublicCloudVMServiceDeleteRequest"><span class="badge">M</span>PublicCloudVMServiceDeleteRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.pcvm.v1.PublicCloudVMServiceDeleteResponse"><span class="badge">M</span>PublicCloudVMServiceDeleteResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.pcvm.v1.PublicCloudVMServiceGetRequest"><span class="badge">M</span>PublicCloudVMServiceGetRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.pcvm.v1.PublicCloudVMServiceGetResponse"><span class="badge">M</span>PublicCloudVMServiceGetResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.pcvm.v1.PublicCloudVMServiceListRequest"><span class="badge">M</span>PublicCloudVMServiceListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.pcvm.v1.PublicCloudVMServiceListResponse"><span class="badge">M</span>PublicCloudVMServiceListResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest"><span class="badge">M</span>PublicCloudVMServiceUpdateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.pcvm.v1.PublicCloudVMServiceUpdateResponse"><span class="badge">M</span>PublicCloudVMServiceUpdateResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateRequest"><span class="badge">M</span>PublicCloudVMServiceValidateCreateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateResponse"><span class="badge">M</span>PublicCloudVMServiceValidateCreateResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateRequest"><span class="badge">M</span>PublicCloudVMServiceValidateUpdateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateResponse"><span class="badge">M</span>PublicCloudVMServiceValidateUpdateResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.pcvm.v1.Status"><span class="badge">M</span>Status</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#fits.api.pcvm.v1.Operation"><span class="badge">E</span>Operation</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.pcvm.v1.Size"><span class="badge">E</span>Size</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.pcvm.v1.State"><span class="badge">E</span>State</a>
+                </li>
+              
+              
+              
+                <li>
+                  <a href="#fits.api.pcvm.v1.PublicCloudVMService"><span class="badge">S</span>PublicCloudVMService</a>
                 </li>
               
             </ul>
@@ -1116,14 +1207,6 @@
                 <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
                 <td>80048955</td>
                 <td><p>IsPrefix validates if the given string is a valid prefix</p></td>
-              </tr>
-            
-              <tr>
-                <td>is_project_slug</td>
-                <td><a href="#bool">bool</a></td>
-                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
-                <td>80048959</td>
-                <td><p>IsProjectSlug enforces the string to be usable as a project slug.</p></td>
               </tr>
             
               <tr>
@@ -3858,6 +3941,705 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
     
       
       <div class="file-heading">
+        <h2 id="fits/api/pcvm/v1/pcvm.proto">fits/api/pcvm/v1/pcvm.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.pcvm.v1.PublicCloudVM">PublicCloudVM</h3>
+        <p>The VM resource.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of this VM. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#fits.api.v1.Meta">fits.api.v1.Meta</a></td>
+                  <td></td>
+                  <td><p>Metadata for this VM including labels. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name of the VM. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant this VM belongs to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the project this VM belongs to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>size</td>
+                  <td><a href="#fits.api.pcvm.v1.Size">Size</a></td>
+                  <td></td>
+                  <td><p>Size of the VM. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#fits.api.pcvm.v1.Status">Status</a></td>
+                  <td></td>
+                  <td><p>The status of the VM. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.pcvm.v1.PublicCloudVMQuery">PublicCloudVMQuery</h3>
+        <p>The VM query parameters to filter the list of results.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>The name of the VMs. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>labels</td>
+                  <td><a href="#fits.api.v1.Labels">fits.api.v1.Labels</a></td>
+                  <td>optional</td>
+                  <td><p>The labels each VM should have. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest">PublicCloudVMServiceCreateRequest</h3>
+        <p>The request to create a new VM.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>project_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the project this VM belongs to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name of the VM. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>labels</td>
+                  <td><a href="#fits.api.v1.Labels">fits.api.v1.Labels</a></td>
+                  <td></td>
+                  <td><p>Labels for this VM. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>size</td>
+                  <td><a href="#fits.api.pcvm.v1.Size">Size</a></td>
+                  <td></td>
+                  <td><p>Size of the VM. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.pcvm.v1.PublicCloudVMServiceCreateResponse">PublicCloudVMServiceCreateResponse</h3>
+        <p>The response when creating a new VM.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>vm</td>
+                  <td><a href="#fits.api.pcvm.v1.PublicCloudVM">PublicCloudVM</a></td>
+                  <td></td>
+                  <td><p>The VM just created. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.pcvm.v1.PublicCloudVMServiceDeleteRequest">PublicCloudVMServiceDeleteRequest</h3>
+        <p>The request to delete a VM.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the VM to delete. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the project this VM belongs to. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.pcvm.v1.PublicCloudVMServiceDeleteResponse">PublicCloudVMServiceDeleteResponse</h3>
+        <p>The response after deleting a VM.</p><p>The VM is deleted immediately will not be able to be requested.</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.pcvm.v1.PublicCloudVMServiceGetRequest">PublicCloudVMServiceGetRequest</h3>
+        <p>Request to get a VM by UUID.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the VM to get. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the project this VM belongs to. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.pcvm.v1.PublicCloudVMServiceGetResponse">PublicCloudVMServiceGetResponse</h3>
+        <p>Response containing the requested VM.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>vm</td>
+                  <td><a href="#fits.api.pcvm.v1.PublicCloudVM">PublicCloudVM</a></td>
+                  <td></td>
+                  <td><p>The VM. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.pcvm.v1.PublicCloudVMServiceListRequest">PublicCloudVMServiceListRequest</h3>
+        <p>The request to list and filter VMs.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>project_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the project this VM belongs to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>paging</td>
+                  <td><a href="#fits.api.v1.Paging">fits.api.v1.Paging</a></td>
+                  <td></td>
+                  <td><p>Paging details for the list request. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>query</td>
+                  <td><a href="#fits.api.pcvm.v1.PublicCloudVMQuery">PublicCloudVMQuery</a></td>
+                  <td></td>
+                  <td><p>Query defines how to filter the VMs. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.pcvm.v1.PublicCloudVMServiceListResponse">PublicCloudVMServiceListResponse</h3>
+        <p>The response when listing VMs.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>vms</td>
+                  <td><a href="#fits.api.pcvm.v1.PublicCloudVM">PublicCloudVM</a></td>
+                  <td>repeated</td>
+                  <td><p>VMs is a list of filtered VMs resources. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest">PublicCloudVMServiceUpdateRequest</h3>
+        <p>The request to update a VM.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the VM to update. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the project this VM belongs to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>update_meta</td>
+                  <td><a href="#fits.api.v1.UpdateMeta">fits.api.v1.UpdateMeta</a></td>
+                  <td></td>
+                  <td><p>UpdateMeta contains the timestamp and strategy to be used in this update request. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>labels</td>
+                  <td><a href="#fits.api.v1.UpdateLabels">fits.api.v1.UpdateLabels</a></td>
+                  <td>optional</td>
+                  <td><p>The labels to update. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Name of the VM. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>size</td>
+                  <td><a href="#fits.api.pcvm.v1.Size">Size</a></td>
+                  <td>optional</td>
+                  <td><p>Size of the VM. The new size must be bigger or equal than before.
+Downgrades are not possible. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.pcvm.v1.PublicCloudVMServiceUpdateResponse">PublicCloudVMServiceUpdateResponse</h3>
+        <p>The response when updating a VM.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>vm</td>
+                  <td><a href="#fits.api.pcvm.v1.PublicCloudVM">PublicCloudVM</a></td>
+                  <td></td>
+                  <td><p>The updated VM. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateRequest">PublicCloudVMServiceValidateCreateRequest</h3>
+        <p>Request to validate a VM create without creating anything.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>create</td>
+                  <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest">PublicCloudVMServiceCreateRequest</a></td>
+                  <td></td>
+                  <td><p>The create request to validate. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateResponse">PublicCloudVMServiceValidateCreateResponse</h3>
+        <p>Response for ValidateCreate; violations are returned as an InvalidArgument error.</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateRequest">PublicCloudVMServiceValidateUpdateRequest</h3>
+        <p>Request to validate a VM update without updating anything.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>update</td>
+                  <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest">PublicCloudVMServiceUpdateRequest</a></td>
+                  <td></td>
+                  <td><p>The update request to validate. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateResponse">PublicCloudVMServiceValidateUpdateResponse</h3>
+        <p>Response for ValidateUpdate; violations are returned as an InvalidArgument error.</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.pcvm.v1.Status">Status</h3>
+        <p>The Status of a VM.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>state</td>
+                  <td><a href="#fits.api.pcvm.v1.State">State</a></td>
+                  <td></td>
+                  <td><p>The state of the VM status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>info</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The info details of the current state. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>operation</td>
+                  <td><a href="#fits.api.pcvm.v1.Operation">Operation</a></td>
+                  <td></td>
+                  <td><p>The current operation running on the VM. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="fits.api.pcvm.v1.Operation">Operation</h3>
+        <p>The operation of the VM.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>OPERATION_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>OPERATION_UNSPECIFIED is not specified.</p></td>
+              </tr>
+            
+              <tr>
+                <td>OPERATION_CREATING</td>
+                <td>1</td>
+                <td><p>OPERATION_CREATING: the VM hostname is reserved and provisioning has started.</p></td>
+              </tr>
+            
+              <tr>
+                <td>OPERATION_ACTIVE</td>
+                <td>2</td>
+                <td><p>OPERATION_ACTIVE: the VM is active.</p></td>
+              </tr>
+            
+              <tr>
+                <td>OPERATION_UPDATING</td>
+                <td>3</td>
+                <td><p>OPERATION_UPDATING: there is an ongoing operation for the VM.</p></td>
+              </tr>
+            
+              <tr>
+                <td>OPERATION_DELETED</td>
+                <td>4</td>
+                <td><p>OPERATION_DELETED: the VM is deleted.</p></td>
+              </tr>
+            
+              <tr>
+                <td>OPERATION_ERROR</td>
+                <td>5</td>
+                <td><p>OPERATION_ERROR: the</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="fits.api.pcvm.v1.Size">Size</h3>
+        <p>Size specifies the size of the VM machine</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>SIZE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>SIZE_UNSPECIFIED is not specified.</p></td>
+              </tr>
+            
+              <tr>
+                <td>SIZE_SMALL</td>
+                <td>1</td>
+                <td><p>SIZE_SMALL: small machine size.</p></td>
+              </tr>
+            
+              <tr>
+                <td>SIZE_MEDIUM</td>
+                <td>2</td>
+                <td><p>SIZE_MEDIUM: medium machine size.</p></td>
+              </tr>
+            
+              <tr>
+                <td>SIZE_LARGE</td>
+                <td>3</td>
+                <td><p>SIZE_LARGE: large machine size.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="fits.api.pcvm.v1.State">State</h3>
+        <p>The health state of the VM.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>STATE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>STATE_UNSPECIFIED is not specified.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STATE_HEALTHY</td>
+                <td>1</td>
+                <td><p>STATE_HEALTHY: the VM is healthy.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STATE_WARNING</td>
+                <td>2</td>
+                <td><p>STATE_HEALTHY: there are some health warnings for this VM.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STATE_ERROR</td>
+                <td>3</td>
+                <td><p>STATE_ERROR: the VM is unhealthy.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+        <h3 id="fits.api.pcvm.v1.PublicCloudVMService">PublicCloudVMService</h3>
+        <p>VMService provides VM operations.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Get</td>
+                <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceGetRequest">PublicCloudVMServiceGetRequest</a></td>
+                <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceGetResponse">PublicCloudVMServiceGetResponse</a></td>
+                <td><p>Returns the VM with the specified UUID.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Create</td>
+                <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest">PublicCloudVMServiceCreateRequest</a></td>
+                <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceCreateResponse">PublicCloudVMServiceCreateResponse</a></td>
+                <td><p>Creates a new VM.</p></td>
+              </tr>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceListRequest">PublicCloudVMServiceListRequest</a></td>
+                <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceListResponse">PublicCloudVMServiceListResponse</a></td>
+                <td><p>Returns the list of all VMs.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Update</td>
+                <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest">PublicCloudVMServiceUpdateRequest</a></td>
+                <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceUpdateResponse">PublicCloudVMServiceUpdateResponse</a></td>
+                <td><p>Updates a VM.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Delete</td>
+                <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceDeleteRequest">PublicCloudVMServiceDeleteRequest</a></td>
+                <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceDeleteResponse">PublicCloudVMServiceDeleteResponse</a></td>
+                <td><p>Deletes a VM immediately.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ValidateCreate</td>
+                <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateRequest">PublicCloudVMServiceValidateCreateRequest</a></td>
+                <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateResponse">PublicCloudVMServiceValidateCreateResponse</a></td>
+                <td><p>Validates a VM create request without creating anything. Intended for
+form pre-checks; the create endpoint validates again before executing.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ValidateUpdate</td>
+                <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateRequest">PublicCloudVMServiceValidateUpdateRequest</a></td>
+                <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateResponse">PublicCloudVMServiceValidateUpdateResponse</a></td>
+                <td><p>Validates a VM update request without updating anything. Intended for
+form pre-checks; the update endpoint validates again before executing.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
         <h2 id="fits/api/v1/health.proto">fits/api/v1/health.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
@@ -4938,14 +5720,6 @@ Asterisk (*) can be specified to match any subject. </p></td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
                   <td><p>AvatarUrl of the Project </p></td>
-                </tr>
-              
-                <tr>
-                  <td>slug</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Slug is an immutable identifier of the project.
-Guaranteed to be unique within a tenant. </p></td>
                 </tr>
               
             </tbody>

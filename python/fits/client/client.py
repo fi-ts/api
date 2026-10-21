@@ -9,6 +9,8 @@ import fits.api.mvm.v1.mvm_connect as fits_api_mvm_v1_mvm_connect
 import fits.api.mvm.v1.os_connect as fits_api_mvm_v1_os_connect
 import fits.api.mvm.v1.vlan_connect as fits_api_mvm_v1_vlan_connect
 
+import fits.api.pcvm.v1.pcvm_connect as fits_api_pcvm_v1_pcvm_connect
+
 import fits.api.v1.health_connect as fits_api_v1_health_connect
 import fits.api.v1.method_connect as fits_api_v1_method_connect
 import fits.api.v1.project_connect as fits_api_v1_project_connect
@@ -34,6 +36,9 @@ class Client:
 
     def apimvmv1(self):
         return self._Apimvmv1(baseurl=self._baseurl, client=self._client, interceptors=self._interceptors)
+
+    def apipcvmv1(self):
+        return self._Apipcvmv1(baseurl=self._baseurl, client=self._client, interceptors=self._interceptors)
 
     def apiv1(self):
         return self._Apiv1(baseurl=self._baseurl, client=self._client, interceptors=self._interceptors)
@@ -64,6 +69,17 @@ class Client:
 
         def vlan(self):
             return fits_api_mvm_v1_vlan_connect.VLANServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
+
+
+    class _Apipcvmv1:
+        def __init__(self, baseurl: str, client: pyqwest.SyncClient = None, interceptors: list = []):
+            self._baseurl = baseurl
+            self._client = client
+            self._interceptors = list(interceptors)
+
+
+        def pcvm(self):
+            return fits_api_pcvm_v1_pcvm_connect.PublicCloudVMServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
 
     class _Apiv1:
