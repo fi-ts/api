@@ -10,9 +10,10 @@ import "fits/api/v1/predefined_rules.proto";
 service MVMService {
   // Returns the MVM with the specified UUID.
   rpc Get(MVMServiceGetRequest) returns (MVMServiceGetResponse) {
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_VIEWER;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_ADMIN;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_EDITOR;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_VIEWER;
+    option (fits.api.v1.product) = PRODUCT_MANAGED_VM;
     option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
   }
   // Creates a new MVM.
@@ -31,46 +32,53 @@ service MVMService {
   }
   // Deletes a MVM.
   rpc Delete(MVMServiceDeleteRequest) returns (MVMServiceDeleteResponse) {
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_ADMIN;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_EDITOR;
+    option (fits.api.v1.product) = PRODUCT_MANAGED_VM;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
   // Orders an additional data disk for a MVM. System disks are ordered at
   // MVM creation and cannot be added later.
   rpc AddDisk(MVMServiceAddDiskRequest) returns (MVMServiceAddDiskResponse) {
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_ADMIN;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_EDITOR;
+    option (fits.api.v1.product) = PRODUCT_MANAGED_VM;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
   // Changes the size or auto-extend behavior of an existing disk; see
   // DiskType for which operations apply per disk kind.
   rpc UpdateDisk(MVMServiceUpdateDiskRequest) returns (MVMServiceUpdateDiskResponse) {
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_ADMIN;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_EDITOR;
+    option (fits.api.v1.product) = PRODUCT_MANAGED_VM;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
   // Cancels a data disk. OS and system disks cannot be deleted.
   rpc DeleteDisk(MVMServiceDeleteDiskRequest) returns (MVMServiceDeleteDiskResponse) {
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_ADMIN;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_EDITOR;
+    option (fits.api.v1.product) = PRODUCT_MANAGED_VM;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
   // Orders an additional network interface for a MVM.
   rpc AddNetworkInterface(MVMServiceAddNetworkInterfaceRequest) returns (MVMServiceAddNetworkInterfaceResponse) {
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_ADMIN;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_EDITOR;
+    option (fits.api.v1.product) = PRODUCT_MANAGED_VM;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
   // Moves a network interface from one MVM to another.
   rpc MoveNetworkInterface(MVMServiceMoveNetworkInterfaceRequest) returns (MVMServiceMoveNetworkInterfaceResponse) {
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_ADMIN;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_EDITOR;
+    option (fits.api.v1.product) = PRODUCT_MANAGED_VM;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
   // Deletes a network interface from a MVM.
   rpc DeleteNetworkInterface(MVMServiceDeleteNetworkInterfaceRequest) returns (MVMServiceDeleteNetworkInterfaceResponse) {
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_ADMIN;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_EDITOR;
+    option (fits.api.v1.product) = PRODUCT_MANAGED_VM;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
   // Validates a MVM create request without creating anything. Intended for
@@ -82,20 +90,23 @@ service MVMService {
   }
   // Validates an AddDisk request without ordering anything.
   rpc ValidateAddDisk(MVMServiceValidateAddDiskRequest) returns (MVMServiceValidateAddDiskResponse) {
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_ADMIN;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_EDITOR;
+    option (fits.api.v1.product) = PRODUCT_MANAGED_VM;
     option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
   }
   // Validates an UpdateDisk request without changing anything.
   rpc ValidateUpdateDisk(MVMServiceValidateUpdateDiskRequest) returns (MVMServiceValidateUpdateDiskResponse) {
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_ADMIN;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_EDITOR;
+    option (fits.api.v1.product) = PRODUCT_MANAGED_VM;
     option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
   }
   // Validates an AddNetworkInterface request without ordering anything.
   rpc ValidateAddNetworkInterface(MVMServiceValidateAddNetworkInterfaceRequest) returns (MVMServiceValidateAddNetworkInterfaceResponse) {
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_ADMIN;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_EDITOR;
+    option (fits.api.v1.product) = PRODUCT_MANAGED_VM;
     option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
   }
 }

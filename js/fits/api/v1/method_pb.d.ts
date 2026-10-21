@@ -1,5 +1,5 @@
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import type { OperatorRole, ProjectRole, TenantRole } from "./common_pb.js";
+import type { OperatorRole, ProductRoleAssignment, ProjectRole, TenantRole } from "./common_pb.js";
 import type { MethodPermission } from "./token_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 /**
@@ -80,6 +80,12 @@ export type MethodServiceTokenScopedListResponse = Message<"fits.api.v1.MethodSe
      * @generated from field: optional fits.api.v1.OperatorRole operator_role = 4;
      */
     operatorRole?: OperatorRole | undefined;
+    /**
+     * ProductRoles lists the product roles of the token owner
+     *
+     * @generated from field: repeated fits.api.v1.ProductRoleAssignment product_roles = 5;
+     */
+    productRoles: ProductRoleAssignment[];
 };
 /**
  * Describes the message fits.api.v1.MethodServiceTokenScopedListResponse.

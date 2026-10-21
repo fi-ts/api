@@ -290,6 +290,10 @@
                 </li>
               
                 <li>
+                  <a href="#fits.api.v1.ProductRoleAssignment"><span class="badge">M</span>ProductRoleAssignment</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.v1.UpdateLabels"><span class="badge">M</span>UpdateLabels</a>
                 </li>
               
@@ -311,6 +315,14 @@
                 </li>
               
                 <li>
+                  <a href="#fits.api.v1.Product"><span class="badge">E</span>Product</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ProductRole"><span class="badge">E</span>ProductRole</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.v1.ProjectRole"><span class="badge">E</span>ProjectRole</a>
                 </li>
               
@@ -322,6 +334,14 @@
                   <a href="#fits.api.v1.Visibility"><span class="badge">E</span>Visibility</a>
                 </li>
               
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fcommon.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fcommon.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
               
                 <li>
                   <a href="#fits%2fapi%2fv1%2fcommon.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
@@ -1407,6 +1427,51 @@ the list response contains then the page number for the next page. </p></td>
 
         
       
+        <h3 id="fits.api.v1.ProductRoleAssignment">ProductRoleAssignment</h3>
+        <p>ProductRoleAssignment grants a product role on one product instance.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>product</td>
+                  <td><a href="#fits.api.v1.Product">Product</a></td>
+                  <td></td>
+                  <td><p>Product the role applies to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>product_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the product instance (or id when the product does not use UUIDs). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the project the product belongs to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>role</td>
+                  <td><a href="#fits.api.v1.ProductRole">ProductRole</a></td>
+                  <td></td>
+                  <td><p>Role granted on the product. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="fits.api.v1.UpdateLabels">UpdateLabels</h3>
         <p>UpdateLabels is a message to update labels</p>
 
@@ -1560,6 +1625,70 @@ and fetches the most recent entity before updating with the given values with th
           </tbody>
         </table>
       
+        <h3 id="fits.api.v1.Product">Product</h3>
+        <p>Product identifies the resource type a product scoped method acts on.</p><p>The product instance id is carried by the request as `uuid`, or `id` when it is not a uuid.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>PRODUCT_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>PRODUCT_UNSPECIFIED is not specified</p></td>
+              </tr>
+            
+              <tr>
+                <td>PRODUCT_MANAGED_VM</td>
+                <td>1</td>
+                <td><p>PRODUCT_MANAGED_VM identifies a ManagedVM (fits.api.mvm.v1.ManagedVM)</p></td>
+              </tr>
+            
+              <tr>
+                <td>PRODUCT_PUBLIC_CLOUD_VM</td>
+                <td>2</td>
+                <td><p>PRODUCT_PUBLIC_CLOUD_VM identifies a VM (fits.api.pcvm.v1.PublicCloudVM)</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="fits.api.v1.ProductRole">ProductRole</h3>
+        <p>ProductRole specifies what role a logged in user needs to call this product scoped service.</p><p>Product roles are independent of project roles.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>PRODUCT_ROLE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>PRODUCT_ROLE_UNSPECIFIED is not specified</p></td>
+              </tr>
+            
+              <tr>
+                <td>PRODUCT_ROLE_ADMIN</td>
+                <td>1</td>
+                <td><p>PRODUCT_ROLE_ADMIN the logged in user needs at least admin role to call this method</p></td>
+              </tr>
+            
+              <tr>
+                <td>PRODUCT_ROLE_EDITOR</td>
+                <td>2</td>
+                <td><p>PRODUCT_ROLE_EDITOR the logged in user needs at least editor role to call this method</p></td>
+              </tr>
+            
+              <tr>
+                <td>PRODUCT_ROLE_VIEWER</td>
+                <td>3</td>
+                <td><p>PRODUCT_ROLE_VIEWER the logged in user needs at least viewer role to call this method</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
         <h3 id="fits.api.v1.ProjectRole">ProjectRole</h3>
         <p>ProjectRole specifies what role a logged in user needs to call this project scoped service</p>
         <table class="enum-table">
@@ -1698,6 +1827,22 @@ having a direct membership within the tenant.</p></td>
                 <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
                 <td>51002</td>
                 <td><p>OperatorRoles are used to define which operator role a logged in user must provide to call this method</p></td>
+              </tr>
+            
+              <tr>
+                <td>product</td>
+                <td><a href="#fits.api.v1.Product">Product</a></td>
+                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
+                <td>51006</td>
+                <td><p>Product defines the product a product scoped method acts on. Required whenever product_roles is set.</p></td>
+              </tr>
+            
+              <tr>
+                <td>product_roles</td>
+                <td><a href="#fits.api.v1.ProductRole">ProductRole</a></td>
+                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
+                <td>51005</td>
+                <td><p>ProductRoles are used to define which product role a logged in user must provide to call this method</p></td>
               </tr>
             
               <tr>
@@ -4156,7 +4301,7 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
         
       
         <h3 id="fits.api.pcvm.v1.PublicCloudVMServiceDeleteResponse">PublicCloudVMServiceDeleteResponse</h3>
-        <p>The response after deleting a VM.</p><p>The VM is deleted immediately will not be able to be requested.</p>
+        <p>The response after deleting a VM.</p>
 
         
 
@@ -4328,8 +4473,7 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                   <td>size</td>
                   <td><a href="#fits.api.pcvm.v1.Size">Size</a></td>
                   <td>optional</td>
-                  <td><p>Size of the VM. The new size must be bigger or equal than before.
-Downgrades are not possible. </p></td>
+                  <td><p>Size of the VM. Downgrades are not possible. </p></td>
                 </tr>
               
             </tbody>
@@ -4506,14 +4650,14 @@ Downgrades are not possible. </p></td>
               <tr>
                 <td>OPERATION_ERROR</td>
                 <td>5</td>
-                <td><p>OPERATION_ERROR: the</p></td>
+                <td><p>OPERATION_ERROR: the VM is in an error state.</p></td>
               </tr>
             
           </tbody>
         </table>
       
         <h3 id="fits.api.pcvm.v1.Size">Size</h3>
-        <p>Size specifies the size of the VM machine</p>
+        <p>Size specifies the size of the VM.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -4570,7 +4714,7 @@ Downgrades are not possible. </p></td>
               <tr>
                 <td>STATE_WARNING</td>
                 <td>2</td>
-                <td><p>STATE_HEALTHY: there are some health warnings for this VM.</p></td>
+                <td><p>STATE_WARNING: there are some health warnings for this VM.</p></td>
               </tr>
             
               <tr>
@@ -4587,7 +4731,7 @@ Downgrades are not possible. </p></td>
 
       
         <h3 id="fits.api.pcvm.v1.PublicCloudVMService">PublicCloudVMService</h3>
-        <p>VMService provides VM operations.</p>
+        <p>PublicCloudVMService provides VM operations.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -4633,16 +4777,14 @@ Downgrades are not possible. </p></td>
                 <td>ValidateCreate</td>
                 <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateRequest">PublicCloudVMServiceValidateCreateRequest</a></td>
                 <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateResponse">PublicCloudVMServiceValidateCreateResponse</a></td>
-                <td><p>Validates a VM create request without creating anything. Intended for
-form pre-checks; the create endpoint validates again before executing.</p></td>
+                <td><p>Validates a VM create request without creating anything.</p></td>
               </tr>
             
               <tr>
                 <td>ValidateUpdate</td>
                 <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateRequest">PublicCloudVMServiceValidateUpdateRequest</a></td>
                 <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateResponse">PublicCloudVMServiceValidateUpdateResponse</a></td>
-                <td><p>Validates a VM update request without updating anything. Intended for
-form pre-checks; the update endpoint validates again before executing.</p></td>
+                <td><p>Validates a VM update request without updating anything.</p></td>
               </tr>
             
           </tbody>
@@ -5242,6 +5384,13 @@ Asterisk (*) can be specified to match any subject. </p></td>
                   <td><p>Email is the email address of the user the token was issued for. </p></td>
                 </tr>
               
+                <tr>
+                  <td>product_roles</td>
+                  <td><a href="#fits.api.v1.ProductRoleAssignment">ProductRoleAssignment</a></td>
+                  <td>repeated</td>
+                  <td><p>ProductRoles lists the product roles of the token owner </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -5571,6 +5720,13 @@ Asterisk (*) can be specified to match any subject. </p></td>
                   <td><a href="#fits.api.v1.OperatorRole">OperatorRole</a></td>
                   <td>optional</td>
                   <td><p>OperatorRole defines the operator role of the token owner </p></td>
+                </tr>
+              
+                <tr>
+                  <td>product_roles</td>
+                  <td><a href="#fits.api.v1.ProductRoleAssignment">ProductRoleAssignment</a></td>
+                  <td>repeated</td>
+                  <td><p>ProductRoles lists the product roles of the token owner </p></td>
                 </tr>
               
             </tbody>

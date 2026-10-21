@@ -6,6 +6,42 @@ import type { Message } from "@bufbuild/protobuf";
  */
 export declare const file_fits_api_v1_common: GenFile;
 /**
+ * ProductRoleAssignment grants a product role on one product instance.
+ *
+ * @generated from message fits.api.v1.ProductRoleAssignment
+ */
+export type ProductRoleAssignment = Message<"fits.api.v1.ProductRoleAssignment"> & {
+    /**
+     * Product the role applies to.
+     *
+     * @generated from field: fits.api.v1.Product product = 1;
+     */
+    product: Product;
+    /**
+     * UUID of the product instance (or id when the product does not use UUIDs).
+     *
+     * @generated from field: string product_uuid = 2;
+     */
+    productUuid: string;
+    /**
+     * UUID of the project the product belongs to.
+     *
+     * @generated from field: string project_uuid = 3;
+     */
+    projectUuid: string;
+    /**
+     * Role granted on the product.
+     *
+     * @generated from field: fits.api.v1.ProductRole role = 4;
+     */
+    role: ProductRole;
+};
+/**
+ * Describes the message fits.api.v1.ProductRoleAssignment.
+ * Use `create(ProductRoleAssignmentSchema)` to create a new message.
+ */
+export declare const ProductRoleAssignmentSchema: GenMessage<ProductRoleAssignment>;
+/**
  * Paging defines paging for methods with a lot of results
  *
  * @generated from message fits.api.v1.Paging
@@ -244,6 +280,72 @@ export declare enum OperatorRole {
  */
 export declare const OperatorRoleSchema: GenEnum<OperatorRole>;
 /**
+ * Product identifies the resource type a product scoped method acts on.
+ * The product instance id is carried by the request as `uuid`, or `id` when it is not a uuid.
+ *
+ * @generated from enum fits.api.v1.Product
+ */
+export declare enum Product {
+    /**
+     * PRODUCT_UNSPECIFIED is not specified
+     *
+     * @generated from enum value: PRODUCT_UNSPECIFIED = 0;
+     */
+    UNSPECIFIED = 0,
+    /**
+     * PRODUCT_MANAGED_VM identifies a ManagedVM (fits.api.mvm.v1.ManagedVM)
+     *
+     * @generated from enum value: PRODUCT_MANAGED_VM = 1;
+     */
+    MANAGED_VM = 1,
+    /**
+     * PRODUCT_PUBLIC_CLOUD_VM identifies a VM (fits.api.pcvm.v1.PublicCloudVM)
+     *
+     * @generated from enum value: PRODUCT_PUBLIC_CLOUD_VM = 2;
+     */
+    PUBLIC_CLOUD_VM = 2
+}
+/**
+ * Describes the enum fits.api.v1.Product.
+ */
+export declare const ProductSchema: GenEnum<Product>;
+/**
+ * ProductRole specifies what role a logged in user needs to call this product scoped service.
+ * Product roles are independent of project roles.
+ *
+ * @generated from enum fits.api.v1.ProductRole
+ */
+export declare enum ProductRole {
+    /**
+     * PRODUCT_ROLE_UNSPECIFIED is not specified
+     *
+     * @generated from enum value: PRODUCT_ROLE_UNSPECIFIED = 0;
+     */
+    UNSPECIFIED = 0,
+    /**
+     * PRODUCT_ROLE_ADMIN the logged in user needs at least admin role to call this method
+     *
+     * @generated from enum value: PRODUCT_ROLE_ADMIN = 1;
+     */
+    ADMIN = 1,
+    /**
+     * PRODUCT_ROLE_EDITOR the logged in user needs at least editor role to call this method
+     *
+     * @generated from enum value: PRODUCT_ROLE_EDITOR = 2;
+     */
+    EDITOR = 2,
+    /**
+     * PRODUCT_ROLE_VIEWER the logged in user needs at least viewer role to call this method
+     *
+     * @generated from enum value: PRODUCT_ROLE_VIEWER = 3;
+     */
+    VIEWER = 3
+}
+/**
+ * Describes the enum fits.api.v1.ProductRole.
+ */
+export declare const ProductRoleSchema: GenEnum<ProductRole>;
+/**
  * Visibility of a method
  *
  * @generated from enum fits.api.v1.Visibility
@@ -364,6 +466,18 @@ export declare const visibility: GenExtension<MethodOptions, Visibility>;
  * @generated from extension: fits.api.v1.Auditing auditing = 51004;
  */
 export declare const auditing: GenExtension<MethodOptions, Auditing>;
+/**
+ * ProductRoles are used to define which product role a logged in user must provide to call this method
+ *
+ * @generated from extension: repeated fits.api.v1.ProductRole product_roles = 51005;
+ */
+export declare const product_roles: GenExtension<MethodOptions, ProductRole[]>;
+/**
+ * Product defines the product a product scoped method acts on. Required whenever product_roles is set.
+ *
+ * @generated from extension: fits.api.v1.Product product = 51006;
+ */
+export declare const product: GenExtension<MethodOptions, Product>;
 /**
  * StringValue which can be set to a enum
  *

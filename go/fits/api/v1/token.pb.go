@@ -117,7 +117,9 @@ type Token struct {
 	// Name is the display name of the user the token was issued for.
 	Name string `protobuf:"bytes,13,opt,name=name,proto3" json:"name,omitempty"`
 	// Email is the email address of the user the token was issued for.
-	Email         string `protobuf:"bytes,14,opt,name=email,proto3" json:"email,omitempty"`
+	Email string `protobuf:"bytes,14,opt,name=email,proto3" json:"email,omitempty"`
+	// ProductRoles lists the product roles of the token owner
+	ProductRoles  []*ProductRoleAssignment `protobuf:"bytes,15,rep,name=product_roles,json=productRoles,proto3" json:"product_roles,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -248,6 +250,13 @@ func (x *Token) GetEmail() string {
 		return x.Email
 	}
 	return ""
+}
+
+func (x *Token) GetProductRoles() []*ProductRoleAssignment {
+	if x != nil {
+		return x.ProductRoles
+	}
+	return nil
 }
 
 // MethodPermission is a mapping from a subject/project to a service method
@@ -960,7 +969,7 @@ var File_fits_api_v1_token_proto protoreflect.FileDescriptor
 
 const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\n" +
-	"\x17fits/api/v1/token.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf4\b\n" +
+	"\x17fits/api/v1/token.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xbd\t\n" +
 	"\x05Token\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x1e\n" +
 	"\x04user\x18\x02 \x01(\tB\n" +
@@ -978,7 +987,8 @@ const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\roperator_role\x18\v \x01(\x0e2\x19.fits.api.v1.OperatorRoleB\b\xbaH\x05\x82\x01\x02\x10\x01H\x00R\foperatorRole\x88\x01\x01\x121\n" +
 	"\traw_roles\x18\f \x03(\tB\x14\xbaH\x11\x92\x01\x0eФ\xb3\xb1\x02\x01ؤ\xb3\xb1\x02\x01\x18\x01R\brawRoles\x12\x1c\n" +
 	"\x04name\x18\r \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\x04name\x12\x1e\n" +
-	"\x05email\x18\x0e \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\x05email\x1aY\n" +
+	"\x05email\x18\x0e \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\x05email\x12G\n" +
+	"\rproduct_roles\x18\x0f \x03(\v2\".fits.api.v1.ProductRoleAssignmentR\fproductRoles\x1aY\n" +
 	"\x11ProjectRolesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12.\n" +
 	"\x05value\x18\x02 \x01(\x0e2\x18.fits.api.v1.ProjectRoleR\x05value:\x028\x01\x1aW\n" +
@@ -1066,8 +1076,9 @@ var file_fits_api_v1_token_proto_goTypes = []any{
 	(*Meta)(nil),                       // 17: fits.api.v1.Meta
 	(*timestamppb.Timestamp)(nil),      // 18: google.protobuf.Timestamp
 	(OperatorRole)(0),                  // 19: fits.api.v1.OperatorRole
-	(ProjectRole)(0),                   // 20: fits.api.v1.ProjectRole
-	(TenantRole)(0),                    // 21: fits.api.v1.TenantRole
+	(*ProductRoleAssignment)(nil),      // 20: fits.api.v1.ProductRoleAssignment
+	(ProjectRole)(0),                   // 21: fits.api.v1.ProjectRole
+	(TenantRole)(0),                    // 22: fits.api.v1.TenantRole
 }
 var file_fits_api_v1_token_proto_depIdxs = []int32{
 	17, // 0: fits.api.v1.Token.meta:type_name -> fits.api.v1.Meta
@@ -1078,26 +1089,27 @@ var file_fits_api_v1_token_proto_depIdxs = []int32{
 	15, // 5: fits.api.v1.Token.project_roles:type_name -> fits.api.v1.Token.ProjectRolesEntry
 	16, // 6: fits.api.v1.Token.tenant_roles:type_name -> fits.api.v1.Token.TenantRolesEntry
 	19, // 7: fits.api.v1.Token.operator_role:type_name -> fits.api.v1.OperatorRole
-	4,  // 8: fits.api.v1.PermissionsByVisibility.public:type_name -> fits.api.v1.PublicPermissions
-	5,  // 9: fits.api.v1.PermissionsByVisibility.self:type_name -> fits.api.v1.SelfPermissions
-	6,  // 10: fits.api.v1.PermissionsByVisibility.project:type_name -> fits.api.v1.ProjectPermissions
-	7,  // 11: fits.api.v1.PermissionsByVisibility.tenant:type_name -> fits.api.v1.TenantPermissions
-	8,  // 12: fits.api.v1.PermissionsByVisibility.operator:type_name -> fits.api.v1.OperatorPermissions
-	1,  // 13: fits.api.v1.TokenServiceListResponse.tokens:type_name -> fits.api.v1.Token
-	1,  // 14: fits.api.v1.TokenServiceGetResponse.token:type_name -> fits.api.v1.Token
-	20, // 15: fits.api.v1.Token.ProjectRolesEntry.value:type_name -> fits.api.v1.ProjectRole
-	21, // 16: fits.api.v1.Token.TenantRolesEntry.value:type_name -> fits.api.v1.TenantRole
-	13, // 17: fits.api.v1.TokenService.Get:input_type -> fits.api.v1.TokenServiceGetRequest
-	9,  // 18: fits.api.v1.TokenService.List:input_type -> fits.api.v1.TokenServiceListRequest
-	11, // 19: fits.api.v1.TokenService.Revoke:input_type -> fits.api.v1.TokenServiceRevokeRequest
-	14, // 20: fits.api.v1.TokenService.Get:output_type -> fits.api.v1.TokenServiceGetResponse
-	10, // 21: fits.api.v1.TokenService.List:output_type -> fits.api.v1.TokenServiceListResponse
-	12, // 22: fits.api.v1.TokenService.Revoke:output_type -> fits.api.v1.TokenServiceRevokeResponse
-	20, // [20:23] is the sub-list for method output_type
-	17, // [17:20] is the sub-list for method input_type
-	17, // [17:17] is the sub-list for extension type_name
-	17, // [17:17] is the sub-list for extension extendee
-	0,  // [0:17] is the sub-list for field type_name
+	20, // 8: fits.api.v1.Token.product_roles:type_name -> fits.api.v1.ProductRoleAssignment
+	4,  // 9: fits.api.v1.PermissionsByVisibility.public:type_name -> fits.api.v1.PublicPermissions
+	5,  // 10: fits.api.v1.PermissionsByVisibility.self:type_name -> fits.api.v1.SelfPermissions
+	6,  // 11: fits.api.v1.PermissionsByVisibility.project:type_name -> fits.api.v1.ProjectPermissions
+	7,  // 12: fits.api.v1.PermissionsByVisibility.tenant:type_name -> fits.api.v1.TenantPermissions
+	8,  // 13: fits.api.v1.PermissionsByVisibility.operator:type_name -> fits.api.v1.OperatorPermissions
+	1,  // 14: fits.api.v1.TokenServiceListResponse.tokens:type_name -> fits.api.v1.Token
+	1,  // 15: fits.api.v1.TokenServiceGetResponse.token:type_name -> fits.api.v1.Token
+	21, // 16: fits.api.v1.Token.ProjectRolesEntry.value:type_name -> fits.api.v1.ProjectRole
+	22, // 17: fits.api.v1.Token.TenantRolesEntry.value:type_name -> fits.api.v1.TenantRole
+	13, // 18: fits.api.v1.TokenService.Get:input_type -> fits.api.v1.TokenServiceGetRequest
+	9,  // 19: fits.api.v1.TokenService.List:input_type -> fits.api.v1.TokenServiceListRequest
+	11, // 20: fits.api.v1.TokenService.Revoke:input_type -> fits.api.v1.TokenServiceRevokeRequest
+	14, // 21: fits.api.v1.TokenService.Get:output_type -> fits.api.v1.TokenServiceGetResponse
+	10, // 22: fits.api.v1.TokenService.List:output_type -> fits.api.v1.TokenServiceListResponse
+	12, // 23: fits.api.v1.TokenService.Revoke:output_type -> fits.api.v1.TokenServiceRevokeResponse
+	21, // [21:24] is the sub-list for method output_type
+	18, // [18:21] is the sub-list for method input_type
+	18, // [18:18] is the sub-list for extension type_name
+	18, // [18:18] is the sub-list for extension extendee
+	0,  // [0:18] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_v1_token_proto_init() }

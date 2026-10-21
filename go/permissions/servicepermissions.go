@@ -60,62 +60,70 @@ func GetServicePermissions() *ServicePermissions {
 			},
 			Project: Project{
 				v1.ProjectRole_PROJECT_ROLE_ADMIN: map[string]struct{}{
-					"/fits.api.mvm.v1.MVMService/AddDisk":                     {},
-					"/fits.api.mvm.v1.MVMService/AddNetworkInterface":         {},
-					"/fits.api.mvm.v1.MVMService/Create":                      {},
-					"/fits.api.mvm.v1.MVMService/Delete":                      {},
-					"/fits.api.mvm.v1.MVMService/DeleteDisk":                  {},
-					"/fits.api.mvm.v1.MVMService/DeleteNetworkInterface":      {},
-					"/fits.api.mvm.v1.MVMService/Get":                         {},
-					"/fits.api.mvm.v1.MVMService/List":                        {},
-					"/fits.api.mvm.v1.MVMService/MoveNetworkInterface":        {},
-					"/fits.api.mvm.v1.MVMService/UpdateDisk":                  {},
-					"/fits.api.mvm.v1.MVMService/ValidateAddDisk":             {},
-					"/fits.api.mvm.v1.MVMService/ValidateAddNetworkInterface": {},
-					"/fits.api.mvm.v1.MVMService/ValidateCreate":              {},
-					"/fits.api.mvm.v1.MVMService/ValidateUpdateDisk":          {},
-					"/fits.api.pcvm.v1.PublicCloudVMService/Create":           {},
-					"/fits.api.pcvm.v1.PublicCloudVMService/Delete":           {},
-					"/fits.api.pcvm.v1.PublicCloudVMService/Get":              {},
-					"/fits.api.pcvm.v1.PublicCloudVMService/List":             {},
-					"/fits.api.pcvm.v1.PublicCloudVMService/Update":           {},
-					"/fits.api.pcvm.v1.PublicCloudVMService/ValidateCreate":   {},
-					"/fits.api.pcvm.v1.PublicCloudVMService/ValidateUpdate":   {},
-					"/fits.api.v1.ProjectService/Delete":                      {},
-					"/fits.api.v1.ProjectService/Get":                         {},
-					"/fits.api.v1.ProjectService/Update":                      {},
+					"/fits.api.mvm.v1.MVMService/Create":                    {},
+					"/fits.api.mvm.v1.MVMService/List":                      {},
+					"/fits.api.mvm.v1.MVMService/ValidateCreate":            {},
+					"/fits.api.pcvm.v1.PublicCloudVMService/Create":         {},
+					"/fits.api.pcvm.v1.PublicCloudVMService/List":           {},
+					"/fits.api.pcvm.v1.PublicCloudVMService/ValidateCreate": {},
+					"/fits.api.v1.ProjectService/Delete":                    {},
+					"/fits.api.v1.ProjectService/Get":                       {},
+					"/fits.api.v1.ProjectService/Update":                    {},
 				},
 				v1.ProjectRole_PROJECT_ROLE_EDITOR: map[string]struct{}{
+					"/fits.api.mvm.v1.MVMService/Create":                    {},
+					"/fits.api.mvm.v1.MVMService/List":                      {},
+					"/fits.api.mvm.v1.MVMService/ValidateCreate":            {},
+					"/fits.api.pcvm.v1.PublicCloudVMService/Create":         {},
+					"/fits.api.pcvm.v1.PublicCloudVMService/List":           {},
+					"/fits.api.pcvm.v1.PublicCloudVMService/ValidateCreate": {},
+					"/fits.api.v1.ProjectService/Get":                       {},
+					"/fits.api.v1.ProjectService/Update":                    {},
+				},
+				v1.ProjectRole_PROJECT_ROLE_VIEWER: map[string]struct{}{
+					"/fits.api.mvm.v1.MVMService/List":            {},
+					"/fits.api.pcvm.v1.PublicCloudVMService/List": {},
+					"/fits.api.v1.ProjectService/Get":             {},
+				},
+			},
+			Product: Product{
+				v1.ProductRole_PRODUCT_ROLE_ADMIN: map[string]struct{}{
 					"/fits.api.mvm.v1.MVMService/AddDisk":                     {},
 					"/fits.api.mvm.v1.MVMService/AddNetworkInterface":         {},
-					"/fits.api.mvm.v1.MVMService/Create":                      {},
 					"/fits.api.mvm.v1.MVMService/Delete":                      {},
 					"/fits.api.mvm.v1.MVMService/DeleteDisk":                  {},
 					"/fits.api.mvm.v1.MVMService/DeleteNetworkInterface":      {},
 					"/fits.api.mvm.v1.MVMService/Get":                         {},
-					"/fits.api.mvm.v1.MVMService/List":                        {},
 					"/fits.api.mvm.v1.MVMService/MoveNetworkInterface":        {},
 					"/fits.api.mvm.v1.MVMService/UpdateDisk":                  {},
 					"/fits.api.mvm.v1.MVMService/ValidateAddDisk":             {},
 					"/fits.api.mvm.v1.MVMService/ValidateAddNetworkInterface": {},
-					"/fits.api.mvm.v1.MVMService/ValidateCreate":              {},
 					"/fits.api.mvm.v1.MVMService/ValidateUpdateDisk":          {},
-					"/fits.api.pcvm.v1.PublicCloudVMService/Create":           {},
 					"/fits.api.pcvm.v1.PublicCloudVMService/Delete":           {},
 					"/fits.api.pcvm.v1.PublicCloudVMService/Get":              {},
-					"/fits.api.pcvm.v1.PublicCloudVMService/List":             {},
 					"/fits.api.pcvm.v1.PublicCloudVMService/Update":           {},
-					"/fits.api.pcvm.v1.PublicCloudVMService/ValidateCreate":   {},
 					"/fits.api.pcvm.v1.PublicCloudVMService/ValidateUpdate":   {},
-					"/fits.api.v1.ProjectService/Get":                         {},
-					"/fits.api.v1.ProjectService/Update":                      {},
 				},
-				v1.ProjectRole_PROJECT_ROLE_VIEWER: map[string]struct{}{
-					"/fits.api.mvm.v1.MVMService/Get":             {},
-					"/fits.api.mvm.v1.MVMService/List":            {},
-					"/fits.api.pcvm.v1.PublicCloudVMService/Get":  {},
-					"/fits.api.pcvm.v1.PublicCloudVMService/List": {},
-					"/fits.api.v1.ProjectService/Get":             {},
+				v1.ProductRole_PRODUCT_ROLE_EDITOR: map[string]struct{}{
+					"/fits.api.mvm.v1.MVMService/AddDisk":                     {},
+					"/fits.api.mvm.v1.MVMService/AddNetworkInterface":         {},
+					"/fits.api.mvm.v1.MVMService/Delete":                      {},
+					"/fits.api.mvm.v1.MVMService/DeleteDisk":                  {},
+					"/fits.api.mvm.v1.MVMService/DeleteNetworkInterface":      {},
+					"/fits.api.mvm.v1.MVMService/Get":                         {},
+					"/fits.api.mvm.v1.MVMService/MoveNetworkInterface":        {},
+					"/fits.api.mvm.v1.MVMService/UpdateDisk":                  {},
+					"/fits.api.mvm.v1.MVMService/ValidateAddDisk":             {},
+					"/fits.api.mvm.v1.MVMService/ValidateAddNetworkInterface": {},
+					"/fits.api.mvm.v1.MVMService/ValidateUpdateDisk":          {},
+					"/fits.api.pcvm.v1.PublicCloudVMService/Delete":           {},
+					"/fits.api.pcvm.v1.PublicCloudVMService/Get":              {},
+					"/fits.api.pcvm.v1.PublicCloudVMService/Update":           {},
+					"/fits.api.pcvm.v1.PublicCloudVMService/ValidateUpdate":   {},
+				},
+				v1.ProductRole_PRODUCT_ROLE_VIEWER: map[string]struct{}{
+					"/fits.api.mvm.v1.MVMService/Get":            {},
+					"/fits.api.pcvm.v1.PublicCloudVMService/Get": {},
 				},
 			},
 		},
@@ -192,30 +200,32 @@ func GetServicePermissions() *ServicePermissions {
 				"/fits.api.v1.TenantService/Update":     true,
 			},
 			Project: map[string]bool{
+				"/fits.api.mvm.v1.MVMService/Create":                    true,
+				"/fits.api.mvm.v1.MVMService/List":                      true,
+				"/fits.api.mvm.v1.MVMService/ValidateCreate":            true,
+				"/fits.api.pcvm.v1.PublicCloudVMService/Create":         true,
+				"/fits.api.pcvm.v1.PublicCloudVMService/List":           true,
+				"/fits.api.pcvm.v1.PublicCloudVMService/ValidateCreate": true,
+				"/fits.api.v1.ProjectService/Delete":                    true,
+				"/fits.api.v1.ProjectService/Get":                       true,
+				"/fits.api.v1.ProjectService/Update":                    true,
+			},
+			Product: map[string]bool{
 				"/fits.api.mvm.v1.MVMService/AddDisk":                     true,
 				"/fits.api.mvm.v1.MVMService/AddNetworkInterface":         true,
-				"/fits.api.mvm.v1.MVMService/Create":                      true,
 				"/fits.api.mvm.v1.MVMService/Delete":                      true,
 				"/fits.api.mvm.v1.MVMService/DeleteDisk":                  true,
 				"/fits.api.mvm.v1.MVMService/DeleteNetworkInterface":      true,
 				"/fits.api.mvm.v1.MVMService/Get":                         true,
-				"/fits.api.mvm.v1.MVMService/List":                        true,
 				"/fits.api.mvm.v1.MVMService/MoveNetworkInterface":        true,
 				"/fits.api.mvm.v1.MVMService/UpdateDisk":                  true,
 				"/fits.api.mvm.v1.MVMService/ValidateAddDisk":             true,
 				"/fits.api.mvm.v1.MVMService/ValidateAddNetworkInterface": true,
-				"/fits.api.mvm.v1.MVMService/ValidateCreate":              true,
 				"/fits.api.mvm.v1.MVMService/ValidateUpdateDisk":          true,
-				"/fits.api.pcvm.v1.PublicCloudVMService/Create":           true,
 				"/fits.api.pcvm.v1.PublicCloudVMService/Delete":           true,
 				"/fits.api.pcvm.v1.PublicCloudVMService/Get":              true,
-				"/fits.api.pcvm.v1.PublicCloudVMService/List":             true,
 				"/fits.api.pcvm.v1.PublicCloudVMService/Update":           true,
-				"/fits.api.pcvm.v1.PublicCloudVMService/ValidateCreate":   true,
 				"/fits.api.pcvm.v1.PublicCloudVMService/ValidateUpdate":   true,
-				"/fits.api.v1.ProjectService/Delete":                      true,
-				"/fits.api.v1.ProjectService/Get":                         true,
-				"/fits.api.v1.ProjectService/Update":                      true,
 			},
 		},
 		Auditable: map[string]bool{
@@ -261,6 +271,23 @@ func GetServicePermissions() *ServicePermissions {
 			"/fits.api.v1.TokenService/Revoke":                        true,
 			"/fits.api.v1.VersionService/Get":                         false,
 		},
+		Products: map[string]v1.Product{
+			"/fits.api.mvm.v1.MVMService/AddDisk":                     v1.Product_PRODUCT_MANAGED_VM,
+			"/fits.api.mvm.v1.MVMService/AddNetworkInterface":         v1.Product_PRODUCT_MANAGED_VM,
+			"/fits.api.mvm.v1.MVMService/Delete":                      v1.Product_PRODUCT_MANAGED_VM,
+			"/fits.api.mvm.v1.MVMService/DeleteDisk":                  v1.Product_PRODUCT_MANAGED_VM,
+			"/fits.api.mvm.v1.MVMService/DeleteNetworkInterface":      v1.Product_PRODUCT_MANAGED_VM,
+			"/fits.api.mvm.v1.MVMService/Get":                         v1.Product_PRODUCT_MANAGED_VM,
+			"/fits.api.mvm.v1.MVMService/MoveNetworkInterface":        v1.Product_PRODUCT_MANAGED_VM,
+			"/fits.api.mvm.v1.MVMService/UpdateDisk":                  v1.Product_PRODUCT_MANAGED_VM,
+			"/fits.api.mvm.v1.MVMService/ValidateAddDisk":             v1.Product_PRODUCT_MANAGED_VM,
+			"/fits.api.mvm.v1.MVMService/ValidateAddNetworkInterface": v1.Product_PRODUCT_MANAGED_VM,
+			"/fits.api.mvm.v1.MVMService/ValidateUpdateDisk":          v1.Product_PRODUCT_MANAGED_VM,
+			"/fits.api.pcvm.v1.PublicCloudVMService/Delete":           v1.Product_PRODUCT_PUBLIC_CLOUD_VM,
+			"/fits.api.pcvm.v1.PublicCloudVMService/Get":              v1.Product_PRODUCT_PUBLIC_CLOUD_VM,
+			"/fits.api.pcvm.v1.PublicCloudVMService/Update":           v1.Product_PRODUCT_PUBLIC_CLOUD_VM,
+			"/fits.api.pcvm.v1.PublicCloudVMService/ValidateUpdate":   v1.Product_PRODUCT_PUBLIC_CLOUD_VM,
+		},
 	}
 }
 
@@ -289,6 +316,17 @@ func IsProjectScope(req connect.AnyRequest) bool {
 	return ok
 }
 
+func IsProductScope(req connect.AnyRequest) bool {
+	_, ok := GetServicePermissions().Visibility.Product[req.Spec().Procedure]
+	return ok
+}
+
+// GetProduct returns the product a product scoped method acts on.
+func GetProduct(req connect.AnyRequest) (v1.Product, bool) {
+	product, ok := GetServicePermissions().Products[req.Spec().Procedure]
+	return product, ok
+}
+
 func IsAuditable(req connect.AnyRequest) bool {
 	_, ok := GetServicePermissions().Auditable[req.Spec().Procedure]
 	return ok
@@ -306,16 +344,28 @@ func GetTenantFromRequest(req connect.AnyRequest) (string, bool) {
 }
 
 func GetProjectFromRequest(req connect.AnyRequest) (string, bool) {
-	if !IsProjectScope(req) {
+	if !IsProjectScope(req) && !IsProductScope(req) {
 		return "", false
 	}
 	switch rq := req.Any().(type) {
 	case interface{ GetProjectUuid() string }:
 		return rq.GetProjectUuid(), true
-		// TODO: all services should use project_uuid; drop the GetProject
-		// fallback once every request is streamlined.
 	case interface{ GetProject() string }:
 		return rq.GetProject(), true
+	}
+	return "", false
+}
+
+// GetProductFromRequest returns the product instance id from a product scoped request.
+func GetProductFromRequest(req connect.AnyRequest) (string, bool) {
+	if !IsProductScope(req) {
+		return "", false
+	}
+	switch rq := req.Any().(type) {
+	case interface{ GetUuid() string }:
+		return rq.GetUuid(), true
+	case interface{ GetId() string }:
+		return rq.GetId(), true
 	}
 	return "", false
 }

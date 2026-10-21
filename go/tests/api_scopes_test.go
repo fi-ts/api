@@ -20,6 +20,7 @@ type (
 	project    struct{}
 	operator   struct{}
 	visibility struct{}
+	product    struct{}
 )
 
 func (tenant) Get(methodOpts []*descriptorpb.UninterpretedOption) (scopes []string) {
@@ -52,6 +53,15 @@ func (visibility) Get(methodOpts []*descriptorpb.UninterpretedOption) (scopes []
 	scopes = getScopes(methodOpts, []string{
 		v1.Visibility_VISIBILITY_PUBLIC.String(),
 		v1.Visibility_VISIBILITY_SELF.String(),
+	})
+	return
+}
+
+func (product) Get(methodOpts []*descriptorpb.UninterpretedOption) (scopes []string) {
+	scopes = getScopes(methodOpts, []string{
+		v1.ProductRole_PRODUCT_ROLE_ADMIN.String(),
+		v1.ProductRole_PRODUCT_ROLE_EDITOR.String(),
+		v1.ProductRole_PRODUCT_ROLE_VIEWER.String(),
 	})
 	return
 }
@@ -173,19 +183,21 @@ func Test_FieldNumbering(t *testing.T) {
 
 func validateProto(root string) error {
 	var (
-		tr v1.TenantRole
-		pr v1.ProjectRole
-		ar v1.OperatorRole
-		vr v1.Visibility
+		tr  v1.TenantRole
+		pr  v1.ProjectRole
+		ar  v1.OperatorRole
+		vr  v1.Visibility
+		pdr v1.ProductRole
 
-		trs = fmt.Sprintf("%T", tr)
-		prs = fmt.Sprintf("%T", pr)
-		ars = fmt.Sprintf("%T", ar)
-		vrs = fmt.Sprintf("%T", vr)
+		trs  = fmt.Sprintf("%T", tr)
+		prs  = fmt.Sprintf("%T", pr)
+		ars  = fmt.Sprintf("%T", ar)
+		vrs  = fmt.Sprintf("%T", vr)
+		pdrs = fmt.Sprintf("%T", pdr)
 
 		// add all *rs from above here
 		scopeKeys = []string{
-			trs, prs, ars, vrs,
+			trs, prs, ars, vrs, pdrs,
 		}
 	)
 	slices.Sort(scopeKeys)
@@ -207,10 +219,11 @@ func validateProto(root string) error {
 					methodOpts  = method.GetOptions().GetUninterpretedOption()
 					methodScope = ""
 					scopes      = map[string][]string{
-						trs: tenant{}.Get(methodOpts),
-						prs: project{}.Get(methodOpts),
-						ars: operator{}.Get(methodOpts),
-						vrs: visibility{}.Get(methodOpts),
+						trs:  tenant{}.Get(methodOpts),
+						prs:  project{}.Get(methodOpts),
+						ars:  operator{}.Get(methodOpts),
+						vrs:  visibility{}.Get(methodOpts),
+						pdrs: product{}.Get(methodOpts),
 					}
 					allScopeNames = func() (names []string) {
 						for name := range scopes {
@@ -228,6 +241,23 @@ func validateProto(root string) error {
 				}
 				if !auditingSpecified {
 					errs = append(errs, fmt.Errorf("api service method: %q does not have auditing specified", methodName))
+				}
+
+				productName, productSpecified := func() (string, bool) {
+					for _, methodOpt := range methodOpts {
+						for _, namePart := range methodOpt.GetName() {
+							if !namePart.GetIsExtension() {
+								continue
+							}
+							if _, ok := v1.Product_value[methodOpt.GetIdentifierValue()]; ok {
+								return methodOpt.GetIdentifierValue(), true
+							}
+						}
+					}
+					return "", false
+				}()
+				if productSpecified && len(scopes[pdrs]) == 0 {
+					errs = append(errs, fmt.Errorf("api service method: %q has product %q but no product_roles", methodName, productName))
 				}
 
 				// Sort all to have stable results
@@ -322,6 +352,27 @@ func validateProto(root string) error {
 						}
 						if !tenantFound {
 							errs = append(errs, fmt.Errorf("api service method: %q has %s but request payload %q does not have a tenant field", methodName, trs, method.GetInputType()))
+						}
+					}
+					if name == pdrs {
+						subjectFound := false
+						projectFound := false
+						for _, field := range inputFields {
+							switch field.GetName() {
+							case "uuid", "id":
+								subjectFound = true
+							case "project", "project_uuid":
+								projectFound = true
+							}
+						}
+						if !subjectFound {
+							errs = append(errs, fmt.Errorf("api service method: %q has %s but request payload %q does not have a uuid or id field", methodName, pdrs, method.GetInputType()))
+						}
+						if !projectFound {
+							errs = append(errs, fmt.Errorf("api service method: %q has %s but request payload %q does not have a project field", methodName, pdrs, method.GetInputType()))
+						}
+						if !productSpecified {
+							errs = append(errs, fmt.Errorf("api service method: %q has %s but no product defined", methodName, pdrs))
 						}
 					}
 				}

@@ -34,6 +34,19 @@ class OperatorRole(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     OPERATOR_ROLE_EDITOR: _ClassVar[OperatorRole]
     OPERATOR_ROLE_VIEWER: _ClassVar[OperatorRole]
 
+class Product(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+    __slots__ = ()
+    PRODUCT_UNSPECIFIED: _ClassVar[Product]
+    PRODUCT_MANAGED_VM: _ClassVar[Product]
+    PRODUCT_PUBLIC_CLOUD_VM: _ClassVar[Product]
+
+class ProductRole(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+    __slots__ = ()
+    PRODUCT_ROLE_UNSPECIFIED: _ClassVar[ProductRole]
+    PRODUCT_ROLE_ADMIN: _ClassVar[ProductRole]
+    PRODUCT_ROLE_EDITOR: _ClassVar[ProductRole]
+    PRODUCT_ROLE_VIEWER: _ClassVar[ProductRole]
+
 class Visibility(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
     VISIBILITY_UNSPECIFIED: _ClassVar[Visibility]
@@ -63,6 +76,13 @@ PROJECT_ROLE_VIEWER: ProjectRole
 OPERATOR_ROLE_UNSPECIFIED: OperatorRole
 OPERATOR_ROLE_EDITOR: OperatorRole
 OPERATOR_ROLE_VIEWER: OperatorRole
+PRODUCT_UNSPECIFIED: Product
+PRODUCT_MANAGED_VM: Product
+PRODUCT_PUBLIC_CLOUD_VM: Product
+PRODUCT_ROLE_UNSPECIFIED: ProductRole
+PRODUCT_ROLE_ADMIN: ProductRole
+PRODUCT_ROLE_EDITOR: ProductRole
+PRODUCT_ROLE_VIEWER: ProductRole
 VISIBILITY_UNSPECIFIED: Visibility
 VISIBILITY_PUBLIC: Visibility
 VISIBILITY_SELF: Visibility
@@ -82,8 +102,24 @@ VISIBILITY_FIELD_NUMBER: _ClassVar[int]
 visibility: _descriptor.FieldDescriptor
 AUDITING_FIELD_NUMBER: _ClassVar[int]
 auditing: _descriptor.FieldDescriptor
+PRODUCT_ROLES_FIELD_NUMBER: _ClassVar[int]
+product_roles: _descriptor.FieldDescriptor
+PRODUCT_FIELD_NUMBER: _ClassVar[int]
+product: _descriptor.FieldDescriptor
 ENUM_STRING_VALUE_FIELD_NUMBER: _ClassVar[int]
 enum_string_value: _descriptor.FieldDescriptor
+
+class ProductRoleAssignment(_message.Message):
+    __slots__ = ("product", "product_uuid", "project_uuid", "role")
+    PRODUCT_FIELD_NUMBER: _ClassVar[int]
+    PRODUCT_UUID_FIELD_NUMBER: _ClassVar[int]
+    PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
+    ROLE_FIELD_NUMBER: _ClassVar[int]
+    product: Product
+    product_uuid: str
+    project_uuid: str
+    role: ProductRole
+    def __init__(self, product: _Optional[_Union[Product, str]] = ..., product_uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., role: _Optional[_Union[ProductRole, str]] = ...) -> None: ...
 
 class Paging(_message.Message):
     __slots__ = ("page", "count")

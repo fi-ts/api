@@ -2937,37 +2937,27 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\fDISK_TYPE_OS\x10\x01\x1a\x06\x82\xb2\x19\x02os\x12 \n" +
 	"\x10DISK_TYPE_SYSTEM\x10\x02\x1a\n" +
 	"\x82\xb2\x19\x06system\x12\x1c\n" +
-	"\x0eDISK_TYPE_DATA\x10\x03\x1a\b\x82\xb2\x19\x04data2\x92\x0e\n" +
+	"\x0eDISK_TYPE_DATA\x10\x03\x1a\b\x82\xb2\x19\x04data2\xbe\x0e\n" +
 	"\n" +
-	"MVMService\x12a\n" +
-	"\x03Get\x12%.fits.api.mvm.v1.MVMServiceGetRequest\x1a&.fits.api.mvm.v1.MVMServiceGetResponse\"\v\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x12i\n" +
+	"MVMService\x12e\n" +
+	"\x03Get\x12%.fits.api.mvm.v1.MVMServiceGetRequest\x1a&.fits.api.mvm.v1.MVMServiceGetResponse\"\x0f\xe0\xf3\x18\x02\xea\xf3\x18\x03\x01\x02\x03\xf0\xf3\x18\x01\x12i\n" +
 	"\x06Create\x12(.fits.api.mvm.v1.MVMServiceCreateRequest\x1a).fits.api.mvm.v1.MVMServiceCreateResponse\"\n" +
 	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12d\n" +
-	"\x04List\x12&.fits.api.mvm.v1.MVMServiceListRequest\x1a'.fits.api.mvm.v1.MVMServiceListResponse\"\v\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x12i\n" +
-	"\x06Delete\x12(.fits.api.mvm.v1.MVMServiceDeleteRequest\x1a).fits.api.mvm.v1.MVMServiceDeleteResponse\"\n" +
-	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12l\n" +
-	"\aAddDisk\x12).fits.api.mvm.v1.MVMServiceAddDiskRequest\x1a*.fits.api.mvm.v1.MVMServiceAddDiskResponse\"\n" +
-	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12u\n" +
+	"\x04List\x12&.fits.api.mvm.v1.MVMServiceListRequest\x1a'.fits.api.mvm.v1.MVMServiceListResponse\"\v\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x12m\n" +
+	"\x06Delete\x12(.fits.api.mvm.v1.MVMServiceDeleteRequest\x1a).fits.api.mvm.v1.MVMServiceDeleteResponse\"\x0e\xe0\xf3\x18\x01\xea\xf3\x18\x02\x01\x02\xf0\xf3\x18\x01\x12p\n" +
+	"\aAddDisk\x12).fits.api.mvm.v1.MVMServiceAddDiskRequest\x1a*.fits.api.mvm.v1.MVMServiceAddDiskResponse\"\x0e\xe0\xf3\x18\x01\xea\xf3\x18\x02\x01\x02\xf0\xf3\x18\x01\x12y\n" +
 	"\n" +
-	"UpdateDisk\x12,.fits.api.mvm.v1.MVMServiceUpdateDiskRequest\x1a-.fits.api.mvm.v1.MVMServiceUpdateDiskResponse\"\n" +
-	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12u\n" +
+	"UpdateDisk\x12,.fits.api.mvm.v1.MVMServiceUpdateDiskRequest\x1a-.fits.api.mvm.v1.MVMServiceUpdateDiskResponse\"\x0e\xe0\xf3\x18\x01\xea\xf3\x18\x02\x01\x02\xf0\xf3\x18\x01\x12y\n" +
 	"\n" +
-	"DeleteDisk\x12,.fits.api.mvm.v1.MVMServiceDeleteDiskRequest\x1a-.fits.api.mvm.v1.MVMServiceDeleteDiskResponse\"\n" +
-	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12\x90\x01\n" +
-	"\x13AddNetworkInterface\x125.fits.api.mvm.v1.MVMServiceAddNetworkInterfaceRequest\x1a6.fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse\"\n" +
-	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12\x93\x01\n" +
-	"\x14MoveNetworkInterface\x126.fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceRequest\x1a7.fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceResponse\"\n" +
-	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12\x99\x01\n" +
-	"\x16DeleteNetworkInterface\x128.fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceRequest\x1a9.fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceResponse\"\n" +
-	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12\x81\x01\n" +
+	"DeleteDisk\x12,.fits.api.mvm.v1.MVMServiceDeleteDiskRequest\x1a-.fits.api.mvm.v1.MVMServiceDeleteDiskResponse\"\x0e\xe0\xf3\x18\x01\xea\xf3\x18\x02\x01\x02\xf0\xf3\x18\x01\x12\x94\x01\n" +
+	"\x13AddNetworkInterface\x125.fits.api.mvm.v1.MVMServiceAddNetworkInterfaceRequest\x1a6.fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse\"\x0e\xe0\xf3\x18\x01\xea\xf3\x18\x02\x01\x02\xf0\xf3\x18\x01\x12\x97\x01\n" +
+	"\x14MoveNetworkInterface\x126.fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceRequest\x1a7.fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceResponse\"\x0e\xe0\xf3\x18\x01\xea\xf3\x18\x02\x01\x02\xf0\xf3\x18\x01\x12\x9d\x01\n" +
+	"\x16DeleteNetworkInterface\x128.fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceRequest\x1a9.fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceResponse\"\x0e\xe0\xf3\x18\x01\xea\xf3\x18\x02\x01\x02\xf0\xf3\x18\x01\x12\x81\x01\n" +
 	"\x0eValidateCreate\x120.fits.api.mvm.v1.MVMServiceValidateCreateRequest\x1a1.fits.api.mvm.v1.MVMServiceValidateCreateResponse\"\n" +
-	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x02\x12\x84\x01\n" +
-	"\x0fValidateAddDisk\x121.fits.api.mvm.v1.MVMServiceValidateAddDiskRequest\x1a2.fits.api.mvm.v1.MVMServiceValidateAddDiskResponse\"\n" +
-	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x02\x12\x8d\x01\n" +
-	"\x12ValidateUpdateDisk\x124.fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest\x1a5.fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse\"\n" +
-	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x02\x12\xa8\x01\n" +
-	"\x1bValidateAddNetworkInterface\x12=.fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceRequest\x1a>.fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceResponse\"\n" +
-	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x02B\xad\x01\n" +
+	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x02\x12\x88\x01\n" +
+	"\x0fValidateAddDisk\x121.fits.api.mvm.v1.MVMServiceValidateAddDiskRequest\x1a2.fits.api.mvm.v1.MVMServiceValidateAddDiskResponse\"\x0e\xe0\xf3\x18\x02\xea\xf3\x18\x02\x01\x02\xf0\xf3\x18\x01\x12\x91\x01\n" +
+	"\x12ValidateUpdateDisk\x124.fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest\x1a5.fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse\"\x0e\xe0\xf3\x18\x02\xea\xf3\x18\x02\x01\x02\xf0\xf3\x18\x01\x12\xac\x01\n" +
+	"\x1bValidateAddNetworkInterface\x12=.fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceRequest\x1a>.fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceResponse\"\x0e\xe0\xf3\x18\x02\xea\xf3\x18\x02\x01\x02\xf0\xf3\x18\x01B\xad\x01\n" +
 	"\x13com.fits.api.mvm.v1B\bMvmProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03FAM\xaa\x02\x0fFits.Api.Mvm.V1\xca\x02\x0fFits\\Api\\Mvm\\V1\xe2\x02\x1bFits\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12Fits::Api::Mvm::V1b\x06proto3"
 
 var (

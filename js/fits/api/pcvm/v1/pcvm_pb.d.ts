@@ -294,8 +294,7 @@ export type PublicCloudVMServiceUpdateRequest = Message<"fits.api.pcvm.v1.Public
      */
     name?: string | undefined;
     /**
-     * Size of the VM. The new size must be bigger or equal than before.
-     * Downgrades are not possible.
+     * Size of the VM. Downgrades are not possible.
      *
      * @generated from field: optional fits.api.pcvm.v1.Size size = 6;
      */
@@ -350,7 +349,6 @@ export type PublicCloudVMServiceDeleteRequest = Message<"fits.api.pcvm.v1.Public
 export declare const PublicCloudVMServiceDeleteRequestSchema: GenMessage<PublicCloudVMServiceDeleteRequest>;
 /**
  * The response after deleting a VM.
- * The VM is deleted immediately will not be able to be requested.
  *
  * @generated from message fits.api.pcvm.v1.PublicCloudVMServiceDeleteResponse
  */
@@ -437,7 +435,7 @@ export declare enum State {
      */
     HEALTHY = 1,
     /**
-     * STATE_HEALTHY: there are some health warnings for this VM.
+     * STATE_WARNING: there are some health warnings for this VM.
      *
      * @generated from enum value: STATE_WARNING = 2;
      */
@@ -490,7 +488,7 @@ export declare enum Operation {
      */
     DELETED = 4,
     /**
-     * OPERATION_ERROR: the
+     * OPERATION_ERROR: the VM is in an error state.
      *
      * @generated from enum value: OPERATION_ERROR = 5;
      */
@@ -501,7 +499,7 @@ export declare enum Operation {
  */
 export declare const OperationSchema: GenEnum<Operation>;
 /**
- * Size specifies the size of the VM machine
+ * Size specifies the size of the VM.
  *
  * @generated from enum fits.api.pcvm.v1.Size
  */
@@ -536,7 +534,7 @@ export declare enum Size {
  */
 export declare const SizeSchema: GenEnum<Size>;
 /**
- * VMService provides VM operations.
+ * PublicCloudVMService provides VM operations.
  *
  * @generated from service fits.api.pcvm.v1.PublicCloudVMService
  */
@@ -592,8 +590,7 @@ export declare const PublicCloudVMService: GenService<{
         output: typeof PublicCloudVMServiceDeleteResponseSchema;
     };
     /**
-     * Validates a VM create request without creating anything. Intended for
-     * form pre-checks; the create endpoint validates again before executing.
+     * Validates a VM create request without creating anything.
      *
      * @generated from rpc fits.api.pcvm.v1.PublicCloudVMService.ValidateCreate
      */
@@ -603,8 +600,7 @@ export declare const PublicCloudVMService: GenService<{
         output: typeof PublicCloudVMServiceValidateCreateResponseSchema;
     };
     /**
-     * Validates a VM update request without updating anything. Intended for
-     * form pre-checks; the update endpoint validates again before executing.
+     * Validates a VM update request without updating anything.
      *
      * @generated from rpc fits.api.pcvm.v1.PublicCloudVMService.ValidateUpdate
      */

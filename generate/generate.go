@@ -114,6 +114,7 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 			Operator: permissions.Operator{},
 			Tenant:   permissions.Tenant{},
 			Project:  permissions.Project{},
+			Product:  permissions.Product{},
 		}
 		methods = permissions.Methods{
 			// Allow service reflection to list available methods
@@ -130,9 +131,11 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 			Operator: map[string]bool{},
 			Tenant:   map[string]bool{},
 			Project:  map[string]bool{},
+			Product:  map[string]bool{},
 		}
 		auditable = permissions.Auditable{}
 		services  = []string{}
+		products  = permissions.Products{}
 	)
 
 	files, err := walk(root)
@@ -187,6 +190,16 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 							visibility.Operator[methodName] = true
 						case v1.OperatorRole_OPERATOR_ROLE_UNSPECIFIED.String():
 							// noop
+						// Product
+						case v1.ProductRole_PRODUCT_ROLE_ADMIN.String(), v1.ProductRole_PRODUCT_ROLE_EDITOR.String(), v1.ProductRole_PRODUCT_ROLE_VIEWER.String():
+							apirole := v1.ProductRole(v1.ProductRole_value[role])
+							if methods := roles.Product[apirole]; methods == nil {
+								roles.Product[apirole] = permissions.Methods{}
+							}
+							roles.Product[apirole][methodName] = struct{}{}
+							visibility.Product[methodName] = true
+						case v1.ProductRole_PRODUCT_ROLE_UNSPECIFIED.String():
+							// noop
 						// Visibility
 						case v1.Visibility_VISIBILITY_PUBLIC.String():
 							visibility.Public[methodName] = true
@@ -201,7 +214,11 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 							auditable[methodName] = true
 						case v1.Auditing_AUDITING_UNSPECIFIED.String():
 							auditable[methodName] = true
-						// noop
+						// Product
+						case v1.Product_PRODUCT_MANAGED_VM.String(), v1.Product_PRODUCT_PUBLIC_CLOUD_VM.String():
+							products[methodName] = v1.Product(v1.Product_value[role])
+						case v1.Product_PRODUCT_UNSPECIFIED.String():
+							// noop
 						default:
 							return nil, fmt.Errorf("unknown method identifier value detected:%s", *methodOpt.IdentifierValue)
 
@@ -219,6 +236,7 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 		Visibility: visibility,
 		Auditable:  auditable,
 		Services:   services,
+		Products:   products,
 	}
 
 	return sp, nil

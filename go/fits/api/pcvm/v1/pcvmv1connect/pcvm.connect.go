@@ -68,11 +68,9 @@ type PublicCloudVMServiceClient interface {
 	Update(context.Context, *v1.PublicCloudVMServiceUpdateRequest) (*v1.PublicCloudVMServiceUpdateResponse, error)
 	// Deletes a VM immediately.
 	Delete(context.Context, *v1.PublicCloudVMServiceDeleteRequest) (*v1.PublicCloudVMServiceDeleteResponse, error)
-	// Validates a VM create request without creating anything. Intended for
-	// form pre-checks; the create endpoint validates again before executing.
+	// Validates a VM create request without creating anything.
 	ValidateCreate(context.Context, *v1.PublicCloudVMServiceValidateCreateRequest) (*v1.PublicCloudVMServiceValidateCreateResponse, error)
-	// Validates a VM update request without updating anything. Intended for
-	// form pre-checks; the update endpoint validates again before executing.
+	// Validates a VM update request without updating anything.
 	ValidateUpdate(context.Context, *v1.PublicCloudVMServiceValidateUpdateRequest) (*v1.PublicCloudVMServiceValidateUpdateResponse, error)
 }
 
@@ -219,11 +217,9 @@ type PublicCloudVMServiceHandler interface {
 	Update(context.Context, *v1.PublicCloudVMServiceUpdateRequest) (*v1.PublicCloudVMServiceUpdateResponse, error)
 	// Deletes a VM immediately.
 	Delete(context.Context, *v1.PublicCloudVMServiceDeleteRequest) (*v1.PublicCloudVMServiceDeleteResponse, error)
-	// Validates a VM create request without creating anything. Intended for
-	// form pre-checks; the create endpoint validates again before executing.
+	// Validates a VM create request without creating anything.
 	ValidateCreate(context.Context, *v1.PublicCloudVMServiceValidateCreateRequest) (*v1.PublicCloudVMServiceValidateCreateResponse, error)
-	// Validates a VM update request without updating anything. Intended for
-	// form pre-checks; the update endpoint validates again before executing.
+	// Validates a VM update request without updating anything.
 	ValidateUpdate(context.Context, *v1.PublicCloudVMServiceValidateUpdateRequest) (*v1.PublicCloudVMServiceValidateUpdateResponse, error)
 }
 

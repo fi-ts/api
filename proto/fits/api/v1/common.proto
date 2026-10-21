@@ -45,6 +45,30 @@ enum OperatorRole {
   OPERATOR_ROLE_VIEWER = 2;
 }
 
+// Product identifies the resource type a product scoped method acts on.
+// The product instance id is carried by the request as `uuid`, or `id` when it is not a uuid.
+enum Product {
+  // PRODUCT_UNSPECIFIED is not specified
+  PRODUCT_UNSPECIFIED = 0;
+  // PRODUCT_MANAGED_VM identifies a ManagedVM (fits.api.mvm.v1.ManagedVM)
+  PRODUCT_MANAGED_VM = 1;
+  // PRODUCT_PUBLIC_CLOUD_VM identifies a VM (fits.api.pcvm.v1.PublicCloudVM)
+  PRODUCT_PUBLIC_CLOUD_VM = 2;
+}
+
+// ProductRole specifies what role a logged in user needs to call this product scoped service.
+// Product roles are independent of project roles.
+enum ProductRole {
+  // PRODUCT_ROLE_UNSPECIFIED is not specified
+  PRODUCT_ROLE_UNSPECIFIED = 0;
+  // PRODUCT_ROLE_ADMIN the logged in user needs at least admin role to call this method
+  PRODUCT_ROLE_ADMIN = 1;
+  // PRODUCT_ROLE_EDITOR the logged in user needs at least editor role to call this method
+  PRODUCT_ROLE_EDITOR = 2;
+  // PRODUCT_ROLE_VIEWER the logged in user needs at least viewer role to call this method
+  PRODUCT_ROLE_VIEWER = 3;
+}
+
 // Visibility of a method
 enum Visibility {
   // VISIBILITY_UNSPECIFIED is not defined
@@ -79,6 +103,22 @@ extend google.protobuf.MethodOptions {
   Visibility visibility = 51003;
   // Auditing defines if calls to this method should be audited or not
   Auditing auditing = 51004;
+  // ProductRoles are used to define which product role a logged in user must provide to call this method
+  repeated ProductRole product_roles = 51005;
+  // Product defines the product a product scoped method acts on. Required whenever product_roles is set.
+  Product product = 51006;
+}
+
+// ProductRoleAssignment grants a product role on one product instance.
+message ProductRoleAssignment {
+  // Product the role applies to.
+  Product product = 1 [(buf.validate.field).enum.defined_only = true];
+  // UUID of the product instance (or id when the product does not use UUIDs).
+  string product_uuid = 2 [(buf.validate.field).string = {max_len: 256}];
+  // UUID of the project the product belongs to.
+  string project_uuid = 3 [(buf.validate.field).string.(fits.api.v1.is_project_subject_permission) = true];
+  // Role granted on the product.
+  ProductRole role = 4 [(buf.validate.field).enum.defined_only = true];
 }
 
 // EnumValueOptions, can be accessed with go/enum/GetFormatStringValue

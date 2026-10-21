@@ -44,6 +44,15 @@ func GetServicePermissions() *ServicePermissions {
 					},
 				{{- end }}
 			},
+			Product: Product{
+				{{- range $role, $methods := .Roles.Product }}
+					v1.ProductRole_{{ $role }}: map[string]struct{}{
+						{{- range $method,$v := $methods }}
+							"{{ $method }}":{{ $v }},
+						{{- end }}
+					},
+				{{- end }}
+			},
 		},
 		Methods:    map[string]struct{}{
 {{- range $key, $value := .Methods }}
@@ -76,10 +85,20 @@ func GetServicePermissions() *ServicePermissions {
 	"{{ $key }}": {{ $value }} ,
 {{- end }}
 			},
+			Product:    map[string]bool{
+{{- range $key, $value := .Visibility.Product }}
+	"{{ $key }}": {{ $value }} ,
+{{- end }}
+			},
 		},
 		Auditable:  map[string]bool{
 {{- range $key, $value := .Auditable }}
 	"{{ $key }}": {{ $value }} ,
+{{- end }}
+		},
+		Products:  map[string]v1.Product{
+{{- range $key, $value := .Products }}
+	"{{ $key }}": v1.Product_{{ $value }} ,
 {{- end }}
 		},
 	}
@@ -110,6 +129,17 @@ func IsProjectScope(req connect.AnyRequest) bool {
 	return ok
 }
 
+func IsProductScope(req connect.AnyRequest) bool {
+	_, ok := GetServicePermissions().Visibility.Product[req.Spec().Procedure]
+	return ok
+}
+
+// GetProduct returns the product a product scoped method acts on.
+func GetProduct(req connect.AnyRequest) (v1.Product, bool) {
+	product, ok := GetServicePermissions().Products[req.Spec().Procedure]
+	return product, ok
+}
+
 func IsAuditable(req connect.AnyRequest) bool {
 	_, ok := GetServicePermissions().Auditable[req.Spec().Procedure]
 	return ok
@@ -127,16 +157,28 @@ func GetTenantFromRequest(req connect.AnyRequest) (string, bool) {
 }
 
 func GetProjectFromRequest(req connect.AnyRequest) (string, bool) {
-	if !IsProjectScope(req) {
+	if !IsProjectScope(req) && !IsProductScope(req) {
 		return "", false
 	}
 	switch rq := req.Any().(type) {
 	case interface{ GetProjectUuid() string }:
 		return rq.GetProjectUuid(), true
-		// TODO: all services should use project_uuid; drop the GetProject
-		// fallback once every request is streamlined.
 	case interface{ GetProject() string }:
 		return rq.GetProject(), true
+	}
+	return "", false
+}
+
+// GetProductFromRequest returns the product instance id from a product scoped request.
+func GetProductFromRequest(req connect.AnyRequest) (string, bool) {
+	if !IsProductScope(req) {
+		return "", false
+	}
+	switch rq := req.Any().(type) {
+	case interface{ GetUuid() string }:
+		return rq.GetUuid(), true
+	case interface{ GetId() string }:
+		return rq.GetId(), true
 	}
 	return "", false
 }
