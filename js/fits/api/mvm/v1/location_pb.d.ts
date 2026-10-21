@@ -6,7 +6,7 @@ import type { Message } from "@bufbuild/protobuf";
 export declare const file_fits_api_mvm_v1_location: GenFile;
 /**
  * Location is an available datacenter location for MVM instances.
- * A fake "AUTO" location lets the backend pick a datacenter within a location.
+ * An "AUTO" location lets the backend pick a datacenter within a location.
  *
  * @generated from message fits.api.mvm.v1.Location
  */
@@ -34,14 +34,7 @@ export declare const LocationSchema: GenMessage<Location>;
  *
  * @generated from message fits.api.mvm.v1.LocationServiceListRequest
  */
-export type LocationServiceListRequest = Message<"fits.api.mvm.v1.LocationServiceListRequest"> & {
-    /**
-     * Tenant to list available locations for
-     *
-     * @generated from field: string tenant = 1;
-     */
-    tenant: string;
-};
+export type LocationServiceListRequest = Message<"fits.api.mvm.v1.LocationServiceListRequest"> & {};
 /**
  * Describes the message fits.api.mvm.v1.LocationServiceListRequest.
  * Use `create(LocationServiceListRequestSchema)` to create a new message.
@@ -66,13 +59,13 @@ export type LocationServiceListResponse = Message<"fits.api.mvm.v1.LocationServi
  */
 export declare const LocationServiceListResponseSchema: GenMessage<LocationServiceListResponse>;
 /**
- * LocationService lists datacenter locations available for managed VM (MVM) instances, scoped per tenant.
+ * LocationService lists datacenter locations available for Managed VM (MVM) instances.
  *
  * @generated from service fits.api.mvm.v1.LocationService
  */
 export declare const LocationService: GenService<{
     /**
-     * Returns a list of all datacenter locations available for a tenant.
+     * Returns a list of all datacenter locations.
      *
      * @generated from rpc fits.api.mvm.v1.LocationService.List
      */

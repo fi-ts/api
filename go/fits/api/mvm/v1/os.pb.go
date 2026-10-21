@@ -142,7 +142,9 @@ func (x *OS) GetType() OSType {
 
 // OSServiceListRequest is the request payload for a OS list request.
 type OSServiceListRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Tenant to list available operating systems for.
+	Tenant        string `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -175,6 +177,13 @@ func (x *OSServiceListRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use OSServiceListRequest.ProtoReflect.Descriptor instead.
 func (*OSServiceListRequest) Descriptor() ([]byte, []int) {
 	return file_fits_api_mvm_v1_os_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *OSServiceListRequest) GetTenant() string {
+	if x != nil {
+		return x.Tenant
+	}
+	return ""
 }
 
 // OSServiceListResponse is the response payload for a OS list request
@@ -231,16 +240,17 @@ const file_fits_api_mvm_v1_os_proto_rawDesc = "" +
 	"\x02OS\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12!\n" +
 	"\x05title\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x05title\x12+\n" +
-	"\x04type\x18\x03 \x01(\x0e2\x17.fits.api.mvm.v1.OSTypeR\x04type\"\x16\n" +
-	"\x14OSServiceListRequest\"Y\n" +
+	"\x04type\x18\x03 \x01(\x0e2\x17.fits.api.mvm.v1.OSTypeR\x04type\";\n" +
+	"\x14OSServiceListRequest\x12#\n" +
+	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\"Y\n" +
 	"\x15OSServiceListResponse\x12@\n" +
 	"\x11operating_systems\x18\x01 \x03(\v2\x13.fits.api.mvm.v1.OSR\x10operatingSystems*g\n" +
 	"\x06OSType\x12\x1d\n" +
 	"\x13OS_TYPE_UNSPECIFIED\x10\x00\x1a\x04\x82\xb2\x19\x00\x12\x1c\n" +
 	"\rOS_TYPE_LINUX\x10\x01\x1a\t\x82\xb2\x19\x05linux\x12 \n" +
-	"\x0fOS_TYPE_WINDOWS\x10\x02\x1a\v\x82\xb2\x19\awindows2l\n" +
-	"\tOSService\x12_\n" +
-	"\x04List\x12%.fits.api.mvm.v1.OSServiceListRequest\x1a&.fits.api.mvm.v1.OSServiceListResponse\"\b\xd8\xf3\x18\x02\xe0\xf3\x18\x02B\xac\x01\n" +
+	"\x0fOS_TYPE_WINDOWS\x10\x02\x1a\v\x82\xb2\x19\awindows2o\n" +
+	"\tOSService\x12b\n" +
+	"\x04List\x12%.fits.api.mvm.v1.OSServiceListRequest\x1a&.fits.api.mvm.v1.OSServiceListResponse\"\v\xc2\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02B\xac\x01\n" +
 	"\x13com.fits.api.mvm.v1B\aOsProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03FAM\xaa\x02\x0fFits.Api.Mvm.V1\xca\x02\x0fFits\\Api\\Mvm\\V1\xe2\x02\x1bFits\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12Fits::Api::Mvm::V1b\x06proto3"
 
 var (

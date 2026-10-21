@@ -6,11 +6,13 @@ import "buf/validate/validate.proto";
 import "fits/api/v1/common.proto";
 import "fits/api/v1/predefined_rules.proto";
 
-// OSService lists operating systems available for managed VM (MVM) instances.
+// OSService lists operating systems available for managed VM (MVM) instances, scoped per tenant.
 service OSService {
-  // Returns a list of all operating systems.
+  // Returns a list of all operating systems available for a tenant.
   rpc List(OSServiceListRequest) returns (OSServiceListResponse) {
-    option (fits.api.v1.visibility) = VISIBILITY_SELF;
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_ADMIN;
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_EDITOR;
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_VIEWER;
     option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
   }
 }
@@ -35,8 +37,13 @@ message OS {
   OSType type = 3;
 }
 
+// Required Tenant filter
+
 // OSServiceListRequest is the request payload for a OS list request.
-message OSServiceListRequest {}
+message OSServiceListRequest {
+  // Tenant to list available operating systems for.
+  string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+}
 
 // OSServiceListResponse is the response payload for a OS list request
 message OSServiceListResponse {

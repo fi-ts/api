@@ -18,10 +18,8 @@ class Location(_message.Message):
     def __init__(self, uuid: _Optional[str] = ..., title: _Optional[str] = ...) -> None: ...
 
 class LocationServiceListRequest(_message.Message):
-    __slots__ = ("tenant",)
-    TENANT_FIELD_NUMBER: _ClassVar[int]
-    tenant: str
-    def __init__(self, tenant: _Optional[str] = ...) -> None: ...
+    __slots__ = ()
+    def __init__(self) -> None: ...
 
 class LocationServiceListResponse(_message.Message):
     __slots__ = ("locations",)

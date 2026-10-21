@@ -24,7 +24,7 @@ const (
 )
 
 // Location is an available datacenter location for MVM instances.
-// A fake "AUTO" location lets the backend pick a datacenter within a location.
+// An "AUTO" location lets the backend pick a datacenter within a location.
 type Location struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// UUID of this location.
@@ -81,9 +81,7 @@ func (x *Location) GetTitle() string {
 
 // LocationServiceListRequest is the request payload for a location list request.
 type LocationServiceListRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Tenant to list available locations for
-	Tenant        string `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -116,13 +114,6 @@ func (x *LocationServiceListRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use LocationServiceListRequest.ProtoReflect.Descriptor instead.
 func (*LocationServiceListRequest) Descriptor() ([]byte, []int) {
 	return file_fits_api_mvm_v1_location_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *LocationServiceListRequest) GetTenant() string {
-	if x != nil {
-		return x.Tenant
-	}
-	return ""
 }
 
 // LocationServiceListResponse is the response payload for a location list request.
@@ -178,13 +169,12 @@ const file_fits_api_mvm_v1_location_proto_rawDesc = "" +
 	"\x1efits/api/mvm/v1/location.proto\x12\x0ffits.api.mvm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"K\n" +
 	"\bLocation\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12!\n" +
-	"\x05title\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x05title\"A\n" +
-	"\x1aLocationServiceListRequest\x12#\n" +
-	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\"V\n" +
+	"\x05title\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x05title\"\x1c\n" +
+	"\x1aLocationServiceListRequest\"V\n" +
 	"\x1bLocationServiceListResponse\x127\n" +
-	"\tlocations\x18\x01 \x03(\v2\x19.fits.api.mvm.v1.LocationR\tlocations2\x81\x01\n" +
-	"\x0fLocationService\x12n\n" +
-	"\x04List\x12+.fits.api.mvm.v1.LocationServiceListRequest\x1a,.fits.api.mvm.v1.LocationServiceListResponse\"\v\xc2\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02B\xb2\x01\n" +
+	"\tlocations\x18\x01 \x03(\v2\x19.fits.api.mvm.v1.LocationR\tlocations2~\n" +
+	"\x0fLocationService\x12k\n" +
+	"\x04List\x12+.fits.api.mvm.v1.LocationServiceListRequest\x1a,.fits.api.mvm.v1.LocationServiceListResponse\"\b\xd8\xf3\x18\x02\xe0\xf3\x18\x02B\xb2\x01\n" +
 	"\x13com.fits.api.mvm.v1B\rLocationProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03FAM\xaa\x02\x0fFits.Api.Mvm.V1\xca\x02\x0fFits\\Api\\Mvm\\V1\xe2\x02\x1bFits\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12Fits::Api::Mvm::V1b\x06proto3"
 
 var (

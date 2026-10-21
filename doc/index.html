@@ -1971,7 +1971,7 @@ having a direct membership within the tenant.</p></td>
 
       
         <h3 id="fits.api.mvm.v1.Location">Location</h3>
-        <p>Location is an available datacenter location for MVM instances.</p><p>A fake "AUTO" location lets the backend pick a datacenter within a location.</p>
+        <p>Location is an available datacenter location for MVM instances.</p><p>An "AUTO" location lets the backend pick a datacenter within a location.</p>
 
         
           <table class="field-table">
@@ -2005,23 +2005,6 @@ having a direct membership within the tenant.</p></td>
         <p>LocationServiceListRequest is the request payload for a location list request.</p>
 
         
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>tenant</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Tenant to list available locations for </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
 
         
       
@@ -2056,7 +2039,7 @@ having a direct membership within the tenant.</p></td>
 
       
         <h3 id="fits.api.mvm.v1.LocationService">LocationService</h3>
-        <p>LocationService lists datacenter locations available for managed VM (MVM) instances, scoped per tenant.</p>
+        <p>LocationService lists datacenter locations available for Managed VM (MVM) instances.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -2067,7 +2050,7 @@ having a direct membership within the tenant.</p></td>
                 <td>List</td>
                 <td><a href="#fits.api.mvm.v1.LocationServiceListRequest">LocationServiceListRequest</a></td>
                 <td><a href="#fits.api.mvm.v1.LocationServiceListResponse">LocationServiceListResponse</a></td>
-                <td><p>Returns a list of all datacenter locations available for a tenant.</p></td>
+                <td><p>Returns a list of all datacenter locations.</p></td>
               </tr>
             
           </tbody>
@@ -3672,6 +3655,23 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
         <p>OSServiceListRequest is the request payload for a OS list request.</p>
 
         
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant to list available operating systems for. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
 
         
       
@@ -3735,7 +3735,7 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
 
       
         <h3 id="fits.api.mvm.v1.OSService">OSService</h3>
-        <p>OSService lists operating systems available for managed VM (MVM) instances.</p>
+        <p>OSService lists operating systems available for managed VM (MVM) instances, scoped per tenant.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -3746,7 +3746,7 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                 <td>List</td>
                 <td><a href="#fits.api.mvm.v1.OSServiceListRequest">OSServiceListRequest</a></td>
                 <td><a href="#fits.api.mvm.v1.OSServiceListResponse">OSServiceListResponse</a></td>
-                <td><p>Returns a list of all operating systems.</p></td>
+                <td><p>Returns a list of all operating systems available for a tenant.</p></td>
               </tr>
             
           </tbody>

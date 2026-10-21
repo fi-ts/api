@@ -13,11 +13,11 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/mvm/v1/location.proto.
  */
 export const file_fits_api_mvm_v1_location: GenFile = /*@__PURE__*/
-  fileDesc("Ch5maXRzL2FwaS9tdm0vdjEvbG9jYXRpb24ucHJvdG8SD2ZpdHMuYXBpLm12bS52MSI+CghMb2NhdGlvbhIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIaCgV0aXRsZRgCIAEoCUILukgIcgbAs66xAgEiOQoaTG9jYXRpb25TZXJ2aWNlTGlzdFJlcXVlc3QSGwoGdGVuYW50GAEgASgJQgu6SAhyBsCzrrECASJLChtMb2NhdGlvblNlcnZpY2VMaXN0UmVzcG9uc2USLAoJbG9jYXRpb25zGAEgAygLMhkuZml0cy5hcGkubXZtLnYxLkxvY2F0aW9uMoEBCg9Mb2NhdGlvblNlcnZpY2USbgoETGlzdBIrLmZpdHMuYXBpLm12bS52MS5Mb2NhdGlvblNlcnZpY2VMaXN0UmVxdWVzdBosLmZpdHMuYXBpLm12bS52MS5Mb2NhdGlvblNlcnZpY2VMaXN0UmVzcG9uc2UiC8LzGAMBAgPg8xgCQrIBChNjb20uZml0cy5hcGkubXZtLnYxQg1Mb2NhdGlvblByb3RvUAFaLWdpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL212bS92MTttdm12MaICA0ZBTaoCD0ZpdHMuQXBpLk12bS5WMcoCD0ZpdHNcQXBpXE12bVxWMeICG0ZpdHNcQXBpXE12bVxWMVxHUEJNZXRhZGF0YeoCEkZpdHM6OkFwaTo6TXZtOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
+  fileDesc("Ch5maXRzL2FwaS9tdm0vdjEvbG9jYXRpb24ucHJvdG8SD2ZpdHMuYXBpLm12bS52MSI+CghMb2NhdGlvbhIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIaCgV0aXRsZRgCIAEoCUILukgIcgbAs66xAgEiHAoaTG9jYXRpb25TZXJ2aWNlTGlzdFJlcXVlc3QiSwobTG9jYXRpb25TZXJ2aWNlTGlzdFJlc3BvbnNlEiwKCWxvY2F0aW9ucxgBIAMoCzIZLmZpdHMuYXBpLm12bS52MS5Mb2NhdGlvbjJ+Cg9Mb2NhdGlvblNlcnZpY2USawoETGlzdBIrLmZpdHMuYXBpLm12bS52MS5Mb2NhdGlvblNlcnZpY2VMaXN0UmVxdWVzdBosLmZpdHMuYXBpLm12bS52MS5Mb2NhdGlvblNlcnZpY2VMaXN0UmVzcG9uc2UiCNjzGALg8xgCQrIBChNjb20uZml0cy5hcGkubXZtLnYxQg1Mb2NhdGlvblByb3RvUAFaLWdpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL212bS92MTttdm12MaICA0ZBTaoCD0ZpdHMuQXBpLk12bS5WMcoCD0ZpdHNcQXBpXE12bVxWMeICG0ZpdHNcQXBpXE12bVxWMVxHUEJNZXRhZGF0YeoCEkZpdHM6OkFwaTo6TXZtOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
 
 /**
  * Location is an available datacenter location for MVM instances.
- * A fake "AUTO" location lets the backend pick a datacenter within a location.
+ * An "AUTO" location lets the backend pick a datacenter within a location.
  *
  * @generated from message fits.api.mvm.v1.Location
  */
@@ -50,12 +50,6 @@ export const LocationSchema: GenMessage<Location> = /*@__PURE__*/
  * @generated from message fits.api.mvm.v1.LocationServiceListRequest
  */
 export type LocationServiceListRequest = Message<"fits.api.mvm.v1.LocationServiceListRequest"> & {
-  /**
-   * Tenant to list available locations for
-   *
-   * @generated from field: string tenant = 1;
-   */
-  tenant: string;
 };
 
 /**
@@ -87,13 +81,13 @@ export const LocationServiceListResponseSchema: GenMessage<LocationServiceListRe
   messageDesc(file_fits_api_mvm_v1_location, 2);
 
 /**
- * LocationService lists datacenter locations available for managed VM (MVM) instances, scoped per tenant.
+ * LocationService lists datacenter locations available for Managed VM (MVM) instances.
  *
  * @generated from service fits.api.mvm.v1.LocationService
  */
 export const LocationService: GenService<{
   /**
-   * Returns a list of all datacenter locations available for a tenant.
+   * Returns a list of all datacenter locations.
    *
    * @generated from rpc fits.api.mvm.v1.LocationService.List
    */

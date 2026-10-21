@@ -30,8 +30,10 @@ class OS(_message.Message):
     def __init__(self, uuid: _Optional[str] = ..., title: _Optional[str] = ..., type: _Optional[_Union[OSType, str]] = ...) -> None: ...
 
 class OSServiceListRequest(_message.Message):
-    __slots__ = ()
-    def __init__(self) -> None: ...
+    __slots__ = ("tenant",)
+    TENANT_FIELD_NUMBER: _ClassVar[int]
+    tenant: str
+    def __init__(self, tenant: _Optional[str] = ...) -> None: ...
 
 class OSServiceListResponse(_message.Message):
     __slots__ = ("operating_systems",)

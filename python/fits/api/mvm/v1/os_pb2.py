@@ -27,7 +27,7 @@ from fits.api.v1 import common_pb2 as fits_dot_api_dot_v1_dot_common__pb2
 from fits.api.v1 import predefined_rules_pb2 as fits_dot_api_dot_v1_dot_predefined__rules__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x18\x66its/api/mvm/v1/os.proto\x12\x0f\x66its.api.mvm.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"r\n\x02OS\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12!\n\x05title\x18\x02 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x05title\x12+\n\x04type\x18\x03 \x01(\x0e\x32\x17.fits.api.mvm.v1.OSTypeR\x04type\"\x16\n\x14OSServiceListRequest\"Y\n\x15OSServiceListResponse\x12@\n\x11operating_systems\x18\x01 \x03(\x0b\x32\x13.fits.api.mvm.v1.OSR\x10operatingSystems*g\n\x06OSType\x12\x1d\n\x13OS_TYPE_UNSPECIFIED\x10\x00\x1a\x04\x82\xb2\x19\x00\x12\x1c\n\rOS_TYPE_LINUX\x10\x01\x1a\t\x82\xb2\x19\x05linux\x12 \n\x0fOS_TYPE_WINDOWS\x10\x02\x1a\x0b\x82\xb2\x19\x07windows2l\n\tOSService\x12_\n\x04List\x12%.fits.api.mvm.v1.OSServiceListRequest\x1a&.fits.api.mvm.v1.OSServiceListResponse\"\x08\xd8\xf3\x18\x02\xe0\xf3\x18\x02\x42\xac\x01\n\x13\x63om.fits.api.mvm.v1B\x07OsProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03\x46\x41M\xaa\x02\x0f\x46its.Api.Mvm.V1\xca\x02\x0f\x46its\\Api\\Mvm\\V1\xe2\x02\x1b\x46its\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12\x46its::Api::Mvm::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x18\x66its/api/mvm/v1/os.proto\x12\x0f\x66its.api.mvm.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"r\n\x02OS\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12!\n\x05title\x18\x02 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x05title\x12+\n\x04type\x18\x03 \x01(\x0e\x32\x17.fits.api.mvm.v1.OSTypeR\x04type\";\n\x14OSServiceListRequest\x12#\n\x06tenant\x18\x01 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\"Y\n\x15OSServiceListResponse\x12@\n\x11operating_systems\x18\x01 \x03(\x0b\x32\x13.fits.api.mvm.v1.OSR\x10operatingSystems*g\n\x06OSType\x12\x1d\n\x13OS_TYPE_UNSPECIFIED\x10\x00\x1a\x04\x82\xb2\x19\x00\x12\x1c\n\rOS_TYPE_LINUX\x10\x01\x1a\t\x82\xb2\x19\x05linux\x12 \n\x0fOS_TYPE_WINDOWS\x10\x02\x1a\x0b\x82\xb2\x19\x07windows2o\n\tOSService\x12\x62\n\x04List\x12%.fits.api.mvm.v1.OSServiceListRequest\x1a&.fits.api.mvm.v1.OSServiceListResponse\"\x0b\xc2\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x42\xac\x01\n\x13\x63om.fits.api.mvm.v1B\x07OsProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03\x46\x41M\xaa\x02\x0f\x46its.Api.Mvm.V1\xca\x02\x0f\x46its\\Api\\Mvm\\V1\xe2\x02\x1b\x46its\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12\x46its::Api::Mvm::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -45,16 +45,18 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_OS'].fields_by_name['uuid']._serialized_options = b'\272H\005r\003\260\001\001'
   _globals['_OS'].fields_by_name['title']._loaded_options = None
   _globals['_OS'].fields_by_name['title']._serialized_options = b'\272H\010r\006\300\263\256\261\002\001'
+  _globals['_OSSERVICELISTREQUEST'].fields_by_name['tenant']._loaded_options = None
+  _globals['_OSSERVICELISTREQUEST'].fields_by_name['tenant']._serialized_options = b'\272H\010r\006\300\263\256\261\002\001'
   _globals['_OSSERVICE'].methods_by_name['List']._loaded_options = None
-  _globals['_OSSERVICE'].methods_by_name['List']._serialized_options = b'\330\363\030\002\340\363\030\002'
-  _globals['_OSTYPE']._serialized_start=367
-  _globals['_OSTYPE']._serialized_end=470
+  _globals['_OSSERVICE'].methods_by_name['List']._serialized_options = b'\302\363\030\003\001\002\003\340\363\030\002'
+  _globals['_OSTYPE']._serialized_start=404
+  _globals['_OSTYPE']._serialized_end=507
   _globals['_OS']._serialized_start=136
   _globals['_OS']._serialized_end=250
   _globals['_OSSERVICELISTREQUEST']._serialized_start=252
-  _globals['_OSSERVICELISTREQUEST']._serialized_end=274
-  _globals['_OSSERVICELISTRESPONSE']._serialized_start=276
-  _globals['_OSSERVICELISTRESPONSE']._serialized_end=365
-  _globals['_OSSERVICE']._serialized_start=472
-  _globals['_OSSERVICE']._serialized_end=580
+  _globals['_OSSERVICELISTREQUEST']._serialized_end=311
+  _globals['_OSSERVICELISTRESPONSE']._serialized_start=313
+  _globals['_OSSERVICELISTRESPONSE']._serialized_end=402
+  _globals['_OSSERVICE']._serialized_start=509
+  _globals['_OSSERVICE']._serialized_end=620
 # @@protoc_insertion_point(module_scope)

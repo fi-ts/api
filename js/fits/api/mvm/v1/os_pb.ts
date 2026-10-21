@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/mvm/v1/os.proto.
  */
 export const file_fits_api_mvm_v1_os: GenFile = /*@__PURE__*/
-  fileDesc("ChhmaXRzL2FwaS9tdm0vdjEvb3MucHJvdG8SD2ZpdHMuYXBpLm12bS52MSJfCgJPUxIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIaCgV0aXRsZRgCIAEoCUILukgIcgbAs66xAgESJQoEdHlwZRgDIAEoDjIXLmZpdHMuYXBpLm12bS52MS5PU1R5cGUiFgoUT1NTZXJ2aWNlTGlzdFJlcXVlc3QiRwoVT1NTZXJ2aWNlTGlzdFJlc3BvbnNlEi4KEW9wZXJhdGluZ19zeXN0ZW1zGAEgAygLMhMuZml0cy5hcGkubXZtLnYxLk9TKmcKBk9TVHlwZRIdChNPU19UWVBFX1VOU1BFQ0lGSUVEEAAaBIKyGQASHAoNT1NfVFlQRV9MSU5VWBABGgmCshkFbGludXgSIAoPT1NfVFlQRV9XSU5ET1dTEAIaC4KyGQd3aW5kb3dzMmwKCU9TU2VydmljZRJfCgRMaXN0EiUuZml0cy5hcGkubXZtLnYxLk9TU2VydmljZUxpc3RSZXF1ZXN0GiYuZml0cy5hcGkubXZtLnYxLk9TU2VydmljZUxpc3RSZXNwb25zZSII2PMYAuDzGAJCrAEKE2NvbS5maXRzLmFwaS5tdm0udjFCB09zUHJvdG9QAVotZ2l0aHViLmNvbS9maS10cy9hcGkvZ28vZml0cy9hcGkvbXZtL3YxO212bXYxogIDRkFNqgIPRml0cy5BcGkuTXZtLlYxygIPRml0c1xBcGlcTXZtXFYx4gIbRml0c1xBcGlcTXZtXFYxXEdQQk1ldGFkYXRh6gISRml0czo6QXBpOjpNdm06OlYxYgZwcm90bzM", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
+  fileDesc("ChhmaXRzL2FwaS9tdm0vdjEvb3MucHJvdG8SD2ZpdHMuYXBpLm12bS52MSJfCgJPUxIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIaCgV0aXRsZRgCIAEoCUILukgIcgbAs66xAgESJQoEdHlwZRgDIAEoDjIXLmZpdHMuYXBpLm12bS52MS5PU1R5cGUiMwoUT1NTZXJ2aWNlTGlzdFJlcXVlc3QSGwoGdGVuYW50GAEgASgJQgu6SAhyBsCzrrECASJHChVPU1NlcnZpY2VMaXN0UmVzcG9uc2USLgoRb3BlcmF0aW5nX3N5c3RlbXMYASADKAsyEy5maXRzLmFwaS5tdm0udjEuT1MqZwoGT1NUeXBlEh0KE09TX1RZUEVfVU5TUEVDSUZJRUQQABoEgrIZABIcCg1PU19UWVBFX0xJTlVYEAEaCYKyGQVsaW51eBIgCg9PU19UWVBFX1dJTkRPV1MQAhoLgrIZB3dpbmRvd3MybwoJT1NTZXJ2aWNlEmIKBExpc3QSJS5maXRzLmFwaS5tdm0udjEuT1NTZXJ2aWNlTGlzdFJlcXVlc3QaJi5maXRzLmFwaS5tdm0udjEuT1NTZXJ2aWNlTGlzdFJlc3BvbnNlIgvC8xgDAQID4PMYAkKsAQoTY29tLmZpdHMuYXBpLm12bS52MUIHT3NQcm90b1ABWi1naXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS9tdm0vdjE7bXZtdjGiAgNGQU2qAg9GaXRzLkFwaS5Ndm0uVjHKAg9GaXRzXEFwaVxNdm1cVjHiAhtGaXRzXEFwaVxNdm1cVjFcR1BCTWV0YWRhdGHqAhJGaXRzOjpBcGk6Ok12bTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
 
 /**
  * OS is the definition of an available OS for MVM instances.
@@ -56,6 +56,12 @@ export const OSSchema: GenMessage<OS> = /*@__PURE__*/
  * @generated from message fits.api.mvm.v1.OSServiceListRequest
  */
 export type OSServiceListRequest = Message<"fits.api.mvm.v1.OSServiceListRequest"> & {
+  /**
+   * Tenant to list available operating systems for.
+   *
+   * @generated from field: string tenant = 1;
+   */
+  tenant: string;
 };
 
 /**
@@ -121,13 +127,13 @@ export const OSTypeSchema: GenEnum<OSType> = /*@__PURE__*/
   enumDesc(file_fits_api_mvm_v1_os, 0);
 
 /**
- * OSService lists operating systems available for managed VM (MVM) instances.
+ * OSService lists operating systems available for managed VM (MVM) instances, scoped per tenant.
  *
  * @generated from service fits.api.mvm.v1.OSService
  */
 export const OSService: GenService<{
   /**
-   * Returns a list of all operating systems.
+   * Returns a list of all operating systems available for a tenant.
    *
    * @generated from rpc fits.api.mvm.v1.OSService.List
    */

@@ -39,7 +39,14 @@ export declare const OSSchema: GenMessage<OS>;
  *
  * @generated from message fits.api.mvm.v1.OSServiceListRequest
  */
-export type OSServiceListRequest = Message<"fits.api.mvm.v1.OSServiceListRequest"> & {};
+export type OSServiceListRequest = Message<"fits.api.mvm.v1.OSServiceListRequest"> & {
+    /**
+     * Tenant to list available operating systems for.
+     *
+     * @generated from field: string tenant = 1;
+     */
+    tenant: string;
+};
 /**
  * Describes the message fits.api.mvm.v1.OSServiceListRequest.
  * Use `create(OSServiceListRequestSchema)` to create a new message.
@@ -93,13 +100,13 @@ export declare enum OSType {
  */
 export declare const OSTypeSchema: GenEnum<OSType>;
 /**
- * OSService lists operating systems available for managed VM (MVM) instances.
+ * OSService lists operating systems available for managed VM (MVM) instances, scoped per tenant.
  *
  * @generated from service fits.api.mvm.v1.OSService
  */
 export declare const OSService: GenService<{
     /**
-     * Returns a list of all operating systems.
+     * Returns a list of all operating systems available for a tenant.
      *
      * @generated from rpc fits.api.mvm.v1.OSService.List
      */
