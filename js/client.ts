@@ -19,6 +19,10 @@ import { VLANService as Apimvmv1VLANService } from "./fits/api/mvm/v1/vlan_pb";
 
 
 
+import { PublicCloudVMService as Apipcvmv1PublicCloudVMService } from "./fits/api/pcvm/v1/pcvm_pb";
+
+
+
 import { HealthService as Apiv1HealthService } from "./fits/api/v1/health_pb";
 
 import { MethodService as Apiv1MethodService } from "./fits/api/v1/method_pb";
@@ -43,6 +47,8 @@ export interface Client {
 
   apimvmv1(): Apimvmv1;
 
+  apipcvmv1(): Apipcvmv1;
+
   apiv1(): Apiv1;
 
 }
@@ -61,6 +67,13 @@ export interface Apimvmv1 {
   os(): ConnectClient<typeof Apimvmv1OSService>;
 
   vlan(): ConnectClient<typeof Apimvmv1VLANService>;
+
+}
+
+
+export interface Apipcvmv1 {
+
+  publicCloudVM(): ConnectClient<typeof Apipcvmv1PublicCloudVMService>;
 
 }
 
@@ -119,6 +132,8 @@ class ClientImpl implements Client {
 
   private _apimvmv1?: Apimvmv1Impl;
 
+  private _apipcvmv1?: Apipcvmv1Impl;
+
   private _apiv1?: Apiv1Impl;
 
 
@@ -132,6 +147,13 @@ class ClientImpl implements Client {
       this._apimvmv1 = new Apimvmv1Impl(this.transport);
     }
     return this._apimvmv1;
+  }
+
+  apipcvmv1(): Apipcvmv1 {
+    if (!this._apipcvmv1) {
+      this._apipcvmv1 = new Apipcvmv1Impl(this.transport);
+    }
+    return this._apipcvmv1;
   }
 
   apiv1(): Apiv1 {
@@ -206,6 +228,28 @@ class Apimvmv1Impl implements Apimvmv1 {
       this._vlan = createClient(Apimvmv1VLANService, this.transport);
     }
     return this._vlan;
+  }
+
+}
+
+
+class Apipcvmv1Impl implements Apipcvmv1 {
+  private transport: Transport;
+
+
+  private _publicCloudVM?: ConnectClient<typeof Apipcvmv1PublicCloudVMService>;
+
+
+  constructor(transport: Transport) {
+    this.transport = transport;
+  }
+
+
+  publicCloudVM(): ConnectClient<typeof Apipcvmv1PublicCloudVMService> {
+    if (!this._publicCloudVM) {
+      this._publicCloudVM = createClient(Apipcvmv1PublicCloudVMService, this.transport);
+    }
+    return this._publicCloudVM;
   }
 
 }

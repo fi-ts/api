@@ -16,6 +16,7 @@ import { LocationService as Apimvmv1LocationService } from "./fits/api/mvm/v1/lo
 import { MVMService as Apimvmv1MVMService } from "./fits/api/mvm/v1/mvm_pb";
 import { OSService as Apimvmv1OSService } from "./fits/api/mvm/v1/os_pb";
 import { VLANService as Apimvmv1VLANService } from "./fits/api/mvm/v1/vlan_pb";
+import { PublicCloudVMService as Apipcvmv1PublicCloudVMService } from "./fits/api/pcvm/v1/pcvm_pb";
 import { HealthService as Apiv1HealthService } from "./fits/api/v1/health_pb";
 import { MethodService as Apiv1MethodService } from "./fits/api/v1/method_pb";
 import { ProjectService as Apiv1ProjectService } from "./fits/api/v1/project_pb";
@@ -55,6 +56,12 @@ class ClientImpl {
             this._apimvmv1 = new Apimvmv1Impl(this.transport);
         }
         return this._apimvmv1;
+    }
+    apipcvmv1() {
+        if (!this._apipcvmv1) {
+            this._apipcvmv1 = new Apipcvmv1Impl(this.transport);
+        }
+        return this._apipcvmv1;
     }
     apiv1() {
         if (!this._apiv1) {
@@ -102,6 +109,17 @@ class Apimvmv1Impl {
             this._vlan = createClient(Apimvmv1VLANService, this.transport);
         }
         return this._vlan;
+    }
+}
+class Apipcvmv1Impl {
+    constructor(transport) {
+        this.transport = transport;
+    }
+    publicCloudVM() {
+        if (!this._publicCloudVM) {
+            this._publicCloudVM = createClient(Apipcvmv1PublicCloudVMService, this.transport);
+        }
+        return this._publicCloudVM;
     }
 }
 class Apiv1Impl {
