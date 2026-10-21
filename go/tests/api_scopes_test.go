@@ -274,7 +274,11 @@ func validateProto(root string) error {
 						var (
 							hasUpdatedAtField bool
 						)
-						for _, field := range mt.GetField() {
+						// Use inputFields (which walks nested messages) so that
+						// Validate*UpdateRequest wrappers that embed the real
+						// UpdateRequest are accepted as long as the nested message
+						// carries the update_meta field.
+						for _, field := range inputFields {
 							if field.GetName() == "update_meta" {
 								hasUpdatedAtField = true
 							}

@@ -6,12 +6,14 @@ import (
 	compress "github.com/klauspost/connect-compress/v2"
 
 	"github.com/fi-ts/api/go/fits/api/mvm/v1/mvmv1connect"
+	"github.com/fi-ts/api/go/fits/api/pcvm/v1/pcvmv1connect"
 	"github.com/fi-ts/api/go/fits/api/v1/apiv1connect"
 )
 
 type (
 	Client interface {
 		Apimvmv1() Apimvmv1
+		Apipcvmv1() Apipcvmv1
 		Apiv1() Apiv1
 	}
 	client struct {
@@ -35,6 +37,14 @@ type (
 		mvmservice      mvmv1connect.MVMServiceClient
 		osservice       mvmv1connect.OSServiceClient
 		vlanservice     mvmv1connect.VLANServiceClient
+	}
+
+	Apipcvmv1 interface {
+		PublicCloudVM() pcvmv1connect.PublicCloudVMServiceClient
+	}
+
+	apipcvmv1 struct {
+		publiccloudvmservice pcvmv1connect.PublicCloudVMServiceClient
 	}
 
 	Apiv1 interface {
@@ -115,6 +125,22 @@ func (c *apimvmv1) OS() mvmv1connect.OSServiceClient {
 }
 func (c *apimvmv1) VLAN() mvmv1connect.VLANServiceClient {
 	return c.vlanservice
+}
+
+func (c *client) Apipcvmv1() Apipcvmv1 {
+	a := &apipcvmv1{
+		publiccloudvmservice: pcvmv1connect.NewPublicCloudVMServiceClient(
+			c.config.HttpClient(),
+			c.config.BaseURL,
+			connect.WithInterceptors(c.interceptors...),
+			compress.WithAll(compress.LevelBalanced),
+		),
+	}
+	return a
+}
+
+func (c *apipcvmv1) PublicCloudVM() pcvmv1connect.PublicCloudVMServiceClient {
+	return c.publiccloudvmservice
 }
 
 func (c *client) Apiv1() Apiv1 {
