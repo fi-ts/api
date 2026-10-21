@@ -198,8 +198,7 @@ func (OperatorRole) EnumDescriptor() ([]byte, []int) {
 }
 
 // Product identifies the resource type a product scoped method acts on.
-// A product is always a single resource instance within a project; its id is
-// carried by the request as the `uuid` field, or `id` when it is not a uuid.
+// The product instance id is carried by the request as `uuid`, or `id` when it is not a uuid.
 type Product int32
 
 const (
@@ -253,8 +252,7 @@ func (Product) EnumDescriptor() ([]byte, []int) {
 }
 
 // ProductRole specifies what role a logged in user needs to call this product scoped service.
-// Product roles are independent of project roles: a user may hold project read
-// while holding product admin for a single product.
+// Product roles are independent of project roles.
 type ProductRole int32
 
 const (
@@ -479,10 +477,9 @@ type ProductRoleAssignment struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Product the role applies to.
 	Product Product `protobuf:"varint,1,opt,name=product,proto3,enum=fits.api.v1.Product" json:"product,omitempty"`
-	// ProductUuid is the id of the product instance, exposed by the product
-	// service as `uuid`, or `id` when it is not a uuid.
+	// UUID of the product instance (or id when the product does not use UUIDs).
 	ProductUuid string `protobuf:"bytes,2,opt,name=product_uuid,json=productUuid,proto3" json:"product_uuid,omitempty"`
-	// ProjectUuid of the project the product belongs to.
+	// UUID of the project the product belongs to.
 	ProjectUuid string `protobuf:"bytes,3,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
 	// Role granted on the product.
 	Role          ProductRole `protobuf:"varint,4,opt,name=role,proto3,enum=fits.api.v1.ProductRole" json:"role,omitempty"`
@@ -928,8 +925,7 @@ var (
 	//
 	// repeated fits.api.v1.ProductRole product_roles = 51005;
 	E_ProductRoles = &file_fits_api_v1_common_proto_extTypes[5]
-	// Product defines the product a product scoped method acts on.
-	// Required whenever product_roles is set.
+	// Product defines the product a product scoped method acts on. Required whenever product_roles is set.
 	//
 	// optional fits.api.v1.Product product = 51006;
 	E_Product = &file_fits_api_v1_common_proto_extTypes[6]

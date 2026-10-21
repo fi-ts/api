@@ -1448,15 +1448,14 @@ the list response contains then the page number for the next page. </p></td>
                   <td>product_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>ProductUuid is the id of the product instance, exposed by the product
-service as `uuid`, or `id` when it is not a uuid. </p></td>
+                  <td><p>UUID of the product instance (or id when the product does not use UUIDs). </p></td>
                 </tr>
               
                 <tr>
                   <td>project_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>ProjectUuid of the project the product belongs to. </p></td>
+                  <td><p>UUID of the project the product belongs to. </p></td>
                 </tr>
               
                 <tr>
@@ -1627,7 +1626,7 @@ and fetches the most recent entity before updating with the given values with th
         </table>
       
         <h3 id="fits.api.v1.Product">Product</h3>
-        <p>Product identifies the resource type a product scoped method acts on.</p><p>A product is always a single resource instance within a project; its id is</p><p>carried by the request as the `uuid` field, or `id` when it is not a uuid.</p>
+        <p>Product identifies the resource type a product scoped method acts on.</p><p>The product instance id is carried by the request as `uuid`, or `id` when it is not a uuid.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -1656,7 +1655,7 @@ and fetches the most recent entity before updating with the given values with th
         </table>
       
         <h3 id="fits.api.v1.ProductRole">ProductRole</h3>
-        <p>ProductRole specifies what role a logged in user needs to call this product scoped service.</p><p>Product roles are independent of project roles: a user may hold project read</p><p>while holding product admin for a single product.</p>
+        <p>ProductRole specifies what role a logged in user needs to call this product scoped service.</p><p>Product roles are independent of project roles.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -1835,8 +1834,7 @@ having a direct membership within the tenant.</p></td>
                 <td><a href="#fits.api.v1.Product">Product</a></td>
                 <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
                 <td>51006</td>
-                <td><p>Product defines the product a product scoped method acts on.
-Required whenever product_roles is set.</p></td>
+                <td><p>Product defines the product a product scoped method acts on. Required whenever product_roles is set.</p></td>
               </tr>
             
               <tr>
@@ -4303,7 +4301,7 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
         
       
         <h3 id="fits.api.pcvm.v1.PublicCloudVMServiceDeleteResponse">PublicCloudVMServiceDeleteResponse</h3>
-        <p>The response after deleting a VM.</p><p>The VM is deleted immediately will not be able to be requested.</p>
+        <p>The response after deleting a VM.</p>
 
         
 
@@ -4475,8 +4473,7 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                   <td>size</td>
                   <td><a href="#fits.api.pcvm.v1.Size">Size</a></td>
                   <td>optional</td>
-                  <td><p>Size of the VM. The new size must be bigger or equal than before.
-Downgrades are not possible. </p></td>
+                  <td><p>Size of the VM. Downgrades are not possible. </p></td>
                 </tr>
               
             </tbody>
@@ -4653,14 +4650,14 @@ Downgrades are not possible. </p></td>
               <tr>
                 <td>OPERATION_ERROR</td>
                 <td>5</td>
-                <td><p>OPERATION_ERROR: the</p></td>
+                <td><p>OPERATION_ERROR: the VM is in an error state.</p></td>
               </tr>
             
           </tbody>
         </table>
       
         <h3 id="fits.api.pcvm.v1.Size">Size</h3>
-        <p>Size specifies the size of the VM machine</p>
+        <p>Size specifies the size of the VM.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -4717,7 +4714,7 @@ Downgrades are not possible. </p></td>
               <tr>
                 <td>STATE_WARNING</td>
                 <td>2</td>
-                <td><p>STATE_HEALTHY: there are some health warnings for this VM.</p></td>
+                <td><p>STATE_WARNING: there are some health warnings for this VM.</p></td>
               </tr>
             
               <tr>
@@ -4734,7 +4731,7 @@ Downgrades are not possible. </p></td>
 
       
         <h3 id="fits.api.pcvm.v1.PublicCloudVMService">PublicCloudVMService</h3>
-        <p>VMService provides VM operations.</p>
+        <p>PublicCloudVMService provides VM operations.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -4780,16 +4777,14 @@ Downgrades are not possible. </p></td>
                 <td>ValidateCreate</td>
                 <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateRequest">PublicCloudVMServiceValidateCreateRequest</a></td>
                 <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateResponse">PublicCloudVMServiceValidateCreateResponse</a></td>
-                <td><p>Validates a VM create request without creating anything. Intended for
-form pre-checks; the create endpoint validates again before executing.</p></td>
+                <td><p>Validates a VM create request without creating anything.</p></td>
               </tr>
             
               <tr>
                 <td>ValidateUpdate</td>
                 <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateRequest">PublicCloudVMServiceValidateUpdateRequest</a></td>
                 <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateResponse">PublicCloudVMServiceValidateUpdateResponse</a></td>
-                <td><p>Validates a VM update request without updating anything. Intended for
-form pre-checks; the update endpoint validates again before executing.</p></td>
+                <td><p>Validates a VM update request without updating anything.</p></td>
               </tr>
             
           </tbody>

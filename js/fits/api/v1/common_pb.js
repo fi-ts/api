@@ -151,8 +151,7 @@ export var OperatorRole;
 export const OperatorRoleSchema = /*@__PURE__*/ enumDesc(file_fits_api_v1_common, 2);
 /**
  * Product identifies the resource type a product scoped method acts on.
- * A product is always a single resource instance within a project; its id is
- * carried by the request as the `uuid` field, or `id` when it is not a uuid.
+ * The product instance id is carried by the request as `uuid`, or `id` when it is not a uuid.
  *
  * @generated from enum fits.api.v1.Product
  */
@@ -183,8 +182,7 @@ export var Product;
 export const ProductSchema = /*@__PURE__*/ enumDesc(file_fits_api_v1_common, 3);
 /**
  * ProductRole specifies what role a logged in user needs to call this product scoped service.
- * Product roles are independent of project roles: a user may hold project read
- * while holding product admin for a single product.
+ * Product roles are independent of project roles.
  *
  * @generated from enum fits.api.v1.ProductRole
  */
@@ -350,8 +348,7 @@ export const auditing = /*@__PURE__*/ extDesc(file_fits_api_v1_common, 4);
  */
 export const product_roles = /*@__PURE__*/ extDesc(file_fits_api_v1_common, 5);
 /**
- * Product defines the product a product scoped method acts on.
- * Required whenever product_roles is set.
+ * Product defines the product a product scoped method acts on. Required whenever product_roles is set.
  *
  * @generated from extension: fits.api.v1.Product product = 51006;
  */

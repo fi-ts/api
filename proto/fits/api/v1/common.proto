@@ -46,8 +46,7 @@ enum OperatorRole {
 }
 
 // Product identifies the resource type a product scoped method acts on.
-// A product is always a single resource instance within a project; its id is
-// carried by the request as the `uuid` field, or `id` when it is not a uuid.
+// The product instance id is carried by the request as `uuid`, or `id` when it is not a uuid.
 enum Product {
   // PRODUCT_UNSPECIFIED is not specified
   PRODUCT_UNSPECIFIED = 0;
@@ -58,8 +57,7 @@ enum Product {
 }
 
 // ProductRole specifies what role a logged in user needs to call this product scoped service.
-// Product roles are independent of project roles: a user may hold project read
-// while holding product admin for a single product.
+// Product roles are independent of project roles.
 enum ProductRole {
   // PRODUCT_ROLE_UNSPECIFIED is not specified
   PRODUCT_ROLE_UNSPECIFIED = 0;
@@ -107,8 +105,7 @@ extend google.protobuf.MethodOptions {
   Auditing auditing = 51004;
   // ProductRoles are used to define which product role a logged in user must provide to call this method
   repeated ProductRole product_roles = 51005;
-  // Product defines the product a product scoped method acts on.
-  // Required whenever product_roles is set.
+  // Product defines the product a product scoped method acts on. Required whenever product_roles is set.
   Product product = 51006;
 }
 
@@ -116,10 +113,9 @@ extend google.protobuf.MethodOptions {
 message ProductRoleAssignment {
   // Product the role applies to.
   Product product = 1 [(buf.validate.field).enum.defined_only = true];
-  // ProductUuid is the id of the product instance, exposed by the product
-  // service as `uuid`, or `id` when it is not a uuid.
+  // UUID of the product instance (or id when the product does not use UUIDs).
   string product_uuid = 2 [(buf.validate.field).string = {max_len: 256}];
-  // ProjectUuid of the project the product belongs to.
+  // UUID of the project the product belongs to.
   string project_uuid = 3 [(buf.validate.field).string.uuid = true];
   // Role granted on the product.
   ProductRole role = 4 [(buf.validate.field).enum.defined_only = true];

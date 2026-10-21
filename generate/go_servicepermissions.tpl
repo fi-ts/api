@@ -163,16 +163,13 @@ func GetProjectFromRequest(req connect.AnyRequest) (string, bool) {
 	switch rq := req.Any().(type) {
 	case interface{ GetProjectUuid() string }:
 		return rq.GetProjectUuid(), true
-		// TODO: all services should use project_uuid; drop the GetProject
-		// fallback once every request is streamlined.
 	case interface{ GetProject() string }:
 		return rq.GetProject(), true
 	}
 	return "", false
 }
 
-// GetProductFromRequest returns the id of the product a product scoped method
-// acts on. The id is the request's uuid, or id when it is not a uuid.
+// GetProductFromRequest returns the product instance id from a product scoped request.
 func GetProductFromRequest(req connect.AnyRequest) (string, bool) {
 	if !IsProductScope(req) {
 		return "", false

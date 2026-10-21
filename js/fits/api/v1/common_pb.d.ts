@@ -18,14 +18,13 @@ export type ProductRoleAssignment = Message<"fits.api.v1.ProductRoleAssignment">
      */
     product: Product;
     /**
-     * ProductUuid is the id of the product instance, exposed by the product
-     * service as `uuid`, or `id` when it is not a uuid.
+     * UUID of the product instance (or id when the product does not use UUIDs).
      *
      * @generated from field: string product_uuid = 2;
      */
     productUuid: string;
     /**
-     * ProjectUuid of the project the product belongs to.
+     * UUID of the project the product belongs to.
      *
      * @generated from field: string project_uuid = 3;
      */
@@ -282,8 +281,7 @@ export declare enum OperatorRole {
 export declare const OperatorRoleSchema: GenEnum<OperatorRole>;
 /**
  * Product identifies the resource type a product scoped method acts on.
- * A product is always a single resource instance within a project; its id is
- * carried by the request as the `uuid` field, or `id` when it is not a uuid.
+ * The product instance id is carried by the request as `uuid`, or `id` when it is not a uuid.
  *
  * @generated from enum fits.api.v1.Product
  */
@@ -313,8 +311,7 @@ export declare enum Product {
 export declare const ProductSchema: GenEnum<Product>;
 /**
  * ProductRole specifies what role a logged in user needs to call this product scoped service.
- * Product roles are independent of project roles: a user may hold project read
- * while holding product admin for a single product.
+ * Product roles are independent of project roles.
  *
  * @generated from enum fits.api.v1.ProductRole
  */
@@ -476,8 +473,7 @@ export declare const auditing: GenExtension<MethodOptions, Auditing>;
  */
 export declare const product_roles: GenExtension<MethodOptions, ProductRole[]>;
 /**
- * Product defines the product a product scoped method acts on.
- * Required whenever product_roles is set.
+ * Product defines the product a product scoped method acts on. Required whenever product_roles is set.
  *
  * @generated from extension: fits.api.v1.Product product = 51006;
  */
