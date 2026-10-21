@@ -2,15 +2,15 @@ import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobu
 import type { Labels, Meta, Paging, UpdateLabels, UpdateMeta } from "../../v1/common_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 /**
- * Describes the file fits/api/vm/v1/vm.proto.
+ * Describes the file fits/api/pcvm/v1/vm.proto.
  */
-export declare const file_fits_api_vm_v1_vm: GenFile;
+export declare const file_fits_api_pcvm_v1_vm: GenFile;
 /**
  * The VM resource.
  *
- * @generated from message fits.api.vm.v1.VM
+ * @generated from message fits.api.pcvm.v1.VM
  */
-export type VM = Message<"fits.api.vm.v1.VM"> & {
+export type VM = Message<"fits.api.pcvm.v1.VM"> & {
     /**
      * UUID of this VM.
      *
@@ -45,31 +45,31 @@ export type VM = Message<"fits.api.vm.v1.VM"> & {
     /**
      * Size of the VM.
      *
-     * @generated from field: fits.api.vm.v1.Size size = 6;
+     * @generated from field: fits.api.pcvm.v1.Size size = 6;
      */
     size: Size;
     /**
      * The status of the VM.
      *
-     * @generated from field: fits.api.vm.v1.Status status = 7;
+     * @generated from field: fits.api.pcvm.v1.Status status = 7;
      */
     status?: Status | undefined;
 };
 /**
- * Describes the message fits.api.vm.v1.VM.
+ * Describes the message fits.api.pcvm.v1.VM.
  * Use `create(VMSchema)` to create a new message.
  */
 export declare const VMSchema: GenMessage<VM>;
 /**
  * The Status of a VM.
  *
- * @generated from message fits.api.vm.v1.Status
+ * @generated from message fits.api.pcvm.v1.Status
  */
-export type Status = Message<"fits.api.vm.v1.Status"> & {
+export type Status = Message<"fits.api.pcvm.v1.Status"> & {
     /**
      * The state of the VM status.
      *
-     * @generated from field: fits.api.vm.v1.State state = 1;
+     * @generated from field: fits.api.pcvm.v1.State state = 1;
      */
     state: State;
     /**
@@ -81,21 +81,21 @@ export type Status = Message<"fits.api.vm.v1.Status"> & {
     /**
      * The current operation running on the VM.
      *
-     * @generated from field: fits.api.vm.v1.Operation operation = 3;
+     * @generated from field: fits.api.pcvm.v1.Operation operation = 3;
      */
     operation: Operation;
 };
 /**
- * Describes the message fits.api.vm.v1.Status.
+ * Describes the message fits.api.pcvm.v1.Status.
  * Use `create(StatusSchema)` to create a new message.
  */
 export declare const StatusSchema: GenMessage<Status>;
 /**
  * The VM query parameters to filter the list of results.
  *
- * @generated from message fits.api.vm.v1.VMQuery
+ * @generated from message fits.api.pcvm.v1.VMQuery
  */
-export type VMQuery = Message<"fits.api.vm.v1.VMQuery"> & {
+export type VMQuery = Message<"fits.api.pcvm.v1.VMQuery"> & {
     /**
      * The name of the VMs.
      *
@@ -110,16 +110,16 @@ export type VMQuery = Message<"fits.api.vm.v1.VMQuery"> & {
     labels?: Labels | undefined;
 };
 /**
- * Describes the message fits.api.vm.v1.VMQuery.
+ * Describes the message fits.api.pcvm.v1.VMQuery.
  * Use `create(VMQuerySchema)` to create a new message.
  */
 export declare const VMQuerySchema: GenMessage<VMQuery>;
 /**
  * Request to get a VM by UUID.
  *
- * @generated from message fits.api.vm.v1.VMServiceGetRequest
+ * @generated from message fits.api.pcvm.v1.VMServiceGetRequest
  */
-export type VMServiceGetRequest = Message<"fits.api.vm.v1.VMServiceGetRequest"> & {
+export type VMServiceGetRequest = Message<"fits.api.pcvm.v1.VMServiceGetRequest"> & {
     /**
      * UUID of the VM to get.
      *
@@ -134,34 +134,34 @@ export type VMServiceGetRequest = Message<"fits.api.vm.v1.VMServiceGetRequest"> 
     projectUuid: string;
 };
 /**
- * Describes the message fits.api.vm.v1.VMServiceGetRequest.
+ * Describes the message fits.api.pcvm.v1.VMServiceGetRequest.
  * Use `create(VMServiceGetRequestSchema)` to create a new message.
  */
 export declare const VMServiceGetRequestSchema: GenMessage<VMServiceGetRequest>;
 /**
  * Response containing the requested VM.
  *
- * @generated from message fits.api.vm.v1.VMServiceGetResponse
+ * @generated from message fits.api.pcvm.v1.VMServiceGetResponse
  */
-export type VMServiceGetResponse = Message<"fits.api.vm.v1.VMServiceGetResponse"> & {
+export type VMServiceGetResponse = Message<"fits.api.pcvm.v1.VMServiceGetResponse"> & {
     /**
      * The VM.
      *
-     * @generated from field: fits.api.vm.v1.VM vm = 1;
+     * @generated from field: fits.api.pcvm.v1.VM vm = 1;
      */
     vm?: VM | undefined;
 };
 /**
- * Describes the message fits.api.vm.v1.VMServiceGetResponse.
+ * Describes the message fits.api.pcvm.v1.VMServiceGetResponse.
  * Use `create(VMServiceGetResponseSchema)` to create a new message.
  */
 export declare const VMServiceGetResponseSchema: GenMessage<VMServiceGetResponse>;
 /**
  * The request to create a new VM.
  *
- * @generated from message fits.api.vm.v1.VMServiceCreateRequest
+ * @generated from message fits.api.pcvm.v1.VMServiceCreateRequest
  */
-export type VMServiceCreateRequest = Message<"fits.api.vm.v1.VMServiceCreateRequest"> & {
+export type VMServiceCreateRequest = Message<"fits.api.pcvm.v1.VMServiceCreateRequest"> & {
     /**
      * UUID of the project this VM belongs to.
      *
@@ -183,39 +183,39 @@ export type VMServiceCreateRequest = Message<"fits.api.vm.v1.VMServiceCreateRequ
     /**
      * Size of the VM.
      *
-     * @generated from field: fits.api.vm.v1.Size size = 4;
+     * @generated from field: fits.api.pcvm.v1.Size size = 4;
      */
     size: Size;
 };
 /**
- * Describes the message fits.api.vm.v1.VMServiceCreateRequest.
+ * Describes the message fits.api.pcvm.v1.VMServiceCreateRequest.
  * Use `create(VMServiceCreateRequestSchema)` to create a new message.
  */
 export declare const VMServiceCreateRequestSchema: GenMessage<VMServiceCreateRequest>;
 /**
  * The response when creating a new VM.
  *
- * @generated from message fits.api.vm.v1.VMServiceCreateResponse
+ * @generated from message fits.api.pcvm.v1.VMServiceCreateResponse
  */
-export type VMServiceCreateResponse = Message<"fits.api.vm.v1.VMServiceCreateResponse"> & {
+export type VMServiceCreateResponse = Message<"fits.api.pcvm.v1.VMServiceCreateResponse"> & {
     /**
      * The VM just created.
      *
-     * @generated from field: fits.api.vm.v1.VM vm = 1;
+     * @generated from field: fits.api.pcvm.v1.VM vm = 1;
      */
     vm?: VM | undefined;
 };
 /**
- * Describes the message fits.api.vm.v1.VMServiceCreateResponse.
+ * Describes the message fits.api.pcvm.v1.VMServiceCreateResponse.
  * Use `create(VMServiceCreateResponseSchema)` to create a new message.
  */
 export declare const VMServiceCreateResponseSchema: GenMessage<VMServiceCreateResponse>;
 /**
  * The request to list and filter VMs.
  *
- * @generated from message fits.api.vm.v1.VMServiceListRequest
+ * @generated from message fits.api.pcvm.v1.VMServiceListRequest
  */
-export type VMServiceListRequest = Message<"fits.api.vm.v1.VMServiceListRequest"> & {
+export type VMServiceListRequest = Message<"fits.api.pcvm.v1.VMServiceListRequest"> & {
     /**
      * UUID of the project this VM belongs to.
      *
@@ -231,39 +231,39 @@ export type VMServiceListRequest = Message<"fits.api.vm.v1.VMServiceListRequest"
     /**
      * Query defines how to filter the VMs.
      *
-     * @generated from field: fits.api.vm.v1.VMQuery query = 3;
+     * @generated from field: fits.api.pcvm.v1.VMQuery query = 3;
      */
     query?: VMQuery | undefined;
 };
 /**
- * Describes the message fits.api.vm.v1.VMServiceListRequest.
+ * Describes the message fits.api.pcvm.v1.VMServiceListRequest.
  * Use `create(VMServiceListRequestSchema)` to create a new message.
  */
 export declare const VMServiceListRequestSchema: GenMessage<VMServiceListRequest>;
 /**
  * The response when listing VMs.
  *
- * @generated from message fits.api.vm.v1.VMServiceListResponse
+ * @generated from message fits.api.pcvm.v1.VMServiceListResponse
  */
-export type VMServiceListResponse = Message<"fits.api.vm.v1.VMServiceListResponse"> & {
+export type VMServiceListResponse = Message<"fits.api.pcvm.v1.VMServiceListResponse"> & {
     /**
      * VMs is a list of filtered VMs resources.
      *
-     * @generated from field: repeated fits.api.vm.v1.VM vms = 1;
+     * @generated from field: repeated fits.api.pcvm.v1.VM vms = 1;
      */
     vms: VM[];
 };
 /**
- * Describes the message fits.api.vm.v1.VMServiceListResponse.
+ * Describes the message fits.api.pcvm.v1.VMServiceListResponse.
  * Use `create(VMServiceListResponseSchema)` to create a new message.
  */
 export declare const VMServiceListResponseSchema: GenMessage<VMServiceListResponse>;
 /**
  * The request to update a VM.
  *
- * @generated from message fits.api.vm.v1.VMServiceUpdateRequest
+ * @generated from message fits.api.pcvm.v1.VMServiceUpdateRequest
  */
-export type VMServiceUpdateRequest = Message<"fits.api.vm.v1.VMServiceUpdateRequest"> & {
+export type VMServiceUpdateRequest = Message<"fits.api.pcvm.v1.VMServiceUpdateRequest"> & {
     /**
      * UUID of the VM to update.
      *
@@ -298,39 +298,39 @@ export type VMServiceUpdateRequest = Message<"fits.api.vm.v1.VMServiceUpdateRequ
      * Size of the VM. The new size must be bigger or equal than before.
      * Downgrades are not possible.
      *
-     * @generated from field: optional fits.api.vm.v1.Size size = 6;
+     * @generated from field: optional fits.api.pcvm.v1.Size size = 6;
      */
     size?: Size | undefined;
 };
 /**
- * Describes the message fits.api.vm.v1.VMServiceUpdateRequest.
+ * Describes the message fits.api.pcvm.v1.VMServiceUpdateRequest.
  * Use `create(VMServiceUpdateRequestSchema)` to create a new message.
  */
 export declare const VMServiceUpdateRequestSchema: GenMessage<VMServiceUpdateRequest>;
 /**
  * The response when updating a VM.
  *
- * @generated from message fits.api.vm.v1.VMServiceUpdateResponse
+ * @generated from message fits.api.pcvm.v1.VMServiceUpdateResponse
  */
-export type VMServiceUpdateResponse = Message<"fits.api.vm.v1.VMServiceUpdateResponse"> & {
+export type VMServiceUpdateResponse = Message<"fits.api.pcvm.v1.VMServiceUpdateResponse"> & {
     /**
      * The updated VM.
      *
-     * @generated from field: fits.api.vm.v1.VM vm = 1;
+     * @generated from field: fits.api.pcvm.v1.VM vm = 1;
      */
     vm?: VM | undefined;
 };
 /**
- * Describes the message fits.api.vm.v1.VMServiceUpdateResponse.
+ * Describes the message fits.api.pcvm.v1.VMServiceUpdateResponse.
  * Use `create(VMServiceUpdateResponseSchema)` to create a new message.
  */
 export declare const VMServiceUpdateResponseSchema: GenMessage<VMServiceUpdateResponse>;
 /**
  * The request to delete a VM.
  *
- * @generated from message fits.api.vm.v1.VMServiceDeleteRequest
+ * @generated from message fits.api.pcvm.v1.VMServiceDeleteRequest
  */
-export type VMServiceDeleteRequest = Message<"fits.api.vm.v1.VMServiceDeleteRequest"> & {
+export type VMServiceDeleteRequest = Message<"fits.api.pcvm.v1.VMServiceDeleteRequest"> & {
     /**
      * UUID of the VM to delete.
      *
@@ -345,7 +345,7 @@ export type VMServiceDeleteRequest = Message<"fits.api.vm.v1.VMServiceDeleteRequ
     projectUuid: string;
 };
 /**
- * Describes the message fits.api.vm.v1.VMServiceDeleteRequest.
+ * Describes the message fits.api.pcvm.v1.VMServiceDeleteRequest.
  * Use `create(VMServiceDeleteRequestSchema)` to create a new message.
  */
 export declare const VMServiceDeleteRequestSchema: GenMessage<VMServiceDeleteRequest>;
@@ -353,18 +353,18 @@ export declare const VMServiceDeleteRequestSchema: GenMessage<VMServiceDeleteReq
  * The response after deleting a VM.
  * The VM is deleted immediately will not be able to be requested.
  *
- * @generated from message fits.api.vm.v1.VMServiceDeleteResponse
+ * @generated from message fits.api.pcvm.v1.VMServiceDeleteResponse
  */
-export type VMServiceDeleteResponse = Message<"fits.api.vm.v1.VMServiceDeleteResponse"> & {};
+export type VMServiceDeleteResponse = Message<"fits.api.pcvm.v1.VMServiceDeleteResponse"> & {};
 /**
- * Describes the message fits.api.vm.v1.VMServiceDeleteResponse.
+ * Describes the message fits.api.pcvm.v1.VMServiceDeleteResponse.
  * Use `create(VMServiceDeleteResponseSchema)` to create a new message.
  */
 export declare const VMServiceDeleteResponseSchema: GenMessage<VMServiceDeleteResponse>;
 /**
  * The health state of the VM.
  *
- * @generated from enum fits.api.vm.v1.State
+ * @generated from enum fits.api.pcvm.v1.State
  */
 export declare enum State {
     /**
@@ -393,13 +393,13 @@ export declare enum State {
     ERROR = 3
 }
 /**
- * Describes the enum fits.api.vm.v1.State.
+ * Describes the enum fits.api.pcvm.v1.State.
  */
 export declare const StateSchema: GenEnum<State>;
 /**
  * The operation of the VM.
  *
- * @generated from enum fits.api.vm.v1.Operation
+ * @generated from enum fits.api.pcvm.v1.Operation
  */
 export declare enum Operation {
     /**
@@ -440,13 +440,13 @@ export declare enum Operation {
     ERROR = 5
 }
 /**
- * Describes the enum fits.api.vm.v1.Operation.
+ * Describes the enum fits.api.pcvm.v1.Operation.
  */
 export declare const OperationSchema: GenEnum<Operation>;
 /**
  * Size specifies the size of the VM machine
  *
- * @generated from enum fits.api.vm.v1.Size
+ * @generated from enum fits.api.pcvm.v1.Size
  */
 export declare enum Size {
     /**
@@ -475,19 +475,19 @@ export declare enum Size {
     LARGE = 3
 }
 /**
- * Describes the enum fits.api.vm.v1.Size.
+ * Describes the enum fits.api.pcvm.v1.Size.
  */
 export declare const SizeSchema: GenEnum<Size>;
 /**
  * VMService provides VM operations.
  *
- * @generated from service fits.api.vm.v1.VMService
+ * @generated from service fits.api.pcvm.v1.VMService
  */
 export declare const VMService: GenService<{
     /**
      * Returns the VM with the specified UUID.
      *
-     * @generated from rpc fits.api.vm.v1.VMService.Get
+     * @generated from rpc fits.api.pcvm.v1.VMService.Get
      */
     get: {
         methodKind: "unary";
@@ -497,7 +497,7 @@ export declare const VMService: GenService<{
     /**
      * Creates a new VM.
      *
-     * @generated from rpc fits.api.vm.v1.VMService.Create
+     * @generated from rpc fits.api.pcvm.v1.VMService.Create
      */
     create: {
         methodKind: "unary";
@@ -507,7 +507,7 @@ export declare const VMService: GenService<{
     /**
      * Returns the list of all VMs.
      *
-     * @generated from rpc fits.api.vm.v1.VMService.List
+     * @generated from rpc fits.api.pcvm.v1.VMService.List
      */
     list: {
         methodKind: "unary";
@@ -517,7 +517,7 @@ export declare const VMService: GenService<{
     /**
      * Updates a VM.
      *
-     * @generated from rpc fits.api.vm.v1.VMService.Update
+     * @generated from rpc fits.api.pcvm.v1.VMService.Update
      */
     update: {
         methodKind: "unary";
@@ -527,7 +527,7 @@ export declare const VMService: GenService<{
     /**
      * Deletes a VM immediately.
      *
-     * @generated from rpc fits.api.vm.v1.VMService.Delete
+     * @generated from rpc fits.api.pcvm.v1.VMService.Delete
      */
     delete: {
         methodKind: "unary";

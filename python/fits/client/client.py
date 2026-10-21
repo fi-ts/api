@@ -9,14 +9,14 @@ import fits.api.mvm.v1.mvm_connect as fits_api_mvm_v1_mvm_connect
 import fits.api.mvm.v1.os_connect as fits_api_mvm_v1_os_connect
 import fits.api.mvm.v1.vlan_connect as fits_api_mvm_v1_vlan_connect
 
+import fits.api.pcvm.v1.vm_connect as fits_api_pcvm_v1_vm_connect
+
 import fits.api.v1.health_connect as fits_api_v1_health_connect
 import fits.api.v1.method_connect as fits_api_v1_method_connect
 import fits.api.v1.project_connect as fits_api_v1_project_connect
 import fits.api.v1.tenant_connect as fits_api_v1_tenant_connect
 import fits.api.v1.token_connect as fits_api_v1_token_connect
 import fits.api.v1.version_connect as fits_api_v1_version_connect
-
-import fits.api.vm.v1.vm_connect as fits_api_vm_v1_vm_connect
 
 
 
@@ -37,11 +37,11 @@ class Client:
     def apimvmv1(self):
         return self._Apimvmv1(baseurl=self._baseurl, client=self._client, interceptors=self._interceptors)
 
+    def apipcvmv1(self):
+        return self._Apipcvmv1(baseurl=self._baseurl, client=self._client, interceptors=self._interceptors)
+
     def apiv1(self):
         return self._Apiv1(baseurl=self._baseurl, client=self._client, interceptors=self._interceptors)
-
-    def apivmv1(self):
-        return self._Apivmv1(baseurl=self._baseurl, client=self._client, interceptors=self._interceptors)
 
 
 
@@ -71,6 +71,17 @@ class Client:
             return fits_api_mvm_v1_vlan_connect.VLANServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
 
+    class _Apipcvmv1:
+        def __init__(self, baseurl: str, client: pyqwest.SyncClient = None, interceptors: list = []):
+            self._baseurl = baseurl
+            self._client = client
+            self._interceptors = list(interceptors)
+
+
+        def vm(self):
+            return fits_api_pcvm_v1_vm_connect.VMServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
+
+
     class _Apiv1:
         def __init__(self, baseurl: str, client: pyqwest.SyncClient = None, interceptors: list = []):
             self._baseurl = baseurl
@@ -95,16 +106,5 @@ class Client:
 
         def version(self):
             return fits_api_v1_version_connect.VersionServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
-
-
-    class _Apivmv1:
-        def __init__(self, baseurl: str, client: pyqwest.SyncClient = None, interceptors: list = []):
-            self._baseurl = baseurl
-            self._client = client
-            self._interceptors = list(interceptors)
-
-
-        def vm(self):
-            return fits_api_vm_v1_vm_connect.VMServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
 

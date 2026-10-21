@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package fits.api.vm.v1;
+package fits.api.pcvm.v1;
 
 import "buf/validate/validate.proto";
 import "fits/api/v1/common.proto";

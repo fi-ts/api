@@ -16,13 +16,13 @@ import { LocationService as Apimvmv1LocationService } from "./fits/api/mvm/v1/lo
 import { MVMService as Apimvmv1MVMService } from "./fits/api/mvm/v1/mvm_pb";
 import { OSService as Apimvmv1OSService } from "./fits/api/mvm/v1/os_pb";
 import { VLANService as Apimvmv1VLANService } from "./fits/api/mvm/v1/vlan_pb";
+import { VMService as Apipcvmv1VMService } from "./fits/api/pcvm/v1/vm_pb";
 import { HealthService as Apiv1HealthService } from "./fits/api/v1/health_pb";
 import { MethodService as Apiv1MethodService } from "./fits/api/v1/method_pb";
 import { ProjectService as Apiv1ProjectService } from "./fits/api/v1/project_pb";
 import { TenantService as Apiv1TenantService } from "./fits/api/v1/tenant_pb";
 import { TokenService as Apiv1TokenService } from "./fits/api/v1/token_pb";
 import { VersionService as Apiv1VersionService } from "./fits/api/v1/version_pb";
-import { VMService as Apivmv1VMService } from "./fits/api/vm/v1/vm_pb";
 function authInterceptor(token) {
     return (next) => (req) => __awaiter(this, void 0, void 0, function* () {
         req.header.set("Authorization", `Bearer ${token}`);
@@ -57,17 +57,17 @@ class ClientImpl {
         }
         return this._apimvmv1;
     }
+    apipcvmv1() {
+        if (!this._apipcvmv1) {
+            this._apipcvmv1 = new Apipcvmv1Impl(this.transport);
+        }
+        return this._apipcvmv1;
+    }
     apiv1() {
         if (!this._apiv1) {
             this._apiv1 = new Apiv1Impl(this.transport);
         }
         return this._apiv1;
-    }
-    apivmv1() {
-        if (!this._apivmv1) {
-            this._apivmv1 = new Apivmv1Impl(this.transport);
-        }
-        return this._apivmv1;
     }
 }
 class Apimvmv1Impl {
@@ -111,6 +111,17 @@ class Apimvmv1Impl {
         return this._vlan;
     }
 }
+class Apipcvmv1Impl {
+    constructor(transport) {
+        this.transport = transport;
+    }
+    vm() {
+        if (!this._vm) {
+            this._vm = createClient(Apipcvmv1VMService, this.transport);
+        }
+        return this._vm;
+    }
+}
 class Apiv1Impl {
     constructor(transport) {
         this.transport = transport;
@@ -150,16 +161,5 @@ class Apiv1Impl {
             this._version = createClient(Apiv1VersionService, this.transport);
         }
         return this._version;
-    }
-}
-class Apivmv1Impl {
-    constructor(transport) {
-        this.transport = transport;
-    }
-    vm() {
-        if (!this._vm) {
-            this._vm = createClient(Apivmv1VMService, this.transport);
-        }
-        return this._vm;
     }
 }

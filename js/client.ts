@@ -19,6 +19,10 @@ import { VLANService as Apimvmv1VLANService } from "./fits/api/mvm/v1/vlan_pb";
 
 
 
+import { VMService as Apipcvmv1VMService } from "./fits/api/pcvm/v1/vm_pb";
+
+
+
 import { HealthService as Apiv1HealthService } from "./fits/api/v1/health_pb";
 
 import { MethodService as Apiv1MethodService } from "./fits/api/v1/method_pb";
@@ -33,10 +37,6 @@ import { VersionService as Apiv1VersionService } from "./fits/api/v1/version_pb"
 
 
 
-import { VMService as Apivmv1VMService } from "./fits/api/vm/v1/vm_pb";
-
-
-
 export interface ClientConfig {
   baseUrl: string;
   token?: string;
@@ -47,9 +47,9 @@ export interface Client {
 
   apimvmv1(): Apimvmv1;
 
-  apiv1(): Apiv1;
+  apipcvmv1(): Apipcvmv1;
 
-  apivmv1(): Apivmv1;
+  apiv1(): Apiv1;
 
 }
 
@@ -71,6 +71,13 @@ export interface Apimvmv1 {
 }
 
 
+export interface Apipcvmv1 {
+
+  vm(): ConnectClient<typeof Apipcvmv1VMService>;
+
+}
+
+
 export interface Apiv1 {
 
   health(): ConnectClient<typeof Apiv1HealthService>;
@@ -84,13 +91,6 @@ export interface Apiv1 {
   token(): ConnectClient<typeof Apiv1TokenService>;
 
   version(): ConnectClient<typeof Apiv1VersionService>;
-
-}
-
-
-export interface Apivmv1 {
-
-  vm(): ConnectClient<typeof Apivmv1VMService>;
 
 }
 
@@ -132,9 +132,9 @@ class ClientImpl implements Client {
 
   private _apimvmv1?: Apimvmv1Impl;
 
-  private _apiv1?: Apiv1Impl;
+  private _apipcvmv1?: Apipcvmv1Impl;
 
-  private _apivmv1?: Apivmv1Impl;
+  private _apiv1?: Apiv1Impl;
 
 
   constructor(transport: Transport) {
@@ -149,18 +149,18 @@ class ClientImpl implements Client {
     return this._apimvmv1;
   }
 
+  apipcvmv1(): Apipcvmv1 {
+    if (!this._apipcvmv1) {
+      this._apipcvmv1 = new Apipcvmv1Impl(this.transport);
+    }
+    return this._apipcvmv1;
+  }
+
   apiv1(): Apiv1 {
     if (!this._apiv1) {
       this._apiv1 = new Apiv1Impl(this.transport);
     }
     return this._apiv1;
-  }
-
-  apivmv1(): Apivmv1 {
-    if (!this._apivmv1) {
-      this._apivmv1 = new Apivmv1Impl(this.transport);
-    }
-    return this._apivmv1;
   }
 
 }
@@ -233,6 +233,28 @@ class Apimvmv1Impl implements Apimvmv1 {
 }
 
 
+class Apipcvmv1Impl implements Apipcvmv1 {
+  private transport: Transport;
+
+
+  private _vm?: ConnectClient<typeof Apipcvmv1VMService>;
+
+
+  constructor(transport: Transport) {
+    this.transport = transport;
+  }
+
+
+  vm(): ConnectClient<typeof Apipcvmv1VMService> {
+    if (!this._vm) {
+      this._vm = createClient(Apipcvmv1VMService, this.transport);
+    }
+    return this._vm;
+  }
+
+}
+
+
 class Apiv1Impl implements Apiv1 {
   private transport: Transport;
 
@@ -295,28 +317,6 @@ class Apiv1Impl implements Apiv1 {
       this._version = createClient(Apiv1VersionService, this.transport);
     }
     return this._version;
-  }
-
-}
-
-
-class Apivmv1Impl implements Apivmv1 {
-  private transport: Transport;
-
-
-  private _vm?: ConnectClient<typeof Apivmv1VMService>;
-
-
-  constructor(transport: Transport) {
-    this.transport = transport;
-  }
-
-
-  vm(): ConnectClient<typeof Apivmv1VMService> {
-    if (!this._vm) {
-      this._vm = createClient(Apivmv1VMService, this.transport);
-    }
-    return this._vm;
   }
 
 }
