@@ -33,6 +33,12 @@ class PublicCloudVMService(Protocol):
     async def delete(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceDeleteRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceDeleteResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
+    async def validate_create(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateCreateResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
+    async def validate_update(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateUpdateRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateUpdateResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
 
 class PublicCloudVMServiceASGIApplication(ConnectASGIApplication[PublicCloudVMService]):
     def __init__(self, service: PublicCloudVMService | AsyncGenerator[PublicCloudVMService], *, interceptors: Iterable[Interceptor]=(), read_max_bytes: int | None = None, compressions: Iterable[Compression] | None = None, codecs: Iterable[Codec] | None = None) -> None:
@@ -88,6 +94,26 @@ class PublicCloudVMServiceASGIApplication(ConnectASGIApplication[PublicCloudVMSe
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=svc.delete,
+                ),
+                "/fits.api.pcvm.v1.PublicCloudVMService/ValidateCreate": Endpoint.unary(
+                    method=MethodInfo(
+                        name="ValidateCreate",
+                        service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateCreateRequest,
+                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateCreateResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.validate_create,
+                ),
+                "/fits.api.pcvm.v1.PublicCloudVMService/ValidateUpdate": Endpoint.unary(
+                    method=MethodInfo(
+                        name="ValidateUpdate",
+                        service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateUpdateRequest,
+                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateUpdateResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.validate_update,
                 ),
             },
             interceptors=interceptors,
@@ -203,6 +229,46 @@ class PublicCloudVMServiceClient(ConnectClient):
             timeout_ms=timeout_ms,
         )
 
+    async def validate_create(
+        self,
+        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateCreateRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateCreateResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="ValidateCreate",
+                service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateCreateRequest,
+                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateCreateResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    async def validate_update(
+        self,
+        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateUpdateRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateUpdateResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="ValidateUpdate",
+                service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateUpdateRequest,
+                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateUpdateResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
 
 
 
@@ -217,6 +283,10 @@ class PublicCloudVMServiceSync(Protocol):
     def update(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceUpdateRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceUpdateResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def delete(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceDeleteRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceDeleteResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def validate_create(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateCreateResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def validate_update(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateUpdateRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateUpdateResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
 
@@ -273,6 +343,26 @@ class PublicCloudVMServiceWSGIApplication(ConnectWSGIApplication):
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=service.delete,
+                ),
+                "/fits.api.pcvm.v1.PublicCloudVMService/ValidateCreate": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="ValidateCreate",
+                        service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateCreateRequest,
+                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateCreateResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.validate_create,
+                ),
+                "/fits.api.pcvm.v1.PublicCloudVMService/ValidateUpdate": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="ValidateUpdate",
+                        service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateUpdateRequest,
+                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateUpdateResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.validate_update,
                 ),
             },
             interceptors=interceptors,
@@ -382,6 +472,46 @@ class PublicCloudVMServiceClientSync(ConnectClientSync):
                 service_name="fits.api.pcvm.v1.PublicCloudVMService",
                 input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceDeleteRequest,
                 output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceDeleteResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def validate_create(
+        self,
+        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateCreateRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateCreateResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="ValidateCreate",
+                service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateCreateRequest,
+                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateCreateResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def validate_update(
+        self,
+        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateUpdateRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateUpdateResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="ValidateUpdate",
+                service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateUpdateRequest,
+                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceValidateUpdateResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,

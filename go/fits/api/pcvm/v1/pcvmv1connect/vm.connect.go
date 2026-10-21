@@ -48,6 +48,12 @@ const (
 	// PublicCloudVMServiceDeleteProcedure is the fully-qualified name of the PublicCloudVMService's
 	// Delete RPC.
 	PublicCloudVMServiceDeleteProcedure = "/fits.api.pcvm.v1.PublicCloudVMService/Delete"
+	// PublicCloudVMServiceValidateCreateProcedure is the fully-qualified name of the
+	// PublicCloudVMService's ValidateCreate RPC.
+	PublicCloudVMServiceValidateCreateProcedure = "/fits.api.pcvm.v1.PublicCloudVMService/ValidateCreate"
+	// PublicCloudVMServiceValidateUpdateProcedure is the fully-qualified name of the
+	// PublicCloudVMService's ValidateUpdate RPC.
+	PublicCloudVMServiceValidateUpdateProcedure = "/fits.api.pcvm.v1.PublicCloudVMService/ValidateUpdate"
 )
 
 // PublicCloudVMServiceClient is a client for the fits.api.pcvm.v1.PublicCloudVMService service.
@@ -62,6 +68,12 @@ type PublicCloudVMServiceClient interface {
 	Update(context.Context, *v1.PublicCloudVMServiceUpdateRequest) (*v1.PublicCloudVMServiceUpdateResponse, error)
 	// Deletes a VM immediately.
 	Delete(context.Context, *v1.PublicCloudVMServiceDeleteRequest) (*v1.PublicCloudVMServiceDeleteResponse, error)
+	// Validates a VM create request without creating anything. Intended for
+	// form pre-checks; the create endpoint validates again before executing.
+	ValidateCreate(context.Context, *v1.PublicCloudVMServiceValidateCreateRequest) (*v1.PublicCloudVMServiceValidateCreateResponse, error)
+	// Validates a VM update request without updating anything. Intended for
+	// form pre-checks; the update endpoint validates again before executing.
+	ValidateUpdate(context.Context, *v1.PublicCloudVMServiceValidateUpdateRequest) (*v1.PublicCloudVMServiceValidateUpdateResponse, error)
 }
 
 // NewPublicCloudVMServiceClient constructs a client for the fits.api.pcvm.v1.PublicCloudVMService
@@ -105,16 +117,30 @@ func NewPublicCloudVMServiceClient(httpClient connect.HTTPClient, baseURL string
 			connect.WithSchema(publicCloudVMServiceMethods.ByName("Delete")),
 			connect.WithClientOptions(opts...),
 		),
+		validateCreate: connect.NewClient[v1.PublicCloudVMServiceValidateCreateRequest, v1.PublicCloudVMServiceValidateCreateResponse](
+			httpClient,
+			baseURL+PublicCloudVMServiceValidateCreateProcedure,
+			connect.WithSchema(publicCloudVMServiceMethods.ByName("ValidateCreate")),
+			connect.WithClientOptions(opts...),
+		),
+		validateUpdate: connect.NewClient[v1.PublicCloudVMServiceValidateUpdateRequest, v1.PublicCloudVMServiceValidateUpdateResponse](
+			httpClient,
+			baseURL+PublicCloudVMServiceValidateUpdateProcedure,
+			connect.WithSchema(publicCloudVMServiceMethods.ByName("ValidateUpdate")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // publicCloudVMServiceClient implements PublicCloudVMServiceClient.
 type publicCloudVMServiceClient struct {
-	get    *connect.Client[v1.PublicCloudVMServiceGetRequest, v1.PublicCloudVMServiceGetResponse]
-	create *connect.Client[v1.PublicCloudVMServiceCreateRequest, v1.PublicCloudVMServiceCreateResponse]
-	list   *connect.Client[v1.PublicCloudVMServiceListRequest, v1.PublicCloudVMServiceListResponse]
-	update *connect.Client[v1.PublicCloudVMServiceUpdateRequest, v1.PublicCloudVMServiceUpdateResponse]
-	delete *connect.Client[v1.PublicCloudVMServiceDeleteRequest, v1.PublicCloudVMServiceDeleteResponse]
+	get            *connect.Client[v1.PublicCloudVMServiceGetRequest, v1.PublicCloudVMServiceGetResponse]
+	create         *connect.Client[v1.PublicCloudVMServiceCreateRequest, v1.PublicCloudVMServiceCreateResponse]
+	list           *connect.Client[v1.PublicCloudVMServiceListRequest, v1.PublicCloudVMServiceListResponse]
+	update         *connect.Client[v1.PublicCloudVMServiceUpdateRequest, v1.PublicCloudVMServiceUpdateResponse]
+	delete         *connect.Client[v1.PublicCloudVMServiceDeleteRequest, v1.PublicCloudVMServiceDeleteResponse]
+	validateCreate *connect.Client[v1.PublicCloudVMServiceValidateCreateRequest, v1.PublicCloudVMServiceValidateCreateResponse]
+	validateUpdate *connect.Client[v1.PublicCloudVMServiceValidateUpdateRequest, v1.PublicCloudVMServiceValidateUpdateResponse]
 }
 
 // Get calls fits.api.pcvm.v1.PublicCloudVMService.Get.
@@ -162,6 +188,24 @@ func (c *publicCloudVMServiceClient) Delete(ctx context.Context, req *v1.PublicC
 	return nil, err
 }
 
+// ValidateCreate calls fits.api.pcvm.v1.PublicCloudVMService.ValidateCreate.
+func (c *publicCloudVMServiceClient) ValidateCreate(ctx context.Context, req *v1.PublicCloudVMServiceValidateCreateRequest) (*v1.PublicCloudVMServiceValidateCreateResponse, error) {
+	response, err := c.validateCreate.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
+// ValidateUpdate calls fits.api.pcvm.v1.PublicCloudVMService.ValidateUpdate.
+func (c *publicCloudVMServiceClient) ValidateUpdate(ctx context.Context, req *v1.PublicCloudVMServiceValidateUpdateRequest) (*v1.PublicCloudVMServiceValidateUpdateResponse, error) {
+	response, err := c.validateUpdate.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
 // PublicCloudVMServiceHandler is an implementation of the fits.api.pcvm.v1.PublicCloudVMService
 // service.
 type PublicCloudVMServiceHandler interface {
@@ -175,6 +219,12 @@ type PublicCloudVMServiceHandler interface {
 	Update(context.Context, *v1.PublicCloudVMServiceUpdateRequest) (*v1.PublicCloudVMServiceUpdateResponse, error)
 	// Deletes a VM immediately.
 	Delete(context.Context, *v1.PublicCloudVMServiceDeleteRequest) (*v1.PublicCloudVMServiceDeleteResponse, error)
+	// Validates a VM create request without creating anything. Intended for
+	// form pre-checks; the create endpoint validates again before executing.
+	ValidateCreate(context.Context, *v1.PublicCloudVMServiceValidateCreateRequest) (*v1.PublicCloudVMServiceValidateCreateResponse, error)
+	// Validates a VM update request without updating anything. Intended for
+	// form pre-checks; the update endpoint validates again before executing.
+	ValidateUpdate(context.Context, *v1.PublicCloudVMServiceValidateUpdateRequest) (*v1.PublicCloudVMServiceValidateUpdateResponse, error)
 }
 
 // NewPublicCloudVMServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -214,6 +264,18 @@ func NewPublicCloudVMServiceHandler(svc PublicCloudVMServiceHandler, opts ...con
 		connect.WithSchema(publicCloudVMServiceMethods.ByName("Delete")),
 		connect.WithHandlerOptions(opts...),
 	)
+	publicCloudVMServiceValidateCreateHandler := connect.NewUnaryHandlerSimple(
+		PublicCloudVMServiceValidateCreateProcedure,
+		svc.ValidateCreate,
+		connect.WithSchema(publicCloudVMServiceMethods.ByName("ValidateCreate")),
+		connect.WithHandlerOptions(opts...),
+	)
+	publicCloudVMServiceValidateUpdateHandler := connect.NewUnaryHandlerSimple(
+		PublicCloudVMServiceValidateUpdateProcedure,
+		svc.ValidateUpdate,
+		connect.WithSchema(publicCloudVMServiceMethods.ByName("ValidateUpdate")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/fits.api.pcvm.v1.PublicCloudVMService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case PublicCloudVMServiceGetProcedure:
@@ -226,6 +288,10 @@ func NewPublicCloudVMServiceHandler(svc PublicCloudVMServiceHandler, opts ...con
 			publicCloudVMServiceUpdateHandler.ServeHTTP(w, r)
 		case PublicCloudVMServiceDeleteProcedure:
 			publicCloudVMServiceDeleteHandler.ServeHTTP(w, r)
+		case PublicCloudVMServiceValidateCreateProcedure:
+			publicCloudVMServiceValidateCreateHandler.ServeHTTP(w, r)
+		case PublicCloudVMServiceValidateUpdateProcedure:
+			publicCloudVMServiceValidateUpdateHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -253,4 +319,12 @@ func (UnimplementedPublicCloudVMServiceHandler) Update(context.Context, *v1.Publ
 
 func (UnimplementedPublicCloudVMServiceHandler) Delete(context.Context, *v1.PublicCloudVMServiceDeleteRequest) (*v1.PublicCloudVMServiceDeleteResponse, error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.pcvm.v1.PublicCloudVMService.Delete is not implemented"))
+}
+
+func (UnimplementedPublicCloudVMServiceHandler) ValidateCreate(context.Context, *v1.PublicCloudVMServiceValidateCreateRequest) (*v1.PublicCloudVMServiceValidateCreateResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.pcvm.v1.PublicCloudVMService.ValidateCreate is not implemented"))
+}
+
+func (UnimplementedPublicCloudVMServiceHandler) ValidateUpdate(context.Context, *v1.PublicCloudVMServiceValidateUpdateRequest) (*v1.PublicCloudVMServiceValidateUpdateResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.pcvm.v1.PublicCloudVMService.ValidateUpdate is not implemented"))
 }

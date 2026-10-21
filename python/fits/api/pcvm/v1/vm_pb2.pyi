@@ -164,3 +164,23 @@ class PublicCloudVMServiceDeleteRequest(_message.Message):
 class PublicCloudVMServiceDeleteResponse(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...
+
+class PublicCloudVMServiceValidateCreateRequest(_message.Message):
+    __slots__ = ("create",)
+    CREATE_FIELD_NUMBER: _ClassVar[int]
+    create: PublicCloudVMServiceCreateRequest
+    def __init__(self, create: _Optional[_Union[PublicCloudVMServiceCreateRequest, _Mapping]] = ...) -> None: ...
+
+class PublicCloudVMServiceValidateCreateResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class PublicCloudVMServiceValidateUpdateRequest(_message.Message):
+    __slots__ = ("update",)
+    UPDATE_FIELD_NUMBER: _ClassVar[int]
+    update: PublicCloudVMServiceUpdateRequest
+    def __init__(self, update: _Optional[_Union[PublicCloudVMServiceUpdateRequest, _Mapping]] = ...) -> None: ...
+
+class PublicCloudVMServiceValidateUpdateResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...

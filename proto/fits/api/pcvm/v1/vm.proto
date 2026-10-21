@@ -44,6 +44,22 @@ service PublicCloudVMService {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
+
+  // Validates a VM create request without creating anything. Intended for
+  // form pre-checks; the create endpoint validates again before executing.
+  rpc ValidateCreate(PublicCloudVMServiceValidateCreateRequest) returns (PublicCloudVMServiceValidateCreateResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
+  }
+
+  // Validates a VM update request without updating anything. Intended for
+  // form pre-checks; the update endpoint validates again before executing.
+  rpc ValidateUpdate(PublicCloudVMServiceValidateUpdateRequest) returns (PublicCloudVMServiceValidateUpdateResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
+  }
 }
 
 // The VM resource.
@@ -210,3 +226,25 @@ message PublicCloudVMServiceDeleteRequest {
 // The response after deleting a VM.
 // The VM is deleted immediately will not be able to be requested.
 message PublicCloudVMServiceDeleteResponse {}
+
+// Validation messages.
+// The Validate* RPCs dry-run the upstream business rules without executing the
+// operation; the mutation endpoints validate again before executing.
+
+// Request to validate a VM create without creating anything.
+message PublicCloudVMServiceValidateCreateRequest {
+  // The create request to validate.
+  PublicCloudVMServiceCreateRequest create = 1 [(buf.validate.field).required = true];
+}
+
+// Response for ValidateCreate; violations are returned as an InvalidArgument error.
+message PublicCloudVMServiceValidateCreateResponse {}
+
+// Request to validate a VM update without updating anything.
+message PublicCloudVMServiceValidateUpdateRequest {
+  // The update request to validate.
+  PublicCloudVMServiceUpdateRequest update = 1 [(buf.validate.field).required = true];
+}
+
+// Response for ValidateUpdate; violations are returned as an InvalidArgument error.
+message PublicCloudVMServiceValidateUpdateResponse {}
