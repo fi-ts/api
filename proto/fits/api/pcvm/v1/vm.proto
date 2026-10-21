@@ -7,9 +7,9 @@ import "fits/api/v1/common.proto";
 import "fits/api/v1/predefined_rules.proto";
 
 // VMService provides VM operations.
-service VMService {
+service PublicCloudVMService {
   // Returns the VM with the specified UUID.
-  rpc Get(VMServiceGetRequest) returns (VMServiceGetResponse) {
+  rpc Get(PublicCloudVMServiceGetRequest) returns (PublicCloudVMServiceGetResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_VIEWER;
@@ -17,14 +17,14 @@ service VMService {
   }
 
   // Creates a new VM.
-  rpc Create(VMServiceCreateRequest) returns (VMServiceCreateResponse) {
+  rpc Create(PublicCloudVMServiceCreateRequest) returns (PublicCloudVMServiceCreateResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
 
   // Returns the list of all VMs.
-  rpc List(VMServiceListRequest) returns (VMServiceListResponse) {
+  rpc List(PublicCloudVMServiceListRequest) returns (PublicCloudVMServiceListResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_VIEWER;
@@ -32,14 +32,14 @@ service VMService {
   }
 
   // Updates a VM.
-  rpc Update(VMServiceUpdateRequest) returns (VMServiceUpdateResponse) {
+  rpc Update(PublicCloudVMServiceUpdateRequest) returns (PublicCloudVMServiceUpdateResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
 
   // Deletes a VM immediately.
-  rpc Delete(VMServiceDeleteRequest) returns (VMServiceDeleteResponse) {
+  rpc Delete(PublicCloudVMServiceDeleteRequest) returns (PublicCloudVMServiceDeleteResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
@@ -47,7 +47,7 @@ service VMService {
 }
 
 // The VM resource.
-message VM {
+message PublicCloudVM {
   // UUID of this VM.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
   // Metadata for this VM including labels.
@@ -119,7 +119,7 @@ enum Size {
 }
 
 // The VM query parameters to filter the list of results.
-message VMQuery {
+message PublicCloudVMQuery {
   // The name of the VMs.
   optional string name = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // The labels each VM should have.
@@ -127,7 +127,7 @@ message VMQuery {
 }
 
 // Request to get a VM by UUID.
-message VMServiceGetRequest {
+message PublicCloudVMServiceGetRequest {
   // UUID of the VM to get.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
   // UUID of the project this VM belongs to.
@@ -135,13 +135,13 @@ message VMServiceGetRequest {
 }
 
 // Response containing the requested VM.
-message VMServiceGetResponse {
+message PublicCloudVMServiceGetResponse {
   // The VM.
-  VM vm = 1;
+  PublicCloudVM vm = 1;
 }
 
 // The request to create a new VM.
-message VMServiceCreateRequest {
+message PublicCloudVMServiceCreateRequest {
   // UUID of the project this VM belongs to.
   string project_uuid = 1 [(buf.validate.field).string.uuid = true];
   // Name of the VM.
@@ -153,29 +153,29 @@ message VMServiceCreateRequest {
 }
 
 // The response when creating a new VM.
-message VMServiceCreateResponse {
+message PublicCloudVMServiceCreateResponse {
   // The VM just created.
-  VM vm = 1;
+  PublicCloudVM vm = 1;
 }
 
 // The request to list and filter VMs.
-message VMServiceListRequest {
+message PublicCloudVMServiceListRequest {
   // UUID of the project this VM belongs to.
   string project_uuid = 1 [(buf.validate.field).string.uuid = true];
   // Paging details for the list request.
   fits.api.v1.Paging paging = 2;
   // Query defines how to filter the VMs.
-  VMQuery query = 3;
+  PublicCloudVMQuery query = 3;
 }
 
 // The response when listing VMs.
-message VMServiceListResponse {
+message PublicCloudVMServiceListResponse {
   // VMs is a list of filtered VMs resources.
-  repeated VM vms = 1;
+  repeated PublicCloudVM vms = 1;
 }
 
 // The request to update a VM.
-message VMServiceUpdateRequest {
+message PublicCloudVMServiceUpdateRequest {
   // UUID of the VM to update.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
   // UUID of the project this VM belongs to.
@@ -195,13 +195,13 @@ message VMServiceUpdateRequest {
 }
 
 // The response when updating a VM.
-message VMServiceUpdateResponse {
+message PublicCloudVMServiceUpdateResponse {
   // The updated VM.
-  VM vm = 1;
+  PublicCloudVM vm = 1;
 }
 
 // The request to delete a VM.
-message VMServiceDeleteRequest {
+message PublicCloudVMServiceDeleteRequest {
   // UUID of the VM to delete.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
   // UUID of the project this VM belongs to.
@@ -210,4 +210,4 @@ message VMServiceDeleteRequest {
 
 // The response after deleting a VM.
 // The VM is deleted immediately will not be able to be requested.
-message VMServiceDeleteResponse {}
+message PublicCloudVMServiceDeleteResponse {}

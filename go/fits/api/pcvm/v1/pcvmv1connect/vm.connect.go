@@ -21,8 +21,8 @@ import (
 const _ = connect.IsAtLeastVersion1_13_0
 
 const (
-	// VMServiceName is the fully-qualified name of the VMService service.
-	VMServiceName = "fits.api.pcvm.v1.VMService"
+	// PublicCloudVMServiceName is the fully-qualified name of the PublicCloudVMService service.
+	PublicCloudVMServiceName = "fits.api.pcvm.v1.PublicCloudVMService"
 )
 
 // These constants are the fully-qualified names of the RPCs defined in this package. They're
@@ -33,87 +33,92 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
-	// VMServiceGetProcedure is the fully-qualified name of the VMService's Get RPC.
-	VMServiceGetProcedure = "/fits.api.pcvm.v1.VMService/Get"
-	// VMServiceCreateProcedure is the fully-qualified name of the VMService's Create RPC.
-	VMServiceCreateProcedure = "/fits.api.pcvm.v1.VMService/Create"
-	// VMServiceListProcedure is the fully-qualified name of the VMService's List RPC.
-	VMServiceListProcedure = "/fits.api.pcvm.v1.VMService/List"
-	// VMServiceUpdateProcedure is the fully-qualified name of the VMService's Update RPC.
-	VMServiceUpdateProcedure = "/fits.api.pcvm.v1.VMService/Update"
-	// VMServiceDeleteProcedure is the fully-qualified name of the VMService's Delete RPC.
-	VMServiceDeleteProcedure = "/fits.api.pcvm.v1.VMService/Delete"
+	// PublicCloudVMServiceGetProcedure is the fully-qualified name of the PublicCloudVMService's Get
+	// RPC.
+	PublicCloudVMServiceGetProcedure = "/fits.api.pcvm.v1.PublicCloudVMService/Get"
+	// PublicCloudVMServiceCreateProcedure is the fully-qualified name of the PublicCloudVMService's
+	// Create RPC.
+	PublicCloudVMServiceCreateProcedure = "/fits.api.pcvm.v1.PublicCloudVMService/Create"
+	// PublicCloudVMServiceListProcedure is the fully-qualified name of the PublicCloudVMService's List
+	// RPC.
+	PublicCloudVMServiceListProcedure = "/fits.api.pcvm.v1.PublicCloudVMService/List"
+	// PublicCloudVMServiceUpdateProcedure is the fully-qualified name of the PublicCloudVMService's
+	// Update RPC.
+	PublicCloudVMServiceUpdateProcedure = "/fits.api.pcvm.v1.PublicCloudVMService/Update"
+	// PublicCloudVMServiceDeleteProcedure is the fully-qualified name of the PublicCloudVMService's
+	// Delete RPC.
+	PublicCloudVMServiceDeleteProcedure = "/fits.api.pcvm.v1.PublicCloudVMService/Delete"
 )
 
-// VMServiceClient is a client for the fits.api.pcvm.v1.VMService service.
-type VMServiceClient interface {
+// PublicCloudVMServiceClient is a client for the fits.api.pcvm.v1.PublicCloudVMService service.
+type PublicCloudVMServiceClient interface {
 	// Returns the VM with the specified UUID.
-	Get(context.Context, *v1.VMServiceGetRequest) (*v1.VMServiceGetResponse, error)
+	Get(context.Context, *v1.PublicCloudVMServiceGetRequest) (*v1.PublicCloudVMServiceGetResponse, error)
 	// Creates a new VM.
-	Create(context.Context, *v1.VMServiceCreateRequest) (*v1.VMServiceCreateResponse, error)
+	Create(context.Context, *v1.PublicCloudVMServiceCreateRequest) (*v1.PublicCloudVMServiceCreateResponse, error)
 	// Returns the list of all VMs.
-	List(context.Context, *v1.VMServiceListRequest) (*v1.VMServiceListResponse, error)
+	List(context.Context, *v1.PublicCloudVMServiceListRequest) (*v1.PublicCloudVMServiceListResponse, error)
 	// Updates a VM.
-	Update(context.Context, *v1.VMServiceUpdateRequest) (*v1.VMServiceUpdateResponse, error)
+	Update(context.Context, *v1.PublicCloudVMServiceUpdateRequest) (*v1.PublicCloudVMServiceUpdateResponse, error)
 	// Deletes a VM immediately.
-	Delete(context.Context, *v1.VMServiceDeleteRequest) (*v1.VMServiceDeleteResponse, error)
+	Delete(context.Context, *v1.PublicCloudVMServiceDeleteRequest) (*v1.PublicCloudVMServiceDeleteResponse, error)
 }
 
-// NewVMServiceClient constructs a client for the fits.api.pcvm.v1.VMService service. By default, it
-// uses the Connect protocol with the binary Protobuf Codec, asks for gzipped responses, and sends
-// uncompressed requests. To use the gRPC or gRPC-Web protocols, supply the connect.WithGRPC() or
-// connect.WithGRPCWeb() options.
+// NewPublicCloudVMServiceClient constructs a client for the fits.api.pcvm.v1.PublicCloudVMService
+// service. By default, it uses the Connect protocol with the binary Protobuf Codec, asks for
+// gzipped responses, and sends uncompressed requests. To use the gRPC or gRPC-Web protocols, supply
+// the connect.WithGRPC() or connect.WithGRPCWeb() options.
 //
 // The URL supplied here should be the base URL for the Connect or gRPC server (for example,
 // http://api.acme.com or https://acme.com/grpc).
-func NewVMServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) VMServiceClient {
+func NewPublicCloudVMServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) PublicCloudVMServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
-	vMServiceMethods := v1.File_fits_api_pcvm_v1_vm_proto.Services().ByName("VMService").Methods()
-	return &vMServiceClient{
-		get: connect.NewClient[v1.VMServiceGetRequest, v1.VMServiceGetResponse](
+	publicCloudVMServiceMethods := v1.File_fits_api_pcvm_v1_vm_proto.Services().ByName("PublicCloudVMService").Methods()
+	return &publicCloudVMServiceClient{
+		get: connect.NewClient[v1.PublicCloudVMServiceGetRequest, v1.PublicCloudVMServiceGetResponse](
 			httpClient,
-			baseURL+VMServiceGetProcedure,
-			connect.WithSchema(vMServiceMethods.ByName("Get")),
+			baseURL+PublicCloudVMServiceGetProcedure,
+			connect.WithSchema(publicCloudVMServiceMethods.ByName("Get")),
 			connect.WithClientOptions(opts...),
 		),
-		create: connect.NewClient[v1.VMServiceCreateRequest, v1.VMServiceCreateResponse](
+		create: connect.NewClient[v1.PublicCloudVMServiceCreateRequest, v1.PublicCloudVMServiceCreateResponse](
 			httpClient,
-			baseURL+VMServiceCreateProcedure,
-			connect.WithSchema(vMServiceMethods.ByName("Create")),
+			baseURL+PublicCloudVMServiceCreateProcedure,
+			connect.WithSchema(publicCloudVMServiceMethods.ByName("Create")),
 			connect.WithClientOptions(opts...),
 		),
-		list: connect.NewClient[v1.VMServiceListRequest, v1.VMServiceListResponse](
+		list: connect.NewClient[v1.PublicCloudVMServiceListRequest, v1.PublicCloudVMServiceListResponse](
 			httpClient,
-			baseURL+VMServiceListProcedure,
-			connect.WithSchema(vMServiceMethods.ByName("List")),
+			baseURL+PublicCloudVMServiceListProcedure,
+			connect.WithSchema(publicCloudVMServiceMethods.ByName("List")),
 			connect.WithClientOptions(opts...),
 		),
-		update: connect.NewClient[v1.VMServiceUpdateRequest, v1.VMServiceUpdateResponse](
+		update: connect.NewClient[v1.PublicCloudVMServiceUpdateRequest, v1.PublicCloudVMServiceUpdateResponse](
 			httpClient,
-			baseURL+VMServiceUpdateProcedure,
-			connect.WithSchema(vMServiceMethods.ByName("Update")),
+			baseURL+PublicCloudVMServiceUpdateProcedure,
+			connect.WithSchema(publicCloudVMServiceMethods.ByName("Update")),
 			connect.WithClientOptions(opts...),
 		),
-		delete: connect.NewClient[v1.VMServiceDeleteRequest, v1.VMServiceDeleteResponse](
+		delete: connect.NewClient[v1.PublicCloudVMServiceDeleteRequest, v1.PublicCloudVMServiceDeleteResponse](
 			httpClient,
-			baseURL+VMServiceDeleteProcedure,
-			connect.WithSchema(vMServiceMethods.ByName("Delete")),
+			baseURL+PublicCloudVMServiceDeleteProcedure,
+			connect.WithSchema(publicCloudVMServiceMethods.ByName("Delete")),
 			connect.WithClientOptions(opts...),
 		),
 	}
 }
 
-// vMServiceClient implements VMServiceClient.
-type vMServiceClient struct {
-	get    *connect.Client[v1.VMServiceGetRequest, v1.VMServiceGetResponse]
-	create *connect.Client[v1.VMServiceCreateRequest, v1.VMServiceCreateResponse]
-	list   *connect.Client[v1.VMServiceListRequest, v1.VMServiceListResponse]
-	update *connect.Client[v1.VMServiceUpdateRequest, v1.VMServiceUpdateResponse]
-	delete *connect.Client[v1.VMServiceDeleteRequest, v1.VMServiceDeleteResponse]
+// publicCloudVMServiceClient implements PublicCloudVMServiceClient.
+type publicCloudVMServiceClient struct {
+	get    *connect.Client[v1.PublicCloudVMServiceGetRequest, v1.PublicCloudVMServiceGetResponse]
+	create *connect.Client[v1.PublicCloudVMServiceCreateRequest, v1.PublicCloudVMServiceCreateResponse]
+	list   *connect.Client[v1.PublicCloudVMServiceListRequest, v1.PublicCloudVMServiceListResponse]
+	update *connect.Client[v1.PublicCloudVMServiceUpdateRequest, v1.PublicCloudVMServiceUpdateResponse]
+	delete *connect.Client[v1.PublicCloudVMServiceDeleteRequest, v1.PublicCloudVMServiceDeleteResponse]
 }
 
-// Get calls fits.api.pcvm.v1.VMService.Get.
-func (c *vMServiceClient) Get(ctx context.Context, req *v1.VMServiceGetRequest) (*v1.VMServiceGetResponse, error) {
+// Get calls fits.api.pcvm.v1.PublicCloudVMService.Get.
+func (c *publicCloudVMServiceClient) Get(ctx context.Context, req *v1.PublicCloudVMServiceGetRequest) (*v1.PublicCloudVMServiceGetResponse, error) {
 	response, err := c.get.CallUnary(ctx, connect.NewRequest(req))
 	if response != nil {
 		return response.Msg, err
@@ -121,8 +126,8 @@ func (c *vMServiceClient) Get(ctx context.Context, req *v1.VMServiceGetRequest) 
 	return nil, err
 }
 
-// Create calls fits.api.pcvm.v1.VMService.Create.
-func (c *vMServiceClient) Create(ctx context.Context, req *v1.VMServiceCreateRequest) (*v1.VMServiceCreateResponse, error) {
+// Create calls fits.api.pcvm.v1.PublicCloudVMService.Create.
+func (c *publicCloudVMServiceClient) Create(ctx context.Context, req *v1.PublicCloudVMServiceCreateRequest) (*v1.PublicCloudVMServiceCreateResponse, error) {
 	response, err := c.create.CallUnary(ctx, connect.NewRequest(req))
 	if response != nil {
 		return response.Msg, err
@@ -130,8 +135,8 @@ func (c *vMServiceClient) Create(ctx context.Context, req *v1.VMServiceCreateReq
 	return nil, err
 }
 
-// List calls fits.api.pcvm.v1.VMService.List.
-func (c *vMServiceClient) List(ctx context.Context, req *v1.VMServiceListRequest) (*v1.VMServiceListResponse, error) {
+// List calls fits.api.pcvm.v1.PublicCloudVMService.List.
+func (c *publicCloudVMServiceClient) List(ctx context.Context, req *v1.PublicCloudVMServiceListRequest) (*v1.PublicCloudVMServiceListResponse, error) {
 	response, err := c.list.CallUnary(ctx, connect.NewRequest(req))
 	if response != nil {
 		return response.Msg, err
@@ -139,8 +144,8 @@ func (c *vMServiceClient) List(ctx context.Context, req *v1.VMServiceListRequest
 	return nil, err
 }
 
-// Update calls fits.api.pcvm.v1.VMService.Update.
-func (c *vMServiceClient) Update(ctx context.Context, req *v1.VMServiceUpdateRequest) (*v1.VMServiceUpdateResponse, error) {
+// Update calls fits.api.pcvm.v1.PublicCloudVMService.Update.
+func (c *publicCloudVMServiceClient) Update(ctx context.Context, req *v1.PublicCloudVMServiceUpdateRequest) (*v1.PublicCloudVMServiceUpdateResponse, error) {
 	response, err := c.update.CallUnary(ctx, connect.NewRequest(req))
 	if response != nil {
 		return response.Msg, err
@@ -148,8 +153,8 @@ func (c *vMServiceClient) Update(ctx context.Context, req *v1.VMServiceUpdateReq
 	return nil, err
 }
 
-// Delete calls fits.api.pcvm.v1.VMService.Delete.
-func (c *vMServiceClient) Delete(ctx context.Context, req *v1.VMServiceDeleteRequest) (*v1.VMServiceDeleteResponse, error) {
+// Delete calls fits.api.pcvm.v1.PublicCloudVMService.Delete.
+func (c *publicCloudVMServiceClient) Delete(ctx context.Context, req *v1.PublicCloudVMServiceDeleteRequest) (*v1.PublicCloudVMServiceDeleteResponse, error) {
 	response, err := c.delete.CallUnary(ctx, connect.NewRequest(req))
 	if response != nil {
 		return response.Msg, err
@@ -157,94 +162,95 @@ func (c *vMServiceClient) Delete(ctx context.Context, req *v1.VMServiceDeleteReq
 	return nil, err
 }
 
-// VMServiceHandler is an implementation of the fits.api.pcvm.v1.VMService service.
-type VMServiceHandler interface {
+// PublicCloudVMServiceHandler is an implementation of the fits.api.pcvm.v1.PublicCloudVMService
+// service.
+type PublicCloudVMServiceHandler interface {
 	// Returns the VM with the specified UUID.
-	Get(context.Context, *v1.VMServiceGetRequest) (*v1.VMServiceGetResponse, error)
+	Get(context.Context, *v1.PublicCloudVMServiceGetRequest) (*v1.PublicCloudVMServiceGetResponse, error)
 	// Creates a new VM.
-	Create(context.Context, *v1.VMServiceCreateRequest) (*v1.VMServiceCreateResponse, error)
+	Create(context.Context, *v1.PublicCloudVMServiceCreateRequest) (*v1.PublicCloudVMServiceCreateResponse, error)
 	// Returns the list of all VMs.
-	List(context.Context, *v1.VMServiceListRequest) (*v1.VMServiceListResponse, error)
+	List(context.Context, *v1.PublicCloudVMServiceListRequest) (*v1.PublicCloudVMServiceListResponse, error)
 	// Updates a VM.
-	Update(context.Context, *v1.VMServiceUpdateRequest) (*v1.VMServiceUpdateResponse, error)
+	Update(context.Context, *v1.PublicCloudVMServiceUpdateRequest) (*v1.PublicCloudVMServiceUpdateResponse, error)
 	// Deletes a VM immediately.
-	Delete(context.Context, *v1.VMServiceDeleteRequest) (*v1.VMServiceDeleteResponse, error)
+	Delete(context.Context, *v1.PublicCloudVMServiceDeleteRequest) (*v1.PublicCloudVMServiceDeleteResponse, error)
 }
 
-// NewVMServiceHandler builds an HTTP handler from the service implementation. It returns the path
-// on which to mount the handler and the handler itself.
+// NewPublicCloudVMServiceHandler builds an HTTP handler from the service implementation. It returns
+// the path on which to mount the handler and the handler itself.
 //
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
-func NewVMServiceHandler(svc VMServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
-	vMServiceMethods := v1.File_fits_api_pcvm_v1_vm_proto.Services().ByName("VMService").Methods()
-	vMServiceGetHandler := connect.NewUnaryHandlerSimple(
-		VMServiceGetProcedure,
+func NewPublicCloudVMServiceHandler(svc PublicCloudVMServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	publicCloudVMServiceMethods := v1.File_fits_api_pcvm_v1_vm_proto.Services().ByName("PublicCloudVMService").Methods()
+	publicCloudVMServiceGetHandler := connect.NewUnaryHandlerSimple(
+		PublicCloudVMServiceGetProcedure,
 		svc.Get,
-		connect.WithSchema(vMServiceMethods.ByName("Get")),
+		connect.WithSchema(publicCloudVMServiceMethods.ByName("Get")),
 		connect.WithHandlerOptions(opts...),
 	)
-	vMServiceCreateHandler := connect.NewUnaryHandlerSimple(
-		VMServiceCreateProcedure,
+	publicCloudVMServiceCreateHandler := connect.NewUnaryHandlerSimple(
+		PublicCloudVMServiceCreateProcedure,
 		svc.Create,
-		connect.WithSchema(vMServiceMethods.ByName("Create")),
+		connect.WithSchema(publicCloudVMServiceMethods.ByName("Create")),
 		connect.WithHandlerOptions(opts...),
 	)
-	vMServiceListHandler := connect.NewUnaryHandlerSimple(
-		VMServiceListProcedure,
+	publicCloudVMServiceListHandler := connect.NewUnaryHandlerSimple(
+		PublicCloudVMServiceListProcedure,
 		svc.List,
-		connect.WithSchema(vMServiceMethods.ByName("List")),
+		connect.WithSchema(publicCloudVMServiceMethods.ByName("List")),
 		connect.WithHandlerOptions(opts...),
 	)
-	vMServiceUpdateHandler := connect.NewUnaryHandlerSimple(
-		VMServiceUpdateProcedure,
+	publicCloudVMServiceUpdateHandler := connect.NewUnaryHandlerSimple(
+		PublicCloudVMServiceUpdateProcedure,
 		svc.Update,
-		connect.WithSchema(vMServiceMethods.ByName("Update")),
+		connect.WithSchema(publicCloudVMServiceMethods.ByName("Update")),
 		connect.WithHandlerOptions(opts...),
 	)
-	vMServiceDeleteHandler := connect.NewUnaryHandlerSimple(
-		VMServiceDeleteProcedure,
+	publicCloudVMServiceDeleteHandler := connect.NewUnaryHandlerSimple(
+		PublicCloudVMServiceDeleteProcedure,
 		svc.Delete,
-		connect.WithSchema(vMServiceMethods.ByName("Delete")),
+		connect.WithSchema(publicCloudVMServiceMethods.ByName("Delete")),
 		connect.WithHandlerOptions(opts...),
 	)
-	return "/fits.api.pcvm.v1.VMService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	return "/fits.api.pcvm.v1.PublicCloudVMService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case VMServiceGetProcedure:
-			vMServiceGetHandler.ServeHTTP(w, r)
-		case VMServiceCreateProcedure:
-			vMServiceCreateHandler.ServeHTTP(w, r)
-		case VMServiceListProcedure:
-			vMServiceListHandler.ServeHTTP(w, r)
-		case VMServiceUpdateProcedure:
-			vMServiceUpdateHandler.ServeHTTP(w, r)
-		case VMServiceDeleteProcedure:
-			vMServiceDeleteHandler.ServeHTTP(w, r)
+		case PublicCloudVMServiceGetProcedure:
+			publicCloudVMServiceGetHandler.ServeHTTP(w, r)
+		case PublicCloudVMServiceCreateProcedure:
+			publicCloudVMServiceCreateHandler.ServeHTTP(w, r)
+		case PublicCloudVMServiceListProcedure:
+			publicCloudVMServiceListHandler.ServeHTTP(w, r)
+		case PublicCloudVMServiceUpdateProcedure:
+			publicCloudVMServiceUpdateHandler.ServeHTTP(w, r)
+		case PublicCloudVMServiceDeleteProcedure:
+			publicCloudVMServiceDeleteHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
 	})
 }
 
-// UnimplementedVMServiceHandler returns CodeUnimplemented from all methods.
-type UnimplementedVMServiceHandler struct{}
+// UnimplementedPublicCloudVMServiceHandler returns CodeUnimplemented from all methods.
+type UnimplementedPublicCloudVMServiceHandler struct{}
 
-func (UnimplementedVMServiceHandler) Get(context.Context, *v1.VMServiceGetRequest) (*v1.VMServiceGetResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.pcvm.v1.VMService.Get is not implemented"))
+func (UnimplementedPublicCloudVMServiceHandler) Get(context.Context, *v1.PublicCloudVMServiceGetRequest) (*v1.PublicCloudVMServiceGetResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.pcvm.v1.PublicCloudVMService.Get is not implemented"))
 }
 
-func (UnimplementedVMServiceHandler) Create(context.Context, *v1.VMServiceCreateRequest) (*v1.VMServiceCreateResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.pcvm.v1.VMService.Create is not implemented"))
+func (UnimplementedPublicCloudVMServiceHandler) Create(context.Context, *v1.PublicCloudVMServiceCreateRequest) (*v1.PublicCloudVMServiceCreateResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.pcvm.v1.PublicCloudVMService.Create is not implemented"))
 }
 
-func (UnimplementedVMServiceHandler) List(context.Context, *v1.VMServiceListRequest) (*v1.VMServiceListResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.pcvm.v1.VMService.List is not implemented"))
+func (UnimplementedPublicCloudVMServiceHandler) List(context.Context, *v1.PublicCloudVMServiceListRequest) (*v1.PublicCloudVMServiceListResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.pcvm.v1.PublicCloudVMService.List is not implemented"))
 }
 
-func (UnimplementedVMServiceHandler) Update(context.Context, *v1.VMServiceUpdateRequest) (*v1.VMServiceUpdateResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.pcvm.v1.VMService.Update is not implemented"))
+func (UnimplementedPublicCloudVMServiceHandler) Update(context.Context, *v1.PublicCloudVMServiceUpdateRequest) (*v1.PublicCloudVMServiceUpdateResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.pcvm.v1.PublicCloudVMService.Update is not implemented"))
 }
 
-func (UnimplementedVMServiceHandler) Delete(context.Context, *v1.VMServiceDeleteRequest) (*v1.VMServiceDeleteResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.pcvm.v1.VMService.Delete is not implemented"))
+func (UnimplementedPublicCloudVMServiceHandler) Delete(context.Context, *v1.PublicCloudVMServiceDeleteRequest) (*v1.PublicCloudVMServiceDeleteResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.pcvm.v1.PublicCloudVMService.Delete is not implemented"))
 }

@@ -6,7 +6,7 @@ import { LocationService as Apimvmv1LocationService } from "./fits/api/mvm/v1/lo
 import { MVMService as Apimvmv1MVMService } from "./fits/api/mvm/v1/mvm_pb";
 import { OSService as Apimvmv1OSService } from "./fits/api/mvm/v1/os_pb";
 import { VLANService as Apimvmv1VLANService } from "./fits/api/mvm/v1/vlan_pb";
-import { VMService as Apipcvmv1VMService } from "./fits/api/pcvm/v1/vm_pb";
+import { PublicCloudVMService as Apipcvmv1PublicCloudVMService } from "./fits/api/pcvm/v1/vm_pb";
 import { HealthService as Apiv1HealthService } from "./fits/api/v1/health_pb";
 import { MethodService as Apiv1MethodService } from "./fits/api/v1/method_pb";
 import { ProjectService as Apiv1ProjectService } from "./fits/api/v1/project_pb";
@@ -32,7 +32,7 @@ export interface Apimvmv1 {
     vlan(): ConnectClient<typeof Apimvmv1VLANService>;
 }
 export interface Apipcvmv1 {
-    vm(): ConnectClient<typeof Apipcvmv1VMService>;
+    publicCloudVM(): ConnectClient<typeof Apipcvmv1PublicCloudVMService>;
 }
 export interface Apiv1 {
     health(): ConnectClient<typeof Apiv1HealthService>;

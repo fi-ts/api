@@ -203,7 +203,7 @@ func (Size) EnumDescriptor() ([]byte, []int) {
 }
 
 // The VM resource.
-type VM struct {
+type PublicCloudVM struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// UUID of this VM.
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
@@ -224,20 +224,20 @@ type VM struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *VM) Reset() {
-	*x = VM{}
+func (x *PublicCloudVM) Reset() {
+	*x = PublicCloudVM{}
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *VM) String() string {
+func (x *PublicCloudVM) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*VM) ProtoMessage() {}
+func (*PublicCloudVM) ProtoMessage() {}
 
-func (x *VM) ProtoReflect() protoreflect.Message {
+func (x *PublicCloudVM) ProtoReflect() protoreflect.Message {
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -249,54 +249,54 @@ func (x *VM) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use VM.ProtoReflect.Descriptor instead.
-func (*VM) Descriptor() ([]byte, []int) {
+// Deprecated: Use PublicCloudVM.ProtoReflect.Descriptor instead.
+func (*PublicCloudVM) Descriptor() ([]byte, []int) {
 	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *VM) GetUuid() string {
+func (x *PublicCloudVM) GetUuid() string {
 	if x != nil {
 		return x.Uuid
 	}
 	return ""
 }
 
-func (x *VM) GetMeta() *v1.Meta {
+func (x *PublicCloudVM) GetMeta() *v1.Meta {
 	if x != nil {
 		return x.Meta
 	}
 	return nil
 }
 
-func (x *VM) GetName() string {
+func (x *PublicCloudVM) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *VM) GetTenant() string {
+func (x *PublicCloudVM) GetTenant() string {
 	if x != nil {
 		return x.Tenant
 	}
 	return ""
 }
 
-func (x *VM) GetProjectUuid() string {
+func (x *PublicCloudVM) GetProjectUuid() string {
 	if x != nil {
 		return x.ProjectUuid
 	}
 	return ""
 }
 
-func (x *VM) GetSize() Size {
+func (x *PublicCloudVM) GetSize() Size {
 	if x != nil {
 		return x.Size
 	}
 	return Size_SIZE_UNSPECIFIED
 }
 
-func (x *VM) GetStatus() *Status {
+func (x *PublicCloudVM) GetStatus() *Status {
 	if x != nil {
 		return x.Status
 	}
@@ -368,7 +368,7 @@ func (x *Status) GetOperation() Operation {
 }
 
 // The VM query parameters to filter the list of results.
-type VMQuery struct {
+type PublicCloudVMQuery struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The name of the VMs.
 	Name *string `protobuf:"bytes,1,opt,name=name,proto3,oneof" json:"name,omitempty"`
@@ -378,20 +378,20 @@ type VMQuery struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *VMQuery) Reset() {
-	*x = VMQuery{}
+func (x *PublicCloudVMQuery) Reset() {
+	*x = PublicCloudVMQuery{}
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *VMQuery) String() string {
+func (x *PublicCloudVMQuery) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*VMQuery) ProtoMessage() {}
+func (*PublicCloudVMQuery) ProtoMessage() {}
 
-func (x *VMQuery) ProtoReflect() protoreflect.Message {
+func (x *PublicCloudVMQuery) ProtoReflect() protoreflect.Message {
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -403,19 +403,19 @@ func (x *VMQuery) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use VMQuery.ProtoReflect.Descriptor instead.
-func (*VMQuery) Descriptor() ([]byte, []int) {
+// Deprecated: Use PublicCloudVMQuery.ProtoReflect.Descriptor instead.
+func (*PublicCloudVMQuery) Descriptor() ([]byte, []int) {
 	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *VMQuery) GetName() string {
+func (x *PublicCloudVMQuery) GetName() string {
 	if x != nil && x.Name != nil {
 		return *x.Name
 	}
 	return ""
 }
 
-func (x *VMQuery) GetLabels() *v1.Labels {
+func (x *PublicCloudVMQuery) GetLabels() *v1.Labels {
 	if x != nil {
 		return x.Labels
 	}
@@ -423,7 +423,7 @@ func (x *VMQuery) GetLabels() *v1.Labels {
 }
 
 // Request to get a VM by UUID.
-type VMServiceGetRequest struct {
+type PublicCloudVMServiceGetRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// UUID of the VM to get.
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
@@ -433,20 +433,20 @@ type VMServiceGetRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *VMServiceGetRequest) Reset() {
-	*x = VMServiceGetRequest{}
+func (x *PublicCloudVMServiceGetRequest) Reset() {
+	*x = PublicCloudVMServiceGetRequest{}
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *VMServiceGetRequest) String() string {
+func (x *PublicCloudVMServiceGetRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*VMServiceGetRequest) ProtoMessage() {}
+func (*PublicCloudVMServiceGetRequest) ProtoMessage() {}
 
-func (x *VMServiceGetRequest) ProtoReflect() protoreflect.Message {
+func (x *PublicCloudVMServiceGetRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -458,19 +458,19 @@ func (x *VMServiceGetRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use VMServiceGetRequest.ProtoReflect.Descriptor instead.
-func (*VMServiceGetRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use PublicCloudVMServiceGetRequest.ProtoReflect.Descriptor instead.
+func (*PublicCloudVMServiceGetRequest) Descriptor() ([]byte, []int) {
 	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *VMServiceGetRequest) GetUuid() string {
+func (x *PublicCloudVMServiceGetRequest) GetUuid() string {
 	if x != nil {
 		return x.Uuid
 	}
 	return ""
 }
 
-func (x *VMServiceGetRequest) GetProjectUuid() string {
+func (x *PublicCloudVMServiceGetRequest) GetProjectUuid() string {
 	if x != nil {
 		return x.ProjectUuid
 	}
@@ -478,28 +478,28 @@ func (x *VMServiceGetRequest) GetProjectUuid() string {
 }
 
 // Response containing the requested VM.
-type VMServiceGetResponse struct {
+type PublicCloudVMServiceGetResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The VM.
-	Vm            *VM `protobuf:"bytes,1,opt,name=vm,proto3" json:"vm,omitempty"`
+	Vm            *PublicCloudVM `protobuf:"bytes,1,opt,name=vm,proto3" json:"vm,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *VMServiceGetResponse) Reset() {
-	*x = VMServiceGetResponse{}
+func (x *PublicCloudVMServiceGetResponse) Reset() {
+	*x = PublicCloudVMServiceGetResponse{}
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *VMServiceGetResponse) String() string {
+func (x *PublicCloudVMServiceGetResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*VMServiceGetResponse) ProtoMessage() {}
+func (*PublicCloudVMServiceGetResponse) ProtoMessage() {}
 
-func (x *VMServiceGetResponse) ProtoReflect() protoreflect.Message {
+func (x *PublicCloudVMServiceGetResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -511,12 +511,12 @@ func (x *VMServiceGetResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use VMServiceGetResponse.ProtoReflect.Descriptor instead.
-func (*VMServiceGetResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use PublicCloudVMServiceGetResponse.ProtoReflect.Descriptor instead.
+func (*PublicCloudVMServiceGetResponse) Descriptor() ([]byte, []int) {
 	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *VMServiceGetResponse) GetVm() *VM {
+func (x *PublicCloudVMServiceGetResponse) GetVm() *PublicCloudVM {
 	if x != nil {
 		return x.Vm
 	}
@@ -524,7 +524,7 @@ func (x *VMServiceGetResponse) GetVm() *VM {
 }
 
 // The request to create a new VM.
-type VMServiceCreateRequest struct {
+type PublicCloudVMServiceCreateRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// UUID of the project this VM belongs to.
 	ProjectUuid string `protobuf:"bytes,1,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
@@ -538,20 +538,20 @@ type VMServiceCreateRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *VMServiceCreateRequest) Reset() {
-	*x = VMServiceCreateRequest{}
+func (x *PublicCloudVMServiceCreateRequest) Reset() {
+	*x = PublicCloudVMServiceCreateRequest{}
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *VMServiceCreateRequest) String() string {
+func (x *PublicCloudVMServiceCreateRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*VMServiceCreateRequest) ProtoMessage() {}
+func (*PublicCloudVMServiceCreateRequest) ProtoMessage() {}
 
-func (x *VMServiceCreateRequest) ProtoReflect() protoreflect.Message {
+func (x *PublicCloudVMServiceCreateRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -563,33 +563,33 @@ func (x *VMServiceCreateRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use VMServiceCreateRequest.ProtoReflect.Descriptor instead.
-func (*VMServiceCreateRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use PublicCloudVMServiceCreateRequest.ProtoReflect.Descriptor instead.
+func (*PublicCloudVMServiceCreateRequest) Descriptor() ([]byte, []int) {
 	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *VMServiceCreateRequest) GetProjectUuid() string {
+func (x *PublicCloudVMServiceCreateRequest) GetProjectUuid() string {
 	if x != nil {
 		return x.ProjectUuid
 	}
 	return ""
 }
 
-func (x *VMServiceCreateRequest) GetName() string {
+func (x *PublicCloudVMServiceCreateRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *VMServiceCreateRequest) GetLabels() *v1.Labels {
+func (x *PublicCloudVMServiceCreateRequest) GetLabels() *v1.Labels {
 	if x != nil {
 		return x.Labels
 	}
 	return nil
 }
 
-func (x *VMServiceCreateRequest) GetSize() Size {
+func (x *PublicCloudVMServiceCreateRequest) GetSize() Size {
 	if x != nil {
 		return x.Size
 	}
@@ -597,28 +597,28 @@ func (x *VMServiceCreateRequest) GetSize() Size {
 }
 
 // The response when creating a new VM.
-type VMServiceCreateResponse struct {
+type PublicCloudVMServiceCreateResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The VM just created.
-	Vm            *VM `protobuf:"bytes,1,opt,name=vm,proto3" json:"vm,omitempty"`
+	Vm            *PublicCloudVM `protobuf:"bytes,1,opt,name=vm,proto3" json:"vm,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *VMServiceCreateResponse) Reset() {
-	*x = VMServiceCreateResponse{}
+func (x *PublicCloudVMServiceCreateResponse) Reset() {
+	*x = PublicCloudVMServiceCreateResponse{}
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *VMServiceCreateResponse) String() string {
+func (x *PublicCloudVMServiceCreateResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*VMServiceCreateResponse) ProtoMessage() {}
+func (*PublicCloudVMServiceCreateResponse) ProtoMessage() {}
 
-func (x *VMServiceCreateResponse) ProtoReflect() protoreflect.Message {
+func (x *PublicCloudVMServiceCreateResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -630,12 +630,12 @@ func (x *VMServiceCreateResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use VMServiceCreateResponse.ProtoReflect.Descriptor instead.
-func (*VMServiceCreateResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use PublicCloudVMServiceCreateResponse.ProtoReflect.Descriptor instead.
+func (*PublicCloudVMServiceCreateResponse) Descriptor() ([]byte, []int) {
 	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *VMServiceCreateResponse) GetVm() *VM {
+func (x *PublicCloudVMServiceCreateResponse) GetVm() *PublicCloudVM {
 	if x != nil {
 		return x.Vm
 	}
@@ -643,32 +643,32 @@ func (x *VMServiceCreateResponse) GetVm() *VM {
 }
 
 // The request to list and filter VMs.
-type VMServiceListRequest struct {
+type PublicCloudVMServiceListRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// UUID of the project this VM belongs to.
 	ProjectUuid string `protobuf:"bytes,1,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
 	// Paging details for the list request.
 	Paging *v1.Paging `protobuf:"bytes,2,opt,name=paging,proto3" json:"paging,omitempty"`
 	// Query defines how to filter the VMs.
-	Query         *VMQuery `protobuf:"bytes,3,opt,name=query,proto3" json:"query,omitempty"`
+	Query         *PublicCloudVMQuery `protobuf:"bytes,3,opt,name=query,proto3" json:"query,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *VMServiceListRequest) Reset() {
-	*x = VMServiceListRequest{}
+func (x *PublicCloudVMServiceListRequest) Reset() {
+	*x = PublicCloudVMServiceListRequest{}
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *VMServiceListRequest) String() string {
+func (x *PublicCloudVMServiceListRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*VMServiceListRequest) ProtoMessage() {}
+func (*PublicCloudVMServiceListRequest) ProtoMessage() {}
 
-func (x *VMServiceListRequest) ProtoReflect() protoreflect.Message {
+func (x *PublicCloudVMServiceListRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -680,26 +680,26 @@ func (x *VMServiceListRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use VMServiceListRequest.ProtoReflect.Descriptor instead.
-func (*VMServiceListRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use PublicCloudVMServiceListRequest.ProtoReflect.Descriptor instead.
+func (*PublicCloudVMServiceListRequest) Descriptor() ([]byte, []int) {
 	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *VMServiceListRequest) GetProjectUuid() string {
+func (x *PublicCloudVMServiceListRequest) GetProjectUuid() string {
 	if x != nil {
 		return x.ProjectUuid
 	}
 	return ""
 }
 
-func (x *VMServiceListRequest) GetPaging() *v1.Paging {
+func (x *PublicCloudVMServiceListRequest) GetPaging() *v1.Paging {
 	if x != nil {
 		return x.Paging
 	}
 	return nil
 }
 
-func (x *VMServiceListRequest) GetQuery() *VMQuery {
+func (x *PublicCloudVMServiceListRequest) GetQuery() *PublicCloudVMQuery {
 	if x != nil {
 		return x.Query
 	}
@@ -707,28 +707,28 @@ func (x *VMServiceListRequest) GetQuery() *VMQuery {
 }
 
 // The response when listing VMs.
-type VMServiceListResponse struct {
+type PublicCloudVMServiceListResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// VMs is a list of filtered VMs resources.
-	Vms           []*VM `protobuf:"bytes,1,rep,name=vms,proto3" json:"vms,omitempty"`
+	Vms           []*PublicCloudVM `protobuf:"bytes,1,rep,name=vms,proto3" json:"vms,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *VMServiceListResponse) Reset() {
-	*x = VMServiceListResponse{}
+func (x *PublicCloudVMServiceListResponse) Reset() {
+	*x = PublicCloudVMServiceListResponse{}
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *VMServiceListResponse) String() string {
+func (x *PublicCloudVMServiceListResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*VMServiceListResponse) ProtoMessage() {}
+func (*PublicCloudVMServiceListResponse) ProtoMessage() {}
 
-func (x *VMServiceListResponse) ProtoReflect() protoreflect.Message {
+func (x *PublicCloudVMServiceListResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -740,12 +740,12 @@ func (x *VMServiceListResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use VMServiceListResponse.ProtoReflect.Descriptor instead.
-func (*VMServiceListResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use PublicCloudVMServiceListResponse.ProtoReflect.Descriptor instead.
+func (*PublicCloudVMServiceListResponse) Descriptor() ([]byte, []int) {
 	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *VMServiceListResponse) GetVms() []*VM {
+func (x *PublicCloudVMServiceListResponse) GetVms() []*PublicCloudVM {
 	if x != nil {
 		return x.Vms
 	}
@@ -753,7 +753,7 @@ func (x *VMServiceListResponse) GetVms() []*VM {
 }
 
 // The request to update a VM.
-type VMServiceUpdateRequest struct {
+type PublicCloudVMServiceUpdateRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// UUID of the VM to update.
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
@@ -772,20 +772,20 @@ type VMServiceUpdateRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *VMServiceUpdateRequest) Reset() {
-	*x = VMServiceUpdateRequest{}
+func (x *PublicCloudVMServiceUpdateRequest) Reset() {
+	*x = PublicCloudVMServiceUpdateRequest{}
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *VMServiceUpdateRequest) String() string {
+func (x *PublicCloudVMServiceUpdateRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*VMServiceUpdateRequest) ProtoMessage() {}
+func (*PublicCloudVMServiceUpdateRequest) ProtoMessage() {}
 
-func (x *VMServiceUpdateRequest) ProtoReflect() protoreflect.Message {
+func (x *PublicCloudVMServiceUpdateRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -797,47 +797,47 @@ func (x *VMServiceUpdateRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use VMServiceUpdateRequest.ProtoReflect.Descriptor instead.
-func (*VMServiceUpdateRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use PublicCloudVMServiceUpdateRequest.ProtoReflect.Descriptor instead.
+func (*PublicCloudVMServiceUpdateRequest) Descriptor() ([]byte, []int) {
 	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *VMServiceUpdateRequest) GetUuid() string {
+func (x *PublicCloudVMServiceUpdateRequest) GetUuid() string {
 	if x != nil {
 		return x.Uuid
 	}
 	return ""
 }
 
-func (x *VMServiceUpdateRequest) GetProjectUuid() string {
+func (x *PublicCloudVMServiceUpdateRequest) GetProjectUuid() string {
 	if x != nil {
 		return x.ProjectUuid
 	}
 	return ""
 }
 
-func (x *VMServiceUpdateRequest) GetUpdateMeta() *v1.UpdateMeta {
+func (x *PublicCloudVMServiceUpdateRequest) GetUpdateMeta() *v1.UpdateMeta {
 	if x != nil {
 		return x.UpdateMeta
 	}
 	return nil
 }
 
-func (x *VMServiceUpdateRequest) GetLabels() *v1.UpdateLabels {
+func (x *PublicCloudVMServiceUpdateRequest) GetLabels() *v1.UpdateLabels {
 	if x != nil {
 		return x.Labels
 	}
 	return nil
 }
 
-func (x *VMServiceUpdateRequest) GetName() string {
+func (x *PublicCloudVMServiceUpdateRequest) GetName() string {
 	if x != nil && x.Name != nil {
 		return *x.Name
 	}
 	return ""
 }
 
-func (x *VMServiceUpdateRequest) GetSize() Size {
+func (x *PublicCloudVMServiceUpdateRequest) GetSize() Size {
 	if x != nil && x.Size != nil {
 		return *x.Size
 	}
@@ -845,28 +845,28 @@ func (x *VMServiceUpdateRequest) GetSize() Size {
 }
 
 // The response when updating a VM.
-type VMServiceUpdateResponse struct {
+type PublicCloudVMServiceUpdateResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The updated VM.
-	Vm            *VM `protobuf:"bytes,1,opt,name=vm,proto3" json:"vm,omitempty"`
+	Vm            *PublicCloudVM `protobuf:"bytes,1,opt,name=vm,proto3" json:"vm,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *VMServiceUpdateResponse) Reset() {
-	*x = VMServiceUpdateResponse{}
+func (x *PublicCloudVMServiceUpdateResponse) Reset() {
+	*x = PublicCloudVMServiceUpdateResponse{}
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *VMServiceUpdateResponse) String() string {
+func (x *PublicCloudVMServiceUpdateResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*VMServiceUpdateResponse) ProtoMessage() {}
+func (*PublicCloudVMServiceUpdateResponse) ProtoMessage() {}
 
-func (x *VMServiceUpdateResponse) ProtoReflect() protoreflect.Message {
+func (x *PublicCloudVMServiceUpdateResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -878,12 +878,12 @@ func (x *VMServiceUpdateResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use VMServiceUpdateResponse.ProtoReflect.Descriptor instead.
-func (*VMServiceUpdateResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use PublicCloudVMServiceUpdateResponse.ProtoReflect.Descriptor instead.
+func (*PublicCloudVMServiceUpdateResponse) Descriptor() ([]byte, []int) {
 	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *VMServiceUpdateResponse) GetVm() *VM {
+func (x *PublicCloudVMServiceUpdateResponse) GetVm() *PublicCloudVM {
 	if x != nil {
 		return x.Vm
 	}
@@ -891,7 +891,7 @@ func (x *VMServiceUpdateResponse) GetVm() *VM {
 }
 
 // The request to delete a VM.
-type VMServiceDeleteRequest struct {
+type PublicCloudVMServiceDeleteRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// UUID of the VM to delete.
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
@@ -901,20 +901,20 @@ type VMServiceDeleteRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *VMServiceDeleteRequest) Reset() {
-	*x = VMServiceDeleteRequest{}
+func (x *PublicCloudVMServiceDeleteRequest) Reset() {
+	*x = PublicCloudVMServiceDeleteRequest{}
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *VMServiceDeleteRequest) String() string {
+func (x *PublicCloudVMServiceDeleteRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*VMServiceDeleteRequest) ProtoMessage() {}
+func (*PublicCloudVMServiceDeleteRequest) ProtoMessage() {}
 
-func (x *VMServiceDeleteRequest) ProtoReflect() protoreflect.Message {
+func (x *PublicCloudVMServiceDeleteRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -926,19 +926,19 @@ func (x *VMServiceDeleteRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use VMServiceDeleteRequest.ProtoReflect.Descriptor instead.
-func (*VMServiceDeleteRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use PublicCloudVMServiceDeleteRequest.ProtoReflect.Descriptor instead.
+func (*PublicCloudVMServiceDeleteRequest) Descriptor() ([]byte, []int) {
 	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *VMServiceDeleteRequest) GetUuid() string {
+func (x *PublicCloudVMServiceDeleteRequest) GetUuid() string {
 	if x != nil {
 		return x.Uuid
 	}
 	return ""
 }
 
-func (x *VMServiceDeleteRequest) GetProjectUuid() string {
+func (x *PublicCloudVMServiceDeleteRequest) GetProjectUuid() string {
 	if x != nil {
 		return x.ProjectUuid
 	}
@@ -947,26 +947,26 @@ func (x *VMServiceDeleteRequest) GetProjectUuid() string {
 
 // The response after deleting a VM.
 // The VM is deleted immediately will not be able to be requested.
-type VMServiceDeleteResponse struct {
+type PublicCloudVMServiceDeleteResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *VMServiceDeleteResponse) Reset() {
-	*x = VMServiceDeleteResponse{}
+func (x *PublicCloudVMServiceDeleteResponse) Reset() {
+	*x = PublicCloudVMServiceDeleteResponse{}
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *VMServiceDeleteResponse) String() string {
+func (x *PublicCloudVMServiceDeleteResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*VMServiceDeleteResponse) ProtoMessage() {}
+func (*PublicCloudVMServiceDeleteResponse) ProtoMessage() {}
 
-func (x *VMServiceDeleteResponse) ProtoReflect() protoreflect.Message {
+func (x *PublicCloudVMServiceDeleteResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -978,8 +978,8 @@ func (x *VMServiceDeleteResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use VMServiceDeleteResponse.ProtoReflect.Descriptor instead.
-func (*VMServiceDeleteResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use PublicCloudVMServiceDeleteResponse.ProtoReflect.Descriptor instead.
+func (*PublicCloudVMServiceDeleteResponse) Descriptor() ([]byte, []int) {
 	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{12}
 }
 
@@ -987,8 +987,8 @@ var File_fits_api_pcvm_v1_vm_proto protoreflect.FileDescriptor
 
 const file_fits_api_pcvm_v1_vm_proto_rawDesc = "" +
 	"\n" +
-	"\x19fits/api/pcvm/v1/vm.proto\x12\x10fits.api.pcvm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\x9a\x02\n" +
-	"\x02VM\x12\x1c\n" +
+	"\x19fits/api/pcvm/v1/vm.proto\x12\x10fits.api.pcvm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xa5\x02\n" +
+	"\rPublicCloudVM\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12%\n" +
 	"\x04meta\x18\x02 \x01(\v2\x11.fits.api.v1.MetaR\x04meta\x12\x1f\n" +
 	"\x04name\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x04name\x12#\n" +
@@ -999,31 +999,31 @@ const file_fits_api_pcvm_v1_vm_proto_rawDesc = "" +
 	"\x06Status\x12-\n" +
 	"\x05state\x18\x01 \x01(\x0e2\x17.fits.api.pcvm.v1.StateR\x05state\x12\x1f\n" +
 	"\x04info\x18\x02 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\x04info\x129\n" +
-	"\toperation\x18\x03 \x01(\x0e2\x1b.fits.api.pcvm.v1.OperationR\toperation\"u\n" +
-	"\aVMQuery\x12$\n" +
+	"\toperation\x18\x03 \x01(\x0e2\x1b.fits.api.pcvm.v1.OperationR\toperation\"\x80\x01\n" +
+	"\x12PublicCloudVMQuery\x12$\n" +
 	"\x04name\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01H\x00R\x04name\x88\x01\x01\x120\n" +
 	"\x06labels\x18\x02 \x01(\v2\x13.fits.api.v1.LabelsH\x01R\x06labels\x88\x01\x01B\a\n" +
 	"\x05_nameB\t\n" +
-	"\a_labels\"`\n" +
-	"\x13VMServiceGetRequest\x12\x1c\n" +
+	"\a_labels\"k\n" +
+	"\x1ePublicCloudVMServiceGetRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
-	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\"<\n" +
-	"\x14VMServiceGetResponse\x12$\n" +
-	"\x02vm\x18\x01 \x01(\v2\x14.fits.api.pcvm.v1.VMR\x02vm\"\xbf\x01\n" +
-	"\x16VMServiceCreateRequest\x12+\n" +
+	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\"R\n" +
+	"\x1fPublicCloudVMServiceGetResponse\x12/\n" +
+	"\x02vm\x18\x01 \x01(\v2\x1f.fits.api.pcvm.v1.PublicCloudVMR\x02vm\"\xca\x01\n" +
+	"!PublicCloudVMServiceCreateRequest\x12+\n" +
 	"\fproject_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12\x1f\n" +
 	"\x04name\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x04name\x12+\n" +
 	"\x06labels\x18\x03 \x01(\v2\x13.fits.api.v1.LabelsR\x06labels\x12*\n" +
-	"\x04size\x18\x04 \x01(\x0e2\x16.fits.api.pcvm.v1.SizeR\x04size\"?\n" +
-	"\x17VMServiceCreateResponse\x12$\n" +
-	"\x02vm\x18\x01 \x01(\v2\x14.fits.api.pcvm.v1.VMR\x02vm\"\xa1\x01\n" +
-	"\x14VMServiceListRequest\x12+\n" +
+	"\x04size\x18\x04 \x01(\x0e2\x16.fits.api.pcvm.v1.SizeR\x04size\"U\n" +
+	"\"PublicCloudVMServiceCreateResponse\x12/\n" +
+	"\x02vm\x18\x01 \x01(\v2\x1f.fits.api.pcvm.v1.PublicCloudVMR\x02vm\"\xb7\x01\n" +
+	"\x1fPublicCloudVMServiceListRequest\x12+\n" +
 	"\fproject_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12+\n" +
-	"\x06paging\x18\x02 \x01(\v2\x13.fits.api.v1.PagingR\x06paging\x12/\n" +
-	"\x05query\x18\x03 \x01(\v2\x19.fits.api.pcvm.v1.VMQueryR\x05query\"?\n" +
-	"\x15VMServiceListResponse\x12&\n" +
-	"\x03vms\x18\x01 \x03(\v2\x14.fits.api.pcvm.v1.VMR\x03vms\"\xd1\x02\n" +
-	"\x16VMServiceUpdateRequest\x12\x1c\n" +
+	"\x06paging\x18\x02 \x01(\v2\x13.fits.api.v1.PagingR\x06paging\x12:\n" +
+	"\x05query\x18\x03 \x01(\v2$.fits.api.pcvm.v1.PublicCloudVMQueryR\x05query\"U\n" +
+	" PublicCloudVMServiceListResponse\x121\n" +
+	"\x03vms\x18\x01 \x03(\v2\x1f.fits.api.pcvm.v1.PublicCloudVMR\x03vms\"\xdc\x02\n" +
+	"!PublicCloudVMServiceUpdateRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
 	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12@\n" +
 	"\vupdate_meta\x18\x03 \x01(\v2\x17.fits.api.v1.UpdateMetaB\x06\xbaH\x03\xc8\x01\x01R\n" +
@@ -1033,13 +1033,13 @@ const file_fits_api_pcvm_v1_vm_proto_rawDesc = "" +
 	"\x04size\x18\x06 \x01(\x0e2\x16.fits.api.pcvm.v1.SizeH\x02R\x04size\x88\x01\x01B\t\n" +
 	"\a_labelsB\a\n" +
 	"\x05_nameB\a\n" +
-	"\x05_size\"?\n" +
-	"\x17VMServiceUpdateResponse\x12$\n" +
-	"\x02vm\x18\x01 \x01(\v2\x14.fits.api.pcvm.v1.VMR\x02vm\"c\n" +
-	"\x16VMServiceDeleteRequest\x12\x1c\n" +
+	"\x05_size\"U\n" +
+	"\"PublicCloudVMServiceUpdateResponse\x12/\n" +
+	"\x02vm\x18\x01 \x01(\v2\x1f.fits.api.pcvm.v1.PublicCloudVMR\x02vm\"n\n" +
+	"!PublicCloudVMServiceDeleteRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
-	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\"\x19\n" +
-	"\x17VMServiceDeleteResponse*\x80\x01\n" +
+	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\"$\n" +
+	"\"PublicCloudVMServiceDeleteResponse*\x80\x01\n" +
 	"\x05State\x12\x1b\n" +
 	"\x11STATE_UNSPECIFIED\x10\x00\x1a\x04\x82\xb2\x19\x00\x12\x1e\n" +
 	"\rSTATE_HEALTHY\x10\x01\x1a\v\x82\xb2\x19\ahealthy\x12\x1e\n" +
@@ -1060,15 +1060,15 @@ const file_fits_api_pcvm_v1_vm_proto_rawDesc = "" +
 	"\vSIZE_MEDIUM\x10\x02\x1a\n" +
 	"\x82\xb2\x19\x06medium\x12\x19\n" +
 	"\n" +
-	"SIZE_LARGE\x10\x03\x1a\t\x82\xb2\x19\x05large2\x95\x04\n" +
-	"\tVMService\x12a\n" +
-	"\x03Get\x12%.fits.api.pcvm.v1.VMServiceGetRequest\x1a&.fits.api.pcvm.v1.VMServiceGetResponse\"\v\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x12i\n" +
-	"\x06Create\x12(.fits.api.pcvm.v1.VMServiceCreateRequest\x1a).fits.api.pcvm.v1.VMServiceCreateResponse\"\n" +
-	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12d\n" +
-	"\x04List\x12&.fits.api.pcvm.v1.VMServiceListRequest\x1a'.fits.api.pcvm.v1.VMServiceListResponse\"\v\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x12i\n" +
-	"\x06Update\x12(.fits.api.pcvm.v1.VMServiceUpdateRequest\x1a).fits.api.pcvm.v1.VMServiceUpdateResponse\"\n" +
-	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12i\n" +
-	"\x06Delete\x12(.fits.api.pcvm.v1.VMServiceDeleteRequest\x1a).fits.api.pcvm.v1.VMServiceDeleteResponse\"\n" +
+	"SIZE_LARGE\x10\x03\x1a\t\x82\xb2\x19\x05large2\x8e\x05\n" +
+	"\x14PublicCloudVMService\x12w\n" +
+	"\x03Get\x120.fits.api.pcvm.v1.PublicCloudVMServiceGetRequest\x1a1.fits.api.pcvm.v1.PublicCloudVMServiceGetResponse\"\v\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x12\x7f\n" +
+	"\x06Create\x123.fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest\x1a4.fits.api.pcvm.v1.PublicCloudVMServiceCreateResponse\"\n" +
+	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12z\n" +
+	"\x04List\x121.fits.api.pcvm.v1.PublicCloudVMServiceListRequest\x1a2.fits.api.pcvm.v1.PublicCloudVMServiceListResponse\"\v\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x12\x7f\n" +
+	"\x06Update\x123.fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest\x1a4.fits.api.pcvm.v1.PublicCloudVMServiceUpdateResponse\"\n" +
+	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12\x7f\n" +
+	"\x06Delete\x123.fits.api.pcvm.v1.PublicCloudVMServiceDeleteRequest\x1a4.fits.api.pcvm.v1.PublicCloudVMServiceDeleteResponse\"\n" +
 	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01B\xb3\x01\n" +
 	"\x14com.fits.api.pcvm.v1B\aVmProtoP\x01Z/github.com/fi-ts/api/go/fits/api/pcvm/v1;pcvmv1\xa2\x02\x03FAP\xaa\x02\x10Fits.Api.Pcvm.V1\xca\x02\x10Fits\\Api\\Pcvm\\V1\xe2\x02\x1cFits\\Api\\Pcvm\\V1\\GPBMetadata\xea\x02\x13Fits::Api::Pcvm::V1b\x06proto3"
 
@@ -1087,56 +1087,56 @@ func file_fits_api_pcvm_v1_vm_proto_rawDescGZIP() []byte {
 var file_fits_api_pcvm_v1_vm_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
 var file_fits_api_pcvm_v1_vm_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_fits_api_pcvm_v1_vm_proto_goTypes = []any{
-	(State)(0),                      // 0: fits.api.pcvm.v1.State
-	(Operation)(0),                  // 1: fits.api.pcvm.v1.Operation
-	(Size)(0),                       // 2: fits.api.pcvm.v1.Size
-	(*VM)(nil),                      // 3: fits.api.pcvm.v1.VM
-	(*Status)(nil),                  // 4: fits.api.pcvm.v1.Status
-	(*VMQuery)(nil),                 // 5: fits.api.pcvm.v1.VMQuery
-	(*VMServiceGetRequest)(nil),     // 6: fits.api.pcvm.v1.VMServiceGetRequest
-	(*VMServiceGetResponse)(nil),    // 7: fits.api.pcvm.v1.VMServiceGetResponse
-	(*VMServiceCreateRequest)(nil),  // 8: fits.api.pcvm.v1.VMServiceCreateRequest
-	(*VMServiceCreateResponse)(nil), // 9: fits.api.pcvm.v1.VMServiceCreateResponse
-	(*VMServiceListRequest)(nil),    // 10: fits.api.pcvm.v1.VMServiceListRequest
-	(*VMServiceListResponse)(nil),   // 11: fits.api.pcvm.v1.VMServiceListResponse
-	(*VMServiceUpdateRequest)(nil),  // 12: fits.api.pcvm.v1.VMServiceUpdateRequest
-	(*VMServiceUpdateResponse)(nil), // 13: fits.api.pcvm.v1.VMServiceUpdateResponse
-	(*VMServiceDeleteRequest)(nil),  // 14: fits.api.pcvm.v1.VMServiceDeleteRequest
-	(*VMServiceDeleteResponse)(nil), // 15: fits.api.pcvm.v1.VMServiceDeleteResponse
-	(*v1.Meta)(nil),                 // 16: fits.api.v1.Meta
-	(*v1.Labels)(nil),               // 17: fits.api.v1.Labels
-	(*v1.Paging)(nil),               // 18: fits.api.v1.Paging
-	(*v1.UpdateMeta)(nil),           // 19: fits.api.v1.UpdateMeta
-	(*v1.UpdateLabels)(nil),         // 20: fits.api.v1.UpdateLabels
+	(State)(0),                                 // 0: fits.api.pcvm.v1.State
+	(Operation)(0),                             // 1: fits.api.pcvm.v1.Operation
+	(Size)(0),                                  // 2: fits.api.pcvm.v1.Size
+	(*PublicCloudVM)(nil),                      // 3: fits.api.pcvm.v1.PublicCloudVM
+	(*Status)(nil),                             // 4: fits.api.pcvm.v1.Status
+	(*PublicCloudVMQuery)(nil),                 // 5: fits.api.pcvm.v1.PublicCloudVMQuery
+	(*PublicCloudVMServiceGetRequest)(nil),     // 6: fits.api.pcvm.v1.PublicCloudVMServiceGetRequest
+	(*PublicCloudVMServiceGetResponse)(nil),    // 7: fits.api.pcvm.v1.PublicCloudVMServiceGetResponse
+	(*PublicCloudVMServiceCreateRequest)(nil),  // 8: fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest
+	(*PublicCloudVMServiceCreateResponse)(nil), // 9: fits.api.pcvm.v1.PublicCloudVMServiceCreateResponse
+	(*PublicCloudVMServiceListRequest)(nil),    // 10: fits.api.pcvm.v1.PublicCloudVMServiceListRequest
+	(*PublicCloudVMServiceListResponse)(nil),   // 11: fits.api.pcvm.v1.PublicCloudVMServiceListResponse
+	(*PublicCloudVMServiceUpdateRequest)(nil),  // 12: fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest
+	(*PublicCloudVMServiceUpdateResponse)(nil), // 13: fits.api.pcvm.v1.PublicCloudVMServiceUpdateResponse
+	(*PublicCloudVMServiceDeleteRequest)(nil),  // 14: fits.api.pcvm.v1.PublicCloudVMServiceDeleteRequest
+	(*PublicCloudVMServiceDeleteResponse)(nil), // 15: fits.api.pcvm.v1.PublicCloudVMServiceDeleteResponse
+	(*v1.Meta)(nil),                            // 16: fits.api.v1.Meta
+	(*v1.Labels)(nil),                          // 17: fits.api.v1.Labels
+	(*v1.Paging)(nil),                          // 18: fits.api.v1.Paging
+	(*v1.UpdateMeta)(nil),                      // 19: fits.api.v1.UpdateMeta
+	(*v1.UpdateLabels)(nil),                    // 20: fits.api.v1.UpdateLabels
 }
 var file_fits_api_pcvm_v1_vm_proto_depIdxs = []int32{
-	16, // 0: fits.api.pcvm.v1.VM.meta:type_name -> fits.api.v1.Meta
-	2,  // 1: fits.api.pcvm.v1.VM.size:type_name -> fits.api.pcvm.v1.Size
-	4,  // 2: fits.api.pcvm.v1.VM.status:type_name -> fits.api.pcvm.v1.Status
+	16, // 0: fits.api.pcvm.v1.PublicCloudVM.meta:type_name -> fits.api.v1.Meta
+	2,  // 1: fits.api.pcvm.v1.PublicCloudVM.size:type_name -> fits.api.pcvm.v1.Size
+	4,  // 2: fits.api.pcvm.v1.PublicCloudVM.status:type_name -> fits.api.pcvm.v1.Status
 	0,  // 3: fits.api.pcvm.v1.Status.state:type_name -> fits.api.pcvm.v1.State
 	1,  // 4: fits.api.pcvm.v1.Status.operation:type_name -> fits.api.pcvm.v1.Operation
-	17, // 5: fits.api.pcvm.v1.VMQuery.labels:type_name -> fits.api.v1.Labels
-	3,  // 6: fits.api.pcvm.v1.VMServiceGetResponse.vm:type_name -> fits.api.pcvm.v1.VM
-	17, // 7: fits.api.pcvm.v1.VMServiceCreateRequest.labels:type_name -> fits.api.v1.Labels
-	2,  // 8: fits.api.pcvm.v1.VMServiceCreateRequest.size:type_name -> fits.api.pcvm.v1.Size
-	3,  // 9: fits.api.pcvm.v1.VMServiceCreateResponse.vm:type_name -> fits.api.pcvm.v1.VM
-	18, // 10: fits.api.pcvm.v1.VMServiceListRequest.paging:type_name -> fits.api.v1.Paging
-	5,  // 11: fits.api.pcvm.v1.VMServiceListRequest.query:type_name -> fits.api.pcvm.v1.VMQuery
-	3,  // 12: fits.api.pcvm.v1.VMServiceListResponse.vms:type_name -> fits.api.pcvm.v1.VM
-	19, // 13: fits.api.pcvm.v1.VMServiceUpdateRequest.update_meta:type_name -> fits.api.v1.UpdateMeta
-	20, // 14: fits.api.pcvm.v1.VMServiceUpdateRequest.labels:type_name -> fits.api.v1.UpdateLabels
-	2,  // 15: fits.api.pcvm.v1.VMServiceUpdateRequest.size:type_name -> fits.api.pcvm.v1.Size
-	3,  // 16: fits.api.pcvm.v1.VMServiceUpdateResponse.vm:type_name -> fits.api.pcvm.v1.VM
-	6,  // 17: fits.api.pcvm.v1.VMService.Get:input_type -> fits.api.pcvm.v1.VMServiceGetRequest
-	8,  // 18: fits.api.pcvm.v1.VMService.Create:input_type -> fits.api.pcvm.v1.VMServiceCreateRequest
-	10, // 19: fits.api.pcvm.v1.VMService.List:input_type -> fits.api.pcvm.v1.VMServiceListRequest
-	12, // 20: fits.api.pcvm.v1.VMService.Update:input_type -> fits.api.pcvm.v1.VMServiceUpdateRequest
-	14, // 21: fits.api.pcvm.v1.VMService.Delete:input_type -> fits.api.pcvm.v1.VMServiceDeleteRequest
-	7,  // 22: fits.api.pcvm.v1.VMService.Get:output_type -> fits.api.pcvm.v1.VMServiceGetResponse
-	9,  // 23: fits.api.pcvm.v1.VMService.Create:output_type -> fits.api.pcvm.v1.VMServiceCreateResponse
-	11, // 24: fits.api.pcvm.v1.VMService.List:output_type -> fits.api.pcvm.v1.VMServiceListResponse
-	13, // 25: fits.api.pcvm.v1.VMService.Update:output_type -> fits.api.pcvm.v1.VMServiceUpdateResponse
-	15, // 26: fits.api.pcvm.v1.VMService.Delete:output_type -> fits.api.pcvm.v1.VMServiceDeleteResponse
+	17, // 5: fits.api.pcvm.v1.PublicCloudVMQuery.labels:type_name -> fits.api.v1.Labels
+	3,  // 6: fits.api.pcvm.v1.PublicCloudVMServiceGetResponse.vm:type_name -> fits.api.pcvm.v1.PublicCloudVM
+	17, // 7: fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest.labels:type_name -> fits.api.v1.Labels
+	2,  // 8: fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest.size:type_name -> fits.api.pcvm.v1.Size
+	3,  // 9: fits.api.pcvm.v1.PublicCloudVMServiceCreateResponse.vm:type_name -> fits.api.pcvm.v1.PublicCloudVM
+	18, // 10: fits.api.pcvm.v1.PublicCloudVMServiceListRequest.paging:type_name -> fits.api.v1.Paging
+	5,  // 11: fits.api.pcvm.v1.PublicCloudVMServiceListRequest.query:type_name -> fits.api.pcvm.v1.PublicCloudVMQuery
+	3,  // 12: fits.api.pcvm.v1.PublicCloudVMServiceListResponse.vms:type_name -> fits.api.pcvm.v1.PublicCloudVM
+	19, // 13: fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest.update_meta:type_name -> fits.api.v1.UpdateMeta
+	20, // 14: fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest.labels:type_name -> fits.api.v1.UpdateLabels
+	2,  // 15: fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest.size:type_name -> fits.api.pcvm.v1.Size
+	3,  // 16: fits.api.pcvm.v1.PublicCloudVMServiceUpdateResponse.vm:type_name -> fits.api.pcvm.v1.PublicCloudVM
+	6,  // 17: fits.api.pcvm.v1.PublicCloudVMService.Get:input_type -> fits.api.pcvm.v1.PublicCloudVMServiceGetRequest
+	8,  // 18: fits.api.pcvm.v1.PublicCloudVMService.Create:input_type -> fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest
+	10, // 19: fits.api.pcvm.v1.PublicCloudVMService.List:input_type -> fits.api.pcvm.v1.PublicCloudVMServiceListRequest
+	12, // 20: fits.api.pcvm.v1.PublicCloudVMService.Update:input_type -> fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest
+	14, // 21: fits.api.pcvm.v1.PublicCloudVMService.Delete:input_type -> fits.api.pcvm.v1.PublicCloudVMServiceDeleteRequest
+	7,  // 22: fits.api.pcvm.v1.PublicCloudVMService.Get:output_type -> fits.api.pcvm.v1.PublicCloudVMServiceGetResponse
+	9,  // 23: fits.api.pcvm.v1.PublicCloudVMService.Create:output_type -> fits.api.pcvm.v1.PublicCloudVMServiceCreateResponse
+	11, // 24: fits.api.pcvm.v1.PublicCloudVMService.List:output_type -> fits.api.pcvm.v1.PublicCloudVMServiceListResponse
+	13, // 25: fits.api.pcvm.v1.PublicCloudVMService.Update:output_type -> fits.api.pcvm.v1.PublicCloudVMServiceUpdateResponse
+	15, // 26: fits.api.pcvm.v1.PublicCloudVMService.Delete:output_type -> fits.api.pcvm.v1.PublicCloudVMServiceDeleteResponse
 	22, // [22:27] is the sub-list for method output_type
 	17, // [17:22] is the sub-list for method input_type
 	17, // [17:17] is the sub-list for extension type_name

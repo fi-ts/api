@@ -17,74 +17,74 @@ from connectrpc.server import ConnectASGIApplication, ConnectWSGIApplication, En
 import fits.api.pcvm.v1.vm_pb2 as fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2
 
 
-class VMService(Protocol):
-    async def get(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceGetRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceGetResponse:
+class PublicCloudVMService(Protocol):
+    async def get(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceGetRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceGetResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
-    async def create(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceCreateResponse:
+    async def create(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceCreateResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
-    async def list(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceListRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceListResponse:
+    async def list(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceListRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceListResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
-    async def update(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceUpdateRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceUpdateResponse:
+    async def update(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceUpdateRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceUpdateResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
-    async def delete(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceDeleteRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceDeleteResponse:
+    async def delete(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceDeleteRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceDeleteResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
 
-class VMServiceASGIApplication(ConnectASGIApplication[VMService]):
-    def __init__(self, service: VMService | AsyncGenerator[VMService], *, interceptors: Iterable[Interceptor]=(), read_max_bytes: int | None = None, compressions: Iterable[Compression] | None = None, codecs: Iterable[Codec] | None = None) -> None:
+class PublicCloudVMServiceASGIApplication(ConnectASGIApplication[PublicCloudVMService]):
+    def __init__(self, service: PublicCloudVMService | AsyncGenerator[PublicCloudVMService], *, interceptors: Iterable[Interceptor]=(), read_max_bytes: int | None = None, compressions: Iterable[Compression] | None = None, codecs: Iterable[Codec] | None = None) -> None:
         super().__init__(
             service=service,
             endpoints=lambda svc: {
-                "/fits.api.pcvm.v1.VMService/Get": Endpoint.unary(
+                "/fits.api.pcvm.v1.PublicCloudVMService/Get": Endpoint.unary(
                     method=MethodInfo(
                         name="Get",
-                        service_name="fits.api.pcvm.v1.VMService",
-                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceGetRequest,
-                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceGetResponse,
+                        service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceGetRequest,
+                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceGetResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=svc.get,
                 ),
-                "/fits.api.pcvm.v1.VMService/Create": Endpoint.unary(
+                "/fits.api.pcvm.v1.PublicCloudVMService/Create": Endpoint.unary(
                     method=MethodInfo(
                         name="Create",
-                        service_name="fits.api.pcvm.v1.VMService",
-                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceCreateRequest,
-                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceCreateResponse,
+                        service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceCreateRequest,
+                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceCreateResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=svc.create,
                 ),
-                "/fits.api.pcvm.v1.VMService/List": Endpoint.unary(
+                "/fits.api.pcvm.v1.PublicCloudVMService/List": Endpoint.unary(
                     method=MethodInfo(
                         name="List",
-                        service_name="fits.api.pcvm.v1.VMService",
-                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceListRequest,
-                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceListResponse,
+                        service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceListRequest,
+                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceListResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=svc.list,
                 ),
-                "/fits.api.pcvm.v1.VMService/Update": Endpoint.unary(
+                "/fits.api.pcvm.v1.PublicCloudVMService/Update": Endpoint.unary(
                     method=MethodInfo(
                         name="Update",
-                        service_name="fits.api.pcvm.v1.VMService",
-                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceUpdateRequest,
-                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceUpdateResponse,
+                        service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceUpdateRequest,
+                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceUpdateResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=svc.update,
                 ),
-                "/fits.api.pcvm.v1.VMService/Delete": Endpoint.unary(
+                "/fits.api.pcvm.v1.PublicCloudVMService/Delete": Endpoint.unary(
                     method=MethodInfo(
                         name="Delete",
-                        service_name="fits.api.pcvm.v1.VMService",
-                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceDeleteRequest,
-                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceDeleteResponse,
+                        service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceDeleteRequest,
+                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceDeleteResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=svc.delete,
@@ -99,24 +99,24 @@ class VMServiceASGIApplication(ConnectASGIApplication[VMService]):
     @property
     def path(self) -> str:
         """Returns the URL path to mount the application to when serving multiple applications."""
-        return "/fits.api.pcvm.v1.VMService"
+        return "/fits.api.pcvm.v1.PublicCloudVMService"
 
 
-class VMServiceClient(ConnectClient):
+class PublicCloudVMServiceClient(ConnectClient):
     async def get(
         self,
-        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceGetRequest,
+        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceGetRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceGetResponse:
+    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceGetResponse:
         return await self.execute_unary(
             request=request,
             method=MethodInfo(
                 name="Get",
-                service_name="fits.api.pcvm.v1.VMService",
-                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceGetRequest,
-                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceGetResponse,
+                service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceGetRequest,
+                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceGetResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
@@ -125,18 +125,18 @@ class VMServiceClient(ConnectClient):
 
     async def create(
         self,
-        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceCreateRequest,
+        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceCreateRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceCreateResponse:
+    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceCreateResponse:
         return await self.execute_unary(
             request=request,
             method=MethodInfo(
                 name="Create",
-                service_name="fits.api.pcvm.v1.VMService",
-                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceCreateRequest,
-                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceCreateResponse,
+                service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceCreateRequest,
+                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceCreateResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
@@ -145,18 +145,18 @@ class VMServiceClient(ConnectClient):
 
     async def list(
         self,
-        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceListRequest,
+        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceListRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceListResponse:
+    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceListResponse:
         return await self.execute_unary(
             request=request,
             method=MethodInfo(
                 name="List",
-                service_name="fits.api.pcvm.v1.VMService",
-                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceListRequest,
-                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceListResponse,
+                service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceListRequest,
+                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceListResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
@@ -165,18 +165,18 @@ class VMServiceClient(ConnectClient):
 
     async def update(
         self,
-        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceUpdateRequest,
+        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceUpdateRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceUpdateResponse:
+    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceUpdateResponse:
         return await self.execute_unary(
             request=request,
             method=MethodInfo(
                 name="Update",
-                service_name="fits.api.pcvm.v1.VMService",
-                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceUpdateRequest,
-                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceUpdateResponse,
+                service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceUpdateRequest,
+                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceUpdateResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
@@ -185,18 +185,18 @@ class VMServiceClient(ConnectClient):
 
     async def delete(
         self,
-        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceDeleteRequest,
+        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceDeleteRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceDeleteResponse:
+    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceDeleteResponse:
         return await self.execute_unary(
             request=request,
             method=MethodInfo(
                 name="Delete",
-                service_name="fits.api.pcvm.v1.VMService",
-                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceDeleteRequest,
-                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceDeleteResponse,
+                service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceDeleteRequest,
+                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceDeleteResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
@@ -207,69 +207,69 @@ class VMServiceClient(ConnectClient):
 
 
 
-class VMServiceSync(Protocol):
-    def get(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceGetRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceGetResponse:
+class PublicCloudVMServiceSync(Protocol):
+    def get(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceGetRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceGetResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-    def create(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceCreateResponse:
+    def create(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceCreateResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-    def list(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceListRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceListResponse:
+    def list(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceListRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceListResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-    def update(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceUpdateRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceUpdateResponse:
+    def update(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceUpdateRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceUpdateResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-    def delete(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceDeleteRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceDeleteResponse:
+    def delete(self, request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceDeleteRequest, ctx: RequestContext) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceDeleteResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
 
-class VMServiceWSGIApplication(ConnectWSGIApplication):
-    def __init__(self, service: VMServiceSync, interceptors: Iterable[InterceptorSync]=(), read_max_bytes: int | None = None, compressions: Iterable[Compression] | None = None, codecs: Iterable[Codec] | None = None) -> None:
+class PublicCloudVMServiceWSGIApplication(ConnectWSGIApplication):
+    def __init__(self, service: PublicCloudVMServiceSync, interceptors: Iterable[InterceptorSync]=(), read_max_bytes: int | None = None, compressions: Iterable[Compression] | None = None, codecs: Iterable[Codec] | None = None) -> None:
         super().__init__(
             endpoints={
-                "/fits.api.pcvm.v1.VMService/Get": EndpointSync.unary(
+                "/fits.api.pcvm.v1.PublicCloudVMService/Get": EndpointSync.unary(
                     method=MethodInfo(
                         name="Get",
-                        service_name="fits.api.pcvm.v1.VMService",
-                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceGetRequest,
-                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceGetResponse,
+                        service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceGetRequest,
+                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceGetResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=service.get,
                 ),
-                "/fits.api.pcvm.v1.VMService/Create": EndpointSync.unary(
+                "/fits.api.pcvm.v1.PublicCloudVMService/Create": EndpointSync.unary(
                     method=MethodInfo(
                         name="Create",
-                        service_name="fits.api.pcvm.v1.VMService",
-                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceCreateRequest,
-                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceCreateResponse,
+                        service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceCreateRequest,
+                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceCreateResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=service.create,
                 ),
-                "/fits.api.pcvm.v1.VMService/List": EndpointSync.unary(
+                "/fits.api.pcvm.v1.PublicCloudVMService/List": EndpointSync.unary(
                     method=MethodInfo(
                         name="List",
-                        service_name="fits.api.pcvm.v1.VMService",
-                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceListRequest,
-                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceListResponse,
+                        service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceListRequest,
+                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceListResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=service.list,
                 ),
-                "/fits.api.pcvm.v1.VMService/Update": EndpointSync.unary(
+                "/fits.api.pcvm.v1.PublicCloudVMService/Update": EndpointSync.unary(
                     method=MethodInfo(
                         name="Update",
-                        service_name="fits.api.pcvm.v1.VMService",
-                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceUpdateRequest,
-                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceUpdateResponse,
+                        service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceUpdateRequest,
+                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceUpdateResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=service.update,
                 ),
-                "/fits.api.pcvm.v1.VMService/Delete": EndpointSync.unary(
+                "/fits.api.pcvm.v1.PublicCloudVMService/Delete": EndpointSync.unary(
                     method=MethodInfo(
                         name="Delete",
-                        service_name="fits.api.pcvm.v1.VMService",
-                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceDeleteRequest,
-                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceDeleteResponse,
+                        service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                        input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceDeleteRequest,
+                        output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceDeleteResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=service.delete,
@@ -284,24 +284,24 @@ class VMServiceWSGIApplication(ConnectWSGIApplication):
     @property
     def path(self) -> str:
         """Returns the URL path to mount the application to when serving multiple applications."""
-        return "/fits.api.pcvm.v1.VMService"
+        return "/fits.api.pcvm.v1.PublicCloudVMService"
 
 
-class VMServiceClientSync(ConnectClientSync):
+class PublicCloudVMServiceClientSync(ConnectClientSync):
     def get(
         self,
-        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceGetRequest,
+        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceGetRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceGetResponse:
+    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceGetResponse:
         return self.execute_unary(
             request=request,
             method=MethodInfo(
                 name="Get",
-                service_name="fits.api.pcvm.v1.VMService",
-                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceGetRequest,
-                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceGetResponse,
+                service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceGetRequest,
+                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceGetResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
@@ -310,18 +310,18 @@ class VMServiceClientSync(ConnectClientSync):
 
     def create(
         self,
-        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceCreateRequest,
+        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceCreateRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceCreateResponse:
+    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceCreateResponse:
         return self.execute_unary(
             request=request,
             method=MethodInfo(
                 name="Create",
-                service_name="fits.api.pcvm.v1.VMService",
-                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceCreateRequest,
-                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceCreateResponse,
+                service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceCreateRequest,
+                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceCreateResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
@@ -330,18 +330,18 @@ class VMServiceClientSync(ConnectClientSync):
 
     def list(
         self,
-        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceListRequest,
+        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceListRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceListResponse:
+    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceListResponse:
         return self.execute_unary(
             request=request,
             method=MethodInfo(
                 name="List",
-                service_name="fits.api.pcvm.v1.VMService",
-                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceListRequest,
-                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceListResponse,
+                service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceListRequest,
+                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceListResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
@@ -350,18 +350,18 @@ class VMServiceClientSync(ConnectClientSync):
 
     def update(
         self,
-        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceUpdateRequest,
+        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceUpdateRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceUpdateResponse:
+    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceUpdateResponse:
         return self.execute_unary(
             request=request,
             method=MethodInfo(
                 name="Update",
-                service_name="fits.api.pcvm.v1.VMService",
-                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceUpdateRequest,
-                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceUpdateResponse,
+                service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceUpdateRequest,
+                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceUpdateResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
@@ -370,18 +370,18 @@ class VMServiceClientSync(ConnectClientSync):
 
     def delete(
         self,
-        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceDeleteRequest,
+        request: fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceDeleteRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceDeleteResponse:
+    ) -> fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceDeleteResponse:
         return self.execute_unary(
             request=request,
             method=MethodInfo(
                 name="Delete",
-                service_name="fits.api.pcvm.v1.VMService",
-                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceDeleteRequest,
-                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.VMServiceDeleteResponse,
+                service_name="fits.api.pcvm.v1.PublicCloudVMService",
+                input=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceDeleteRequest,
+                output=fits_dot_api_dot_pcvm_dot_v1_dot_vm__pb2.PublicCloudVMServiceDeleteResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,

@@ -79,7 +79,7 @@ class Client:
 
 
         def vm(self):
-            return fits_api_pcvm_v1_vm_connect.VMServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
+            return fits_api_pcvm_v1_vm_connect.PublicCloudVMServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
 
     class _Apiv1:

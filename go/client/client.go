@@ -40,11 +40,11 @@ type (
 	}
 
 	Apipcvmv1 interface {
-		VM() pcvmv1connect.VMServiceClient
+		PublicCloudVM() pcvmv1connect.PublicCloudVMServiceClient
 	}
 
 	apipcvmv1 struct {
-		vmservice pcvmv1connect.VMServiceClient
+		publiccloudvmservice pcvmv1connect.PublicCloudVMServiceClient
 	}
 
 	Apiv1 interface {
@@ -129,7 +129,7 @@ func (c *apimvmv1) VLAN() mvmv1connect.VLANServiceClient {
 
 func (c *client) Apipcvmv1() Apipcvmv1 {
 	a := &apipcvmv1{
-		vmservice: pcvmv1connect.NewVMServiceClient(
+		publiccloudvmservice: pcvmv1connect.NewPublicCloudVMServiceClient(
 			c.config.HttpClient(),
 			c.config.BaseURL,
 			connect.WithInterceptors(c.interceptors...),
@@ -139,8 +139,8 @@ func (c *client) Apipcvmv1() Apipcvmv1 {
 	return a
 }
 
-func (c *apipcvmv1) VM() pcvmv1connect.VMServiceClient {
-	return c.vmservice
+func (c *apipcvmv1) PublicCloudVM() pcvmv1connect.PublicCloudVMServiceClient {
+	return c.publiccloudvmservice
 }
 
 func (c *client) Apiv1() Apiv1 {

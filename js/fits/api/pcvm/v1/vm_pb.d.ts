@@ -8,9 +8,9 @@ export declare const file_fits_api_pcvm_v1_vm: GenFile;
 /**
  * The VM resource.
  *
- * @generated from message fits.api.pcvm.v1.VM
+ * @generated from message fits.api.pcvm.v1.PublicCloudVM
  */
-export type VM = Message<"fits.api.pcvm.v1.VM"> & {
+export type PublicCloudVM = Message<"fits.api.pcvm.v1.PublicCloudVM"> & {
     /**
      * UUID of this VM.
      *
@@ -56,10 +56,10 @@ export type VM = Message<"fits.api.pcvm.v1.VM"> & {
     status?: Status | undefined;
 };
 /**
- * Describes the message fits.api.pcvm.v1.VM.
- * Use `create(VMSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVM.
+ * Use `create(PublicCloudVMSchema)` to create a new message.
  */
-export declare const VMSchema: GenMessage<VM>;
+export declare const PublicCloudVMSchema: GenMessage<PublicCloudVM>;
 /**
  * The Status of a VM.
  *
@@ -93,9 +93,9 @@ export declare const StatusSchema: GenMessage<Status>;
 /**
  * The VM query parameters to filter the list of results.
  *
- * @generated from message fits.api.pcvm.v1.VMQuery
+ * @generated from message fits.api.pcvm.v1.PublicCloudVMQuery
  */
-export type VMQuery = Message<"fits.api.pcvm.v1.VMQuery"> & {
+export type PublicCloudVMQuery = Message<"fits.api.pcvm.v1.PublicCloudVMQuery"> & {
     /**
      * The name of the VMs.
      *
@@ -110,16 +110,16 @@ export type VMQuery = Message<"fits.api.pcvm.v1.VMQuery"> & {
     labels?: Labels | undefined;
 };
 /**
- * Describes the message fits.api.pcvm.v1.VMQuery.
- * Use `create(VMQuerySchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMQuery.
+ * Use `create(PublicCloudVMQuerySchema)` to create a new message.
  */
-export declare const VMQuerySchema: GenMessage<VMQuery>;
+export declare const PublicCloudVMQuerySchema: GenMessage<PublicCloudVMQuery>;
 /**
  * Request to get a VM by UUID.
  *
- * @generated from message fits.api.pcvm.v1.VMServiceGetRequest
+ * @generated from message fits.api.pcvm.v1.PublicCloudVMServiceGetRequest
  */
-export type VMServiceGetRequest = Message<"fits.api.pcvm.v1.VMServiceGetRequest"> & {
+export type PublicCloudVMServiceGetRequest = Message<"fits.api.pcvm.v1.PublicCloudVMServiceGetRequest"> & {
     /**
      * UUID of the VM to get.
      *
@@ -134,34 +134,34 @@ export type VMServiceGetRequest = Message<"fits.api.pcvm.v1.VMServiceGetRequest"
     projectUuid: string;
 };
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceGetRequest.
- * Use `create(VMServiceGetRequestSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceGetRequest.
+ * Use `create(PublicCloudVMServiceGetRequestSchema)` to create a new message.
  */
-export declare const VMServiceGetRequestSchema: GenMessage<VMServiceGetRequest>;
+export declare const PublicCloudVMServiceGetRequestSchema: GenMessage<PublicCloudVMServiceGetRequest>;
 /**
  * Response containing the requested VM.
  *
- * @generated from message fits.api.pcvm.v1.VMServiceGetResponse
+ * @generated from message fits.api.pcvm.v1.PublicCloudVMServiceGetResponse
  */
-export type VMServiceGetResponse = Message<"fits.api.pcvm.v1.VMServiceGetResponse"> & {
+export type PublicCloudVMServiceGetResponse = Message<"fits.api.pcvm.v1.PublicCloudVMServiceGetResponse"> & {
     /**
      * The VM.
      *
-     * @generated from field: fits.api.pcvm.v1.VM vm = 1;
+     * @generated from field: fits.api.pcvm.v1.PublicCloudVM vm = 1;
      */
-    vm?: VM | undefined;
+    vm?: PublicCloudVM | undefined;
 };
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceGetResponse.
- * Use `create(VMServiceGetResponseSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceGetResponse.
+ * Use `create(PublicCloudVMServiceGetResponseSchema)` to create a new message.
  */
-export declare const VMServiceGetResponseSchema: GenMessage<VMServiceGetResponse>;
+export declare const PublicCloudVMServiceGetResponseSchema: GenMessage<PublicCloudVMServiceGetResponse>;
 /**
  * The request to create a new VM.
  *
- * @generated from message fits.api.pcvm.v1.VMServiceCreateRequest
+ * @generated from message fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest
  */
-export type VMServiceCreateRequest = Message<"fits.api.pcvm.v1.VMServiceCreateRequest"> & {
+export type PublicCloudVMServiceCreateRequest = Message<"fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest"> & {
     /**
      * UUID of the project this VM belongs to.
      *
@@ -188,34 +188,34 @@ export type VMServiceCreateRequest = Message<"fits.api.pcvm.v1.VMServiceCreateRe
     size: Size;
 };
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceCreateRequest.
- * Use `create(VMServiceCreateRequestSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest.
+ * Use `create(PublicCloudVMServiceCreateRequestSchema)` to create a new message.
  */
-export declare const VMServiceCreateRequestSchema: GenMessage<VMServiceCreateRequest>;
+export declare const PublicCloudVMServiceCreateRequestSchema: GenMessage<PublicCloudVMServiceCreateRequest>;
 /**
  * The response when creating a new VM.
  *
- * @generated from message fits.api.pcvm.v1.VMServiceCreateResponse
+ * @generated from message fits.api.pcvm.v1.PublicCloudVMServiceCreateResponse
  */
-export type VMServiceCreateResponse = Message<"fits.api.pcvm.v1.VMServiceCreateResponse"> & {
+export type PublicCloudVMServiceCreateResponse = Message<"fits.api.pcvm.v1.PublicCloudVMServiceCreateResponse"> & {
     /**
      * The VM just created.
      *
-     * @generated from field: fits.api.pcvm.v1.VM vm = 1;
+     * @generated from field: fits.api.pcvm.v1.PublicCloudVM vm = 1;
      */
-    vm?: VM | undefined;
+    vm?: PublicCloudVM | undefined;
 };
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceCreateResponse.
- * Use `create(VMServiceCreateResponseSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceCreateResponse.
+ * Use `create(PublicCloudVMServiceCreateResponseSchema)` to create a new message.
  */
-export declare const VMServiceCreateResponseSchema: GenMessage<VMServiceCreateResponse>;
+export declare const PublicCloudVMServiceCreateResponseSchema: GenMessage<PublicCloudVMServiceCreateResponse>;
 /**
  * The request to list and filter VMs.
  *
- * @generated from message fits.api.pcvm.v1.VMServiceListRequest
+ * @generated from message fits.api.pcvm.v1.PublicCloudVMServiceListRequest
  */
-export type VMServiceListRequest = Message<"fits.api.pcvm.v1.VMServiceListRequest"> & {
+export type PublicCloudVMServiceListRequest = Message<"fits.api.pcvm.v1.PublicCloudVMServiceListRequest"> & {
     /**
      * UUID of the project this VM belongs to.
      *
@@ -231,39 +231,39 @@ export type VMServiceListRequest = Message<"fits.api.pcvm.v1.VMServiceListReques
     /**
      * Query defines how to filter the VMs.
      *
-     * @generated from field: fits.api.pcvm.v1.VMQuery query = 3;
+     * @generated from field: fits.api.pcvm.v1.PublicCloudVMQuery query = 3;
      */
-    query?: VMQuery | undefined;
+    query?: PublicCloudVMQuery | undefined;
 };
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceListRequest.
- * Use `create(VMServiceListRequestSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceListRequest.
+ * Use `create(PublicCloudVMServiceListRequestSchema)` to create a new message.
  */
-export declare const VMServiceListRequestSchema: GenMessage<VMServiceListRequest>;
+export declare const PublicCloudVMServiceListRequestSchema: GenMessage<PublicCloudVMServiceListRequest>;
 /**
  * The response when listing VMs.
  *
- * @generated from message fits.api.pcvm.v1.VMServiceListResponse
+ * @generated from message fits.api.pcvm.v1.PublicCloudVMServiceListResponse
  */
-export type VMServiceListResponse = Message<"fits.api.pcvm.v1.VMServiceListResponse"> & {
+export type PublicCloudVMServiceListResponse = Message<"fits.api.pcvm.v1.PublicCloudVMServiceListResponse"> & {
     /**
      * VMs is a list of filtered VMs resources.
      *
-     * @generated from field: repeated fits.api.pcvm.v1.VM vms = 1;
+     * @generated from field: repeated fits.api.pcvm.v1.PublicCloudVM vms = 1;
      */
-    vms: VM[];
+    vms: PublicCloudVM[];
 };
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceListResponse.
- * Use `create(VMServiceListResponseSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceListResponse.
+ * Use `create(PublicCloudVMServiceListResponseSchema)` to create a new message.
  */
-export declare const VMServiceListResponseSchema: GenMessage<VMServiceListResponse>;
+export declare const PublicCloudVMServiceListResponseSchema: GenMessage<PublicCloudVMServiceListResponse>;
 /**
  * The request to update a VM.
  *
- * @generated from message fits.api.pcvm.v1.VMServiceUpdateRequest
+ * @generated from message fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest
  */
-export type VMServiceUpdateRequest = Message<"fits.api.pcvm.v1.VMServiceUpdateRequest"> & {
+export type PublicCloudVMServiceUpdateRequest = Message<"fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest"> & {
     /**
      * UUID of the VM to update.
      *
@@ -303,34 +303,34 @@ export type VMServiceUpdateRequest = Message<"fits.api.pcvm.v1.VMServiceUpdateRe
     size?: Size | undefined;
 };
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceUpdateRequest.
- * Use `create(VMServiceUpdateRequestSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest.
+ * Use `create(PublicCloudVMServiceUpdateRequestSchema)` to create a new message.
  */
-export declare const VMServiceUpdateRequestSchema: GenMessage<VMServiceUpdateRequest>;
+export declare const PublicCloudVMServiceUpdateRequestSchema: GenMessage<PublicCloudVMServiceUpdateRequest>;
 /**
  * The response when updating a VM.
  *
- * @generated from message fits.api.pcvm.v1.VMServiceUpdateResponse
+ * @generated from message fits.api.pcvm.v1.PublicCloudVMServiceUpdateResponse
  */
-export type VMServiceUpdateResponse = Message<"fits.api.pcvm.v1.VMServiceUpdateResponse"> & {
+export type PublicCloudVMServiceUpdateResponse = Message<"fits.api.pcvm.v1.PublicCloudVMServiceUpdateResponse"> & {
     /**
      * The updated VM.
      *
-     * @generated from field: fits.api.pcvm.v1.VM vm = 1;
+     * @generated from field: fits.api.pcvm.v1.PublicCloudVM vm = 1;
      */
-    vm?: VM | undefined;
+    vm?: PublicCloudVM | undefined;
 };
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceUpdateResponse.
- * Use `create(VMServiceUpdateResponseSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceUpdateResponse.
+ * Use `create(PublicCloudVMServiceUpdateResponseSchema)` to create a new message.
  */
-export declare const VMServiceUpdateResponseSchema: GenMessage<VMServiceUpdateResponse>;
+export declare const PublicCloudVMServiceUpdateResponseSchema: GenMessage<PublicCloudVMServiceUpdateResponse>;
 /**
  * The request to delete a VM.
  *
- * @generated from message fits.api.pcvm.v1.VMServiceDeleteRequest
+ * @generated from message fits.api.pcvm.v1.PublicCloudVMServiceDeleteRequest
  */
-export type VMServiceDeleteRequest = Message<"fits.api.pcvm.v1.VMServiceDeleteRequest"> & {
+export type PublicCloudVMServiceDeleteRequest = Message<"fits.api.pcvm.v1.PublicCloudVMServiceDeleteRequest"> & {
     /**
      * UUID of the VM to delete.
      *
@@ -345,22 +345,22 @@ export type VMServiceDeleteRequest = Message<"fits.api.pcvm.v1.VMServiceDeleteRe
     projectUuid: string;
 };
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceDeleteRequest.
- * Use `create(VMServiceDeleteRequestSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceDeleteRequest.
+ * Use `create(PublicCloudVMServiceDeleteRequestSchema)` to create a new message.
  */
-export declare const VMServiceDeleteRequestSchema: GenMessage<VMServiceDeleteRequest>;
+export declare const PublicCloudVMServiceDeleteRequestSchema: GenMessage<PublicCloudVMServiceDeleteRequest>;
 /**
  * The response after deleting a VM.
  * The VM is deleted immediately will not be able to be requested.
  *
- * @generated from message fits.api.pcvm.v1.VMServiceDeleteResponse
+ * @generated from message fits.api.pcvm.v1.PublicCloudVMServiceDeleteResponse
  */
-export type VMServiceDeleteResponse = Message<"fits.api.pcvm.v1.VMServiceDeleteResponse"> & {};
+export type PublicCloudVMServiceDeleteResponse = Message<"fits.api.pcvm.v1.PublicCloudVMServiceDeleteResponse"> & {};
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceDeleteResponse.
- * Use `create(VMServiceDeleteResponseSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceDeleteResponse.
+ * Use `create(PublicCloudVMServiceDeleteResponseSchema)` to create a new message.
  */
-export declare const VMServiceDeleteResponseSchema: GenMessage<VMServiceDeleteResponse>;
+export declare const PublicCloudVMServiceDeleteResponseSchema: GenMessage<PublicCloudVMServiceDeleteResponse>;
 /**
  * The health state of the VM.
  *
@@ -481,57 +481,57 @@ export declare const SizeSchema: GenEnum<Size>;
 /**
  * VMService provides VM operations.
  *
- * @generated from service fits.api.pcvm.v1.VMService
+ * @generated from service fits.api.pcvm.v1.PublicCloudVMService
  */
-export declare const VMService: GenService<{
+export declare const PublicCloudVMService: GenService<{
     /**
      * Returns the VM with the specified UUID.
      *
-     * @generated from rpc fits.api.pcvm.v1.VMService.Get
+     * @generated from rpc fits.api.pcvm.v1.PublicCloudVMService.Get
      */
     get: {
         methodKind: "unary";
-        input: typeof VMServiceGetRequestSchema;
-        output: typeof VMServiceGetResponseSchema;
+        input: typeof PublicCloudVMServiceGetRequestSchema;
+        output: typeof PublicCloudVMServiceGetResponseSchema;
     };
     /**
      * Creates a new VM.
      *
-     * @generated from rpc fits.api.pcvm.v1.VMService.Create
+     * @generated from rpc fits.api.pcvm.v1.PublicCloudVMService.Create
      */
     create: {
         methodKind: "unary";
-        input: typeof VMServiceCreateRequestSchema;
-        output: typeof VMServiceCreateResponseSchema;
+        input: typeof PublicCloudVMServiceCreateRequestSchema;
+        output: typeof PublicCloudVMServiceCreateResponseSchema;
     };
     /**
      * Returns the list of all VMs.
      *
-     * @generated from rpc fits.api.pcvm.v1.VMService.List
+     * @generated from rpc fits.api.pcvm.v1.PublicCloudVMService.List
      */
     list: {
         methodKind: "unary";
-        input: typeof VMServiceListRequestSchema;
-        output: typeof VMServiceListResponseSchema;
+        input: typeof PublicCloudVMServiceListRequestSchema;
+        output: typeof PublicCloudVMServiceListResponseSchema;
     };
     /**
      * Updates a VM.
      *
-     * @generated from rpc fits.api.pcvm.v1.VMService.Update
+     * @generated from rpc fits.api.pcvm.v1.PublicCloudVMService.Update
      */
     update: {
         methodKind: "unary";
-        input: typeof VMServiceUpdateRequestSchema;
-        output: typeof VMServiceUpdateResponseSchema;
+        input: typeof PublicCloudVMServiceUpdateRequestSchema;
+        output: typeof PublicCloudVMServiceUpdateResponseSchema;
     };
     /**
      * Deletes a VM immediately.
      *
-     * @generated from rpc fits.api.pcvm.v1.VMService.Delete
+     * @generated from rpc fits.api.pcvm.v1.PublicCloudVMService.Delete
      */
     delete: {
         methodKind: "unary";
-        input: typeof VMServiceDeleteRequestSchema;
-        output: typeof VMServiceDeleteResponseSchema;
+        input: typeof PublicCloudVMServiceDeleteRequestSchema;
+        output: typeof PublicCloudVMServiceDeleteResponseSchema;
     };
 }>;

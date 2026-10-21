@@ -47,7 +47,7 @@ SIZE_SMALL: Size
 SIZE_MEDIUM: Size
 SIZE_LARGE: Size
 
-class VM(_message.Message):
+class PublicCloudVM(_message.Message):
     __slots__ = ("uuid", "meta", "name", "tenant", "project_uuid", "size", "status")
     UUID_FIELD_NUMBER: _ClassVar[int]
     META_FIELD_NUMBER: _ClassVar[int]
@@ -75,7 +75,7 @@ class Status(_message.Message):
     operation: Operation
     def __init__(self, state: _Optional[_Union[State, str]] = ..., info: _Optional[str] = ..., operation: _Optional[_Union[Operation, str]] = ...) -> None: ...
 
-class VMQuery(_message.Message):
+class PublicCloudVMQuery(_message.Message):
     __slots__ = ("name", "labels")
     NAME_FIELD_NUMBER: _ClassVar[int]
     LABELS_FIELD_NUMBER: _ClassVar[int]
@@ -83,7 +83,7 @@ class VMQuery(_message.Message):
     labels: _common_pb2.Labels
     def __init__(self, name: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.Labels, _Mapping]] = ...) -> None: ...
 
-class VMServiceGetRequest(_message.Message):
+class PublicCloudVMServiceGetRequest(_message.Message):
     __slots__ = ("uuid", "project_uuid")
     UUID_FIELD_NUMBER: _ClassVar[int]
     PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
@@ -91,13 +91,13 @@ class VMServiceGetRequest(_message.Message):
     project_uuid: str
     def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ...) -> None: ...
 
-class VMServiceGetResponse(_message.Message):
+class PublicCloudVMServiceGetResponse(_message.Message):
     __slots__ = ("vm",)
     VM_FIELD_NUMBER: _ClassVar[int]
-    vm: VM
-    def __init__(self, vm: _Optional[_Union[VM, _Mapping]] = ...) -> None: ...
+    vm: PublicCloudVM
+    def __init__(self, vm: _Optional[_Union[PublicCloudVM, _Mapping]] = ...) -> None: ...
 
-class VMServiceCreateRequest(_message.Message):
+class PublicCloudVMServiceCreateRequest(_message.Message):
     __slots__ = ("project_uuid", "name", "labels", "size")
     PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
     NAME_FIELD_NUMBER: _ClassVar[int]
@@ -109,29 +109,29 @@ class VMServiceCreateRequest(_message.Message):
     size: Size
     def __init__(self, project_uuid: _Optional[str] = ..., name: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.Labels, _Mapping]] = ..., size: _Optional[_Union[Size, str]] = ...) -> None: ...
 
-class VMServiceCreateResponse(_message.Message):
+class PublicCloudVMServiceCreateResponse(_message.Message):
     __slots__ = ("vm",)
     VM_FIELD_NUMBER: _ClassVar[int]
-    vm: VM
-    def __init__(self, vm: _Optional[_Union[VM, _Mapping]] = ...) -> None: ...
+    vm: PublicCloudVM
+    def __init__(self, vm: _Optional[_Union[PublicCloudVM, _Mapping]] = ...) -> None: ...
 
-class VMServiceListRequest(_message.Message):
+class PublicCloudVMServiceListRequest(_message.Message):
     __slots__ = ("project_uuid", "paging", "query")
     PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
     PAGING_FIELD_NUMBER: _ClassVar[int]
     QUERY_FIELD_NUMBER: _ClassVar[int]
     project_uuid: str
     paging: _common_pb2.Paging
-    query: VMQuery
-    def __init__(self, project_uuid: _Optional[str] = ..., paging: _Optional[_Union[_common_pb2.Paging, _Mapping]] = ..., query: _Optional[_Union[VMQuery, _Mapping]] = ...) -> None: ...
+    query: PublicCloudVMQuery
+    def __init__(self, project_uuid: _Optional[str] = ..., paging: _Optional[_Union[_common_pb2.Paging, _Mapping]] = ..., query: _Optional[_Union[PublicCloudVMQuery, _Mapping]] = ...) -> None: ...
 
-class VMServiceListResponse(_message.Message):
+class PublicCloudVMServiceListResponse(_message.Message):
     __slots__ = ("vms",)
     VMS_FIELD_NUMBER: _ClassVar[int]
-    vms: _containers.RepeatedCompositeFieldContainer[VM]
-    def __init__(self, vms: _Optional[_Iterable[_Union[VM, _Mapping]]] = ...) -> None: ...
+    vms: _containers.RepeatedCompositeFieldContainer[PublicCloudVM]
+    def __init__(self, vms: _Optional[_Iterable[_Union[PublicCloudVM, _Mapping]]] = ...) -> None: ...
 
-class VMServiceUpdateRequest(_message.Message):
+class PublicCloudVMServiceUpdateRequest(_message.Message):
     __slots__ = ("uuid", "project_uuid", "update_meta", "labels", "name", "size")
     UUID_FIELD_NUMBER: _ClassVar[int]
     PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
@@ -147,13 +147,13 @@ class VMServiceUpdateRequest(_message.Message):
     size: Size
     def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., update_meta: _Optional[_Union[_common_pb2.UpdateMeta, _Mapping]] = ..., labels: _Optional[_Union[_common_pb2.UpdateLabels, _Mapping]] = ..., name: _Optional[str] = ..., size: _Optional[_Union[Size, str]] = ...) -> None: ...
 
-class VMServiceUpdateResponse(_message.Message):
+class PublicCloudVMServiceUpdateResponse(_message.Message):
     __slots__ = ("vm",)
     VM_FIELD_NUMBER: _ClassVar[int]
-    vm: VM
-    def __init__(self, vm: _Optional[_Union[VM, _Mapping]] = ...) -> None: ...
+    vm: PublicCloudVM
+    def __init__(self, vm: _Optional[_Union[PublicCloudVM, _Mapping]] = ...) -> None: ...
 
-class VMServiceDeleteRequest(_message.Message):
+class PublicCloudVMServiceDeleteRequest(_message.Message):
     __slots__ = ("uuid", "project_uuid")
     UUID_FIELD_NUMBER: _ClassVar[int]
     PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
@@ -161,6 +161,6 @@ class VMServiceDeleteRequest(_message.Message):
     project_uuid: str
     def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ...) -> None: ...
 
-class VMServiceDeleteResponse(_message.Message):
+class PublicCloudVMServiceDeleteResponse(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...

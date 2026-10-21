@@ -8,72 +8,72 @@ import { file_fits_api_v1_predefined_rules } from "../../v1/predefined_rules_pb.
 /**
  * Describes the file fits/api/pcvm/v1/vm.proto.
  */
-export const file_fits_api_pcvm_v1_vm = /*@__PURE__*/ fileDesc("ChlmaXRzL2FwaS9wY3ZtL3YxL3ZtLnByb3RvEhBmaXRzLmFwaS5wY3ZtLnYxIuUBCgJWTRIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIfCgRtZXRhGAIgASgLMhEuZml0cy5hcGkudjEuTWV0YRIZCgRuYW1lGAMgASgJQgu6SAhyBsCzrrECARIbCgZ0ZW5hbnQYBCABKAlCC7pICHIGwLOusQIBEh4KDHByb2plY3RfdXVpZBgFIAEoCUIIukgFcgOwAQESJAoEc2l6ZRgGIAEoDjIWLmZpdHMuYXBpLnBjdm0udjEuU2l6ZRIoCgZzdGF0dXMYByABKAsyGC5maXRzLmFwaS5wY3ZtLnYxLlN0YXR1cyJ7CgZTdGF0dXMSJgoFc3RhdGUYASABKA4yFy5maXRzLmFwaS5wY3ZtLnYxLlN0YXRlEhkKBGluZm8YAiABKAlCC7pICHIGyLOusQIBEi4KCW9wZXJhdGlvbhgDIAEoDjIbLmZpdHMuYXBpLnBjdm0udjEuT3BlcmF0aW9uImcKB1ZNUXVlcnkSHgoEbmFtZRgBIAEoCUILukgIcgbAs66xAgFIAIgBARIoCgZsYWJlbHMYAiABKAsyEy5maXRzLmFwaS52MS5MYWJlbHNIAYgBAUIHCgVfbmFtZUIJCgdfbGFiZWxzIk0KE1ZNU2VydmljZUdldFJlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESHgoMcHJvamVjdF91dWlkGAIgASgJQgi6SAVyA7ABASI4ChRWTVNlcnZpY2VHZXRSZXNwb25zZRIgCgJ2bRgBIAEoCzIULmZpdHMuYXBpLnBjdm0udjEuVk0ingEKFlZNU2VydmljZUNyZWF0ZVJlcXVlc3QSHgoMcHJvamVjdF91dWlkGAEgASgJQgi6SAVyA7ABARIZCgRuYW1lGAIgASgJQgu6SAhyBsCzrrECARIjCgZsYWJlbHMYAyABKAsyEy5maXRzLmFwaS52MS5MYWJlbHMSJAoEc2l6ZRgEIAEoDjIWLmZpdHMuYXBpLnBjdm0udjEuU2l6ZSI7ChdWTVNlcnZpY2VDcmVhdGVSZXNwb25zZRIgCgJ2bRgBIAEoCzIULmZpdHMuYXBpLnBjdm0udjEuVk0ihQEKFFZNU2VydmljZUxpc3RSZXF1ZXN0Eh4KDHByb2plY3RfdXVpZBgBIAEoCUIIukgFcgOwAQESIwoGcGFnaW5nGAIgASgLMhMuZml0cy5hcGkudjEuUGFnaW5nEigKBXF1ZXJ5GAMgASgLMhkuZml0cy5hcGkucGN2bS52MS5WTVF1ZXJ5IjoKFVZNU2VydmljZUxpc3RSZXNwb25zZRIhCgN2bXMYASADKAsyFC5maXRzLmFwaS5wY3ZtLnYxLlZNIp4CChZWTVNlcnZpY2VVcGRhdGVSZXF1ZXN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEh4KDHByb2plY3RfdXVpZBgCIAEoCUIIukgFcgOwAQESNAoLdXBkYXRlX21ldGEYAyABKAsyFy5maXRzLmFwaS52MS5VcGRhdGVNZXRhQga6SAPIAQESLgoGbGFiZWxzGAQgASgLMhkuZml0cy5hcGkudjEuVXBkYXRlTGFiZWxzSACIAQESHgoEbmFtZRgFIAEoCUILukgIcgbAs66xAgFIAYgBARIpCgRzaXplGAYgASgOMhYuZml0cy5hcGkucGN2bS52MS5TaXplSAKIAQFCCQoHX2xhYmVsc0IHCgVfbmFtZUIHCgVfc2l6ZSI7ChdWTVNlcnZpY2VVcGRhdGVSZXNwb25zZRIgCgJ2bRgBIAEoCzIULmZpdHMuYXBpLnBjdm0udjEuVk0iUAoWVk1TZXJ2aWNlRGVsZXRlUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIeCgxwcm9qZWN0X3V1aWQYAiABKAlCCLpIBXIDsAEBIhkKF1ZNU2VydmljZURlbGV0ZVJlc3BvbnNlKoABCgVTdGF0ZRIbChFTVEFURV9VTlNQRUNJRklFRBAAGgSCshkAEh4KDVNUQVRFX0hFQUxUSFkQARoLgrIZB2hlYWx0aHkSHgoNU1RBVEVfV0FSTklORxACGguCshkHd2FybmluZxIaCgtTVEFURV9FUlJPUhADGgmCshkFZXJyb3Iq3gEKCU9wZXJhdGlvbhIfChVPUEVSQVRJT05fVU5TUEVDSUZJRUQQABoEgrIZABIkChJPUEVSQVRJT05fQ1JFQVRJTkcQARoMgrIZCGNyZWF0aW5nEiAKEE9QRVJBVElPTl9BQ1RJVkUQAhoKgrIZBmFjdGl2ZRIkChJPUEVSQVRJT05fVVBEQVRJTkcQAxoMgrIZCHVwZGF0aW5nEiIKEU9QRVJBVElPTl9ERUxFVEVEEAQaC4KyGQdkZWxldGVkEh4KD09QRVJBVElPTl9FUlJPUhAFGgmCshkFZXJyb3IqdQoEU2l6ZRIaChBTSVpFX1VOU1BFQ0lGSUVEEAAaBIKyGQASGQoKU0laRV9TTUFMTBABGgmCshkFc21hbGwSGwoLU0laRV9NRURJVU0QAhoKgrIZBm1lZGl1bRIZCgpTSVpFX0xBUkdFEAMaCYKyGQVsYXJnZTKVBAoJVk1TZXJ2aWNlEmEKA0dldBIlLmZpdHMuYXBpLnBjdm0udjEuVk1TZXJ2aWNlR2V0UmVxdWVzdBomLmZpdHMuYXBpLnBjdm0udjEuVk1TZXJ2aWNlR2V0UmVzcG9uc2UiC8rzGAMBAgPg8xgCEmkKBkNyZWF0ZRIoLmZpdHMuYXBpLnBjdm0udjEuVk1TZXJ2aWNlQ3JlYXRlUmVxdWVzdBopLmZpdHMuYXBpLnBjdm0udjEuVk1TZXJ2aWNlQ3JlYXRlUmVzcG9uc2UiCsrzGAIBAuDzGAESZAoETGlzdBImLmZpdHMuYXBpLnBjdm0udjEuVk1TZXJ2aWNlTGlzdFJlcXVlc3QaJy5maXRzLmFwaS5wY3ZtLnYxLlZNU2VydmljZUxpc3RSZXNwb25zZSILyvMYAwECA+DzGAISaQoGVXBkYXRlEiguZml0cy5hcGkucGN2bS52MS5WTVNlcnZpY2VVcGRhdGVSZXF1ZXN0GikuZml0cy5hcGkucGN2bS52MS5WTVNlcnZpY2VVcGRhdGVSZXNwb25zZSIKyvMYAgEC4PMYARJpCgZEZWxldGUSKC5maXRzLmFwaS5wY3ZtLnYxLlZNU2VydmljZURlbGV0ZVJlcXVlc3QaKS5maXRzLmFwaS5wY3ZtLnYxLlZNU2VydmljZURlbGV0ZVJlc3BvbnNlIgrK8xgCAQLg8xgBQrMBChRjb20uZml0cy5hcGkucGN2bS52MUIHVm1Qcm90b1ABWi9naXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS9wY3ZtL3YxO3Bjdm12MaICA0ZBUKoCEEZpdHMuQXBpLlBjdm0uVjHKAhBGaXRzXEFwaVxQY3ZtXFYx4gIcRml0c1xBcGlcUGN2bVxWMVxHUEJNZXRhZGF0YeoCE0ZpdHM6OkFwaTo6UGN2bTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
+export const file_fits_api_pcvm_v1_vm = /*@__PURE__*/ fileDesc("ChlmaXRzL2FwaS9wY3ZtL3YxL3ZtLnByb3RvEhBmaXRzLmFwaS5wY3ZtLnYxIvABCg1QdWJsaWNDbG91ZFZNEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEh8KBG1ldGEYAiABKAsyES5maXRzLmFwaS52MS5NZXRhEhkKBG5hbWUYAyABKAlCC7pICHIGwLOusQIBEhsKBnRlbmFudBgEIAEoCUILukgIcgbAs66xAgESHgoMcHJvamVjdF91dWlkGAUgASgJQgi6SAVyA7ABARIkCgRzaXplGAYgASgOMhYuZml0cy5hcGkucGN2bS52MS5TaXplEigKBnN0YXR1cxgHIAEoCzIYLmZpdHMuYXBpLnBjdm0udjEuU3RhdHVzInsKBlN0YXR1cxImCgVzdGF0ZRgBIAEoDjIXLmZpdHMuYXBpLnBjdm0udjEuU3RhdGUSGQoEaW5mbxgCIAEoCUILukgIcgbIs66xAgESLgoJb3BlcmF0aW9uGAMgASgOMhsuZml0cy5hcGkucGN2bS52MS5PcGVyYXRpb24icgoSUHVibGljQ2xvdWRWTVF1ZXJ5Eh4KBG5hbWUYASABKAlCC7pICHIGwLOusQIBSACIAQESKAoGbGFiZWxzGAIgASgLMhMuZml0cy5hcGkudjEuTGFiZWxzSAGIAQFCBwoFX25hbWVCCQoHX2xhYmVscyJYCh5QdWJsaWNDbG91ZFZNU2VydmljZUdldFJlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESHgoMcHJvamVjdF91dWlkGAIgASgJQgi6SAVyA7ABASJOCh9QdWJsaWNDbG91ZFZNU2VydmljZUdldFJlc3BvbnNlEisKAnZtGAEgASgLMh8uZml0cy5hcGkucGN2bS52MS5QdWJsaWNDbG91ZFZNIqkBCiFQdWJsaWNDbG91ZFZNU2VydmljZUNyZWF0ZVJlcXVlc3QSHgoMcHJvamVjdF91dWlkGAEgASgJQgi6SAVyA7ABARIZCgRuYW1lGAIgASgJQgu6SAhyBsCzrrECARIjCgZsYWJlbHMYAyABKAsyEy5maXRzLmFwaS52MS5MYWJlbHMSJAoEc2l6ZRgEIAEoDjIWLmZpdHMuYXBpLnBjdm0udjEuU2l6ZSJRCiJQdWJsaWNDbG91ZFZNU2VydmljZUNyZWF0ZVJlc3BvbnNlEisKAnZtGAEgASgLMh8uZml0cy5hcGkucGN2bS52MS5QdWJsaWNDbG91ZFZNIpsBCh9QdWJsaWNDbG91ZFZNU2VydmljZUxpc3RSZXF1ZXN0Eh4KDHByb2plY3RfdXVpZBgBIAEoCUIIukgFcgOwAQESIwoGcGFnaW5nGAIgASgLMhMuZml0cy5hcGkudjEuUGFnaW5nEjMKBXF1ZXJ5GAMgASgLMiQuZml0cy5hcGkucGN2bS52MS5QdWJsaWNDbG91ZFZNUXVlcnkiUAogUHVibGljQ2xvdWRWTVNlcnZpY2VMaXN0UmVzcG9uc2USLAoDdm1zGAEgAygLMh8uZml0cy5hcGkucGN2bS52MS5QdWJsaWNDbG91ZFZNIqkCCiFQdWJsaWNDbG91ZFZNU2VydmljZVVwZGF0ZVJlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESHgoMcHJvamVjdF91dWlkGAIgASgJQgi6SAVyA7ABARI0Cgt1cGRhdGVfbWV0YRgDIAEoCzIXLmZpdHMuYXBpLnYxLlVwZGF0ZU1ldGFCBrpIA8gBARIuCgZsYWJlbHMYBCABKAsyGS5maXRzLmFwaS52MS5VcGRhdGVMYWJlbHNIAIgBARIeCgRuYW1lGAUgASgJQgu6SAhyBsCzrrECAUgBiAEBEikKBHNpemUYBiABKA4yFi5maXRzLmFwaS5wY3ZtLnYxLlNpemVIAogBAUIJCgdfbGFiZWxzQgcKBV9uYW1lQgcKBV9zaXplIlEKIlB1YmxpY0Nsb3VkVk1TZXJ2aWNlVXBkYXRlUmVzcG9uc2USKwoCdm0YASABKAsyHy5maXRzLmFwaS5wY3ZtLnYxLlB1YmxpY0Nsb3VkVk0iWwohUHVibGljQ2xvdWRWTVNlcnZpY2VEZWxldGVSZXF1ZXN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEh4KDHByb2plY3RfdXVpZBgCIAEoCUIIukgFcgOwAQEiJAoiUHVibGljQ2xvdWRWTVNlcnZpY2VEZWxldGVSZXNwb25zZSqAAQoFU3RhdGUSGwoRU1RBVEVfVU5TUEVDSUZJRUQQABoEgrIZABIeCg1TVEFURV9IRUFMVEhZEAEaC4KyGQdoZWFsdGh5Eh4KDVNUQVRFX1dBUk5JTkcQAhoLgrIZB3dhcm5pbmcSGgoLU1RBVEVfRVJST1IQAxoJgrIZBWVycm9yKt4BCglPcGVyYXRpb24SHwoVT1BFUkFUSU9OX1VOU1BFQ0lGSUVEEAAaBIKyGQASJAoST1BFUkFUSU9OX0NSRUFUSU5HEAEaDIKyGQhjcmVhdGluZxIgChBPUEVSQVRJT05fQUNUSVZFEAIaCoKyGQZhY3RpdmUSJAoST1BFUkFUSU9OX1VQREFUSU5HEAMaDIKyGQh1cGRhdGluZxIiChFPUEVSQVRJT05fREVMRVRFRBAEGguCshkHZGVsZXRlZBIeCg9PUEVSQVRJT05fRVJST1IQBRoJgrIZBWVycm9yKnUKBFNpemUSGgoQU0laRV9VTlNQRUNJRklFRBAAGgSCshkAEhkKClNJWkVfU01BTEwQARoJgrIZBXNtYWxsEhsKC1NJWkVfTUVESVVNEAIaCoKyGQZtZWRpdW0SGQoKU0laRV9MQVJHRRADGgmCshkFbGFyZ2UyjgUKFFB1YmxpY0Nsb3VkVk1TZXJ2aWNlEncKA0dldBIwLmZpdHMuYXBpLnBjdm0udjEuUHVibGljQ2xvdWRWTVNlcnZpY2VHZXRSZXF1ZXN0GjEuZml0cy5hcGkucGN2bS52MS5QdWJsaWNDbG91ZFZNU2VydmljZUdldFJlc3BvbnNlIgvK8xgDAQID4PMYAhJ/CgZDcmVhdGUSMy5maXRzLmFwaS5wY3ZtLnYxLlB1YmxpY0Nsb3VkVk1TZXJ2aWNlQ3JlYXRlUmVxdWVzdBo0LmZpdHMuYXBpLnBjdm0udjEuUHVibGljQ2xvdWRWTVNlcnZpY2VDcmVhdGVSZXNwb25zZSIKyvMYAgEC4PMYARJ6CgRMaXN0EjEuZml0cy5hcGkucGN2bS52MS5QdWJsaWNDbG91ZFZNU2VydmljZUxpc3RSZXF1ZXN0GjIuZml0cy5hcGkucGN2bS52MS5QdWJsaWNDbG91ZFZNU2VydmljZUxpc3RSZXNwb25zZSILyvMYAwECA+DzGAISfwoGVXBkYXRlEjMuZml0cy5hcGkucGN2bS52MS5QdWJsaWNDbG91ZFZNU2VydmljZVVwZGF0ZVJlcXVlc3QaNC5maXRzLmFwaS5wY3ZtLnYxLlB1YmxpY0Nsb3VkVk1TZXJ2aWNlVXBkYXRlUmVzcG9uc2UiCsrzGAIBAuDzGAESfwoGRGVsZXRlEjMuZml0cy5hcGkucGN2bS52MS5QdWJsaWNDbG91ZFZNU2VydmljZURlbGV0ZVJlcXVlc3QaNC5maXRzLmFwaS5wY3ZtLnYxLlB1YmxpY0Nsb3VkVk1TZXJ2aWNlRGVsZXRlUmVzcG9uc2UiCsrzGAIBAuDzGAFCswEKFGNvbS5maXRzLmFwaS5wY3ZtLnYxQgdWbVByb3RvUAFaL2dpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL3Bjdm0vdjE7cGN2bXYxogIDRkFQqgIQRml0cy5BcGkuUGN2bS5WMcoCEEZpdHNcQXBpXFBjdm1cVjHiAhxGaXRzXEFwaVxQY3ZtXFYxXEdQQk1ldGFkYXRh6gITRml0czo6QXBpOjpQY3ZtOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
 /**
- * Describes the message fits.api.pcvm.v1.VM.
- * Use `create(VMSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVM.
+ * Use `create(PublicCloudVMSchema)` to create a new message.
  */
-export const VMSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 0);
+export const PublicCloudVMSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 0);
 /**
  * Describes the message fits.api.pcvm.v1.Status.
  * Use `create(StatusSchema)` to create a new message.
  */
 export const StatusSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 1);
 /**
- * Describes the message fits.api.pcvm.v1.VMQuery.
- * Use `create(VMQuerySchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMQuery.
+ * Use `create(PublicCloudVMQuerySchema)` to create a new message.
  */
-export const VMQuerySchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 2);
+export const PublicCloudVMQuerySchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 2);
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceGetRequest.
- * Use `create(VMServiceGetRequestSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceGetRequest.
+ * Use `create(PublicCloudVMServiceGetRequestSchema)` to create a new message.
  */
-export const VMServiceGetRequestSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 3);
+export const PublicCloudVMServiceGetRequestSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 3);
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceGetResponse.
- * Use `create(VMServiceGetResponseSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceGetResponse.
+ * Use `create(PublicCloudVMServiceGetResponseSchema)` to create a new message.
  */
-export const VMServiceGetResponseSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 4);
+export const PublicCloudVMServiceGetResponseSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 4);
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceCreateRequest.
- * Use `create(VMServiceCreateRequestSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest.
+ * Use `create(PublicCloudVMServiceCreateRequestSchema)` to create a new message.
  */
-export const VMServiceCreateRequestSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 5);
+export const PublicCloudVMServiceCreateRequestSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 5);
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceCreateResponse.
- * Use `create(VMServiceCreateResponseSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceCreateResponse.
+ * Use `create(PublicCloudVMServiceCreateResponseSchema)` to create a new message.
  */
-export const VMServiceCreateResponseSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 6);
+export const PublicCloudVMServiceCreateResponseSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 6);
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceListRequest.
- * Use `create(VMServiceListRequestSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceListRequest.
+ * Use `create(PublicCloudVMServiceListRequestSchema)` to create a new message.
  */
-export const VMServiceListRequestSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 7);
+export const PublicCloudVMServiceListRequestSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 7);
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceListResponse.
- * Use `create(VMServiceListResponseSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceListResponse.
+ * Use `create(PublicCloudVMServiceListResponseSchema)` to create a new message.
  */
-export const VMServiceListResponseSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 8);
+export const PublicCloudVMServiceListResponseSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 8);
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceUpdateRequest.
- * Use `create(VMServiceUpdateRequestSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest.
+ * Use `create(PublicCloudVMServiceUpdateRequestSchema)` to create a new message.
  */
-export const VMServiceUpdateRequestSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 9);
+export const PublicCloudVMServiceUpdateRequestSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 9);
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceUpdateResponse.
- * Use `create(VMServiceUpdateResponseSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceUpdateResponse.
+ * Use `create(PublicCloudVMServiceUpdateResponseSchema)` to create a new message.
  */
-export const VMServiceUpdateResponseSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 10);
+export const PublicCloudVMServiceUpdateResponseSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 10);
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceDeleteRequest.
- * Use `create(VMServiceDeleteRequestSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceDeleteRequest.
+ * Use `create(PublicCloudVMServiceDeleteRequestSchema)` to create a new message.
  */
-export const VMServiceDeleteRequestSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 11);
+export const PublicCloudVMServiceDeleteRequestSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 11);
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceDeleteResponse.
- * Use `create(VMServiceDeleteResponseSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceDeleteResponse.
+ * Use `create(PublicCloudVMServiceDeleteResponseSchema)` to create a new message.
  */
-export const VMServiceDeleteResponseSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 12);
+export const PublicCloudVMServiceDeleteResponseSchema = /*@__PURE__*/ messageDesc(file_fits_api_pcvm_v1_vm, 12);
 /**
  * The health state of the VM.
  *
@@ -197,6 +197,6 @@ export const SizeSchema = /*@__PURE__*/ enumDesc(file_fits_api_pcvm_v1_vm, 2);
 /**
  * VMService provides VM operations.
  *
- * @generated from service fits.api.pcvm.v1.VMService
+ * @generated from service fits.api.pcvm.v1.PublicCloudVMService
  */
-export const VMService = /*@__PURE__*/ serviceDesc(file_fits_api_pcvm_v1_vm, 0);
+export const PublicCloudVMService = /*@__PURE__*/ serviceDesc(file_fits_api_pcvm_v1_vm, 0);

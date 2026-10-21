@@ -14,14 +14,14 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/pcvm/v1/vm.proto.
  */
 export const file_fits_api_pcvm_v1_vm: GenFile = /*@__PURE__*/
-  fileDesc("ChlmaXRzL2FwaS9wY3ZtL3YxL3ZtLnByb3RvEhBmaXRzLmFwaS5wY3ZtLnYxIuUBCgJWTRIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIfCgRtZXRhGAIgASgLMhEuZml0cy5hcGkudjEuTWV0YRIZCgRuYW1lGAMgASgJQgu6SAhyBsCzrrECARIbCgZ0ZW5hbnQYBCABKAlCC7pICHIGwLOusQIBEh4KDHByb2plY3RfdXVpZBgFIAEoCUIIukgFcgOwAQESJAoEc2l6ZRgGIAEoDjIWLmZpdHMuYXBpLnBjdm0udjEuU2l6ZRIoCgZzdGF0dXMYByABKAsyGC5maXRzLmFwaS5wY3ZtLnYxLlN0YXR1cyJ7CgZTdGF0dXMSJgoFc3RhdGUYASABKA4yFy5maXRzLmFwaS5wY3ZtLnYxLlN0YXRlEhkKBGluZm8YAiABKAlCC7pICHIGyLOusQIBEi4KCW9wZXJhdGlvbhgDIAEoDjIbLmZpdHMuYXBpLnBjdm0udjEuT3BlcmF0aW9uImcKB1ZNUXVlcnkSHgoEbmFtZRgBIAEoCUILukgIcgbAs66xAgFIAIgBARIoCgZsYWJlbHMYAiABKAsyEy5maXRzLmFwaS52MS5MYWJlbHNIAYgBAUIHCgVfbmFtZUIJCgdfbGFiZWxzIk0KE1ZNU2VydmljZUdldFJlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESHgoMcHJvamVjdF91dWlkGAIgASgJQgi6SAVyA7ABASI4ChRWTVNlcnZpY2VHZXRSZXNwb25zZRIgCgJ2bRgBIAEoCzIULmZpdHMuYXBpLnBjdm0udjEuVk0ingEKFlZNU2VydmljZUNyZWF0ZVJlcXVlc3QSHgoMcHJvamVjdF91dWlkGAEgASgJQgi6SAVyA7ABARIZCgRuYW1lGAIgASgJQgu6SAhyBsCzrrECARIjCgZsYWJlbHMYAyABKAsyEy5maXRzLmFwaS52MS5MYWJlbHMSJAoEc2l6ZRgEIAEoDjIWLmZpdHMuYXBpLnBjdm0udjEuU2l6ZSI7ChdWTVNlcnZpY2VDcmVhdGVSZXNwb25zZRIgCgJ2bRgBIAEoCzIULmZpdHMuYXBpLnBjdm0udjEuVk0ihQEKFFZNU2VydmljZUxpc3RSZXF1ZXN0Eh4KDHByb2plY3RfdXVpZBgBIAEoCUIIukgFcgOwAQESIwoGcGFnaW5nGAIgASgLMhMuZml0cy5hcGkudjEuUGFnaW5nEigKBXF1ZXJ5GAMgASgLMhkuZml0cy5hcGkucGN2bS52MS5WTVF1ZXJ5IjoKFVZNU2VydmljZUxpc3RSZXNwb25zZRIhCgN2bXMYASADKAsyFC5maXRzLmFwaS5wY3ZtLnYxLlZNIp4CChZWTVNlcnZpY2VVcGRhdGVSZXF1ZXN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEh4KDHByb2plY3RfdXVpZBgCIAEoCUIIukgFcgOwAQESNAoLdXBkYXRlX21ldGEYAyABKAsyFy5maXRzLmFwaS52MS5VcGRhdGVNZXRhQga6SAPIAQESLgoGbGFiZWxzGAQgASgLMhkuZml0cy5hcGkudjEuVXBkYXRlTGFiZWxzSACIAQESHgoEbmFtZRgFIAEoCUILukgIcgbAs66xAgFIAYgBARIpCgRzaXplGAYgASgOMhYuZml0cy5hcGkucGN2bS52MS5TaXplSAKIAQFCCQoHX2xhYmVsc0IHCgVfbmFtZUIHCgVfc2l6ZSI7ChdWTVNlcnZpY2VVcGRhdGVSZXNwb25zZRIgCgJ2bRgBIAEoCzIULmZpdHMuYXBpLnBjdm0udjEuVk0iUAoWVk1TZXJ2aWNlRGVsZXRlUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIeCgxwcm9qZWN0X3V1aWQYAiABKAlCCLpIBXIDsAEBIhkKF1ZNU2VydmljZURlbGV0ZVJlc3BvbnNlKoABCgVTdGF0ZRIbChFTVEFURV9VTlNQRUNJRklFRBAAGgSCshkAEh4KDVNUQVRFX0hFQUxUSFkQARoLgrIZB2hlYWx0aHkSHgoNU1RBVEVfV0FSTklORxACGguCshkHd2FybmluZxIaCgtTVEFURV9FUlJPUhADGgmCshkFZXJyb3Iq3gEKCU9wZXJhdGlvbhIfChVPUEVSQVRJT05fVU5TUEVDSUZJRUQQABoEgrIZABIkChJPUEVSQVRJT05fQ1JFQVRJTkcQARoMgrIZCGNyZWF0aW5nEiAKEE9QRVJBVElPTl9BQ1RJVkUQAhoKgrIZBmFjdGl2ZRIkChJPUEVSQVRJT05fVVBEQVRJTkcQAxoMgrIZCHVwZGF0aW5nEiIKEU9QRVJBVElPTl9ERUxFVEVEEAQaC4KyGQdkZWxldGVkEh4KD09QRVJBVElPTl9FUlJPUhAFGgmCshkFZXJyb3IqdQoEU2l6ZRIaChBTSVpFX1VOU1BFQ0lGSUVEEAAaBIKyGQASGQoKU0laRV9TTUFMTBABGgmCshkFc21hbGwSGwoLU0laRV9NRURJVU0QAhoKgrIZBm1lZGl1bRIZCgpTSVpFX0xBUkdFEAMaCYKyGQVsYXJnZTKVBAoJVk1TZXJ2aWNlEmEKA0dldBIlLmZpdHMuYXBpLnBjdm0udjEuVk1TZXJ2aWNlR2V0UmVxdWVzdBomLmZpdHMuYXBpLnBjdm0udjEuVk1TZXJ2aWNlR2V0UmVzcG9uc2UiC8rzGAMBAgPg8xgCEmkKBkNyZWF0ZRIoLmZpdHMuYXBpLnBjdm0udjEuVk1TZXJ2aWNlQ3JlYXRlUmVxdWVzdBopLmZpdHMuYXBpLnBjdm0udjEuVk1TZXJ2aWNlQ3JlYXRlUmVzcG9uc2UiCsrzGAIBAuDzGAESZAoETGlzdBImLmZpdHMuYXBpLnBjdm0udjEuVk1TZXJ2aWNlTGlzdFJlcXVlc3QaJy5maXRzLmFwaS5wY3ZtLnYxLlZNU2VydmljZUxpc3RSZXNwb25zZSILyvMYAwECA+DzGAISaQoGVXBkYXRlEiguZml0cy5hcGkucGN2bS52MS5WTVNlcnZpY2VVcGRhdGVSZXF1ZXN0GikuZml0cy5hcGkucGN2bS52MS5WTVNlcnZpY2VVcGRhdGVSZXNwb25zZSIKyvMYAgEC4PMYARJpCgZEZWxldGUSKC5maXRzLmFwaS5wY3ZtLnYxLlZNU2VydmljZURlbGV0ZVJlcXVlc3QaKS5maXRzLmFwaS5wY3ZtLnYxLlZNU2VydmljZURlbGV0ZVJlc3BvbnNlIgrK8xgCAQLg8xgBQrMBChRjb20uZml0cy5hcGkucGN2bS52MUIHVm1Qcm90b1ABWi9naXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS9wY3ZtL3YxO3Bjdm12MaICA0ZBUKoCEEZpdHMuQXBpLlBjdm0uVjHKAhBGaXRzXEFwaVxQY3ZtXFYx4gIcRml0c1xBcGlcUGN2bVxWMVxHUEJNZXRhZGF0YeoCE0ZpdHM6OkFwaTo6UGN2bTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
+  fileDesc("ChlmaXRzL2FwaS9wY3ZtL3YxL3ZtLnByb3RvEhBmaXRzLmFwaS5wY3ZtLnYxIvABCg1QdWJsaWNDbG91ZFZNEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEh8KBG1ldGEYAiABKAsyES5maXRzLmFwaS52MS5NZXRhEhkKBG5hbWUYAyABKAlCC7pICHIGwLOusQIBEhsKBnRlbmFudBgEIAEoCUILukgIcgbAs66xAgESHgoMcHJvamVjdF91dWlkGAUgASgJQgi6SAVyA7ABARIkCgRzaXplGAYgASgOMhYuZml0cy5hcGkucGN2bS52MS5TaXplEigKBnN0YXR1cxgHIAEoCzIYLmZpdHMuYXBpLnBjdm0udjEuU3RhdHVzInsKBlN0YXR1cxImCgVzdGF0ZRgBIAEoDjIXLmZpdHMuYXBpLnBjdm0udjEuU3RhdGUSGQoEaW5mbxgCIAEoCUILukgIcgbIs66xAgESLgoJb3BlcmF0aW9uGAMgASgOMhsuZml0cy5hcGkucGN2bS52MS5PcGVyYXRpb24icgoSUHVibGljQ2xvdWRWTVF1ZXJ5Eh4KBG5hbWUYASABKAlCC7pICHIGwLOusQIBSACIAQESKAoGbGFiZWxzGAIgASgLMhMuZml0cy5hcGkudjEuTGFiZWxzSAGIAQFCBwoFX25hbWVCCQoHX2xhYmVscyJYCh5QdWJsaWNDbG91ZFZNU2VydmljZUdldFJlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESHgoMcHJvamVjdF91dWlkGAIgASgJQgi6SAVyA7ABASJOCh9QdWJsaWNDbG91ZFZNU2VydmljZUdldFJlc3BvbnNlEisKAnZtGAEgASgLMh8uZml0cy5hcGkucGN2bS52MS5QdWJsaWNDbG91ZFZNIqkBCiFQdWJsaWNDbG91ZFZNU2VydmljZUNyZWF0ZVJlcXVlc3QSHgoMcHJvamVjdF91dWlkGAEgASgJQgi6SAVyA7ABARIZCgRuYW1lGAIgASgJQgu6SAhyBsCzrrECARIjCgZsYWJlbHMYAyABKAsyEy5maXRzLmFwaS52MS5MYWJlbHMSJAoEc2l6ZRgEIAEoDjIWLmZpdHMuYXBpLnBjdm0udjEuU2l6ZSJRCiJQdWJsaWNDbG91ZFZNU2VydmljZUNyZWF0ZVJlc3BvbnNlEisKAnZtGAEgASgLMh8uZml0cy5hcGkucGN2bS52MS5QdWJsaWNDbG91ZFZNIpsBCh9QdWJsaWNDbG91ZFZNU2VydmljZUxpc3RSZXF1ZXN0Eh4KDHByb2plY3RfdXVpZBgBIAEoCUIIukgFcgOwAQESIwoGcGFnaW5nGAIgASgLMhMuZml0cy5hcGkudjEuUGFnaW5nEjMKBXF1ZXJ5GAMgASgLMiQuZml0cy5hcGkucGN2bS52MS5QdWJsaWNDbG91ZFZNUXVlcnkiUAogUHVibGljQ2xvdWRWTVNlcnZpY2VMaXN0UmVzcG9uc2USLAoDdm1zGAEgAygLMh8uZml0cy5hcGkucGN2bS52MS5QdWJsaWNDbG91ZFZNIqkCCiFQdWJsaWNDbG91ZFZNU2VydmljZVVwZGF0ZVJlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESHgoMcHJvamVjdF91dWlkGAIgASgJQgi6SAVyA7ABARI0Cgt1cGRhdGVfbWV0YRgDIAEoCzIXLmZpdHMuYXBpLnYxLlVwZGF0ZU1ldGFCBrpIA8gBARIuCgZsYWJlbHMYBCABKAsyGS5maXRzLmFwaS52MS5VcGRhdGVMYWJlbHNIAIgBARIeCgRuYW1lGAUgASgJQgu6SAhyBsCzrrECAUgBiAEBEikKBHNpemUYBiABKA4yFi5maXRzLmFwaS5wY3ZtLnYxLlNpemVIAogBAUIJCgdfbGFiZWxzQgcKBV9uYW1lQgcKBV9zaXplIlEKIlB1YmxpY0Nsb3VkVk1TZXJ2aWNlVXBkYXRlUmVzcG9uc2USKwoCdm0YASABKAsyHy5maXRzLmFwaS5wY3ZtLnYxLlB1YmxpY0Nsb3VkVk0iWwohUHVibGljQ2xvdWRWTVNlcnZpY2VEZWxldGVSZXF1ZXN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEh4KDHByb2plY3RfdXVpZBgCIAEoCUIIukgFcgOwAQEiJAoiUHVibGljQ2xvdWRWTVNlcnZpY2VEZWxldGVSZXNwb25zZSqAAQoFU3RhdGUSGwoRU1RBVEVfVU5TUEVDSUZJRUQQABoEgrIZABIeCg1TVEFURV9IRUFMVEhZEAEaC4KyGQdoZWFsdGh5Eh4KDVNUQVRFX1dBUk5JTkcQAhoLgrIZB3dhcm5pbmcSGgoLU1RBVEVfRVJST1IQAxoJgrIZBWVycm9yKt4BCglPcGVyYXRpb24SHwoVT1BFUkFUSU9OX1VOU1BFQ0lGSUVEEAAaBIKyGQASJAoST1BFUkFUSU9OX0NSRUFUSU5HEAEaDIKyGQhjcmVhdGluZxIgChBPUEVSQVRJT05fQUNUSVZFEAIaCoKyGQZhY3RpdmUSJAoST1BFUkFUSU9OX1VQREFUSU5HEAMaDIKyGQh1cGRhdGluZxIiChFPUEVSQVRJT05fREVMRVRFRBAEGguCshkHZGVsZXRlZBIeCg9PUEVSQVRJT05fRVJST1IQBRoJgrIZBWVycm9yKnUKBFNpemUSGgoQU0laRV9VTlNQRUNJRklFRBAAGgSCshkAEhkKClNJWkVfU01BTEwQARoJgrIZBXNtYWxsEhsKC1NJWkVfTUVESVVNEAIaCoKyGQZtZWRpdW0SGQoKU0laRV9MQVJHRRADGgmCshkFbGFyZ2UyjgUKFFB1YmxpY0Nsb3VkVk1TZXJ2aWNlEncKA0dldBIwLmZpdHMuYXBpLnBjdm0udjEuUHVibGljQ2xvdWRWTVNlcnZpY2VHZXRSZXF1ZXN0GjEuZml0cy5hcGkucGN2bS52MS5QdWJsaWNDbG91ZFZNU2VydmljZUdldFJlc3BvbnNlIgvK8xgDAQID4PMYAhJ/CgZDcmVhdGUSMy5maXRzLmFwaS5wY3ZtLnYxLlB1YmxpY0Nsb3VkVk1TZXJ2aWNlQ3JlYXRlUmVxdWVzdBo0LmZpdHMuYXBpLnBjdm0udjEuUHVibGljQ2xvdWRWTVNlcnZpY2VDcmVhdGVSZXNwb25zZSIKyvMYAgEC4PMYARJ6CgRMaXN0EjEuZml0cy5hcGkucGN2bS52MS5QdWJsaWNDbG91ZFZNU2VydmljZUxpc3RSZXF1ZXN0GjIuZml0cy5hcGkucGN2bS52MS5QdWJsaWNDbG91ZFZNU2VydmljZUxpc3RSZXNwb25zZSILyvMYAwECA+DzGAISfwoGVXBkYXRlEjMuZml0cy5hcGkucGN2bS52MS5QdWJsaWNDbG91ZFZNU2VydmljZVVwZGF0ZVJlcXVlc3QaNC5maXRzLmFwaS5wY3ZtLnYxLlB1YmxpY0Nsb3VkVk1TZXJ2aWNlVXBkYXRlUmVzcG9uc2UiCsrzGAIBAuDzGAESfwoGRGVsZXRlEjMuZml0cy5hcGkucGN2bS52MS5QdWJsaWNDbG91ZFZNU2VydmljZURlbGV0ZVJlcXVlc3QaNC5maXRzLmFwaS5wY3ZtLnYxLlB1YmxpY0Nsb3VkVk1TZXJ2aWNlRGVsZXRlUmVzcG9uc2UiCsrzGAIBAuDzGAFCswEKFGNvbS5maXRzLmFwaS5wY3ZtLnYxQgdWbVByb3RvUAFaL2dpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL3Bjdm0vdjE7cGN2bXYxogIDRkFQqgIQRml0cy5BcGkuUGN2bS5WMcoCEEZpdHNcQXBpXFBjdm1cVjHiAhxGaXRzXEFwaVxQY3ZtXFYxXEdQQk1ldGFkYXRh6gITRml0czo6QXBpOjpQY3ZtOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
 
 /**
  * The VM resource.
  *
- * @generated from message fits.api.pcvm.v1.VM
+ * @generated from message fits.api.pcvm.v1.PublicCloudVM
  */
-export type VM = Message<"fits.api.pcvm.v1.VM"> & {
+export type PublicCloudVM = Message<"fits.api.pcvm.v1.PublicCloudVM"> & {
   /**
    * UUID of this VM.
    *
@@ -74,10 +74,10 @@ export type VM = Message<"fits.api.pcvm.v1.VM"> & {
 };
 
 /**
- * Describes the message fits.api.pcvm.v1.VM.
- * Use `create(VMSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVM.
+ * Use `create(PublicCloudVMSchema)` to create a new message.
  */
-export const VMSchema: GenMessage<VM> = /*@__PURE__*/
+export const PublicCloudVMSchema: GenMessage<PublicCloudVM> = /*@__PURE__*/
   messageDesc(file_fits_api_pcvm_v1_vm, 0);
 
 /**
@@ -118,9 +118,9 @@ export const StatusSchema: GenMessage<Status> = /*@__PURE__*/
 /**
  * The VM query parameters to filter the list of results.
  *
- * @generated from message fits.api.pcvm.v1.VMQuery
+ * @generated from message fits.api.pcvm.v1.PublicCloudVMQuery
  */
-export type VMQuery = Message<"fits.api.pcvm.v1.VMQuery"> & {
+export type PublicCloudVMQuery = Message<"fits.api.pcvm.v1.PublicCloudVMQuery"> & {
   /**
    * The name of the VMs.
    *
@@ -137,18 +137,18 @@ export type VMQuery = Message<"fits.api.pcvm.v1.VMQuery"> & {
 };
 
 /**
- * Describes the message fits.api.pcvm.v1.VMQuery.
- * Use `create(VMQuerySchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMQuery.
+ * Use `create(PublicCloudVMQuerySchema)` to create a new message.
  */
-export const VMQuerySchema: GenMessage<VMQuery> = /*@__PURE__*/
+export const PublicCloudVMQuerySchema: GenMessage<PublicCloudVMQuery> = /*@__PURE__*/
   messageDesc(file_fits_api_pcvm_v1_vm, 2);
 
 /**
  * Request to get a VM by UUID.
  *
- * @generated from message fits.api.pcvm.v1.VMServiceGetRequest
+ * @generated from message fits.api.pcvm.v1.PublicCloudVMServiceGetRequest
  */
-export type VMServiceGetRequest = Message<"fits.api.pcvm.v1.VMServiceGetRequest"> & {
+export type PublicCloudVMServiceGetRequest = Message<"fits.api.pcvm.v1.PublicCloudVMServiceGetRequest"> & {
   /**
    * UUID of the VM to get.
    *
@@ -165,39 +165,39 @@ export type VMServiceGetRequest = Message<"fits.api.pcvm.v1.VMServiceGetRequest"
 };
 
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceGetRequest.
- * Use `create(VMServiceGetRequestSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceGetRequest.
+ * Use `create(PublicCloudVMServiceGetRequestSchema)` to create a new message.
  */
-export const VMServiceGetRequestSchema: GenMessage<VMServiceGetRequest> = /*@__PURE__*/
+export const PublicCloudVMServiceGetRequestSchema: GenMessage<PublicCloudVMServiceGetRequest> = /*@__PURE__*/
   messageDesc(file_fits_api_pcvm_v1_vm, 3);
 
 /**
  * Response containing the requested VM.
  *
- * @generated from message fits.api.pcvm.v1.VMServiceGetResponse
+ * @generated from message fits.api.pcvm.v1.PublicCloudVMServiceGetResponse
  */
-export type VMServiceGetResponse = Message<"fits.api.pcvm.v1.VMServiceGetResponse"> & {
+export type PublicCloudVMServiceGetResponse = Message<"fits.api.pcvm.v1.PublicCloudVMServiceGetResponse"> & {
   /**
    * The VM.
    *
-   * @generated from field: fits.api.pcvm.v1.VM vm = 1;
+   * @generated from field: fits.api.pcvm.v1.PublicCloudVM vm = 1;
    */
-  vm?: VM | undefined;
+  vm?: PublicCloudVM | undefined;
 };
 
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceGetResponse.
- * Use `create(VMServiceGetResponseSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceGetResponse.
+ * Use `create(PublicCloudVMServiceGetResponseSchema)` to create a new message.
  */
-export const VMServiceGetResponseSchema: GenMessage<VMServiceGetResponse> = /*@__PURE__*/
+export const PublicCloudVMServiceGetResponseSchema: GenMessage<PublicCloudVMServiceGetResponse> = /*@__PURE__*/
   messageDesc(file_fits_api_pcvm_v1_vm, 4);
 
 /**
  * The request to create a new VM.
  *
- * @generated from message fits.api.pcvm.v1.VMServiceCreateRequest
+ * @generated from message fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest
  */
-export type VMServiceCreateRequest = Message<"fits.api.pcvm.v1.VMServiceCreateRequest"> & {
+export type PublicCloudVMServiceCreateRequest = Message<"fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest"> & {
   /**
    * UUID of the project this VM belongs to.
    *
@@ -228,39 +228,39 @@ export type VMServiceCreateRequest = Message<"fits.api.pcvm.v1.VMServiceCreateRe
 };
 
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceCreateRequest.
- * Use `create(VMServiceCreateRequestSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest.
+ * Use `create(PublicCloudVMServiceCreateRequestSchema)` to create a new message.
  */
-export const VMServiceCreateRequestSchema: GenMessage<VMServiceCreateRequest> = /*@__PURE__*/
+export const PublicCloudVMServiceCreateRequestSchema: GenMessage<PublicCloudVMServiceCreateRequest> = /*@__PURE__*/
   messageDesc(file_fits_api_pcvm_v1_vm, 5);
 
 /**
  * The response when creating a new VM.
  *
- * @generated from message fits.api.pcvm.v1.VMServiceCreateResponse
+ * @generated from message fits.api.pcvm.v1.PublicCloudVMServiceCreateResponse
  */
-export type VMServiceCreateResponse = Message<"fits.api.pcvm.v1.VMServiceCreateResponse"> & {
+export type PublicCloudVMServiceCreateResponse = Message<"fits.api.pcvm.v1.PublicCloudVMServiceCreateResponse"> & {
   /**
    * The VM just created.
    *
-   * @generated from field: fits.api.pcvm.v1.VM vm = 1;
+   * @generated from field: fits.api.pcvm.v1.PublicCloudVM vm = 1;
    */
-  vm?: VM | undefined;
+  vm?: PublicCloudVM | undefined;
 };
 
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceCreateResponse.
- * Use `create(VMServiceCreateResponseSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceCreateResponse.
+ * Use `create(PublicCloudVMServiceCreateResponseSchema)` to create a new message.
  */
-export const VMServiceCreateResponseSchema: GenMessage<VMServiceCreateResponse> = /*@__PURE__*/
+export const PublicCloudVMServiceCreateResponseSchema: GenMessage<PublicCloudVMServiceCreateResponse> = /*@__PURE__*/
   messageDesc(file_fits_api_pcvm_v1_vm, 6);
 
 /**
  * The request to list and filter VMs.
  *
- * @generated from message fits.api.pcvm.v1.VMServiceListRequest
+ * @generated from message fits.api.pcvm.v1.PublicCloudVMServiceListRequest
  */
-export type VMServiceListRequest = Message<"fits.api.pcvm.v1.VMServiceListRequest"> & {
+export type PublicCloudVMServiceListRequest = Message<"fits.api.pcvm.v1.PublicCloudVMServiceListRequest"> & {
   /**
    * UUID of the project this VM belongs to.
    *
@@ -278,45 +278,45 @@ export type VMServiceListRequest = Message<"fits.api.pcvm.v1.VMServiceListReques
   /**
    * Query defines how to filter the VMs.
    *
-   * @generated from field: fits.api.pcvm.v1.VMQuery query = 3;
+   * @generated from field: fits.api.pcvm.v1.PublicCloudVMQuery query = 3;
    */
-  query?: VMQuery | undefined;
+  query?: PublicCloudVMQuery | undefined;
 };
 
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceListRequest.
- * Use `create(VMServiceListRequestSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceListRequest.
+ * Use `create(PublicCloudVMServiceListRequestSchema)` to create a new message.
  */
-export const VMServiceListRequestSchema: GenMessage<VMServiceListRequest> = /*@__PURE__*/
+export const PublicCloudVMServiceListRequestSchema: GenMessage<PublicCloudVMServiceListRequest> = /*@__PURE__*/
   messageDesc(file_fits_api_pcvm_v1_vm, 7);
 
 /**
  * The response when listing VMs.
  *
- * @generated from message fits.api.pcvm.v1.VMServiceListResponse
+ * @generated from message fits.api.pcvm.v1.PublicCloudVMServiceListResponse
  */
-export type VMServiceListResponse = Message<"fits.api.pcvm.v1.VMServiceListResponse"> & {
+export type PublicCloudVMServiceListResponse = Message<"fits.api.pcvm.v1.PublicCloudVMServiceListResponse"> & {
   /**
    * VMs is a list of filtered VMs resources.
    *
-   * @generated from field: repeated fits.api.pcvm.v1.VM vms = 1;
+   * @generated from field: repeated fits.api.pcvm.v1.PublicCloudVM vms = 1;
    */
-  vms: VM[];
+  vms: PublicCloudVM[];
 };
 
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceListResponse.
- * Use `create(VMServiceListResponseSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceListResponse.
+ * Use `create(PublicCloudVMServiceListResponseSchema)` to create a new message.
  */
-export const VMServiceListResponseSchema: GenMessage<VMServiceListResponse> = /*@__PURE__*/
+export const PublicCloudVMServiceListResponseSchema: GenMessage<PublicCloudVMServiceListResponse> = /*@__PURE__*/
   messageDesc(file_fits_api_pcvm_v1_vm, 8);
 
 /**
  * The request to update a VM.
  *
- * @generated from message fits.api.pcvm.v1.VMServiceUpdateRequest
+ * @generated from message fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest
  */
-export type VMServiceUpdateRequest = Message<"fits.api.pcvm.v1.VMServiceUpdateRequest"> & {
+export type PublicCloudVMServiceUpdateRequest = Message<"fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest"> & {
   /**
    * UUID of the VM to update.
    *
@@ -362,39 +362,39 @@ export type VMServiceUpdateRequest = Message<"fits.api.pcvm.v1.VMServiceUpdateRe
 };
 
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceUpdateRequest.
- * Use `create(VMServiceUpdateRequestSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest.
+ * Use `create(PublicCloudVMServiceUpdateRequestSchema)` to create a new message.
  */
-export const VMServiceUpdateRequestSchema: GenMessage<VMServiceUpdateRequest> = /*@__PURE__*/
+export const PublicCloudVMServiceUpdateRequestSchema: GenMessage<PublicCloudVMServiceUpdateRequest> = /*@__PURE__*/
   messageDesc(file_fits_api_pcvm_v1_vm, 9);
 
 /**
  * The response when updating a VM.
  *
- * @generated from message fits.api.pcvm.v1.VMServiceUpdateResponse
+ * @generated from message fits.api.pcvm.v1.PublicCloudVMServiceUpdateResponse
  */
-export type VMServiceUpdateResponse = Message<"fits.api.pcvm.v1.VMServiceUpdateResponse"> & {
+export type PublicCloudVMServiceUpdateResponse = Message<"fits.api.pcvm.v1.PublicCloudVMServiceUpdateResponse"> & {
   /**
    * The updated VM.
    *
-   * @generated from field: fits.api.pcvm.v1.VM vm = 1;
+   * @generated from field: fits.api.pcvm.v1.PublicCloudVM vm = 1;
    */
-  vm?: VM | undefined;
+  vm?: PublicCloudVM | undefined;
 };
 
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceUpdateResponse.
- * Use `create(VMServiceUpdateResponseSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceUpdateResponse.
+ * Use `create(PublicCloudVMServiceUpdateResponseSchema)` to create a new message.
  */
-export const VMServiceUpdateResponseSchema: GenMessage<VMServiceUpdateResponse> = /*@__PURE__*/
+export const PublicCloudVMServiceUpdateResponseSchema: GenMessage<PublicCloudVMServiceUpdateResponse> = /*@__PURE__*/
   messageDesc(file_fits_api_pcvm_v1_vm, 10);
 
 /**
  * The request to delete a VM.
  *
- * @generated from message fits.api.pcvm.v1.VMServiceDeleteRequest
+ * @generated from message fits.api.pcvm.v1.PublicCloudVMServiceDeleteRequest
  */
-export type VMServiceDeleteRequest = Message<"fits.api.pcvm.v1.VMServiceDeleteRequest"> & {
+export type PublicCloudVMServiceDeleteRequest = Message<"fits.api.pcvm.v1.PublicCloudVMServiceDeleteRequest"> & {
   /**
    * UUID of the VM to delete.
    *
@@ -411,26 +411,26 @@ export type VMServiceDeleteRequest = Message<"fits.api.pcvm.v1.VMServiceDeleteRe
 };
 
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceDeleteRequest.
- * Use `create(VMServiceDeleteRequestSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceDeleteRequest.
+ * Use `create(PublicCloudVMServiceDeleteRequestSchema)` to create a new message.
  */
-export const VMServiceDeleteRequestSchema: GenMessage<VMServiceDeleteRequest> = /*@__PURE__*/
+export const PublicCloudVMServiceDeleteRequestSchema: GenMessage<PublicCloudVMServiceDeleteRequest> = /*@__PURE__*/
   messageDesc(file_fits_api_pcvm_v1_vm, 11);
 
 /**
  * The response after deleting a VM.
  * The VM is deleted immediately will not be able to be requested.
  *
- * @generated from message fits.api.pcvm.v1.VMServiceDeleteResponse
+ * @generated from message fits.api.pcvm.v1.PublicCloudVMServiceDeleteResponse
  */
-export type VMServiceDeleteResponse = Message<"fits.api.pcvm.v1.VMServiceDeleteResponse"> & {
+export type PublicCloudVMServiceDeleteResponse = Message<"fits.api.pcvm.v1.PublicCloudVMServiceDeleteResponse"> & {
 };
 
 /**
- * Describes the message fits.api.pcvm.v1.VMServiceDeleteResponse.
- * Use `create(VMServiceDeleteResponseSchema)` to create a new message.
+ * Describes the message fits.api.pcvm.v1.PublicCloudVMServiceDeleteResponse.
+ * Use `create(PublicCloudVMServiceDeleteResponseSchema)` to create a new message.
  */
-export const VMServiceDeleteResponseSchema: GenMessage<VMServiceDeleteResponse> = /*@__PURE__*/
+export const PublicCloudVMServiceDeleteResponseSchema: GenMessage<PublicCloudVMServiceDeleteResponse> = /*@__PURE__*/
   messageDesc(file_fits_api_pcvm_v1_vm, 12);
 
 /**
@@ -573,58 +573,58 @@ export const SizeSchema: GenEnum<Size> = /*@__PURE__*/
 /**
  * VMService provides VM operations.
  *
- * @generated from service fits.api.pcvm.v1.VMService
+ * @generated from service fits.api.pcvm.v1.PublicCloudVMService
  */
-export const VMService: GenService<{
+export const PublicCloudVMService: GenService<{
   /**
    * Returns the VM with the specified UUID.
    *
-   * @generated from rpc fits.api.pcvm.v1.VMService.Get
+   * @generated from rpc fits.api.pcvm.v1.PublicCloudVMService.Get
    */
   get: {
     methodKind: "unary";
-    input: typeof VMServiceGetRequestSchema;
-    output: typeof VMServiceGetResponseSchema;
+    input: typeof PublicCloudVMServiceGetRequestSchema;
+    output: typeof PublicCloudVMServiceGetResponseSchema;
   },
   /**
    * Creates a new VM.
    *
-   * @generated from rpc fits.api.pcvm.v1.VMService.Create
+   * @generated from rpc fits.api.pcvm.v1.PublicCloudVMService.Create
    */
   create: {
     methodKind: "unary";
-    input: typeof VMServiceCreateRequestSchema;
-    output: typeof VMServiceCreateResponseSchema;
+    input: typeof PublicCloudVMServiceCreateRequestSchema;
+    output: typeof PublicCloudVMServiceCreateResponseSchema;
   },
   /**
    * Returns the list of all VMs.
    *
-   * @generated from rpc fits.api.pcvm.v1.VMService.List
+   * @generated from rpc fits.api.pcvm.v1.PublicCloudVMService.List
    */
   list: {
     methodKind: "unary";
-    input: typeof VMServiceListRequestSchema;
-    output: typeof VMServiceListResponseSchema;
+    input: typeof PublicCloudVMServiceListRequestSchema;
+    output: typeof PublicCloudVMServiceListResponseSchema;
   },
   /**
    * Updates a VM.
    *
-   * @generated from rpc fits.api.pcvm.v1.VMService.Update
+   * @generated from rpc fits.api.pcvm.v1.PublicCloudVMService.Update
    */
   update: {
     methodKind: "unary";
-    input: typeof VMServiceUpdateRequestSchema;
-    output: typeof VMServiceUpdateResponseSchema;
+    input: typeof PublicCloudVMServiceUpdateRequestSchema;
+    output: typeof PublicCloudVMServiceUpdateResponseSchema;
   },
   /**
    * Deletes a VM immediately.
    *
-   * @generated from rpc fits.api.pcvm.v1.VMService.Delete
+   * @generated from rpc fits.api.pcvm.v1.PublicCloudVMService.Delete
    */
   delete: {
     methodKind: "unary";
-    input: typeof VMServiceDeleteRequestSchema;
-    output: typeof VMServiceDeleteResponseSchema;
+    input: typeof PublicCloudVMServiceDeleteRequestSchema;
+    output: typeof PublicCloudVMServiceDeleteResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_fits_api_pcvm_v1_vm, 0);
