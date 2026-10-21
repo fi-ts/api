@@ -116,7 +116,7 @@ message ProductRoleAssignment {
   // UUID of the product instance (or id when the product does not use UUIDs).
   string product_uuid = 2 [(buf.validate.field).string = {max_len: 256}];
   // UUID of the project the product belongs to.
-  string project_uuid = 3 [(buf.validate.field).string.uuid = true];
+  string project_uuid = 3 [(buf.validate.field).string.(fits.api.v1.is_project_subject_permission) = true];
   // Role granted on the product.
   ProductRole role = 4 [(buf.validate.field).enum.defined_only = true];
 }

@@ -943,11 +943,11 @@ var File_fits_api_v1_common_proto protoreflect.FileDescriptor
 
 const file_fits_api_v1_common_proto_rawDesc = "" +
 	"\n" +
-	"\x18fits/api/v1/common.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a google/protobuf/descriptor.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe3\x01\n" +
+	"\x18fits/api/v1/common.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a google/protobuf/descriptor.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe6\x01\n" +
 	"\x15ProductRoleAssignment\x128\n" +
 	"\aproduct\x18\x01 \x01(\x0e2\x14.fits.api.v1.ProductB\b\xbaH\x05\x82\x01\x02\x10\x01R\aproduct\x12+\n" +
-	"\fproduct_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\vproductUuid\x12+\n" +
-	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x126\n" +
+	"\fproduct_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\vproductUuid\x12.\n" +
+	"\fproject_uuid\x18\x03 \x01(\tB\v\xbaH\br\x06\x98\xb4\xae\xb1\x02\x01R\vprojectUuid\x126\n" +
 	"\x04role\x18\x04 \x01(\x0e2\x18.fits.api.v1.ProductRoleB\b\xbaH\x05\x82\x01\x02\x10\x01R\x04role\"O\n" +
 	"\x06Paging\x12\x17\n" +
 	"\x04page\x18\x01 \x01(\x04H\x00R\x04page\x88\x01\x01\x12\x19\n" +
