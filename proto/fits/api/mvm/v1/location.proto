@@ -6,19 +6,17 @@ import "buf/validate/validate.proto";
 import "fits/api/v1/common.proto";
 import "fits/api/v1/predefined_rules.proto";
 
-// LocationService lists datacenter locations available for managed VM (MVM) instances, scoped per tenant.
+// LocationService lists datacenter locations available for Managed VM (MVM) instances.
 service LocationService {
-  // Returns a list of all datacenter locations available for a tenant.
+  // Returns a list of all datacenter locations.
   rpc List(LocationServiceListRequest) returns (LocationServiceListResponse) {
-    option (fits.api.v1.tenant_roles) = TENANT_ROLE_ADMIN;
-    option (fits.api.v1.tenant_roles) = TENANT_ROLE_EDITOR;
-    option (fits.api.v1.tenant_roles) = TENANT_ROLE_VIEWER;
+    option (fits.api.v1.visibility) = VISIBILITY_SELF;
     option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
   }
 }
 
 // Location is an available datacenter location for MVM instances.
-// A fake "AUTO" location lets the backend pick a datacenter within a location.
+// An "AUTO" location lets the backend pick a datacenter within a location.
 message Location {
   // UUID of this location.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
@@ -27,10 +25,7 @@ message Location {
 }
 
 // LocationServiceListRequest is the request payload for a location list request.
-message LocationServiceListRequest {
-  // Tenant to list available locations for
-  string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
-}
+message LocationServiceListRequest {}
 
 // LocationServiceListResponse is the response payload for a location list request.
 message LocationServiceListResponse {
