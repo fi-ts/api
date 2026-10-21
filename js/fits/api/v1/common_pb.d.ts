@@ -301,11 +301,11 @@ export declare enum Product {
      */
     MANAGED_VM = 1,
     /**
-     * PRODUCT_VM identifies a VM (fits.api.vm.v1.VM)
+     * PRODUCT_PUBLIC_CLOUD_VM identifies a VM (fits.api.pcvm.v1.PublicCloudVM)
      *
-     * @generated from enum value: PRODUCT_VM = 2;
+     * @generated from enum value: PRODUCT_PUBLIC_CLOUD_VM = 2;
      */
-    VM = 2
+    PUBLIC_CLOUD_VM = 2
 }
 /**
  * Describes the enum fits.api.v1.Product.

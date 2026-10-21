@@ -215,7 +215,7 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 						case v1.Auditing_AUDITING_UNSPECIFIED.String():
 							auditable[methodName] = true
 						// Product
-						case v1.Product_PRODUCT_MANAGED_VM.String(), v1.Product_PRODUCT_VM.String():
+						case v1.Product_PRODUCT_MANAGED_VM.String(), v1.Product_PRODUCT_PUBLIC_CLOUD_VM.String():
 							products[methodName] = v1.Product(v1.Product_value[role])
 						case v1.Product_PRODUCT_UNSPECIFIED.String():
 							// noop

@@ -53,8 +53,8 @@ enum Product {
   PRODUCT_UNSPECIFIED = 0;
   // PRODUCT_MANAGED_VM identifies a ManagedVM (fits.api.mvm.v1.ManagedVM)
   PRODUCT_MANAGED_VM = 1;
-  // PRODUCT_VM identifies a VM (fits.api.vm.v1.VM)
-  PRODUCT_VM = 2;
+  // PRODUCT_PUBLIC_CLOUD_VM identifies a VM (fits.api.pcvm.v1.PublicCloudVM)
+  PRODUCT_PUBLIC_CLOUD_VM = 2;
 }
 
 // ProductRole specifies what role a logged in user needs to call this product scoped service.

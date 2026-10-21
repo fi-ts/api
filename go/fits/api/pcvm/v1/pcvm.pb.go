@@ -1231,20 +1231,16 @@ const file_fits_api_pcvm_v1_pcvm_proto_rawDesc = "" +
 	"\vSIZE_MEDIUM\x10\x02\x1a\n" +
 	"\x82\xb2\x19\x06medium\x12\x19\n" +
 	"\n" +
-	"SIZE_LARGE\x10\x03\x1a\t\x82\xb2\x19\x05large2\xc2\a\n" +
-	"\x14PublicCloudVMService\x12w\n" +
-	"\x03Get\x120.fits.api.pcvm.v1.PublicCloudVMServiceGetRequest\x1a1.fits.api.pcvm.v1.PublicCloudVMServiceGetResponse\"\v\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x12\x7f\n" +
+	"SIZE_LARGE\x10\x03\x1a\t\x82\xb2\x19\x05large2\xd8\a\n" +
+	"\x14PublicCloudVMService\x12{\n" +
+	"\x03Get\x120.fits.api.pcvm.v1.PublicCloudVMServiceGetRequest\x1a1.fits.api.pcvm.v1.PublicCloudVMServiceGetResponse\"\x0f\xe0\xf3\x18\x02\xea\xf3\x18\x03\x01\x02\x03\xf0\xf3\x18\x02\x12\x7f\n" +
 	"\x06Create\x123.fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest\x1a4.fits.api.pcvm.v1.PublicCloudVMServiceCreateResponse\"\n" +
 	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12z\n" +
-	"\x04List\x121.fits.api.pcvm.v1.PublicCloudVMServiceListRequest\x1a2.fits.api.pcvm.v1.PublicCloudVMServiceListResponse\"\v\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x12\x7f\n" +
-	"\x06Update\x123.fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest\x1a4.fits.api.pcvm.v1.PublicCloudVMServiceUpdateResponse\"\n" +
-	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12\x7f\n" +
-	"\x06Delete\x123.fits.api.pcvm.v1.PublicCloudVMServiceDeleteRequest\x1a4.fits.api.pcvm.v1.PublicCloudVMServiceDeleteResponse\"\n" +
-	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12\x97\x01\n" +
-	"\x0eValidateCreate\x12;.fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateRequest\x1a<.fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateResponse\"\n" +
-	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x02\x12\x97\x01\n" +
-	"\x0eValidateUpdate\x12;.fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateRequest\x1a<.fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateResponse\"\n" +
-	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x02B\xb5\x01\n" +
+	"\x04List\x121.fits.api.pcvm.v1.PublicCloudVMServiceListRequest\x1a2.fits.api.pcvm.v1.PublicCloudVMServiceListResponse\"\v\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x12\x83\x01\n" +
+	"\x06Update\x123.fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest\x1a4.fits.api.pcvm.v1.PublicCloudVMServiceUpdateResponse\"\x0e\xe0\xf3\x18\x01\xea\xf3\x18\x02\x01\x02\xf0\xf3\x18\x02\x12\x83\x01\n" +
+	"\x06Delete\x123.fits.api.pcvm.v1.PublicCloudVMServiceDeleteRequest\x1a4.fits.api.pcvm.v1.PublicCloudVMServiceDeleteResponse\"\x0e\xe0\xf3\x18\x01\xea\xf3\x18\x02\x01\x02\xf0\xf3\x18\x02\x12\x9b\x01\n" +
+	"\x0eValidateCreate\x12;.fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateRequest\x1a<.fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateResponse\"\x0e\xe0\xf3\x18\x02\xea\xf3\x18\x02\x01\x02\xf0\xf3\x18\x02\x12\x9b\x01\n" +
+	"\x0eValidateUpdate\x12;.fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateRequest\x1a<.fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateResponse\"\x0e\xe0\xf3\x18\x02\xea\xf3\x18\x02\x01\x02\xf0\xf3\x18\x02B\xb5\x01\n" +
 	"\x14com.fits.api.pcvm.v1B\tPcvmProtoP\x01Z/github.com/fi-ts/api/go/fits/api/pcvm/v1;pcvmv1\xa2\x02\x03FAP\xaa\x02\x10Fits.Api.Pcvm.V1\xca\x02\x10Fits\\Api\\Pcvm\\V1\xe2\x02\x1cFits\\Api\\Pcvm\\V1\\GPBMetadata\xea\x02\x13Fits::Api::Pcvm::V1b\x06proto3"
 
 var (

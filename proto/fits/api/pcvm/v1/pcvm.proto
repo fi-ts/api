@@ -10,9 +10,10 @@ import "fits/api/v1/predefined_rules.proto";
 service PublicCloudVMService {
   // Returns the VM with the specified UUID.
   rpc Get(PublicCloudVMServiceGetRequest) returns (PublicCloudVMServiceGetResponse) {
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_VIEWER;
+    option (fits.api.v1.product) = PRODUCT_PUBLIC_CLOUD_VM;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_ADMIN;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_EDITOR;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_VIEWER;
     option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
   }
 
@@ -33,15 +34,17 @@ service PublicCloudVMService {
 
   // Updates a VM.
   rpc Update(PublicCloudVMServiceUpdateRequest) returns (PublicCloudVMServiceUpdateResponse) {
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.product) = PRODUCT_PUBLIC_CLOUD_VM;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_ADMIN;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_EDITOR;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
 
   // Deletes a VM immediately.
   rpc Delete(PublicCloudVMServiceDeleteRequest) returns (PublicCloudVMServiceDeleteResponse) {
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.product) = PRODUCT_PUBLIC_CLOUD_VM;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_ADMIN;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_EDITOR;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
 
@@ -56,8 +59,9 @@ service PublicCloudVMService {
   // Validates a VM update request without updating anything. Intended for
   // form pre-checks; the update endpoint validates again before executing.
   rpc ValidateUpdate(PublicCloudVMServiceValidateUpdateRequest) returns (PublicCloudVMServiceValidateUpdateResponse) {
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.product) = PRODUCT_PUBLIC_CLOUD_VM;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_ADMIN;
+    option (fits.api.v1.product_roles) = PRODUCT_ROLE_EDITOR;
     option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
   }
 }

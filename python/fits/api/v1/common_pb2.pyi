@@ -38,7 +38,7 @@ class Product(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
     PRODUCT_UNSPECIFIED: _ClassVar[Product]
     PRODUCT_MANAGED_VM: _ClassVar[Product]
-    PRODUCT_VM: _ClassVar[Product]
+    PRODUCT_PUBLIC_CLOUD_VM: _ClassVar[Product]
 
 class ProductRole(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
@@ -78,7 +78,7 @@ OPERATOR_ROLE_EDITOR: OperatorRole
 OPERATOR_ROLE_VIEWER: OperatorRole
 PRODUCT_UNSPECIFIED: Product
 PRODUCT_MANAGED_VM: Product
-PRODUCT_VM: Product
+PRODUCT_PUBLIC_CLOUD_VM: Product
 PRODUCT_ROLE_UNSPECIFIED: ProductRole
 PRODUCT_ROLE_ADMIN: ProductRole
 PRODUCT_ROLE_EDITOR: ProductRole

@@ -207,8 +207,8 @@ const (
 	Product_PRODUCT_UNSPECIFIED Product = 0
 	// PRODUCT_MANAGED_VM identifies a ManagedVM (fits.api.mvm.v1.ManagedVM)
 	Product_PRODUCT_MANAGED_VM Product = 1
-	// PRODUCT_VM identifies a VM (fits.api.vm.v1.VM)
-	Product_PRODUCT_VM Product = 2
+	// PRODUCT_PUBLIC_CLOUD_VM identifies a VM (fits.api.pcvm.v1.PublicCloudVM)
+	Product_PRODUCT_PUBLIC_CLOUD_VM Product = 2
 )
 
 // Enum value maps for Product.
@@ -216,12 +216,12 @@ var (
 	Product_name = map[int32]string{
 		0: "PRODUCT_UNSPECIFIED",
 		1: "PRODUCT_MANAGED_VM",
-		2: "PRODUCT_VM",
+		2: "PRODUCT_PUBLIC_CLOUD_VM",
 	}
 	Product_value = map[string]int32{
-		"PRODUCT_UNSPECIFIED": 0,
-		"PRODUCT_MANAGED_VM":  1,
-		"PRODUCT_VM":          2,
+		"PRODUCT_UNSPECIFIED":     0,
+		"PRODUCT_MANAGED_VM":      1,
+		"PRODUCT_PUBLIC_CLOUD_VM": 2,
 	}
 )
 
@@ -996,12 +996,11 @@ const file_fits_api_v1_common_proto_rawDesc = "" +
 	"\fOperatorRole\x12\x1d\n" +
 	"\x19OPERATOR_ROLE_UNSPECIFIED\x10\x00\x12\x18\n" +
 	"\x14OPERATOR_ROLE_EDITOR\x10\x01\x12\x18\n" +
-	"\x14OPERATOR_ROLE_VIEWER\x10\x02*J\n" +
+	"\x14OPERATOR_ROLE_VIEWER\x10\x02*W\n" +
 	"\aProduct\x12\x17\n" +
 	"\x13PRODUCT_UNSPECIFIED\x10\x00\x12\x16\n" +
-	"\x12PRODUCT_MANAGED_VM\x10\x01\x12\x0e\n" +
-	"\n" +
-	"PRODUCT_VM\x10\x02*u\n" +
+	"\x12PRODUCT_MANAGED_VM\x10\x01\x12\x1b\n" +
+	"\x17PRODUCT_PUBLIC_CLOUD_VM\x10\x02*u\n" +
 	"\vProductRole\x12\x1c\n" +
 	"\x18PRODUCT_ROLE_UNSPECIFIED\x10\x00\x12\x16\n" +
 	"\x12PRODUCT_ROLE_ADMIN\x10\x01\x12\x17\n" +
