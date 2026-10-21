@@ -2,9 +2,9 @@ import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobu
 import type { Labels, Meta, Paging, UpdateLabels, UpdateMeta } from "../../v1/common_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 /**
- * Describes the file fits/api/pcvm/v1/vm.proto.
+ * Describes the file fits/api/pcvm/v1/pcvm.proto.
  */
-export declare const file_fits_api_pcvm_v1_vm: GenFile;
+export declare const file_fits_api_pcvm_v1_pcvm: GenFile;
 /**
  * The VM resource.
  *

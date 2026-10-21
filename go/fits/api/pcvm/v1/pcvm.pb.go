@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.12
 // 	protoc        (unknown)
-// source: fits/api/pcvm/v1/vm.proto
+// source: fits/api/pcvm/v1/pcvm.proto
 
 package pcvmv1
 
@@ -64,11 +64,11 @@ func (x State) String() string {
 }
 
 func (State) Descriptor() protoreflect.EnumDescriptor {
-	return file_fits_api_pcvm_v1_vm_proto_enumTypes[0].Descriptor()
+	return file_fits_api_pcvm_v1_pcvm_proto_enumTypes[0].Descriptor()
 }
 
 func (State) Type() protoreflect.EnumType {
-	return &file_fits_api_pcvm_v1_vm_proto_enumTypes[0]
+	return &file_fits_api_pcvm_v1_pcvm_proto_enumTypes[0]
 }
 
 func (x State) Number() protoreflect.EnumNumber {
@@ -77,7 +77,7 @@ func (x State) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use State.Descriptor instead.
 func (State) EnumDescriptor() ([]byte, []int) {
-	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{0}
+	return file_fits_api_pcvm_v1_pcvm_proto_rawDescGZIP(), []int{0}
 }
 
 // The operation of the VM.
@@ -129,11 +129,11 @@ func (x Operation) String() string {
 }
 
 func (Operation) Descriptor() protoreflect.EnumDescriptor {
-	return file_fits_api_pcvm_v1_vm_proto_enumTypes[1].Descriptor()
+	return file_fits_api_pcvm_v1_pcvm_proto_enumTypes[1].Descriptor()
 }
 
 func (Operation) Type() protoreflect.EnumType {
-	return &file_fits_api_pcvm_v1_vm_proto_enumTypes[1]
+	return &file_fits_api_pcvm_v1_pcvm_proto_enumTypes[1]
 }
 
 func (x Operation) Number() protoreflect.EnumNumber {
@@ -142,7 +142,7 @@ func (x Operation) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Operation.Descriptor instead.
 func (Operation) EnumDescriptor() ([]byte, []int) {
-	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{1}
+	return file_fits_api_pcvm_v1_pcvm_proto_rawDescGZIP(), []int{1}
 }
 
 // Size specifies the size of the VM machine
@@ -186,11 +186,11 @@ func (x Size) String() string {
 }
 
 func (Size) Descriptor() protoreflect.EnumDescriptor {
-	return file_fits_api_pcvm_v1_vm_proto_enumTypes[2].Descriptor()
+	return file_fits_api_pcvm_v1_pcvm_proto_enumTypes[2].Descriptor()
 }
 
 func (Size) Type() protoreflect.EnumType {
-	return &file_fits_api_pcvm_v1_vm_proto_enumTypes[2]
+	return &file_fits_api_pcvm_v1_pcvm_proto_enumTypes[2]
 }
 
 func (x Size) Number() protoreflect.EnumNumber {
@@ -199,7 +199,7 @@ func (x Size) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Size.Descriptor instead.
 func (Size) EnumDescriptor() ([]byte, []int) {
-	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{2}
+	return file_fits_api_pcvm_v1_pcvm_proto_rawDescGZIP(), []int{2}
 }
 
 // The VM resource.
@@ -225,7 +225,7 @@ type PublicCloudVM struct {
 
 func (x *PublicCloudVM) Reset() {
 	*x = PublicCloudVM{}
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[0]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -237,7 +237,7 @@ func (x *PublicCloudVM) String() string {
 func (*PublicCloudVM) ProtoMessage() {}
 
 func (x *PublicCloudVM) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[0]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -250,7 +250,7 @@ func (x *PublicCloudVM) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublicCloudVM.ProtoReflect.Descriptor instead.
 func (*PublicCloudVM) Descriptor() ([]byte, []int) {
-	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{0}
+	return file_fits_api_pcvm_v1_pcvm_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *PublicCloudVM) GetUuid() string {
@@ -317,7 +317,7 @@ type Status struct {
 
 func (x *Status) Reset() {
 	*x = Status{}
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[1]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -329,7 +329,7 @@ func (x *Status) String() string {
 func (*Status) ProtoMessage() {}
 
 func (x *Status) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[1]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -342,7 +342,7 @@ func (x *Status) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Status.ProtoReflect.Descriptor instead.
 func (*Status) Descriptor() ([]byte, []int) {
-	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{1}
+	return file_fits_api_pcvm_v1_pcvm_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Status) GetState() State {
@@ -379,7 +379,7 @@ type PublicCloudVMQuery struct {
 
 func (x *PublicCloudVMQuery) Reset() {
 	*x = PublicCloudVMQuery{}
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[2]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -391,7 +391,7 @@ func (x *PublicCloudVMQuery) String() string {
 func (*PublicCloudVMQuery) ProtoMessage() {}
 
 func (x *PublicCloudVMQuery) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[2]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -404,7 +404,7 @@ func (x *PublicCloudVMQuery) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublicCloudVMQuery.ProtoReflect.Descriptor instead.
 func (*PublicCloudVMQuery) Descriptor() ([]byte, []int) {
-	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{2}
+	return file_fits_api_pcvm_v1_pcvm_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *PublicCloudVMQuery) GetName() string {
@@ -434,7 +434,7 @@ type PublicCloudVMServiceGetRequest struct {
 
 func (x *PublicCloudVMServiceGetRequest) Reset() {
 	*x = PublicCloudVMServiceGetRequest{}
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[3]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -446,7 +446,7 @@ func (x *PublicCloudVMServiceGetRequest) String() string {
 func (*PublicCloudVMServiceGetRequest) ProtoMessage() {}
 
 func (x *PublicCloudVMServiceGetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[3]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -459,7 +459,7 @@ func (x *PublicCloudVMServiceGetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublicCloudVMServiceGetRequest.ProtoReflect.Descriptor instead.
 func (*PublicCloudVMServiceGetRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{3}
+	return file_fits_api_pcvm_v1_pcvm_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *PublicCloudVMServiceGetRequest) GetUuid() string {
@@ -487,7 +487,7 @@ type PublicCloudVMServiceGetResponse struct {
 
 func (x *PublicCloudVMServiceGetResponse) Reset() {
 	*x = PublicCloudVMServiceGetResponse{}
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[4]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -499,7 +499,7 @@ func (x *PublicCloudVMServiceGetResponse) String() string {
 func (*PublicCloudVMServiceGetResponse) ProtoMessage() {}
 
 func (x *PublicCloudVMServiceGetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[4]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -512,7 +512,7 @@ func (x *PublicCloudVMServiceGetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublicCloudVMServiceGetResponse.ProtoReflect.Descriptor instead.
 func (*PublicCloudVMServiceGetResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{4}
+	return file_fits_api_pcvm_v1_pcvm_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *PublicCloudVMServiceGetResponse) GetVm() *PublicCloudVM {
@@ -539,7 +539,7 @@ type PublicCloudVMServiceCreateRequest struct {
 
 func (x *PublicCloudVMServiceCreateRequest) Reset() {
 	*x = PublicCloudVMServiceCreateRequest{}
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[5]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -551,7 +551,7 @@ func (x *PublicCloudVMServiceCreateRequest) String() string {
 func (*PublicCloudVMServiceCreateRequest) ProtoMessage() {}
 
 func (x *PublicCloudVMServiceCreateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[5]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -564,7 +564,7 @@ func (x *PublicCloudVMServiceCreateRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use PublicCloudVMServiceCreateRequest.ProtoReflect.Descriptor instead.
 func (*PublicCloudVMServiceCreateRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{5}
+	return file_fits_api_pcvm_v1_pcvm_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *PublicCloudVMServiceCreateRequest) GetProjectUuid() string {
@@ -606,7 +606,7 @@ type PublicCloudVMServiceCreateResponse struct {
 
 func (x *PublicCloudVMServiceCreateResponse) Reset() {
 	*x = PublicCloudVMServiceCreateResponse{}
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[6]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -618,7 +618,7 @@ func (x *PublicCloudVMServiceCreateResponse) String() string {
 func (*PublicCloudVMServiceCreateResponse) ProtoMessage() {}
 
 func (x *PublicCloudVMServiceCreateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[6]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -631,7 +631,7 @@ func (x *PublicCloudVMServiceCreateResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use PublicCloudVMServiceCreateResponse.ProtoReflect.Descriptor instead.
 func (*PublicCloudVMServiceCreateResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{6}
+	return file_fits_api_pcvm_v1_pcvm_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *PublicCloudVMServiceCreateResponse) GetVm() *PublicCloudVM {
@@ -656,7 +656,7 @@ type PublicCloudVMServiceListRequest struct {
 
 func (x *PublicCloudVMServiceListRequest) Reset() {
 	*x = PublicCloudVMServiceListRequest{}
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[7]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -668,7 +668,7 @@ func (x *PublicCloudVMServiceListRequest) String() string {
 func (*PublicCloudVMServiceListRequest) ProtoMessage() {}
 
 func (x *PublicCloudVMServiceListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[7]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -681,7 +681,7 @@ func (x *PublicCloudVMServiceListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublicCloudVMServiceListRequest.ProtoReflect.Descriptor instead.
 func (*PublicCloudVMServiceListRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{7}
+	return file_fits_api_pcvm_v1_pcvm_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *PublicCloudVMServiceListRequest) GetProjectUuid() string {
@@ -716,7 +716,7 @@ type PublicCloudVMServiceListResponse struct {
 
 func (x *PublicCloudVMServiceListResponse) Reset() {
 	*x = PublicCloudVMServiceListResponse{}
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[8]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -728,7 +728,7 @@ func (x *PublicCloudVMServiceListResponse) String() string {
 func (*PublicCloudVMServiceListResponse) ProtoMessage() {}
 
 func (x *PublicCloudVMServiceListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[8]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -741,7 +741,7 @@ func (x *PublicCloudVMServiceListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublicCloudVMServiceListResponse.ProtoReflect.Descriptor instead.
 func (*PublicCloudVMServiceListResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{8}
+	return file_fits_api_pcvm_v1_pcvm_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *PublicCloudVMServiceListResponse) GetVms() []*PublicCloudVM {
@@ -773,7 +773,7 @@ type PublicCloudVMServiceUpdateRequest struct {
 
 func (x *PublicCloudVMServiceUpdateRequest) Reset() {
 	*x = PublicCloudVMServiceUpdateRequest{}
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[9]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -785,7 +785,7 @@ func (x *PublicCloudVMServiceUpdateRequest) String() string {
 func (*PublicCloudVMServiceUpdateRequest) ProtoMessage() {}
 
 func (x *PublicCloudVMServiceUpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[9]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -798,7 +798,7 @@ func (x *PublicCloudVMServiceUpdateRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use PublicCloudVMServiceUpdateRequest.ProtoReflect.Descriptor instead.
 func (*PublicCloudVMServiceUpdateRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{9}
+	return file_fits_api_pcvm_v1_pcvm_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *PublicCloudVMServiceUpdateRequest) GetUuid() string {
@@ -854,7 +854,7 @@ type PublicCloudVMServiceUpdateResponse struct {
 
 func (x *PublicCloudVMServiceUpdateResponse) Reset() {
 	*x = PublicCloudVMServiceUpdateResponse{}
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[10]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -866,7 +866,7 @@ func (x *PublicCloudVMServiceUpdateResponse) String() string {
 func (*PublicCloudVMServiceUpdateResponse) ProtoMessage() {}
 
 func (x *PublicCloudVMServiceUpdateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[10]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -879,7 +879,7 @@ func (x *PublicCloudVMServiceUpdateResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use PublicCloudVMServiceUpdateResponse.ProtoReflect.Descriptor instead.
 func (*PublicCloudVMServiceUpdateResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{10}
+	return file_fits_api_pcvm_v1_pcvm_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *PublicCloudVMServiceUpdateResponse) GetVm() *PublicCloudVM {
@@ -902,7 +902,7 @@ type PublicCloudVMServiceDeleteRequest struct {
 
 func (x *PublicCloudVMServiceDeleteRequest) Reset() {
 	*x = PublicCloudVMServiceDeleteRequest{}
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[11]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -914,7 +914,7 @@ func (x *PublicCloudVMServiceDeleteRequest) String() string {
 func (*PublicCloudVMServiceDeleteRequest) ProtoMessage() {}
 
 func (x *PublicCloudVMServiceDeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[11]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -927,7 +927,7 @@ func (x *PublicCloudVMServiceDeleteRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use PublicCloudVMServiceDeleteRequest.ProtoReflect.Descriptor instead.
 func (*PublicCloudVMServiceDeleteRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{11}
+	return file_fits_api_pcvm_v1_pcvm_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *PublicCloudVMServiceDeleteRequest) GetUuid() string {
@@ -954,7 +954,7 @@ type PublicCloudVMServiceDeleteResponse struct {
 
 func (x *PublicCloudVMServiceDeleteResponse) Reset() {
 	*x = PublicCloudVMServiceDeleteResponse{}
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[12]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -966,7 +966,7 @@ func (x *PublicCloudVMServiceDeleteResponse) String() string {
 func (*PublicCloudVMServiceDeleteResponse) ProtoMessage() {}
 
 func (x *PublicCloudVMServiceDeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[12]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -979,7 +979,7 @@ func (x *PublicCloudVMServiceDeleteResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use PublicCloudVMServiceDeleteResponse.ProtoReflect.Descriptor instead.
 func (*PublicCloudVMServiceDeleteResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{12}
+	return file_fits_api_pcvm_v1_pcvm_proto_rawDescGZIP(), []int{12}
 }
 
 // Request to validate a VM create without creating anything.
@@ -993,7 +993,7 @@ type PublicCloudVMServiceValidateCreateRequest struct {
 
 func (x *PublicCloudVMServiceValidateCreateRequest) Reset() {
 	*x = PublicCloudVMServiceValidateCreateRequest{}
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[13]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1005,7 +1005,7 @@ func (x *PublicCloudVMServiceValidateCreateRequest) String() string {
 func (*PublicCloudVMServiceValidateCreateRequest) ProtoMessage() {}
 
 func (x *PublicCloudVMServiceValidateCreateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[13]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1018,7 +1018,7 @@ func (x *PublicCloudVMServiceValidateCreateRequest) ProtoReflect() protoreflect.
 
 // Deprecated: Use PublicCloudVMServiceValidateCreateRequest.ProtoReflect.Descriptor instead.
 func (*PublicCloudVMServiceValidateCreateRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{13}
+	return file_fits_api_pcvm_v1_pcvm_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *PublicCloudVMServiceValidateCreateRequest) GetCreate() *PublicCloudVMServiceCreateRequest {
@@ -1037,7 +1037,7 @@ type PublicCloudVMServiceValidateCreateResponse struct {
 
 func (x *PublicCloudVMServiceValidateCreateResponse) Reset() {
 	*x = PublicCloudVMServiceValidateCreateResponse{}
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[14]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1049,7 +1049,7 @@ func (x *PublicCloudVMServiceValidateCreateResponse) String() string {
 func (*PublicCloudVMServiceValidateCreateResponse) ProtoMessage() {}
 
 func (x *PublicCloudVMServiceValidateCreateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[14]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1062,7 +1062,7 @@ func (x *PublicCloudVMServiceValidateCreateResponse) ProtoReflect() protoreflect
 
 // Deprecated: Use PublicCloudVMServiceValidateCreateResponse.ProtoReflect.Descriptor instead.
 func (*PublicCloudVMServiceValidateCreateResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{14}
+	return file_fits_api_pcvm_v1_pcvm_proto_rawDescGZIP(), []int{14}
 }
 
 // Request to validate a VM update without updating anything.
@@ -1076,7 +1076,7 @@ type PublicCloudVMServiceValidateUpdateRequest struct {
 
 func (x *PublicCloudVMServiceValidateUpdateRequest) Reset() {
 	*x = PublicCloudVMServiceValidateUpdateRequest{}
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[15]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1088,7 +1088,7 @@ func (x *PublicCloudVMServiceValidateUpdateRequest) String() string {
 func (*PublicCloudVMServiceValidateUpdateRequest) ProtoMessage() {}
 
 func (x *PublicCloudVMServiceValidateUpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[15]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1101,7 +1101,7 @@ func (x *PublicCloudVMServiceValidateUpdateRequest) ProtoReflect() protoreflect.
 
 // Deprecated: Use PublicCloudVMServiceValidateUpdateRequest.ProtoReflect.Descriptor instead.
 func (*PublicCloudVMServiceValidateUpdateRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{15}
+	return file_fits_api_pcvm_v1_pcvm_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *PublicCloudVMServiceValidateUpdateRequest) GetUpdate() *PublicCloudVMServiceUpdateRequest {
@@ -1120,7 +1120,7 @@ type PublicCloudVMServiceValidateUpdateResponse struct {
 
 func (x *PublicCloudVMServiceValidateUpdateResponse) Reset() {
 	*x = PublicCloudVMServiceValidateUpdateResponse{}
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[16]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1132,7 +1132,7 @@ func (x *PublicCloudVMServiceValidateUpdateResponse) String() string {
 func (*PublicCloudVMServiceValidateUpdateResponse) ProtoMessage() {}
 
 func (x *PublicCloudVMServiceValidateUpdateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_pcvm_v1_vm_proto_msgTypes[16]
+	mi := &file_fits_api_pcvm_v1_pcvm_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1145,14 +1145,14 @@ func (x *PublicCloudVMServiceValidateUpdateResponse) ProtoReflect() protoreflect
 
 // Deprecated: Use PublicCloudVMServiceValidateUpdateResponse.ProtoReflect.Descriptor instead.
 func (*PublicCloudVMServiceValidateUpdateResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_pcvm_v1_vm_proto_rawDescGZIP(), []int{16}
+	return file_fits_api_pcvm_v1_pcvm_proto_rawDescGZIP(), []int{16}
 }
 
-var File_fits_api_pcvm_v1_vm_proto protoreflect.FileDescriptor
+var File_fits_api_pcvm_v1_pcvm_proto protoreflect.FileDescriptor
 
-const file_fits_api_pcvm_v1_vm_proto_rawDesc = "" +
+const file_fits_api_pcvm_v1_pcvm_proto_rawDesc = "" +
 	"\n" +
-	"\x19fits/api/pcvm/v1/vm.proto\x12\x10fits.api.pcvm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xa5\x02\n" +
+	"\x1bfits/api/pcvm/v1/pcvm.proto\x12\x10fits.api.pcvm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xa5\x02\n" +
 	"\rPublicCloudVM\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12%\n" +
 	"\x04meta\x18\x02 \x01(\v2\x11.fits.api.v1.MetaR\x04meta\x12\x1f\n" +
@@ -1244,24 +1244,24 @@ const file_fits_api_pcvm_v1_vm_proto_rawDesc = "" +
 	"\x0eValidateCreate\x12;.fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateRequest\x1a<.fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateResponse\"\n" +
 	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x02\x12\x97\x01\n" +
 	"\x0eValidateUpdate\x12;.fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateRequest\x1a<.fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateResponse\"\n" +
-	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x02B\xb3\x01\n" +
-	"\x14com.fits.api.pcvm.v1B\aVmProtoP\x01Z/github.com/fi-ts/api/go/fits/api/pcvm/v1;pcvmv1\xa2\x02\x03FAP\xaa\x02\x10Fits.Api.Pcvm.V1\xca\x02\x10Fits\\Api\\Pcvm\\V1\xe2\x02\x1cFits\\Api\\Pcvm\\V1\\GPBMetadata\xea\x02\x13Fits::Api::Pcvm::V1b\x06proto3"
+	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x02B\xb5\x01\n" +
+	"\x14com.fits.api.pcvm.v1B\tPcvmProtoP\x01Z/github.com/fi-ts/api/go/fits/api/pcvm/v1;pcvmv1\xa2\x02\x03FAP\xaa\x02\x10Fits.Api.Pcvm.V1\xca\x02\x10Fits\\Api\\Pcvm\\V1\xe2\x02\x1cFits\\Api\\Pcvm\\V1\\GPBMetadata\xea\x02\x13Fits::Api::Pcvm::V1b\x06proto3"
 
 var (
-	file_fits_api_pcvm_v1_vm_proto_rawDescOnce sync.Once
-	file_fits_api_pcvm_v1_vm_proto_rawDescData []byte
+	file_fits_api_pcvm_v1_pcvm_proto_rawDescOnce sync.Once
+	file_fits_api_pcvm_v1_pcvm_proto_rawDescData []byte
 )
 
-func file_fits_api_pcvm_v1_vm_proto_rawDescGZIP() []byte {
-	file_fits_api_pcvm_v1_vm_proto_rawDescOnce.Do(func() {
-		file_fits_api_pcvm_v1_vm_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_fits_api_pcvm_v1_vm_proto_rawDesc), len(file_fits_api_pcvm_v1_vm_proto_rawDesc)))
+func file_fits_api_pcvm_v1_pcvm_proto_rawDescGZIP() []byte {
+	file_fits_api_pcvm_v1_pcvm_proto_rawDescOnce.Do(func() {
+		file_fits_api_pcvm_v1_pcvm_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_fits_api_pcvm_v1_pcvm_proto_rawDesc), len(file_fits_api_pcvm_v1_pcvm_proto_rawDesc)))
 	})
-	return file_fits_api_pcvm_v1_vm_proto_rawDescData
+	return file_fits_api_pcvm_v1_pcvm_proto_rawDescData
 }
 
-var file_fits_api_pcvm_v1_vm_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_fits_api_pcvm_v1_vm_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
-var file_fits_api_pcvm_v1_vm_proto_goTypes = []any{
+var file_fits_api_pcvm_v1_pcvm_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
+var file_fits_api_pcvm_v1_pcvm_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
+var file_fits_api_pcvm_v1_pcvm_proto_goTypes = []any{
 	(State)(0),                                         // 0: fits.api.pcvm.v1.State
 	(Operation)(0),                                     // 1: fits.api.pcvm.v1.Operation
 	(Size)(0),                                          // 2: fits.api.pcvm.v1.Size
@@ -1288,7 +1288,7 @@ var file_fits_api_pcvm_v1_vm_proto_goTypes = []any{
 	(*v1.UpdateMeta)(nil),                              // 23: fits.api.v1.UpdateMeta
 	(*v1.UpdateLabels)(nil),                            // 24: fits.api.v1.UpdateLabels
 }
-var file_fits_api_pcvm_v1_vm_proto_depIdxs = []int32{
+var file_fits_api_pcvm_v1_pcvm_proto_depIdxs = []int32{
 	20, // 0: fits.api.pcvm.v1.PublicCloudVM.meta:type_name -> fits.api.v1.Meta
 	2,  // 1: fits.api.pcvm.v1.PublicCloudVM.size:type_name -> fits.api.pcvm.v1.Size
 	4,  // 2: fits.api.pcvm.v1.PublicCloudVM.status:type_name -> fits.api.pcvm.v1.Status
@@ -1329,29 +1329,29 @@ var file_fits_api_pcvm_v1_vm_proto_depIdxs = []int32{
 	0,  // [0:19] is the sub-list for field type_name
 }
 
-func init() { file_fits_api_pcvm_v1_vm_proto_init() }
-func file_fits_api_pcvm_v1_vm_proto_init() {
-	if File_fits_api_pcvm_v1_vm_proto != nil {
+func init() { file_fits_api_pcvm_v1_pcvm_proto_init() }
+func file_fits_api_pcvm_v1_pcvm_proto_init() {
+	if File_fits_api_pcvm_v1_pcvm_proto != nil {
 		return
 	}
-	file_fits_api_pcvm_v1_vm_proto_msgTypes[2].OneofWrappers = []any{}
-	file_fits_api_pcvm_v1_vm_proto_msgTypes[9].OneofWrappers = []any{}
+	file_fits_api_pcvm_v1_pcvm_proto_msgTypes[2].OneofWrappers = []any{}
+	file_fits_api_pcvm_v1_pcvm_proto_msgTypes[9].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_fits_api_pcvm_v1_vm_proto_rawDesc), len(file_fits_api_pcvm_v1_vm_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_fits_api_pcvm_v1_pcvm_proto_rawDesc), len(file_fits_api_pcvm_v1_pcvm_proto_rawDesc)),
 			NumEnums:      3,
 			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_fits_api_pcvm_v1_vm_proto_goTypes,
-		DependencyIndexes: file_fits_api_pcvm_v1_vm_proto_depIdxs,
-		EnumInfos:         file_fits_api_pcvm_v1_vm_proto_enumTypes,
-		MessageInfos:      file_fits_api_pcvm_v1_vm_proto_msgTypes,
+		GoTypes:           file_fits_api_pcvm_v1_pcvm_proto_goTypes,
+		DependencyIndexes: file_fits_api_pcvm_v1_pcvm_proto_depIdxs,
+		EnumInfos:         file_fits_api_pcvm_v1_pcvm_proto_enumTypes,
+		MessageInfos:      file_fits_api_pcvm_v1_pcvm_proto_msgTypes,
 	}.Build()
-	File_fits_api_pcvm_v1_vm_proto = out.File
-	file_fits_api_pcvm_v1_vm_proto_goTypes = nil
-	file_fits_api_pcvm_v1_vm_proto_depIdxs = nil
+	File_fits_api_pcvm_v1_pcvm_proto = out.File
+	file_fits_api_pcvm_v1_pcvm_proto_goTypes = nil
+	file_fits_api_pcvm_v1_pcvm_proto_depIdxs = nil
 }

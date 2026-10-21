@@ -9,7 +9,7 @@ import fits.api.mvm.v1.mvm_connect as fits_api_mvm_v1_mvm_connect
 import fits.api.mvm.v1.os_connect as fits_api_mvm_v1_os_connect
 import fits.api.mvm.v1.vlan_connect as fits_api_mvm_v1_vlan_connect
 
-import fits.api.pcvm.v1.vm_connect as fits_api_pcvm_v1_vm_connect
+import fits.api.pcvm.v1.pcvm_connect as fits_api_pcvm_v1_pcvm_connect
 
 import fits.api.v1.health_connect as fits_api_v1_health_connect
 import fits.api.v1.method_connect as fits_api_v1_method_connect
@@ -78,8 +78,8 @@ class Client:
             self._interceptors = list(interceptors)
 
 
-        def vm(self):
-            return fits_api_pcvm_v1_vm_connect.PublicCloudVMServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
+        def pcvm(self):
+            return fits_api_pcvm_v1_pcvm_connect.PublicCloudVMServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
 
     class _Apiv1:

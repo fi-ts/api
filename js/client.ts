@@ -19,7 +19,7 @@ import { VLANService as Apimvmv1VLANService } from "./fits/api/mvm/v1/vlan_pb";
 
 
 
-import { PublicCloudVMService as Apipcvmv1PublicCloudVMService } from "./fits/api/pcvm/v1/vm_pb";
+import { PublicCloudVMService as Apipcvmv1PublicCloudVMService } from "./fits/api/pcvm/v1/pcvm_pb";
 
 
 
