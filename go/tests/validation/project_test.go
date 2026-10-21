@@ -12,31 +12,25 @@ const testUUID = "e266fcc6-f6de-4ee1-ba26-baa17bf47b13"
 func TestValidateProject(t *testing.T) {
 	tests := prototests{
 		{
-			name:    "empty",
-			msg:     &v1.Project{},
-			wantErr: true,
-			wantErrorMessage: `validation errors:
- - name: must be within 2 and 128 characters
- - slug: must be a lowercase identifier`,
+			name:             "empty",
+			msg:              &v1.Project{},
+			wantErr:          true,
+			wantErrorMessage: `validation error: name: must be within 2 and 128 characters`,
 		},
 		{
-			name: "invalid name and slug",
+			name: "invalid name",
 			msg: &v1.Project{
 				Name:        "a",
 				Description: "a project",
-				Slug:        "Invalid Slug",
 			},
-			wantErr: true,
-			wantErrorMessage: `validation errors:
- - name: must be within 2 and 128 characters
- - slug: must be a lowercase identifier`,
+			wantErr:          true,
+			wantErrorMessage: `validation error: name: must be within 2 and 128 characters`,
 		},
 		{
 			name: "valid",
 			msg: &v1.Project{
 				Name:        "project",
 				Description: "a project",
-				Slug:        "valid-slug",
 			},
 			wantErr: false,
 		},
