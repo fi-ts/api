@@ -260,6 +260,10 @@
                   <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
                 </li>
               
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
               
             </ul>
           </li>
@@ -343,6 +347,57 @@
                   <a href="#fits%2fapi%2fv1%2fcommon.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
                 </li>
               
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#fits%2fapi%2fmvm%2fv1%2fcontact.proto">fits/api/mvm/v1/contact.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.Contact"><span class="badge">M</span>Contact</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.ContactServiceCreateRequest"><span class="badge">M</span>ContactServiceCreateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.ContactServiceCreateResponse"><span class="badge">M</span>ContactServiceCreateResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.ContactServiceDeleteRequest"><span class="badge">M</span>ContactServiceDeleteRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.ContactServiceDeleteResponse"><span class="badge">M</span>ContactServiceDeleteResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.ContactServiceListRequest"><span class="badge">M</span>ContactServiceListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.ContactServiceListResponse"><span class="badge">M</span>ContactServiceListResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.ContactServiceUpdateRequest"><span class="badge">M</span>ContactServiceUpdateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.ContactServiceUpdateResponse"><span class="badge">M</span>ContactServiceUpdateResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.ContactService"><span class="badge">S</span>ContactService</a>
+                </li>
               
             </ul>
           </li>
@@ -1202,6 +1257,14 @@
               </tr>
             
               <tr>
+                <td>is_phone</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80048961</td>
+                <td><p>IsPhone validates if the given string is a valid phone number in E.164 format, e.g. &#43;4915123456789</p></td>
+              </tr>
+            
+              <tr>
                 <td>is_prefix</td>
                 <td><a href="#bool">bool</a></td>
                 <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
@@ -1717,6 +1780,375 @@ having a direct membership within the tenant.</p></td>
       
 
       
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/mvm/v1/contact.proto">fits/api/mvm/v1/contact.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.mvm.v1.Contact">Contact</h3>
+        <p>Contact is a contact person an MVM instance can be assigned to.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Uuid of this contact. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>first_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>First name of the contact. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Last name of the contact. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>department</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Department of the contact. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>phone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Phone number of the contact. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Email address of the contact. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant this contact belongs to. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.ContactServiceCreateRequest">ContactServiceCreateRequest</h3>
+        <p>ContactServiceCreateRequest is the request payload for a contact create request.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant to create the contact person for. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>first_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>First name of the contact. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Last name of the contact. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>department</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Department of the contact. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>phone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Phone number of the contact. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Email address of the contact. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.ContactServiceCreateResponse">ContactServiceCreateResponse</h3>
+        <p>Response for contact create requests.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the created contact. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.ContactServiceDeleteRequest">ContactServiceDeleteRequest</h3>
+        <p>ContactServiceDeleteRequest is the request payload for a contact delete request.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant the contact belongs to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the contact to delete. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.ContactServiceDeleteResponse">ContactServiceDeleteResponse</h3>
+        <p>Response for Delete; an empty response means the cancellation was accepted.</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.mvm.v1.ContactServiceListRequest">ContactServiceListRequest</h3>
+        <p>ContactServiceListRequest is the request payload for a contact list request.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant to list available contact persons for. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.ContactServiceListResponse">ContactServiceListResponse</h3>
+        <p>ContactServiceListResponse is the response payload for a contact list request.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>contacts</td>
+                  <td><a href="#fits.api.mvm.v1.Contact">Contact</a></td>
+                  <td>repeated</td>
+                  <td><p>The available contact persons. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.ContactServiceUpdateRequest">ContactServiceUpdateRequest</h3>
+        <p>ContactServiceUpdateRequest is the request payload for a contact update request.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant the contact belongs to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the contact to update. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>update_meta</td>
+                  <td><a href="#fits.api.v1.UpdateMeta">fits.api.v1.UpdateMeta</a></td>
+                  <td></td>
+                  <td><p>UpdateMeta contains the timestamp and strategy to be used in this update request. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>first_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>First name of the contact. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Last name of the contact. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>department</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Department of the contact. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>phone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Phone number of the contact. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Email address of the contact. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.ContactServiceUpdateResponse">ContactServiceUpdateResponse</h3>
+        <p>Response for Update; an empty response means the change was accepted.</p>
+
+        
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="fits.api.mvm.v1.ContactService">ContactService</h3>
+        <p>ContactService provides CRUD operations on the contact persons available for managed VM (MVM) instances, scoped per tenant.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#fits.api.mvm.v1.ContactServiceListRequest">ContactServiceListRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.ContactServiceListResponse">ContactServiceListResponse</a></td>
+                <td><p>Returns a list of all contact persons available for a tenant.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Create</td>
+                <td><a href="#fits.api.mvm.v1.ContactServiceCreateRequest">ContactServiceCreateRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.ContactServiceCreateResponse">ContactServiceCreateResponse</a></td>
+                <td><p>Creates a new contact person.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Update</td>
+                <td><a href="#fits.api.mvm.v1.ContactServiceUpdateRequest">ContactServiceUpdateRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.ContactServiceUpdateResponse">ContactServiceUpdateResponse</a></td>
+                <td><p>Updates an existing contact person.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Delete</td>
+                <td><a href="#fits.api.mvm.v1.ContactServiceDeleteRequest">ContactServiceDeleteRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.ContactServiceDeleteResponse">ContactServiceDeleteResponse</a></td>
+                <td><p>Deletes a contact person.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
     
       
       <div class="file-heading">

@@ -22,6 +22,7 @@ type (
 		interceptors []connect.Interceptor
 	}
 	Apimvmv1 interface {
+		Contact() mvmv1connect.ContactServiceClient
 		Domain() mvmv1connect.DomainServiceClient
 		LDAP() mvmv1connect.LDAPServiceClient
 		Location() mvmv1connect.LocationServiceClient
@@ -31,6 +32,7 @@ type (
 	}
 
 	apimvmv1 struct {
+		contactservice  mvmv1connect.ContactServiceClient
 		domainservice   mvmv1connect.DomainServiceClient
 		ldapservice     mvmv1connect.LDAPServiceClient
 		locationservice mvmv1connect.LocationServiceClient
@@ -68,6 +70,12 @@ type (
 
 func (c *client) Apimvmv1() Apimvmv1 {
 	a := &apimvmv1{
+		contactservice: mvmv1connect.NewContactServiceClient(
+			c.config.HttpClient(),
+			c.config.BaseURL,
+			connect.WithInterceptors(c.interceptors...),
+			compress.WithAll(compress.LevelBalanced),
+		),
 		domainservice: mvmv1connect.NewDomainServiceClient(
 			c.config.HttpClient(),
 			c.config.BaseURL,
@@ -108,6 +116,9 @@ func (c *client) Apimvmv1() Apimvmv1 {
 	return a
 }
 
+func (c *apimvmv1) Contact() mvmv1connect.ContactServiceClient {
+	return c.contactservice
+}
 func (c *apimvmv1) Domain() mvmv1connect.DomainServiceClient {
 	return c.domainservice
 }

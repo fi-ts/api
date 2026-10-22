@@ -1,0 +1,122 @@
+syntax = "proto3";
+
+package fits.api.mvm.v1;
+
+import "buf/validate/validate.proto";
+import "fits/api/v1/common.proto";
+import "fits/api/v1/predefined_rules.proto";
+
+// ContactService provides CRUD operations on the contact persons available for managed VM (MVM) instances, scoped per tenant.
+service ContactService {
+  // Returns a list of all contact persons available for a tenant.
+  rpc List(ContactServiceListRequest) returns (ContactServiceListResponse) {
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_ADMIN;
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_EDITOR;
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_VIEWER;
+    option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
+  }
+  // Creates a new contact person.
+  rpc Create(ContactServiceCreateRequest) returns (ContactServiceCreateResponse) {
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_ADMIN;
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_EDITOR;
+    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
+  }
+  // Updates an existing contact person.
+  rpc Update(ContactServiceUpdateRequest) returns (ContactServiceUpdateResponse) {
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_ADMIN;
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_EDITOR;
+    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
+  }
+  // Deletes a contact person.
+  rpc Delete(ContactServiceDeleteRequest) returns (ContactServiceDeleteResponse) {
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_ADMIN;
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_EDITOR;
+    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
+  }
+}
+
+// Contact is a contact person an MVM instance can be assigned to.
+message Contact {
+  // Uuid of this contact.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // First name of the contact.
+  string first_name = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Last name of the contact.
+  string last_name = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Department of the contact.
+  string department = 4 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Phone number of the contact.
+  string phone = 5 [(buf.validate.field).string.(fits.api.v1.is_phone) = true];
+  // Email address of the contact.
+  string email = 6 [(buf.validate.field).string.email = true];
+  // Tenant this contact belongs to.
+  string tenant = 7 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+}
+
+// ContactServiceListRequest is the request payload for a contact list request.
+message ContactServiceListRequest {
+  // Tenant to list available contact persons for.
+  string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+}
+
+// ContactServiceListResponse is the response payload for a contact list request.
+message ContactServiceListResponse {
+  // The available contact persons.
+  repeated Contact contacts = 1;
+}
+
+// ContactServiceCreateRequest is the request payload for a contact create request.
+message ContactServiceCreateRequest {
+  // Tenant to create the contact person for.
+  string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // First name of the contact.
+  string first_name = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Last name of the contact.
+  string last_name = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Department of the contact.
+  string department = 4 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Phone number of the contact.
+  string phone = 5;
+  // Email address of the contact.
+  string email = 6 [(buf.validate.field).string.email = true];
+}
+
+// Response for contact create requests.
+message ContactServiceCreateResponse {
+  // UUID of the created contact.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+}
+
+// ContactServiceUpdateRequest is the request payload for a contact update request.
+message ContactServiceUpdateRequest {
+  // Tenant the contact belongs to.
+  string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // UUID of the contact to update.
+  string uuid = 2 [(buf.validate.field).string.uuid = true];
+  // UpdateMeta contains the timestamp and strategy to be used in this update request.
+  fits.api.v1.UpdateMeta update_meta = 3 [(buf.validate.field).required = true];
+  // First name of the contact.
+  string first_name = 4 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Last name of the contact.
+  string last_name = 5 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Department of the contact.
+  string department = 6 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Phone number of the contact.
+  string phone = 7;
+  // Email address of the contact.
+  string email = 8 [(buf.validate.field).string.email = true];
+}
+
+// Response for Update; an empty response means the change was accepted.
+message ContactServiceUpdateResponse {}
+
+// ContactServiceDeleteRequest is the request payload for a contact delete request.
+message ContactServiceDeleteRequest {
+  // Tenant the contact belongs to.
+  string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // UUID of the contact to delete.
+  string uuid = 2 [(buf.validate.field).string.uuid = true];
+}
+
+// Response for Delete; an empty response means the cancellation was accepted.
+message ContactServiceDeleteResponse {}

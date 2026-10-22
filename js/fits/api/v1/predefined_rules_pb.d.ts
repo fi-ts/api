@@ -59,6 +59,12 @@ export declare const trimmed: GenExtension<StringRules, boolean>;
  */
 export declare const is_ipv4_cidr: GenExtension<StringRules, boolean>;
 /**
+ * IsPhone validates if the given string is a valid phone number in E.164 format, e.g. +4915123456789
+ *
+ * @generated from extension: optional bool is_phone = 80048961;
+ */
+export declare const is_phone: GenExtension<StringRules, boolean>;
+/**
  * IsTenantSubjectPermission returns true if name field satisfies our requirements.
  *
  * @generated from extension: optional bool is_tenant_subject_permission = 80048962;

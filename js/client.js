@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { createClient } from "@connectrpc/connect";
 import { createConnectTransport } from "@connectrpc/connect-web";
+import { ContactService as Apimvmv1ContactService } from "./fits/api/mvm/v1/contact_pb";
 import { DomainService as Apimvmv1DomainService } from "./fits/api/mvm/v1/domain_pb";
 import { LDAPService as Apimvmv1LDAPService } from "./fits/api/mvm/v1/ldap_pb";
 import { LocationService as Apimvmv1LocationService } from "./fits/api/mvm/v1/location_pb";
@@ -73,6 +74,12 @@ class ClientImpl {
 class Apimvmv1Impl {
     constructor(transport) {
         this.transport = transport;
+    }
+    contact() {
+        if (!this._contact) {
+            this._contact = createClient(Apimvmv1ContactService, this.transport);
+        }
+        return this._contact;
     }
     domain() {
         if (!this._domain) {
