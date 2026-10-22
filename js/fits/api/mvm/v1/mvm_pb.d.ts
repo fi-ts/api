@@ -606,11 +606,18 @@ export type WindowsDisk = Message<"fits.api.mvm.v1.WindowsDisk"> & {
  */
 export declare const WindowsDiskSchema: GenMessage<WindowsDisk>;
 /**
- * Response for Create; an empty response means the MVM was accepted.
+ * Response for MVM create requests.
  *
  * @generated from message fits.api.mvm.v1.MVMServiceCreateResponse
  */
-export type MVMServiceCreateResponse = Message<"fits.api.mvm.v1.MVMServiceCreateResponse"> & {};
+export type MVMServiceCreateResponse = Message<"fits.api.mvm.v1.MVMServiceCreateResponse"> & {
+    /**
+     * UUID of the created MVM.
+     *
+     * @generated from field: string uuid = 1;
+     */
+    uuid: string;
+};
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceCreateResponse.
  * Use `create(MVMServiceCreateResponseSchema)` to create a new message.

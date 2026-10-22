@@ -1452,9 +1452,11 @@ func (x *WindowsDisk) GetDiskType() DiskType {
 	return DiskType_DISK_TYPE_UNSPECIFIED
 }
 
-// Response for Create; an empty response means the MVM was accepted.
+// Response for MVM create requests.
 type MVMServiceCreateResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// UUID of the created MVM.
+	Uuid          string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1487,6 +1489,13 @@ func (x *MVMServiceCreateResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use MVMServiceCreateResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceCreateResponse) Descriptor() ([]byte, []int) {
 	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *MVMServiceCreateResponse) GetUuid() string {
+	if x != nil {
+		return x.Uuid
+	}
+	return ""
 }
 
 // Request to list MVMs.
@@ -2846,8 +2855,9 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\x05_sizeB\x0e\n" +
 	"\f_driveletterB\f\n" +
 	"\n" +
-	"_disk_type\"\x1a\n" +
-	"\x18MVMServiceCreateResponse\"D\n" +
+	"_disk_type\"8\n" +
+	"\x18MVMServiceCreateResponse\x12\x1c\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"D\n" +
 	"\x15MVMServiceListRequest\x12+\n" +
 	"\fproject_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\"H\n" +
 	"\x16MVMServiceListResponse\x12.\n" +

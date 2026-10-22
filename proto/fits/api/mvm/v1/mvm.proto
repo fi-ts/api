@@ -388,8 +388,11 @@ message WindowsDisk {
   optional DiskType disk_type = 6 [(buf.validate.field).enum.defined_only = true];
 }
 
-// Response for Create; an empty response means the MVM was accepted.
-message MVMServiceCreateResponse {}
+// Response for MVM create requests.
+message MVMServiceCreateResponse {
+  // UUID of the created MVM.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+}
 
 // Request to list MVMs.
 message MVMServiceListRequest {

@@ -247,8 +247,10 @@ class WindowsDisk(_message.Message):
     def __init__(self, uuid: _Optional[str] = ..., label: _Optional[str] = ..., auto_extend: _Optional[bool] = ..., size: _Optional[int] = ..., driveletter: _Optional[str] = ..., disk_type: _Optional[_Union[DiskType, str]] = ...) -> None: ...
 
 class MVMServiceCreateResponse(_message.Message):
-    __slots__ = ()
-    def __init__(self) -> None: ...
+    __slots__ = ("uuid",)
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    def __init__(self, uuid: _Optional[str] = ...) -> None: ...
 
 class MVMServiceListRequest(_message.Message):
     __slots__ = ("project_uuid",)
