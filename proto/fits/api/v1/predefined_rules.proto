@@ -62,6 +62,12 @@ extend buf.validate.StringRules {
     message: "must be a valid IPv4 CIDR, e.g. 10.0.0.0/24"
     expression: "this.isIpPrefix() && !this.contains(':')"
   }];
+  // IsPhone validates if the given string is a valid phone number in E.164 format, e.g. +4915123456789
+  optional bool is_phone = 80048961 [(buf.validate.predefined).cel = {
+    id: "string.is_phone"
+    message: "must be a valid phone number in E.164 format, e.g. +4915123456789"
+    expression: "this.matches('^[+][1-9][0-9]{1,14}$')"
+  }];
 
   // IsTenantSubjectPermission returns true if name field satisfies our requirements.
   optional bool is_tenant_subject_permission = 80048962 [(buf.validate.predefined).cel = {

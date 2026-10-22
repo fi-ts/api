@@ -5,6 +5,8 @@ import type { Client as ConnectClient } from "@connectrpc/connect";
 import { createConnectTransport } from "@connectrpc/connect-web";
 
 
+import { ContactService as Apimvmv1ContactService } from "./fits/api/mvm/v1/contact_pb";
+
 import { DomainService as Apimvmv1DomainService } from "./fits/api/mvm/v1/domain_pb";
 
 import { LDAPService as Apimvmv1LDAPService } from "./fits/api/mvm/v1/ldap_pb";
@@ -55,6 +57,8 @@ export interface Client {
 
 
 export interface Apimvmv1 {
+
+  contact(): ConnectClient<typeof Apimvmv1ContactService>;
 
   domain(): ConnectClient<typeof Apimvmv1DomainService>;
 
@@ -170,6 +174,8 @@ class Apimvmv1Impl implements Apimvmv1 {
   private transport: Transport;
 
 
+  private _contact?: ConnectClient<typeof Apimvmv1ContactService>;
+
   private _domain?: ConnectClient<typeof Apimvmv1DomainService>;
 
   private _ldap?: ConnectClient<typeof Apimvmv1LDAPService>;
@@ -187,6 +193,13 @@ class Apimvmv1Impl implements Apimvmv1 {
     this.transport = transport;
   }
 
+
+  contact(): ConnectClient<typeof Apimvmv1ContactService> {
+    if (!this._contact) {
+      this._contact = createClient(Apimvmv1ContactService, this.transport);
+    }
+    return this._contact;
+  }
 
   domain(): ConnectClient<typeof Apimvmv1DomainService> {
     if (!this._domain) {

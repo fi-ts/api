@@ -2,6 +2,7 @@
 
 import pyqwest
 
+import fits.api.mvm.v1.contact_connect as fits_api_mvm_v1_contact_connect
 import fits.api.mvm.v1.domain_connect as fits_api_mvm_v1_domain_connect
 import fits.api.mvm.v1.ldap_connect as fits_api_mvm_v1_ldap_connect
 import fits.api.mvm.v1.location_connect as fits_api_mvm_v1_location_connect
@@ -51,6 +52,9 @@ class Client:
             self._client = client
             self._interceptors = list(interceptors)
 
+
+        def contact(self):
+            return fits_api_mvm_v1_contact_connect.ContactServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
         def domain(self):
             return fits_api_mvm_v1_domain_connect.DomainServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
