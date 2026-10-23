@@ -107,7 +107,7 @@ class Status(_message.Message):
     def __init__(self, state: _Optional[_Union[State, str]] = ..., info: _Optional[str] = ...) -> None: ...
 
 class ManagedVM(_message.Message):
-    __slots__ = ("uuid", "meta", "fqdn", "tenant", "project_uuid", "os_uuid", "location_uuid", "contact_uuid", "cpu", "ram", "backup", "encrypted", "status", "availability", "serviceclass", "windows_details", "linux_details", "interfaces", "order_number")
+    __slots__ = ("uuid", "meta", "fqdn", "tenant", "project_uuid", "os_uuid", "location_uuid", "contact_uuid", "cpu", "ram", "backup", "encrypted", "status", "availability", "service_class", "windows_details", "linux_details", "interfaces", "order_number")
     UUID_FIELD_NUMBER: _ClassVar[int]
     META_FIELD_NUMBER: _ClassVar[int]
     FQDN_FIELD_NUMBER: _ClassVar[int]
@@ -122,7 +122,7 @@ class ManagedVM(_message.Message):
     ENCRYPTED_FIELD_NUMBER: _ClassVar[int]
     STATUS_FIELD_NUMBER: _ClassVar[int]
     AVAILABILITY_FIELD_NUMBER: _ClassVar[int]
-    SERVICECLASS_FIELD_NUMBER: _ClassVar[int]
+    SERVICE_CLASS_FIELD_NUMBER: _ClassVar[int]
     WINDOWS_DETAILS_FIELD_NUMBER: _ClassVar[int]
     LINUX_DETAILS_FIELD_NUMBER: _ClassVar[int]
     INTERFACES_FIELD_NUMBER: _ClassVar[int]
@@ -141,12 +141,12 @@ class ManagedVM(_message.Message):
     encrypted: bool
     status: Status
     availability: Availability
-    serviceclass: ServiceClass
+    service_class: ServiceClass
     windows_details: WindowsDetails
     linux_details: LinuxDetails
     interfaces: _containers.RepeatedCompositeFieldContainer[NetworkInterface]
     order_number: str
-    def __init__(self, uuid: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., fqdn: _Optional[str] = ..., tenant: _Optional[str] = ..., project_uuid: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., backup: _Optional[bool] = ..., encrypted: _Optional[bool] = ..., status: _Optional[_Union[Status, _Mapping]] = ..., availability: _Optional[_Union[Availability, str]] = ..., serviceclass: _Optional[_Union[ServiceClass, str]] = ..., windows_details: _Optional[_Union[WindowsDetails, _Mapping]] = ..., linux_details: _Optional[_Union[LinuxDetails, _Mapping]] = ..., interfaces: _Optional[_Iterable[_Union[NetworkInterface, _Mapping]]] = ..., order_number: _Optional[str] = ...) -> None: ...
+    def __init__(self, uuid: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., fqdn: _Optional[str] = ..., tenant: _Optional[str] = ..., project_uuid: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., backup: _Optional[bool] = ..., encrypted: _Optional[bool] = ..., status: _Optional[_Union[Status, _Mapping]] = ..., availability: _Optional[_Union[Availability, str]] = ..., service_class: _Optional[_Union[ServiceClass, str]] = ..., windows_details: _Optional[_Union[WindowsDetails, _Mapping]] = ..., linux_details: _Optional[_Union[LinuxDetails, _Mapping]] = ..., interfaces: _Optional[_Iterable[_Union[NetworkInterface, _Mapping]]] = ..., order_number: _Optional[str] = ...) -> None: ...
 
 class MVMServiceGetRequest(_message.Message):
     __slots__ = ("uuid", "project_uuid")
@@ -179,7 +179,7 @@ class MVMServiceCreateLinuxRequest(_message.Message):
     def __init__(self, ldap_uuid: _Optional[str] = ..., disks: _Optional[_Iterable[_Union[LinuxDisk, _Mapping]]] = ...) -> None: ...
 
 class MVMServiceCreateRequest(_message.Message):
-    __slots__ = ("project_uuid", "name", "os_uuid", "location_uuid", "contact_uuid", "cpu", "ram", "order_number", "labels", "backup", "encrypted", "availability", "serviceclass", "windows", "linux", "initial_network_interface")
+    __slots__ = ("project_uuid", "name", "os_uuid", "location_uuid", "contact_uuid", "cpu", "ram", "order_number", "labels", "backup", "encrypted", "availability", "service_class", "windows", "linux", "initial_network_interface")
     PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
     NAME_FIELD_NUMBER: _ClassVar[int]
     OS_UUID_FIELD_NUMBER: _ClassVar[int]
@@ -192,7 +192,7 @@ class MVMServiceCreateRequest(_message.Message):
     BACKUP_FIELD_NUMBER: _ClassVar[int]
     ENCRYPTED_FIELD_NUMBER: _ClassVar[int]
     AVAILABILITY_FIELD_NUMBER: _ClassVar[int]
-    SERVICECLASS_FIELD_NUMBER: _ClassVar[int]
+    SERVICE_CLASS_FIELD_NUMBER: _ClassVar[int]
     WINDOWS_FIELD_NUMBER: _ClassVar[int]
     LINUX_FIELD_NUMBER: _ClassVar[int]
     INITIAL_NETWORK_INTERFACE_FIELD_NUMBER: _ClassVar[int]
@@ -208,11 +208,11 @@ class MVMServiceCreateRequest(_message.Message):
     backup: bool
     encrypted: bool
     availability: Availability
-    serviceclass: ServiceClass
+    service_class: ServiceClass
     windows: MVMServiceCreateWindowsRequest
     linux: MVMServiceCreateLinuxRequest
     initial_network_interface: InitialNetworkInterface
-    def __init__(self, project_uuid: _Optional[str] = ..., name: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., order_number: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.Labels, _Mapping]] = ..., backup: _Optional[bool] = ..., encrypted: _Optional[bool] = ..., availability: _Optional[_Union[Availability, str]] = ..., serviceclass: _Optional[_Union[ServiceClass, str]] = ..., windows: _Optional[_Union[MVMServiceCreateWindowsRequest, _Mapping]] = ..., linux: _Optional[_Union[MVMServiceCreateLinuxRequest, _Mapping]] = ..., initial_network_interface: _Optional[_Union[InitialNetworkInterface, _Mapping]] = ...) -> None: ...
+    def __init__(self, project_uuid: _Optional[str] = ..., name: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., order_number: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.Labels, _Mapping]] = ..., backup: _Optional[bool] = ..., encrypted: _Optional[bool] = ..., availability: _Optional[_Union[Availability, str]] = ..., service_class: _Optional[_Union[ServiceClass, str]] = ..., windows: _Optional[_Union[MVMServiceCreateWindowsRequest, _Mapping]] = ..., linux: _Optional[_Union[MVMServiceCreateLinuxRequest, _Mapping]] = ..., initial_network_interface: _Optional[_Union[InitialNetworkInterface, _Mapping]] = ...) -> None: ...
 
 class LinuxDisk(_message.Message):
     __slots__ = ("uuid", "label", "auto_extend", "size", "mount_point", "disk_type")
@@ -251,6 +251,30 @@ class MVMServiceCreateResponse(_message.Message):
     UUID_FIELD_NUMBER: _ClassVar[int]
     uuid: str
     def __init__(self, uuid: _Optional[str] = ...) -> None: ...
+
+class MVMServiceUpdateRequest(_message.Message):
+    __slots__ = ("uuid", "project_uuid", "order_number", "update_meta", "cpu", "ram", "service_class", "contact_uuid")
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
+    ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
+    UPDATE_META_FIELD_NUMBER: _ClassVar[int]
+    CPU_FIELD_NUMBER: _ClassVar[int]
+    RAM_FIELD_NUMBER: _ClassVar[int]
+    SERVICE_CLASS_FIELD_NUMBER: _ClassVar[int]
+    CONTACT_UUID_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    project_uuid: str
+    order_number: str
+    update_meta: _common_pb2.UpdateMeta
+    cpu: int
+    ram: int
+    service_class: ServiceClass
+    contact_uuid: str
+    def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ..., update_meta: _Optional[_Union[_common_pb2.UpdateMeta, _Mapping]] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., service_class: _Optional[_Union[ServiceClass, str]] = ..., contact_uuid: _Optional[str] = ...) -> None: ...
+
+class MVMServiceUpdateResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
 
 class MVMServiceListRequest(_message.Message):
     __slots__ = ("project_uuid",)

@@ -21,7 +21,12 @@ service MVMService {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
-
+  // Updates a MVM.
+  rpc Update(MVMServiceUpdateRequest) returns (MVMServiceUpdateResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
+  }
   // Returns the list of all MVMs.
   rpc List(MVMServiceListRequest) returns (MVMServiceListResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
@@ -261,7 +266,7 @@ message ManagedVM {
   // Availability level.
   Availability availability = 14 [(buf.validate.field).enum.defined_only = true];
   // Service class.
-  ServiceClass serviceclass = 15 [(buf.validate.field).enum.defined_only = true];
+  ServiceClass service_class = 15 [(buf.validate.field).enum.defined_only = true];
   // OS-specific configuration.
   oneof details {
     option (buf.validate.oneof).required = true;
@@ -335,7 +340,7 @@ message MVMServiceCreateRequest {
   // Availability level.
   Availability availability = 12 [(buf.validate.field).enum.defined_only = true];
   // Service class; only certain combinations with availability are valid.
-  ServiceClass serviceclass = 13 [(buf.validate.field).enum.defined_only = true];
+  ServiceClass service_class = 13 [(buf.validate.field).enum.defined_only = true];
   // OS type and its configuration.
   oneof mvmtype {
     option (buf.validate.oneof).required = true;
@@ -392,6 +397,43 @@ message WindowsDisk {
 message MVMServiceCreateResponse {
   // UUID of the created MVM.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
+}
+
+// Request to trigger the update of an existing MVM.
+message MVMServiceUpdateRequest {
+  // UUID of the MVM to update.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // UUID of the project this MVM belongs to.
+  string project_uuid = 2 [(buf.validate.field).string.uuid = true];
+  // Order reference for this operation.
+  string order_number = 3;
+  // Timestamp and strategy for this update.
+  fits.api.v1.UpdateMeta update_meta = 4 [(buf.validate.field).required = true];
+  // Number of vCPUs (1-64); unset keeps the current value.
+  optional uint32 cpu = 5 [
+    (buf.validate.field).uint32.gte = 1,
+    (buf.validate.field).uint32.lte = 64
+  ];
+  // RAM size in GB; unset keeps the current value.
+  optional uint32 ram = 6 [(buf.validate.field).uint32.gt = 0];
+  // Target service class; unset keeps the current value.
+  optional ServiceClass service_class = 7 [(buf.validate.field).enum.defined_only = true];
+  // UUID of the new contact; unset keeps the current value.
+  optional string contact_uuid = 8 [(buf.validate.field).string.uuid = true];
+}
+
+// Response for Update; an empty response means the update was accepted.
+// The update is applied asynchronously; poll Get until the state settles.
+message MVMServiceUpdateResponse {
+  // PROPOSAL (open for discussion): return the MVM after accepting the update.
+  // The update is applied asynchronously, so the returned MVM reflects the
+  // accepted state and may still report STATE_UPDATING.
+  // It would be populated best-effort from a read-back after the write; if the
+  // read-back fails the field stays unset while the RPC still succeeds.
+  // Clients must not rely on it being present and must still poll Get to
+  // observe completion or failure of the asynchronous operation.
+  //
+  // optional ManagedVM mvm = 1;
 }
 
 // Request to list MVMs.
