@@ -307,6 +307,9 @@ func (x *ContactServiceCreateRequest) GetEmail() string {
 }
 
 // Response for contact create requests.
+// TODO: check whether create is really asynchronous; if it completes
+// synchronously, this response should return the created Contact instead
+// of just its UUID.
 type ContactServiceCreateResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// UUID of the created contact.
@@ -462,8 +465,15 @@ func (x *ContactServiceUpdateRequest) GetEmail() string {
 }
 
 // Response for Update; an empty response means the change was accepted.
+// TODO: check whether update is really asynchronous. If it completes
+// synchronously, returning the updated Contact here is correct. If it is
+// asynchronous, this response should become a minimal ack instead, because
+// the returned entity would only be a snapshot at acceptance time and
+// clients must still poll List for the final state.
 type ContactServiceUpdateResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The updated Contact.
+	Contact       *Contact `protobuf:"bytes,1,opt,name=contact,proto3" json:"contact,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -496,6 +506,13 @@ func (x *ContactServiceUpdateResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use ContactServiceUpdateResponse.ProtoReflect.Descriptor instead.
 func (*ContactServiceUpdateResponse) Descriptor() ([]byte, []int) {
 	return file_fits_api_mvm_v1_contact_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ContactServiceUpdateResponse) GetContact() *Contact {
+	if x != nil {
+		return x.Contact
+	}
+	return nil
 }
 
 // ContactServiceDeleteRequest is the request payload for a contact delete request.
@@ -553,7 +570,7 @@ func (x *ContactServiceDeleteRequest) GetUuid() string {
 	return ""
 }
 
-// Response for Delete; an empty response means the cancellation was accepted.
+// Response for Delete; an empty response means the deletion was accepted.
 type ContactServiceDeleteResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -634,8 +651,9 @@ const file_fits_api_mvm_v1_contact_proto_rawDesc = "" +
 	"department\x18\x06 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\n" +
 	"department\x12\x14\n" +
 	"\x05phone\x18\a \x01(\tR\x05phone\x12\x1d\n" +
-	"\x05email\x18\b \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\"\x1e\n" +
-	"\x1cContactServiceUpdateResponse\"`\n" +
+	"\x05email\x18\b \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\"R\n" +
+	"\x1cContactServiceUpdateResponse\x122\n" +
+	"\acontact\x18\x01 \x01(\v2\x18.fits.api.mvm.v1.ContactR\acontact\"`\n" +
 	"\x1bContactServiceDeleteRequest\x12#\n" +
 	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12\x1c\n" +
 	"\x04uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"\x1e\n" +
@@ -678,19 +696,20 @@ var file_fits_api_mvm_v1_contact_proto_goTypes = []any{
 var file_fits_api_mvm_v1_contact_proto_depIdxs = []int32{
 	0, // 0: fits.api.mvm.v1.ContactServiceListResponse.contacts:type_name -> fits.api.mvm.v1.Contact
 	9, // 1: fits.api.mvm.v1.ContactServiceUpdateRequest.update_meta:type_name -> fits.api.v1.UpdateMeta
-	1, // 2: fits.api.mvm.v1.ContactService.List:input_type -> fits.api.mvm.v1.ContactServiceListRequest
-	3, // 3: fits.api.mvm.v1.ContactService.Create:input_type -> fits.api.mvm.v1.ContactServiceCreateRequest
-	5, // 4: fits.api.mvm.v1.ContactService.Update:input_type -> fits.api.mvm.v1.ContactServiceUpdateRequest
-	7, // 5: fits.api.mvm.v1.ContactService.Delete:input_type -> fits.api.mvm.v1.ContactServiceDeleteRequest
-	2, // 6: fits.api.mvm.v1.ContactService.List:output_type -> fits.api.mvm.v1.ContactServiceListResponse
-	4, // 7: fits.api.mvm.v1.ContactService.Create:output_type -> fits.api.mvm.v1.ContactServiceCreateResponse
-	6, // 8: fits.api.mvm.v1.ContactService.Update:output_type -> fits.api.mvm.v1.ContactServiceUpdateResponse
-	8, // 9: fits.api.mvm.v1.ContactService.Delete:output_type -> fits.api.mvm.v1.ContactServiceDeleteResponse
-	6, // [6:10] is the sub-list for method output_type
-	2, // [2:6] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	0, // 2: fits.api.mvm.v1.ContactServiceUpdateResponse.contact:type_name -> fits.api.mvm.v1.Contact
+	1, // 3: fits.api.mvm.v1.ContactService.List:input_type -> fits.api.mvm.v1.ContactServiceListRequest
+	3, // 4: fits.api.mvm.v1.ContactService.Create:input_type -> fits.api.mvm.v1.ContactServiceCreateRequest
+	5, // 5: fits.api.mvm.v1.ContactService.Update:input_type -> fits.api.mvm.v1.ContactServiceUpdateRequest
+	7, // 6: fits.api.mvm.v1.ContactService.Delete:input_type -> fits.api.mvm.v1.ContactServiceDeleteRequest
+	2, // 7: fits.api.mvm.v1.ContactService.List:output_type -> fits.api.mvm.v1.ContactServiceListResponse
+	4, // 8: fits.api.mvm.v1.ContactService.Create:output_type -> fits.api.mvm.v1.ContactServiceCreateResponse
+	6, // 9: fits.api.mvm.v1.ContactService.Update:output_type -> fits.api.mvm.v1.ContactServiceUpdateResponse
+	8, // 10: fits.api.mvm.v1.ContactService.Delete:output_type -> fits.api.mvm.v1.ContactServiceDeleteResponse
+	7, // [7:11] is the sub-list for method output_type
+	3, // [3:7] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_mvm_v1_contact_proto_init() }

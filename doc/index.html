@@ -589,6 +589,14 @@
                 </li>
               
                 <li>
+                  <a href="#fits.api.mvm.v1.MVMServiceUpdateRequest"><span class="badge">M</span>MVMServiceUpdateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.MVMServiceUpdateResponse"><span class="badge">M</span>MVMServiceUpdateResponse</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.mvm.v1.MVMServiceValidateAddDiskRequest"><span class="badge">M</span>MVMServiceValidateAddDiskRequest</a>
                 </li>
               
@@ -1914,7 +1922,7 @@ having a direct membership within the tenant.</p></td>
         
       
         <h3 id="fits.api.mvm.v1.ContactServiceCreateResponse">ContactServiceCreateResponse</h3>
-        <p>Response for contact create requests.</p>
+        <p>Response for contact create requests.</p><p>TODO: check whether create is really asynchronous; if it completes</p><p>synchronously, this response should return the created Contact instead</p><p>of just its UUID.</p>
 
         
           <table class="field-table">
@@ -1969,7 +1977,7 @@ having a direct membership within the tenant.</p></td>
         
       
         <h3 id="fits.api.mvm.v1.ContactServiceDeleteResponse">ContactServiceDeleteResponse</h3>
-        <p>Response for Delete; an empty response means the cancellation was accepted.</p>
+        <p>Response for Delete; an empty response means the deletion was accepted.</p>
 
         
 
@@ -2097,9 +2105,26 @@ having a direct membership within the tenant.</p></td>
         
       
         <h3 id="fits.api.mvm.v1.ContactServiceUpdateResponse">ContactServiceUpdateResponse</h3>
-        <p>Response for Update; an empty response means the change was accepted.</p>
+        <p>Response for Update; an empty response means the change was accepted.</p><p>TODO: check whether update is really asynchronous. If it completes</p><p>synchronously, returning the updated Contact here is correct. If it is</p><p>asynchronous, this response should become a minimal ack instead, because</p><p>the returned entity would only be a snapshot at acceptance time and</p><p>clients must still poll List for the final state.</p>
 
         
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>contact</td>
+                  <td><a href="#fits.api.mvm.v1.Contact">Contact</a></td>
+                  <td></td>
+                  <td><p>The updated Contact. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
 
         
       
@@ -2853,7 +2878,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>serviceclass</td>
+                  <td>service_class</td>
                   <td><a href="#fits.api.mvm.v1.ServiceClass">ServiceClass</a></td>
                   <td></td>
                   <td><p>Service class; only certain combinations with availability are valid. </p></td>
@@ -3320,6 +3345,86 @@ one system disk plus any number of data disks (see DiskType). </p></td>
 
         
       
+        <h3 id="fits.api.mvm.v1.MVMServiceUpdateRequest">MVMServiceUpdateRequest</h3>
+        <p>Request to trigger the update of an existing MVM.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the MVM to update. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the project this MVM belongs to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>order_number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Order reference for this operation. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>update_meta</td>
+                  <td><a href="#fits.api.v1.UpdateMeta">fits.api.v1.UpdateMeta</a></td>
+                  <td></td>
+                  <td><p>Timestamp and strategy for this update. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>cpu</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td>optional</td>
+                  <td><p>Number of vCPUs (1-64); unset keeps the current value. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ram</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td>optional</td>
+                  <td><p>RAM size in GB; unset keeps the current value. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>service_class</td>
+                  <td><a href="#fits.api.mvm.v1.ServiceClass">ServiceClass</a></td>
+                  <td>optional</td>
+                  <td><p>Target service class; unset keeps the current value. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>contact_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>UUID of the new contact; unset keeps the current value. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.MVMServiceUpdateResponse">MVMServiceUpdateResponse</h3>
+        <p>Response for Update; an empty response means the update was accepted.</p><p>The update is applied asynchronously; poll Get until the state settles.</p><p>PROPOSAL (open for discussion): return the MVM after accepting the update.</p><p>The update is applied asynchronously, so the returned MVM reflects the</p><p>accepted state and may still report STATE_UPDATING.</p><p>It would be populated best-effort from a read-back after the write; if the</p><p>read-back fails the field stays unset while the RPC still succeeds.</p><p>Clients must not rely on it being present and must still poll Get to</p><p>observe completion or failure of the asynchronous operation.</p><p>optional ManagedVM mvm = 1;</p>
+
+        
+
+        
+      
         <h3 id="fits.api.mvm.v1.MVMServiceValidateAddDiskRequest">MVMServiceValidateAddDiskRequest</h3>
         <p>Request to validate an AddDisk without ordering anything.</p>
 
@@ -3554,7 +3659,7 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
                 </tr>
               
                 <tr>
-                  <td>serviceclass</td>
+                  <td>service_class</td>
                   <td><a href="#fits.api.mvm.v1.ServiceClass">ServiceClass</a></td>
                   <td></td>
                   <td><p>Service class. </p></td>
@@ -3961,6 +4066,13 @@ deletable.</p></td>
                 <td><a href="#fits.api.mvm.v1.MVMServiceCreateRequest">MVMServiceCreateRequest</a></td>
                 <td><a href="#fits.api.mvm.v1.MVMServiceCreateResponse">MVMServiceCreateResponse</a></td>
                 <td><p>Creates a new MVM.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Update</td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceUpdateRequest">MVMServiceUpdateRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceUpdateResponse">MVMServiceUpdateResponse</a></td>
+                <td><p>Updates a MVM.</p></td>
               </tr>
             
               <tr>
