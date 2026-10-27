@@ -1942,7 +1942,9 @@ func (*MVMServiceValidateUpdateDiskResponse) Descriptor() ([]byte, []int) {
 
 // Response for AddDisk.
 type MVMServiceAddDiskResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// UUID of the created disk.
+	Uuid          string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1975,6 +1977,13 @@ func (x *MVMServiceAddDiskResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use MVMServiceAddDiskResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceAddDiskResponse) Descriptor() ([]byte, []int) {
 	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *MVMServiceAddDiskResponse) GetUuid() string {
+	if x != nil {
+		return x.Uuid
+	}
+	return ""
 }
 
 // Response for UpdateDisk.
@@ -2333,7 +2342,9 @@ func (x *MVMServiceDeleteDiskRequest) GetOrderNumber() string {
 
 // Response for AddNetworkInterface.
 type MVMServiceAddNetworkInterfaceResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// UUID of the created network interface.
+	Uuid          string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2366,6 +2377,13 @@ func (x *MVMServiceAddNetworkInterfaceResponse) ProtoReflect() protoreflect.Mess
 // Deprecated: Use MVMServiceAddNetworkInterfaceResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceAddNetworkInterfaceResponse) Descriptor() ([]byte, []int) {
 	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *MVMServiceAddNetworkInterfaceResponse) GetUuid() string {
+	if x != nil {
+		return x.Uuid
+	}
+	return ""
 }
 
 // Response for MoveNetworkInterface.
@@ -2876,8 +2894,9 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"#MVMServiceValidateUpdateDiskRequest\x12U\n" +
 	"\vupdate_disk\x18\x01 \x01(\v2,.fits.api.mvm.v1.MVMServiceUpdateDiskRequestB\x06\xbaH\x03\xc8\x01\x01R\n" +
 	"updateDisk\"&\n" +
-	"$MVMServiceValidateUpdateDiskResponse\"\x1b\n" +
-	"\x19MVMServiceAddDiskResponse\"\x1e\n" +
+	"$MVMServiceValidateUpdateDiskResponse\"9\n" +
+	"\x19MVMServiceAddDiskResponse\x12\x1c\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"\x1e\n" +
 	"\x1cMVMServiceUpdateDiskResponse\"\x1e\n" +
 	"\x1cMVMServiceDeleteDiskResponse\"\x85\x02\n" +
 	"\x18MVMServiceAddDiskRequest\x12\x1c\n" +
@@ -2901,8 +2920,9 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12%\n" +
 	"\tdisk_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bdiskUuid\x12+\n" +
 	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12!\n" +
-	"\forder_number\x18\x04 \x01(\tR\vorderNumber\"'\n" +
-	"%MVMServiceAddNetworkInterfaceResponse\"(\n" +
+	"\forder_number\x18\x04 \x01(\tR\vorderNumber\"E\n" +
+	"%MVMServiceAddNetworkInterfaceResponse\x12\x1c\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"(\n" +
 	"&MVMServiceMoveNetworkInterfaceResponse\"*\n" +
 	"(MVMServiceDeleteNetworkInterfaceResponse\"\x94\x01\n" +
 	"$MVMServiceAddNetworkInterfaceRequest\x12\x1c\n" +

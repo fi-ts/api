@@ -455,7 +455,10 @@ message MVMServiceValidateUpdateDiskResponse {}
 // can be inspected via Get.
 
 // Response for AddDisk.
-message MVMServiceAddDiskResponse {}
+message MVMServiceAddDiskResponse {
+  // UUID of the created disk.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+}
 
 // Response for UpdateDisk.
 message MVMServiceUpdateDiskResponse {}
@@ -516,7 +519,10 @@ message MVMServiceDeleteDiskRequest {
 // interfaces can be inspected via Get.
 
 // Response for AddNetworkInterface.
-message MVMServiceAddNetworkInterfaceResponse {}
+message MVMServiceAddNetworkInterfaceResponse {
+  // UUID of the created network interface.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+}
 
 // Response for MoveNetworkInterface.
 message MVMServiceMoveNetworkInterfaceResponse {}

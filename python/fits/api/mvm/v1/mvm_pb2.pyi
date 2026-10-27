@@ -309,8 +309,10 @@ class MVMServiceValidateUpdateDiskResponse(_message.Message):
     def __init__(self) -> None: ...
 
 class MVMServiceAddDiskResponse(_message.Message):
-    __slots__ = ()
-    def __init__(self) -> None: ...
+    __slots__ = ("uuid",)
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    def __init__(self, uuid: _Optional[str] = ...) -> None: ...
 
 class MVMServiceUpdateDiskResponse(_message.Message):
     __slots__ = ()
@@ -363,8 +365,10 @@ class MVMServiceDeleteDiskRequest(_message.Message):
     def __init__(self, uuid: _Optional[str] = ..., disk_uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ...) -> None: ...
 
 class MVMServiceAddNetworkInterfaceResponse(_message.Message):
-    __slots__ = ()
-    def __init__(self) -> None: ...
+    __slots__ = ("uuid",)
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    def __init__(self, uuid: _Optional[str] = ...) -> None: ...
 
 class MVMServiceMoveNetworkInterfaceResponse(_message.Message):
     __slots__ = ()
