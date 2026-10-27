@@ -11,6 +11,11 @@ service HealthService {
     option (visibility) = VISIBILITY_PUBLIC;
     option (auditing) = AUDITING_EXCLUDED;
   }
+  // Returns the health status of the platform's dependencies.
+  rpc GetDependencies(HealthServiceGetDependenciesRequest) returns (HealthServiceGetDependenciesResponse) {
+    option (operator_roles) = OPERATOR_ROLE_VIEWER;
+    option (auditing) = AUDITING_EXCLUDED;
+  }
 }
 
 // ServiceStatus defines the status of a service.
@@ -29,8 +34,10 @@ enum ServiceStatus {
 enum Service {
   // SERVICE_UNSPECIFIED is a unknown service
   SERVICE_UNSPECIFIED = 0;
-  // SERVICE_K8S the kubernetes service
-  SERVICE_K8S = 1 [(enum_string_value) = "k8s"];
+  // SERVICE_MVM the managed vm service
+  SERVICE_MVM = 1 [(enum_string_value) = "mvm"];
+  // SERVICE_PCVM the public cloud vm service
+  SERVICE_PCVM = 2 [(enum_string_value) = "pcvm"];
 }
 
 // Health reports the health status of all services.
@@ -41,22 +48,38 @@ message Health {
 
 // HealthStatus represents the health status of one service.
 message HealthStatus {
-  // Name is the name of the service
-  Service name = 1;
+  // Service is the service this health status is reported for
+  Service service = 1;
   // Status is the status of this service
   ServiceStatus status = 2;
   // Message describes the reason for the unhealthy status if possible
   string message = 3;
-  // Partitions describes the health of the service by partition
-  map<string, PartitionHealth> partitions = 4;
 }
 
-// PartitionHealth represents the status of a specific service in this partition.
-message PartitionHealth {
-  // Status is the health status of the service in this partition
-  ServiceStatus status = 1;
+// Dependency defines the dependency for which the healthiness is reported.
+enum Dependency {
+  // DEPENDENCY_UNSPECIFIED is a unknown dependency
+  DEPENDENCY_UNSPECIFIED = 0;
+  // DEPENDENCY_VALKEY the valkey service
+  DEPENDENCY_VALKEY = 1 [(enum_string_value) = "valkey"];
+  // DEPENDENCY_TENANT_APISERVER the tenant apiserver service
+  DEPENDENCY_TENANT_APISERVER = 2 [(enum_string_value) = "tenant-apiserver"];
+}
+
+// Dependencies reports the health status of all dependencies.
+message Dependencies {
+  // Dependencies contains the health of all individual dependencies
+  repeated DependencyHealth dependencies = 1;
+}
+
+// DependencyHealth represents the health status of one dependency.
+message DependencyHealth {
+  // Dependency is the dependency this health status is reported for
+  Dependency dependency = 1;
+  // Status is the status of this dependency
+  ServiceStatus status = 2;
   // Message describes the reason for the unhealthy status if possible
-  string message = 2;
+  string message = 3;
 }
 
 // HealthServiceGetRequest is the request payload for getting the health of the system.
@@ -66,4 +89,13 @@ message HealthServiceGetRequest {}
 message HealthServiceGetResponse {
   // Health contains the overall health of the system
   Health health = 1;
+}
+
+// HealthServiceGetDependenciesRequest is the request payload for getting the health of the dependencies.
+message HealthServiceGetDependenciesRequest {}
+
+// HealthServiceGetDependenciesResponse is the response payload for getting the health of the dependencies.
+message HealthServiceGetDependenciesResponse {
+  // Dependencies contains the health of all dependencies
+  Dependencies dependencies = 1;
 }

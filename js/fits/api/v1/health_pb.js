@@ -6,7 +6,7 @@ import { file_fits_api_v1_common } from "./common_pb.js";
 /**
  * Describes the file fits/api/v1/health.proto.
  */
-export const file_fits_api_v1_health = /*@__PURE__*/ fileDesc("ChhmaXRzL2FwaS92MS9oZWFsdGgucHJvdG8SC2ZpdHMuYXBpLnYxIjUKBkhlYWx0aBIrCghzZXJ2aWNlcxgBIAMoCzIZLmZpdHMuYXBpLnYxLkhlYWx0aFN0YXR1cyL/AQoMSGVhbHRoU3RhdHVzEiIKBG5hbWUYASABKA4yFC5maXRzLmFwaS52MS5TZXJ2aWNlEioKBnN0YXR1cxgCIAEoDjIaLmZpdHMuYXBpLnYxLlNlcnZpY2VTdGF0dXMSDwoHbWVzc2FnZRgDIAEoCRI9CgpwYXJ0aXRpb25zGAQgAygLMikuZml0cy5hcGkudjEuSGVhbHRoU3RhdHVzLlBhcnRpdGlvbnNFbnRyeRpPCg9QYXJ0aXRpb25zRW50cnkSCwoDa2V5GAEgASgJEisKBXZhbHVlGAIgASgLMhwuZml0cy5hcGkudjEuUGFydGl0aW9uSGVhbHRoOgI4ASJOCg9QYXJ0aXRpb25IZWFsdGgSKgoGc3RhdHVzGAEgASgOMhouZml0cy5hcGkudjEuU2VydmljZVN0YXR1cxIPCgdtZXNzYWdlGAIgASgJIhkKF0hlYWx0aFNlcnZpY2VHZXRSZXF1ZXN0Ij8KGEhlYWx0aFNlcnZpY2VHZXRSZXNwb25zZRIjCgZoZWFsdGgYASABKAsyEy5maXRzLmFwaS52MS5IZWFsdGgqhgEKDVNlcnZpY2VTdGF0dXMSHgoaU0VSVklDRV9TVEFUVVNfVU5TUEVDSUZJRUQQABIbChdTRVJWSUNFX1NUQVRVU19ERUdSQURFRBABEhwKGFNFUlZJQ0VfU1RBVFVTX1VOSEVBTFRIWRACEhoKFlNFUlZJQ0VfU1RBVFVTX0hFQUxUSFkQAyo8CgdTZXJ2aWNlEhcKE1NFUlZJQ0VfVU5TUEVDSUZJRUQQABIYCgtTRVJWSUNFX0s4UxABGgeCshkDazhzMm0KDUhlYWx0aFNlcnZpY2USXAoDR2V0EiQuZml0cy5hcGkudjEuSGVhbHRoU2VydmljZUdldFJlcXVlc3QaJS5maXRzLmFwaS52MS5IZWFsdGhTZXJ2aWNlR2V0UmVzcG9uc2UiCNjzGAHg8xgCQpcBCg9jb20uZml0cy5hcGkudjFCC0hlYWx0aFByb3RvUAFaKWdpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL3YxO2FwaXYxogIDRkFYqgILRml0cy5BcGkuVjHKAgtGaXRzXEFwaVxWMeICF0ZpdHNcQXBpXFYxXEdQQk1ldGFkYXRh6gINRml0czo6QXBpOjpWMWIGcHJvdG8z", [file_fits_api_v1_common]);
+export const file_fits_api_v1_health = /*@__PURE__*/ fileDesc("ChhmaXRzL2FwaS92MS9oZWFsdGgucHJvdG8SC2ZpdHMuYXBpLnYxIjUKBkhlYWx0aBIrCghzZXJ2aWNlcxgBIAMoCzIZLmZpdHMuYXBpLnYxLkhlYWx0aFN0YXR1cyJyCgxIZWFsdGhTdGF0dXMSJQoHc2VydmljZRgBIAEoDjIULmZpdHMuYXBpLnYxLlNlcnZpY2USKgoGc3RhdHVzGAIgASgOMhouZml0cy5hcGkudjEuU2VydmljZVN0YXR1cxIPCgdtZXNzYWdlGAMgASgJIkMKDERlcGVuZGVuY2llcxIzCgxkZXBlbmRlbmNpZXMYASADKAsyHS5maXRzLmFwaS52MS5EZXBlbmRlbmN5SGVhbHRoInwKEERlcGVuZGVuY3lIZWFsdGgSKwoKZGVwZW5kZW5jeRgBIAEoDjIXLmZpdHMuYXBpLnYxLkRlcGVuZGVuY3kSKgoGc3RhdHVzGAIgASgOMhouZml0cy5hcGkudjEuU2VydmljZVN0YXR1cxIPCgdtZXNzYWdlGAMgASgJIhkKF0hlYWx0aFNlcnZpY2VHZXRSZXF1ZXN0Ij8KGEhlYWx0aFNlcnZpY2VHZXRSZXNwb25zZRIjCgZoZWFsdGgYASABKAsyEy5maXRzLmFwaS52MS5IZWFsdGgiJQojSGVhbHRoU2VydmljZUdldERlcGVuZGVuY2llc1JlcXVlc3QiVwokSGVhbHRoU2VydmljZUdldERlcGVuZGVuY2llc1Jlc3BvbnNlEi8KDGRlcGVuZGVuY2llcxgBIAEoCzIZLmZpdHMuYXBpLnYxLkRlcGVuZGVuY2llcyqGAQoNU2VydmljZVN0YXR1cxIeChpTRVJWSUNFX1NUQVRVU19VTlNQRUNJRklFRBAAEhsKF1NFUlZJQ0VfU1RBVFVTX0RFR1JBREVEEAESHAoYU0VSVklDRV9TVEFUVVNfVU5IRUFMVEhZEAISGgoWU0VSVklDRV9TVEFUVVNfSEVBTFRIWRADKlgKB1NlcnZpY2USFwoTU0VSVklDRV9VTlNQRUNJRklFRBAAEhgKC1NFUlZJQ0VfTVZNEAEaB4KyGQNtdm0SGgoMU0VSVklDRV9QQ1ZNEAIaCIKyGQRwY3ZtKoIBCgpEZXBlbmRlbmN5EhoKFkRFUEVOREVOQ1lfVU5TUEVDSUZJRUQQABIhChFERVBFTkRFTkNZX1ZBTEtFWRABGgqCshkGdmFsa2V5EjUKG0RFUEVOREVOQ1lfVEVOQU5UX0FQSVNFUlZFUhACGhSCshkQdGVuYW50LWFwaXNlcnZlcjLxAQoNSGVhbHRoU2VydmljZRJcCgNHZXQSJC5maXRzLmFwaS52MS5IZWFsdGhTZXJ2aWNlR2V0UmVxdWVzdBolLmZpdHMuYXBpLnYxLkhlYWx0aFNlcnZpY2VHZXRSZXNwb25zZSII2PMYAeDzGAISgQEKD0dldERlcGVuZGVuY2llcxIwLmZpdHMuYXBpLnYxLkhlYWx0aFNlcnZpY2VHZXREZXBlbmRlbmNpZXNSZXF1ZXN0GjEuZml0cy5hcGkudjEuSGVhbHRoU2VydmljZUdldERlcGVuZGVuY2llc1Jlc3BvbnNlIgnS8xgBAuDzGAJClwEKD2NvbS5maXRzLmFwaS52MUILSGVhbHRoUHJvdG9QAVopZ2l0aHViLmNvbS9maS10cy9hcGkvZ28vZml0cy9hcGkvdjE7YXBpdjGiAgNGQViqAgtGaXRzLkFwaS5WMcoCC0ZpdHNcQXBpXFYx4gIXRml0c1xBcGlcVjFcR1BCTWV0YWRhdGHqAg1GaXRzOjpBcGk6OlYxYgZwcm90bzM", [file_fits_api_v1_common]);
 /**
  * Describes the message fits.api.v1.Health.
  * Use `create(HealthSchema)` to create a new message.
@@ -18,20 +18,35 @@ export const HealthSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_health, 0
  */
 export const HealthStatusSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_health, 1);
 /**
- * Describes the message fits.api.v1.PartitionHealth.
- * Use `create(PartitionHealthSchema)` to create a new message.
+ * Describes the message fits.api.v1.Dependencies.
+ * Use `create(DependenciesSchema)` to create a new message.
  */
-export const PartitionHealthSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_health, 2);
+export const DependenciesSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_health, 2);
+/**
+ * Describes the message fits.api.v1.DependencyHealth.
+ * Use `create(DependencyHealthSchema)` to create a new message.
+ */
+export const DependencyHealthSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_health, 3);
 /**
  * Describes the message fits.api.v1.HealthServiceGetRequest.
  * Use `create(HealthServiceGetRequestSchema)` to create a new message.
  */
-export const HealthServiceGetRequestSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_health, 3);
+export const HealthServiceGetRequestSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_health, 4);
 /**
  * Describes the message fits.api.v1.HealthServiceGetResponse.
  * Use `create(HealthServiceGetResponseSchema)` to create a new message.
  */
-export const HealthServiceGetResponseSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_health, 4);
+export const HealthServiceGetResponseSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_health, 5);
+/**
+ * Describes the message fits.api.v1.HealthServiceGetDependenciesRequest.
+ * Use `create(HealthServiceGetDependenciesRequestSchema)` to create a new message.
+ */
+export const HealthServiceGetDependenciesRequestSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_health, 6);
+/**
+ * Describes the message fits.api.v1.HealthServiceGetDependenciesResponse.
+ * Use `create(HealthServiceGetDependenciesResponseSchema)` to create a new message.
+ */
+export const HealthServiceGetDependenciesResponseSchema = /*@__PURE__*/ messageDesc(file_fits_api_v1_health, 7);
 /**
  * ServiceStatus defines the status of a service.
  *
@@ -82,16 +97,52 @@ export var Service;
      */
     Service[Service["UNSPECIFIED"] = 0] = "UNSPECIFIED";
     /**
-     * SERVICE_K8S the kubernetes service
+     * SERVICE_MVM the managed vm service
      *
-     * @generated from enum value: SERVICE_K8S = 1;
+     * @generated from enum value: SERVICE_MVM = 1;
      */
-    Service[Service["K8S"] = 1] = "K8S";
+    Service[Service["MVM"] = 1] = "MVM";
+    /**
+     * SERVICE_PCVM the public cloud vm service
+     *
+     * @generated from enum value: SERVICE_PCVM = 2;
+     */
+    Service[Service["PCVM"] = 2] = "PCVM";
 })(Service || (Service = {}));
 /**
  * Describes the enum fits.api.v1.Service.
  */
 export const ServiceSchema = /*@__PURE__*/ enumDesc(file_fits_api_v1_health, 1);
+/**
+ * Dependency defines the dependency for which the healthiness is reported.
+ *
+ * @generated from enum fits.api.v1.Dependency
+ */
+export var Dependency;
+(function (Dependency) {
+    /**
+     * DEPENDENCY_UNSPECIFIED is a unknown dependency
+     *
+     * @generated from enum value: DEPENDENCY_UNSPECIFIED = 0;
+     */
+    Dependency[Dependency["UNSPECIFIED"] = 0] = "UNSPECIFIED";
+    /**
+     * DEPENDENCY_VALKEY the valkey service
+     *
+     * @generated from enum value: DEPENDENCY_VALKEY = 1;
+     */
+    Dependency[Dependency["VALKEY"] = 1] = "VALKEY";
+    /**
+     * DEPENDENCY_TENANT_APISERVER the tenant apiserver service
+     *
+     * @generated from enum value: DEPENDENCY_TENANT_APISERVER = 2;
+     */
+    Dependency[Dependency["TENANT_APISERVER"] = 2] = "TENANT_APISERVER";
+})(Dependency || (Dependency = {}));
+/**
+ * Describes the enum fits.api.v1.Dependency.
+ */
+export const DependencySchema = /*@__PURE__*/ enumDesc(file_fits_api_v1_health, 2);
 /**
  * HealthService provides health status monitoring operations.
  *

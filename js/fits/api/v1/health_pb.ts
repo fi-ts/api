@@ -11,7 +11,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/v1/health.proto.
  */
 export const file_fits_api_v1_health: GenFile = /*@__PURE__*/
-  fileDesc("ChhmaXRzL2FwaS92MS9oZWFsdGgucHJvdG8SC2ZpdHMuYXBpLnYxIjUKBkhlYWx0aBIrCghzZXJ2aWNlcxgBIAMoCzIZLmZpdHMuYXBpLnYxLkhlYWx0aFN0YXR1cyL/AQoMSGVhbHRoU3RhdHVzEiIKBG5hbWUYASABKA4yFC5maXRzLmFwaS52MS5TZXJ2aWNlEioKBnN0YXR1cxgCIAEoDjIaLmZpdHMuYXBpLnYxLlNlcnZpY2VTdGF0dXMSDwoHbWVzc2FnZRgDIAEoCRI9CgpwYXJ0aXRpb25zGAQgAygLMikuZml0cy5hcGkudjEuSGVhbHRoU3RhdHVzLlBhcnRpdGlvbnNFbnRyeRpPCg9QYXJ0aXRpb25zRW50cnkSCwoDa2V5GAEgASgJEisKBXZhbHVlGAIgASgLMhwuZml0cy5hcGkudjEuUGFydGl0aW9uSGVhbHRoOgI4ASJOCg9QYXJ0aXRpb25IZWFsdGgSKgoGc3RhdHVzGAEgASgOMhouZml0cy5hcGkudjEuU2VydmljZVN0YXR1cxIPCgdtZXNzYWdlGAIgASgJIhkKF0hlYWx0aFNlcnZpY2VHZXRSZXF1ZXN0Ij8KGEhlYWx0aFNlcnZpY2VHZXRSZXNwb25zZRIjCgZoZWFsdGgYASABKAsyEy5maXRzLmFwaS52MS5IZWFsdGgqhgEKDVNlcnZpY2VTdGF0dXMSHgoaU0VSVklDRV9TVEFUVVNfVU5TUEVDSUZJRUQQABIbChdTRVJWSUNFX1NUQVRVU19ERUdSQURFRBABEhwKGFNFUlZJQ0VfU1RBVFVTX1VOSEVBTFRIWRACEhoKFlNFUlZJQ0VfU1RBVFVTX0hFQUxUSFkQAyo8CgdTZXJ2aWNlEhcKE1NFUlZJQ0VfVU5TUEVDSUZJRUQQABIYCgtTRVJWSUNFX0s4UxABGgeCshkDazhzMm0KDUhlYWx0aFNlcnZpY2USXAoDR2V0EiQuZml0cy5hcGkudjEuSGVhbHRoU2VydmljZUdldFJlcXVlc3QaJS5maXRzLmFwaS52MS5IZWFsdGhTZXJ2aWNlR2V0UmVzcG9uc2UiCNjzGAHg8xgCQpcBCg9jb20uZml0cy5hcGkudjFCC0hlYWx0aFByb3RvUAFaKWdpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL3YxO2FwaXYxogIDRkFYqgILRml0cy5BcGkuVjHKAgtGaXRzXEFwaVxWMeICF0ZpdHNcQXBpXFYxXEdQQk1ldGFkYXRh6gINRml0czo6QXBpOjpWMWIGcHJvdG8z", [file_fits_api_v1_common]);
+  fileDesc("ChhmaXRzL2FwaS92MS9oZWFsdGgucHJvdG8SC2ZpdHMuYXBpLnYxIjUKBkhlYWx0aBIrCghzZXJ2aWNlcxgBIAMoCzIZLmZpdHMuYXBpLnYxLkhlYWx0aFN0YXR1cyJyCgxIZWFsdGhTdGF0dXMSJQoHc2VydmljZRgBIAEoDjIULmZpdHMuYXBpLnYxLlNlcnZpY2USKgoGc3RhdHVzGAIgASgOMhouZml0cy5hcGkudjEuU2VydmljZVN0YXR1cxIPCgdtZXNzYWdlGAMgASgJIkMKDERlcGVuZGVuY2llcxIzCgxkZXBlbmRlbmNpZXMYASADKAsyHS5maXRzLmFwaS52MS5EZXBlbmRlbmN5SGVhbHRoInwKEERlcGVuZGVuY3lIZWFsdGgSKwoKZGVwZW5kZW5jeRgBIAEoDjIXLmZpdHMuYXBpLnYxLkRlcGVuZGVuY3kSKgoGc3RhdHVzGAIgASgOMhouZml0cy5hcGkudjEuU2VydmljZVN0YXR1cxIPCgdtZXNzYWdlGAMgASgJIhkKF0hlYWx0aFNlcnZpY2VHZXRSZXF1ZXN0Ij8KGEhlYWx0aFNlcnZpY2VHZXRSZXNwb25zZRIjCgZoZWFsdGgYASABKAsyEy5maXRzLmFwaS52MS5IZWFsdGgiJQojSGVhbHRoU2VydmljZUdldERlcGVuZGVuY2llc1JlcXVlc3QiVwokSGVhbHRoU2VydmljZUdldERlcGVuZGVuY2llc1Jlc3BvbnNlEi8KDGRlcGVuZGVuY2llcxgBIAEoCzIZLmZpdHMuYXBpLnYxLkRlcGVuZGVuY2llcyqGAQoNU2VydmljZVN0YXR1cxIeChpTRVJWSUNFX1NUQVRVU19VTlNQRUNJRklFRBAAEhsKF1NFUlZJQ0VfU1RBVFVTX0RFR1JBREVEEAESHAoYU0VSVklDRV9TVEFUVVNfVU5IRUFMVEhZEAISGgoWU0VSVklDRV9TVEFUVVNfSEVBTFRIWRADKlgKB1NlcnZpY2USFwoTU0VSVklDRV9VTlNQRUNJRklFRBAAEhgKC1NFUlZJQ0VfTVZNEAEaB4KyGQNtdm0SGgoMU0VSVklDRV9QQ1ZNEAIaCIKyGQRwY3ZtKoIBCgpEZXBlbmRlbmN5EhoKFkRFUEVOREVOQ1lfVU5TUEVDSUZJRUQQABIhChFERVBFTkRFTkNZX1ZBTEtFWRABGgqCshkGdmFsa2V5EjUKG0RFUEVOREVOQ1lfVEVOQU5UX0FQSVNFUlZFUhACGhSCshkQdGVuYW50LWFwaXNlcnZlcjLxAQoNSGVhbHRoU2VydmljZRJcCgNHZXQSJC5maXRzLmFwaS52MS5IZWFsdGhTZXJ2aWNlR2V0UmVxdWVzdBolLmZpdHMuYXBpLnYxLkhlYWx0aFNlcnZpY2VHZXRSZXNwb25zZSII2PMYAeDzGAISgQEKD0dldERlcGVuZGVuY2llcxIwLmZpdHMuYXBpLnYxLkhlYWx0aFNlcnZpY2VHZXREZXBlbmRlbmNpZXNSZXF1ZXN0GjEuZml0cy5hcGkudjEuSGVhbHRoU2VydmljZUdldERlcGVuZGVuY2llc1Jlc3BvbnNlIgnS8xgBAuDzGAJClwEKD2NvbS5maXRzLmFwaS52MUILSGVhbHRoUHJvdG9QAVopZ2l0aHViLmNvbS9maS10cy9hcGkvZ28vZml0cy9hcGkvdjE7YXBpdjGiAgNGQViqAgtGaXRzLkFwaS5WMcoCC0ZpdHNcQXBpXFYx4gIXRml0c1xBcGlcVjFcR1BCTWV0YWRhdGHqAg1GaXRzOjpBcGk6OlYxYgZwcm90bzM", [file_fits_api_v1_common]);
 
 /**
  * Health reports the health status of all services.
@@ -41,11 +41,11 @@ export const HealthSchema: GenMessage<Health> = /*@__PURE__*/
  */
 export type HealthStatus = Message<"fits.api.v1.HealthStatus"> & {
   /**
-   * Name is the name of the service
+   * Service is the service this health status is reported for
    *
-   * @generated from field: fits.api.v1.Service name = 1;
+   * @generated from field: fits.api.v1.Service service = 1;
    */
-  name: Service;
+  service: Service;
 
   /**
    * Status is the status of this service
@@ -60,13 +60,6 @@ export type HealthStatus = Message<"fits.api.v1.HealthStatus"> & {
    * @generated from field: string message = 3;
    */
   message: string;
-
-  /**
-   * Partitions describes the health of the service by partition
-   *
-   * @generated from field: map<string, fits.api.v1.PartitionHealth> partitions = 4;
-   */
-  partitions: { [key: string]: PartitionHealth };
 };
 
 /**
@@ -77,32 +70,60 @@ export const HealthStatusSchema: GenMessage<HealthStatus> = /*@__PURE__*/
   messageDesc(file_fits_api_v1_health, 1);
 
 /**
- * PartitionHealth represents the status of a specific service in this partition.
+ * Dependencies reports the health status of all dependencies.
  *
- * @generated from message fits.api.v1.PartitionHealth
+ * @generated from message fits.api.v1.Dependencies
  */
-export type PartitionHealth = Message<"fits.api.v1.PartitionHealth"> & {
+export type Dependencies = Message<"fits.api.v1.Dependencies"> & {
   /**
-   * Status is the health status of the service in this partition
+   * Dependencies contains the health of all individual dependencies
    *
-   * @generated from field: fits.api.v1.ServiceStatus status = 1;
+   * @generated from field: repeated fits.api.v1.DependencyHealth dependencies = 1;
+   */
+  dependencies: DependencyHealth[];
+};
+
+/**
+ * Describes the message fits.api.v1.Dependencies.
+ * Use `create(DependenciesSchema)` to create a new message.
+ */
+export const DependenciesSchema: GenMessage<Dependencies> = /*@__PURE__*/
+  messageDesc(file_fits_api_v1_health, 2);
+
+/**
+ * DependencyHealth represents the health status of one dependency.
+ *
+ * @generated from message fits.api.v1.DependencyHealth
+ */
+export type DependencyHealth = Message<"fits.api.v1.DependencyHealth"> & {
+  /**
+   * Dependency is the dependency this health status is reported for
+   *
+   * @generated from field: fits.api.v1.Dependency dependency = 1;
+   */
+  dependency: Dependency;
+
+  /**
+   * Status is the status of this dependency
+   *
+   * @generated from field: fits.api.v1.ServiceStatus status = 2;
    */
   status: ServiceStatus;
 
   /**
    * Message describes the reason for the unhealthy status if possible
    *
-   * @generated from field: string message = 2;
+   * @generated from field: string message = 3;
    */
   message: string;
 };
 
 /**
- * Describes the message fits.api.v1.PartitionHealth.
- * Use `create(PartitionHealthSchema)` to create a new message.
+ * Describes the message fits.api.v1.DependencyHealth.
+ * Use `create(DependencyHealthSchema)` to create a new message.
  */
-export const PartitionHealthSchema: GenMessage<PartitionHealth> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_health, 2);
+export const DependencyHealthSchema: GenMessage<DependencyHealth> = /*@__PURE__*/
+  messageDesc(file_fits_api_v1_health, 3);
 
 /**
  * HealthServiceGetRequest is the request payload for getting the health of the system.
@@ -117,7 +138,7 @@ export type HealthServiceGetRequest = Message<"fits.api.v1.HealthServiceGetReque
  * Use `create(HealthServiceGetRequestSchema)` to create a new message.
  */
 export const HealthServiceGetRequestSchema: GenMessage<HealthServiceGetRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_health, 3);
+  messageDesc(file_fits_api_v1_health, 4);
 
 /**
  * HealthServiceGetResponse is the response payload for getting the health of the system.
@@ -138,7 +159,43 @@ export type HealthServiceGetResponse = Message<"fits.api.v1.HealthServiceGetResp
  * Use `create(HealthServiceGetResponseSchema)` to create a new message.
  */
 export const HealthServiceGetResponseSchema: GenMessage<HealthServiceGetResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_health, 4);
+  messageDesc(file_fits_api_v1_health, 5);
+
+/**
+ * HealthServiceGetDependenciesRequest is the request payload for getting the health of the dependencies.
+ *
+ * @generated from message fits.api.v1.HealthServiceGetDependenciesRequest
+ */
+export type HealthServiceGetDependenciesRequest = Message<"fits.api.v1.HealthServiceGetDependenciesRequest"> & {
+};
+
+/**
+ * Describes the message fits.api.v1.HealthServiceGetDependenciesRequest.
+ * Use `create(HealthServiceGetDependenciesRequestSchema)` to create a new message.
+ */
+export const HealthServiceGetDependenciesRequestSchema: GenMessage<HealthServiceGetDependenciesRequest> = /*@__PURE__*/
+  messageDesc(file_fits_api_v1_health, 6);
+
+/**
+ * HealthServiceGetDependenciesResponse is the response payload for getting the health of the dependencies.
+ *
+ * @generated from message fits.api.v1.HealthServiceGetDependenciesResponse
+ */
+export type HealthServiceGetDependenciesResponse = Message<"fits.api.v1.HealthServiceGetDependenciesResponse"> & {
+  /**
+   * Dependencies contains the health of all dependencies
+   *
+   * @generated from field: fits.api.v1.Dependencies dependencies = 1;
+   */
+  dependencies?: Dependencies | undefined;
+};
+
+/**
+ * Describes the message fits.api.v1.HealthServiceGetDependenciesResponse.
+ * Use `create(HealthServiceGetDependenciesResponseSchema)` to create a new message.
+ */
+export const HealthServiceGetDependenciesResponseSchema: GenMessage<HealthServiceGetDependenciesResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_v1_health, 7);
 
 /**
  * ServiceStatus defines the status of a service.
@@ -195,11 +252,18 @@ export enum Service {
   UNSPECIFIED = 0,
 
   /**
-   * SERVICE_K8S the kubernetes service
+   * SERVICE_MVM the managed vm service
    *
-   * @generated from enum value: SERVICE_K8S = 1;
+   * @generated from enum value: SERVICE_MVM = 1;
    */
-  K8S = 1,
+  MVM = 1,
+
+  /**
+   * SERVICE_PCVM the public cloud vm service
+   *
+   * @generated from enum value: SERVICE_PCVM = 2;
+   */
+  PCVM = 2,
 }
 
 /**
@@ -207,6 +271,40 @@ export enum Service {
  */
 export const ServiceSchema: GenEnum<Service> = /*@__PURE__*/
   enumDesc(file_fits_api_v1_health, 1);
+
+/**
+ * Dependency defines the dependency for which the healthiness is reported.
+ *
+ * @generated from enum fits.api.v1.Dependency
+ */
+export enum Dependency {
+  /**
+   * DEPENDENCY_UNSPECIFIED is a unknown dependency
+   *
+   * @generated from enum value: DEPENDENCY_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * DEPENDENCY_VALKEY the valkey service
+   *
+   * @generated from enum value: DEPENDENCY_VALKEY = 1;
+   */
+  VALKEY = 1,
+
+  /**
+   * DEPENDENCY_TENANT_APISERVER the tenant apiserver service
+   *
+   * @generated from enum value: DEPENDENCY_TENANT_APISERVER = 2;
+   */
+  TENANT_APISERVER = 2,
+}
+
+/**
+ * Describes the enum fits.api.v1.Dependency.
+ */
+export const DependencySchema: GenEnum<Dependency> = /*@__PURE__*/
+  enumDesc(file_fits_api_v1_health, 2);
 
 /**
  * HealthService provides health status monitoring operations.
@@ -223,6 +321,16 @@ export const HealthService: GenService<{
     methodKind: "unary";
     input: typeof HealthServiceGetRequestSchema;
     output: typeof HealthServiceGetResponseSchema;
+  },
+  /**
+   * Returns the health status of the platform's dependencies.
+   *
+   * @generated from rpc fits.api.v1.HealthService.GetDependencies
+   */
+  getDependencies: {
+    methodKind: "unary";
+    input: typeof HealthServiceGetDependenciesRequestSchema;
+    output: typeof HealthServiceGetDependenciesResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_fits_api_v1_health, 0);

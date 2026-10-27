@@ -28,7 +28,11 @@ func GetServices() []string {
 func GetServicePermissions() *ServicePermissions {
 	return &ServicePermissions{
 		Roles: Roles{
-			Operator: Operator{},
+			Operator: Operator{
+				v1.OperatorRole_OPERATOR_ROLE_VIEWER: map[string]struct{}{
+					"/fits.api.v1.HealthService/GetDependencies": {},
+				},
+			},
 			Tenant: Tenant{
 				v1.TenantRole_TENANT_ROLE_ADMIN: map[string]struct{}{
 					"/fits.api.mvm.v1.ContactService/Create": {},
@@ -161,6 +165,7 @@ func GetServicePermissions() *ServicePermissions {
 			"/fits.api.pcvm.v1.PublicCloudVMService/ValidateCreate":          {},
 			"/fits.api.pcvm.v1.PublicCloudVMService/ValidateUpdate":          {},
 			"/fits.api.v1.HealthService/Get":                                 {},
+			"/fits.api.v1.HealthService/GetDependencies":                     {},
 			"/fits.api.v1.MethodService/List":                                {},
 			"/fits.api.v1.MethodService/TokenScopedList":                     {},
 			"/fits.api.v1.ProjectService/Create":                             {},
@@ -195,7 +200,9 @@ func GetServicePermissions() *ServicePermissions {
 				"/fits.api.v1.TokenService/List":             true,
 				"/fits.api.v1.TokenService/Revoke":           true,
 			},
-			Operator: map[string]bool{},
+			Operator: map[string]bool{
+				"/fits.api.v1.HealthService/GetDependencies": true,
+			},
 			Tenant: map[string]bool{
 				"/fits.api.mvm.v1.ContactService/Create": true,
 				"/fits.api.mvm.v1.ContactService/Delete": true,
@@ -268,6 +275,7 @@ func GetServicePermissions() *ServicePermissions {
 			"/fits.api.pcvm.v1.PublicCloudVMService/ValidateCreate":   false,
 			"/fits.api.pcvm.v1.PublicCloudVMService/ValidateUpdate":   false,
 			"/fits.api.v1.HealthService/Get":                          false,
+			"/fits.api.v1.HealthService/GetDependencies":              false,
 			"/fits.api.v1.MethodService/List":                         false,
 			"/fits.api.v1.MethodService/TokenScopedList":              false,
 			"/fits.api.v1.ProjectService/Create":                      true,

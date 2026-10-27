@@ -29,11 +29,11 @@ export declare const HealthSchema: GenMessage<Health>;
  */
 export type HealthStatus = Message<"fits.api.v1.HealthStatus"> & {
     /**
-     * Name is the name of the service
+     * Service is the service this health status is reported for
      *
-     * @generated from field: fits.api.v1.Service name = 1;
+     * @generated from field: fits.api.v1.Service service = 1;
      */
-    name: Service;
+    service: Service;
     /**
      * Status is the status of this service
      *
@@ -46,14 +46,6 @@ export type HealthStatus = Message<"fits.api.v1.HealthStatus"> & {
      * @generated from field: string message = 3;
      */
     message: string;
-    /**
-     * Partitions describes the health of the service by partition
-     *
-     * @generated from field: map<string, fits.api.v1.PartitionHealth> partitions = 4;
-     */
-    partitions: {
-        [key: string]: PartitionHealth;
-    };
 };
 /**
  * Describes the message fits.api.v1.HealthStatus.
@@ -61,29 +53,53 @@ export type HealthStatus = Message<"fits.api.v1.HealthStatus"> & {
  */
 export declare const HealthStatusSchema: GenMessage<HealthStatus>;
 /**
- * PartitionHealth represents the status of a specific service in this partition.
+ * Dependencies reports the health status of all dependencies.
  *
- * @generated from message fits.api.v1.PartitionHealth
+ * @generated from message fits.api.v1.Dependencies
  */
-export type PartitionHealth = Message<"fits.api.v1.PartitionHealth"> & {
+export type Dependencies = Message<"fits.api.v1.Dependencies"> & {
     /**
-     * Status is the health status of the service in this partition
+     * Dependencies contains the health of all individual dependencies
      *
-     * @generated from field: fits.api.v1.ServiceStatus status = 1;
+     * @generated from field: repeated fits.api.v1.DependencyHealth dependencies = 1;
+     */
+    dependencies: DependencyHealth[];
+};
+/**
+ * Describes the message fits.api.v1.Dependencies.
+ * Use `create(DependenciesSchema)` to create a new message.
+ */
+export declare const DependenciesSchema: GenMessage<Dependencies>;
+/**
+ * DependencyHealth represents the health status of one dependency.
+ *
+ * @generated from message fits.api.v1.DependencyHealth
+ */
+export type DependencyHealth = Message<"fits.api.v1.DependencyHealth"> & {
+    /**
+     * Dependency is the dependency this health status is reported for
+     *
+     * @generated from field: fits.api.v1.Dependency dependency = 1;
+     */
+    dependency: Dependency;
+    /**
+     * Status is the status of this dependency
+     *
+     * @generated from field: fits.api.v1.ServiceStatus status = 2;
      */
     status: ServiceStatus;
     /**
      * Message describes the reason for the unhealthy status if possible
      *
-     * @generated from field: string message = 2;
+     * @generated from field: string message = 3;
      */
     message: string;
 };
 /**
- * Describes the message fits.api.v1.PartitionHealth.
- * Use `create(PartitionHealthSchema)` to create a new message.
+ * Describes the message fits.api.v1.DependencyHealth.
+ * Use `create(DependencyHealthSchema)` to create a new message.
  */
-export declare const PartitionHealthSchema: GenMessage<PartitionHealth>;
+export declare const DependencyHealthSchema: GenMessage<DependencyHealth>;
 /**
  * HealthServiceGetRequest is the request payload for getting the health of the system.
  *
@@ -113,6 +129,35 @@ export type HealthServiceGetResponse = Message<"fits.api.v1.HealthServiceGetResp
  * Use `create(HealthServiceGetResponseSchema)` to create a new message.
  */
 export declare const HealthServiceGetResponseSchema: GenMessage<HealthServiceGetResponse>;
+/**
+ * HealthServiceGetDependenciesRequest is the request payload for getting the health of the dependencies.
+ *
+ * @generated from message fits.api.v1.HealthServiceGetDependenciesRequest
+ */
+export type HealthServiceGetDependenciesRequest = Message<"fits.api.v1.HealthServiceGetDependenciesRequest"> & {};
+/**
+ * Describes the message fits.api.v1.HealthServiceGetDependenciesRequest.
+ * Use `create(HealthServiceGetDependenciesRequestSchema)` to create a new message.
+ */
+export declare const HealthServiceGetDependenciesRequestSchema: GenMessage<HealthServiceGetDependenciesRequest>;
+/**
+ * HealthServiceGetDependenciesResponse is the response payload for getting the health of the dependencies.
+ *
+ * @generated from message fits.api.v1.HealthServiceGetDependenciesResponse
+ */
+export type HealthServiceGetDependenciesResponse = Message<"fits.api.v1.HealthServiceGetDependenciesResponse"> & {
+    /**
+     * Dependencies contains the health of all dependencies
+     *
+     * @generated from field: fits.api.v1.Dependencies dependencies = 1;
+     */
+    dependencies?: Dependencies | undefined;
+};
+/**
+ * Describes the message fits.api.v1.HealthServiceGetDependenciesResponse.
+ * Use `create(HealthServiceGetDependenciesResponseSchema)` to create a new message.
+ */
+export declare const HealthServiceGetDependenciesResponseSchema: GenMessage<HealthServiceGetDependenciesResponse>;
 /**
  * ServiceStatus defines the status of a service.
  *
@@ -161,16 +206,51 @@ export declare enum Service {
      */
     UNSPECIFIED = 0,
     /**
-     * SERVICE_K8S the kubernetes service
+     * SERVICE_MVM the managed vm service
      *
-     * @generated from enum value: SERVICE_K8S = 1;
+     * @generated from enum value: SERVICE_MVM = 1;
      */
-    K8S = 1
+    MVM = 1,
+    /**
+     * SERVICE_PCVM the public cloud vm service
+     *
+     * @generated from enum value: SERVICE_PCVM = 2;
+     */
+    PCVM = 2
 }
 /**
  * Describes the enum fits.api.v1.Service.
  */
 export declare const ServiceSchema: GenEnum<Service>;
+/**
+ * Dependency defines the dependency for which the healthiness is reported.
+ *
+ * @generated from enum fits.api.v1.Dependency
+ */
+export declare enum Dependency {
+    /**
+     * DEPENDENCY_UNSPECIFIED is a unknown dependency
+     *
+     * @generated from enum value: DEPENDENCY_UNSPECIFIED = 0;
+     */
+    UNSPECIFIED = 0,
+    /**
+     * DEPENDENCY_VALKEY the valkey service
+     *
+     * @generated from enum value: DEPENDENCY_VALKEY = 1;
+     */
+    VALKEY = 1,
+    /**
+     * DEPENDENCY_TENANT_APISERVER the tenant apiserver service
+     *
+     * @generated from enum value: DEPENDENCY_TENANT_APISERVER = 2;
+     */
+    TENANT_APISERVER = 2
+}
+/**
+ * Describes the enum fits.api.v1.Dependency.
+ */
+export declare const DependencySchema: GenEnum<Dependency>;
 /**
  * HealthService provides health status monitoring operations.
  *
@@ -186,5 +266,15 @@ export declare const HealthService: GenService<{
         methodKind: "unary";
         input: typeof HealthServiceGetRequestSchema;
         output: typeof HealthServiceGetResponseSchema;
+    };
+    /**
+     * Returns the health status of the platform's dependencies.
+     *
+     * @generated from rpc fits.api.v1.HealthService.GetDependencies
+     */
+    getDependencies: {
+        methodKind: "unary";
+        input: typeof HealthServiceGetDependenciesRequestSchema;
+        output: typeof HealthServiceGetDependenciesResponseSchema;
     };
 }>;

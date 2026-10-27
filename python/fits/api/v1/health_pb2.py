@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 from fits.api.v1 import common_pb2 as fits_dot_api_dot_v1_dot_common__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x18\x66its/api/v1/health.proto\x12\x0b\x66its.api.v1\x1a\x18\x66its/api/v1/common.proto\"?\n\x06Health\x12\x35\n\x08services\x18\x01 \x03(\x0b\x32\x19.fits.api.v1.HealthStatusR\x08services\"\xae\x02\n\x0cHealthStatus\x12(\n\x04name\x18\x01 \x01(\x0e\x32\x14.fits.api.v1.ServiceR\x04name\x12\x32\n\x06status\x18\x02 \x01(\x0e\x32\x1a.fits.api.v1.ServiceStatusR\x06status\x12\x18\n\x07message\x18\x03 \x01(\tR\x07message\x12I\n\npartitions\x18\x04 \x03(\x0b\x32).fits.api.v1.HealthStatus.PartitionsEntryR\npartitions\x1a[\n\x0fPartitionsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x32\n\x05value\x18\x02 \x01(\x0b\x32\x1c.fits.api.v1.PartitionHealthR\x05value:\x02\x38\x01\"_\n\x0fPartitionHealth\x12\x32\n\x06status\x18\x01 \x01(\x0e\x32\x1a.fits.api.v1.ServiceStatusR\x06status\x12\x18\n\x07message\x18\x02 \x01(\tR\x07message\"\x19\n\x17HealthServiceGetRequest\"G\n\x18HealthServiceGetResponse\x12+\n\x06health\x18\x01 \x01(\x0b\x32\x13.fits.api.v1.HealthR\x06health*\x86\x01\n\rServiceStatus\x12\x1e\n\x1aSERVICE_STATUS_UNSPECIFIED\x10\x00\x12\x1b\n\x17SERVICE_STATUS_DEGRADED\x10\x01\x12\x1c\n\x18SERVICE_STATUS_UNHEALTHY\x10\x02\x12\x1a\n\x16SERVICE_STATUS_HEALTHY\x10\x03*<\n\x07Service\x12\x17\n\x13SERVICE_UNSPECIFIED\x10\x00\x12\x18\n\x0bSERVICE_K8S\x10\x01\x1a\x07\x82\xb2\x19\x03k8s2m\n\rHealthService\x12\\\n\x03Get\x12$.fits.api.v1.HealthServiceGetRequest\x1a%.fits.api.v1.HealthServiceGetResponse\"\x08\xd8\xf3\x18\x01\xe0\xf3\x18\x02\x42\x97\x01\n\x0f\x63om.fits.api.v1B\x0bHealthProtoP\x01Z)github.com/fi-ts/api/go/fits/api/v1;apiv1\xa2\x02\x03\x46\x41X\xaa\x02\x0b\x46its.Api.V1\xca\x02\x0b\x46its\\Api\\V1\xe2\x02\x17\x46its\\Api\\V1\\GPBMetadata\xea\x02\rFits::Api::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x18\x66its/api/v1/health.proto\x12\x0b\x66its.api.v1\x1a\x18\x66its/api/v1/common.proto\"?\n\x06Health\x12\x35\n\x08services\x18\x01 \x03(\x0b\x32\x19.fits.api.v1.HealthStatusR\x08services\"\x8c\x01\n\x0cHealthStatus\x12.\n\x07service\x18\x01 \x01(\x0e\x32\x14.fits.api.v1.ServiceR\x07service\x12\x32\n\x06status\x18\x02 \x01(\x0e\x32\x1a.fits.api.v1.ServiceStatusR\x06status\x12\x18\n\x07message\x18\x03 \x01(\tR\x07message\"Q\n\x0c\x44\x65pendencies\x12\x41\n\x0c\x64\x65pendencies\x18\x01 \x03(\x0b\x32\x1d.fits.api.v1.DependencyHealthR\x0c\x64\x65pendencies\"\x99\x01\n\x10\x44\x65pendencyHealth\x12\x37\n\ndependency\x18\x01 \x01(\x0e\x32\x17.fits.api.v1.DependencyR\ndependency\x12\x32\n\x06status\x18\x02 \x01(\x0e\x32\x1a.fits.api.v1.ServiceStatusR\x06status\x12\x18\n\x07message\x18\x03 \x01(\tR\x07message\"\x19\n\x17HealthServiceGetRequest\"G\n\x18HealthServiceGetResponse\x12+\n\x06health\x18\x01 \x01(\x0b\x32\x13.fits.api.v1.HealthR\x06health\"%\n#HealthServiceGetDependenciesRequest\"e\n$HealthServiceGetDependenciesResponse\x12=\n\x0c\x64\x65pendencies\x18\x01 \x01(\x0b\x32\x19.fits.api.v1.DependenciesR\x0c\x64\x65pendencies*\x86\x01\n\rServiceStatus\x12\x1e\n\x1aSERVICE_STATUS_UNSPECIFIED\x10\x00\x12\x1b\n\x17SERVICE_STATUS_DEGRADED\x10\x01\x12\x1c\n\x18SERVICE_STATUS_UNHEALTHY\x10\x02\x12\x1a\n\x16SERVICE_STATUS_HEALTHY\x10\x03*X\n\x07Service\x12\x17\n\x13SERVICE_UNSPECIFIED\x10\x00\x12\x18\n\x0bSERVICE_MVM\x10\x01\x1a\x07\x82\xb2\x19\x03mvm\x12\x1a\n\x0cSERVICE_PCVM\x10\x02\x1a\x08\x82\xb2\x19\x04pcvm*\x82\x01\n\nDependency\x12\x1a\n\x16\x44\x45PENDENCY_UNSPECIFIED\x10\x00\x12!\n\x11\x44\x45PENDENCY_VALKEY\x10\x01\x1a\n\x82\xb2\x19\x06valkey\x12\x35\n\x1b\x44\x45PENDENCY_TENANT_APISERVER\x10\x02\x1a\x14\x82\xb2\x19\x10tenant-apiserver2\xf1\x01\n\rHealthService\x12\\\n\x03Get\x12$.fits.api.v1.HealthServiceGetRequest\x1a%.fits.api.v1.HealthServiceGetResponse\"\x08\xd8\xf3\x18\x01\xe0\xf3\x18\x02\x12\x81\x01\n\x0fGetDependencies\x12\x30.fits.api.v1.HealthServiceGetDependenciesRequest\x1a\x31.fits.api.v1.HealthServiceGetDependenciesResponse\"\t\xd2\xf3\x18\x01\x02\xe0\xf3\x18\x02\x42\x97\x01\n\x0f\x63om.fits.api.v1B\x0bHealthProtoP\x01Z)github.com/fi-ts/api/go/fits/api/v1;apiv1\xa2\x02\x03\x46\x41X\xaa\x02\x0b\x46its.Api.V1\xca\x02\x0b\x46its\\Api\\V1\xe2\x02\x17\x46its\\Api\\V1\\GPBMetadata\xea\x02\rFits::Api::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -33,28 +33,40 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'fits.api.v1.health_pb2', _g
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'\n\017com.fits.api.v1B\013HealthProtoP\001Z)github.com/fi-ts/api/go/fits/api/v1;apiv1\242\002\003FAX\252\002\013Fits.Api.V1\312\002\013Fits\\Api\\V1\342\002\027Fits\\Api\\V1\\GPBMetadata\352\002\rFits::Api::V1'
-  _globals['_SERVICE'].values_by_name["SERVICE_K8S"]._loaded_options = None
-  _globals['_SERVICE'].values_by_name["SERVICE_K8S"]._serialized_options = b'\202\262\031\003k8s'
-  _globals['_HEALTHSTATUS_PARTITIONSENTRY']._loaded_options = None
-  _globals['_HEALTHSTATUS_PARTITIONSENTRY']._serialized_options = b'8\001'
+  _globals['_SERVICE'].values_by_name["SERVICE_MVM"]._loaded_options = None
+  _globals['_SERVICE'].values_by_name["SERVICE_MVM"]._serialized_options = b'\202\262\031\003mvm'
+  _globals['_SERVICE'].values_by_name["SERVICE_PCVM"]._loaded_options = None
+  _globals['_SERVICE'].values_by_name["SERVICE_PCVM"]._serialized_options = b'\202\262\031\004pcvm'
+  _globals['_DEPENDENCY'].values_by_name["DEPENDENCY_VALKEY"]._loaded_options = None
+  _globals['_DEPENDENCY'].values_by_name["DEPENDENCY_VALKEY"]._serialized_options = b'\202\262\031\006valkey'
+  _globals['_DEPENDENCY'].values_by_name["DEPENDENCY_TENANT_APISERVER"]._loaded_options = None
+  _globals['_DEPENDENCY'].values_by_name["DEPENDENCY_TENANT_APISERVER"]._serialized_options = b'\202\262\031\020tenant-apiserver'
   _globals['_HEALTHSERVICE'].methods_by_name['Get']._loaded_options = None
   _globals['_HEALTHSERVICE'].methods_by_name['Get']._serialized_options = b'\330\363\030\001\340\363\030\002'
-  _globals['_SERVICESTATUS']._serialized_start=635
-  _globals['_SERVICESTATUS']._serialized_end=769
-  _globals['_SERVICE']._serialized_start=771
-  _globals['_SERVICE']._serialized_end=831
+  _globals['_HEALTHSERVICE'].methods_by_name['GetDependencies']._loaded_options = None
+  _globals['_HEALTHSERVICE'].methods_by_name['GetDependencies']._serialized_options = b'\322\363\030\001\002\340\363\030\002'
+  _globals['_SERVICESTATUS']._serialized_start=757
+  _globals['_SERVICESTATUS']._serialized_end=891
+  _globals['_SERVICE']._serialized_start=893
+  _globals['_SERVICE']._serialized_end=981
+  _globals['_DEPENDENCY']._serialized_start=984
+  _globals['_DEPENDENCY']._serialized_end=1114
   _globals['_HEALTH']._serialized_start=67
   _globals['_HEALTH']._serialized_end=130
   _globals['_HEALTHSTATUS']._serialized_start=133
-  _globals['_HEALTHSTATUS']._serialized_end=435
-  _globals['_HEALTHSTATUS_PARTITIONSENTRY']._serialized_start=344
-  _globals['_HEALTHSTATUS_PARTITIONSENTRY']._serialized_end=435
-  _globals['_PARTITIONHEALTH']._serialized_start=437
-  _globals['_PARTITIONHEALTH']._serialized_end=532
-  _globals['_HEALTHSERVICEGETREQUEST']._serialized_start=534
-  _globals['_HEALTHSERVICEGETREQUEST']._serialized_end=559
-  _globals['_HEALTHSERVICEGETRESPONSE']._serialized_start=561
-  _globals['_HEALTHSERVICEGETRESPONSE']._serialized_end=632
-  _globals['_HEALTHSERVICE']._serialized_start=833
-  _globals['_HEALTHSERVICE']._serialized_end=942
+  _globals['_HEALTHSTATUS']._serialized_end=273
+  _globals['_DEPENDENCIES']._serialized_start=275
+  _globals['_DEPENDENCIES']._serialized_end=356
+  _globals['_DEPENDENCYHEALTH']._serialized_start=359
+  _globals['_DEPENDENCYHEALTH']._serialized_end=512
+  _globals['_HEALTHSERVICEGETREQUEST']._serialized_start=514
+  _globals['_HEALTHSERVICEGETREQUEST']._serialized_end=539
+  _globals['_HEALTHSERVICEGETRESPONSE']._serialized_start=541
+  _globals['_HEALTHSERVICEGETRESPONSE']._serialized_end=612
+  _globals['_HEALTHSERVICEGETDEPENDENCIESREQUEST']._serialized_start=614
+  _globals['_HEALTHSERVICEGETDEPENDENCIESREQUEST']._serialized_end=651
+  _globals['_HEALTHSERVICEGETDEPENDENCIESRESPONSE']._serialized_start=653
+  _globals['_HEALTHSERVICEGETDEPENDENCIESRESPONSE']._serialized_end=754
+  _globals['_HEALTHSERVICE']._serialized_start=1117
+  _globals['_HEALTHSERVICE']._serialized_end=1358
 # @@protoc_insertion_point(module_scope)

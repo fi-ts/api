@@ -18,13 +18,24 @@ class ServiceStatus(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
 class Service(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
     SERVICE_UNSPECIFIED: _ClassVar[Service]
-    SERVICE_K8S: _ClassVar[Service]
+    SERVICE_MVM: _ClassVar[Service]
+    SERVICE_PCVM: _ClassVar[Service]
+
+class Dependency(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+    __slots__ = ()
+    DEPENDENCY_UNSPECIFIED: _ClassVar[Dependency]
+    DEPENDENCY_VALKEY: _ClassVar[Dependency]
+    DEPENDENCY_TENANT_APISERVER: _ClassVar[Dependency]
 SERVICE_STATUS_UNSPECIFIED: ServiceStatus
 SERVICE_STATUS_DEGRADED: ServiceStatus
 SERVICE_STATUS_UNHEALTHY: ServiceStatus
 SERVICE_STATUS_HEALTHY: ServiceStatus
 SERVICE_UNSPECIFIED: Service
-SERVICE_K8S: Service
+SERVICE_MVM: Service
+SERVICE_PCVM: Service
+DEPENDENCY_UNSPECIFIED: Dependency
+DEPENDENCY_VALKEY: Dependency
+DEPENDENCY_TENANT_APISERVER: Dependency
 
 class Health(_message.Message):
     __slots__ = ("services",)
@@ -33,31 +44,30 @@ class Health(_message.Message):
     def __init__(self, services: _Optional[_Iterable[_Union[HealthStatus, _Mapping]]] = ...) -> None: ...
 
 class HealthStatus(_message.Message):
-    __slots__ = ("name", "status", "message", "partitions")
-    class PartitionsEntry(_message.Message):
-        __slots__ = ("key", "value")
-        KEY_FIELD_NUMBER: _ClassVar[int]
-        VALUE_FIELD_NUMBER: _ClassVar[int]
-        key: str
-        value: PartitionHealth
-        def __init__(self, key: _Optional[str] = ..., value: _Optional[_Union[PartitionHealth, _Mapping]] = ...) -> None: ...
-    NAME_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("service", "status", "message")
+    SERVICE_FIELD_NUMBER: _ClassVar[int]
     STATUS_FIELD_NUMBER: _ClassVar[int]
     MESSAGE_FIELD_NUMBER: _ClassVar[int]
-    PARTITIONS_FIELD_NUMBER: _ClassVar[int]
-    name: Service
+    service: Service
     status: ServiceStatus
     message: str
-    partitions: _containers.MessageMap[str, PartitionHealth]
-    def __init__(self, name: _Optional[_Union[Service, str]] = ..., status: _Optional[_Union[ServiceStatus, str]] = ..., message: _Optional[str] = ..., partitions: _Optional[_Mapping[str, PartitionHealth]] = ...) -> None: ...
+    def __init__(self, service: _Optional[_Union[Service, str]] = ..., status: _Optional[_Union[ServiceStatus, str]] = ..., message: _Optional[str] = ...) -> None: ...
 
-class PartitionHealth(_message.Message):
-    __slots__ = ("status", "message")
+class Dependencies(_message.Message):
+    __slots__ = ("dependencies",)
+    DEPENDENCIES_FIELD_NUMBER: _ClassVar[int]
+    dependencies: _containers.RepeatedCompositeFieldContainer[DependencyHealth]
+    def __init__(self, dependencies: _Optional[_Iterable[_Union[DependencyHealth, _Mapping]]] = ...) -> None: ...
+
+class DependencyHealth(_message.Message):
+    __slots__ = ("dependency", "status", "message")
+    DEPENDENCY_FIELD_NUMBER: _ClassVar[int]
     STATUS_FIELD_NUMBER: _ClassVar[int]
     MESSAGE_FIELD_NUMBER: _ClassVar[int]
+    dependency: Dependency
     status: ServiceStatus
     message: str
-    def __init__(self, status: _Optional[_Union[ServiceStatus, str]] = ..., message: _Optional[str] = ...) -> None: ...
+    def __init__(self, dependency: _Optional[_Union[Dependency, str]] = ..., status: _Optional[_Union[ServiceStatus, str]] = ..., message: _Optional[str] = ...) -> None: ...
 
 class HealthServiceGetRequest(_message.Message):
     __slots__ = ()
@@ -68,3 +78,13 @@ class HealthServiceGetResponse(_message.Message):
     HEALTH_FIELD_NUMBER: _ClassVar[int]
     health: Health
     def __init__(self, health: _Optional[_Union[Health, _Mapping]] = ...) -> None: ...
+
+class HealthServiceGetDependenciesRequest(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class HealthServiceGetDependenciesResponse(_message.Message):
+    __slots__ = ("dependencies",)
+    DEPENDENCIES_FIELD_NUMBER: _ClassVar[int]
+    dependencies: Dependencies
+    def __init__(self, dependencies: _Optional[_Union[Dependencies, _Mapping]] = ...) -> None: ...

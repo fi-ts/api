@@ -35,12 +35,17 @@ const (
 const (
 	// HealthServiceGetProcedure is the fully-qualified name of the HealthService's Get RPC.
 	HealthServiceGetProcedure = "/fits.api.v1.HealthService/Get"
+	// HealthServiceGetDependenciesProcedure is the fully-qualified name of the HealthService's
+	// GetDependencies RPC.
+	HealthServiceGetDependenciesProcedure = "/fits.api.v1.HealthService/GetDependencies"
 )
 
 // HealthServiceClient is a client for the fits.api.v1.HealthService service.
 type HealthServiceClient interface {
 	// Returns the health status of the platform.
 	Get(context.Context, *v1.HealthServiceGetRequest) (*v1.HealthServiceGetResponse, error)
+	// Returns the health status of the platform's dependencies.
+	GetDependencies(context.Context, *v1.HealthServiceGetDependenciesRequest) (*v1.HealthServiceGetDependenciesResponse, error)
 }
 
 // NewHealthServiceClient constructs a client for the fits.api.v1.HealthService service. By default,
@@ -60,12 +65,19 @@ func NewHealthServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 			connect.WithSchema(healthServiceMethods.ByName("Get")),
 			connect.WithClientOptions(opts...),
 		),
+		getDependencies: connect.NewClient[v1.HealthServiceGetDependenciesRequest, v1.HealthServiceGetDependenciesResponse](
+			httpClient,
+			baseURL+HealthServiceGetDependenciesProcedure,
+			connect.WithSchema(healthServiceMethods.ByName("GetDependencies")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // healthServiceClient implements HealthServiceClient.
 type healthServiceClient struct {
-	get *connect.Client[v1.HealthServiceGetRequest, v1.HealthServiceGetResponse]
+	get             *connect.Client[v1.HealthServiceGetRequest, v1.HealthServiceGetResponse]
+	getDependencies *connect.Client[v1.HealthServiceGetDependenciesRequest, v1.HealthServiceGetDependenciesResponse]
 }
 
 // Get calls fits.api.v1.HealthService.Get.
@@ -77,10 +89,21 @@ func (c *healthServiceClient) Get(ctx context.Context, req *v1.HealthServiceGetR
 	return nil, err
 }
 
+// GetDependencies calls fits.api.v1.HealthService.GetDependencies.
+func (c *healthServiceClient) GetDependencies(ctx context.Context, req *v1.HealthServiceGetDependenciesRequest) (*v1.HealthServiceGetDependenciesResponse, error) {
+	response, err := c.getDependencies.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
 // HealthServiceHandler is an implementation of the fits.api.v1.HealthService service.
 type HealthServiceHandler interface {
 	// Returns the health status of the platform.
 	Get(context.Context, *v1.HealthServiceGetRequest) (*v1.HealthServiceGetResponse, error)
+	// Returns the health status of the platform's dependencies.
+	GetDependencies(context.Context, *v1.HealthServiceGetDependenciesRequest) (*v1.HealthServiceGetDependenciesResponse, error)
 }
 
 // NewHealthServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -96,10 +119,18 @@ func NewHealthServiceHandler(svc HealthServiceHandler, opts ...connect.HandlerOp
 		connect.WithSchema(healthServiceMethods.ByName("Get")),
 		connect.WithHandlerOptions(opts...),
 	)
+	healthServiceGetDependenciesHandler := connect.NewUnaryHandlerSimple(
+		HealthServiceGetDependenciesProcedure,
+		svc.GetDependencies,
+		connect.WithSchema(healthServiceMethods.ByName("GetDependencies")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/fits.api.v1.HealthService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case HealthServiceGetProcedure:
 			healthServiceGetHandler.ServeHTTP(w, r)
+		case HealthServiceGetDependenciesProcedure:
+			healthServiceGetDependenciesHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -111,4 +142,8 @@ type UnimplementedHealthServiceHandler struct{}
 
 func (UnimplementedHealthServiceHandler) Get(context.Context, *v1.HealthServiceGetRequest) (*v1.HealthServiceGetResponse, error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.v1.HealthService.Get is not implemented"))
+}
+
+func (UnimplementedHealthServiceHandler) GetDependencies(context.Context, *v1.HealthServiceGetDependenciesRequest) (*v1.HealthServiceGetDependenciesResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.v1.HealthService.GetDependencies is not implemented"))
 }
