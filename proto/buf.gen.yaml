@@ -19,6 +19,10 @@ plugins:
   - remote: buf.build/connectrpc/go:v1.20.0
     out: ../go
     opt: paths=source_relative,simple
+  - local:
+      - ./protoc-gen-go-mcp
+    out: ../go
+    opt: paths=source_relative,simple
   # python
   - remote: buf.build/protocolbuffers/python:v36.1
     out: ../python

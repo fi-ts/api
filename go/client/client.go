@@ -4,10 +4,14 @@ package client
 import (
 	"connectrpc.com/connect"
 	compress "github.com/klauspost/connect-compress/v2"
+	"github.com/redpanda-data/protoc-gen-go-mcp/pkg/runtime"
 
 	"github.com/fi-ts/api/go/fits/api/mvm/v1/mvmv1connect"
+	"github.com/fi-ts/api/go/fits/api/mvm/v1/mvmv1mcp"
 	"github.com/fi-ts/api/go/fits/api/pcvm/v1/pcvmv1connect"
+	"github.com/fi-ts/api/go/fits/api/pcvm/v1/pcvmv1mcp"
 	"github.com/fi-ts/api/go/fits/api/v1/apiv1connect"
+	"github.com/fi-ts/api/go/fits/api/v1/apiv1mcp"
 )
 
 type (
@@ -29,6 +33,8 @@ type (
 		MVM() mvmv1connect.MVMServiceClient
 		OS() mvmv1connect.OSServiceClient
 		VLAN() mvmv1connect.VLANServiceClient
+
+		EnableMCP(mcps runtime.MCPServer, opts ...runtime.Option)
 	}
 
 	apimvmv1 struct {
@@ -43,6 +49,8 @@ type (
 
 	Apipcvmv1 interface {
 		PublicCloudVM() pcvmv1connect.PublicCloudVMServiceClient
+
+		EnableMCP(mcps runtime.MCPServer, opts ...runtime.Option)
 	}
 
 	apipcvmv1 struct {
@@ -56,6 +64,8 @@ type (
 		Tenant() apiv1connect.TenantServiceClient
 		Token() apiv1connect.TokenServiceClient
 		Version() apiv1connect.VersionServiceClient
+
+		EnableMCP(mcps runtime.MCPServer, opts ...runtime.Option)
 	}
 
 	apiv1 struct {
@@ -213,4 +223,27 @@ func (c *apiv1) Token() apiv1connect.TokenServiceClient {
 }
 func (c *apiv1) Version() apiv1connect.VersionServiceClient {
 	return c.versionservice
+}
+
+func (c *apimvmv1) EnableMCP(mcps runtime.MCPServer, opts ...runtime.Option) {
+	mvmv1mcp.ForwardToContactServiceClient(mcps, c.Contact(), opts...)
+	mvmv1mcp.ForwardToDomainServiceClient(mcps, c.Domain(), opts...)
+	mvmv1mcp.ForwardToLDAPServiceClient(mcps, c.LDAP(), opts...)
+	mvmv1mcp.ForwardToLocationServiceClient(mcps, c.Location(), opts...)
+	mvmv1mcp.ForwardToMVMServiceClient(mcps, c.MVM(), opts...)
+	mvmv1mcp.ForwardToOSServiceClient(mcps, c.OS(), opts...)
+	mvmv1mcp.ForwardToVLANServiceClient(mcps, c.VLAN(), opts...)
+}
+
+func (c *apipcvmv1) EnableMCP(mcps runtime.MCPServer, opts ...runtime.Option) {
+	pcvmv1mcp.ForwardToPublicCloudVMServiceClient(mcps, c.PublicCloudVM(), opts...)
+}
+
+func (c *apiv1) EnableMCP(mcps runtime.MCPServer, opts ...runtime.Option) {
+	apiv1mcp.ForwardToHealthServiceClient(mcps, c.Health(), opts...)
+	apiv1mcp.ForwardToMethodServiceClient(mcps, c.Method(), opts...)
+	apiv1mcp.ForwardToProjectServiceClient(mcps, c.Project(), opts...)
+	apiv1mcp.ForwardToTenantServiceClient(mcps, c.Tenant(), opts...)
+	apiv1mcp.ForwardToTokenServiceClient(mcps, c.Token(), opts...)
+	apiv1mcp.ForwardToVersionServiceClient(mcps, c.Version(), opts...)
 }
