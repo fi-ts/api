@@ -111,6 +111,18 @@ export type Token = Message<"fits.api.v1.Token"> & {
      * @generated from field: string email = 14;
      */
     email: string;
+    /**
+     * FirstName is the given name of the user the token was issued for.
+     *
+     * @generated from field: string first_name = 15;
+     */
+    firstName: string;
+    /**
+     * LastName is the family name of the user the token was issued for.
+     *
+     * @generated from field: string last_name = 16;
+     */
+    lastName: string;
 };
 /**
  * Describes the message fits.api.v1.Token.
