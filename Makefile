@@ -7,7 +7,7 @@ LOCALBIN ?= $(shell pwd)/bin
 
 all: proto generate fmt test build
 
-release: proto generate test build
+release: proto generate fmt test build
 
 .PHONY: proto
 proto: protolint
