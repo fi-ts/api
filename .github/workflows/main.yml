@@ -35,7 +35,7 @@ jobs:
 
       - name: Ensure Git is clean
         run: |
-          git diff --exit-code
+          git diff --exit-code --compact-summary
 
   build:
     name: Build
