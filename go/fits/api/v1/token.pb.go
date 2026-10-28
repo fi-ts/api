@@ -117,7 +117,11 @@ type Token struct {
 	// Name is the display name of the user the token was issued for.
 	Name string `protobuf:"bytes,13,opt,name=name,proto3" json:"name,omitempty"`
 	// Email is the email address of the user the token was issued for.
-	Email         string `protobuf:"bytes,14,opt,name=email,proto3" json:"email,omitempty"`
+	Email string `protobuf:"bytes,14,opt,name=email,proto3" json:"email,omitempty"`
+	// FirstName is the given name of the user the token was issued for.
+	FirstName string `protobuf:"bytes,15,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	// LastName is the family name of the user the token was issued for.
+	LastName      string `protobuf:"bytes,16,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -246,6 +250,20 @@ func (x *Token) GetName() string {
 func (x *Token) GetEmail() string {
 	if x != nil {
 		return x.Email
+	}
+	return ""
+}
+
+func (x *Token) GetFirstName() string {
+	if x != nil {
+		return x.FirstName
+	}
+	return ""
+}
+
+func (x *Token) GetLastName() string {
+	if x != nil {
+		return x.LastName
 	}
 	return ""
 }
@@ -960,7 +978,7 @@ var File_fits_api_v1_token_proto protoreflect.FileDescriptor
 
 const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\n" +
-	"\x17fits/api/v1/token.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf4\b\n" +
+	"\x17fits/api/v1/token.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc4\t\n" +
 	"\x05Token\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x1e\n" +
 	"\x04user\x18\x02 \x01(\tB\n" +
@@ -978,7 +996,10 @@ const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\roperator_role\x18\v \x01(\x0e2\x19.fits.api.v1.OperatorRoleB\b\xbaH\x05\x82\x01\x02\x10\x01H\x00R\foperatorRole\x88\x01\x01\x121\n" +
 	"\traw_roles\x18\f \x03(\tB\x14\xbaH\x11\x92\x01\x0eФ\xb3\xb1\x02\x01ؤ\xb3\xb1\x02\x01\x18\x01R\brawRoles\x12\x1c\n" +
 	"\x04name\x18\r \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\x04name\x12\x1e\n" +
-	"\x05email\x18\x0e \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\x05email\x1aY\n" +
+	"\x05email\x18\x0e \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\x05email\x12'\n" +
+	"\n" +
+	"first_name\x18\x0f \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\tfirstName\x12%\n" +
+	"\tlast_name\x18\x10 \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\blastName\x1aY\n" +
 	"\x11ProjectRolesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12.\n" +
 	"\x05value\x18\x02 \x01(\x0e2\x18.fits.api.v1.ProjectRoleR\x05value:\x028\x01\x1aW\n" +
