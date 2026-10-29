@@ -829,23 +829,7 @@
             <ul>
               
                 <li>
-                  <a href="#fits.api.v1.Dependencies"><span class="badge">M</span>Dependencies</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.v1.DependencyHealth"><span class="badge">M</span>DependencyHealth</a>
-                </li>
-              
-                <li>
                   <a href="#fits.api.v1.Health"><span class="badge">M</span>Health</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.v1.HealthServiceGetDependenciesRequest"><span class="badge">M</span>HealthServiceGetDependenciesRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.v1.HealthServiceGetDependenciesResponse"><span class="badge">M</span>HealthServiceGetDependenciesResponse</a>
                 </li>
               
                 <li>
@@ -860,10 +844,6 @@
                   <a href="#fits.api.v1.HealthStatus"><span class="badge">M</span>HealthStatus</a>
                 </li>
               
-              
-                <li>
-                  <a href="#fits.api.v1.Dependency"><span class="badge">E</span>Dependency</a>
-                </li>
               
                 <li>
                   <a href="#fits.api.v1.Service"><span class="badge">E</span>Service</a>
@@ -5106,68 +5086,6 @@ form pre-checks; the update endpoint validates again before executing.</p></td>
       <p></p>
 
       
-        <h3 id="fits.api.v1.Dependencies">Dependencies</h3>
-        <p>Dependencies reports the health status of all dependencies.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>dependencies</td>
-                  <td><a href="#fits.api.v1.DependencyHealth">DependencyHealth</a></td>
-                  <td>repeated</td>
-                  <td><p>Dependencies contains the health of all individual dependencies </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="fits.api.v1.DependencyHealth">DependencyHealth</h3>
-        <p>DependencyHealth represents the health status of one dependency.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>dependency</td>
-                  <td><a href="#fits.api.v1.Dependency">Dependency</a></td>
-                  <td></td>
-                  <td><p>Dependency is the dependency this health status is reported for </p></td>
-                </tr>
-              
-                <tr>
-                  <td>status</td>
-                  <td><a href="#fits.api.v1.ServiceStatus">ServiceStatus</a></td>
-                  <td></td>
-                  <td><p>Status is the status of this dependency </p></td>
-                </tr>
-              
-                <tr>
-                  <td>message</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Message describes the reason for the unhealthy status if possible </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="fits.api.v1.Health">Health</h3>
         <p>Health reports the health status of all services.</p>
 
@@ -5183,37 +5101,6 @@ form pre-checks; the update endpoint validates again before executing.</p></td>
                   <td><a href="#fits.api.v1.HealthStatus">HealthStatus</a></td>
                   <td>repeated</td>
                   <td><p>Services contains the health of all individual services </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="fits.api.v1.HealthServiceGetDependenciesRequest">HealthServiceGetDependenciesRequest</h3>
-        <p>HealthServiceGetDependenciesRequest is the request payload for getting the health of the dependencies.</p>
-
-        
-
-        
-      
-        <h3 id="fits.api.v1.HealthServiceGetDependenciesResponse">HealthServiceGetDependenciesResponse</h3>
-        <p>HealthServiceGetDependenciesResponse is the response payload for getting the health of the dependencies.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>dependencies</td>
-                  <td><a href="#fits.api.v1.Dependencies">Dependencies</a></td>
-                  <td></td>
-                  <td><p>Dependencies contains the health of all dependencies </p></td>
                 </tr>
               
             </tbody>
@@ -5293,35 +5180,6 @@ form pre-checks; the update endpoint validates again before executing.</p></td>
         
       
 
-      
-        <h3 id="fits.api.v1.Dependency">Dependency</h3>
-        <p>Dependency defines the dependency for which the healthiness is reported.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>DEPENDENCY_UNSPECIFIED</td>
-                <td>0</td>
-                <td><p>DEPENDENCY_UNSPECIFIED is a unknown dependency</p></td>
-              </tr>
-            
-              <tr>
-                <td>DEPENDENCY_VALKEY</td>
-                <td>1</td>
-                <td><p>DEPENDENCY_VALKEY the valkey service</p></td>
-              </tr>
-            
-              <tr>
-                <td>DEPENDENCY_TENANT_APISERVER</td>
-                <td>2</td>
-                <td><p>DEPENDENCY_TENANT_APISERVER the tenant apiserver service</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
       
         <h3 id="fits.api.v1.Service">Service</h3>
         <p>Service defines the service for which the healthiness is reported.</p>
@@ -5404,13 +5262,6 @@ form pre-checks; the update endpoint validates again before executing.</p></td>
                 <td><a href="#fits.api.v1.HealthServiceGetRequest">HealthServiceGetRequest</a></td>
                 <td><a href="#fits.api.v1.HealthServiceGetResponse">HealthServiceGetResponse</a></td>
                 <td><p>Returns the health status of the platform.</p></td>
-              </tr>
-            
-              <tr>
-                <td>GetDependencies</td>
-                <td><a href="#fits.api.v1.HealthServiceGetDependenciesRequest">HealthServiceGetDependenciesRequest</a></td>
-                <td><a href="#fits.api.v1.HealthServiceGetDependenciesResponse">HealthServiceGetDependenciesResponse</a></td>
-                <td><p>Returns the health status of the platform&#39;s dependencies.</p></td>
               </tr>
             
           </tbody>

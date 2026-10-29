@@ -11,11 +11,6 @@ service HealthService {
     option (visibility) = VISIBILITY_PUBLIC;
     option (auditing) = AUDITING_EXCLUDED;
   }
-  // Returns the health status of the platform's dependencies.
-  rpc GetDependencies(HealthServiceGetDependenciesRequest) returns (HealthServiceGetDependenciesResponse) {
-    option (operator_roles) = OPERATOR_ROLE_VIEWER;
-    option (auditing) = AUDITING_EXCLUDED;
-  }
 }
 
 // ServiceStatus defines the status of a service.
@@ -56,32 +51,6 @@ message HealthStatus {
   string message = 3;
 }
 
-// Dependency defines the dependency for which the healthiness is reported.
-enum Dependency {
-  // DEPENDENCY_UNSPECIFIED is a unknown dependency
-  DEPENDENCY_UNSPECIFIED = 0;
-  // DEPENDENCY_VALKEY the valkey service
-  DEPENDENCY_VALKEY = 1 [(enum_string_value) = "valkey"];
-  // DEPENDENCY_TENANT_APISERVER the tenant apiserver service
-  DEPENDENCY_TENANT_APISERVER = 2 [(enum_string_value) = "tenant-apiserver"];
-}
-
-// Dependencies reports the health status of all dependencies.
-message Dependencies {
-  // Dependencies contains the health of all individual dependencies
-  repeated DependencyHealth dependencies = 1;
-}
-
-// DependencyHealth represents the health status of one dependency.
-message DependencyHealth {
-  // Dependency is the dependency this health status is reported for
-  Dependency dependency = 1;
-  // Status is the status of this dependency
-  ServiceStatus status = 2;
-  // Message describes the reason for the unhealthy status if possible
-  string message = 3;
-}
-
 // HealthServiceGetRequest is the request payload for getting the health of the system.
 message HealthServiceGetRequest {}
 
@@ -89,13 +58,4 @@ message HealthServiceGetRequest {}
 message HealthServiceGetResponse {
   // Health contains the overall health of the system
   Health health = 1;
-}
-
-// HealthServiceGetDependenciesRequest is the request payload for getting the health of the dependencies.
-message HealthServiceGetDependenciesRequest {}
-
-// HealthServiceGetDependenciesResponse is the response payload for getting the health of the dependencies.
-message HealthServiceGetDependenciesResponse {
-  // Dependencies contains the health of all dependencies
-  Dependencies dependencies = 1;
 }

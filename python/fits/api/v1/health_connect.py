@@ -21,9 +21,6 @@ class HealthService(Protocol):
     async def get(self, request: fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
-    async def get_dependencies(self, request: fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetDependenciesRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetDependenciesResponse:
-        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-
 
 class HealthServiceASGIApplication(ConnectASGIApplication[HealthService]):
     def __init__(self, service: HealthService | AsyncGenerator[HealthService], *, interceptors: Iterable[Interceptor]=(), read_max_bytes: int | None = None, compressions: Iterable[Compression] | None = None, codecs: Iterable[Codec] | None = None) -> None:
@@ -39,16 +36,6 @@ class HealthServiceASGIApplication(ConnectASGIApplication[HealthService]):
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=svc.get,
-                ),
-                "/fits.api.v1.HealthService/GetDependencies": Endpoint.unary(
-                    method=MethodInfo(
-                        name="GetDependencies",
-                        service_name="fits.api.v1.HealthService",
-                        input=fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetDependenciesRequest,
-                        output=fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetDependenciesResponse,
-                        idempotency_level=IdempotencyLevel.UNKNOWN,
-                    ),
-                    function=svc.get_dependencies,
                 ),
             },
             interceptors=interceptors,
@@ -84,34 +71,12 @@ class HealthServiceClient(ConnectClient):
             timeout_ms=timeout_ms,
         )
 
-    async def get_dependencies(
-        self,
-        request: fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetDependenciesRequest,
-        *,
-        headers: Headers | Mapping[str, str] | None = None,
-        timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetDependenciesResponse:
-        return await self.execute_unary(
-            request=request,
-            method=MethodInfo(
-                name="GetDependencies",
-                service_name="fits.api.v1.HealthService",
-                input=fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetDependenciesRequest,
-                output=fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetDependenciesResponse,
-                idempotency_level=IdempotencyLevel.UNKNOWN,
-            ),
-            headers=headers,
-            timeout_ms=timeout_ms,
-        )
-
 
 
 
 
 class HealthServiceSync(Protocol):
     def get(self, request: fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetResponse:
-        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-    def get_dependencies(self, request: fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetDependenciesRequest, ctx: RequestContext) -> fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetDependenciesResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
 
@@ -128,16 +93,6 @@ class HealthServiceWSGIApplication(ConnectWSGIApplication):
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=service.get,
-                ),
-                "/fits.api.v1.HealthService/GetDependencies": EndpointSync.unary(
-                    method=MethodInfo(
-                        name="GetDependencies",
-                        service_name="fits.api.v1.HealthService",
-                        input=fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetDependenciesRequest,
-                        output=fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetDependenciesResponse,
-                        idempotency_level=IdempotencyLevel.UNKNOWN,
-                    ),
-                    function=service.get_dependencies,
                 ),
             },
             interceptors=interceptors,
@@ -167,26 +122,6 @@ class HealthServiceClientSync(ConnectClientSync):
                 service_name="fits.api.v1.HealthService",
                 input=fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetRequest,
                 output=fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetResponse,
-                idempotency_level=IdempotencyLevel.UNKNOWN,
-            ),
-            headers=headers,
-            timeout_ms=timeout_ms,
-        )
-
-    def get_dependencies(
-        self,
-        request: fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetDependenciesRequest,
-        *,
-        headers: Headers | Mapping[str, str] | None = None,
-        timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetDependenciesResponse:
-        return self.execute_unary(
-            request=request,
-            method=MethodInfo(
-                name="GetDependencies",
-                service_name="fits.api.v1.HealthService",
-                input=fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetDependenciesRequest,
-                output=fits_dot_api_dot_v1_dot_health__pb2.HealthServiceGetDependenciesResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
