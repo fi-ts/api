@@ -26,7 +26,9 @@ _install-protoc-gen-mcp:
 	cd /tmp
 	rm -rf protoc-gen-go-mcp
 	# TODO once https://github.com/redpanda-data/protoc-gen-go-mcp/pull/51 is merged, we can use upstream
-	git clone --single-branch --branch support-connect-simple https://github.com/majst01/protoc-gen-go-mcp.git
+	# Check out the support-connect-simple branch of https://github.com/majst01/protoc-gen-go-mcp.git
+	git clone https://github.com/majst01/protoc-gen-go-mcp.git
+	git -C protoc-gen-go-mcp checkout 3f67e6f557ed72f0bbf872861299f577790c6cb0
 	cd protoc-gen-go-mcp
 	# TODO GOEXPERIMENT can be removed once upgraded to go-1.27
 	CGO_ENABLED=0 GOEXPERIMENT=nojsonv2 go build ./cmd/protoc-gen-go-mcp
