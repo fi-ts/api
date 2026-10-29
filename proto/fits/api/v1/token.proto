@@ -86,6 +86,10 @@ message Token {
   string name = 13 [(buf.validate.field).string = {max_len: 256}];
   // Email is the email address of the user the token was issued for.
   string email = 14 [(buf.validate.field).string = {max_len: 256}];
+  // FirstName is the given name of the user the token was issued for.
+  string first_name = 15 [(buf.validate.field).string = {max_len: 256}];
+  // LastName is the family name of the user the token was issued for.
+  string last_name = 16 [(buf.validate.field).string = {max_len: 256}];
 }
 
 // TokenType specifies different use cases of tokens
