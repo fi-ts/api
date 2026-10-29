@@ -94,7 +94,7 @@ const (
 	Operation_OPERATION_UPDATING Operation = 3
 	// OPERATION_DELETED: the VM is deleted.
 	Operation_OPERATION_DELETED Operation = 4
-	// OPERATION_ERROR: the
+	// OPERATION_ERROR: the VM is in error state.
 	Operation_OPERATION_ERROR Operation = 5
 )
 
@@ -1231,9 +1231,9 @@ const file_fits_api_pcvm_v1_pcvm_proto_rawDesc = "" +
 	"\vSIZE_MEDIUM\x10\x02\x1a\n" +
 	"\x82\xb2\x19\x06medium\x12\x19\n" +
 	"\n" +
-	"SIZE_LARGE\x10\x03\x1a\t\x82\xb2\x19\x05large2\xc2\a\n" +
-	"\x14PublicCloudVMService\x12w\n" +
-	"\x03Get\x120.fits.api.pcvm.v1.PublicCloudVMServiceGetRequest\x1a1.fits.api.pcvm.v1.PublicCloudVMServiceGetResponse\"\v\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x12\x7f\n" +
+	"SIZE_LARGE\x10\x03\x1a\t\x82\xb2\x19\x05large2\xc6\a\n" +
+	"\x14PublicCloudVMService\x12{\n" +
+	"\x03Get\x120.fits.api.pcvm.v1.PublicCloudVMServiceGetRequest\x1a1.fits.api.pcvm.v1.PublicCloudVMServiceGetResponse\"\x0f\xca\xf3\x18\x03\x01\x02\x03\xd0\xf3\x18\x01\xe0\xf3\x18\x02\x12\x7f\n" +
 	"\x06Create\x123.fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest\x1a4.fits.api.pcvm.v1.PublicCloudVMServiceCreateResponse\"\n" +
 	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12z\n" +
 	"\x04List\x121.fits.api.pcvm.v1.PublicCloudVMServiceListRequest\x1a2.fits.api.pcvm.v1.PublicCloudVMServiceListResponse\"\v\xca\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x12\x7f\n" +

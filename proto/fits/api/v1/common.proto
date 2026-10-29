@@ -35,16 +35,6 @@ enum ProjectRole {
   PROJECT_ROLE_VIEWER = 3;
 }
 
-// OperatorRole specifies what role a logged in user needs to call this operator service
-enum OperatorRole {
-  // OPERATOR_ROLE_UNSPECIFIED is not specified
-  OPERATOR_ROLE_UNSPECIFIED = 0;
-  // OPERATOR_ROLE_EDITOR the logged in user needs at least editor role to call this method
-  OPERATOR_ROLE_EDITOR = 1;
-  // OPERATOR_ROLE_VIEWER the logged in user needs at least viewer role to call this method
-  OPERATOR_ROLE_VIEWER = 2;
-}
-
 // Visibility of a method
 enum Visibility {
   // VISIBILITY_UNSPECIFIED is not defined
@@ -67,14 +57,26 @@ enum Auditing {
   AUDITING_EXCLUDED = 2;
 }
 
+// The mode of the role.
+// Determines how to enforce the different roles by context.
+enum RoleMode {
+  // The default mode of the role. Any context is sufficient.
+  ROLE_MODE_UNSPECIFIED = 0;
+  // The tenant must be the provider tenant.
+  ROLE_MODE_PROVIDER = 1;
+  // The action must be on behalf of a tenant.
+  // Requires the use to be in the provider tenant.
+  ROLE_MODE_ON_BEHALF = 2;
+}
+
 // MethodOptions to specify specific annotations to methods
 extend google.protobuf.MethodOptions {
   // TenantRoles are used to define which tenant role a logged in user must provide to call this method
   repeated TenantRole tenant_roles = 51000;
   // ProjectRoles are used to define which project role a logged in user must provide to call this method
   repeated ProjectRole project_roles = 51001;
-  // OperatorRoles are used to define which operator role a logged in user must provide to call this method
-  repeated OperatorRole operator_roles = 51002;
+  // The mode of the role. Determines how to enforce the roles above by context.
+  RoleMode role_mode = 51002;
   // Visibility defines the visibility of this method, this is used to have public or self visible methods
   Visibility visibility = 51003;
   // Auditing defines if calls to this method should be audited or not

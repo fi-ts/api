@@ -14,6 +14,7 @@ service PublicCloudVMService {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_VIEWER;
     option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
+    option (fits.api.v1.role_mode) = ROLE_MODE_PROVIDER;
   }
 
   // Creates a new VM.
@@ -117,7 +118,7 @@ enum Operation {
   OPERATION_UPDATING = 3 [(fits.api.v1.enum_string_value) = "updating"];
   // OPERATION_DELETED: the VM is deleted.
   OPERATION_DELETED = 4 [(fits.api.v1.enum_string_value) = "deleted"];
-  // OPERATION_ERROR: the
+  // OPERATION_ERROR: the VM is in error state.
   OPERATION_ERROR = 5 [(fits.api.v1.enum_string_value) = "error"];
 }
 

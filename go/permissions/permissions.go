@@ -19,22 +19,19 @@ type (
 
 	Auditable map[string]bool
 
-	Operator map[v1.OperatorRole]Methods
-	Tenant   map[v1.TenantRole]Methods
-	Project  map[v1.ProjectRole]Methods
+	Tenant  map[v1.TenantRole]Methods
+	Project map[v1.ProjectRole]Methods
 
 	// Roles
 	Roles struct {
-		Operator Operator `json:"operator,omitempty"`
-		Tenant   Tenant   `json:"tenant,omitempty"`
-		Project  Project  `json:"project,omitempty"`
+		Tenant  Tenant  `json:"tenant,omitempty"`
+		Project Project `json:"project,omitempty"`
 	}
 
 	Visibility struct {
-		Public   map[string]bool `json:"public,omitempty"`
-		Self     map[string]bool `json:"self,omitempty"`
-		Operator map[string]bool `json:"operator,omitempty"`
-		Tenant   map[string]bool `json:"tenant,omitempty"`
-		Project  map[string]bool `json:"project,omitempty"`
+		Public  map[string]bool `json:"public,omitempty"`
+		Self    map[string]bool `json:"self,omitempty"`
+		Tenant  map[string]bool `json:"tenant,omitempty"`
+		Project map[string]bool `json:"project,omitempty"`
 	}
 )

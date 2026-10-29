@@ -303,15 +303,15 @@
                 </li>
               
                 <li>
-                  <a href="#fits.api.v1.OperatorRole"><span class="badge">E</span>OperatorRole</a>
-                </li>
-              
-                <li>
                   <a href="#fits.api.v1.OptimisticLockingStrategy"><span class="badge">E</span>OptimisticLockingStrategy</a>
                 </li>
               
                 <li>
                   <a href="#fits.api.v1.ProjectRole"><span class="badge">E</span>ProjectRole</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.RoleMode"><span class="badge">E</span>RoleMode</a>
                 </li>
               
                 <li>
@@ -668,6 +668,29 @@
         
           
           <li>
+            <a href="#fits%2fapi%2fmvm%2fv1%2fmvm_provider.proto">fits/api/mvm/v1/mvm_provider.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.ProviderMVMServiceCreateRequest"><span class="badge">M</span>ProviderMVMServiceCreateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.ProviderMVMServiceCreateResponse"><span class="badge">M</span>ProviderMVMServiceCreateResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.ProviderMVMService"><span class="badge">S</span>ProviderMVMService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#fits%2fapi%2fmvm%2fv1%2fos.proto">fits/api/mvm/v1/os.proto</a>
             <ul>
               
@@ -869,10 +892,6 @@
               
                 <li>
                   <a href="#fits.api.v1.MethodPermission"><span class="badge">M</span>MethodPermission</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.v1.OperatorPermissions"><span class="badge">M</span>OperatorPermissions</a>
                 </li>
               
                 <li>
@@ -1544,35 +1563,6 @@ must be part of the update request to ensure optimistic locking </p></td>
           </tbody>
         </table>
       
-        <h3 id="fits.api.v1.OperatorRole">OperatorRole</h3>
-        <p>OperatorRole specifies what role a logged in user needs to call this operator service</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>OPERATOR_ROLE_UNSPECIFIED</td>
-                <td>0</td>
-                <td><p>OPERATOR_ROLE_UNSPECIFIED is not specified</p></td>
-              </tr>
-            
-              <tr>
-                <td>OPERATOR_ROLE_EDITOR</td>
-                <td>1</td>
-                <td><p>OPERATOR_ROLE_EDITOR the logged in user needs at least editor role to call this method</p></td>
-              </tr>
-            
-              <tr>
-                <td>OPERATOR_ROLE_VIEWER</td>
-                <td>2</td>
-                <td><p>OPERATOR_ROLE_VIEWER the logged in user needs at least viewer role to call this method</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
         <h3 id="fits.api.v1.OptimisticLockingStrategy">OptimisticLockingStrategy</h3>
         <p>OptimisticLockingStrategy defines how optimistic locking should be handled.</p><p>It defaults to client side, which requires the UpdatedAt timestamp to be provided</p>
         <table class="enum-table">
@@ -1633,6 +1623,36 @@ and fetches the most recent entity before updating with the given values with th
                 <td>PROJECT_ROLE_VIEWER</td>
                 <td>3</td>
                 <td><p>PROJECT_ROLE_VIEWER the logged in user needs at least viewer role to call this method</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="fits.api.v1.RoleMode">RoleMode</h3>
+        <p>The mode of the role.</p><p>Determines how to enforce the different roles by context.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>ROLE_MODE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>The default mode of the role. Any context is sufficient.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ROLE_MODE_PROVIDER</td>
+                <td>1</td>
+                <td><p>The tenant must be the provider tenant.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ROLE_MODE_ON_BEHALF</td>
+                <td>2</td>
+                <td><p>The action must be on behalf of a tenant.
+Requires the use to be in the provider tenant.</p></td>
               </tr>
             
           </tbody>
@@ -1736,19 +1756,19 @@ having a direct membership within the tenant.</p></td>
               </tr>
             
               <tr>
-                <td>operator_roles</td>
-                <td><a href="#fits.api.v1.OperatorRole">OperatorRole</a></td>
-                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
-                <td>51002</td>
-                <td><p>OperatorRoles are used to define which operator role a logged in user must provide to call this method</p></td>
-              </tr>
-            
-              <tr>
                 <td>project_roles</td>
                 <td><a href="#fits.api.v1.ProjectRole">ProjectRole</a></td>
                 <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
                 <td>51001</td>
                 <td><p>ProjectRoles are used to define which project role a logged in user must provide to call this method</p></td>
+              </tr>
+            
+              <tr>
+                <td>role_mode</td>
+                <td><a href="#fits.api.v1.RoleMode">RoleMode</a></td>
+                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
+                <td>51002</td>
+                <td><p>The mode of the role. Determines how to enforce the roles above by context.</p></td>
               </tr>
             
               <tr>
@@ -4049,6 +4069,101 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
     
       
       <div class="file-heading">
+        <h2 id="fits/api/mvm/v1/mvm_provider.proto">fits/api/mvm/v1/mvm_provider.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.mvm.v1.ProviderMVMServiceCreateRequest">ProviderMVMServiceCreateRequest</h3>
+        <p>Request for extended MVM create requests.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#fits.api.mvm.v1.MVMServiceCreateRequest">MVMServiceCreateRequest</a></td>
+                  <td></td>
+                  <td><p>The original create request. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>billable</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Determines if the MVM is billable. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>billable_from</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p>The start date when the MVM will be billable. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.ProviderMVMServiceCreateResponse">ProviderMVMServiceCreateResponse</h3>
+        <p>Response for extended MVM create requests.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>response</td>
+                  <td><a href="#fits.api.mvm.v1.MVMServiceCreateResponse">MVMServiceCreateResponse</a></td>
+                  <td></td>
+                  <td><p>The original create response. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="fits.api.mvm.v1.ProviderMVMService">ProviderMVMService</h3>
+        <p>ProviderMVMService provides extended managed VM (MVM) operations for the provider.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Create</td>
+                <td><a href="#fits.api.mvm.v1.ProviderMVMServiceCreateRequest">ProviderMVMServiceCreateRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.ProviderMVMServiceCreateResponse">ProviderMVMServiceCreateResponse</a></td>
+                <td><p>Creates a new MVM.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
         <h2 id="fits/api/mvm/v1/os.proto">fits/api/mvm/v1/os.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
@@ -4935,7 +5050,7 @@ Downgrades are not possible. </p></td>
               <tr>
                 <td>OPERATION_ERROR</td>
                 <td>5</td>
-                <td><p>OPERATION_ERROR: the</p></td>
+                <td><p>OPERATION_ERROR: the VM is in error state.</p></td>
               </tr>
             
           </tbody>
@@ -5312,30 +5427,6 @@ otherwise either a projectid or a tenant login should be specified </p></td>
 
         
       
-        <h3 id="fits.api.v1.OperatorPermissions">OperatorPermissions</h3>
-        <p>OperatorPermissions carries operator method permissions.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>methods</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>Methods which should be accessible. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="fits.api.v1.PermissionsByVisibility">PermissionsByVisibility</h3>
         <p>PermissionsByVisibility contains method permissions by visibility.</p>
 
@@ -5372,13 +5463,6 @@ otherwise either a projectid or a tenant login should be specified </p></td>
                   <td><a href="#fits.api.v1.TenantPermissions">TenantPermissions</a></td>
                   <td></td>
                   <td><p>TenantPermissions carries tenant method permissions. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>operator</td>
-                  <td><a href="#fits.api.v1.OperatorPermissions">OperatorPermissions</a></td>
-                  <td></td>
-                  <td><p>OperatorPermissions carries operator method permissions. </p></td>
                 </tr>
               
             </tbody>
@@ -5578,13 +5662,6 @@ Asterisk (*) can be specified to match any subject. </p></td>
                   <td><a href="#fits.api.v1.Token.TenantRolesEntry">Token.TenantRolesEntry</a></td>
                   <td>repeated</td>
                   <td><p>TenantRoles associates a tenant id with the corresponding role of the token owner. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>operator_role</td>
-                  <td><a href="#fits.api.v1.OperatorRole">OperatorRole</a></td>
-                  <td>optional</td>
-                  <td><p>OperatorRole defines the operator role of the token owner </p></td>
                 </tr>
               
                 <tr>
@@ -5944,13 +6021,6 @@ Asterisk (*) can be specified to match any subject. </p></td>
                   <td><a href="#fits.api.v1.MethodServiceTokenScopedListResponse.TenantRolesEntry">MethodServiceTokenScopedListResponse.TenantRolesEntry</a></td>
                   <td>repeated</td>
                   <td><p>TenantRoles associates a tenant ID with the corresponding role of the token owner </p></td>
-                </tr>
-              
-                <tr>
-                  <td>operator_role</td>
-                  <td><a href="#fits.api.v1.OperatorRole">OperatorRole</a></td>
-                  <td>optional</td>
-                  <td><p>OperatorRole defines the operator role of the token owner </p></td>
                 </tr>
               
             </tbody>

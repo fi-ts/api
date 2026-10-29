@@ -18,7 +18,6 @@ import (
 type (
 	tenant     struct{}
 	project    struct{}
-	operator   struct{}
 	visibility struct{}
 )
 
@@ -36,14 +35,6 @@ func (project) Get(methodOpts []*descriptorpb.UninterpretedOption) (scopes []str
 		v1.ProjectRole_PROJECT_ROLE_ADMIN.String(),
 		v1.ProjectRole_PROJECT_ROLE_EDITOR.String(),
 		v1.ProjectRole_PROJECT_ROLE_VIEWER.String(),
-	})
-	return
-}
-
-func (operator) Get(methodOpts []*descriptorpb.UninterpretedOption) (scopes []string) {
-	scopes = getScopes(methodOpts, []string{
-		v1.OperatorRole_OPERATOR_ROLE_EDITOR.String(),
-		v1.OperatorRole_OPERATOR_ROLE_VIEWER.String(),
 	})
 	return
 }
