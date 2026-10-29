@@ -29,8 +29,10 @@ enum ServiceStatus {
 enum Service {
   // SERVICE_UNSPECIFIED is a unknown service
   SERVICE_UNSPECIFIED = 0;
-  // SERVICE_K8S the kubernetes service
-  SERVICE_K8S = 1 [(enum_string_value) = "k8s"];
+  // SERVICE_MVM the managed vm service
+  SERVICE_MVM = 1 [(enum_string_value) = "mvm"];
+  // SERVICE_PCVM the public cloud vm service
+  SERVICE_PCVM = 2 [(enum_string_value) = "pcvm"];
 }
 
 // Health reports the health status of all services.
@@ -41,22 +43,12 @@ message Health {
 
 // HealthStatus represents the health status of one service.
 message HealthStatus {
-  // Name is the name of the service
-  Service name = 1;
+  // Service is the service this health status is reported for
+  Service service = 1;
   // Status is the status of this service
   ServiceStatus status = 2;
   // Message describes the reason for the unhealthy status if possible
   string message = 3;
-  // Partitions describes the health of the service by partition
-  map<string, PartitionHealth> partitions = 4;
-}
-
-// PartitionHealth represents the status of a specific service in this partition.
-message PartitionHealth {
-  // Status is the health status of the service in this partition
-  ServiceStatus status = 1;
-  // Message describes the reason for the unhealthy status if possible
-  string message = 2;
 }
 
 // HealthServiceGetRequest is the request payload for getting the health of the system.
