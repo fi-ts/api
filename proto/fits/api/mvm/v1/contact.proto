@@ -82,6 +82,9 @@ message ContactServiceCreateRequest {
 }
 
 // Response for contact create requests.
+// TODO: check whether create is really asynchronous; if it completes
+// synchronously, this response should return the created Contact instead
+// of just its UUID.
 message ContactServiceCreateResponse {
   // UUID of the created contact.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
@@ -108,7 +111,15 @@ message ContactServiceUpdateRequest {
 }
 
 // Response for Update; an empty response means the change was accepted.
-message ContactServiceUpdateResponse {}
+// TODO: check whether update is really asynchronous. If it completes
+// synchronously, returning the updated Contact here is correct. If it is
+// asynchronous, this response should become a minimal ack instead, because
+// the returned entity would only be a snapshot at acceptance time and
+// clients must still poll List for the final state.
+message ContactServiceUpdateResponse {
+  // The updated Contact.
+  Contact contact = 1;
+}
 
 // ContactServiceDeleteRequest is the request payload for a contact delete request.
 message ContactServiceDeleteRequest {
@@ -118,5 +129,5 @@ message ContactServiceDeleteRequest {
   string uuid = 2 [(buf.validate.field).string.uuid = true];
 }
 
-// Response for Delete; an empty response means the cancellation was accepted.
+// Response for Delete; an empty response means the deletion was accepted.
 message ContactServiceDeleteResponse {}

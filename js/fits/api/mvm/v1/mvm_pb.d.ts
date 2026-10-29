@@ -1,5 +1,5 @@
 import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import type { Labels, Meta } from "../../v1/common_pb.js";
+import type { Labels, Meta, UpdateMeta } from "../../v1/common_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file fits/api/mvm/v1/mvm.proto.
@@ -241,9 +241,9 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
     /**
      * Service class.
      *
-     * @generated from field: fits.api.mvm.v1.ServiceClass serviceclass = 15;
+     * @generated from field: fits.api.mvm.v1.ServiceClass service_class = 15;
      */
-    serviceclass: ServiceClass;
+    serviceClass: ServiceClass;
     /**
      * OS-specific configuration.
      *
@@ -461,9 +461,9 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
     /**
      * Service class; only certain combinations with availability are valid.
      *
-     * @generated from field: fits.api.mvm.v1.ServiceClass serviceclass = 13;
+     * @generated from field: fits.api.mvm.v1.ServiceClass service_class = 13;
      */
-    serviceclass: ServiceClass;
+    serviceClass: ServiceClass;
     /**
      * OS type and its configuration.
      *
@@ -623,6 +623,88 @@ export type MVMServiceCreateResponse = Message<"fits.api.mvm.v1.MVMServiceCreate
  * Use `create(MVMServiceCreateResponseSchema)` to create a new message.
  */
 export declare const MVMServiceCreateResponseSchema: GenMessage<MVMServiceCreateResponse>;
+/**
+ * Request to trigger the update of an existing MVM.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceUpdateRequest
+ */
+export type MVMServiceUpdateRequest = Message<"fits.api.mvm.v1.MVMServiceUpdateRequest"> & {
+    /**
+     * UUID of the MVM to update.
+     *
+     * @generated from field: string uuid = 1;
+     */
+    uuid: string;
+    /**
+     * UUID of the project this MVM belongs to.
+     *
+     * @generated from field: string project_uuid = 2;
+     */
+    projectUuid: string;
+    /**
+     * Order reference for this operation.
+     *
+     * @generated from field: string order_number = 3;
+     */
+    orderNumber: string;
+    /**
+     * Timestamp and strategy for this update.
+     *
+     * @generated from field: fits.api.v1.UpdateMeta update_meta = 4;
+     */
+    updateMeta?: UpdateMeta | undefined;
+    /**
+     * Number of vCPUs (1-64); unset keeps the current value.
+     *
+     * @generated from field: optional uint32 cpu = 5;
+     */
+    cpu?: number | undefined;
+    /**
+     * RAM size in GB; unset keeps the current value.
+     *
+     * @generated from field: optional uint32 ram = 6;
+     */
+    ram?: number | undefined;
+    /**
+     * Target service class; unset keeps the current value.
+     *
+     * @generated from field: optional fits.api.mvm.v1.ServiceClass service_class = 7;
+     */
+    serviceClass?: ServiceClass | undefined;
+    /**
+     * UUID of the new contact; unset keeps the current value.
+     *
+     * @generated from field: optional string contact_uuid = 8;
+     */
+    contactUuid?: string | undefined;
+};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceUpdateRequest.
+ * Use `create(MVMServiceUpdateRequestSchema)` to create a new message.
+ */
+export declare const MVMServiceUpdateRequestSchema: GenMessage<MVMServiceUpdateRequest>;
+/**
+ * Response for Update; an empty response means the update was accepted.
+ * The update is applied asynchronously; poll Get until the state settles.
+ *
+ * PROPOSAL (open for discussion): return the MVM after accepting the update.
+ * The update is applied asynchronously, so the returned MVM reflects the
+ * accepted state and may still report STATE_UPDATING.
+ * It would be populated best-effort from a read-back after the write; if the
+ * read-back fails the field stays unset while the RPC still succeeds.
+ * Clients must not rely on it being present and must still poll Get to
+ * observe completion or failure of the asynchronous operation.
+ *
+ * optional ManagedVM mvm = 1;
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceUpdateResponse
+ */
+export type MVMServiceUpdateResponse = Message<"fits.api.mvm.v1.MVMServiceUpdateResponse"> & {};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceUpdateResponse.
+ * Use `create(MVMServiceUpdateResponseSchema)` to create a new message.
+ */
+export declare const MVMServiceUpdateResponseSchema: GenMessage<MVMServiceUpdateResponse>;
 /**
  * Request to list MVMs.
  *
@@ -1343,6 +1425,16 @@ export declare const MVMService: GenService<{
         methodKind: "unary";
         input: typeof MVMServiceCreateRequestSchema;
         output: typeof MVMServiceCreateResponseSchema;
+    };
+    /**
+     * Updates a MVM.
+     *
+     * @generated from rpc fits.api.mvm.v1.MVMService.Update
+     */
+    update: {
+        methodKind: "unary";
+        input: typeof MVMServiceUpdateRequestSchema;
+        output: typeof MVMServiceUpdateResponseSchema;
     };
     /**
      * Returns the list of all MVMs.

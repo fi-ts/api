@@ -145,6 +145,9 @@ export type ContactServiceCreateRequest = Message<"fits.api.mvm.v1.ContactServic
 export declare const ContactServiceCreateRequestSchema: GenMessage<ContactServiceCreateRequest>;
 /**
  * Response for contact create requests.
+ * TODO: check whether create is really asynchronous; if it completes
+ * synchronously, this response should return the created Contact instead
+ * of just its UUID.
  *
  * @generated from message fits.api.mvm.v1.ContactServiceCreateResponse
  */
@@ -223,10 +226,22 @@ export type ContactServiceUpdateRequest = Message<"fits.api.mvm.v1.ContactServic
 export declare const ContactServiceUpdateRequestSchema: GenMessage<ContactServiceUpdateRequest>;
 /**
  * Response for Update; an empty response means the change was accepted.
+ * TODO: check whether update is really asynchronous. If it completes
+ * synchronously, returning the updated Contact here is correct. If it is
+ * asynchronous, this response should become a minimal ack instead, because
+ * the returned entity would only be a snapshot at acceptance time and
+ * clients must still poll List for the final state.
  *
  * @generated from message fits.api.mvm.v1.ContactServiceUpdateResponse
  */
-export type ContactServiceUpdateResponse = Message<"fits.api.mvm.v1.ContactServiceUpdateResponse"> & {};
+export type ContactServiceUpdateResponse = Message<"fits.api.mvm.v1.ContactServiceUpdateResponse"> & {
+    /**
+     * The updated Contact.
+     *
+     * @generated from field: fits.api.mvm.v1.Contact contact = 1;
+     */
+    contact?: Contact | undefined;
+};
 /**
  * Describes the message fits.api.mvm.v1.ContactServiceUpdateResponse.
  * Use `create(ContactServiceUpdateResponseSchema)` to create a new message.
@@ -257,7 +272,7 @@ export type ContactServiceDeleteRequest = Message<"fits.api.mvm.v1.ContactServic
  */
 export declare const ContactServiceDeleteRequestSchema: GenMessage<ContactServiceDeleteRequest>;
 /**
- * Response for Delete; an empty response means the cancellation was accepted.
+ * Response for Delete; an empty response means the deletion was accepted.
  *
  * @generated from message fits.api.mvm.v1.ContactServiceDeleteResponse
  */

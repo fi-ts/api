@@ -5,7 +5,7 @@
 import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../../../buf/validate/validate_pb.js";
-import type { Labels, Meta } from "../../v1/common_pb.js";
+import type { Labels, Meta, UpdateMeta } from "../../v1/common_pb.js";
 import { file_fits_api_v1_common } from "../../v1/common_pb.js";
 import { file_fits_api_v1_predefined_rules } from "../../v1/predefined_rules_pb.js";
 import type { Message } from "@bufbuild/protobuf";
@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/mvm/v1/mvm.proto.
  */
 export const file_fits_api_mvm_v1_mvm: GenFile = /*@__PURE__*/
-  fileDesc("ChlmaXRzL2FwaS9tdm0vdjEvbXZtLnByb3RvEg9maXRzLmFwaS5tdm0udjEidgoMTGludXhEZXRhaWxzEikKBWRpc2tzGAEgAygLMhouZml0cy5hcGkubXZtLnYxLkxpbnV4RGlzaxIbCglsZGFwX3V1aWQYAiABKAlCCLpIBXIDsAEBEh4KCWxkYXBfZnFkbhgDIAEoCUILukgIcgbAs66xAgEifgoOV2luZG93c0RldGFpbHMSKwoFZGlza3MYASADKAsyHC5maXRzLmFwaS5tdm0udjEuV2luZG93c0Rpc2sSHQoLZG9tYWluX3V1aWQYAiABKAlCCLpIBXIDsAEBEiAKC2RvbWFpbl9mcWRuGAMgASgJQgu6SAhyBsCzrrECASJ7ChBOZXR3b3JrSW50ZXJmYWNlEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEhsKCXZsYW5fdXVpZBgCIAEoCUIIukgFcgOwAQESHgoJaXBhZGRyZXNzGAMgASgJQgu6SAhyBuizrrECARISCgptYWNhZGRyZXNzGAQgASgJIjYKF0luaXRpYWxOZXR3b3JrSW50ZXJmYWNlEhsKCXZsYW5fdXVpZBgBIAEoCUIIukgFcgOwAQEiVAoGU3RhdHVzEi8KBXN0YXRlGAEgASgOMhYuZml0cy5hcGkubXZtLnYxLlN0YXRlQgi6SAWCAQIQARIZCgRpbmZvGAIgASgJQgu6SAhyBsizrrECASKvBQoJTWFuYWdlZFZNEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEh8KBG1ldGEYAiABKAsyES5maXRzLmFwaS52MS5NZXRhEhkKBGZxZG4YAyABKAlCC7pICHIGwLOusQIBEhsKBnRlbmFudBgEIAEoCUILukgIcgbAs66xAgESHgoMcHJvamVjdF91dWlkGAUgASgJQgi6SAVyA7ABARIZCgdvc191dWlkGAYgASgJQgi6SAVyA7ABARIfCg1sb2NhdGlvbl91dWlkGAcgASgJQgi6SAVyA7ABARIeCgxjb250YWN0X3V1aWQYCCABKAlCCLpIBXIDsAEBEgsKA2NwdRgJIAEoDRILCgNyYW0YCiABKA0SDgoGYmFja3VwGAsgASgIEhEKCWVuY3J5cHRlZBgMIAEoCBInCgZzdGF0dXMYDSABKAsyFy5maXRzLmFwaS5tdm0udjEuU3RhdHVzEj0KDGF2YWlsYWJpbGl0eRgOIAEoDjIdLmZpdHMuYXBpLm12bS52MS5BdmFpbGFiaWxpdHlCCLpIBYIBAhABEj0KDHNlcnZpY2VjbGFzcxgPIAEoDjIdLmZpdHMuYXBpLm12bS52MS5TZXJ2aWNlQ2xhc3NCCLpIBYIBAhABEjoKD3dpbmRvd3NfZGV0YWlscxgQIAEoCzIfLmZpdHMuYXBpLm12bS52MS5XaW5kb3dzRGV0YWlsc0gAEjYKDWxpbnV4X2RldGFpbHMYESABKAsyHS5maXRzLmFwaS5tdm0udjEuTGludXhEZXRhaWxzSAASNQoKaW50ZXJmYWNlcxgSIAMoCzIhLmZpdHMuYXBpLm12bS52MS5OZXR3b3JrSW50ZXJmYWNlEhQKDG9yZGVyX251bWJlchgTIAEoCUIQCgdkZXRhaWxzEgW6SAIIASJOChRNVk1TZXJ2aWNlR2V0UmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIeCgxwcm9qZWN0X3V1aWQYAiABKAlCCLpIBXIDsAEBIkAKFU1WTVNlcnZpY2VHZXRSZXNwb25zZRInCgNtdm0YASABKAsyGi5maXRzLmFwaS5tdm0udjEuTWFuYWdlZFZNInYKHk1WTVNlcnZpY2VDcmVhdGVXaW5kb3dzUmVxdWVzdBIdCgtkb21haW5fdXVpZBgBIAEoCUIIukgFcgOwAQESNQoFZGlza3MYAiADKAsyHC5maXRzLmFwaS5tdm0udjEuV2luZG93c0Rpc2tCCLpIBZIBAggBInAKHE1WTVNlcnZpY2VDcmVhdGVMaW51eFJlcXVlc3QSGwoJbGRhcF91dWlkGAEgASgJQgi6SAVyA7ABARIzCgVkaXNrcxgCIAMoCzIaLmZpdHMuYXBpLm12bS52MS5MaW51eERpc2tCCLpIBZIBAggBIpcFChdNVk1TZXJ2aWNlQ3JlYXRlUmVxdWVzdBIeCgxwcm9qZWN0X3V1aWQYASABKAlCCLpIBXIDsAEBEh4KBG5hbWUYAiABKAlCC7pICHIGwLOusQIBSAGIAQESGQoHb3NfdXVpZBgDIAEoCUIIukgFcgOwAQESHwoNbG9jYXRpb25fdXVpZBgEIAEoCUIIukgFcgOwAQESHgoMY29udGFjdF91dWlkGAUgASgJQgi6SAVyA7ABARILCgNjcHUYBiABKA0SCwoDcmFtGAcgASgNEhQKDG9yZGVyX251bWJlchgIIAEoCRIjCgZsYWJlbHMYCSABKAsyEy5maXRzLmFwaS52MS5MYWJlbHMSDgoGYmFja3VwGAogASgIEhEKCWVuY3J5cHRlZBgLIAEoCBI9CgxhdmFpbGFiaWxpdHkYDCABKA4yHS5maXRzLmFwaS5tdm0udjEuQXZhaWxhYmlsaXR5Qgi6SAWCAQIQARI9CgxzZXJ2aWNlY2xhc3MYDSABKA4yHS5maXRzLmFwaS5tdm0udjEuU2VydmljZUNsYXNzQgi6SAWCAQIQARJCCgd3aW5kb3dzGA4gASgLMi8uZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VDcmVhdGVXaW5kb3dzUmVxdWVzdEgAEj4KBWxpbnV4GA8gASgLMi0uZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VDcmVhdGVMaW51eFJlcXVlc3RIABJLChlpbml0aWFsX25ldHdvcmtfaW50ZXJmYWNlGBAgASgLMiguZml0cy5hcGkubXZtLnYxLkluaXRpYWxOZXR3b3JrSW50ZXJmYWNlQhAKB212bXR5cGUSBbpIAggBQgcKBV9uYW1lIuYBCglMaW51eERpc2sSGwoEdXVpZBgBIAEoCUIIukgFcgOwAQFIAIgBARINCgVsYWJlbBgCIAEoCRITCgthdXRvX2V4dGVuZBgDIAEoCBIRCgRzaXplGAQgASgESAGIAQESGAoLbW91bnRfcG9pbnQYBSABKAlIAogBARI7CglkaXNrX3R5cGUYBiABKA4yGS5maXRzLmFwaS5tdm0udjEuRGlza1R5cGVCCLpIBYIBAhABSAOIAQFCBwoFX3V1aWRCBwoFX3NpemVCDgoMX21vdW50X3BvaW50QgwKCl9kaXNrX3R5cGUi6AEKC1dpbmRvd3NEaXNrEhsKBHV1aWQYASABKAlCCLpIBXIDsAEBSACIAQESDQoFbGFiZWwYAiABKAkSEwoLYXV0b19leHRlbmQYAyABKAgSEQoEc2l6ZRgEIAEoBEgBiAEBEhgKC2RyaXZlbGV0dGVyGAUgASgJSAKIAQESOwoJZGlza190eXBlGAYgASgOMhkuZml0cy5hcGkubXZtLnYxLkRpc2tUeXBlQgi6SAWCAQIQAUgDiAEBQgcKBV91dWlkQgcKBV9zaXplQg4KDF9kcml2ZWxldHRlckIMCgpfZGlza190eXBlIjIKGE1WTVNlcnZpY2VDcmVhdGVSZXNwb25zZRIWCgR1dWlkGAEgASgJQgi6SAVyA7ABASI3ChVNVk1TZXJ2aWNlTGlzdFJlcXVlc3QSHgoMcHJvamVjdF91dWlkGAEgASgJQgi6SAVyA7ABASJCChZNVk1TZXJ2aWNlTGlzdFJlc3BvbnNlEigKBG12bXMYASADKAsyGi5maXRzLmFwaS5tdm0udjEuTWFuYWdlZFZNImcKF01WTVNlcnZpY2VEZWxldGVSZXF1ZXN0Eh4KDHByb2plY3RfdXVpZBgBIAEoCUIIukgFcgOwAQESFgoEdXVpZBgCIAEoCUIIukgFcgOwAQESFAoMb3JkZXJfbnVtYmVyGAMgASgJIhoKGE1WTVNlcnZpY2VEZWxldGVSZXNwb25zZSJjCh9NVk1TZXJ2aWNlVmFsaWRhdGVDcmVhdGVSZXF1ZXN0EkAKBmNyZWF0ZRgBIAEoCzIoLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlQ3JlYXRlUmVxdWVzdEIGukgDyAEBIiIKIE1WTVNlcnZpY2VWYWxpZGF0ZUNyZWF0ZVJlc3BvbnNlImcKIE1WTVNlcnZpY2VWYWxpZGF0ZUFkZERpc2tSZXF1ZXN0EkMKCGFkZF9kaXNrGAEgASgLMikuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VBZGREaXNrUmVxdWVzdEIGukgDyAEBIiMKIU1WTVNlcnZpY2VWYWxpZGF0ZUFkZERpc2tSZXNwb25zZSJwCiNNVk1TZXJ2aWNlVmFsaWRhdGVVcGRhdGVEaXNrUmVxdWVzdBJJCgt1cGRhdGVfZGlzaxgBIAEoCzIsLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlVXBkYXRlRGlza1JlcXVlc3RCBrpIA8gBASImCiRNVk1TZXJ2aWNlVmFsaWRhdGVVcGRhdGVEaXNrUmVzcG9uc2UiGwoZTVZNU2VydmljZUFkZERpc2tSZXNwb25zZSIeChxNVk1TZXJ2aWNlVXBkYXRlRGlza1Jlc3BvbnNlIh4KHE1WTVNlcnZpY2VEZWxldGVEaXNrUmVzcG9uc2Ui1QEKGE1WTVNlcnZpY2VBZGREaXNrUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIeCgxwcm9qZWN0X3V1aWQYAiABKAlCCLpIBXIDsAEBEhQKDG9yZGVyX251bWJlchgDIAEoCRIrCgVsaW51eBgEIAEoCzIaLmZpdHMuYXBpLm12bS52MS5MaW51eERpc2tIABIvCgd3aW5kb3dzGAUgASgLMhwuZml0cy5hcGkubXZtLnYxLldpbmRvd3NEaXNrSABCDQoEZGlzaxIFukgCCAEizgEKG01WTVNlcnZpY2VVcGRhdGVEaXNrUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIbCglkaXNrX3V1aWQYAiABKAlCCLpIBXIDsAEBEh4KDHByb2plY3RfdXVpZBgDIAEoCUIIukgFcgOwAQESFAoMb3JkZXJfbnVtYmVyGAQgASgJEhgKC2F1dG9fZXh0ZW5kGAUgASgISACIAQESEQoEc2l6ZRgGIAEoBEgBiAEBQg4KDF9hdXRvX2V4dGVuZEIHCgVfc2l6ZSKIAQobTVZNU2VydmljZURlbGV0ZURpc2tSZXF1ZXN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEhsKCWRpc2tfdXVpZBgCIAEoCUIIukgFcgOwAQESHgoMcHJvamVjdF91dWlkGAMgASgJQgi6SAVyA7ABARIUCgxvcmRlcl9udW1iZXIYBCABKAkiJwolTVZNU2VydmljZUFkZE5ldHdvcmtJbnRlcmZhY2VSZXNwb25zZSIoCiZNVk1TZXJ2aWNlTW92ZU5ldHdvcmtJbnRlcmZhY2VSZXNwb25zZSIqCihNVk1TZXJ2aWNlRGVsZXRlTmV0d29ya0ludGVyZmFjZVJlc3BvbnNlInQKJE1WTVNlcnZpY2VBZGROZXR3b3JrSW50ZXJmYWNlUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIeCgxwcm9qZWN0X3V1aWQYAiABKAlCCLpIBXIDsAEBEhQKDG9yZGVyX251bWJlchgDIAEoCSK6AQolTVZNU2VydmljZU1vdmVOZXR3b3JrSW50ZXJmYWNlUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIgCg5pbnRlcmZhY2VfdXVpZBgCIAEoCUIIukgFcgOwAQESHgoMcHJvamVjdF91dWlkGAMgASgJQgi6SAVyA7ABARIUCgxvcmRlcl9udW1iZXIYBCABKAkSIQoPdGFyZ2V0X212bV91dWlkGAUgASgJQgi6SAVyA7ABASKZAQonTVZNU2VydmljZURlbGV0ZU5ldHdvcmtJbnRlcmZhY2VSZXF1ZXN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEiAKDmludGVyZmFjZV91dWlkGAIgASgJQgi6SAVyA7ABARIeCgxwcm9qZWN0X3V1aWQYAyABKAlCCLpIBXIDsAEBEhQKDG9yZGVyX251bWJlchgEIAEoCSKMAQosTVZNU2VydmljZVZhbGlkYXRlQWRkTmV0d29ya0ludGVyZmFjZVJlcXVlc3QSXAoVYWRkX25ldHdvcmtfaW50ZXJmYWNlGAEgASgLMjUuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VBZGROZXR3b3JrSW50ZXJmYWNlUmVxdWVzdEIGukgDyAEBIi8KLU1WTVNlcnZpY2VWYWxpZGF0ZUFkZE5ldHdvcmtJbnRlcmZhY2VSZXNwb25zZSqmAQoMQXZhaWxhYmlsaXR5EiIKGEFWQUlMQUJJTElUWV9VTlNQRUNJRklFRBAAGgSCshkAEhsKD0FWQUlMQUJJTElUWV9WMBABGgaCshkCdjASGwoPQVZBSUxBQklMSVRZX1YxEAIaBoKyGQJ2MRIbCg9BVkFJTEFCSUxJVFlfVjIQAxoGgrIZAnYyEhsKD0FWQUlMQUJJTElUWV9WMxAEGgaCshkCdjMqkwEKDFNlcnZpY2VDbGFzcxIjChlTRVJWSUNFX0NMQVNTX1VOU1BFQ0lGSUVEEAAaBIKyGQASHgoRU0VSVklDRV9DTEFTU19TWjEQARoHgrIZA3N6MRIeChFTRVJWSUNFX0NMQVNTX1NaMhACGgeCshkDc3oyEh4KEVNFUlZJQ0VfQ0xBU1NfU1ozEAMaB4KyGQNzejMqwgEKBVN0YXRlEhsKEVNUQVRFX1VOU1BFQ0lGSUVEEAAaBIKyGQASIAoOU1RBVEVfQ1JFQVRJTkcQARoMgrIZCGNyZWF0aW5nEhwKDFNUQVRFX0FDVElWRRACGgqCshkGYWN0aXZlEiAKDlNUQVRFX1VQREFUSU5HEAMaDIKyGQh1cGRhdGluZxIeCg1TVEFURV9ERUxFVEVEEAQaC4KyGQdkZWxldGVkEhoKC1NUQVRFX0VSUk9SEAUaCYKyGQVlcnJvciqFAQoIRGlza1R5cGUSHwoVRElTS19UWVBFX1VOU1BFQ0lGSUVEEAAaBIKyGQASGAoMRElTS19UWVBFX09TEAEaBoKyGQJvcxIgChBESVNLX1RZUEVfU1lTVEVNEAIaCoKyGQZzeXN0ZW0SHAoORElTS19UWVBFX0RBVEEQAxoIgrIZBGRhdGEykg4KCk1WTVNlcnZpY2USYQoDR2V0EiUuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VHZXRSZXF1ZXN0GiYuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VHZXRSZXNwb25zZSILyvMYAwECA+DzGAISaQoGQ3JlYXRlEiguZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VDcmVhdGVSZXF1ZXN0GikuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VDcmVhdGVSZXNwb25zZSIKyvMYAgEC4PMYARJkCgRMaXN0EiYuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VMaXN0UmVxdWVzdBonLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlTGlzdFJlc3BvbnNlIgvK8xgDAQID4PMYAhJpCgZEZWxldGUSKC5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZURlbGV0ZVJlcXVlc3QaKS5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZURlbGV0ZVJlc3BvbnNlIgrK8xgCAQLg8xgBEmwKB0FkZERpc2sSKS5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZUFkZERpc2tSZXF1ZXN0GiouZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VBZGREaXNrUmVzcG9uc2UiCsrzGAIBAuDzGAESdQoKVXBkYXRlRGlzaxIsLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlVXBkYXRlRGlza1JlcXVlc3QaLS5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVVwZGF0ZURpc2tSZXNwb25zZSIKyvMYAgEC4PMYARJ1CgpEZWxldGVEaXNrEiwuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VEZWxldGVEaXNrUmVxdWVzdBotLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlRGVsZXRlRGlza1Jlc3BvbnNlIgrK8xgCAQLg8xgBEpABChNBZGROZXR3b3JrSW50ZXJmYWNlEjUuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VBZGROZXR3b3JrSW50ZXJmYWNlUmVxdWVzdBo2LmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlQWRkTmV0d29ya0ludGVyZmFjZVJlc3BvbnNlIgrK8xgCAQLg8xgBEpMBChRNb3ZlTmV0d29ya0ludGVyZmFjZRI2LmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlTW92ZU5ldHdvcmtJbnRlcmZhY2VSZXF1ZXN0GjcuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VNb3ZlTmV0d29ya0ludGVyZmFjZVJlc3BvbnNlIgrK8xgCAQLg8xgBEpkBChZEZWxldGVOZXR3b3JrSW50ZXJmYWNlEjguZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VEZWxldGVOZXR3b3JrSW50ZXJmYWNlUmVxdWVzdBo5LmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlRGVsZXRlTmV0d29ya0ludGVyZmFjZVJlc3BvbnNlIgrK8xgCAQLg8xgBEoEBCg5WYWxpZGF0ZUNyZWF0ZRIwLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlVmFsaWRhdGVDcmVhdGVSZXF1ZXN0GjEuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VWYWxpZGF0ZUNyZWF0ZVJlc3BvbnNlIgrK8xgCAQLg8xgCEoQBCg9WYWxpZGF0ZUFkZERpc2sSMS5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVZhbGlkYXRlQWRkRGlza1JlcXVlc3QaMi5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVZhbGlkYXRlQWRkRGlza1Jlc3BvbnNlIgrK8xgCAQLg8xgCEo0BChJWYWxpZGF0ZVVwZGF0ZURpc2sSNC5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVZhbGlkYXRlVXBkYXRlRGlza1JlcXVlc3QaNS5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVZhbGlkYXRlVXBkYXRlRGlza1Jlc3BvbnNlIgrK8xgCAQLg8xgCEqgBChtWYWxpZGF0ZUFkZE5ldHdvcmtJbnRlcmZhY2USPS5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVZhbGlkYXRlQWRkTmV0d29ya0ludGVyZmFjZVJlcXVlc3QaPi5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVZhbGlkYXRlQWRkTmV0d29ya0ludGVyZmFjZVJlc3BvbnNlIgrK8xgCAQLg8xgCQq0BChNjb20uZml0cy5hcGkubXZtLnYxQghNdm1Qcm90b1ABWi1naXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS9tdm0vdjE7bXZtdjGiAgNGQU2qAg9GaXRzLkFwaS5Ndm0uVjHKAg9GaXRzXEFwaVxNdm1cVjHiAhtGaXRzXEFwaVxNdm1cVjFcR1BCTWV0YWRhdGHqAhJGaXRzOjpBcGk6Ok12bTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
+  fileDesc("ChlmaXRzL2FwaS9tdm0vdjEvbXZtLnByb3RvEg9maXRzLmFwaS5tdm0udjEidgoMTGludXhEZXRhaWxzEikKBWRpc2tzGAEgAygLMhouZml0cy5hcGkubXZtLnYxLkxpbnV4RGlzaxIbCglsZGFwX3V1aWQYAiABKAlCCLpIBXIDsAEBEh4KCWxkYXBfZnFkbhgDIAEoCUILukgIcgbAs66xAgEifgoOV2luZG93c0RldGFpbHMSKwoFZGlza3MYASADKAsyHC5maXRzLmFwaS5tdm0udjEuV2luZG93c0Rpc2sSHQoLZG9tYWluX3V1aWQYAiABKAlCCLpIBXIDsAEBEiAKC2RvbWFpbl9mcWRuGAMgASgJQgu6SAhyBsCzrrECASJ7ChBOZXR3b3JrSW50ZXJmYWNlEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEhsKCXZsYW5fdXVpZBgCIAEoCUIIukgFcgOwAQESHgoJaXBhZGRyZXNzGAMgASgJQgu6SAhyBuizrrECARISCgptYWNhZGRyZXNzGAQgASgJIjYKF0luaXRpYWxOZXR3b3JrSW50ZXJmYWNlEhsKCXZsYW5fdXVpZBgBIAEoCUIIukgFcgOwAQEiVAoGU3RhdHVzEi8KBXN0YXRlGAEgASgOMhYuZml0cy5hcGkubXZtLnYxLlN0YXRlQgi6SAWCAQIQARIZCgRpbmZvGAIgASgJQgu6SAhyBsizrrECASKwBQoJTWFuYWdlZFZNEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEh8KBG1ldGEYAiABKAsyES5maXRzLmFwaS52MS5NZXRhEhkKBGZxZG4YAyABKAlCC7pICHIGwLOusQIBEhsKBnRlbmFudBgEIAEoCUILukgIcgbAs66xAgESHgoMcHJvamVjdF91dWlkGAUgASgJQgi6SAVyA7ABARIZCgdvc191dWlkGAYgASgJQgi6SAVyA7ABARIfCg1sb2NhdGlvbl91dWlkGAcgASgJQgi6SAVyA7ABARIeCgxjb250YWN0X3V1aWQYCCABKAlCCLpIBXIDsAEBEgsKA2NwdRgJIAEoDRILCgNyYW0YCiABKA0SDgoGYmFja3VwGAsgASgIEhEKCWVuY3J5cHRlZBgMIAEoCBInCgZzdGF0dXMYDSABKAsyFy5maXRzLmFwaS5tdm0udjEuU3RhdHVzEj0KDGF2YWlsYWJpbGl0eRgOIAEoDjIdLmZpdHMuYXBpLm12bS52MS5BdmFpbGFiaWxpdHlCCLpIBYIBAhABEj4KDXNlcnZpY2VfY2xhc3MYDyABKA4yHS5maXRzLmFwaS5tdm0udjEuU2VydmljZUNsYXNzQgi6SAWCAQIQARI6Cg93aW5kb3dzX2RldGFpbHMYECABKAsyHy5maXRzLmFwaS5tdm0udjEuV2luZG93c0RldGFpbHNIABI2Cg1saW51eF9kZXRhaWxzGBEgASgLMh0uZml0cy5hcGkubXZtLnYxLkxpbnV4RGV0YWlsc0gAEjUKCmludGVyZmFjZXMYEiADKAsyIS5maXRzLmFwaS5tdm0udjEuTmV0d29ya0ludGVyZmFjZRIUCgxvcmRlcl9udW1iZXIYEyABKAlCEAoHZGV0YWlscxIFukgCCAEiTgoUTVZNU2VydmljZUdldFJlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESHgoMcHJvamVjdF91dWlkGAIgASgJQgi6SAVyA7ABASJAChVNVk1TZXJ2aWNlR2V0UmVzcG9uc2USJwoDbXZtGAEgASgLMhouZml0cy5hcGkubXZtLnYxLk1hbmFnZWRWTSJ2Ch5NVk1TZXJ2aWNlQ3JlYXRlV2luZG93c1JlcXVlc3QSHQoLZG9tYWluX3V1aWQYASABKAlCCLpIBXIDsAEBEjUKBWRpc2tzGAIgAygLMhwuZml0cy5hcGkubXZtLnYxLldpbmRvd3NEaXNrQgi6SAWSAQIIASJwChxNVk1TZXJ2aWNlQ3JlYXRlTGludXhSZXF1ZXN0EhsKCWxkYXBfdXVpZBgBIAEoCUIIukgFcgOwAQESMwoFZGlza3MYAiADKAsyGi5maXRzLmFwaS5tdm0udjEuTGludXhEaXNrQgi6SAWSAQIIASKYBQoXTVZNU2VydmljZUNyZWF0ZVJlcXVlc3QSHgoMcHJvamVjdF91dWlkGAEgASgJQgi6SAVyA7ABARIeCgRuYW1lGAIgASgJQgu6SAhyBsCzrrECAUgBiAEBEhkKB29zX3V1aWQYAyABKAlCCLpIBXIDsAEBEh8KDWxvY2F0aW9uX3V1aWQYBCABKAlCCLpIBXIDsAEBEh4KDGNvbnRhY3RfdXVpZBgFIAEoCUIIukgFcgOwAQESCwoDY3B1GAYgASgNEgsKA3JhbRgHIAEoDRIUCgxvcmRlcl9udW1iZXIYCCABKAkSIwoGbGFiZWxzGAkgASgLMhMuZml0cy5hcGkudjEuTGFiZWxzEg4KBmJhY2t1cBgKIAEoCBIRCgllbmNyeXB0ZWQYCyABKAgSPQoMYXZhaWxhYmlsaXR5GAwgASgOMh0uZml0cy5hcGkubXZtLnYxLkF2YWlsYWJpbGl0eUIIukgFggECEAESPgoNc2VydmljZV9jbGFzcxgNIAEoDjIdLmZpdHMuYXBpLm12bS52MS5TZXJ2aWNlQ2xhc3NCCLpIBYIBAhABEkIKB3dpbmRvd3MYDiABKAsyLy5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZUNyZWF0ZVdpbmRvd3NSZXF1ZXN0SAASPgoFbGludXgYDyABKAsyLS5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZUNyZWF0ZUxpbnV4UmVxdWVzdEgAEksKGWluaXRpYWxfbmV0d29ya19pbnRlcmZhY2UYECABKAsyKC5maXRzLmFwaS5tdm0udjEuSW5pdGlhbE5ldHdvcmtJbnRlcmZhY2VCEAoHbXZtdHlwZRIFukgCCAFCBwoFX25hbWUi5gEKCUxpbnV4RGlzaxIbCgR1dWlkGAEgASgJQgi6SAVyA7ABAUgAiAEBEg0KBWxhYmVsGAIgASgJEhMKC2F1dG9fZXh0ZW5kGAMgASgIEhEKBHNpemUYBCABKARIAYgBARIYCgttb3VudF9wb2ludBgFIAEoCUgCiAEBEjsKCWRpc2tfdHlwZRgGIAEoDjIZLmZpdHMuYXBpLm12bS52MS5EaXNrVHlwZUIIukgFggECEAFIA4gBAUIHCgVfdXVpZEIHCgVfc2l6ZUIOCgxfbW91bnRfcG9pbnRCDAoKX2Rpc2tfdHlwZSLoAQoLV2luZG93c0Rpc2sSGwoEdXVpZBgBIAEoCUIIukgFcgOwAQFIAIgBARINCgVsYWJlbBgCIAEoCRITCgthdXRvX2V4dGVuZBgDIAEoCBIRCgRzaXplGAQgASgESAGIAQESGAoLZHJpdmVsZXR0ZXIYBSABKAlIAogBARI7CglkaXNrX3R5cGUYBiABKA4yGS5maXRzLmFwaS5tdm0udjEuRGlza1R5cGVCCLpIBYIBAhABSAOIAQFCBwoFX3V1aWRCBwoFX3NpemVCDgoMX2RyaXZlbGV0dGVyQgwKCl9kaXNrX3R5cGUiMgoYTVZNU2VydmljZUNyZWF0ZVJlc3BvbnNlEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBIvICChdNVk1TZXJ2aWNlVXBkYXRlUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIeCgxwcm9qZWN0X3V1aWQYAiABKAlCCLpIBXIDsAEBEhQKDG9yZGVyX251bWJlchgDIAEoCRI0Cgt1cGRhdGVfbWV0YRgEIAEoCzIXLmZpdHMuYXBpLnYxLlVwZGF0ZU1ldGFCBrpIA8gBARIbCgNjcHUYBSABKA1CCbpIBioEGEAoAUgAiAEBEhkKA3JhbRgGIAEoDUIHukgEKgIgAEgBiAEBEkMKDXNlcnZpY2VfY2xhc3MYByABKA4yHS5maXRzLmFwaS5tdm0udjEuU2VydmljZUNsYXNzQgi6SAWCAQIQAUgCiAEBEiMKDGNvbnRhY3RfdXVpZBgIIAEoCUIIukgFcgOwAQFIA4gBAUIGCgRfY3B1QgYKBF9yYW1CEAoOX3NlcnZpY2VfY2xhc3NCDwoNX2NvbnRhY3RfdXVpZCIaChhNVk1TZXJ2aWNlVXBkYXRlUmVzcG9uc2UiNwoVTVZNU2VydmljZUxpc3RSZXF1ZXN0Eh4KDHByb2plY3RfdXVpZBgBIAEoCUIIukgFcgOwAQEiQgoWTVZNU2VydmljZUxpc3RSZXNwb25zZRIoCgRtdm1zGAEgAygLMhouZml0cy5hcGkubXZtLnYxLk1hbmFnZWRWTSJnChdNVk1TZXJ2aWNlRGVsZXRlUmVxdWVzdBIeCgxwcm9qZWN0X3V1aWQYASABKAlCCLpIBXIDsAEBEhYKBHV1aWQYAiABKAlCCLpIBXIDsAEBEhQKDG9yZGVyX251bWJlchgDIAEoCSIaChhNVk1TZXJ2aWNlRGVsZXRlUmVzcG9uc2UiYwofTVZNU2VydmljZVZhbGlkYXRlQ3JlYXRlUmVxdWVzdBJACgZjcmVhdGUYASABKAsyKC5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZUNyZWF0ZVJlcXVlc3RCBrpIA8gBASIiCiBNVk1TZXJ2aWNlVmFsaWRhdGVDcmVhdGVSZXNwb25zZSJnCiBNVk1TZXJ2aWNlVmFsaWRhdGVBZGREaXNrUmVxdWVzdBJDCghhZGRfZGlzaxgBIAEoCzIpLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlQWRkRGlza1JlcXVlc3RCBrpIA8gBASIjCiFNVk1TZXJ2aWNlVmFsaWRhdGVBZGREaXNrUmVzcG9uc2UicAojTVZNU2VydmljZVZhbGlkYXRlVXBkYXRlRGlza1JlcXVlc3QSSQoLdXBkYXRlX2Rpc2sYASABKAsyLC5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVVwZGF0ZURpc2tSZXF1ZXN0Qga6SAPIAQEiJgokTVZNU2VydmljZVZhbGlkYXRlVXBkYXRlRGlza1Jlc3BvbnNlIhsKGU1WTVNlcnZpY2VBZGREaXNrUmVzcG9uc2UiHgocTVZNU2VydmljZVVwZGF0ZURpc2tSZXNwb25zZSIeChxNVk1TZXJ2aWNlRGVsZXRlRGlza1Jlc3BvbnNlItUBChhNVk1TZXJ2aWNlQWRkRGlza1JlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESHgoMcHJvamVjdF91dWlkGAIgASgJQgi6SAVyA7ABARIUCgxvcmRlcl9udW1iZXIYAyABKAkSKwoFbGludXgYBCABKAsyGi5maXRzLmFwaS5tdm0udjEuTGludXhEaXNrSAASLwoHd2luZG93cxgFIAEoCzIcLmZpdHMuYXBpLm12bS52MS5XaW5kb3dzRGlza0gAQg0KBGRpc2sSBbpIAggBIs4BChtNVk1TZXJ2aWNlVXBkYXRlRGlza1JlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESGwoJZGlza191dWlkGAIgASgJQgi6SAVyA7ABARIeCgxwcm9qZWN0X3V1aWQYAyABKAlCCLpIBXIDsAEBEhQKDG9yZGVyX251bWJlchgEIAEoCRIYCgthdXRvX2V4dGVuZBgFIAEoCEgAiAEBEhEKBHNpemUYBiABKARIAYgBAUIOCgxfYXV0b19leHRlbmRCBwoFX3NpemUiiAEKG01WTVNlcnZpY2VEZWxldGVEaXNrUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIbCglkaXNrX3V1aWQYAiABKAlCCLpIBXIDsAEBEh4KDHByb2plY3RfdXVpZBgDIAEoCUIIukgFcgOwAQESFAoMb3JkZXJfbnVtYmVyGAQgASgJIicKJU1WTVNlcnZpY2VBZGROZXR3b3JrSW50ZXJmYWNlUmVzcG9uc2UiKAomTVZNU2VydmljZU1vdmVOZXR3b3JrSW50ZXJmYWNlUmVzcG9uc2UiKgooTVZNU2VydmljZURlbGV0ZU5ldHdvcmtJbnRlcmZhY2VSZXNwb25zZSJ0CiRNVk1TZXJ2aWNlQWRkTmV0d29ya0ludGVyZmFjZVJlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESHgoMcHJvamVjdF91dWlkGAIgASgJQgi6SAVyA7ABARIUCgxvcmRlcl9udW1iZXIYAyABKAkiugEKJU1WTVNlcnZpY2VNb3ZlTmV0d29ya0ludGVyZmFjZVJlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESIAoOaW50ZXJmYWNlX3V1aWQYAiABKAlCCLpIBXIDsAEBEh4KDHByb2plY3RfdXVpZBgDIAEoCUIIukgFcgOwAQESFAoMb3JkZXJfbnVtYmVyGAQgASgJEiEKD3RhcmdldF9tdm1fdXVpZBgFIAEoCUIIukgFcgOwAQEimQEKJ01WTVNlcnZpY2VEZWxldGVOZXR3b3JrSW50ZXJmYWNlUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIgCg5pbnRlcmZhY2VfdXVpZBgCIAEoCUIIukgFcgOwAQESHgoMcHJvamVjdF91dWlkGAMgASgJQgi6SAVyA7ABARIUCgxvcmRlcl9udW1iZXIYBCABKAkijAEKLE1WTVNlcnZpY2VWYWxpZGF0ZUFkZE5ldHdvcmtJbnRlcmZhY2VSZXF1ZXN0ElwKFWFkZF9uZXR3b3JrX2ludGVyZmFjZRgBIAEoCzI1LmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlQWRkTmV0d29ya0ludGVyZmFjZVJlcXVlc3RCBrpIA8gBASIvCi1NVk1TZXJ2aWNlVmFsaWRhdGVBZGROZXR3b3JrSW50ZXJmYWNlUmVzcG9uc2UqpgEKDEF2YWlsYWJpbGl0eRIiChhBVkFJTEFCSUxJVFlfVU5TUEVDSUZJRUQQABoEgrIZABIbCg9BVkFJTEFCSUxJVFlfVjAQARoGgrIZAnYwEhsKD0FWQUlMQUJJTElUWV9WMRACGgaCshkCdjESGwoPQVZBSUxBQklMSVRZX1YyEAMaBoKyGQJ2MhIbCg9BVkFJTEFCSUxJVFlfVjMQBBoGgrIZAnYzKpMBCgxTZXJ2aWNlQ2xhc3MSIwoZU0VSVklDRV9DTEFTU19VTlNQRUNJRklFRBAAGgSCshkAEh4KEVNFUlZJQ0VfQ0xBU1NfU1oxEAEaB4KyGQNzejESHgoRU0VSVklDRV9DTEFTU19TWjIQAhoHgrIZA3N6MhIeChFTRVJWSUNFX0NMQVNTX1NaMxADGgeCshkDc3ozKsIBCgVTdGF0ZRIbChFTVEFURV9VTlNQRUNJRklFRBAAGgSCshkAEiAKDlNUQVRFX0NSRUFUSU5HEAEaDIKyGQhjcmVhdGluZxIcCgxTVEFURV9BQ1RJVkUQAhoKgrIZBmFjdGl2ZRIgCg5TVEFURV9VUERBVElORxADGgyCshkIdXBkYXRpbmcSHgoNU1RBVEVfREVMRVRFRBAEGguCshkHZGVsZXRlZBIaCgtTVEFURV9FUlJPUhAFGgmCshkFZXJyb3IqhQEKCERpc2tUeXBlEh8KFURJU0tfVFlQRV9VTlNQRUNJRklFRBAAGgSCshkAEhgKDERJU0tfVFlQRV9PUxABGgaCshkCb3MSIAoQRElTS19UWVBFX1NZU1RFTRACGgqCshkGc3lzdGVtEhwKDkRJU0tfVFlQRV9EQVRBEAMaCIKyGQRkYXRhMv0OCgpNVk1TZXJ2aWNlEmEKA0dldBIlLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlR2V0UmVxdWVzdBomLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlR2V0UmVzcG9uc2UiC8rzGAMBAgPg8xgCEmkKBkNyZWF0ZRIoLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlQ3JlYXRlUmVxdWVzdBopLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlQ3JlYXRlUmVzcG9uc2UiCsrzGAIBAuDzGAESaQoGVXBkYXRlEiguZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VVcGRhdGVSZXF1ZXN0GikuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VVcGRhdGVSZXNwb25zZSIKyvMYAgEC4PMYARJkCgRMaXN0EiYuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VMaXN0UmVxdWVzdBonLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlTGlzdFJlc3BvbnNlIgvK8xgDAQID4PMYAhJpCgZEZWxldGUSKC5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZURlbGV0ZVJlcXVlc3QaKS5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZURlbGV0ZVJlc3BvbnNlIgrK8xgCAQLg8xgBEmwKB0FkZERpc2sSKS5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZUFkZERpc2tSZXF1ZXN0GiouZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VBZGREaXNrUmVzcG9uc2UiCsrzGAIBAuDzGAESdQoKVXBkYXRlRGlzaxIsLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlVXBkYXRlRGlza1JlcXVlc3QaLS5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVVwZGF0ZURpc2tSZXNwb25zZSIKyvMYAgEC4PMYARJ1CgpEZWxldGVEaXNrEiwuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VEZWxldGVEaXNrUmVxdWVzdBotLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlRGVsZXRlRGlza1Jlc3BvbnNlIgrK8xgCAQLg8xgBEpABChNBZGROZXR3b3JrSW50ZXJmYWNlEjUuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VBZGROZXR3b3JrSW50ZXJmYWNlUmVxdWVzdBo2LmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlQWRkTmV0d29ya0ludGVyZmFjZVJlc3BvbnNlIgrK8xgCAQLg8xgBEpMBChRNb3ZlTmV0d29ya0ludGVyZmFjZRI2LmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlTW92ZU5ldHdvcmtJbnRlcmZhY2VSZXF1ZXN0GjcuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VNb3ZlTmV0d29ya0ludGVyZmFjZVJlc3BvbnNlIgrK8xgCAQLg8xgBEpkBChZEZWxldGVOZXR3b3JrSW50ZXJmYWNlEjguZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VEZWxldGVOZXR3b3JrSW50ZXJmYWNlUmVxdWVzdBo5LmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlRGVsZXRlTmV0d29ya0ludGVyZmFjZVJlc3BvbnNlIgrK8xgCAQLg8xgBEoEBCg5WYWxpZGF0ZUNyZWF0ZRIwLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlVmFsaWRhdGVDcmVhdGVSZXF1ZXN0GjEuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VWYWxpZGF0ZUNyZWF0ZVJlc3BvbnNlIgrK8xgCAQLg8xgCEoQBCg9WYWxpZGF0ZUFkZERpc2sSMS5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVZhbGlkYXRlQWRkRGlza1JlcXVlc3QaMi5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVZhbGlkYXRlQWRkRGlza1Jlc3BvbnNlIgrK8xgCAQLg8xgCEo0BChJWYWxpZGF0ZVVwZGF0ZURpc2sSNC5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVZhbGlkYXRlVXBkYXRlRGlza1JlcXVlc3QaNS5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVZhbGlkYXRlVXBkYXRlRGlza1Jlc3BvbnNlIgrK8xgCAQLg8xgCEqgBChtWYWxpZGF0ZUFkZE5ldHdvcmtJbnRlcmZhY2USPS5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVZhbGlkYXRlQWRkTmV0d29ya0ludGVyZmFjZVJlcXVlc3QaPi5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVZhbGlkYXRlQWRkTmV0d29ya0ludGVyZmFjZVJlc3BvbnNlIgrK8xgCAQLg8xgCQq0BChNjb20uZml0cy5hcGkubXZtLnYxQghNdm1Qcm90b1ABWi1naXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS9tdm0vdjE7bXZtdjGiAgNGQU2qAg9GaXRzLkFwaS5Ndm0uVjHKAg9GaXRzXEFwaVxNdm1cVjHiAhtGaXRzXEFwaVxNdm1cVjFcR1BCTWV0YWRhdGHqAhJGaXRzOjpBcGk6Ok12bTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
 
 /**
  * Linux-specific MVM details.
@@ -289,9 +289,9 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
   /**
    * Service class.
    *
-   * @generated from field: fits.api.mvm.v1.ServiceClass serviceclass = 15;
+   * @generated from field: fits.api.mvm.v1.ServiceClass service_class = 15;
    */
-  serviceclass: ServiceClass;
+  serviceClass: ServiceClass;
 
   /**
    * OS-specific configuration.
@@ -539,9 +539,9 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
   /**
    * Service class; only certain combinations with availability are valid.
    *
-   * @generated from field: fits.api.mvm.v1.ServiceClass serviceclass = 13;
+   * @generated from field: fits.api.mvm.v1.ServiceClass service_class = 13;
    */
-  serviceclass: ServiceClass;
+  serviceClass: ServiceClass;
 
   /**
    * OS type and its configuration.
@@ -723,6 +723,102 @@ export const MVMServiceCreateResponseSchema: GenMessage<MVMServiceCreateResponse
   messageDesc(file_fits_api_mvm_v1_mvm, 13);
 
 /**
+ * Request to trigger the update of an existing MVM.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceUpdateRequest
+ */
+export type MVMServiceUpdateRequest = Message<"fits.api.mvm.v1.MVMServiceUpdateRequest"> & {
+  /**
+   * UUID of the MVM to update.
+   *
+   * @generated from field: string uuid = 1;
+   */
+  uuid: string;
+
+  /**
+   * UUID of the project this MVM belongs to.
+   *
+   * @generated from field: string project_uuid = 2;
+   */
+  projectUuid: string;
+
+  /**
+   * Order reference for this operation.
+   *
+   * @generated from field: string order_number = 3;
+   */
+  orderNumber: string;
+
+  /**
+   * Timestamp and strategy for this update.
+   *
+   * @generated from field: fits.api.v1.UpdateMeta update_meta = 4;
+   */
+  updateMeta?: UpdateMeta | undefined;
+
+  /**
+   * Number of vCPUs (1-64); unset keeps the current value.
+   *
+   * @generated from field: optional uint32 cpu = 5;
+   */
+  cpu?: number | undefined;
+
+  /**
+   * RAM size in GB; unset keeps the current value.
+   *
+   * @generated from field: optional uint32 ram = 6;
+   */
+  ram?: number | undefined;
+
+  /**
+   * Target service class; unset keeps the current value.
+   *
+   * @generated from field: optional fits.api.mvm.v1.ServiceClass service_class = 7;
+   */
+  serviceClass?: ServiceClass | undefined;
+
+  /**
+   * UUID of the new contact; unset keeps the current value.
+   *
+   * @generated from field: optional string contact_uuid = 8;
+   */
+  contactUuid?: string | undefined;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceUpdateRequest.
+ * Use `create(MVMServiceUpdateRequestSchema)` to create a new message.
+ */
+export const MVMServiceUpdateRequestSchema: GenMessage<MVMServiceUpdateRequest> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 14);
+
+/**
+ * Response for Update; an empty response means the update was accepted.
+ * The update is applied asynchronously; poll Get until the state settles.
+ *
+ * PROPOSAL (open for discussion): return the MVM after accepting the update.
+ * The update is applied asynchronously, so the returned MVM reflects the
+ * accepted state and may still report STATE_UPDATING.
+ * It would be populated best-effort from a read-back after the write; if the
+ * read-back fails the field stays unset while the RPC still succeeds.
+ * Clients must not rely on it being present and must still poll Get to
+ * observe completion or failure of the asynchronous operation.
+ *
+ * optional ManagedVM mvm = 1;
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceUpdateResponse
+ */
+export type MVMServiceUpdateResponse = Message<"fits.api.mvm.v1.MVMServiceUpdateResponse"> & {
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceUpdateResponse.
+ * Use `create(MVMServiceUpdateResponseSchema)` to create a new message.
+ */
+export const MVMServiceUpdateResponseSchema: GenMessage<MVMServiceUpdateResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 15);
+
+/**
  * Request to list MVMs.
  *
  * @generated from message fits.api.mvm.v1.MVMServiceListRequest
@@ -741,7 +837,7 @@ export type MVMServiceListRequest = Message<"fits.api.mvm.v1.MVMServiceListReque
  * Use `create(MVMServiceListRequestSchema)` to create a new message.
  */
 export const MVMServiceListRequestSchema: GenMessage<MVMServiceListRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 14);
+  messageDesc(file_fits_api_mvm_v1_mvm, 16);
 
 /**
  * Response containing the list of MVMs.
@@ -762,7 +858,7 @@ export type MVMServiceListResponse = Message<"fits.api.mvm.v1.MVMServiceListResp
  * Use `create(MVMServiceListResponseSchema)` to create a new message.
  */
 export const MVMServiceListResponseSchema: GenMessage<MVMServiceListResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 15);
+  messageDesc(file_fits_api_mvm_v1_mvm, 17);
 
 /**
  * Request to cancel a MVM instance.
@@ -797,7 +893,7 @@ export type MVMServiceDeleteRequest = Message<"fits.api.mvm.v1.MVMServiceDeleteR
  * Use `create(MVMServiceDeleteRequestSchema)` to create a new message.
  */
 export const MVMServiceDeleteRequestSchema: GenMessage<MVMServiceDeleteRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 16);
+  messageDesc(file_fits_api_mvm_v1_mvm, 18);
 
 /**
  * Response for Delete; an empty response means the cancellation was accepted.
@@ -812,7 +908,7 @@ export type MVMServiceDeleteResponse = Message<"fits.api.mvm.v1.MVMServiceDelete
  * Use `create(MVMServiceDeleteResponseSchema)` to create a new message.
  */
 export const MVMServiceDeleteResponseSchema: GenMessage<MVMServiceDeleteResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 17);
+  messageDesc(file_fits_api_mvm_v1_mvm, 19);
 
 /**
  * Request to validate a MVM create without creating anything.
@@ -833,7 +929,7 @@ export type MVMServiceValidateCreateRequest = Message<"fits.api.mvm.v1.MVMServic
  * Use `create(MVMServiceValidateCreateRequestSchema)` to create a new message.
  */
 export const MVMServiceValidateCreateRequestSchema: GenMessage<MVMServiceValidateCreateRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 18);
+  messageDesc(file_fits_api_mvm_v1_mvm, 20);
 
 /**
  * Response for ValidateCreate; violations are returned as an InvalidArgument error.
@@ -848,7 +944,7 @@ export type MVMServiceValidateCreateResponse = Message<"fits.api.mvm.v1.MVMServi
  * Use `create(MVMServiceValidateCreateResponseSchema)` to create a new message.
  */
 export const MVMServiceValidateCreateResponseSchema: GenMessage<MVMServiceValidateCreateResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 19);
+  messageDesc(file_fits_api_mvm_v1_mvm, 21);
 
 /**
  * Request to validate an AddDisk without ordering anything.
@@ -869,7 +965,7 @@ export type MVMServiceValidateAddDiskRequest = Message<"fits.api.mvm.v1.MVMServi
  * Use `create(MVMServiceValidateAddDiskRequestSchema)` to create a new message.
  */
 export const MVMServiceValidateAddDiskRequestSchema: GenMessage<MVMServiceValidateAddDiskRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 20);
+  messageDesc(file_fits_api_mvm_v1_mvm, 22);
 
 /**
  * Response for ValidateAddDisk; violations are returned as an InvalidArgument error.
@@ -884,7 +980,7 @@ export type MVMServiceValidateAddDiskResponse = Message<"fits.api.mvm.v1.MVMServ
  * Use `create(MVMServiceValidateAddDiskResponseSchema)` to create a new message.
  */
 export const MVMServiceValidateAddDiskResponseSchema: GenMessage<MVMServiceValidateAddDiskResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 21);
+  messageDesc(file_fits_api_mvm_v1_mvm, 23);
 
 /**
  * Request to validate an UpdateDisk without changing anything.
@@ -905,7 +1001,7 @@ export type MVMServiceValidateUpdateDiskRequest = Message<"fits.api.mvm.v1.MVMSe
  * Use `create(MVMServiceValidateUpdateDiskRequestSchema)` to create a new message.
  */
 export const MVMServiceValidateUpdateDiskRequestSchema: GenMessage<MVMServiceValidateUpdateDiskRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 22);
+  messageDesc(file_fits_api_mvm_v1_mvm, 24);
 
 /**
  * Response for ValidateUpdateDisk; violations are returned as an InvalidArgument error.
@@ -920,7 +1016,7 @@ export type MVMServiceValidateUpdateDiskResponse = Message<"fits.api.mvm.v1.MVMS
  * Use `create(MVMServiceValidateUpdateDiskResponseSchema)` to create a new message.
  */
 export const MVMServiceValidateUpdateDiskResponseSchema: GenMessage<MVMServiceValidateUpdateDiskResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 23);
+  messageDesc(file_fits_api_mvm_v1_mvm, 25);
 
 /**
  * Response for AddDisk.
@@ -935,7 +1031,7 @@ export type MVMServiceAddDiskResponse = Message<"fits.api.mvm.v1.MVMServiceAddDi
  * Use `create(MVMServiceAddDiskResponseSchema)` to create a new message.
  */
 export const MVMServiceAddDiskResponseSchema: GenMessage<MVMServiceAddDiskResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 24);
+  messageDesc(file_fits_api_mvm_v1_mvm, 26);
 
 /**
  * Response for UpdateDisk.
@@ -950,7 +1046,7 @@ export type MVMServiceUpdateDiskResponse = Message<"fits.api.mvm.v1.MVMServiceUp
  * Use `create(MVMServiceUpdateDiskResponseSchema)` to create a new message.
  */
 export const MVMServiceUpdateDiskResponseSchema: GenMessage<MVMServiceUpdateDiskResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 25);
+  messageDesc(file_fits_api_mvm_v1_mvm, 27);
 
 /**
  * Response for DeleteDisk.
@@ -965,7 +1061,7 @@ export type MVMServiceDeleteDiskResponse = Message<"fits.api.mvm.v1.MVMServiceDe
  * Use `create(MVMServiceDeleteDiskResponseSchema)` to create a new message.
  */
 export const MVMServiceDeleteDiskResponseSchema: GenMessage<MVMServiceDeleteDiskResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 26);
+  messageDesc(file_fits_api_mvm_v1_mvm, 28);
 
 /**
  * Request to order an additional data disk for a MVM.
@@ -1023,7 +1119,7 @@ export type MVMServiceAddDiskRequest = Message<"fits.api.mvm.v1.MVMServiceAddDis
  * Use `create(MVMServiceAddDiskRequestSchema)` to create a new message.
  */
 export const MVMServiceAddDiskRequestSchema: GenMessage<MVMServiceAddDiskRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 27);
+  messageDesc(file_fits_api_mvm_v1_mvm, 29);
 
 /**
  * Request to change an existing disk; only size and auto-extend are
@@ -1080,7 +1176,7 @@ export type MVMServiceUpdateDiskRequest = Message<"fits.api.mvm.v1.MVMServiceUpd
  * Use `create(MVMServiceUpdateDiskRequestSchema)` to create a new message.
  */
 export const MVMServiceUpdateDiskRequestSchema: GenMessage<MVMServiceUpdateDiskRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 28);
+  messageDesc(file_fits_api_mvm_v1_mvm, 30);
 
 /**
  * Request to cancel a data disk; OS and system disks are rejected by the
@@ -1123,7 +1219,7 @@ export type MVMServiceDeleteDiskRequest = Message<"fits.api.mvm.v1.MVMServiceDel
  * Use `create(MVMServiceDeleteDiskRequestSchema)` to create a new message.
  */
 export const MVMServiceDeleteDiskRequestSchema: GenMessage<MVMServiceDeleteDiskRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 29);
+  messageDesc(file_fits_api_mvm_v1_mvm, 31);
 
 /**
  * Response for AddNetworkInterface.
@@ -1138,7 +1234,7 @@ export type MVMServiceAddNetworkInterfaceResponse = Message<"fits.api.mvm.v1.MVM
  * Use `create(MVMServiceAddNetworkInterfaceResponseSchema)` to create a new message.
  */
 export const MVMServiceAddNetworkInterfaceResponseSchema: GenMessage<MVMServiceAddNetworkInterfaceResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 30);
+  messageDesc(file_fits_api_mvm_v1_mvm, 32);
 
 /**
  * Response for MoveNetworkInterface.
@@ -1153,7 +1249,7 @@ export type MVMServiceMoveNetworkInterfaceResponse = Message<"fits.api.mvm.v1.MV
  * Use `create(MVMServiceMoveNetworkInterfaceResponseSchema)` to create a new message.
  */
 export const MVMServiceMoveNetworkInterfaceResponseSchema: GenMessage<MVMServiceMoveNetworkInterfaceResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 31);
+  messageDesc(file_fits_api_mvm_v1_mvm, 33);
 
 /**
  * Response for DeleteNetworkInterface.
@@ -1168,7 +1264,7 @@ export type MVMServiceDeleteNetworkInterfaceResponse = Message<"fits.api.mvm.v1.
  * Use `create(MVMServiceDeleteNetworkInterfaceResponseSchema)` to create a new message.
  */
 export const MVMServiceDeleteNetworkInterfaceResponseSchema: GenMessage<MVMServiceDeleteNetworkInterfaceResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 32);
+  messageDesc(file_fits_api_mvm_v1_mvm, 34);
 
 /**
  * Request to order an additional network interface for a MVM.
@@ -1205,7 +1301,7 @@ export type MVMServiceAddNetworkInterfaceRequest = Message<"fits.api.mvm.v1.MVMS
  * Use `create(MVMServiceAddNetworkInterfaceRequestSchema)` to create a new message.
  */
 export const MVMServiceAddNetworkInterfaceRequestSchema: GenMessage<MVMServiceAddNetworkInterfaceRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 33);
+  messageDesc(file_fits_api_mvm_v1_mvm, 35);
 
 /**
  * Request to move a network interface from one MVM to another.
@@ -1254,7 +1350,7 @@ export type MVMServiceMoveNetworkInterfaceRequest = Message<"fits.api.mvm.v1.MVM
  * Use `create(MVMServiceMoveNetworkInterfaceRequestSchema)` to create a new message.
  */
 export const MVMServiceMoveNetworkInterfaceRequestSchema: GenMessage<MVMServiceMoveNetworkInterfaceRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 34);
+  messageDesc(file_fits_api_mvm_v1_mvm, 36);
 
 /**
  * Request to delete a network interface from a MVM.
@@ -1296,7 +1392,7 @@ export type MVMServiceDeleteNetworkInterfaceRequest = Message<"fits.api.mvm.v1.M
  * Use `create(MVMServiceDeleteNetworkInterfaceRequestSchema)` to create a new message.
  */
 export const MVMServiceDeleteNetworkInterfaceRequestSchema: GenMessage<MVMServiceDeleteNetworkInterfaceRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 35);
+  messageDesc(file_fits_api_mvm_v1_mvm, 37);
 
 /**
  * Request to validate an AddNetworkInterface without ordering anything.
@@ -1317,7 +1413,7 @@ export type MVMServiceValidateAddNetworkInterfaceRequest = Message<"fits.api.mvm
  * Use `create(MVMServiceValidateAddNetworkInterfaceRequestSchema)` to create a new message.
  */
 export const MVMServiceValidateAddNetworkInterfaceRequestSchema: GenMessage<MVMServiceValidateAddNetworkInterfaceRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 36);
+  messageDesc(file_fits_api_mvm_v1_mvm, 38);
 
 /**
  * Response for ValidateAddNetworkInterface; violations are returned as an InvalidArgument error.
@@ -1332,7 +1428,7 @@ export type MVMServiceValidateAddNetworkInterfaceResponse = Message<"fits.api.mv
  * Use `create(MVMServiceValidateAddNetworkInterfaceResponseSchema)` to create a new message.
  */
 export const MVMServiceValidateAddNetworkInterfaceResponseSchema: GenMessage<MVMServiceValidateAddNetworkInterfaceResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 37);
+  messageDesc(file_fits_api_mvm_v1_mvm, 39);
 
 /**
  * Availability specifies the availability level of a MVM; higher value = higher availability.
@@ -1571,6 +1667,16 @@ export const MVMService: GenService<{
     methodKind: "unary";
     input: typeof MVMServiceCreateRequestSchema;
     output: typeof MVMServiceCreateResponseSchema;
+  },
+  /**
+   * Updates a MVM.
+   *
+   * @generated from rpc fits.api.mvm.v1.MVMService.Update
+   */
+  update: {
+    methodKind: "unary";
+    input: typeof MVMServiceUpdateRequestSchema;
+    output: typeof MVMServiceUpdateResponseSchema;
   },
   /**
    * Returns the list of all MVMs.
