@@ -31,7 +31,7 @@ jobs:
         uses: oven-sh/setup-bun@v2
 
       - name: Generate
-        run: make proto generate
+        run: make proto generate fmt
 
       - name: Ensure Git is clean
         run: |

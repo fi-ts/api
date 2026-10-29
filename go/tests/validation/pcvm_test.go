@@ -3,8 +3,8 @@ package validation
 import (
 	"testing"
 
-	v1 "github.com/fi-ts/api/go/fits/api/v1"
 	pcvmv1 "github.com/fi-ts/api/go/fits/api/pcvm/v1"
+	v1 "github.com/fi-ts/api/go/fits/api/v1"
 )
 
 func TestValidatePublicCloudVMServiceGetRequest(t *testing.T) {
@@ -78,9 +78,9 @@ func TestValidatePublicCloudVMServiceUpdateRequest(t *testing.T) {
 func TestValidatePublicCloudVMServiceValidateCreateRequest(t *testing.T) {
 	tests := prototests{
 		{
-			name:    "empty",
-			msg:     &pcvmv1.PublicCloudVMServiceValidateCreateRequest{},
-			wantErr: true,
+			name:             "empty",
+			msg:              &pcvmv1.PublicCloudVMServiceValidateCreateRequest{},
+			wantErr:          true,
 			wantErrorMessage: `validation error: create: value is required`,
 		},
 		{
@@ -101,9 +101,9 @@ func TestValidatePublicCloudVMServiceValidateCreateRequest(t *testing.T) {
 func TestValidatePublicCloudVMServiceValidateUpdateRequest(t *testing.T) {
 	tests := prototests{
 		{
-			name:    "empty",
-			msg:     &pcvmv1.PublicCloudVMServiceValidateUpdateRequest{},
-			wantErr: true,
+			name:             "empty",
+			msg:              &pcvmv1.PublicCloudVMServiceValidateUpdateRequest{},
+			wantErr:          true,
 			wantErrorMessage: `validation error: update: value is required`,
 		},
 		{
