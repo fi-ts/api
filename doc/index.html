@@ -852,14 +852,6 @@
                   <a href="#fits.api.v1.HealthStatus"><span class="badge">M</span>HealthStatus</a>
                 </li>
               
-                <li>
-                  <a href="#fits.api.v1.HealthStatus.PartitionsEntry"><span class="badge">M</span>HealthStatus.PartitionsEntry</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.v1.PartitionHealth"><span class="badge">M</span>PartitionHealth</a>
-                </li>
-              
               
                 <li>
                   <a href="#fits.api.v1.Service"><span class="badge">E</span>Service</a>
@@ -5272,10 +5264,10 @@ form pre-checks; the update endpoint validates again before executing.</p></td>
             <tbody>
               
                 <tr>
-                  <td>name</td>
+                  <td>service</td>
                   <td><a href="#fits.api.v1.Service">Service</a></td>
                   <td></td>
-                  <td><p>Name is the name of the service </p></td>
+                  <td><p>Service is the service this health status is reported for </p></td>
                 </tr>
               
                 <tr>
@@ -5283,75 +5275,6 @@ form pre-checks; the update endpoint validates again before executing.</p></td>
                   <td><a href="#fits.api.v1.ServiceStatus">ServiceStatus</a></td>
                   <td></td>
                   <td><p>Status is the status of this service </p></td>
-                </tr>
-              
-                <tr>
-                  <td>message</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Message describes the reason for the unhealthy status if possible </p></td>
-                </tr>
-              
-                <tr>
-                  <td>partitions</td>
-                  <td><a href="#fits.api.v1.HealthStatus.PartitionsEntry">HealthStatus.PartitionsEntry</a></td>
-                  <td>repeated</td>
-                  <td><p>Partitions describes the health of the service by partition </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="fits.api.v1.HealthStatus.PartitionsEntry">HealthStatus.PartitionsEntry</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>value</td>
-                  <td><a href="#fits.api.v1.PartitionHealth">PartitionHealth</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="fits.api.v1.PartitionHealth">PartitionHealth</h3>
-        <p>PartitionHealth represents the status of a specific service in this partition.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>status</td>
-                  <td><a href="#fits.api.v1.ServiceStatus">ServiceStatus</a></td>
-                  <td></td>
-                  <td><p>Status is the health status of the service in this partition </p></td>
                 </tr>
               
                 <tr>
@@ -5385,9 +5308,15 @@ form pre-checks; the update endpoint validates again before executing.</p></td>
               </tr>
             
               <tr>
-                <td>SERVICE_K8S</td>
+                <td>SERVICE_MVM</td>
                 <td>1</td>
-                <td><p>SERVICE_K8S the kubernetes service</p></td>
+                <td><p>SERVICE_MVM the managed vm service</p></td>
+              </tr>
+            
+              <tr>
+                <td>SERVICE_PCVM</td>
+                <td>2</td>
+                <td><p>SERVICE_PCVM the public cloud vm service</p></td>
               </tr>
             
           </tbody>

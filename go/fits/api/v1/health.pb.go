@@ -84,19 +84,23 @@ type Service int32
 const (
 	// SERVICE_UNSPECIFIED is a unknown service
 	Service_SERVICE_UNSPECIFIED Service = 0
-	// SERVICE_K8S the kubernetes service
-	Service_SERVICE_K8S Service = 1
+	// SERVICE_MVM the managed vm service
+	Service_SERVICE_MVM Service = 1
+	// SERVICE_PCVM the public cloud vm service
+	Service_SERVICE_PCVM Service = 2
 )
 
 // Enum value maps for Service.
 var (
 	Service_name = map[int32]string{
 		0: "SERVICE_UNSPECIFIED",
-		1: "SERVICE_K8S",
+		1: "SERVICE_MVM",
+		2: "SERVICE_PCVM",
 	}
 	Service_value = map[string]int32{
 		"SERVICE_UNSPECIFIED": 0,
-		"SERVICE_K8S":         1,
+		"SERVICE_MVM":         1,
+		"SERVICE_PCVM":        2,
 	}
 )
 
@@ -176,14 +180,12 @@ func (x *Health) GetServices() []*HealthStatus {
 // HealthStatus represents the health status of one service.
 type HealthStatus struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Name is the name of the service
-	Name Service `protobuf:"varint,1,opt,name=name,proto3,enum=fits.api.v1.Service" json:"name,omitempty"`
+	// Service is the service this health status is reported for
+	Service Service `protobuf:"varint,1,opt,name=service,proto3,enum=fits.api.v1.Service" json:"service,omitempty"`
 	// Status is the status of this service
 	Status ServiceStatus `protobuf:"varint,2,opt,name=status,proto3,enum=fits.api.v1.ServiceStatus" json:"status,omitempty"`
 	// Message describes the reason for the unhealthy status if possible
-	Message string `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
-	// Partitions describes the health of the service by partition
-	Partitions    map[string]*PartitionHealth `protobuf:"bytes,4,rep,name=partitions,proto3" json:"partitions,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Message       string `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -218,9 +220,9 @@ func (*HealthStatus) Descriptor() ([]byte, []int) {
 	return file_fits_api_v1_health_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *HealthStatus) GetName() Service {
+func (x *HealthStatus) GetService() Service {
 	if x != nil {
-		return x.Name
+		return x.Service
 	}
 	return Service_SERVICE_UNSPECIFIED
 }
@@ -239,68 +241,6 @@ func (x *HealthStatus) GetMessage() string {
 	return ""
 }
 
-func (x *HealthStatus) GetPartitions() map[string]*PartitionHealth {
-	if x != nil {
-		return x.Partitions
-	}
-	return nil
-}
-
-// PartitionHealth represents the status of a specific service in this partition.
-type PartitionHealth struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Status is the health status of the service in this partition
-	Status ServiceStatus `protobuf:"varint,1,opt,name=status,proto3,enum=fits.api.v1.ServiceStatus" json:"status,omitempty"`
-	// Message describes the reason for the unhealthy status if possible
-	Message       string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *PartitionHealth) Reset() {
-	*x = PartitionHealth{}
-	mi := &file_fits_api_v1_health_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *PartitionHealth) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PartitionHealth) ProtoMessage() {}
-
-func (x *PartitionHealth) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_health_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PartitionHealth.ProtoReflect.Descriptor instead.
-func (*PartitionHealth) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_health_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *PartitionHealth) GetStatus() ServiceStatus {
-	if x != nil {
-		return x.Status
-	}
-	return ServiceStatus_SERVICE_STATUS_UNSPECIFIED
-}
-
-func (x *PartitionHealth) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
 // HealthServiceGetRequest is the request payload for getting the health of the system.
 type HealthServiceGetRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -310,7 +250,7 @@ type HealthServiceGetRequest struct {
 
 func (x *HealthServiceGetRequest) Reset() {
 	*x = HealthServiceGetRequest{}
-	mi := &file_fits_api_v1_health_proto_msgTypes[3]
+	mi := &file_fits_api_v1_health_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -322,7 +262,7 @@ func (x *HealthServiceGetRequest) String() string {
 func (*HealthServiceGetRequest) ProtoMessage() {}
 
 func (x *HealthServiceGetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_health_proto_msgTypes[3]
+	mi := &file_fits_api_v1_health_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -335,7 +275,7 @@ func (x *HealthServiceGetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HealthServiceGetRequest.ProtoReflect.Descriptor instead.
 func (*HealthServiceGetRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_health_proto_rawDescGZIP(), []int{3}
+	return file_fits_api_v1_health_proto_rawDescGZIP(), []int{2}
 }
 
 // HealthServiceGetResponse is the response payload for getting the health of the system.
@@ -349,7 +289,7 @@ type HealthServiceGetResponse struct {
 
 func (x *HealthServiceGetResponse) Reset() {
 	*x = HealthServiceGetResponse{}
-	mi := &file_fits_api_v1_health_proto_msgTypes[4]
+	mi := &file_fits_api_v1_health_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -361,7 +301,7 @@ func (x *HealthServiceGetResponse) String() string {
 func (*HealthServiceGetResponse) ProtoMessage() {}
 
 func (x *HealthServiceGetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_health_proto_msgTypes[4]
+	mi := &file_fits_api_v1_health_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -374,7 +314,7 @@ func (x *HealthServiceGetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HealthServiceGetResponse.ProtoReflect.Descriptor instead.
 func (*HealthServiceGetResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_health_proto_rawDescGZIP(), []int{4}
+	return file_fits_api_v1_health_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *HealthServiceGetResponse) GetHealth() *Health {
@@ -390,20 +330,11 @@ const file_fits_api_v1_health_proto_rawDesc = "" +
 	"\n" +
 	"\x18fits/api/v1/health.proto\x12\vfits.api.v1\x1a\x18fits/api/v1/common.proto\"?\n" +
 	"\x06Health\x125\n" +
-	"\bservices\x18\x01 \x03(\v2\x19.fits.api.v1.HealthStatusR\bservices\"\xae\x02\n" +
-	"\fHealthStatus\x12(\n" +
-	"\x04name\x18\x01 \x01(\x0e2\x14.fits.api.v1.ServiceR\x04name\x122\n" +
+	"\bservices\x18\x01 \x03(\v2\x19.fits.api.v1.HealthStatusR\bservices\"\x8c\x01\n" +
+	"\fHealthStatus\x12.\n" +
+	"\aservice\x18\x01 \x01(\x0e2\x14.fits.api.v1.ServiceR\aservice\x122\n" +
 	"\x06status\x18\x02 \x01(\x0e2\x1a.fits.api.v1.ServiceStatusR\x06status\x12\x18\n" +
-	"\amessage\x18\x03 \x01(\tR\amessage\x12I\n" +
-	"\n" +
-	"partitions\x18\x04 \x03(\v2).fits.api.v1.HealthStatus.PartitionsEntryR\n" +
-	"partitions\x1a[\n" +
-	"\x0fPartitionsEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x122\n" +
-	"\x05value\x18\x02 \x01(\v2\x1c.fits.api.v1.PartitionHealthR\x05value:\x028\x01\"_\n" +
-	"\x0fPartitionHealth\x122\n" +
-	"\x06status\x18\x01 \x01(\x0e2\x1a.fits.api.v1.ServiceStatusR\x06status\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\x19\n" +
+	"\amessage\x18\x03 \x01(\tR\amessage\"\x19\n" +
 	"\x17HealthServiceGetRequest\"G\n" +
 	"\x18HealthServiceGetResponse\x12+\n" +
 	"\x06health\x18\x01 \x01(\v2\x13.fits.api.v1.HealthR\x06health*\x86\x01\n" +
@@ -411,10 +342,11 @@ const file_fits_api_v1_health_proto_rawDesc = "" +
 	"\x1aSERVICE_STATUS_UNSPECIFIED\x10\x00\x12\x1b\n" +
 	"\x17SERVICE_STATUS_DEGRADED\x10\x01\x12\x1c\n" +
 	"\x18SERVICE_STATUS_UNHEALTHY\x10\x02\x12\x1a\n" +
-	"\x16SERVICE_STATUS_HEALTHY\x10\x03*<\n" +
+	"\x16SERVICE_STATUS_HEALTHY\x10\x03*X\n" +
 	"\aService\x12\x17\n" +
 	"\x13SERVICE_UNSPECIFIED\x10\x00\x12\x18\n" +
-	"\vSERVICE_K8S\x10\x01\x1a\a\x82\xb2\x19\x03k8s2m\n" +
+	"\vSERVICE_MVM\x10\x01\x1a\a\x82\xb2\x19\x03mvm\x12\x1a\n" +
+	"\fSERVICE_PCVM\x10\x02\x1a\b\x82\xb2\x19\x04pcvm2m\n" +
 	"\rHealthService\x12\\\n" +
 	"\x03Get\x12$.fits.api.v1.HealthServiceGetRequest\x1a%.fits.api.v1.HealthServiceGetResponse\"\b\xd8\xf3\x18\x01\xe0\xf3\x18\x02B\x97\x01\n" +
 	"\x0fcom.fits.api.v1B\vHealthProtoP\x01Z)github.com/fi-ts/api/go/fits/api/v1;apiv1\xa2\x02\x03FAX\xaa\x02\vFits.Api.V1\xca\x02\vFits\\Api\\V1\xe2\x02\x17Fits\\Api\\V1\\GPBMetadata\xea\x02\rFits::Api::V1b\x06proto3"
@@ -432,32 +364,27 @@ func file_fits_api_v1_health_proto_rawDescGZIP() []byte {
 }
 
 var file_fits_api_v1_health_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_fits_api_v1_health_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_fits_api_v1_health_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_fits_api_v1_health_proto_goTypes = []any{
 	(ServiceStatus)(0),               // 0: fits.api.v1.ServiceStatus
 	(Service)(0),                     // 1: fits.api.v1.Service
 	(*Health)(nil),                   // 2: fits.api.v1.Health
 	(*HealthStatus)(nil),             // 3: fits.api.v1.HealthStatus
-	(*PartitionHealth)(nil),          // 4: fits.api.v1.PartitionHealth
-	(*HealthServiceGetRequest)(nil),  // 5: fits.api.v1.HealthServiceGetRequest
-	(*HealthServiceGetResponse)(nil), // 6: fits.api.v1.HealthServiceGetResponse
-	nil,                              // 7: fits.api.v1.HealthStatus.PartitionsEntry
+	(*HealthServiceGetRequest)(nil),  // 4: fits.api.v1.HealthServiceGetRequest
+	(*HealthServiceGetResponse)(nil), // 5: fits.api.v1.HealthServiceGetResponse
 }
 var file_fits_api_v1_health_proto_depIdxs = []int32{
 	3, // 0: fits.api.v1.Health.services:type_name -> fits.api.v1.HealthStatus
-	1, // 1: fits.api.v1.HealthStatus.name:type_name -> fits.api.v1.Service
+	1, // 1: fits.api.v1.HealthStatus.service:type_name -> fits.api.v1.Service
 	0, // 2: fits.api.v1.HealthStatus.status:type_name -> fits.api.v1.ServiceStatus
-	7, // 3: fits.api.v1.HealthStatus.partitions:type_name -> fits.api.v1.HealthStatus.PartitionsEntry
-	0, // 4: fits.api.v1.PartitionHealth.status:type_name -> fits.api.v1.ServiceStatus
-	2, // 5: fits.api.v1.HealthServiceGetResponse.health:type_name -> fits.api.v1.Health
-	4, // 6: fits.api.v1.HealthStatus.PartitionsEntry.value:type_name -> fits.api.v1.PartitionHealth
-	5, // 7: fits.api.v1.HealthService.Get:input_type -> fits.api.v1.HealthServiceGetRequest
-	6, // 8: fits.api.v1.HealthService.Get:output_type -> fits.api.v1.HealthServiceGetResponse
-	8, // [8:9] is the sub-list for method output_type
-	7, // [7:8] is the sub-list for method input_type
-	7, // [7:7] is the sub-list for extension type_name
-	7, // [7:7] is the sub-list for extension extendee
-	0, // [0:7] is the sub-list for field type_name
+	2, // 3: fits.api.v1.HealthServiceGetResponse.health:type_name -> fits.api.v1.Health
+	4, // 4: fits.api.v1.HealthService.Get:input_type -> fits.api.v1.HealthServiceGetRequest
+	5, // 5: fits.api.v1.HealthService.Get:output_type -> fits.api.v1.HealthServiceGetResponse
+	5, // [5:6] is the sub-list for method output_type
+	4, // [4:5] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_v1_health_proto_init() }
@@ -472,7 +399,7 @@ func file_fits_api_v1_health_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_fits_api_v1_health_proto_rawDesc), len(file_fits_api_v1_health_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   6,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

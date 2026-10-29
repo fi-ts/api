@@ -29,11 +29,11 @@ export declare const HealthSchema: GenMessage<Health>;
  */
 export type HealthStatus = Message<"fits.api.v1.HealthStatus"> & {
     /**
-     * Name is the name of the service
+     * Service is the service this health status is reported for
      *
-     * @generated from field: fits.api.v1.Service name = 1;
+     * @generated from field: fits.api.v1.Service service = 1;
      */
-    name: Service;
+    service: Service;
     /**
      * Status is the status of this service
      *
@@ -46,44 +46,12 @@ export type HealthStatus = Message<"fits.api.v1.HealthStatus"> & {
      * @generated from field: string message = 3;
      */
     message: string;
-    /**
-     * Partitions describes the health of the service by partition
-     *
-     * @generated from field: map<string, fits.api.v1.PartitionHealth> partitions = 4;
-     */
-    partitions: {
-        [key: string]: PartitionHealth;
-    };
 };
 /**
  * Describes the message fits.api.v1.HealthStatus.
  * Use `create(HealthStatusSchema)` to create a new message.
  */
 export declare const HealthStatusSchema: GenMessage<HealthStatus>;
-/**
- * PartitionHealth represents the status of a specific service in this partition.
- *
- * @generated from message fits.api.v1.PartitionHealth
- */
-export type PartitionHealth = Message<"fits.api.v1.PartitionHealth"> & {
-    /**
-     * Status is the health status of the service in this partition
-     *
-     * @generated from field: fits.api.v1.ServiceStatus status = 1;
-     */
-    status: ServiceStatus;
-    /**
-     * Message describes the reason for the unhealthy status if possible
-     *
-     * @generated from field: string message = 2;
-     */
-    message: string;
-};
-/**
- * Describes the message fits.api.v1.PartitionHealth.
- * Use `create(PartitionHealthSchema)` to create a new message.
- */
-export declare const PartitionHealthSchema: GenMessage<PartitionHealth>;
 /**
  * HealthServiceGetRequest is the request payload for getting the health of the system.
  *
@@ -161,11 +129,17 @@ export declare enum Service {
      */
     UNSPECIFIED = 0,
     /**
-     * SERVICE_K8S the kubernetes service
+     * SERVICE_MVM the managed vm service
      *
-     * @generated from enum value: SERVICE_K8S = 1;
+     * @generated from enum value: SERVICE_MVM = 1;
      */
-    K8S = 1
+    MVM = 1,
+    /**
+     * SERVICE_PCVM the public cloud vm service
+     *
+     * @generated from enum value: SERVICE_PCVM = 2;
+     */
+    PCVM = 2
 }
 /**
  * Describes the enum fits.api.v1.Service.
