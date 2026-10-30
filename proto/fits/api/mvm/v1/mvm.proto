@@ -311,8 +311,8 @@ message MVMServiceCreateLinuxRequest {
 message MVMServiceCreateRequest {
   // UUID of the project this MVM belongs to.
   string project_uuid = 1 [(buf.validate.field).string.uuid = true];
-  // Optional name; the FQDN is derived from it.
-  optional string name = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Required 4-character code (digits and letters); the FQDN is derived from it.
+  string name_code = 2 [(buf.validate.field).string.(fits.api.v1.is_name_code) = true];
   // UUID of the operating system image to install.
   string os_uuid = 3 [(buf.validate.field).string.uuid = true];
   // UUID of the datacenter location; the MVM is scheduled into one data center within it.

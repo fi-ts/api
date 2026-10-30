@@ -264,6 +264,10 @@
                   <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
                 </li>
               
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
               
             </ul>
           </li>
@@ -1246,6 +1250,14 @@
                 <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
                 <td>80048952</td>
                 <td><p>IsName returns true if name field satisfies our requirements</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_name_code</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80048964</td>
+                <td><p>IsNameCode validates if the given string is a 4-character code consisting of digits and letters.</p></td>
               </tr>
             
               <tr>
@@ -2809,10 +2821,10 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>name</td>
+                  <td>name_code</td>
                   <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>Optional name; the FQDN is derived from it. </p></td>
+                  <td></td>
+                  <td><p>Required 4-character code (digits and letters); the FQDN is derived from it. </p></td>
                 </tr>
               
                 <tr>

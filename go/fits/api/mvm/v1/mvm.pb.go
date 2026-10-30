@@ -1053,8 +1053,8 @@ type MVMServiceCreateRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// UUID of the project this MVM belongs to.
 	ProjectUuid string `protobuf:"bytes,1,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
-	// Optional name; the FQDN is derived from it.
-	Name *string `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
+	// Required 4-character code (digits and letters); the FQDN is derived from it.
+	NameCode string `protobuf:"bytes,2,opt,name=name_code,json=nameCode,proto3" json:"name_code,omitempty"`
 	// UUID of the operating system image to install.
 	OsUuid string `protobuf:"bytes,3,opt,name=os_uuid,json=osUuid,proto3" json:"os_uuid,omitempty"`
 	// UUID of the datacenter location; the MVM is scheduled into one data center within it.
@@ -1128,9 +1128,9 @@ func (x *MVMServiceCreateRequest) GetProjectUuid() string {
 	return ""
 }
 
-func (x *MVMServiceCreateRequest) GetName() string {
-	if x != nil && x.Name != nil {
-		return *x.Name
+func (x *MVMServiceCreateRequest) GetNameCode() string {
+	if x != nil {
+		return x.NameCode
 	}
 	return ""
 }
@@ -2826,10 +2826,10 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\x05disks\x18\x02 \x03(\v2\x1c.fits.api.mvm.v1.WindowsDiskB\b\xbaH\x05\x92\x01\x02\b\x01R\x05disks\"\x81\x01\n" +
 	"\x1cMVMServiceCreateLinuxRequest\x12%\n" +
 	"\tldap_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bldapUuid\x12:\n" +
-	"\x05disks\x18\x02 \x03(\v2\x1a.fits.api.mvm.v1.LinuxDiskB\b\xbaH\x05\x92\x01\x02\b\x01R\x05disks\"\xc4\x06\n" +
+	"\x05disks\x18\x02 \x03(\v2\x1a.fits.api.mvm.v1.LinuxDiskB\b\xbaH\x05\x92\x01\x02\b\x01R\x05disks\"\xbf\x06\n" +
 	"\x17MVMServiceCreateRequest\x12+\n" +
-	"\fproject_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12$\n" +
-	"\x04name\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01H\x01R\x04name\x88\x01\x01\x12!\n" +
+	"\fproject_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12(\n" +
+	"\tname_code\x18\x02 \x01(\tB\v\xbaH\br\x06\xa0\xb4\xae\xb1\x02\x01R\bnameCode\x12!\n" +
 	"\aos_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06osUuid\x12-\n" +
 	"\rlocation_uuid\x18\x04 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\flocationUuid\x12+\n" +
 	"\fcontact_uuid\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vcontactUuid\x12\x10\n" +
@@ -2845,8 +2845,7 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\awindows\x18\x0e \x01(\v2/.fits.api.mvm.v1.MVMServiceCreateWindowsRequestH\x00R\awindows\x12E\n" +
 	"\x05linux\x18\x0f \x01(\v2-.fits.api.mvm.v1.MVMServiceCreateLinuxRequestH\x00R\x05linux\x12d\n" +
 	"\x19initial_network_interface\x18\x10 \x01(\v2(.fits.api.mvm.v1.InitialNetworkInterfaceR\x17initialNetworkInterfaceB\x10\n" +
-	"\amvmtype\x12\x05\xbaH\x02\b\x01B\a\n" +
-	"\x05_name\"\x9b\x02\n" +
+	"\amvmtype\x12\x05\xbaH\x02\b\x01\"\x9b\x02\n" +
 	"\tLinuxDisk\x12!\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x04uuid\x88\x01\x01\x12\x14\n" +
 	"\x05label\x18\x02 \x01(\tR\x05label\x12\x1f\n" +
