@@ -13,14 +13,15 @@ service PublicCloudVMService {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_VIEWER;
-    option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
     option (fits.api.v1.role_mode) = ROLE_MODE_PROVIDER;
+    option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
   }
 
   // Creates a new VM.
   rpc Create(PublicCloudVMServiceCreateRequest) returns (PublicCloudVMServiceCreateResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.role_mode) = ROLE_MODE_PROVIDER;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
 
@@ -29,6 +30,7 @@ service PublicCloudVMService {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_VIEWER;
+    option (fits.api.v1.role_mode) = ROLE_MODE_PROVIDER;
     option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
   }
 
@@ -36,6 +38,7 @@ service PublicCloudVMService {
   rpc Update(PublicCloudVMServiceUpdateRequest) returns (PublicCloudVMServiceUpdateResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.role_mode) = ROLE_MODE_PROVIDER;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
 
@@ -43,6 +46,7 @@ service PublicCloudVMService {
   rpc Delete(PublicCloudVMServiceDeleteRequest) returns (PublicCloudVMServiceDeleteResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.role_mode) = ROLE_MODE_PROVIDER;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
 
@@ -51,6 +55,7 @@ service PublicCloudVMService {
   rpc ValidateCreate(PublicCloudVMServiceValidateCreateRequest) returns (PublicCloudVMServiceValidateCreateResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.role_mode) = ROLE_MODE_PROVIDER;
     option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
   }
 
@@ -59,6 +64,7 @@ service PublicCloudVMService {
   rpc ValidateUpdate(PublicCloudVMServiceValidateUpdateRequest) returns (PublicCloudVMServiceValidateUpdateResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.role_mode) = ROLE_MODE_PROVIDER;
     option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
   }
 }
