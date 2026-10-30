@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package fits.api.mvm.v1;
+
+import "fits/api/mvm/v1/mvm.proto";
+import "fits/api/v1/common.proto";
+import "google/protobuf/timestamp.proto";
+
+// ProviderMVMService provides extended managed VM (MVM) operations for the provider.
+service ProviderMVMService {
+  // Creates a new MVM.
+  rpc Create(ProviderMVMServiceCreateRequest) returns (ProviderMVMServiceCreateResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
+    option (fits.api.v1.role_mode) = ROLE_MODE_ON_BEHALF;
+  }
+}
+
+// Request for extended MVM create requests.
+message ProviderMVMServiceCreateRequest {
+  // The original create request.
+  MVMServiceCreateRequest request = 1;
+  // Determines if the MVM is billable.
+  bool billable = 2;
+  // The start date when the MVM will be billable.
+  optional google.protobuf.Timestamp billable_from = 3;
+}
+
+// Response for extended MVM create requests.
+message ProviderMVMServiceCreateResponse {
+  // The original create response.
+  MVMServiceCreateResponse response = 1;
+}

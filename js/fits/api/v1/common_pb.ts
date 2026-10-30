@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/v1/common.proto.
  */
 export const file_fits_api_v1_common: GenFile = /*@__PURE__*/
-  fileDesc("ChhmaXRzL2FwaS92MS9jb21tb24ucHJvdG8SC2ZpdHMuYXBpLnYxIkIKBlBhZ2luZxIRCgRwYWdlGAEgASgESACIAQESEgoFY291bnQYAiABKARIAYgBAUIHCgVfcGFnZUIICgZfY291bnQiiAEKBkxhYmVscxJPCgZsYWJlbHMYASADKAsyHy5maXRzLmFwaS52MS5MYWJlbHMuTGFiZWxzRW50cnlCHrpIG5oBGLiVuLECASIHcgUQARiAAioHcgUQABiAAhotCgtMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIq8BCgRNZXRhEigKBmxhYmVscxgBIAEoCzITLmZpdHMuYXBpLnYxLkxhYmVsc0gAiAEBEi4KCmNyZWF0ZWRfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhIKCmdlbmVyYXRpb24YBCABKARCCQoHX2xhYmVscyJDCgxVcGRhdGVMYWJlbHMSIwoGdXBkYXRlGAEgASgLMhMuZml0cy5hcGkudjEuTGFiZWxzEg4KBnJlbW92ZRgCIAMoCSKIAQoKVXBkYXRlTWV0YRIuCgp1cGRhdGVkX2F0GAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBJKChBsb2NraW5nX3N0cmF0ZWd5GAIgASgOMiYuZml0cy5hcGkudjEuT3B0aW1pc3RpY0xvY2tpbmdTdHJhdGVneUIIukgFggECEAEqhwEKClRlbmFudFJvbGUSGwoXVEVOQU5UX1JPTEVfVU5TUEVDSUZJRUQQABIVChFURU5BTlRfUk9MRV9BRE1JThABEhYKElRFTkFOVF9ST0xFX0VESVRPUhACEhYKElRFTkFOVF9ST0xFX1ZJRVdFUhADEhUKEVRFTkFOVF9ST0xFX0dVRVNUEAQqdQoLUHJvamVjdFJvbGUSHAoYUFJPSkVDVF9ST0xFX1VOU1BFQ0lGSUVEEAASFgoSUFJPSkVDVF9ST0xFX0FETUlOEAESFwoTUFJPSkVDVF9ST0xFX0VESVRPUhACEhcKE1BST0pFQ1RfUk9MRV9WSUVXRVIQAyphCgxPcGVyYXRvclJvbGUSHQoZT1BFUkFUT1JfUk9MRV9VTlNQRUNJRklFRBAAEhgKFE9QRVJBVE9SX1JPTEVfRURJVE9SEAESGAoUT1BFUkFUT1JfUk9MRV9WSUVXRVIQAipUCgpWaXNpYmlsaXR5EhoKFlZJU0lCSUxJVFlfVU5TUEVDSUZJRUQQABIVChFWSVNJQklMSVRZX1BVQkxJQxABEhMKD1ZJU0lCSUxJVFlfU0VMRhACKlIKCEF1ZGl0aW5nEhgKFEFVRElUSU5HX1VOU1BFQ0lGSUVEEAASFQoRQVVESVRJTkdfSU5DTFVERUQQARIVChFBVURJVElOR19FWENMVURFRBACKpgBChlPcHRpbWlzdGljTG9ja2luZ1N0cmF0ZWd5EisKJ09QVElNSVNUSUNfTE9DS0lOR19TVFJBVEVHWV9VTlNQRUNJRklFRBAAEiYKIk9QVElNSVNUSUNfTE9DS0lOR19TVFJBVEVHWV9DTElFTlQQARImCiJPUFRJTUlTVElDX0xPQ0tJTkdfU1RSQVRFR1lfU0VSVkVSEAI6XAoMdGVuYW50X3JvbGVzEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYuI4DIAMoDjIXLmZpdHMuYXBpLnYxLlRlbmFudFJvbGVSC3RlbmFudFJvbGVzOl8KDXByb2plY3Rfcm9sZXMSHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxi5jgMgAygOMhguZml0cy5hcGkudjEuUHJvamVjdFJvbGVSDHByb2plY3RSb2xlczpiCg5vcGVyYXRvcl9yb2xlcxIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGLqOAyADKA4yGS5maXRzLmFwaS52MS5PcGVyYXRvclJvbGVSDW9wZXJhdG9yUm9sZXM6WQoKdmlzaWJpbGl0eRIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGLuOAyABKA4yFy5maXRzLmFwaS52MS5WaXNpYmlsaXR5Ugp2aXNpYmlsaXR5OlMKCGF1ZGl0aW5nEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYvI4DIAEoDjIVLmZpdHMuYXBpLnYxLkF1ZGl0aW5nUghhdWRpdGluZzpPChFlbnVtX3N0cmluZ192YWx1ZRIhLmdvb2dsZS5wcm90b2J1Zi5FbnVtVmFsdWVPcHRpb25zGKCWAyABKAlSD2VudW1TdHJpbmdWYWx1ZUKXAQoPY29tLmZpdHMuYXBpLnYxQgtDb21tb25Qcm90b1ABWilnaXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS92MTthcGl2MaICA0ZBWKoCC0ZpdHMuQXBpLlYxygILRml0c1xBcGlcVjHiAhdGaXRzXEFwaVxWMVxHUEJNZXRhZGF0YeoCDUZpdHM6OkFwaTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_predefined_rules, file_google_protobuf_descriptor, file_google_protobuf_timestamp]);
+  fileDesc("ChhmaXRzL2FwaS92MS9jb21tb24ucHJvdG8SC2ZpdHMuYXBpLnYxIkIKBlBhZ2luZxIRCgRwYWdlGAEgASgESACIAQESEgoFY291bnQYAiABKARIAYgBAUIHCgVfcGFnZUIICgZfY291bnQiiAEKBkxhYmVscxJPCgZsYWJlbHMYASADKAsyHy5maXRzLmFwaS52MS5MYWJlbHMuTGFiZWxzRW50cnlCHrpIG5oBGLiVuLECASIHcgUQARiAAioHcgUQABiAAhotCgtMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIq8BCgRNZXRhEigKBmxhYmVscxgBIAEoCzITLmZpdHMuYXBpLnYxLkxhYmVsc0gAiAEBEi4KCmNyZWF0ZWRfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhIKCmdlbmVyYXRpb24YBCABKARCCQoHX2xhYmVscyJDCgxVcGRhdGVMYWJlbHMSIwoGdXBkYXRlGAEgASgLMhMuZml0cy5hcGkudjEuTGFiZWxzEg4KBnJlbW92ZRgCIAMoCSKIAQoKVXBkYXRlTWV0YRIuCgp1cGRhdGVkX2F0GAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBJKChBsb2NraW5nX3N0cmF0ZWd5GAIgASgOMiYuZml0cy5hcGkudjEuT3B0aW1pc3RpY0xvY2tpbmdTdHJhdGVneUIIukgFggECEAEqhwEKClRlbmFudFJvbGUSGwoXVEVOQU5UX1JPTEVfVU5TUEVDSUZJRUQQABIVChFURU5BTlRfUk9MRV9BRE1JThABEhYKElRFTkFOVF9ST0xFX0VESVRPUhACEhYKElRFTkFOVF9ST0xFX1ZJRVdFUhADEhUKEVRFTkFOVF9ST0xFX0dVRVNUEAQqdQoLUHJvamVjdFJvbGUSHAoYUFJPSkVDVF9ST0xFX1VOU1BFQ0lGSUVEEAASFgoSUFJPSkVDVF9ST0xFX0FETUlOEAESFwoTUFJPSkVDVF9ST0xFX0VESVRPUhACEhcKE1BST0pFQ1RfUk9MRV9WSUVXRVIQAypUCgpWaXNpYmlsaXR5EhoKFlZJU0lCSUxJVFlfVU5TUEVDSUZJRUQQABIVChFWSVNJQklMSVRZX1BVQkxJQxABEhMKD1ZJU0lCSUxJVFlfU0VMRhACKlIKCEF1ZGl0aW5nEhgKFEFVRElUSU5HX1VOU1BFQ0lGSUVEEAASFQoRQVVESVRJTkdfSU5DTFVERUQQARIVChFBVURJVElOR19FWENMVURFRBACKlYKCFJvbGVNb2RlEhkKFVJPTEVfTU9ERV9VTlNQRUNJRklFRBAAEhYKElJPTEVfTU9ERV9QUk9WSURFUhABEhcKE1JPTEVfTU9ERV9PTl9CRUhBTEYQAiqYAQoZT3B0aW1pc3RpY0xvY2tpbmdTdHJhdGVneRIrCidPUFRJTUlTVElDX0xPQ0tJTkdfU1RSQVRFR1lfVU5TUEVDSUZJRUQQABImCiJPUFRJTUlTVElDX0xPQ0tJTkdfU1RSQVRFR1lfQ0xJRU5UEAESJgoiT1BUSU1JU1RJQ19MT0NLSU5HX1NUUkFURUdZX1NFUlZFUhACOlwKDHRlbmFudF9yb2xlcxIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGLiOAyADKA4yFy5maXRzLmFwaS52MS5UZW5hbnRSb2xlUgt0ZW5hbnRSb2xlczpfCg1wcm9qZWN0X3JvbGVzEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYuY4DIAMoDjIYLmZpdHMuYXBpLnYxLlByb2plY3RSb2xlUgxwcm9qZWN0Um9sZXM6VAoJcm9sZV9tb2RlEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYuo4DIAEoDjIVLmZpdHMuYXBpLnYxLlJvbGVNb2RlUghyb2xlTW9kZTpZCgp2aXNpYmlsaXR5Eh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYu44DIAEoDjIXLmZpdHMuYXBpLnYxLlZpc2liaWxpdHlSCnZpc2liaWxpdHk6UwoIYXVkaXRpbmcSHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxi8jgMgASgOMhUuZml0cy5hcGkudjEuQXVkaXRpbmdSCGF1ZGl0aW5nOk8KEWVudW1fc3RyaW5nX3ZhbHVlEiEuZ29vZ2xlLnByb3RvYnVmLkVudW1WYWx1ZU9wdGlvbnMYoJYDIAEoCVIPZW51bVN0cmluZ1ZhbHVlQpcBCg9jb20uZml0cy5hcGkudjFCC0NvbW1vblByb3RvUAFaKWdpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL3YxO2FwaXYxogIDRkFYqgILRml0cy5BcGkuVjHKAgtGaXRzXEFwaVxWMeICF0ZpdHNcQXBpXFYxXEdQQk1ldGFkYXRh6gINRml0czo6QXBpOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_predefined_rules, file_google_protobuf_descriptor, file_google_protobuf_timestamp]);
 
 /**
  * Paging defines paging for methods with a lot of results
@@ -258,40 +258,6 @@ export const ProjectRoleSchema: GenEnum<ProjectRole> = /*@__PURE__*/
   enumDesc(file_fits_api_v1_common, 1);
 
 /**
- * OperatorRole specifies what role a logged in user needs to call this operator service
- *
- * @generated from enum fits.api.v1.OperatorRole
- */
-export enum OperatorRole {
-  /**
-   * OPERATOR_ROLE_UNSPECIFIED is not specified
-   *
-   * @generated from enum value: OPERATOR_ROLE_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
-
-  /**
-   * OPERATOR_ROLE_EDITOR the logged in user needs at least editor role to call this method
-   *
-   * @generated from enum value: OPERATOR_ROLE_EDITOR = 1;
-   */
-  EDITOR = 1,
-
-  /**
-   * OPERATOR_ROLE_VIEWER the logged in user needs at least viewer role to call this method
-   *
-   * @generated from enum value: OPERATOR_ROLE_VIEWER = 2;
-   */
-  VIEWER = 2,
-}
-
-/**
- * Describes the enum fits.api.v1.OperatorRole.
- */
-export const OperatorRoleSchema: GenEnum<OperatorRole> = /*@__PURE__*/
-  enumDesc(file_fits_api_v1_common, 2);
-
-/**
  * Visibility of a method
  *
  * @generated from enum fits.api.v1.Visibility
@@ -323,7 +289,7 @@ export enum Visibility {
  * Describes the enum fits.api.v1.Visibility.
  */
 export const VisibilitySchema: GenEnum<Visibility> = /*@__PURE__*/
-  enumDesc(file_fits_api_v1_common, 3);
+  enumDesc(file_fits_api_v1_common, 2);
 
 /**
  * Auditing option specified per service method
@@ -359,6 +325,42 @@ export enum Auditing {
  * Describes the enum fits.api.v1.Auditing.
  */
 export const AuditingSchema: GenEnum<Auditing> = /*@__PURE__*/
+  enumDesc(file_fits_api_v1_common, 3);
+
+/**
+ * The mode of the role.
+ * Determines how to enforce the different roles by context.
+ *
+ * @generated from enum fits.api.v1.RoleMode
+ */
+export enum RoleMode {
+  /**
+   * The default mode of the role. Any context is sufficient.
+   *
+   * @generated from enum value: ROLE_MODE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * The tenant must be the provider tenant.
+   *
+   * @generated from enum value: ROLE_MODE_PROVIDER = 1;
+   */
+  PROVIDER = 1,
+
+  /**
+   * The action must be on behalf of a tenant.
+   * Requires the use to be in the provider tenant.
+   *
+   * @generated from enum value: ROLE_MODE_ON_BEHALF = 2;
+   */
+  ON_BEHALF = 2,
+}
+
+/**
+ * Describes the enum fits.api.v1.RoleMode.
+ */
+export const RoleModeSchema: GenEnum<RoleMode> = /*@__PURE__*/
   enumDesc(file_fits_api_v1_common, 4);
 
 /**
@@ -414,11 +416,11 @@ export const project_roles: GenExtension<MethodOptions, ProjectRole[]> = /*@__PU
   extDesc(file_fits_api_v1_common, 1);
 
 /**
- * OperatorRoles are used to define which operator role a logged in user must provide to call this method
+ * The mode of the role. Determines how to enforce the roles above by context.
  *
- * @generated from extension: repeated fits.api.v1.OperatorRole operator_roles = 51002;
+ * @generated from extension: fits.api.v1.RoleMode role_mode = 51002;
  */
-export const operator_roles: GenExtension<MethodOptions, OperatorRole[]> = /*@__PURE__*/
+export const role_mode: GenExtension<MethodOptions, RoleMode> = /*@__PURE__*/
   extDesc(file_fits_api_v1_common, 2);
 
 /**

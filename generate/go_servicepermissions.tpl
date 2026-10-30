@@ -17,15 +17,6 @@ func GetServices() []string {
 func GetServicePermissions() *ServicePermissions {
 	return &ServicePermissions{
 		Roles:      Roles{
-			Operator: Operator{
-				{{- range $role, $methods := .Roles.Operator }}
-					v1.OperatorRole_{{ $role }}: map[string]struct{}{
-						{{- range $method,$v := $methods }}
-							"{{ $method }}":{{ $v }},
-						{{- end }}
-					},
-				{{- end }}
-			},
 			Tenant:  Tenant{
 				{{- range $role, $methods := .Roles.Tenant }}
 					v1.TenantRole_{{ $role }}: map[string]struct{}{
@@ -61,11 +52,6 @@ func GetServicePermissions() *ServicePermissions {
 	"{{ $key }}": {{ $value }} ,
 {{- end }}
 			},
-			Operator:    map[string]bool{
-{{- range $key, $value := .Visibility.Operator }}
-	"{{ $key }}": {{ $value }} ,
-{{- end }}
-			},
 			Tenant:    map[string]bool{
 {{- range $key, $value := .Visibility.Tenant }}
 	"{{ $key }}": {{ $value }} ,
@@ -92,11 +78,6 @@ func IsPublicScope(req connect.AnyRequest) bool {
 
 func IsSelfScope(req connect.AnyRequest) bool {
 	_, ok := GetServicePermissions().Visibility.Self[req.Spec().Procedure]
-	return ok
-}
-
-func IsOperatorScope(req connect.AnyRequest) bool {
-	_, ok := GetServicePermissions().Visibility.Operator[req.Spec().Procedure]
 	return ok
 }
 

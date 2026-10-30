@@ -110,8 +110,6 @@ type Token struct {
 	ProjectRoles map[string]ProjectRole `protobuf:"bytes,9,rep,name=project_roles,json=projectRoles,proto3" json:"project_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.ProjectRole"`
 	// TenantRoles associates a tenant id with the corresponding role of the token owner.
 	TenantRoles map[string]TenantRole `protobuf:"bytes,10,rep,name=tenant_roles,json=tenantRoles,proto3" json:"tenant_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.TenantRole"`
-	// OperatorRole defines the operator role of the token owner
-	OperatorRole *OperatorRole `protobuf:"varint,11,opt,name=operator_role,json=operatorRole,proto3,enum=fits.api.v1.OperatorRole,oneof" json:"operator_role,omitempty"`
 	// RawRoles are the normalized roles transmitted by the OIDC provider.
 	RawRoles []string `protobuf:"bytes,12,rep,name=raw_roles,json=rawRoles,proto3" json:"raw_roles,omitempty"`
 	// Name is the display name of the user the token was issued for.
@@ -226,13 +224,6 @@ func (x *Token) GetTenantRoles() map[string]TenantRole {
 	return nil
 }
 
-func (x *Token) GetOperatorRole() OperatorRole {
-	if x != nil && x.OperatorRole != nil {
-		return *x.OperatorRole
-	}
-	return OperatorRole_OPERATOR_ROLE_UNSPECIFIED
-}
-
 func (x *Token) GetRawRoles() []string {
 	if x != nil {
 		return x.RawRoles
@@ -339,7 +330,6 @@ type PermissionsByVisibility struct {
 	//	*PermissionsByVisibility_Self
 	//	*PermissionsByVisibility_Project
 	//	*PermissionsByVisibility_Tenant
-	//	*PermissionsByVisibility_Operator
 	Visibility    isPermissionsByVisibility_Visibility `protobuf_oneof:"visibility"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -418,15 +408,6 @@ func (x *PermissionsByVisibility) GetTenant() *TenantPermissions {
 	return nil
 }
 
-func (x *PermissionsByVisibility) GetOperator() *OperatorPermissions {
-	if x != nil {
-		if x, ok := x.Visibility.(*PermissionsByVisibility_Operator); ok {
-			return x.Operator
-		}
-	}
-	return nil
-}
-
 type isPermissionsByVisibility_Visibility interface {
 	isPermissionsByVisibility_Visibility()
 }
@@ -451,11 +432,6 @@ type PermissionsByVisibility_Tenant struct {
 	Tenant *TenantPermissions `protobuf:"bytes,4,opt,name=tenant,proto3,oneof"`
 }
 
-type PermissionsByVisibility_Operator struct {
-	// OperatorPermissions carries operator method permissions.
-	Operator *OperatorPermissions `protobuf:"bytes,5,opt,name=operator,proto3,oneof"`
-}
-
 func (*PermissionsByVisibility_Public) isPermissionsByVisibility_Visibility() {}
 
 func (*PermissionsByVisibility_Self) isPermissionsByVisibility_Visibility() {}
@@ -463,8 +439,6 @@ func (*PermissionsByVisibility_Self) isPermissionsByVisibility_Visibility() {}
 func (*PermissionsByVisibility_Project) isPermissionsByVisibility_Visibility() {}
 
 func (*PermissionsByVisibility_Tenant) isPermissionsByVisibility_Visibility() {}
-
-func (*PermissionsByVisibility_Operator) isPermissionsByVisibility_Visibility() {}
 
 // PublicPermissions carries public method permissions.
 type PublicPermissions struct {
@@ -670,52 +644,6 @@ func (x *TenantPermissions) GetMethods() []string {
 	return nil
 }
 
-// OperatorPermissions carries operator method permissions.
-type OperatorPermissions struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Methods which should be accessible.
-	Methods       []string `protobuf:"bytes,1,rep,name=methods,proto3" json:"methods,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *OperatorPermissions) Reset() {
-	*x = OperatorPermissions{}
-	mi := &file_fits_api_v1_token_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *OperatorPermissions) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*OperatorPermissions) ProtoMessage() {}
-
-func (x *OperatorPermissions) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_token_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use OperatorPermissions.ProtoReflect.Descriptor instead.
-func (*OperatorPermissions) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *OperatorPermissions) GetMethods() []string {
-	if x != nil {
-		return x.Methods
-	}
-	return nil
-}
-
 // TokenServiceListRequest is the request payload to list tokens
 type TokenServiceListRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -725,7 +653,7 @@ type TokenServiceListRequest struct {
 
 func (x *TokenServiceListRequest) Reset() {
 	*x = TokenServiceListRequest{}
-	mi := &file_fits_api_v1_token_proto_msgTypes[8]
+	mi := &file_fits_api_v1_token_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -737,7 +665,7 @@ func (x *TokenServiceListRequest) String() string {
 func (*TokenServiceListRequest) ProtoMessage() {}
 
 func (x *TokenServiceListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_token_proto_msgTypes[8]
+	mi := &file_fits_api_v1_token_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -750,7 +678,7 @@ func (x *TokenServiceListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TokenServiceListRequest.ProtoReflect.Descriptor instead.
 func (*TokenServiceListRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{8}
+	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{7}
 }
 
 // TokenServiceListResponse is the response payload of a token list request
@@ -764,7 +692,7 @@ type TokenServiceListResponse struct {
 
 func (x *TokenServiceListResponse) Reset() {
 	*x = TokenServiceListResponse{}
-	mi := &file_fits_api_v1_token_proto_msgTypes[9]
+	mi := &file_fits_api_v1_token_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -776,7 +704,7 @@ func (x *TokenServiceListResponse) String() string {
 func (*TokenServiceListResponse) ProtoMessage() {}
 
 func (x *TokenServiceListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_token_proto_msgTypes[9]
+	mi := &file_fits_api_v1_token_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -789,7 +717,7 @@ func (x *TokenServiceListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TokenServiceListResponse.ProtoReflect.Descriptor instead.
 func (*TokenServiceListResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{9}
+	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *TokenServiceListResponse) GetTokens() []*Token {
@@ -810,7 +738,7 @@ type TokenServiceRevokeRequest struct {
 
 func (x *TokenServiceRevokeRequest) Reset() {
 	*x = TokenServiceRevokeRequest{}
-	mi := &file_fits_api_v1_token_proto_msgTypes[10]
+	mi := &file_fits_api_v1_token_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -822,7 +750,7 @@ func (x *TokenServiceRevokeRequest) String() string {
 func (*TokenServiceRevokeRequest) ProtoMessage() {}
 
 func (x *TokenServiceRevokeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_token_proto_msgTypes[10]
+	mi := &file_fits_api_v1_token_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -835,7 +763,7 @@ func (x *TokenServiceRevokeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TokenServiceRevokeRequest.ProtoReflect.Descriptor instead.
 func (*TokenServiceRevokeRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{10}
+	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *TokenServiceRevokeRequest) GetUuid() string {
@@ -854,7 +782,7 @@ type TokenServiceRevokeResponse struct {
 
 func (x *TokenServiceRevokeResponse) Reset() {
 	*x = TokenServiceRevokeResponse{}
-	mi := &file_fits_api_v1_token_proto_msgTypes[11]
+	mi := &file_fits_api_v1_token_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -866,7 +794,7 @@ func (x *TokenServiceRevokeResponse) String() string {
 func (*TokenServiceRevokeResponse) ProtoMessage() {}
 
 func (x *TokenServiceRevokeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_token_proto_msgTypes[11]
+	mi := &file_fits_api_v1_token_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -879,7 +807,7 @@ func (x *TokenServiceRevokeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TokenServiceRevokeResponse.ProtoReflect.Descriptor instead.
 func (*TokenServiceRevokeResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{11}
+	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{10}
 }
 
 // TokenServiceGetRequest is the request payload of a token get request
@@ -893,7 +821,7 @@ type TokenServiceGetRequest struct {
 
 func (x *TokenServiceGetRequest) Reset() {
 	*x = TokenServiceGetRequest{}
-	mi := &file_fits_api_v1_token_proto_msgTypes[12]
+	mi := &file_fits_api_v1_token_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -905,7 +833,7 @@ func (x *TokenServiceGetRequest) String() string {
 func (*TokenServiceGetRequest) ProtoMessage() {}
 
 func (x *TokenServiceGetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_token_proto_msgTypes[12]
+	mi := &file_fits_api_v1_token_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -918,7 +846,7 @@ func (x *TokenServiceGetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TokenServiceGetRequest.ProtoReflect.Descriptor instead.
 func (*TokenServiceGetRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{12}
+	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *TokenServiceGetRequest) GetUuid() string {
@@ -939,7 +867,7 @@ type TokenServiceGetResponse struct {
 
 func (x *TokenServiceGetResponse) Reset() {
 	*x = TokenServiceGetResponse{}
-	mi := &file_fits_api_v1_token_proto_msgTypes[13]
+	mi := &file_fits_api_v1_token_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -951,7 +879,7 @@ func (x *TokenServiceGetResponse) String() string {
 func (*TokenServiceGetResponse) ProtoMessage() {}
 
 func (x *TokenServiceGetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_token_proto_msgTypes[13]
+	mi := &file_fits_api_v1_token_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -964,7 +892,7 @@ func (x *TokenServiceGetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TokenServiceGetResponse.ProtoReflect.Descriptor instead.
 func (*TokenServiceGetResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{13}
+	return file_fits_api_v1_token_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *TokenServiceGetResponse) GetToken() *Token {
@@ -978,7 +906,7 @@ var File_fits_api_v1_token_proto protoreflect.FileDescriptor
 
 const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\n" +
-	"\x17fits/api/v1/token.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc4\t\n" +
+	"\x17fits/api/v1/token.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe9\b\n" +
 	"\x05Token\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x1e\n" +
 	"\x04user\x18\x02 \x01(\tB\n" +
@@ -992,8 +920,7 @@ const file_fits_api_v1_token_proto_rawDesc = "" +
 	"token_type\x18\b \x01(\x0e2\x16.fits.api.v1.TokenTypeB\b\xbaH\x05\x82\x01\x02\x10\x01R\ttokenType\x12I\n" +
 	"\rproject_roles\x18\t \x03(\v2$.fits.api.v1.Token.ProjectRolesEntryR\fprojectRoles\x12a\n" +
 	"\ftenant_roles\x18\n" +
-	" \x03(\v2#.fits.api.v1.Token.TenantRolesEntryB\x19\xbaH\x16\x9a\x01\x13\xc0\x95\xb8\xb1\x02\x01Е\xb8\xb1\x02\x01*\x05\x82\x01\x02\x10\x01R\vtenantRoles\x12M\n" +
-	"\roperator_role\x18\v \x01(\x0e2\x19.fits.api.v1.OperatorRoleB\b\xbaH\x05\x82\x01\x02\x10\x01H\x00R\foperatorRole\x88\x01\x01\x121\n" +
+	" \x03(\v2#.fits.api.v1.Token.TenantRolesEntryB\x19\xbaH\x16\x9a\x01\x13\xc0\x95\xb8\xb1\x02\x01Е\xb8\xb1\x02\x01*\x05\x82\x01\x02\x10\x01R\vtenantRoles\x121\n" +
 	"\traw_roles\x18\f \x03(\tB\x14\xbaH\x11\x92\x01\x0eФ\xb3\xb1\x02\x01ؤ\xb3\xb1\x02\x01\x18\x01R\brawRoles\x12\x1c\n" +
 	"\x04name\x18\r \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\x04name\x12\x1e\n" +
 	"\x05email\x18\x0e \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\x05email\x12'\n" +
@@ -1006,17 +933,15 @@ const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\x10TenantRolesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12-\n" +
 	"\x05value\x18\x02 \x01(\x0e2\x17.fits.api.v1.TenantRoleR\x05value:\x028\x01:\x9f\x01\xbaH\x9b\x01\x1a\x98\x01\n" +
-	"\x1btoken.permissions.usertoken\x12)token type user must not have permissions\x1aN(this.token_type == 2 && this.permissions.size() == 0) || this.token_type != 2B\x10\n" +
-	"\x0e_operator_role\"[\n" +
+	"\x1btoken.permissions.usertoken\x12)token type user must not have permissions\x1aN(this.token_type == 2 && this.permissions.size() == 0) || this.token_type != 2J\x04\b\v\x10\f\"[\n" +
 	"\x10MethodPermission\x12\"\n" +
 	"\asubject\x18\x01 \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\asubject\x12#\n" +
-	"\amethods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\"\xcc\x02\n" +
+	"\amethods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\"\x8c\x02\n" +
 	"\x17PermissionsByVisibility\x128\n" +
 	"\x06public\x18\x01 \x01(\v2\x1e.fits.api.v1.PublicPermissionsH\x00R\x06public\x122\n" +
 	"\x04self\x18\x02 \x01(\v2\x1c.fits.api.v1.SelfPermissionsH\x00R\x04self\x12;\n" +
 	"\aproject\x18\x03 \x01(\v2\x1f.fits.api.v1.ProjectPermissionsH\x00R\aproject\x128\n" +
-	"\x06tenant\x18\x04 \x01(\v2\x1e.fits.api.v1.TenantPermissionsH\x00R\x06tenant\x12>\n" +
-	"\boperator\x18\x05 \x01(\v2 .fits.api.v1.OperatorPermissionsH\x00R\boperatorB\f\n" +
+	"\x06tenant\x18\x04 \x01(\v2\x1e.fits.api.v1.TenantPermissionsH\x00R\x06tenantB\f\n" +
 	"\n" +
 	"visibility\"8\n" +
 	"\x11PublicPermissions\x12#\n" +
@@ -1028,9 +953,7 @@ const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\amethods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\"[\n" +
 	"\x11TenantPermissions\x12!\n" +
 	"\x05login\x18\x01 \x01(\tB\v\xbaH\br\x06\x90\xb4\xae\xb1\x02\x01R\x05login\x12#\n" +
-	"\amethods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\":\n" +
-	"\x13OperatorPermissions\x12#\n" +
-	"\amethods\x18\x01 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\"\x19\n" +
+	"\amethods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\"\x19\n" +
 	"\x17TokenServiceListRequest\"F\n" +
 	"\x18TokenServiceListResponse\x12*\n" +
 	"\x06tokens\x18\x01 \x03(\v2\x12.fits.api.v1.TokenR\x06tokens\"9\n" +
@@ -1065,7 +988,7 @@ func file_fits_api_v1_token_proto_rawDescGZIP() []byte {
 }
 
 var file_fits_api_v1_token_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_fits_api_v1_token_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_fits_api_v1_token_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_fits_api_v1_token_proto_goTypes = []any{
 	(TokenType)(0),                     // 0: fits.api.v1.TokenType
 	(*Token)(nil),                      // 1: fits.api.v1.Token
@@ -1075,50 +998,46 @@ var file_fits_api_v1_token_proto_goTypes = []any{
 	(*SelfPermissions)(nil),            // 5: fits.api.v1.SelfPermissions
 	(*ProjectPermissions)(nil),         // 6: fits.api.v1.ProjectPermissions
 	(*TenantPermissions)(nil),          // 7: fits.api.v1.TenantPermissions
-	(*OperatorPermissions)(nil),        // 8: fits.api.v1.OperatorPermissions
-	(*TokenServiceListRequest)(nil),    // 9: fits.api.v1.TokenServiceListRequest
-	(*TokenServiceListResponse)(nil),   // 10: fits.api.v1.TokenServiceListResponse
-	(*TokenServiceRevokeRequest)(nil),  // 11: fits.api.v1.TokenServiceRevokeRequest
-	(*TokenServiceRevokeResponse)(nil), // 12: fits.api.v1.TokenServiceRevokeResponse
-	(*TokenServiceGetRequest)(nil),     // 13: fits.api.v1.TokenServiceGetRequest
-	(*TokenServiceGetResponse)(nil),    // 14: fits.api.v1.TokenServiceGetResponse
-	nil,                                // 15: fits.api.v1.Token.ProjectRolesEntry
-	nil,                                // 16: fits.api.v1.Token.TenantRolesEntry
-	(*Meta)(nil),                       // 17: fits.api.v1.Meta
-	(*timestamppb.Timestamp)(nil),      // 18: google.protobuf.Timestamp
-	(OperatorRole)(0),                  // 19: fits.api.v1.OperatorRole
-	(ProjectRole)(0),                   // 20: fits.api.v1.ProjectRole
-	(TenantRole)(0),                    // 21: fits.api.v1.TenantRole
+	(*TokenServiceListRequest)(nil),    // 8: fits.api.v1.TokenServiceListRequest
+	(*TokenServiceListResponse)(nil),   // 9: fits.api.v1.TokenServiceListResponse
+	(*TokenServiceRevokeRequest)(nil),  // 10: fits.api.v1.TokenServiceRevokeRequest
+	(*TokenServiceRevokeResponse)(nil), // 11: fits.api.v1.TokenServiceRevokeResponse
+	(*TokenServiceGetRequest)(nil),     // 12: fits.api.v1.TokenServiceGetRequest
+	(*TokenServiceGetResponse)(nil),    // 13: fits.api.v1.TokenServiceGetResponse
+	nil,                                // 14: fits.api.v1.Token.ProjectRolesEntry
+	nil,                                // 15: fits.api.v1.Token.TenantRolesEntry
+	(*Meta)(nil),                       // 16: fits.api.v1.Meta
+	(*timestamppb.Timestamp)(nil),      // 17: google.protobuf.Timestamp
+	(ProjectRole)(0),                   // 18: fits.api.v1.ProjectRole
+	(TenantRole)(0),                    // 19: fits.api.v1.TenantRole
 }
 var file_fits_api_v1_token_proto_depIdxs = []int32{
-	17, // 0: fits.api.v1.Token.meta:type_name -> fits.api.v1.Meta
+	16, // 0: fits.api.v1.Token.meta:type_name -> fits.api.v1.Meta
 	3,  // 1: fits.api.v1.Token.permissions:type_name -> fits.api.v1.PermissionsByVisibility
-	18, // 2: fits.api.v1.Token.expires:type_name -> google.protobuf.Timestamp
-	18, // 3: fits.api.v1.Token.issued_at:type_name -> google.protobuf.Timestamp
+	17, // 2: fits.api.v1.Token.expires:type_name -> google.protobuf.Timestamp
+	17, // 3: fits.api.v1.Token.issued_at:type_name -> google.protobuf.Timestamp
 	0,  // 4: fits.api.v1.Token.token_type:type_name -> fits.api.v1.TokenType
-	15, // 5: fits.api.v1.Token.project_roles:type_name -> fits.api.v1.Token.ProjectRolesEntry
-	16, // 6: fits.api.v1.Token.tenant_roles:type_name -> fits.api.v1.Token.TenantRolesEntry
-	19, // 7: fits.api.v1.Token.operator_role:type_name -> fits.api.v1.OperatorRole
-	4,  // 8: fits.api.v1.PermissionsByVisibility.public:type_name -> fits.api.v1.PublicPermissions
-	5,  // 9: fits.api.v1.PermissionsByVisibility.self:type_name -> fits.api.v1.SelfPermissions
-	6,  // 10: fits.api.v1.PermissionsByVisibility.project:type_name -> fits.api.v1.ProjectPermissions
-	7,  // 11: fits.api.v1.PermissionsByVisibility.tenant:type_name -> fits.api.v1.TenantPermissions
-	8,  // 12: fits.api.v1.PermissionsByVisibility.operator:type_name -> fits.api.v1.OperatorPermissions
-	1,  // 13: fits.api.v1.TokenServiceListResponse.tokens:type_name -> fits.api.v1.Token
-	1,  // 14: fits.api.v1.TokenServiceGetResponse.token:type_name -> fits.api.v1.Token
-	20, // 15: fits.api.v1.Token.ProjectRolesEntry.value:type_name -> fits.api.v1.ProjectRole
-	21, // 16: fits.api.v1.Token.TenantRolesEntry.value:type_name -> fits.api.v1.TenantRole
-	13, // 17: fits.api.v1.TokenService.Get:input_type -> fits.api.v1.TokenServiceGetRequest
-	9,  // 18: fits.api.v1.TokenService.List:input_type -> fits.api.v1.TokenServiceListRequest
-	11, // 19: fits.api.v1.TokenService.Revoke:input_type -> fits.api.v1.TokenServiceRevokeRequest
-	14, // 20: fits.api.v1.TokenService.Get:output_type -> fits.api.v1.TokenServiceGetResponse
-	10, // 21: fits.api.v1.TokenService.List:output_type -> fits.api.v1.TokenServiceListResponse
-	12, // 22: fits.api.v1.TokenService.Revoke:output_type -> fits.api.v1.TokenServiceRevokeResponse
-	20, // [20:23] is the sub-list for method output_type
-	17, // [17:20] is the sub-list for method input_type
-	17, // [17:17] is the sub-list for extension type_name
-	17, // [17:17] is the sub-list for extension extendee
-	0,  // [0:17] is the sub-list for field type_name
+	14, // 5: fits.api.v1.Token.project_roles:type_name -> fits.api.v1.Token.ProjectRolesEntry
+	15, // 6: fits.api.v1.Token.tenant_roles:type_name -> fits.api.v1.Token.TenantRolesEntry
+	4,  // 7: fits.api.v1.PermissionsByVisibility.public:type_name -> fits.api.v1.PublicPermissions
+	5,  // 8: fits.api.v1.PermissionsByVisibility.self:type_name -> fits.api.v1.SelfPermissions
+	6,  // 9: fits.api.v1.PermissionsByVisibility.project:type_name -> fits.api.v1.ProjectPermissions
+	7,  // 10: fits.api.v1.PermissionsByVisibility.tenant:type_name -> fits.api.v1.TenantPermissions
+	1,  // 11: fits.api.v1.TokenServiceListResponse.tokens:type_name -> fits.api.v1.Token
+	1,  // 12: fits.api.v1.TokenServiceGetResponse.token:type_name -> fits.api.v1.Token
+	18, // 13: fits.api.v1.Token.ProjectRolesEntry.value:type_name -> fits.api.v1.ProjectRole
+	19, // 14: fits.api.v1.Token.TenantRolesEntry.value:type_name -> fits.api.v1.TenantRole
+	12, // 15: fits.api.v1.TokenService.Get:input_type -> fits.api.v1.TokenServiceGetRequest
+	8,  // 16: fits.api.v1.TokenService.List:input_type -> fits.api.v1.TokenServiceListRequest
+	10, // 17: fits.api.v1.TokenService.Revoke:input_type -> fits.api.v1.TokenServiceRevokeRequest
+	13, // 18: fits.api.v1.TokenService.Get:output_type -> fits.api.v1.TokenServiceGetResponse
+	9,  // 19: fits.api.v1.TokenService.List:output_type -> fits.api.v1.TokenServiceListResponse
+	11, // 20: fits.api.v1.TokenService.Revoke:output_type -> fits.api.v1.TokenServiceRevokeResponse
+	18, // [18:21] is the sub-list for method output_type
+	15, // [15:18] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_v1_token_proto_init() }
@@ -1128,13 +1047,11 @@ func file_fits_api_v1_token_proto_init() {
 	}
 	file_fits_api_v1_common_proto_init()
 	file_fits_api_v1_predefined_rules_proto_init()
-	file_fits_api_v1_token_proto_msgTypes[0].OneofWrappers = []any{}
 	file_fits_api_v1_token_proto_msgTypes[2].OneofWrappers = []any{
 		(*PermissionsByVisibility_Public)(nil),
 		(*PermissionsByVisibility_Self)(nil),
 		(*PermissionsByVisibility_Project)(nil),
 		(*PermissionsByVisibility_Tenant)(nil),
-		(*PermissionsByVisibility_Operator)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -1142,7 +1059,7 @@ func file_fits_api_v1_token_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_fits_api_v1_token_proto_rawDesc), len(file_fits_api_v1_token_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   16,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

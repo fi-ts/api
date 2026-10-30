@@ -111,9 +111,8 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 			return files, err
 		}
 		roles = permissions.Roles{
-			Operator: permissions.Operator{},
-			Tenant:   permissions.Tenant{},
-			Project:  permissions.Project{},
+			Tenant:  permissions.Tenant{},
+			Project: permissions.Project{},
 		}
 		methods = permissions.Methods{
 			// Allow service reflection to list available methods
@@ -126,10 +125,9 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 				serverReflectionInfov1alpha1: true,
 				serverReflectionInfo:         true,
 			},
-			Self:     map[string]bool{},
-			Operator: map[string]bool{},
-			Tenant:   map[string]bool{},
-			Project:  map[string]bool{},
+			Self:    map[string]bool{},
+			Tenant:  map[string]bool{},
+			Project: map[string]bool{},
 		}
 		auditable = permissions.Auditable{}
 		services  = []string{}
@@ -176,16 +174,6 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 							roles.Project[apirole][methodName] = struct{}{}
 							visibility.Project[methodName] = true
 						case v1.ProjectRole_PROJECT_ROLE_UNSPECIFIED.String():
-							// noop
-						// Operator
-						case v1.OperatorRole_OPERATOR_ROLE_EDITOR.String(), v1.OperatorRole_OPERATOR_ROLE_VIEWER.String():
-							apirole := v1.OperatorRole(v1.OperatorRole_value[role])
-							if methods := roles.Operator[apirole]; methods == nil {
-								roles.Operator[apirole] = permissions.Methods{}
-							}
-							roles.Operator[apirole][methodName] = struct{}{}
-							visibility.Operator[methodName] = true
-						case v1.OperatorRole_OPERATOR_ROLE_UNSPECIFIED.String():
 							// noop
 						// Visibility
 						case v1.Visibility_VISIBILITY_PUBLIC.String():
