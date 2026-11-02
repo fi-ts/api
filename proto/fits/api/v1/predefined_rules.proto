@@ -68,6 +68,12 @@ extend buf.validate.StringRules {
     message: "must be a valid phone number in E.164 format, e.g. +4915123456789"
     expression: "this.matches('^[+][1-9][0-9]{1,14}$')"
   }];
+  // IsNameCode validates if the given string is a 4-character code consisting of digits and letters.
+  optional bool is_name_code = 80048964 [(buf.validate.predefined).cel = {
+    id: "string.is_name_code"
+    message: "must be a 4-character code consisting of digits and letters"
+    expression: "this.matches('^[0-9A-Za-z]{4}$')"
+  }];
 
   // IsTenantSubjectPermission returns true if name field satisfies our requirements.
   optional bool is_tenant_subject_permission = 80048962 [(buf.validate.predefined).cel = {

@@ -392,11 +392,11 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
      */
     projectUuid: string;
     /**
-     * Optional name; the FQDN is derived from it.
+     * Required 4-character code (digits and letters); the FQDN is derived from it.
      *
-     * @generated from field: optional string name = 2;
+     * @generated from field: string name_code = 2;
      */
-    name?: string | undefined;
+    nameCode: string;
     /**
      * UUID of the operating system image to install.
      *
@@ -792,7 +792,14 @@ export declare const MVMServiceValidateUpdateDiskResponseSchema: GenMessage<MVMS
  *
  * @generated from message fits.api.mvm.v1.MVMServiceAddDiskResponse
  */
-export type MVMServiceAddDiskResponse = Message<"fits.api.mvm.v1.MVMServiceAddDiskResponse"> & {};
+export type MVMServiceAddDiskResponse = Message<"fits.api.mvm.v1.MVMServiceAddDiskResponse"> & {
+    /**
+     * UUID of the created disk.
+     *
+     * @generated from field: string uuid = 1;
+     */
+    uuid: string;
+};
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceAddDiskResponse.
  * Use `create(MVMServiceAddDiskResponseSchema)` to create a new message.
@@ -966,7 +973,14 @@ export declare const MVMServiceDeleteDiskRequestSchema: GenMessage<MVMServiceDel
  *
  * @generated from message fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse
  */
-export type MVMServiceAddNetworkInterfaceResponse = Message<"fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse"> & {};
+export type MVMServiceAddNetworkInterfaceResponse = Message<"fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse"> & {
+    /**
+     * UUID of the created network interface.
+     *
+     * @generated from field: string uuid = 1;
+     */
+    uuid: string;
+};
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse.
  * Use `create(MVMServiceAddNetworkInterfaceResponseSchema)` to create a new message.

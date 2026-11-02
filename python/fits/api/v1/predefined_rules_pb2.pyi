@@ -23,6 +23,8 @@ IS_IPV4_CIDR_FIELD_NUMBER: _ClassVar[int]
 is_ipv4_cidr: _descriptor.FieldDescriptor
 IS_PHONE_FIELD_NUMBER: _ClassVar[int]
 is_phone: _descriptor.FieldDescriptor
+IS_NAME_CODE_FIELD_NUMBER: _ClassVar[int]
+is_name_code: _descriptor.FieldDescriptor
 IS_TENANT_SUBJECT_PERMISSION_FIELD_NUMBER: _ClassVar[int]
 is_tenant_subject_permission: _descriptor.FieldDescriptor
 IS_PROJECT_SUBJECT_PERMISSION_FIELD_NUMBER: _ClassVar[int]
