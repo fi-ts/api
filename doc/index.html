@@ -829,6 +829,65 @@
         
           
           <li>
+            <a href="#fits%2fapi%2fv1%2fapikey.proto">fits/api/v1/apikey.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.v1.ApiKey"><span class="badge">M</span>ApiKey</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ApiKeyServiceCreateRequest"><span class="badge">M</span>ApiKeyServiceCreateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ApiKeyServiceCreateResponse"><span class="badge">M</span>ApiKeyServiceCreateResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ApiKeyServiceDeleteRequest"><span class="badge">M</span>ApiKeyServiceDeleteRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ApiKeyServiceDeleteResponse"><span class="badge">M</span>ApiKeyServiceDeleteResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ApiKeyServiceGetRequest"><span class="badge">M</span>ApiKeyServiceGetRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ApiKeyServiceGetResponse"><span class="badge">M</span>ApiKeyServiceGetResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ApiKeyServiceListRequest"><span class="badge">M</span>ApiKeyServiceListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ApiKeyServiceListResponse"><span class="badge">M</span>ApiKeyServiceListResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ApiKeyServiceRevokeRequest"><span class="badge">M</span>ApiKeyServiceRevokeRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ApiKeyServiceRevokeResponse"><span class="badge">M</span>ApiKeyServiceRevokeResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#fits.api.v1.ApiKeyService"><span class="badge">S</span>ApiKeyService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#fits%2fapi%2fv1%2fhealth.proto">fits/api/v1/health.proto</a>
             <ul>
               
@@ -5118,6 +5177,364 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                 <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateResponse">PublicCloudVMServiceValidateUpdateResponse</a></td>
                 <td><p>Validates a VM update request without updating anything. Intended for
 form pre-checks; the update endpoint validates again before executing.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/v1/apikey.proto">fits/api/v1/apikey.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.v1.ApiKey">ApiKey</h3>
+        <p>ApiKey is a personal access token which authenticates api requests on behalf of a user.</p><p>Secrets have the format fco_v1_<random>, the version selects the generation and</p><p>hash scheme of the secret, v1 is hashed with sha-256.</p><p>The plaintext secret is only known at creation time and is returned exactly once,</p><p>only the sha-256 hash of the secret is persisted, never the secret itself.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Id is the unique identifier of this api key </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UserId is the id of the user this api key belongs to </p></td>
+                </tr>
+              
+                <tr>
+                  <td>realm</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Realm is the identity realm of the user this api key belongs to </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name is a user given display name of this api key </p></td>
+                </tr>
+              
+                <tr>
+                  <td>hash</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Hash is the sha-256 hash of the api key secret, the secret itself is never stored.
+The api server leaves this field unset in api responses, it is only persisted internally. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>prefix</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Prefix is the first 12 bytes of the api key secret, used to display and identify
+the api key in the ui, e.g. fco_v1_abc12... </p></td>
+                </tr>
+              
+                <tr>
+                  <td>created_at</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>CreatedAt is the date when this api key was created </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expires_at</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p>ExpiresAt is the date after which this api key can not be used anymore.
+If unset the api key does not expire. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>revoked_at</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p>RevokedAt is the date when this api key was revoked.
+If unset the api key is not revoked. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_used_at</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p>LastUsedAt is the date when this api key was last successfully used for authentication.
+If unset the api key was never used. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.ApiKeyServiceCreateRequest">ApiKeyServiceCreateRequest</h3>
+        <p>ApiKeyServiceCreateRequest is the request payload to create an api key</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name is a user given display name of this api key </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expires_at</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p>ExpiresAt is the date after which this api key can not be used anymore.
+If unset the api key does not expire. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.ApiKeyServiceCreateResponse">ApiKeyServiceCreateResponse</h3>
+        <p>ApiKeyServiceCreateResponse is the response payload of an api key create request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>secret</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Secret is the plaintext api key secret with format fco_v1_&lt;random&gt;, it is
+returned exactly once and never stored by the api server. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>api_key</td>
+                  <td><a href="#fits.api.v1.ApiKey">ApiKey</a></td>
+                  <td></td>
+                  <td><p>ApiKey is the created api key </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.ApiKeyServiceDeleteRequest">ApiKeyServiceDeleteRequest</h3>
+        <p>ApiKeyServiceDeleteRequest is the request payload of an api key delete request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Id of the api key to delete </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.ApiKeyServiceDeleteResponse">ApiKeyServiceDeleteResponse</h3>
+        <p>ApiKeyServiceDeleteResponse is the response payload of an api key delete request</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.v1.ApiKeyServiceGetRequest">ApiKeyServiceGetRequest</h3>
+        <p>ApiKeyServiceGetRequest is the request payload of an api key get request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Id of the api key to get </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.ApiKeyServiceGetResponse">ApiKeyServiceGetResponse</h3>
+        <p>ApiKeyServiceGetResponse is the response payload of an api key get request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>api_key</td>
+                  <td><a href="#fits.api.v1.ApiKey">ApiKey</a></td>
+                  <td></td>
+                  <td><p>ApiKey is the api key </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.ApiKeyServiceListRequest">ApiKeyServiceListRequest</h3>
+        <p>ApiKeyServiceListRequest is the request payload to list api keys</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.v1.ApiKeyServiceListResponse">ApiKeyServiceListResponse</h3>
+        <p>ApiKeyServiceListResponse is the response payload of an api key list request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>api_keys</td>
+                  <td><a href="#fits.api.v1.ApiKey">ApiKey</a></td>
+                  <td>repeated</td>
+                  <td><p>ApiKeys is a list of api keys without the secrets </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.ApiKeyServiceRevokeRequest">ApiKeyServiceRevokeRequest</h3>
+        <p>ApiKeyServiceRevokeRequest is the request payload of an api key revoke request</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Id of the api key to revoke </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.ApiKeyServiceRevokeResponse">ApiKeyServiceRevokeResponse</h3>
+        <p>ApiKeyServiceRevokeResponse is the response payload of an api key revoke request</p>
+
+        
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="fits.api.v1.ApiKeyService">ApiKeyService</h3>
+        <p>ApiKeyService provides api key (personal access token) management operations.</p><p>An api key authenticates requests on behalf of the user it belongs to.</p><p>Clients send the secret of the api key in the authorization header:</p><p>Authorization: Bearer fco_v1_abcd12...</p><p>The api server resolves the secret to the user stored with the api key</p><p>and acquires a jwt for this user from the identity provider</p><p>(jwt authorization grant). The jwt is cached until it expires and is</p><p>reused for subsequent requests authenticated with the same api key.</p><p>Revoking or deleting an api key immediately invalidates its cached jwt.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Create</td>
+                <td><a href="#fits.api.v1.ApiKeyServiceCreateRequest">ApiKeyServiceCreateRequest</a></td>
+                <td><a href="#fits.api.v1.ApiKeyServiceCreateResponse">ApiKeyServiceCreateResponse</a></td>
+                <td><p>Creates a new api key, the plaintext secret is returned exactly once and never stored.</p></td>
+              </tr>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#fits.api.v1.ApiKeyServiceListRequest">ApiKeyServiceListRequest</a></td>
+                <td><a href="#fits.api.v1.ApiKeyServiceListResponse">ApiKeyServiceListResponse</a></td>
+                <td><p>Returns the list of all api keys of the authenticated user.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Get</td>
+                <td><a href="#fits.api.v1.ApiKeyServiceGetRequest">ApiKeyServiceGetRequest</a></td>
+                <td><a href="#fits.api.v1.ApiKeyServiceGetResponse">ApiKeyServiceGetResponse</a></td>
+                <td><p>Returns the api key with the specified id.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Revoke</td>
+                <td><a href="#fits.api.v1.ApiKeyServiceRevokeRequest">ApiKeyServiceRevokeRequest</a></td>
+                <td><a href="#fits.api.v1.ApiKeyServiceRevokeResponse">ApiKeyServiceRevokeResponse</a></td>
+                <td><p>Revokes an api key, no further usage is possible afterwards.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Delete</td>
+                <td><a href="#fits.api.v1.ApiKeyServiceDeleteRequest">ApiKeyServiceDeleteRequest</a></td>
+                <td><a href="#fits.api.v1.ApiKeyServiceDeleteResponse">ApiKeyServiceDeleteResponse</a></td>
+                <td><p>Deletes an api key irreversibly.</p></td>
               </tr>
             
           </tbody>

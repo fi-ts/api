@@ -1,0 +1,139 @@
+syntax = "proto3";
+
+package fits.api.v1;
+
+import "buf/validate/validate.proto";
+import "fits/api/v1/common.proto";
+import "fits/api/v1/predefined_rules.proto";
+import "google/protobuf/timestamp.proto";
+
+// ApiKeyService provides api key (personal access token) management operations.
+//
+// An api key authenticates requests on behalf of the user it belongs to.
+// Clients send the secret of the api key in the authorization header:
+//
+//	Authorization: Bearer fco_v1_abcd12...
+//
+// The api server resolves the secret to the user stored with the api key
+// and acquires a jwt for this user from the identity provider
+// (jwt authorization grant). The jwt is cached until it expires and is
+// reused for subsequent requests authenticated with the same api key.
+// Revoking or deleting an api key immediately invalidates its cached jwt.
+service ApiKeyService {
+  // Creates a new api key, the plaintext secret is returned exactly once and never stored.
+  rpc Create(ApiKeyServiceCreateRequest) returns (ApiKeyServiceCreateResponse) {
+    option (visibility) = VISIBILITY_SELF;
+    option (auditing) = AUDITING_INCLUDED;
+  }
+  // Returns the list of all api keys of the authenticated user.
+  rpc List(ApiKeyServiceListRequest) returns (ApiKeyServiceListResponse) {
+    option (visibility) = VISIBILITY_SELF;
+    option (auditing) = AUDITING_INCLUDED;
+  }
+  // Returns the api key with the specified id.
+  rpc Get(ApiKeyServiceGetRequest) returns (ApiKeyServiceGetResponse) {
+    option (visibility) = VISIBILITY_SELF;
+    option (auditing) = AUDITING_INCLUDED;
+  }
+  // Revokes an api key, no further usage is possible afterwards.
+  rpc Revoke(ApiKeyServiceRevokeRequest) returns (ApiKeyServiceRevokeResponse) {
+    option (visibility) = VISIBILITY_SELF;
+    option (auditing) = AUDITING_INCLUDED;
+  }
+  // Deletes an api key irreversibly.
+  rpc Delete(ApiKeyServiceDeleteRequest) returns (ApiKeyServiceDeleteResponse) {
+    option (visibility) = VISIBILITY_SELF;
+    option (auditing) = AUDITING_INCLUDED;
+  }
+}
+
+// ApiKey is a personal access token which authenticates api requests on behalf of a user.
+//
+// Secrets have the format fco_v1_<random>, the version selects the generation and
+// hash scheme of the secret, v1 is hashed with sha-256.
+// The plaintext secret is only known at creation time and is returned exactly once,
+// only the sha-256 hash of the secret is persisted, never the secret itself.
+message ApiKey {
+  // Id is the unique identifier of this api key
+  string id = 1 [(buf.validate.field).string.uuid = true];
+  // UserId is the id of the user this api key belongs to
+  string user_id = 2 [(buf.validate.field).string.uuid = true];
+  // Realm is the identity realm of the user this api key belongs to
+  string realm = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Name is a user given display name of this api key
+  string name = 4 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Hash is the sha-256 hash of the api key secret, the secret itself is never stored.
+  // The api server leaves this field unset in api responses, it is only persisted internally.
+  string hash = 5 [(buf.validate.field).string.pattern = "^[0-9a-f]{64}$"];
+  // Prefix is the first 12 bytes of the api key secret, used to display and identify
+  // the api key in the ui, e.g. fco_v1_abc12...
+  string prefix = 6 [(buf.validate.field).string.len = 12];
+  // CreatedAt is the date when this api key was created
+  google.protobuf.Timestamp created_at = 7;
+  // ExpiresAt is the date after which this api key can not be used anymore.
+  // If unset the api key does not expire.
+  optional google.protobuf.Timestamp expires_at = 8;
+  // RevokedAt is the date when this api key was revoked.
+  // If unset the api key is not revoked.
+  optional google.protobuf.Timestamp revoked_at = 9;
+  // LastUsedAt is the date when this api key was last successfully used for authentication.
+  // If unset the api key was never used.
+  optional google.protobuf.Timestamp last_used_at = 10;
+}
+
+// ApiKeyServiceCreateRequest is the request payload to create an api key
+message ApiKeyServiceCreateRequest {
+  // Name is a user given display name of this api key
+  string name = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // ExpiresAt is the date after which this api key can not be used anymore.
+  // If unset the api key does not expire.
+  optional google.protobuf.Timestamp expires_at = 2;
+}
+
+// ApiKeyServiceCreateResponse is the response payload of an api key create request
+message ApiKeyServiceCreateResponse {
+  // Secret is the plaintext api key secret with format fco_v1_<random>, it is
+  // returned exactly once and never stored by the api server.
+  string secret = 1;
+  // ApiKey is the created api key
+  ApiKey api_key = 2;
+}
+
+// ApiKeyServiceListRequest is the request payload to list api keys
+message ApiKeyServiceListRequest {}
+
+// ApiKeyServiceListResponse is the response payload of an api key list request
+message ApiKeyServiceListResponse {
+  // ApiKeys is a list of api keys without the secrets
+  repeated ApiKey api_keys = 1;
+}
+
+// ApiKeyServiceGetRequest is the request payload of an api key get request
+message ApiKeyServiceGetRequest {
+  // Id of the api key to get
+  string id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+// ApiKeyServiceGetResponse is the response payload of an api key get request
+message ApiKeyServiceGetResponse {
+  // ApiKey is the api key
+  ApiKey api_key = 1;
+}
+
+// ApiKeyServiceRevokeRequest is the request payload of an api key revoke request
+message ApiKeyServiceRevokeRequest {
+  // Id of the api key to revoke
+  string id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+// ApiKeyServiceRevokeResponse is the response payload of an api key revoke request
+message ApiKeyServiceRevokeResponse {}
+
+// ApiKeyServiceDeleteRequest is the request payload of an api key delete request
+message ApiKeyServiceDeleteRequest {
+  // Id of the api key to delete
+  string id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+// ApiKeyServiceDeleteResponse is the response payload of an api key delete request
+message ApiKeyServiceDeleteResponse {}
