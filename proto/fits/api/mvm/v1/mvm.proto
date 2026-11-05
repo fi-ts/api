@@ -208,9 +208,9 @@ message NetworkInterface {
   // UUID of the VLAN.
   string vlan_uuid = 2 [(buf.validate.field).string.uuid = true];
   // IPv4 address assigned to this interface.
-  string ipaddress = 3 [(buf.validate.field).string.(fits.api.v1.is_ip_or_hostname) = true];
+  string ip_address = 3 [(buf.validate.field).string.(fits.api.v1.is_ip_or_hostname) = true];
   // MAC address of this interface.
-  string macaddress = 4 [(buf.validate.field).string.(fits.api.v1.macaddress) = true];
+  string mac_address = 4 [(buf.validate.field).string.(fits.api.v1.mac_address) = true];
 }
 
 // The InitialNetworkInterface needs to be provided at creation of a MVM.
@@ -261,7 +261,7 @@ message ManagedVM {
   // Availability level.
   Availability availability = 14 [(buf.validate.field).enum.defined_only = true];
   // Service class.
-  ServiceClass serviceclass = 15 [(buf.validate.field).enum.defined_only = true];
+  ServiceClass service_class = 15 [(buf.validate.field).enum.defined_only = true];
   // OS-specific configuration.
   oneof details {
     option (buf.validate.oneof).required = true;
@@ -335,7 +335,7 @@ message MVMServiceCreateRequest {
   // Availability level.
   Availability availability = 12 [(buf.validate.field).enum.defined_only = true];
   // Service class; only certain combinations with availability are valid.
-  ServiceClass serviceclass = 13 [(buf.validate.field).enum.defined_only = true];
+  ServiceClass service_class = 13 [(buf.validate.field).enum.defined_only = true];
   // OS type and its configuration.
   oneof mvmtype {
     option (buf.validate.oneof).required = true;
@@ -384,7 +384,7 @@ message WindowsDisk {
   optional uint64 size_gb = 4;
   // Drive letter (e.g. "D"). Fixed to "F" for the system disk; free-form
   // for data disks.
-  optional string driveletter = 5 [
+  optional string drive_letter = 5 [
     (buf.validate.field).string.len = 1,
     (buf.validate.field).string.pattern = "^[A-Za-z]$"
   ];

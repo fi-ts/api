@@ -8,10 +8,10 @@ import "buf/validate/validate.proto";
 // See https://celbyexample.com/ for cel documentation
 
 extend buf.validate.StringRules {
-  // Macaddress returns true if the given string is a valid macadress
-  optional bool macaddress = 80048951 [(buf.validate.predefined).cel = {
-    id: "string.macaddress"
-    message: "this string must be a valid macaddress"
+  // MacAddress returns true if the given string is a valid mac address
+  optional bool mac_address = 80048951 [(buf.validate.predefined).cel = {
+    id: "string.mac_address"
+    message: "this string must be a valid mac address"
     expression: "this.matches('^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$')"
   }];
   // IsName returns true if name field satisfies our requirements
