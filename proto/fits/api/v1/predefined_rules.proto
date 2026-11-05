@@ -74,6 +74,21 @@ extend buf.validate.StringRules {
     message: "must be a 4-character code consisting of digits and letters"
     expression: "this.matches('^[0-9A-Za-z]{4}$')"
   }];
+  // IsFqdn validates if the given string is a valid fully qualified domain name (FQDN),
+  // e.g. host.example.com. Each label is alphanumeric/hyphen, the TLD is alphabetic
+  // (min 2 chars), and the total length is at most 253 characters.
+  optional bool is_fqdn = 80048965 [(buf.validate.predefined).cel = {
+    id: "string.is_fqdn"
+    message: "must be a valid FQDN, e.g. host.example.com"
+    expression: "this.size() <= 253 && this.matches('^[a-zA-Z0-9-]+([.][a-zA-Z0-9-]+)*[.][a-zA-Z]{2,}$')"
+  }];
+  // IsOrderNumber validates a user-supplied ticket/reference ID (order number):
+  // 2-128 characters, no leading/trailing whitespace.
+  optional bool is_order_number = 80048966 [(buf.validate.predefined).cel = {
+    id: "string.is_order_number"
+    message: "must be within 2 and 128 characters and not start or end with whitespace"
+    expression: "this.size() >= 2 && this.size() <= 128 && this.trim().size() == this.size()"
+  }];
 
   // IsTenantSubjectPermission returns true if name field satisfies our requirements.
   optional bool is_tenant_subject_permission = 80048962 [(buf.validate.predefined).cel = {
