@@ -251,7 +251,7 @@ message ManagedVM {
   // Number of CPU cores.
   uint32 cpu = 9;
   // RAM in GB.
-  uint32 ram = 10;
+  uint32 ram_gb = 10;
   // Whether backup is enabled.
   bool backup = 11;
   // Whether the MVM is encrypted.
@@ -322,7 +322,7 @@ message MVMServiceCreateRequest {
   // Number of CPU cores.
   uint32 cpu = 6;
   // RAM in GB. Must be a power of 2.
-  uint32 ram = 7;
+  uint32 ram_gb = 7;
   // Customer reference for this operation provided by the user, e.g. a ticket ID.
   string order_number = 8;
   // Optional key-value labels for accounting purposes.
@@ -358,7 +358,7 @@ message LinuxDisk {
   // Whether the disk grows automatically when space runs low.
   bool auto_extend = 3;
   // Size of the disk in GB; defaults to 50 when unset.
-  optional uint64 size = 4;
+  optional uint64 size_gb = 4;
   // Mount point (e.g. "/data"). Fixed to "/appdata" for the system disk;
   // free-form for data disks.
   optional string mount_point = 5;
@@ -378,7 +378,7 @@ message WindowsDisk {
   // Whether the disk grows automatically when space runs low.
   bool auto_extend = 3;
   // Size of the disk in GB; defaults to 50 when unset.
-  optional uint64 size = 4;
+  optional uint64 size_gb = 4;
   // Drive letter (e.g. "D"). Fixed to "F" for the system disk; free-form
   // for data disks.
   optional string driveletter = 5;
@@ -498,7 +498,7 @@ message MVMServiceUpdateDiskRequest {
   // New auto-extend behavior; unset keeps the current value.
   optional bool auto_extend = 5;
   // New size of the disk in GB; unset keeps the current value.
-  optional uint64 size = 6;
+  optional uint64 size_gb = 6;
 }
 
 // Request to cancel a data disk; OS and system disks are rejected by the
