@@ -15,6 +15,8 @@ import { DomainService as Apimvmv1DomainService } from "./fits/api/mvm/v1/domain
 import { LDAPService as Apimvmv1LDAPService } from "./fits/api/mvm/v1/ldap_pb";
 import { LocationService as Apimvmv1LocationService } from "./fits/api/mvm/v1/location_pb";
 import { MVMService as Apimvmv1MVMService } from "./fits/api/mvm/v1/mvm_pb";
+import { OnBehalfMVMService as Apimvmv1OnBehalfMVMService } from "./fits/api/mvm/v1/mvm_on_behalf_pb";
+import { ProviderMVMService as Apimvmv1ProviderMVMService } from "./fits/api/mvm/v1/mvm_provider_pb";
 import { OSService as Apimvmv1OSService } from "./fits/api/mvm/v1/os_pb";
 import { VLANService as Apimvmv1VLANService } from "./fits/api/mvm/v1/vlan_pb";
 import { PublicCloudVMService as Apipcvmv1PublicCloudVMService } from "./fits/api/pcvm/v1/pcvm_pb";
@@ -104,6 +106,18 @@ class Apimvmv1Impl {
             this._mvm = createClient(Apimvmv1MVMService, this.transport);
         }
         return this._mvm;
+    }
+    onBehalfMVM() {
+        if (!this._onBehalfMVM) {
+            this._onBehalfMVM = createClient(Apimvmv1OnBehalfMVMService, this.transport);
+        }
+        return this._onBehalfMVM;
+    }
+    providerMVM() {
+        if (!this._providerMVM) {
+            this._providerMVM = createClient(Apimvmv1ProviderMVMService, this.transport);
+        }
+        return this._providerMVM;
     }
     os() {
         if (!this._os) {

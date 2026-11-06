@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/v1/common.proto.
  */
 export const file_fits_api_v1_common: GenFile = /*@__PURE__*/
-  fileDesc("ChhmaXRzL2FwaS92MS9jb21tb24ucHJvdG8SC2ZpdHMuYXBpLnYxIkIKBlBhZ2luZxIRCgRwYWdlGAEgASgESACIAQESEgoFY291bnQYAiABKARIAYgBAUIHCgVfcGFnZUIICgZfY291bnQiiAEKBkxhYmVscxJPCgZsYWJlbHMYASADKAsyHy5maXRzLmFwaS52MS5MYWJlbHMuTGFiZWxzRW50cnlCHrpIG5oBGLiVuLECASIHcgUQARiAAioHcgUQABiAAhotCgtMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIq8BCgRNZXRhEigKBmxhYmVscxgBIAEoCzITLmZpdHMuYXBpLnYxLkxhYmVsc0gAiAEBEi4KCmNyZWF0ZWRfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhIKCmdlbmVyYXRpb24YBCABKARCCQoHX2xhYmVscyJDCgxVcGRhdGVMYWJlbHMSIwoGdXBkYXRlGAEgASgLMhMuZml0cy5hcGkudjEuTGFiZWxzEg4KBnJlbW92ZRgCIAMoCSKIAQoKVXBkYXRlTWV0YRIuCgp1cGRhdGVkX2F0GAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBJKChBsb2NraW5nX3N0cmF0ZWd5GAIgASgOMiYuZml0cy5hcGkudjEuT3B0aW1pc3RpY0xvY2tpbmdTdHJhdGVneUIIukgFggECEAEqhwEKClRlbmFudFJvbGUSGwoXVEVOQU5UX1JPTEVfVU5TUEVDSUZJRUQQABIVChFURU5BTlRfUk9MRV9BRE1JThABEhYKElRFTkFOVF9ST0xFX0VESVRPUhACEhYKElRFTkFOVF9ST0xFX1ZJRVdFUhADEhUKEVRFTkFOVF9ST0xFX0dVRVNUEAQqdQoLUHJvamVjdFJvbGUSHAoYUFJPSkVDVF9ST0xFX1VOU1BFQ0lGSUVEEAASFgoSUFJPSkVDVF9ST0xFX0FETUlOEAESFwoTUFJPSkVDVF9ST0xFX0VESVRPUhACEhcKE1BST0pFQ1RfUk9MRV9WSUVXRVIQAypUCgpWaXNpYmlsaXR5EhoKFlZJU0lCSUxJVFlfVU5TUEVDSUZJRUQQABIVChFWSVNJQklMSVRZX1BVQkxJQxABEhMKD1ZJU0lCSUxJVFlfU0VMRhACKlIKCEF1ZGl0aW5nEhgKFEFVRElUSU5HX1VOU1BFQ0lGSUVEEAASFQoRQVVESVRJTkdfSU5DTFVERUQQARIVChFBVURJVElOR19FWENMVURFRBACKlYKCFJvbGVNb2RlEhkKFVJPTEVfTU9ERV9VTlNQRUNJRklFRBAAEhYKElJPTEVfTU9ERV9QUk9WSURFUhABEhcKE1JPTEVfTU9ERV9PTl9CRUhBTEYQAiqYAQoZT3B0aW1pc3RpY0xvY2tpbmdTdHJhdGVneRIrCidPUFRJTUlTVElDX0xPQ0tJTkdfU1RSQVRFR1lfVU5TUEVDSUZJRUQQABImCiJPUFRJTUlTVElDX0xPQ0tJTkdfU1RSQVRFR1lfQ0xJRU5UEAESJgoiT1BUSU1JU1RJQ19MT0NLSU5HX1NUUkFURUdZX1NFUlZFUhACOlwKDHRlbmFudF9yb2xlcxIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGLiOAyADKA4yFy5maXRzLmFwaS52MS5UZW5hbnRSb2xlUgt0ZW5hbnRSb2xlczpfCg1wcm9qZWN0X3JvbGVzEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYuY4DIAMoDjIYLmZpdHMuYXBpLnYxLlByb2plY3RSb2xlUgxwcm9qZWN0Um9sZXM6VAoJcm9sZV9tb2RlEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYuo4DIAEoDjIVLmZpdHMuYXBpLnYxLlJvbGVNb2RlUghyb2xlTW9kZTpZCgp2aXNpYmlsaXR5Eh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYu44DIAEoDjIXLmZpdHMuYXBpLnYxLlZpc2liaWxpdHlSCnZpc2liaWxpdHk6UwoIYXVkaXRpbmcSHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxi8jgMgASgOMhUuZml0cy5hcGkudjEuQXVkaXRpbmdSCGF1ZGl0aW5nOk8KEWVudW1fc3RyaW5nX3ZhbHVlEiEuZ29vZ2xlLnByb3RvYnVmLkVudW1WYWx1ZU9wdGlvbnMYoJYDIAEoCVIPZW51bVN0cmluZ1ZhbHVlQpcBCg9jb20uZml0cy5hcGkudjFCC0NvbW1vblByb3RvUAFaKWdpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL3YxO2FwaXYxogIDRkFYqgILRml0cy5BcGkuVjHKAgtGaXRzXEFwaVxWMeICF0ZpdHNcQXBpXFYxXEdQQk1ldGFkYXRh6gINRml0czo6QXBpOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_predefined_rules, file_google_protobuf_descriptor, file_google_protobuf_timestamp]);
+  fileDesc("ChhmaXRzL2FwaS92MS9jb21tb24ucHJvdG8SC2ZpdHMuYXBpLnYxIkIKBlBhZ2luZxIRCgRwYWdlGAEgASgESACIAQESEgoFY291bnQYAiABKARIAYgBAUIHCgVfcGFnZUIICgZfY291bnQiiAEKBkxhYmVscxJPCgZsYWJlbHMYASADKAsyHy5maXRzLmFwaS52MS5MYWJlbHMuTGFiZWxzRW50cnlCHrpIG5oBGLiVuLECASIHcgUQARiAAioHcgUQABiAAhotCgtMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIq8BCgRNZXRhEigKBmxhYmVscxgBIAEoCzITLmZpdHMuYXBpLnYxLkxhYmVsc0gAiAEBEi4KCmNyZWF0ZWRfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhIKCmdlbmVyYXRpb24YBCABKARCCQoHX2xhYmVscyJDCgxVcGRhdGVMYWJlbHMSIwoGdXBkYXRlGAEgASgLMhMuZml0cy5hcGkudjEuTGFiZWxzEg4KBnJlbW92ZRgCIAMoCSKIAQoKVXBkYXRlTWV0YRIuCgp1cGRhdGVkX2F0GAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBJKChBsb2NraW5nX3N0cmF0ZWd5GAIgASgOMiYuZml0cy5hcGkudjEuT3B0aW1pc3RpY0xvY2tpbmdTdHJhdGVneUIIukgFggECEAEqhwEKClRlbmFudFJvbGUSGwoXVEVOQU5UX1JPTEVfVU5TUEVDSUZJRUQQABIVChFURU5BTlRfUk9MRV9BRE1JThABEhYKElRFTkFOVF9ST0xFX0VESVRPUhACEhYKElRFTkFOVF9ST0xFX1ZJRVdFUhADEhUKEVRFTkFOVF9ST0xFX0dVRVNUEAQqdQoLUHJvamVjdFJvbGUSHAoYUFJPSkVDVF9ST0xFX1VOU1BFQ0lGSUVEEAASFgoSUFJPSkVDVF9ST0xFX0FETUlOEAESFwoTUFJPSkVDVF9ST0xFX0VESVRPUhACEhcKE1BST0pFQ1RfUk9MRV9WSUVXRVIQAypUCgpWaXNpYmlsaXR5EhoKFlZJU0lCSUxJVFlfVU5TUEVDSUZJRUQQABIVChFWSVNJQklMSVRZX1BVQkxJQxABEhMKD1ZJU0lCSUxJVFlfU0VMRhACKlIKCEF1ZGl0aW5nEhgKFEFVRElUSU5HX1VOU1BFQ0lGSUVEEAASFQoRQVVESVRJTkdfSU5DTFVERUQQARIVChFBVURJVElOR19FWENMVURFRBACKmIKC1JvbGVDb250ZXh0EhwKGFJPTEVfQ09OVEVYVF9VTlNQRUNJRklFRBAAEhkKFVJPTEVfQ09OVEVYVF9QUk9WSURFUhABEhoKFlJPTEVfQ09OVEVYVF9PTl9CRUhBTEYQAiqYAQoZT3B0aW1pc3RpY0xvY2tpbmdTdHJhdGVneRIrCidPUFRJTUlTVElDX0xPQ0tJTkdfU1RSQVRFR1lfVU5TUEVDSUZJRUQQABImCiJPUFRJTUlTVElDX0xPQ0tJTkdfU1RSQVRFR1lfQ0xJRU5UEAESJgoiT1BUSU1JU1RJQ19MT0NLSU5HX1NUUkFURUdZX1NFUlZFUhACOlwKDHRlbmFudF9yb2xlcxIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGLiOAyADKA4yFy5maXRzLmFwaS52MS5UZW5hbnRSb2xlUgt0ZW5hbnRSb2xlczpfCg1wcm9qZWN0X3JvbGVzEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYuY4DIAMoDjIYLmZpdHMuYXBpLnYxLlByb2plY3RSb2xlUgxwcm9qZWN0Um9sZXM6XQoMcm9sZV9jb250ZXh0Eh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYuo4DIAEoDjIYLmZpdHMuYXBpLnYxLlJvbGVDb250ZXh0Ugtyb2xlQ29udGV4dDpZCgp2aXNpYmlsaXR5Eh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYu44DIAEoDjIXLmZpdHMuYXBpLnYxLlZpc2liaWxpdHlSCnZpc2liaWxpdHk6UwoIYXVkaXRpbmcSHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxi8jgMgASgOMhUuZml0cy5hcGkudjEuQXVkaXRpbmdSCGF1ZGl0aW5nOk8KEWVudW1fc3RyaW5nX3ZhbHVlEiEuZ29vZ2xlLnByb3RvYnVmLkVudW1WYWx1ZU9wdGlvbnMYoJYDIAEoCVIPZW51bVN0cmluZ1ZhbHVlQpcBCg9jb20uZml0cy5hcGkudjFCC0NvbW1vblByb3RvUAFaKWdpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL3YxO2FwaXYxogIDRkFYqgILRml0cy5BcGkuVjHKAgtGaXRzXEFwaVxWMeICF0ZpdHNcQXBpXFYxXEdQQk1ldGFkYXRh6gINRml0czo6QXBpOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_predefined_rules, file_google_protobuf_descriptor, file_google_protobuf_timestamp]);
 
 /**
  * Paging defines paging for methods with a lot of results
@@ -328,39 +328,39 @@ export const AuditingSchema: GenEnum<Auditing> = /*@__PURE__*/
   enumDesc(file_fits_api_v1_common, 3);
 
 /**
- * The mode of the role.
- * Determines how to enforce the different roles by context.
+ * RoleContext declares in which context a method's roles apply. It belongs only
+ * on provider or on-behalf services, never on public ones. It is not a
+ * visibility setting or feature flag.
  *
- * @generated from enum fits.api.v1.RoleMode
+ * @generated from enum fits.api.v1.RoleContext
  */
-export enum RoleMode {
+export enum RoleContext {
   /**
-   * The default mode of the role. Any context is sufficient.
+   * ROLE_CONTEXT_UNSPECIFIED is the default and accepts any context.
    *
-   * @generated from enum value: ROLE_MODE_UNSPECIFIED = 0;
+   * @generated from enum value: ROLE_CONTEXT_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
-   * The tenant must be the provider tenant.
+   * ROLE_CONTEXT_PROVIDER needs the caller to be in the provider tenant.
    *
-   * @generated from enum value: ROLE_MODE_PROVIDER = 1;
+   * @generated from enum value: ROLE_CONTEXT_PROVIDER = 1;
    */
   PROVIDER = 1,
 
   /**
-   * The action must be on behalf of a tenant.
-   * Requires the use to be in the provider tenant.
+   * ROLE_CONTEXT_ON_BEHALF lets a provider user act for another tenant.
    *
-   * @generated from enum value: ROLE_MODE_ON_BEHALF = 2;
+   * @generated from enum value: ROLE_CONTEXT_ON_BEHALF = 2;
    */
   ON_BEHALF = 2,
 }
 
 /**
- * Describes the enum fits.api.v1.RoleMode.
+ * Describes the enum fits.api.v1.RoleContext.
  */
-export const RoleModeSchema: GenEnum<RoleMode> = /*@__PURE__*/
+export const RoleContextSchema: GenEnum<RoleContext> = /*@__PURE__*/
   enumDesc(file_fits_api_v1_common, 4);
 
 /**
@@ -416,11 +416,12 @@ export const project_roles: GenExtension<MethodOptions, ProjectRole[]> = /*@__PU
   extDesc(file_fits_api_v1_common, 1);
 
 /**
- * The mode of the role. Determines how to enforce the roles above by context.
+ * RoleContext sets the context the roles above apply in. Only for provider or
+ * on-behalf services, never public ones.
  *
- * @generated from extension: fits.api.v1.RoleMode role_mode = 51002;
+ * @generated from extension: fits.api.v1.RoleContext role_context = 51002;
  */
-export const role_mode: GenExtension<MethodOptions, RoleMode> = /*@__PURE__*/
+export const role_context: GenExtension<MethodOptions, RoleContext> = /*@__PURE__*/
   extDesc(file_fits_api_v1_common, 2);
 
 /**

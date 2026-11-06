@@ -57,16 +57,16 @@ enum Auditing {
   AUDITING_EXCLUDED = 2;
 }
 
-// The mode of the role.
-// Determines how to enforce the different roles by context.
-enum RoleMode {
-  // The default mode of the role. Any context is sufficient.
-  ROLE_MODE_UNSPECIFIED = 0;
-  // The tenant must be the provider tenant.
-  ROLE_MODE_PROVIDER = 1;
-  // The action must be on behalf of a tenant.
-  // Requires the use to be in the provider tenant.
-  ROLE_MODE_ON_BEHALF = 2;
+// RoleContext declares in which context a method's roles apply. It belongs only
+// on provider or on-behalf services, never on public ones. It is not a
+// visibility setting or feature flag.
+enum RoleContext {
+  // ROLE_CONTEXT_UNSPECIFIED is the default and accepts any context.
+  ROLE_CONTEXT_UNSPECIFIED = 0;
+  // ROLE_CONTEXT_PROVIDER needs the caller to be in the provider tenant.
+  ROLE_CONTEXT_PROVIDER = 1;
+  // ROLE_CONTEXT_ON_BEHALF lets a provider user act for another tenant.
+  ROLE_CONTEXT_ON_BEHALF = 2;
 }
 
 // MethodOptions to specify specific annotations to methods
@@ -75,8 +75,9 @@ extend google.protobuf.MethodOptions {
   repeated TenantRole tenant_roles = 51000;
   // ProjectRoles are used to define which project role a logged in user must provide to call this method
   repeated ProjectRole project_roles = 51001;
-  // The mode of the role. Determines how to enforce the roles above by context.
-  RoleMode role_mode = 51002;
+  // RoleContext sets the context the roles above apply in. Only for provider or
+  // on-behalf services, never public ones.
+  RoleContext role_context = 51002;
   // Visibility defines the visibility of this method, this is used to have public or self visible methods
   Visibility visibility = 51003;
   // Auditing defines if calls to this method should be audited or not

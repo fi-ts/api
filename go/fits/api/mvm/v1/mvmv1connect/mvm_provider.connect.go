@@ -40,7 +40,7 @@ const (
 
 // ProviderMVMServiceClient is a client for the fits.api.mvm.v1.ProviderMVMService service.
 type ProviderMVMServiceClient interface {
-	// Creates a new MVM.
+	// Create makes a new MVM and lets the operator set its billing fields.
 	Create(context.Context, *v1.ProviderMVMServiceCreateRequest) (*v1.ProviderMVMServiceCreateResponse, error)
 }
 
@@ -80,7 +80,7 @@ func (c *providerMVMServiceClient) Create(ctx context.Context, req *v1.ProviderM
 
 // ProviderMVMServiceHandler is an implementation of the fits.api.mvm.v1.ProviderMVMService service.
 type ProviderMVMServiceHandler interface {
-	// Creates a new MVM.
+	// Create makes a new MVM and lets the operator set its billing fields.
 	Create(context.Context, *v1.ProviderMVMServiceCreateRequest) (*v1.ProviderMVMServiceCreateResponse, error)
 }
 

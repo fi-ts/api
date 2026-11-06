@@ -24,10 +24,9 @@ _sym_db = _symbol_database.Default()
 
 from fits.api.mvm.v1 import mvm_pb2 as fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2
 from fits.api.v1 import common_pb2 as fits_dot_api_dot_v1_dot_common__pb2
-from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\"fits/api/mvm/v1/mvm_provider.proto\x12\x0f\x66its.api.mvm.v1\x1a\x19\x66its/api/mvm/v1/mvm.proto\x1a\x18\x66its/api/v1/common.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd9\x01\n\x1fProviderMVMServiceCreateRequest\x12\x42\n\x07request\x18\x01 \x01(\x0b\x32(.fits.api.mvm.v1.MVMServiceCreateRequestR\x07request\x12\x1a\n\x08\x62illable\x18\x02 \x01(\x08R\x08\x62illable\x12\x44\n\rbillable_from\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampH\x00R\x0c\x62illableFrom\x88\x01\x01\x42\x10\n\x0e_billable_from\"i\n ProviderMVMServiceCreateResponse\x12\x45\n\x08response\x18\x01 \x01(\x0b\x32).fits.api.mvm.v1.MVMServiceCreateResponseR\x08response2\x93\x01\n\x12ProviderMVMService\x12}\n\x06\x43reate\x12\x30.fits.api.mvm.v1.ProviderMVMServiceCreateRequest\x1a\x31.fits.api.mvm.v1.ProviderMVMServiceCreateResponse\"\x0e\xca\xf3\x18\x02\x01\x02\xd0\xf3\x18\x02\xe0\xf3\x18\x01\x42\xb5\x01\n\x13\x63om.fits.api.mvm.v1B\x10MvmProviderProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03\x46\x41M\xaa\x02\x0f\x46its.Api.Mvm.V1\xca\x02\x0f\x46its\\Api\\Mvm\\V1\xe2\x02\x1b\x46its\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12\x46its::Api::Mvm::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\"fits/api/mvm/v1/mvm_provider.proto\x12\x0f\x66its.api.mvm.v1\x1a\x19\x66its/api/mvm/v1/mvm.proto\x1a\x18\x66its/api/v1/common.proto\"\x81\x01\n\x1fProviderMVMServiceCreateRequest\x12\x42\n\x07request\x18\x01 \x01(\x0b\x32(.fits.api.mvm.v1.MVMServiceCreateRequestR\x07request\x12\x1a\n\x08\x62illable\x18\x02 \x01(\x08R\x08\x62illable\"i\n ProviderMVMServiceCreateResponse\x12\x45\n\x08response\x18\x01 \x01(\x0b\x32).fits.api.mvm.v1.MVMServiceCreateResponseR\x08response2\x93\x01\n\x12ProviderMVMService\x12}\n\x06\x43reate\x12\x30.fits.api.mvm.v1.ProviderMVMServiceCreateRequest\x1a\x31.fits.api.mvm.v1.ProviderMVMServiceCreateResponse\"\x0e\xca\xf3\x18\x02\x01\x02\xd0\xf3\x18\x01\xe0\xf3\x18\x01\x42\xb5\x01\n\x13\x63om.fits.api.mvm.v1B\x10MvmProviderProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03\x46\x41M\xaa\x02\x0f\x46its.Api.Mvm.V1\xca\x02\x0f\x46its\\Api\\Mvm\\V1\xe2\x02\x1b\x46its\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12\x46its::Api::Mvm::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -36,11 +35,11 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'\n\023com.fits.api.mvm.v1B\020MvmProviderProtoP\001Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\242\002\003FAM\252\002\017Fits.Api.Mvm.V1\312\002\017Fits\\Api\\Mvm\\V1\342\002\033Fits\\Api\\Mvm\\V1\\GPBMetadata\352\002\022Fits::Api::Mvm::V1'
   _globals['_PROVIDERMVMSERVICE'].methods_by_name['Create']._loaded_options = None
-  _globals['_PROVIDERMVMSERVICE'].methods_by_name['Create']._serialized_options = b'\312\363\030\002\001\002\320\363\030\002\340\363\030\001'
-  _globals['_PROVIDERMVMSERVICECREATEREQUEST']._serialized_start=142
-  _globals['_PROVIDERMVMSERVICECREATEREQUEST']._serialized_end=359
-  _globals['_PROVIDERMVMSERVICECREATERESPONSE']._serialized_start=361
-  _globals['_PROVIDERMVMSERVICECREATERESPONSE']._serialized_end=466
-  _globals['_PROVIDERMVMSERVICE']._serialized_start=469
-  _globals['_PROVIDERMVMSERVICE']._serialized_end=616
+  _globals['_PROVIDERMVMSERVICE'].methods_by_name['Create']._serialized_options = b'\312\363\030\002\001\002\320\363\030\001\340\363\030\001'
+  _globals['_PROVIDERMVMSERVICECREATEREQUEST']._serialized_start=109
+  _globals['_PROVIDERMVMSERVICECREATEREQUEST']._serialized_end=238
+  _globals['_PROVIDERMVMSERVICECREATERESPONSE']._serialized_start=240
+  _globals['_PROVIDERMVMSERVICECREATERESPONSE']._serialized_end=345
+  _globals['_PROVIDERMVMSERVICE']._serialized_start=348
+  _globals['_PROVIDERMVMSERVICE']._serialized_end=495
 # @@protoc_insertion_point(module_scope)

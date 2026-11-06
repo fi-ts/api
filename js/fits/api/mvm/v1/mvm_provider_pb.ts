@@ -7,24 +7,22 @@ import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2
 import type { MVMServiceCreateRequest, MVMServiceCreateResponse } from "./mvm_pb.js";
 import { file_fits_api_mvm_v1_mvm } from "./mvm_pb.js";
 import { file_fits_api_v1_common } from "../../v1/common_pb.js";
-import type { Timestamp } from "@bufbuild/protobuf/wkt";
-import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file fits/api/mvm/v1/mvm_provider.proto.
  */
 export const file_fits_api_mvm_v1_mvm_provider: GenFile = /*@__PURE__*/
-  fileDesc("CiJmaXRzL2FwaS9tdm0vdjEvbXZtX3Byb3ZpZGVyLnByb3RvEg9maXRzLmFwaS5tdm0udjEiuAEKH1Byb3ZpZGVyTVZNU2VydmljZUNyZWF0ZVJlcXVlc3QSOQoHcmVxdWVzdBgBIAEoCzIoLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlQ3JlYXRlUmVxdWVzdBIQCghiaWxsYWJsZRgCIAEoCBI2Cg1iaWxsYWJsZV9mcm9tGAMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEgAiAEBQhAKDl9iaWxsYWJsZV9mcm9tIl8KIFByb3ZpZGVyTVZNU2VydmljZUNyZWF0ZVJlc3BvbnNlEjsKCHJlc3BvbnNlGAEgASgLMikuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VDcmVhdGVSZXNwb25zZTKTAQoSUHJvdmlkZXJNVk1TZXJ2aWNlEn0KBkNyZWF0ZRIwLmZpdHMuYXBpLm12bS52MS5Qcm92aWRlck1WTVNlcnZpY2VDcmVhdGVSZXF1ZXN0GjEuZml0cy5hcGkubXZtLnYxLlByb3ZpZGVyTVZNU2VydmljZUNyZWF0ZVJlc3BvbnNlIg7K8xgCAQLQ8xgC4PMYAUK1AQoTY29tLmZpdHMuYXBpLm12bS52MUIQTXZtUHJvdmlkZXJQcm90b1ABWi1naXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS9tdm0vdjE7bXZtdjGiAgNGQU2qAg9GaXRzLkFwaS5Ndm0uVjHKAg9GaXRzXEFwaVxNdm1cVjHiAhtGaXRzXEFwaVxNdm1cVjFcR1BCTWV0YWRhdGHqAhJGaXRzOjpBcGk6Ok12bTo6VjFiBnByb3RvMw", [file_fits_api_mvm_v1_mvm, file_fits_api_v1_common, file_google_protobuf_timestamp]);
+  fileDesc("CiJmaXRzL2FwaS9tdm0vdjEvbXZtX3Byb3ZpZGVyLnByb3RvEg9maXRzLmFwaS5tdm0udjEibgofUHJvdmlkZXJNVk1TZXJ2aWNlQ3JlYXRlUmVxdWVzdBI5CgdyZXF1ZXN0GAEgASgLMiguZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VDcmVhdGVSZXF1ZXN0EhAKCGJpbGxhYmxlGAIgASgIIl8KIFByb3ZpZGVyTVZNU2VydmljZUNyZWF0ZVJlc3BvbnNlEjsKCHJlc3BvbnNlGAEgASgLMikuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VDcmVhdGVSZXNwb25zZTKTAQoSUHJvdmlkZXJNVk1TZXJ2aWNlEn0KBkNyZWF0ZRIwLmZpdHMuYXBpLm12bS52MS5Qcm92aWRlck1WTVNlcnZpY2VDcmVhdGVSZXF1ZXN0GjEuZml0cy5hcGkubXZtLnYxLlByb3ZpZGVyTVZNU2VydmljZUNyZWF0ZVJlc3BvbnNlIg7K8xgCAQLQ8xgB4PMYAUK1AQoTY29tLmZpdHMuYXBpLm12bS52MUIQTXZtUHJvdmlkZXJQcm90b1ABWi1naXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS9tdm0vdjE7bXZtdjGiAgNGQU2qAg9GaXRzLkFwaS5Ndm0uVjHKAg9GaXRzXEFwaVxNdm1cVjHiAhtGaXRzXEFwaVxNdm1cVjFcR1BCTWV0YWRhdGHqAhJGaXRzOjpBcGk6Ok12bTo6VjFiBnByb3RvMw", [file_fits_api_mvm_v1_mvm, file_fits_api_v1_common]);
 
 /**
- * Request for extended MVM create requests.
+ * Request to create an MVM in the provider context.
  *
  * @generated from message fits.api.mvm.v1.ProviderMVMServiceCreateRequest
  */
 export type ProviderMVMServiceCreateRequest = Message<"fits.api.mvm.v1.ProviderMVMServiceCreateRequest"> & {
   /**
-   * The original create request.
+   * The public create request.
    *
    * @generated from field: fits.api.mvm.v1.MVMServiceCreateRequest request = 1;
    */
@@ -36,13 +34,6 @@ export type ProviderMVMServiceCreateRequest = Message<"fits.api.mvm.v1.ProviderM
    * @generated from field: bool billable = 2;
    */
   billable: boolean;
-
-  /**
-   * The start date when the MVM will be billable.
-   *
-   * @generated from field: optional google.protobuf.Timestamp billable_from = 3;
-   */
-  billableFrom?: Timestamp | undefined;
 };
 
 /**
@@ -53,13 +44,13 @@ export const ProviderMVMServiceCreateRequestSchema: GenMessage<ProviderMVMServic
   messageDesc(file_fits_api_mvm_v1_mvm_provider, 0);
 
 /**
- * Response for extended MVM create requests.
+ * Response for a provider-context MVM create.
  *
  * @generated from message fits.api.mvm.v1.ProviderMVMServiceCreateResponse
  */
 export type ProviderMVMServiceCreateResponse = Message<"fits.api.mvm.v1.ProviderMVMServiceCreateResponse"> & {
   /**
-   * The original create response.
+   * The public create response.
    *
    * @generated from field: fits.api.mvm.v1.MVMServiceCreateResponse response = 1;
    */
@@ -74,13 +65,13 @@ export const ProviderMVMServiceCreateResponseSchema: GenMessage<ProviderMVMServi
   messageDesc(file_fits_api_mvm_v1_mvm_provider, 1);
 
 /**
- * ProviderMVMService provides extended managed VM (MVM) operations for the provider.
+ * ProviderMVMService offers MVM operations in the provider context.
  *
  * @generated from service fits.api.mvm.v1.ProviderMVMService
  */
 export const ProviderMVMService: GenService<{
   /**
-   * Creates a new MVM.
+   * Create makes a new MVM and lets the operator set its billing fields.
    *
    * @generated from rpc fits.api.mvm.v1.ProviderMVMService.Create
    */

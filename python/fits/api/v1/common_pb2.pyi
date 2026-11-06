@@ -40,11 +40,11 @@ class Auditing(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     AUDITING_INCLUDED: _ClassVar[Auditing]
     AUDITING_EXCLUDED: _ClassVar[Auditing]
 
-class RoleMode(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+class RoleContext(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
-    ROLE_MODE_UNSPECIFIED: _ClassVar[RoleMode]
-    ROLE_MODE_PROVIDER: _ClassVar[RoleMode]
-    ROLE_MODE_ON_BEHALF: _ClassVar[RoleMode]
+    ROLE_CONTEXT_UNSPECIFIED: _ClassVar[RoleContext]
+    ROLE_CONTEXT_PROVIDER: _ClassVar[RoleContext]
+    ROLE_CONTEXT_ON_BEHALF: _ClassVar[RoleContext]
 
 class OptimisticLockingStrategy(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
@@ -66,9 +66,9 @@ VISIBILITY_SELF: Visibility
 AUDITING_UNSPECIFIED: Auditing
 AUDITING_INCLUDED: Auditing
 AUDITING_EXCLUDED: Auditing
-ROLE_MODE_UNSPECIFIED: RoleMode
-ROLE_MODE_PROVIDER: RoleMode
-ROLE_MODE_ON_BEHALF: RoleMode
+ROLE_CONTEXT_UNSPECIFIED: RoleContext
+ROLE_CONTEXT_PROVIDER: RoleContext
+ROLE_CONTEXT_ON_BEHALF: RoleContext
 OPTIMISTIC_LOCKING_STRATEGY_UNSPECIFIED: OptimisticLockingStrategy
 OPTIMISTIC_LOCKING_STRATEGY_CLIENT: OptimisticLockingStrategy
 OPTIMISTIC_LOCKING_STRATEGY_SERVER: OptimisticLockingStrategy
@@ -76,8 +76,8 @@ TENANT_ROLES_FIELD_NUMBER: _ClassVar[int]
 tenant_roles: _descriptor.FieldDescriptor
 PROJECT_ROLES_FIELD_NUMBER: _ClassVar[int]
 project_roles: _descriptor.FieldDescriptor
-ROLE_MODE_FIELD_NUMBER: _ClassVar[int]
-role_mode: _descriptor.FieldDescriptor
+ROLE_CONTEXT_FIELD_NUMBER: _ClassVar[int]
+role_context: _descriptor.FieldDescriptor
 VISIBILITY_FIELD_NUMBER: _ClassVar[int]
 visibility: _descriptor.FieldDescriptor
 AUDITING_FIELD_NUMBER: _ClassVar[int]

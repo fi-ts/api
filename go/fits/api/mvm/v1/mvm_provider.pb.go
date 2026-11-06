@@ -10,7 +10,6 @@ import (
 	_ "github.com/fi-ts/api/go/fits/api/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -23,15 +22,13 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Request for extended MVM create requests.
+// Request to create an MVM in the provider context.
 type ProviderMVMServiceCreateRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The original create request.
+	// The public create request.
 	Request *MVMServiceCreateRequest `protobuf:"bytes,1,opt,name=request,proto3" json:"request,omitempty"`
 	// Determines if the MVM is billable.
-	Billable bool `protobuf:"varint,2,opt,name=billable,proto3" json:"billable,omitempty"`
-	// The start date when the MVM will be billable.
-	BillableFrom  *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=billable_from,json=billableFrom,proto3,oneof" json:"billable_from,omitempty"`
+	Billable      bool `protobuf:"varint,2,opt,name=billable,proto3" json:"billable,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -80,17 +77,10 @@ func (x *ProviderMVMServiceCreateRequest) GetBillable() bool {
 	return false
 }
 
-func (x *ProviderMVMServiceCreateRequest) GetBillableFrom() *timestamppb.Timestamp {
-	if x != nil {
-		return x.BillableFrom
-	}
-	return nil
-}
-
-// Response for extended MVM create requests.
+// Response for a provider-context MVM create.
 type ProviderMVMServiceCreateResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The original create response.
+	// The public create response.
 	Response      *MVMServiceCreateResponse `protobuf:"bytes,1,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -137,16 +127,14 @@ var File_fits_api_mvm_v1_mvm_provider_proto protoreflect.FileDescriptor
 
 const file_fits_api_mvm_v1_mvm_provider_proto_rawDesc = "" +
 	"\n" +
-	"\"fits/api/mvm/v1/mvm_provider.proto\x12\x0ffits.api.mvm.v1\x1a\x19fits/api/mvm/v1/mvm.proto\x1a\x18fits/api/v1/common.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd9\x01\n" +
+	"\"fits/api/mvm/v1/mvm_provider.proto\x12\x0ffits.api.mvm.v1\x1a\x19fits/api/mvm/v1/mvm.proto\x1a\x18fits/api/v1/common.proto\"\x81\x01\n" +
 	"\x1fProviderMVMServiceCreateRequest\x12B\n" +
 	"\arequest\x18\x01 \x01(\v2(.fits.api.mvm.v1.MVMServiceCreateRequestR\arequest\x12\x1a\n" +
-	"\bbillable\x18\x02 \x01(\bR\bbillable\x12D\n" +
-	"\rbillable_from\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\fbillableFrom\x88\x01\x01B\x10\n" +
-	"\x0e_billable_from\"i\n" +
+	"\bbillable\x18\x02 \x01(\bR\bbillable\"i\n" +
 	" ProviderMVMServiceCreateResponse\x12E\n" +
 	"\bresponse\x18\x01 \x01(\v2).fits.api.mvm.v1.MVMServiceCreateResponseR\bresponse2\x93\x01\n" +
 	"\x12ProviderMVMService\x12}\n" +
-	"\x06Create\x120.fits.api.mvm.v1.ProviderMVMServiceCreateRequest\x1a1.fits.api.mvm.v1.ProviderMVMServiceCreateResponse\"\x0e\xca\xf3\x18\x02\x01\x02\xd0\xf3\x18\x02\xe0\xf3\x18\x01B\xb5\x01\n" +
+	"\x06Create\x120.fits.api.mvm.v1.ProviderMVMServiceCreateRequest\x1a1.fits.api.mvm.v1.ProviderMVMServiceCreateResponse\"\x0e\xca\xf3\x18\x02\x01\x02\xd0\xf3\x18\x01\xe0\xf3\x18\x01B\xb5\x01\n" +
 	"\x13com.fits.api.mvm.v1B\x10MvmProviderProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03FAM\xaa\x02\x0fFits.Api.Mvm.V1\xca\x02\x0fFits\\Api\\Mvm\\V1\xe2\x02\x1bFits\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12Fits::Api::Mvm::V1b\x06proto3"
 
 var (
@@ -166,20 +154,18 @@ var file_fits_api_mvm_v1_mvm_provider_proto_goTypes = []any{
 	(*ProviderMVMServiceCreateRequest)(nil),  // 0: fits.api.mvm.v1.ProviderMVMServiceCreateRequest
 	(*ProviderMVMServiceCreateResponse)(nil), // 1: fits.api.mvm.v1.ProviderMVMServiceCreateResponse
 	(*MVMServiceCreateRequest)(nil),          // 2: fits.api.mvm.v1.MVMServiceCreateRequest
-	(*timestamppb.Timestamp)(nil),            // 3: google.protobuf.Timestamp
-	(*MVMServiceCreateResponse)(nil),         // 4: fits.api.mvm.v1.MVMServiceCreateResponse
+	(*MVMServiceCreateResponse)(nil),         // 3: fits.api.mvm.v1.MVMServiceCreateResponse
 }
 var file_fits_api_mvm_v1_mvm_provider_proto_depIdxs = []int32{
 	2, // 0: fits.api.mvm.v1.ProviderMVMServiceCreateRequest.request:type_name -> fits.api.mvm.v1.MVMServiceCreateRequest
-	3, // 1: fits.api.mvm.v1.ProviderMVMServiceCreateRequest.billable_from:type_name -> google.protobuf.Timestamp
-	4, // 2: fits.api.mvm.v1.ProviderMVMServiceCreateResponse.response:type_name -> fits.api.mvm.v1.MVMServiceCreateResponse
-	0, // 3: fits.api.mvm.v1.ProviderMVMService.Create:input_type -> fits.api.mvm.v1.ProviderMVMServiceCreateRequest
-	1, // 4: fits.api.mvm.v1.ProviderMVMService.Create:output_type -> fits.api.mvm.v1.ProviderMVMServiceCreateResponse
-	4, // [4:5] is the sub-list for method output_type
-	3, // [3:4] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	3, // 1: fits.api.mvm.v1.ProviderMVMServiceCreateResponse.response:type_name -> fits.api.mvm.v1.MVMServiceCreateResponse
+	0, // 2: fits.api.mvm.v1.ProviderMVMService.Create:input_type -> fits.api.mvm.v1.ProviderMVMServiceCreateRequest
+	1, // 3: fits.api.mvm.v1.ProviderMVMService.Create:output_type -> fits.api.mvm.v1.ProviderMVMServiceCreateResponse
+	3, // [3:4] is the sub-list for method output_type
+	2, // [2:3] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_mvm_v1_mvm_provider_proto_init() }
@@ -188,7 +174,6 @@ func file_fits_api_mvm_v1_mvm_provider_proto_init() {
 		return
 	}
 	file_fits_api_mvm_v1_mvm_proto_init()
-	file_fits_api_mvm_v1_mvm_provider_proto_msgTypes[0].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

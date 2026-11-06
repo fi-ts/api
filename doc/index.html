@@ -311,7 +311,7 @@
                 </li>
               
                 <li>
-                  <a href="#fits.api.v1.RoleMode"><span class="badge">E</span>RoleMode</a>
+                  <a href="#fits.api.v1.RoleContext"><span class="badge">E</span>RoleContext</a>
                 </li>
               
                 <li>
@@ -661,6 +661,29 @@
               
                 <li>
                   <a href="#fits.api.mvm.v1.MVMService"><span class="badge">S</span>MVMService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#fits%2fapi%2fmvm%2fv1%2fmvm_on_behalf.proto">fits/api/mvm/v1/mvm_on_behalf.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest"><span class="badge">M</span>OnBehalfMVMServiceCreateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse"><span class="badge">M</span>OnBehalfMVMServiceCreateResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.OnBehalfMVMService"><span class="badge">S</span>OnBehalfMVMService</a>
                 </li>
               
             </ul>
@@ -1628,8 +1651,8 @@ and fetches the most recent entity before updating with the given values with th
           </tbody>
         </table>
       
-        <h3 id="fits.api.v1.RoleMode">RoleMode</h3>
-        <p>The mode of the role.</p><p>Determines how to enforce the different roles by context.</p>
+        <h3 id="fits.api.v1.RoleContext">RoleContext</h3>
+        <p>RoleContext declares in which context a method's roles apply. It belongs only</p><p>on provider or on-behalf services, never on public ones. It is not a</p><p>visibility setting or feature flag.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -1637,22 +1660,21 @@ and fetches the most recent entity before updating with the given values with th
           <tbody>
             
               <tr>
-                <td>ROLE_MODE_UNSPECIFIED</td>
+                <td>ROLE_CONTEXT_UNSPECIFIED</td>
                 <td>0</td>
-                <td><p>The default mode of the role. Any context is sufficient.</p></td>
+                <td><p>ROLE_CONTEXT_UNSPECIFIED is the default and accepts any context.</p></td>
               </tr>
             
               <tr>
-                <td>ROLE_MODE_PROVIDER</td>
+                <td>ROLE_CONTEXT_PROVIDER</td>
                 <td>1</td>
-                <td><p>The tenant must be the provider tenant.</p></td>
+                <td><p>ROLE_CONTEXT_PROVIDER needs the caller to be in the provider tenant.</p></td>
               </tr>
             
               <tr>
-                <td>ROLE_MODE_ON_BEHALF</td>
+                <td>ROLE_CONTEXT_ON_BEHALF</td>
                 <td>2</td>
-                <td><p>The action must be on behalf of a tenant.
-Requires the use to be in the provider tenant.</p></td>
+                <td><p>ROLE_CONTEXT_ON_BEHALF lets a provider user act for another tenant.</p></td>
               </tr>
             
           </tbody>
@@ -1764,11 +1786,12 @@ having a direct membership within the tenant.</p></td>
               </tr>
             
               <tr>
-                <td>role_mode</td>
-                <td><a href="#fits.api.v1.RoleMode">RoleMode</a></td>
+                <td>role_context</td>
+                <td><a href="#fits.api.v1.RoleContext">RoleContext</a></td>
                 <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
                 <td>51002</td>
-                <td><p>The mode of the role. Determines how to enforce the roles above by context.</p></td>
+                <td><p>RoleContext sets the context the roles above apply in. Only for provider or
+on-behalf services, never public ones.</p></td>
               </tr>
             
               <tr>
@@ -4069,13 +4092,13 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
     
       
       <div class="file-heading">
-        <h2 id="fits/api/mvm/v1/mvm_provider.proto">fits/api/mvm/v1/mvm_provider.proto</h2><a href="#title">Top</a>
+        <h2 id="fits/api/mvm/v1/mvm_on_behalf.proto">fits/api/mvm/v1/mvm_on_behalf.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
       
-        <h3 id="fits.api.mvm.v1.ProviderMVMServiceCreateRequest">ProviderMVMServiceCreateRequest</h3>
-        <p>Request for extended MVM create requests.</p>
+        <h3 id="fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest">OnBehalfMVMServiceCreateRequest</h3>
+        <p>Request to create an MVM on behalf of a customer tenant.</p>
 
         
           <table class="field-table">
@@ -4088,7 +4111,7 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                   <td>request</td>
                   <td><a href="#fits.api.mvm.v1.MVMServiceCreateRequest">MVMServiceCreateRequest</a></td>
                   <td></td>
-                  <td><p>The original create request. </p></td>
+                  <td><p>The public create request. </p></td>
                 </tr>
               
                 <tr>
@@ -4112,8 +4135,8 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
 
         
       
-        <h3 id="fits.api.mvm.v1.ProviderMVMServiceCreateResponse">ProviderMVMServiceCreateResponse</h3>
-        <p>Response for extended MVM create requests.</p>
+        <h3 id="fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse">OnBehalfMVMServiceCreateResponse</h3>
+        <p>Response for an on-behalf MVM create.</p>
 
         
           <table class="field-table">
@@ -4126,7 +4149,95 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                   <td>response</td>
                   <td><a href="#fits.api.mvm.v1.MVMServiceCreateResponse">MVMServiceCreateResponse</a></td>
                   <td></td>
-                  <td><p>The original create response. </p></td>
+                  <td><p>The public create response. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="fits.api.mvm.v1.OnBehalfMVMService">OnBehalfMVMService</h3>
+        <p>OnBehalfMVMService offers MVM operations on behalf of a customer tenant.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Create</td>
+                <td><a href="#fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest">OnBehalfMVMServiceCreateRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse">OnBehalfMVMServiceCreateResponse</a></td>
+                <td><p>Create makes a new MVM and lets the operator set its billing fields.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/mvm/v1/mvm_provider.proto">fits/api/mvm/v1/mvm_provider.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.mvm.v1.ProviderMVMServiceCreateRequest">ProviderMVMServiceCreateRequest</h3>
+        <p>Request to create an MVM in the provider context.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#fits.api.mvm.v1.MVMServiceCreateRequest">MVMServiceCreateRequest</a></td>
+                  <td></td>
+                  <td><p>The public create request. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>billable</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Determines if the MVM is billable. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.ProviderMVMServiceCreateResponse">ProviderMVMServiceCreateResponse</h3>
+        <p>Response for a provider-context MVM create.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>response</td>
+                  <td><a href="#fits.api.mvm.v1.MVMServiceCreateResponse">MVMServiceCreateResponse</a></td>
+                  <td></td>
+                  <td><p>The public create response. </p></td>
                 </tr>
               
             </tbody>
@@ -4143,7 +4254,7 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
 
       
         <h3 id="fits.api.mvm.v1.ProviderMVMService">ProviderMVMService</h3>
-        <p>ProviderMVMService provides extended managed VM (MVM) operations for the provider.</p>
+        <p>ProviderMVMService offers MVM operations in the provider context.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -4154,7 +4265,7 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                 <td>Create</td>
                 <td><a href="#fits.api.mvm.v1.ProviderMVMServiceCreateRequest">ProviderMVMServiceCreateRequest</a></td>
                 <td><a href="#fits.api.mvm.v1.ProviderMVMServiceCreateResponse">ProviderMVMServiceCreateResponse</a></td>
-                <td><p>Creates a new MVM.</p></td>
+                <td><p>Create makes a new MVM and lets the operator set its billing fields.</p></td>
               </tr>
             
           </tbody>
