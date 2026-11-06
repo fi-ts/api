@@ -7,7 +7,6 @@
 package apiv1
 
 import (
-	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -150,9 +149,7 @@ type MethodServiceTokenScopedListResponse struct {
 	// ProjectRoles associates a project ID with the corresponding role of the token owner
 	ProjectRoles map[string]ProjectRole `protobuf:"bytes,2,rep,name=project_roles,json=projectRoles,proto3" json:"project_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.ProjectRole"`
 	// TenantRoles associates a tenant ID with the corresponding role of the token owner
-	TenantRoles map[string]TenantRole `protobuf:"bytes,3,rep,name=tenant_roles,json=tenantRoles,proto3" json:"tenant_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.TenantRole"`
-	// OperatorRole defines the operator role of the token owner
-	OperatorRole  *OperatorRole `protobuf:"varint,4,opt,name=operator_role,json=operatorRole,proto3,enum=fits.api.v1.OperatorRole,oneof" json:"operator_role,omitempty"`
+	TenantRoles   map[string]TenantRole `protobuf:"bytes,3,rep,name=tenant_roles,json=tenantRoles,proto3" json:"tenant_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.TenantRole"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -208,34 +205,25 @@ func (x *MethodServiceTokenScopedListResponse) GetTenantRoles() map[string]Tenan
 	return nil
 }
 
-func (x *MethodServiceTokenScopedListResponse) GetOperatorRole() OperatorRole {
-	if x != nil && x.OperatorRole != nil {
-		return *x.OperatorRole
-	}
-	return OperatorRole_OPERATOR_ROLE_UNSPECIFIED
-}
-
 var File_fits_api_v1_method_proto protoreflect.FileDescriptor
 
 const file_fits_api_v1_method_proto_rawDesc = "" +
 	"\n" +
-	"\x18fits/api/v1/method.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\x17fits/api/v1/token.proto\"\x1a\n" +
+	"\x18fits/api/v1/method.proto\x12\vfits.api.v1\x1a\x18fits/api/v1/common.proto\x1a\x17fits/api/v1/token.proto\"\x1a\n" +
 	"\x18MethodServiceListRequest\"5\n" +
 	"\x19MethodServiceListResponse\x12\x18\n" +
 	"\amethods\x18\x01 \x03(\tR\amethods\"%\n" +
-	"#MethodServiceTokenScopedListRequest\"\xcd\x04\n" +
+	"#MethodServiceTokenScopedListRequest\"\xec\x03\n" +
 	"$MethodServiceTokenScopedListResponse\x12?\n" +
 	"\vpermissions\x18\x01 \x03(\v2\x1d.fits.api.v1.MethodPermissionR\vpermissions\x12h\n" +
 	"\rproject_roles\x18\x02 \x03(\v2C.fits.api.v1.MethodServiceTokenScopedListResponse.ProjectRolesEntryR\fprojectRoles\x12e\n" +
-	"\ftenant_roles\x18\x03 \x03(\v2B.fits.api.v1.MethodServiceTokenScopedListResponse.TenantRolesEntryR\vtenantRoles\x12M\n" +
-	"\roperator_role\x18\x04 \x01(\x0e2\x19.fits.api.v1.OperatorRoleB\b\xbaH\x05\x82\x01\x02\x10\x01H\x00R\foperatorRole\x88\x01\x01\x1aY\n" +
+	"\ftenant_roles\x18\x03 \x03(\v2B.fits.api.v1.MethodServiceTokenScopedListResponse.TenantRolesEntryR\vtenantRoles\x1aY\n" +
 	"\x11ProjectRolesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12.\n" +
 	"\x05value\x18\x02 \x01(\x0e2\x18.fits.api.v1.ProjectRoleR\x05value:\x028\x01\x1aW\n" +
 	"\x10TenantRolesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12-\n" +
-	"\x05value\x18\x02 \x01(\x0e2\x17.fits.api.v1.TenantRoleR\x05value:\x028\x01B\x10\n" +
-	"\x0e_operator_role2\xf3\x01\n" +
+	"\x05value\x18\x02 \x01(\x0e2\x17.fits.api.v1.TenantRoleR\x05value:\x028\x012\xf3\x01\n" +
 	"\rMethodService\x12_\n" +
 	"\x04List\x12%.fits.api.v1.MethodServiceListRequest\x1a&.fits.api.v1.MethodServiceListResponse\"\b\xd8\xf3\x18\x01\xe0\xf3\x18\x02\x12\x80\x01\n" +
 	"\x0fTokenScopedList\x120.fits.api.v1.MethodServiceTokenScopedListRequest\x1a1.fits.api.v1.MethodServiceTokenScopedListResponse\"\b\xd8\xf3\x18\x02\xe0\xf3\x18\x02B\x97\x01\n" +
@@ -262,26 +250,24 @@ var file_fits_api_v1_method_proto_goTypes = []any{
 	nil,                      // 4: fits.api.v1.MethodServiceTokenScopedListResponse.ProjectRolesEntry
 	nil,                      // 5: fits.api.v1.MethodServiceTokenScopedListResponse.TenantRolesEntry
 	(*MethodPermission)(nil), // 6: fits.api.v1.MethodPermission
-	(OperatorRole)(0),        // 7: fits.api.v1.OperatorRole
-	(ProjectRole)(0),         // 8: fits.api.v1.ProjectRole
-	(TenantRole)(0),          // 9: fits.api.v1.TenantRole
+	(ProjectRole)(0),         // 7: fits.api.v1.ProjectRole
+	(TenantRole)(0),          // 8: fits.api.v1.TenantRole
 }
 var file_fits_api_v1_method_proto_depIdxs = []int32{
 	6, // 0: fits.api.v1.MethodServiceTokenScopedListResponse.permissions:type_name -> fits.api.v1.MethodPermission
 	4, // 1: fits.api.v1.MethodServiceTokenScopedListResponse.project_roles:type_name -> fits.api.v1.MethodServiceTokenScopedListResponse.ProjectRolesEntry
 	5, // 2: fits.api.v1.MethodServiceTokenScopedListResponse.tenant_roles:type_name -> fits.api.v1.MethodServiceTokenScopedListResponse.TenantRolesEntry
-	7, // 3: fits.api.v1.MethodServiceTokenScopedListResponse.operator_role:type_name -> fits.api.v1.OperatorRole
-	8, // 4: fits.api.v1.MethodServiceTokenScopedListResponse.ProjectRolesEntry.value:type_name -> fits.api.v1.ProjectRole
-	9, // 5: fits.api.v1.MethodServiceTokenScopedListResponse.TenantRolesEntry.value:type_name -> fits.api.v1.TenantRole
-	0, // 6: fits.api.v1.MethodService.List:input_type -> fits.api.v1.MethodServiceListRequest
-	2, // 7: fits.api.v1.MethodService.TokenScopedList:input_type -> fits.api.v1.MethodServiceTokenScopedListRequest
-	1, // 8: fits.api.v1.MethodService.List:output_type -> fits.api.v1.MethodServiceListResponse
-	3, // 9: fits.api.v1.MethodService.TokenScopedList:output_type -> fits.api.v1.MethodServiceTokenScopedListResponse
-	8, // [8:10] is the sub-list for method output_type
-	6, // [6:8] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	7, // 3: fits.api.v1.MethodServiceTokenScopedListResponse.ProjectRolesEntry.value:type_name -> fits.api.v1.ProjectRole
+	8, // 4: fits.api.v1.MethodServiceTokenScopedListResponse.TenantRolesEntry.value:type_name -> fits.api.v1.TenantRole
+	0, // 5: fits.api.v1.MethodService.List:input_type -> fits.api.v1.MethodServiceListRequest
+	2, // 6: fits.api.v1.MethodService.TokenScopedList:input_type -> fits.api.v1.MethodServiceTokenScopedListRequest
+	1, // 7: fits.api.v1.MethodService.List:output_type -> fits.api.v1.MethodServiceListResponse
+	3, // 8: fits.api.v1.MethodService.TokenScopedList:output_type -> fits.api.v1.MethodServiceTokenScopedListResponse
+	7, // [7:9] is the sub-list for method output_type
+	5, // [5:7] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_v1_method_proto_init() }
@@ -291,7 +277,6 @@ func file_fits_api_v1_method_proto_init() {
 	}
 	file_fits_api_v1_common_proto_init()
 	file_fits_api_v1_token_proto_init()
-	file_fits_api_v1_method_proto_msgTypes[3].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

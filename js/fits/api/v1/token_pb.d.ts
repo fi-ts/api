@@ -1,5 +1,5 @@
 import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import type { Meta, OperatorRole, ProjectRole, TenantRole } from "./common_pb.js";
+import type { Meta, ProjectRole, TenantRole } from "./common_pb.js";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 /**
@@ -87,12 +87,6 @@ export type Token = Message<"fits.api.v1.Token"> & {
     tenantRoles: {
         [key: string]: TenantRole;
     };
-    /**
-     * OperatorRole defines the operator role of the token owner
-     *
-     * @generated from field: optional fits.api.v1.OperatorRole operator_role = 11;
-     */
-    operatorRole?: OperatorRole | undefined;
     /**
      * RawRoles are the normalized roles transmitted by the OIDC provider.
      *
@@ -202,14 +196,6 @@ export type PermissionsByVisibility = Message<"fits.api.v1.PermissionsByVisibili
         value: TenantPermissions;
         case: "tenant";
     } | {
-        /**
-         * OperatorPermissions carries operator method permissions.
-         *
-         * @generated from field: fits.api.v1.OperatorPermissions operator = 5;
-         */
-        value: OperatorPermissions;
-        case: "operator";
-    } | {
         case: undefined;
         value?: undefined;
     };
@@ -305,24 +291,6 @@ export type TenantPermissions = Message<"fits.api.v1.TenantPermissions"> & {
  * Use `create(TenantPermissionsSchema)` to create a new message.
  */
 export declare const TenantPermissionsSchema: GenMessage<TenantPermissions>;
-/**
- * OperatorPermissions carries operator method permissions.
- *
- * @generated from message fits.api.v1.OperatorPermissions
- */
-export type OperatorPermissions = Message<"fits.api.v1.OperatorPermissions"> & {
-    /**
-     * Methods which should be accessible.
-     *
-     * @generated from field: repeated string methods = 1;
-     */
-    methods: string[];
-};
-/**
- * Describes the message fits.api.v1.OperatorPermissions.
- * Use `create(OperatorPermissionsSchema)` to create a new message.
- */
-export declare const OperatorPermissionsSchema: GenMessage<OperatorPermissions>;
 /**
  * TokenServiceListRequest is the request payload to list tokens
  *

@@ -144,59 +144,6 @@ func (ProjectRole) EnumDescriptor() ([]byte, []int) {
 	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{1}
 }
 
-// OperatorRole specifies what role a logged in user needs to call this operator service
-type OperatorRole int32
-
-const (
-	// OPERATOR_ROLE_UNSPECIFIED is not specified
-	OperatorRole_OPERATOR_ROLE_UNSPECIFIED OperatorRole = 0
-	// OPERATOR_ROLE_EDITOR the logged in user needs at least editor role to call this method
-	OperatorRole_OPERATOR_ROLE_EDITOR OperatorRole = 1
-	// OPERATOR_ROLE_VIEWER the logged in user needs at least viewer role to call this method
-	OperatorRole_OPERATOR_ROLE_VIEWER OperatorRole = 2
-)
-
-// Enum value maps for OperatorRole.
-var (
-	OperatorRole_name = map[int32]string{
-		0: "OPERATOR_ROLE_UNSPECIFIED",
-		1: "OPERATOR_ROLE_EDITOR",
-		2: "OPERATOR_ROLE_VIEWER",
-	}
-	OperatorRole_value = map[string]int32{
-		"OPERATOR_ROLE_UNSPECIFIED": 0,
-		"OPERATOR_ROLE_EDITOR":      1,
-		"OPERATOR_ROLE_VIEWER":      2,
-	}
-)
-
-func (x OperatorRole) Enum() *OperatorRole {
-	p := new(OperatorRole)
-	*p = x
-	return p
-}
-
-func (x OperatorRole) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (OperatorRole) Descriptor() protoreflect.EnumDescriptor {
-	return file_fits_api_v1_common_proto_enumTypes[2].Descriptor()
-}
-
-func (OperatorRole) Type() protoreflect.EnumType {
-	return &file_fits_api_v1_common_proto_enumTypes[2]
-}
-
-func (x OperatorRole) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use OperatorRole.Descriptor instead.
-func (OperatorRole) EnumDescriptor() ([]byte, []int) {
-	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{2}
-}
-
 // Visibility of a method
 type Visibility int32
 
@@ -234,11 +181,11 @@ func (x Visibility) String() string {
 }
 
 func (Visibility) Descriptor() protoreflect.EnumDescriptor {
-	return file_fits_api_v1_common_proto_enumTypes[3].Descriptor()
+	return file_fits_api_v1_common_proto_enumTypes[2].Descriptor()
 }
 
 func (Visibility) Type() protoreflect.EnumType {
-	return &file_fits_api_v1_common_proto_enumTypes[3]
+	return &file_fits_api_v1_common_proto_enumTypes[2]
 }
 
 func (x Visibility) Number() protoreflect.EnumNumber {
@@ -247,7 +194,7 @@ func (x Visibility) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Visibility.Descriptor instead.
 func (Visibility) EnumDescriptor() ([]byte, []int) {
-	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{3}
+	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{2}
 }
 
 // Auditing option specified per service method
@@ -289,11 +236,11 @@ func (x Auditing) String() string {
 }
 
 func (Auditing) Descriptor() protoreflect.EnumDescriptor {
-	return file_fits_api_v1_common_proto_enumTypes[4].Descriptor()
+	return file_fits_api_v1_common_proto_enumTypes[3].Descriptor()
 }
 
 func (Auditing) Type() protoreflect.EnumType {
-	return &file_fits_api_v1_common_proto_enumTypes[4]
+	return &file_fits_api_v1_common_proto_enumTypes[3]
 }
 
 func (x Auditing) Number() protoreflect.EnumNumber {
@@ -302,6 +249,61 @@ func (x Auditing) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Auditing.Descriptor instead.
 func (Auditing) EnumDescriptor() ([]byte, []int) {
+	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{3}
+}
+
+// RoleContext declares in which context a method's roles apply. It belongs only
+// on provider or on-behalf services, never on public ones. It is not a
+// visibility setting or feature flag.
+type RoleContext int32
+
+const (
+	// ROLE_CONTEXT_UNSPECIFIED is the default and accepts any context.
+	RoleContext_ROLE_CONTEXT_UNSPECIFIED RoleContext = 0
+	// ROLE_CONTEXT_PROVIDER needs the caller to be in the provider tenant.
+	RoleContext_ROLE_CONTEXT_PROVIDER RoleContext = 1
+	// ROLE_CONTEXT_ON_BEHALF lets a provider user act for another tenant.
+	RoleContext_ROLE_CONTEXT_ON_BEHALF RoleContext = 2
+)
+
+// Enum value maps for RoleContext.
+var (
+	RoleContext_name = map[int32]string{
+		0: "ROLE_CONTEXT_UNSPECIFIED",
+		1: "ROLE_CONTEXT_PROVIDER",
+		2: "ROLE_CONTEXT_ON_BEHALF",
+	}
+	RoleContext_value = map[string]int32{
+		"ROLE_CONTEXT_UNSPECIFIED": 0,
+		"ROLE_CONTEXT_PROVIDER":    1,
+		"ROLE_CONTEXT_ON_BEHALF":   2,
+	}
+)
+
+func (x RoleContext) Enum() *RoleContext {
+	p := new(RoleContext)
+	*p = x
+	return p
+}
+
+func (x RoleContext) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (RoleContext) Descriptor() protoreflect.EnumDescriptor {
+	return file_fits_api_v1_common_proto_enumTypes[4].Descriptor()
+}
+
+func (RoleContext) Type() protoreflect.EnumType {
+	return &file_fits_api_v1_common_proto_enumTypes[4]
+}
+
+func (x RoleContext) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use RoleContext.Descriptor instead.
+func (RoleContext) EnumDescriptor() ([]byte, []int) {
 	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{4}
 }
 
@@ -666,10 +668,10 @@ var file_fits_api_v1_common_proto_extTypes = []protoimpl.ExtensionInfo{
 	},
 	{
 		ExtendedType:  (*descriptorpb.MethodOptions)(nil),
-		ExtensionType: ([]OperatorRole)(nil),
+		ExtensionType: (*RoleContext)(nil),
 		Field:         51002,
-		Name:          "fits.api.v1.operator_roles",
-		Tag:           "varint,51002,rep,packed,name=operator_roles,enum=fits.api.v1.OperatorRole",
+		Name:          "fits.api.v1.role_context",
+		Tag:           "varint,51002,opt,name=role_context,enum=fits.api.v1.RoleContext",
 		Filename:      "fits/api/v1/common.proto",
 	},
 	{
@@ -708,10 +710,11 @@ var (
 	//
 	// repeated fits.api.v1.ProjectRole project_roles = 51001;
 	E_ProjectRoles = &file_fits_api_v1_common_proto_extTypes[1]
-	// OperatorRoles are used to define which operator role a logged in user must provide to call this method
+	// RoleContext sets the context the roles above apply in. Only for provider or
+	// on-behalf services, never public ones.
 	//
-	// repeated fits.api.v1.OperatorRole operator_roles = 51002;
-	E_OperatorRoles = &file_fits_api_v1_common_proto_extTypes[2]
+	// optional fits.api.v1.RoleContext role_context = 51002;
+	E_RoleContext = &file_fits_api_v1_common_proto_extTypes[2]
 	// Visibility defines the visibility of this method, this is used to have public or self visible methods
 	//
 	// optional fits.api.v1.Visibility visibility = 51003;
@@ -774,11 +777,7 @@ const file_fits_api_v1_common_proto_rawDesc = "" +
 	"\x18PROJECT_ROLE_UNSPECIFIED\x10\x00\x12\x16\n" +
 	"\x12PROJECT_ROLE_ADMIN\x10\x01\x12\x17\n" +
 	"\x13PROJECT_ROLE_EDITOR\x10\x02\x12\x17\n" +
-	"\x13PROJECT_ROLE_VIEWER\x10\x03*a\n" +
-	"\fOperatorRole\x12\x1d\n" +
-	"\x19OPERATOR_ROLE_UNSPECIFIED\x10\x00\x12\x18\n" +
-	"\x14OPERATOR_ROLE_EDITOR\x10\x01\x12\x18\n" +
-	"\x14OPERATOR_ROLE_VIEWER\x10\x02*T\n" +
+	"\x13PROJECT_ROLE_VIEWER\x10\x03*T\n" +
 	"\n" +
 	"Visibility\x12\x1a\n" +
 	"\x16VISIBILITY_UNSPECIFIED\x10\x00\x12\x15\n" +
@@ -787,14 +786,18 @@ const file_fits_api_v1_common_proto_rawDesc = "" +
 	"\bAuditing\x12\x18\n" +
 	"\x14AUDITING_UNSPECIFIED\x10\x00\x12\x15\n" +
 	"\x11AUDITING_INCLUDED\x10\x01\x12\x15\n" +
-	"\x11AUDITING_EXCLUDED\x10\x02*\x98\x01\n" +
+	"\x11AUDITING_EXCLUDED\x10\x02*b\n" +
+	"\vRoleContext\x12\x1c\n" +
+	"\x18ROLE_CONTEXT_UNSPECIFIED\x10\x00\x12\x19\n" +
+	"\x15ROLE_CONTEXT_PROVIDER\x10\x01\x12\x1a\n" +
+	"\x16ROLE_CONTEXT_ON_BEHALF\x10\x02*\x98\x01\n" +
 	"\x19OptimisticLockingStrategy\x12+\n" +
 	"'OPTIMISTIC_LOCKING_STRATEGY_UNSPECIFIED\x10\x00\x12&\n" +
 	"\"OPTIMISTIC_LOCKING_STRATEGY_CLIENT\x10\x01\x12&\n" +
 	"\"OPTIMISTIC_LOCKING_STRATEGY_SERVER\x10\x02:\\\n" +
 	"\ftenant_roles\x12\x1e.google.protobuf.MethodOptions\x18\xb8\x8e\x03 \x03(\x0e2\x17.fits.api.v1.TenantRoleR\vtenantRoles:_\n" +
-	"\rproject_roles\x12\x1e.google.protobuf.MethodOptions\x18\xb9\x8e\x03 \x03(\x0e2\x18.fits.api.v1.ProjectRoleR\fprojectRoles:b\n" +
-	"\x0eoperator_roles\x12\x1e.google.protobuf.MethodOptions\x18\xba\x8e\x03 \x03(\x0e2\x19.fits.api.v1.OperatorRoleR\roperatorRoles:Y\n" +
+	"\rproject_roles\x12\x1e.google.protobuf.MethodOptions\x18\xb9\x8e\x03 \x03(\x0e2\x18.fits.api.v1.ProjectRoleR\fprojectRoles:]\n" +
+	"\frole_context\x12\x1e.google.protobuf.MethodOptions\x18\xba\x8e\x03 \x01(\x0e2\x18.fits.api.v1.RoleContextR\vroleContext:Y\n" +
 	"\n" +
 	"visibility\x12\x1e.google.protobuf.MethodOptions\x18\xbb\x8e\x03 \x01(\x0e2\x17.fits.api.v1.VisibilityR\n" +
 	"visibility:S\n" +
@@ -819,9 +822,9 @@ var file_fits_api_v1_common_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_fits_api_v1_common_proto_goTypes = []any{
 	(TenantRole)(0),                       // 0: fits.api.v1.TenantRole
 	(ProjectRole)(0),                      // 1: fits.api.v1.ProjectRole
-	(OperatorRole)(0),                     // 2: fits.api.v1.OperatorRole
-	(Visibility)(0),                       // 3: fits.api.v1.Visibility
-	(Auditing)(0),                         // 4: fits.api.v1.Auditing
+	(Visibility)(0),                       // 2: fits.api.v1.Visibility
+	(Auditing)(0),                         // 3: fits.api.v1.Auditing
+	(RoleContext)(0),                      // 4: fits.api.v1.RoleContext
 	(OptimisticLockingStrategy)(0),        // 5: fits.api.v1.OptimisticLockingStrategy
 	(*Paging)(nil),                        // 6: fits.api.v1.Paging
 	(*Labels)(nil),                        // 7: fits.api.v1.Labels
@@ -843,15 +846,15 @@ var file_fits_api_v1_common_proto_depIdxs = []int32{
 	5,  // 6: fits.api.v1.UpdateMeta.locking_strategy:type_name -> fits.api.v1.OptimisticLockingStrategy
 	13, // 7: fits.api.v1.tenant_roles:extendee -> google.protobuf.MethodOptions
 	13, // 8: fits.api.v1.project_roles:extendee -> google.protobuf.MethodOptions
-	13, // 9: fits.api.v1.operator_roles:extendee -> google.protobuf.MethodOptions
+	13, // 9: fits.api.v1.role_context:extendee -> google.protobuf.MethodOptions
 	13, // 10: fits.api.v1.visibility:extendee -> google.protobuf.MethodOptions
 	13, // 11: fits.api.v1.auditing:extendee -> google.protobuf.MethodOptions
 	14, // 12: fits.api.v1.enum_string_value:extendee -> google.protobuf.EnumValueOptions
 	0,  // 13: fits.api.v1.tenant_roles:type_name -> fits.api.v1.TenantRole
 	1,  // 14: fits.api.v1.project_roles:type_name -> fits.api.v1.ProjectRole
-	2,  // 15: fits.api.v1.operator_roles:type_name -> fits.api.v1.OperatorRole
-	3,  // 16: fits.api.v1.visibility:type_name -> fits.api.v1.Visibility
-	4,  // 17: fits.api.v1.auditing:type_name -> fits.api.v1.Auditing
+	4,  // 15: fits.api.v1.role_context:type_name -> fits.api.v1.RoleContext
+	2,  // 16: fits.api.v1.visibility:type_name -> fits.api.v1.Visibility
+	3,  // 17: fits.api.v1.auditing:type_name -> fits.api.v1.Auditing
 	18, // [18:18] is the sub-list for method output_type
 	18, // [18:18] is the sub-list for method input_type
 	13, // [13:18] is the sub-list for extension type_name

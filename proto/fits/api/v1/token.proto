@@ -74,8 +74,7 @@ message Token {
       enum: {defined_only: true}
     }
   ];
-  // OperatorRole defines the operator role of the token owner
-  optional OperatorRole operator_role = 11 [(buf.validate.field).enum.defined_only = true];
+  reserved 11;
   // RawRoles are the normalized roles transmitted by the OIDC provider.
   repeated string raw_roles = 12 [
     (buf.validate.field).repeated.unique = true,
@@ -127,8 +126,6 @@ message PermissionsByVisibility {
     ProjectPermissions project = 3;
     // TenantPermissions carries tenant method permissions.
     TenantPermissions tenant = 4;
-    // OperatorPermissions carries operator method permissions.
-    OperatorPermissions operator = 5;
   }
 }
 
@@ -161,12 +158,6 @@ message TenantPermissions {
 
   // Methods which should be accessible.
   repeated string methods = 2 [(buf.validate.field).repeated.max_items = 500];
-}
-
-// OperatorPermissions carries operator method permissions.
-message OperatorPermissions {
-  // Methods which should be accessible.
-  repeated string methods = 1 [(buf.validate.field).repeated.max_items = 500];
 }
 
 // TokenServiceListRequest is the request payload to list tokens

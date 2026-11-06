@@ -215,35 +215,6 @@ export declare enum ProjectRole {
  */
 export declare const ProjectRoleSchema: GenEnum<ProjectRole>;
 /**
- * OperatorRole specifies what role a logged in user needs to call this operator service
- *
- * @generated from enum fits.api.v1.OperatorRole
- */
-export declare enum OperatorRole {
-    /**
-     * OPERATOR_ROLE_UNSPECIFIED is not specified
-     *
-     * @generated from enum value: OPERATOR_ROLE_UNSPECIFIED = 0;
-     */
-    UNSPECIFIED = 0,
-    /**
-     * OPERATOR_ROLE_EDITOR the logged in user needs at least editor role to call this method
-     *
-     * @generated from enum value: OPERATOR_ROLE_EDITOR = 1;
-     */
-    EDITOR = 1,
-    /**
-     * OPERATOR_ROLE_VIEWER the logged in user needs at least viewer role to call this method
-     *
-     * @generated from enum value: OPERATOR_ROLE_VIEWER = 2;
-     */
-    VIEWER = 2
-}
-/**
- * Describes the enum fits.api.v1.OperatorRole.
- */
-export declare const OperatorRoleSchema: GenEnum<OperatorRole>;
-/**
  * Visibility of a method
  *
  * @generated from enum fits.api.v1.Visibility
@@ -304,6 +275,37 @@ export declare enum Auditing {
  */
 export declare const AuditingSchema: GenEnum<Auditing>;
 /**
+ * RoleContext declares in which context a method's roles apply. It belongs only
+ * on provider or on-behalf services, never on public ones. It is not a
+ * visibility setting or feature flag.
+ *
+ * @generated from enum fits.api.v1.RoleContext
+ */
+export declare enum RoleContext {
+    /**
+     * ROLE_CONTEXT_UNSPECIFIED is the default and accepts any context.
+     *
+     * @generated from enum value: ROLE_CONTEXT_UNSPECIFIED = 0;
+     */
+    UNSPECIFIED = 0,
+    /**
+     * ROLE_CONTEXT_PROVIDER needs the caller to be in the provider tenant.
+     *
+     * @generated from enum value: ROLE_CONTEXT_PROVIDER = 1;
+     */
+    PROVIDER = 1,
+    /**
+     * ROLE_CONTEXT_ON_BEHALF lets a provider user act for another tenant.
+     *
+     * @generated from enum value: ROLE_CONTEXT_ON_BEHALF = 2;
+     */
+    ON_BEHALF = 2
+}
+/**
+ * Describes the enum fits.api.v1.RoleContext.
+ */
+export declare const RoleContextSchema: GenEnum<RoleContext>;
+/**
  * OptimisticLockingStrategy defines how optimistic locking should be handled.
  * It defaults to client side, which requires the UpdatedAt timestamp to be provided
  *
@@ -347,11 +349,12 @@ export declare const tenant_roles: GenExtension<MethodOptions, TenantRole[]>;
  */
 export declare const project_roles: GenExtension<MethodOptions, ProjectRole[]>;
 /**
- * OperatorRoles are used to define which operator role a logged in user must provide to call this method
+ * RoleContext sets the context the roles above apply in. Only for provider or
+ * on-behalf services, never public ones.
  *
- * @generated from extension: repeated fits.api.v1.OperatorRole operator_roles = 51002;
+ * @generated from extension: fits.api.v1.RoleContext role_context = 51002;
  */
-export declare const operator_roles: GenExtension<MethodOptions, OperatorRole[]>;
+export declare const role_context: GenExtension<MethodOptions, RoleContext>;
 /**
  * Visibility defines the visibility of this method, this is used to have public or self visible methods
  *

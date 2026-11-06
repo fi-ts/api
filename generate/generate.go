@@ -111,9 +111,8 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 			return files, err
 		}
 		roles = permissions.Roles{
-			Operator: permissions.Operator{},
-			Tenant:   permissions.Tenant{},
-			Project:  permissions.Project{},
+			Tenant:  permissions.Tenant{},
+			Project: permissions.Project{},
 		}
 		methods = permissions.Methods{
 			// Allow service reflection to list available methods
@@ -126,10 +125,9 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 				serverReflectionInfov1alpha1: true,
 				serverReflectionInfo:         true,
 			},
-			Self:     map[string]bool{},
-			Operator: map[string]bool{},
-			Tenant:   map[string]bool{},
-			Project:  map[string]bool{},
+			Self:    map[string]bool{},
+			Tenant:  map[string]bool{},
+			Project: map[string]bool{},
 		}
 		auditable = permissions.Auditable{}
 		services  = []string{}
@@ -177,16 +175,6 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 							visibility.Project[methodName] = true
 						case v1.ProjectRole_PROJECT_ROLE_UNSPECIFIED.String():
 							// noop
-						// Operator
-						case v1.OperatorRole_OPERATOR_ROLE_EDITOR.String(), v1.OperatorRole_OPERATOR_ROLE_VIEWER.String():
-							apirole := v1.OperatorRole(v1.OperatorRole_value[role])
-							if methods := roles.Operator[apirole]; methods == nil {
-								roles.Operator[apirole] = permissions.Methods{}
-							}
-							roles.Operator[apirole][methodName] = struct{}{}
-							visibility.Operator[methodName] = true
-						case v1.OperatorRole_OPERATOR_ROLE_UNSPECIFIED.String():
-							// noop
 						// Visibility
 						case v1.Visibility_VISIBILITY_PUBLIC.String():
 							visibility.Public[methodName] = true
@@ -201,7 +189,13 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 							auditable[methodName] = true
 						case v1.Auditing_AUDITING_UNSPECIFIED.String():
 							auditable[methodName] = true
-						// noop
+						// RoleContext is enforced separately in the authorize
+						// interceptor and does not map to a service-permission
+						// bucket, so it is a noop here.
+						case v1.RoleContext_ROLE_CONTEXT_PROVIDER.String(),
+							v1.RoleContext_ROLE_CONTEXT_ON_BEHALF.String(),
+							v1.RoleContext_ROLE_CONTEXT_UNSPECIFIED.String():
+							// noop
 						default:
 							return nil, fmt.Errorf("unknown method identifier value detected:%s", *methodOpt.IdentifierValue)
 

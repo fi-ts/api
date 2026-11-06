@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package fits.api.v1;
 
-import "buf/validate/validate.proto";
 import "fits/api/v1/common.proto";
 import "fits/api/v1/token.proto";
 
@@ -41,6 +40,4 @@ message MethodServiceTokenScopedListResponse {
   map<string, ProjectRole> project_roles = 2;
   // TenantRoles associates a tenant ID with the corresponding role of the token owner
   map<string, TenantRole> tenant_roles = 3;
-  // OperatorRole defines the operator role of the token owner
-  optional OperatorRole operator_role = 4 [(buf.validate.field).enum.defined_only = true];
 }
