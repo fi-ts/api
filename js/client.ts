@@ -33,6 +33,8 @@ import { ProjectService as Apiv1ProjectService } from "./fits/api/v1/project_pb"
 
 import { TenantService as Apiv1TenantService } from "./fits/api/v1/tenant_pb";
 
+import { TenantConfigService as Apiv1TenantConfigService } from "./fits/api/v1/tenant_config_pb";
+
 import { TokenService as Apiv1TokenService } from "./fits/api/v1/token_pb";
 
 import { VersionService as Apiv1VersionService } from "./fits/api/v1/version_pb";
@@ -91,6 +93,8 @@ export interface Apiv1 {
   project(): ConnectClient<typeof Apiv1ProjectService>;
 
   tenant(): ConnectClient<typeof Apiv1TenantService>;
+
+  tenantConfig(): ConnectClient<typeof Apiv1TenantConfigService>;
 
   token(): ConnectClient<typeof Apiv1TokenService>;
 
@@ -280,6 +284,8 @@ class Apiv1Impl implements Apiv1 {
 
   private _tenant?: ConnectClient<typeof Apiv1TenantService>;
 
+  private _tenantConfig?: ConnectClient<typeof Apiv1TenantConfigService>;
+
   private _token?: ConnectClient<typeof Apiv1TokenService>;
 
   private _version?: ConnectClient<typeof Apiv1VersionService>;
@@ -316,6 +322,13 @@ class Apiv1Impl implements Apiv1 {
       this._tenant = createClient(Apiv1TenantService, this.transport);
     }
     return this._tenant;
+  }
+
+  tenantConfig(): ConnectClient<typeof Apiv1TenantConfigService> {
+    if (!this._tenantConfig) {
+      this._tenantConfig = createClient(Apiv1TenantConfigService, this.transport);
+    }
+    return this._tenantConfig;
   }
 
   token(): ConnectClient<typeof Apiv1TokenService> {

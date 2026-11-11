@@ -16,6 +16,7 @@ import fits.api.v1.health_connect as fits_api_v1_health_connect
 import fits.api.v1.method_connect as fits_api_v1_method_connect
 import fits.api.v1.project_connect as fits_api_v1_project_connect
 import fits.api.v1.tenant_connect as fits_api_v1_tenant_connect
+import fits.api.v1.tenant_config_connect as fits_api_v1_tenant_config_connect
 import fits.api.v1.token_connect as fits_api_v1_token_connect
 import fits.api.v1.version_connect as fits_api_v1_version_connect
 
@@ -104,6 +105,9 @@ class Client:
 
         def tenant(self):
             return fits_api_v1_tenant_connect.TenantServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
+
+        def tenant_config(self):
+            return fits_api_v1_tenant_config_connect.TenantConfigServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
         def token(self):
             return fits_api_v1_token_connect.TokenServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
