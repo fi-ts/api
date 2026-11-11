@@ -62,6 +62,7 @@ type (
 		Method() apiv1connect.MethodServiceClient
 		Project() apiv1connect.ProjectServiceClient
 		Tenant() apiv1connect.TenantServiceClient
+		TenantConfig() apiv1connect.TenantConfigServiceClient
 		Token() apiv1connect.TokenServiceClient
 		Version() apiv1connect.VersionServiceClient
 
@@ -69,12 +70,13 @@ type (
 	}
 
 	apiv1 struct {
-		healthservice  apiv1connect.HealthServiceClient
-		methodservice  apiv1connect.MethodServiceClient
-		projectservice apiv1connect.ProjectServiceClient
-		tenantservice  apiv1connect.TenantServiceClient
-		tokenservice   apiv1connect.TokenServiceClient
-		versionservice apiv1connect.VersionServiceClient
+		healthservice       apiv1connect.HealthServiceClient
+		methodservice       apiv1connect.MethodServiceClient
+		projectservice      apiv1connect.ProjectServiceClient
+		tenantservice       apiv1connect.TenantServiceClient
+		tenantconfigservice apiv1connect.TenantConfigServiceClient
+		tokenservice        apiv1connect.TokenServiceClient
+		versionservice      apiv1connect.VersionServiceClient
 	}
 )
 
@@ -190,6 +192,12 @@ func (c *client) Apiv1() Apiv1 {
 			connect.WithInterceptors(c.interceptors...),
 			compress.WithAll(compress.LevelBalanced),
 		),
+		tenantconfigservice: apiv1connect.NewTenantConfigServiceClient(
+			c.config.HttpClient(),
+			c.config.BaseURL,
+			connect.WithInterceptors(c.interceptors...),
+			compress.WithAll(compress.LevelBalanced),
+		),
 		tokenservice: apiv1connect.NewTokenServiceClient(
 			c.config.HttpClient(),
 			c.config.BaseURL,
@@ -218,6 +226,9 @@ func (c *apiv1) Project() apiv1connect.ProjectServiceClient {
 func (c *apiv1) Tenant() apiv1connect.TenantServiceClient {
 	return c.tenantservice
 }
+func (c *apiv1) TenantConfig() apiv1connect.TenantConfigServiceClient {
+	return c.tenantconfigservice
+}
 func (c *apiv1) Token() apiv1connect.TokenServiceClient {
 	return c.tokenservice
 }
@@ -244,6 +255,7 @@ func (c *apiv1) EnableMCP(mcps runtime.MCPServer, opts ...runtime.Option) {
 	apiv1mcp.ForwardToMethodServiceClient(mcps, c.Method(), opts...)
 	apiv1mcp.ForwardToProjectServiceClient(mcps, c.Project(), opts...)
 	apiv1mcp.ForwardToTenantServiceClient(mcps, c.Tenant(), opts...)
+	apiv1mcp.ForwardToTenantConfigServiceClient(mcps, c.TenantConfig(), opts...)
 	apiv1mcp.ForwardToTokenServiceClient(mcps, c.Token(), opts...)
 	apiv1mcp.ForwardToVersionServiceClient(mcps, c.Version(), opts...)
 }

@@ -1,0 +1,170 @@
+syntax = "proto3";
+
+package fits.api.v1;
+
+import "buf/validate/validate.proto";
+import "fits/api/v1/common.proto";
+import "fits/api/v1/predefined_rules.proto";
+import "google/protobuf/struct.proto";
+
+// TenantConfigService provides CRUD operations for tenant-scoped configuration entries.
+// Configs are for technical use only (e.g. service-specific settings per tenant) and are not meant to be exposed directly to end users.
+service TenantConfigService {
+  // List returns the configs belonging to a tenant.
+  rpc List(TenantConfigServiceListRequest) returns (TenantConfigServiceListResponse) {
+    option (tenant_roles) = TENANT_ROLE_ADMIN;
+    option (tenant_roles) = TENANT_ROLE_EDITOR;
+    option (tenant_roles) = TENANT_ROLE_VIEWER;
+    option (auditing) = AUDITING_EXCLUDED;
+  }
+  // Get returns a single tenant config by uuid.
+  rpc Get(TenantConfigServiceGetRequest) returns (TenantConfigServiceGetResponse) {
+    option (tenant_roles) = TENANT_ROLE_ADMIN;
+    option (tenant_roles) = TENANT_ROLE_EDITOR;
+    option (tenant_roles) = TENANT_ROLE_VIEWER;
+    option (auditing) = AUDITING_EXCLUDED;
+  }
+  // Create creates a new config for a tenant.
+  // The config name must match the format <subdomain>.fits.cloud/<path>.
+  rpc Create(TenantConfigServiceCreateRequest) returns (TenantConfigServiceCreateResponse) {
+    option (tenant_roles) = TENANT_ROLE_ADMIN;
+    option (tenant_roles) = TENANT_ROLE_EDITOR;
+    option (auditing) = AUDITING_INCLUDED;
+  }
+  // Update replaces the data of an existing tenant config.
+  rpc Update(TenantConfigServiceUpdateRequest) returns (TenantConfigServiceUpdateResponse) {
+    option (tenant_roles) = TENANT_ROLE_ADMIN;
+    option (tenant_roles) = TENANT_ROLE_EDITOR;
+    option (auditing) = AUDITING_INCLUDED;
+  }
+  // Delete removes a tenant config by uuid.
+  rpc Delete(TenantConfigServiceDeleteRequest) returns (TenantConfigServiceDeleteResponse) {
+    option (tenant_roles) = TENANT_ROLE_ADMIN;
+    option (auditing) = AUDITING_INCLUDED;
+  }
+}
+
+// TenantConfig holds an arbitrary configuration payload for a tenant, keyed by name.
+// The name identifies the owning service and the config purpose, e.g. "mvm.fits.cloud/accounting".
+message TenantConfig {
+  // Uuid is the unique identifier of this config.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // Tenant is the login of the tenant this config belongs to.
+  string tenant = 2;
+  // Namespace is the subdomain part of the config name, identifying the owning product or team,
+  // e.g. "mvm", "fce", "fcn".
+  string namespace = 3;
+  // Key is the config identifier within the namespace, e.g. "accounting".
+  string key = 4;
+  // Name is the derived composite name in the form "{namespace}.fits.cloud/{key}",
+  // e.g. "mvm.fits.cloud/accounting". It is read-only and computed by the server.
+  string name = 5;
+  // Meta holds timestamps, labels, and the optimistic-locking generation counter.
+  Meta meta = 6;
+  // Data is the configuration payload as a JSON object.
+  // The structure is defined by the consuming service.
+  google.protobuf.Struct data = 7;
+}
+
+// TenantConfigServiceListRequest is the request payload for listing tenant configs.
+message TenantConfigServiceListRequest {
+  // Tenant is the login of the tenant whose configs to list.
+  string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Namespace optionally filters by namespace, e.g. "mvm".
+  optional string namespace = 2 [(buf.validate.field).string = {
+    pattern: "^[a-z]+$"
+    min_len: 1
+    max_len: 63
+  }];
+  // Key optionally filters by key within the namespace, e.g. "accounting".
+  optional string key = 3 [(buf.validate.field).string = {
+    pattern: "^[a-zA-Z0-9]+$"
+    min_len: 1
+    max_len: 128
+  }];
+  // Labels optionally filters configs that carry all of the given labels.
+  optional Labels labels = 4;
+}
+
+// TenantConfigServiceListResponse is the response payload for listing tenant configs.
+message TenantConfigServiceListResponse {
+  // Configs is the list of matching tenant configs.
+  repeated TenantConfig configs = 1;
+}
+
+// TenantConfigServiceGetRequest is the request payload for retrieving a single tenant config.
+message TenantConfigServiceGetRequest {
+  // Tenant is the login of the tenant.
+  string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Uuid is the unique identifier of the config to retrieve.
+  string uuid = 2 [(buf.validate.field).string.uuid = true];
+}
+
+// TenantConfigServiceGetResponse is the response payload for retrieving a single tenant config.
+message TenantConfigServiceGetResponse {
+  // Config is the retrieved tenant config.
+  TenantConfig config = 1;
+}
+
+// TenantConfigServiceCreateRequest is the request payload for creating a tenant config.
+message TenantConfigServiceCreateRequest {
+  // Tenant is the login of the tenant.
+  string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Namespace is the subdomain identifying the owning product or team, e.g. "mvm".
+  // Must consist of lowercase letters only.
+  string namespace = 2 [(buf.validate.field).string = {
+    pattern: "^[a-z]+$"
+    min_len: 1
+    max_len: 8
+  }];
+  // Key is the config identifier within the namespace, e.g. "accounting", "accountingPg".
+  // Must consist of alphanumeric characters only.
+  string key = 3 [(buf.validate.field).string = {
+    pattern: "^[a-zA-Z0-9]+$"
+    min_len: 1
+    max_len: 31
+  }];
+  // Data is the configuration payload as a JSON object.
+  google.protobuf.Struct data = 4;
+}
+
+// TenantConfigServiceCreateResponse is the response payload after creating a tenant config.
+message TenantConfigServiceCreateResponse {
+  // Config is the created tenant config.
+  TenantConfig config = 1;
+}
+
+// TenantConfigServiceUpdateRequest is the request payload for updating a tenant config.
+message TenantConfigServiceUpdateRequest {
+  // Tenant is the login of the tenant.
+  string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Uuid is the unique identifier of the config to update.
+  string uuid = 2 [(buf.validate.field).string.uuid = true];
+  // UpdateMeta carries the optimistic-locking timestamp and strategy.
+  UpdateMeta update_meta = 3 [(buf.validate.field).required = true];
+  // Data is the new configuration payload as a JSON object.
+  google.protobuf.Struct data = 4;
+}
+
+// TenantConfigServiceUpdateResponse is the response payload after updating a tenant config.
+message TenantConfigServiceUpdateResponse {
+  // Config is the updated tenant config.
+  TenantConfig config = 1;
+}
+
+// TenantConfigServiceDeleteRequest is the request payload for deleting a tenant config.
+message TenantConfigServiceDeleteRequest {
+  // Tenant is the login of the tenant.
+  string tenant = 1 [(buf.validate.field).string = {
+    min_len: 1
+    max_len: 128
+  }];
+  // Uuid is the unique identifier of the config to delete.
+  string uuid = 2 [(buf.validate.field).string.uuid = true];
+}
+
+// TenantConfigServiceDeleteResponse is the response payload after deleting a tenant config.
+message TenantConfigServiceDeleteResponse {
+  // Config is the deleted tenant config.
+  TenantConfig config = 1;
+}

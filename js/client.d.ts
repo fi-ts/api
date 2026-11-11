@@ -12,6 +12,7 @@ import { HealthService as Apiv1HealthService } from "./fits/api/v1/health_pb";
 import { MethodService as Apiv1MethodService } from "./fits/api/v1/method_pb";
 import { ProjectService as Apiv1ProjectService } from "./fits/api/v1/project_pb";
 import { TenantService as Apiv1TenantService } from "./fits/api/v1/tenant_pb";
+import { TenantConfigService as Apiv1TenantConfigService } from "./fits/api/v1/tenant_config_pb";
 import { TokenService as Apiv1TokenService } from "./fits/api/v1/token_pb";
 import { VersionService as Apiv1VersionService } from "./fits/api/v1/version_pb";
 export interface ClientConfig {
@@ -41,6 +42,7 @@ export interface Apiv1 {
     method(): ConnectClient<typeof Apiv1MethodService>;
     project(): ConnectClient<typeof Apiv1ProjectService>;
     tenant(): ConnectClient<typeof Apiv1TenantService>;
+    tenantConfig(): ConnectClient<typeof Apiv1TenantConfigService>;
     token(): ConnectClient<typeof Apiv1TokenService>;
     version(): ConnectClient<typeof Apiv1VersionService>;
 }
