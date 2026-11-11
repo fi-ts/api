@@ -22,6 +22,7 @@ import { HealthService as Apiv1HealthService } from "./fits/api/v1/health_pb";
 import { MethodService as Apiv1MethodService } from "./fits/api/v1/method_pb";
 import { ProjectService as Apiv1ProjectService } from "./fits/api/v1/project_pb";
 import { TenantService as Apiv1TenantService } from "./fits/api/v1/tenant_pb";
+import { TenantConfigService as Apiv1TenantConfigService } from "./fits/api/v1/tenant_config_pb";
 import { TokenService as Apiv1TokenService } from "./fits/api/v1/token_pb";
 import { VersionService as Apiv1VersionService } from "./fits/api/v1/version_pb";
 function authInterceptor(token) {
@@ -156,6 +157,12 @@ class Apiv1Impl {
             this._tenant = createClient(Apiv1TenantService, this.transport);
         }
         return this._tenant;
+    }
+    tenantConfig() {
+        if (!this._tenantConfig) {
+            this._tenantConfig = createClient(Apiv1TenantConfigService, this.transport);
+        }
+        return this._tenantConfig;
     }
     token() {
         if (!this._token) {

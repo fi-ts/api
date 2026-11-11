@@ -1092,6 +1092,65 @@
         
           
           <li>
+            <a href="#fits%2fapi%2fv1%2ftenant_config.proto">fits/api/v1/tenant_config.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantConfig"><span class="badge">M</span>TenantConfig</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantConfigServiceCreateRequest"><span class="badge">M</span>TenantConfigServiceCreateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantConfigServiceCreateResponse"><span class="badge">M</span>TenantConfigServiceCreateResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantConfigServiceDeleteRequest"><span class="badge">M</span>TenantConfigServiceDeleteRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantConfigServiceDeleteResponse"><span class="badge">M</span>TenantConfigServiceDeleteResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantConfigServiceGetRequest"><span class="badge">M</span>TenantConfigServiceGetRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantConfigServiceGetResponse"><span class="badge">M</span>TenantConfigServiceGetResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantConfigServiceListRequest"><span class="badge">M</span>TenantConfigServiceListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantConfigServiceListResponse"><span class="badge">M</span>TenantConfigServiceListResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantConfigServiceUpdateRequest"><span class="badge">M</span>TenantConfigServiceUpdateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantConfigServiceUpdateResponse"><span class="badge">M</span>TenantConfigServiceUpdateResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#fits.api.v1.TenantConfigService"><span class="badge">S</span>TenantConfigService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#fits%2fapi%2fv1%2fversion.proto">fits/api/v1/version.proto</a>
             <ul>
               
@@ -6844,6 +6903,456 @@ Asterisk (*) can be specified to match any subject. </p></td>
                 <td><a href="#fits.api.v1.TenantServiceUpdateRequest">TenantServiceUpdateRequest</a></td>
                 <td><a href="#fits.api.v1.TenantServiceUpdateResponse">TenantServiceUpdateResponse</a></td>
                 <td><p>Update a tenant</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/v1/tenant_config.proto">fits/api/v1/tenant_config.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.v1.TenantConfig">TenantConfig</h3>
+        <p>TenantConfig holds an arbitrary configuration payload for a tenant, keyed by name.</p><p>The name identifies the owning service and the config purpose, e.g. "mvm.fits.cloud/accounting".</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Uuid is the unique identifier of this config. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant is the login of the tenant this config belongs to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>namespace</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Namespace is the subdomain part of the config name, identifying the owning product or team,
+e.g. &#34;mvm&#34;, &#34;fce&#34;, &#34;fcn&#34;. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Key is the config identifier within the namespace, e.g. &#34;accounting&#34;. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name is the derived composite name in the form &#34;{namespace}.fits.cloud/{key}&#34;,
+e.g. &#34;mvm.fits.cloud/accounting&#34;. It is read-only and computed by the server. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#fits.api.v1.Meta">Meta</a></td>
+                  <td></td>
+                  <td><p>Meta holds timestamps, labels, and the optimistic-locking generation counter. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p>Data is the configuration payload as a JSON object.
+The structure is defined by the consuming service. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TenantConfigServiceCreateRequest">TenantConfigServiceCreateRequest</h3>
+        <p>TenantConfigServiceCreateRequest is the request payload for creating a tenant config.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant is the login of the tenant. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>namespace</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Namespace is the subdomain identifying the owning product or team, e.g. &#34;mvm&#34;.
+Must consist of lowercase letters only. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Key is the config identifier within the namespace, e.g. &#34;accounting&#34;, &#34;accountingPg&#34;.
+Must consist of alphanumeric characters only. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p>Data is the configuration payload as a JSON object. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TenantConfigServiceCreateResponse">TenantConfigServiceCreateResponse</h3>
+        <p>TenantConfigServiceCreateResponse is the response payload after creating a tenant config.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>config</td>
+                  <td><a href="#fits.api.v1.TenantConfig">TenantConfig</a></td>
+                  <td></td>
+                  <td><p>Config is the created tenant config. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TenantConfigServiceDeleteRequest">TenantConfigServiceDeleteRequest</h3>
+        <p>TenantConfigServiceDeleteRequest is the request payload for deleting a tenant config.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant is the login of the tenant. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Uuid is the unique identifier of the config to delete. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TenantConfigServiceDeleteResponse">TenantConfigServiceDeleteResponse</h3>
+        <p>TenantConfigServiceDeleteResponse is the response payload after deleting a tenant config.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>config</td>
+                  <td><a href="#fits.api.v1.TenantConfig">TenantConfig</a></td>
+                  <td></td>
+                  <td><p>Config is the deleted tenant config. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TenantConfigServiceGetRequest">TenantConfigServiceGetRequest</h3>
+        <p>TenantConfigServiceGetRequest is the request payload for retrieving a single tenant config.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant is the login of the tenant. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Uuid is the unique identifier of the config to retrieve. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TenantConfigServiceGetResponse">TenantConfigServiceGetResponse</h3>
+        <p>TenantConfigServiceGetResponse is the response payload for retrieving a single tenant config.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>config</td>
+                  <td><a href="#fits.api.v1.TenantConfig">TenantConfig</a></td>
+                  <td></td>
+                  <td><p>Config is the retrieved tenant config. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TenantConfigServiceListRequest">TenantConfigServiceListRequest</h3>
+        <p>TenantConfigServiceListRequest is the request payload for listing tenant configs.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant is the login of the tenant whose configs to list. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>namespace</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Namespace optionally filters by namespace, e.g. &#34;mvm&#34;. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Key optionally filters by key within the namespace, e.g. &#34;accounting&#34;. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>labels</td>
+                  <td><a href="#fits.api.v1.Labels">Labels</a></td>
+                  <td>optional</td>
+                  <td><p>Labels optionally filters configs that carry all of the given labels. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TenantConfigServiceListResponse">TenantConfigServiceListResponse</h3>
+        <p>TenantConfigServiceListResponse is the response payload for listing tenant configs.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>configs</td>
+                  <td><a href="#fits.api.v1.TenantConfig">TenantConfig</a></td>
+                  <td>repeated</td>
+                  <td><p>Configs is the list of matching tenant configs. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TenantConfigServiceUpdateRequest">TenantConfigServiceUpdateRequest</h3>
+        <p>TenantConfigServiceUpdateRequest is the request payload for updating a tenant config.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant is the login of the tenant. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Uuid is the unique identifier of the config to update. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>update_meta</td>
+                  <td><a href="#fits.api.v1.UpdateMeta">UpdateMeta</a></td>
+                  <td></td>
+                  <td><p>UpdateMeta carries the optimistic-locking timestamp and strategy. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p>Data is the new configuration payload as a JSON object. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TenantConfigServiceUpdateResponse">TenantConfigServiceUpdateResponse</h3>
+        <p>TenantConfigServiceUpdateResponse is the response payload after updating a tenant config.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>config</td>
+                  <td><a href="#fits.api.v1.TenantConfig">TenantConfig</a></td>
+                  <td></td>
+                  <td><p>Config is the updated tenant config. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="fits.api.v1.TenantConfigService">TenantConfigService</h3>
+        <p>TenantConfigService provides CRUD operations for tenant-scoped configuration entries.</p><p>Configs are for technical use only (e.g. service-specific settings per tenant) and are not meant to be exposed directly to end users.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#fits.api.v1.TenantConfigServiceListRequest">TenantConfigServiceListRequest</a></td>
+                <td><a href="#fits.api.v1.TenantConfigServiceListResponse">TenantConfigServiceListResponse</a></td>
+                <td><p>List returns the configs belonging to a tenant.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Get</td>
+                <td><a href="#fits.api.v1.TenantConfigServiceGetRequest">TenantConfigServiceGetRequest</a></td>
+                <td><a href="#fits.api.v1.TenantConfigServiceGetResponse">TenantConfigServiceGetResponse</a></td>
+                <td><p>Get returns a single tenant config by uuid.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Create</td>
+                <td><a href="#fits.api.v1.TenantConfigServiceCreateRequest">TenantConfigServiceCreateRequest</a></td>
+                <td><a href="#fits.api.v1.TenantConfigServiceCreateResponse">TenantConfigServiceCreateResponse</a></td>
+                <td><p>Create creates a new config for a tenant.
+The config name must match the format &lt;subdomain&gt;.fits.cloud/&lt;path&gt;.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Update</td>
+                <td><a href="#fits.api.v1.TenantConfigServiceUpdateRequest">TenantConfigServiceUpdateRequest</a></td>
+                <td><a href="#fits.api.v1.TenantConfigServiceUpdateResponse">TenantConfigServiceUpdateResponse</a></td>
+                <td><p>Update replaces the data of an existing tenant config.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Delete</td>
+                <td><a href="#fits.api.v1.TenantConfigServiceDeleteRequest">TenantConfigServiceDeleteRequest</a></td>
+                <td><a href="#fits.api.v1.TenantConfigServiceDeleteResponse">TenantConfigServiceDeleteResponse</a></td>
+                <td><p>Delete removes a tenant config by uuid.</p></td>
               </tr>
             
           </tbody>
