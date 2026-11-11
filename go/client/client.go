@@ -58,6 +58,7 @@ type (
 	}
 
 	Apiv1 interface {
+		ApiKey() apiv1connect.ApiKeyServiceClient
 		Health() apiv1connect.HealthServiceClient
 		Method() apiv1connect.MethodServiceClient
 		Project() apiv1connect.ProjectServiceClient
@@ -69,6 +70,7 @@ type (
 	}
 
 	apiv1 struct {
+		apikeyservice  apiv1connect.ApiKeyServiceClient
 		healthservice  apiv1connect.HealthServiceClient
 		methodservice  apiv1connect.MethodServiceClient
 		projectservice apiv1connect.ProjectServiceClient
@@ -166,6 +168,12 @@ func (c *apipcvmv1) PublicCloudVM() pcvmv1connect.PublicCloudVMServiceClient {
 
 func (c *client) Apiv1() Apiv1 {
 	a := &apiv1{
+		apikeyservice: apiv1connect.NewApiKeyServiceClient(
+			c.config.HttpClient(),
+			c.config.BaseURL,
+			connect.WithInterceptors(c.interceptors...),
+			compress.WithAll(compress.LevelBalanced),
+		),
 		healthservice: apiv1connect.NewHealthServiceClient(
 			c.config.HttpClient(),
 			c.config.BaseURL,
@@ -206,6 +214,9 @@ func (c *client) Apiv1() Apiv1 {
 	return a
 }
 
+func (c *apiv1) ApiKey() apiv1connect.ApiKeyServiceClient {
+	return c.apikeyservice
+}
 func (c *apiv1) Health() apiv1connect.HealthServiceClient {
 	return c.healthservice
 }
@@ -240,6 +251,7 @@ func (c *apipcvmv1) EnableMCP(mcps runtime.MCPServer, opts ...runtime.Option) {
 }
 
 func (c *apiv1) EnableMCP(mcps runtime.MCPServer, opts ...runtime.Option) {
+	apiv1mcp.ForwardToApiKeyServiceClient(mcps, c.ApiKey(), opts...)
 	apiv1mcp.ForwardToHealthServiceClient(mcps, c.Health(), opts...)
 	apiv1mcp.ForwardToMethodServiceClient(mcps, c.Method(), opts...)
 	apiv1mcp.ForwardToProjectServiceClient(mcps, c.Project(), opts...)
