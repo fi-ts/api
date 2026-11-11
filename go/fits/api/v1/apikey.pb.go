@@ -55,7 +55,12 @@ type ApiKey struct {
 	RevokedAt *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=revoked_at,json=revokedAt,proto3,oneof" json:"revoked_at,omitempty"`
 	// LastUsedAt is the date when this api key was last successfully used for authentication.
 	// If unset the api key was never used.
-	LastUsedAt    *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=last_used_at,json=lastUsedAt,proto3,oneof" json:"last_used_at,omitempty"`
+	LastUsedAt *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=last_used_at,json=lastUsedAt,proto3,oneof" json:"last_used_at,omitempty"`
+	// Permissions limit the methods this api key can call.
+	// If unset the api key inherits the full permissions of the user it belongs to.
+	// If set, the api key can only call the intersection of these permissions and
+	// the permissions of the user it belongs to, see ApiKeyServiceCreateRequest.permissions.
+	Permissions   []*PermissionsByVisibility `protobuf:"bytes,11,rep,name=permissions,proto3" json:"permissions,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -160,6 +165,13 @@ func (x *ApiKey) GetLastUsedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *ApiKey) GetPermissions() []*PermissionsByVisibility {
+	if x != nil {
+		return x.Permissions
+	}
+	return nil
+}
+
 // ApiKeyServiceCreateRequest is the request payload to create an api key
 type ApiKeyServiceCreateRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -167,7 +179,13 @@ type ApiKeyServiceCreateRequest struct {
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// ExpiresAt is the date after which this api key can not be used anymore.
 	// If unset the api key does not expire.
-	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=expires_at,json=expiresAt,proto3,oneof" json:"expires_at,omitempty"`
+	ExpiresAt *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=expires_at,json=expiresAt,proto3,oneof" json:"expires_at,omitempty"`
+	// Permissions limit the methods this api key can call.
+	// If unset the api key inherits the full permissions of the user it belongs to.
+	// If set, the api key can only call the intersection of these permissions and
+	// the permissions of the user it belongs to. Operator permissions are rejected,
+	// a user can never obtain them.
+	Permissions   []*PermissionsByVisibility `protobuf:"bytes,3,rep,name=permissions,proto3" json:"permissions,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -212,6 +230,13 @@ func (x *ApiKeyServiceCreateRequest) GetName() string {
 func (x *ApiKeyServiceCreateRequest) GetExpiresAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.ExpiresAt
+	}
+	return nil
+}
+
+func (x *ApiKeyServiceCreateRequest) GetPermissions() []*PermissionsByVisibility {
+	if x != nil {
+		return x.Permissions
 	}
 	return nil
 }
@@ -617,7 +642,7 @@ var File_fits_api_v1_apikey_proto protoreflect.FileDescriptor
 
 const file_fits_api_v1_apikey_proto_rawDesc = "" +
 	"\n" +
-	"\x18fits/api/v1/apikey.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x83\x04\n" +
+	"\x18fits/api/v1/apikey.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x17fits/api/v1/token.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xcb\x04\n" +
 	"\x06ApiKey\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12!\n" +
 	"\auser_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12!\n" +
@@ -633,14 +658,16 @@ const file_fits_api_v1_apikey_proto_rawDesc = "" +
 	"revoked_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampH\x01R\trevokedAt\x88\x01\x01\x12A\n" +
 	"\flast_used_at\x18\n" +
 	" \x01(\v2\x1a.google.protobuf.TimestampH\x02R\n" +
-	"lastUsedAt\x88\x01\x01B\r\n" +
+	"lastUsedAt\x88\x01\x01\x12F\n" +
+	"\vpermissions\x18\v \x03(\v2$.fits.api.v1.PermissionsByVisibilityR\vpermissionsB\r\n" +
 	"\v_expires_atB\r\n" +
 	"\v_revoked_atB\x0f\n" +
-	"\r_last_used_at\"\x8c\x01\n" +
+	"\r_last_used_at\"\xd4\x01\n" +
 	"\x1aApiKeyServiceCreateRequest\x12\x1f\n" +
 	"\x04name\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x04name\x12>\n" +
 	"\n" +
-	"expires_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\texpiresAt\x88\x01\x01B\r\n" +
+	"expires_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\texpiresAt\x88\x01\x01\x12F\n" +
+	"\vpermissions\x18\x03 \x03(\v2$.fits.api.v1.PermissionsByVisibilityR\vpermissionsB\r\n" +
 	"\v_expires_at\"c\n" +
 	"\x1bApiKeyServiceCreateResponse\x12\x16\n" +
 	"\x06secret\x18\x01 \x01(\tR\x06secret\x12,\n" +
@@ -692,31 +719,34 @@ var file_fits_api_v1_apikey_proto_goTypes = []any{
 	(*ApiKeyServiceDeleteRequest)(nil),  // 9: fits.api.v1.ApiKeyServiceDeleteRequest
 	(*ApiKeyServiceDeleteResponse)(nil), // 10: fits.api.v1.ApiKeyServiceDeleteResponse
 	(*timestamppb.Timestamp)(nil),       // 11: google.protobuf.Timestamp
+	(*PermissionsByVisibility)(nil),     // 12: fits.api.v1.PermissionsByVisibility
 }
 var file_fits_api_v1_apikey_proto_depIdxs = []int32{
 	11, // 0: fits.api.v1.ApiKey.created_at:type_name -> google.protobuf.Timestamp
 	11, // 1: fits.api.v1.ApiKey.expires_at:type_name -> google.protobuf.Timestamp
 	11, // 2: fits.api.v1.ApiKey.revoked_at:type_name -> google.protobuf.Timestamp
 	11, // 3: fits.api.v1.ApiKey.last_used_at:type_name -> google.protobuf.Timestamp
-	11, // 4: fits.api.v1.ApiKeyServiceCreateRequest.expires_at:type_name -> google.protobuf.Timestamp
-	0,  // 5: fits.api.v1.ApiKeyServiceCreateResponse.api_key:type_name -> fits.api.v1.ApiKey
-	0,  // 6: fits.api.v1.ApiKeyServiceListResponse.api_keys:type_name -> fits.api.v1.ApiKey
-	0,  // 7: fits.api.v1.ApiKeyServiceGetResponse.api_key:type_name -> fits.api.v1.ApiKey
-	1,  // 8: fits.api.v1.ApiKeyService.Create:input_type -> fits.api.v1.ApiKeyServiceCreateRequest
-	3,  // 9: fits.api.v1.ApiKeyService.List:input_type -> fits.api.v1.ApiKeyServiceListRequest
-	5,  // 10: fits.api.v1.ApiKeyService.Get:input_type -> fits.api.v1.ApiKeyServiceGetRequest
-	7,  // 11: fits.api.v1.ApiKeyService.Revoke:input_type -> fits.api.v1.ApiKeyServiceRevokeRequest
-	9,  // 12: fits.api.v1.ApiKeyService.Delete:input_type -> fits.api.v1.ApiKeyServiceDeleteRequest
-	2,  // 13: fits.api.v1.ApiKeyService.Create:output_type -> fits.api.v1.ApiKeyServiceCreateResponse
-	4,  // 14: fits.api.v1.ApiKeyService.List:output_type -> fits.api.v1.ApiKeyServiceListResponse
-	6,  // 15: fits.api.v1.ApiKeyService.Get:output_type -> fits.api.v1.ApiKeyServiceGetResponse
-	8,  // 16: fits.api.v1.ApiKeyService.Revoke:output_type -> fits.api.v1.ApiKeyServiceRevokeResponse
-	10, // 17: fits.api.v1.ApiKeyService.Delete:output_type -> fits.api.v1.ApiKeyServiceDeleteResponse
-	13, // [13:18] is the sub-list for method output_type
-	8,  // [8:13] is the sub-list for method input_type
-	8,  // [8:8] is the sub-list for extension type_name
-	8,  // [8:8] is the sub-list for extension extendee
-	0,  // [0:8] is the sub-list for field type_name
+	12, // 4: fits.api.v1.ApiKey.permissions:type_name -> fits.api.v1.PermissionsByVisibility
+	11, // 5: fits.api.v1.ApiKeyServiceCreateRequest.expires_at:type_name -> google.protobuf.Timestamp
+	12, // 6: fits.api.v1.ApiKeyServiceCreateRequest.permissions:type_name -> fits.api.v1.PermissionsByVisibility
+	0,  // 7: fits.api.v1.ApiKeyServiceCreateResponse.api_key:type_name -> fits.api.v1.ApiKey
+	0,  // 8: fits.api.v1.ApiKeyServiceListResponse.api_keys:type_name -> fits.api.v1.ApiKey
+	0,  // 9: fits.api.v1.ApiKeyServiceGetResponse.api_key:type_name -> fits.api.v1.ApiKey
+	1,  // 10: fits.api.v1.ApiKeyService.Create:input_type -> fits.api.v1.ApiKeyServiceCreateRequest
+	3,  // 11: fits.api.v1.ApiKeyService.List:input_type -> fits.api.v1.ApiKeyServiceListRequest
+	5,  // 12: fits.api.v1.ApiKeyService.Get:input_type -> fits.api.v1.ApiKeyServiceGetRequest
+	7,  // 13: fits.api.v1.ApiKeyService.Revoke:input_type -> fits.api.v1.ApiKeyServiceRevokeRequest
+	9,  // 14: fits.api.v1.ApiKeyService.Delete:input_type -> fits.api.v1.ApiKeyServiceDeleteRequest
+	2,  // 15: fits.api.v1.ApiKeyService.Create:output_type -> fits.api.v1.ApiKeyServiceCreateResponse
+	4,  // 16: fits.api.v1.ApiKeyService.List:output_type -> fits.api.v1.ApiKeyServiceListResponse
+	6,  // 17: fits.api.v1.ApiKeyService.Get:output_type -> fits.api.v1.ApiKeyServiceGetResponse
+	8,  // 18: fits.api.v1.ApiKeyService.Revoke:output_type -> fits.api.v1.ApiKeyServiceRevokeResponse
+	10, // 19: fits.api.v1.ApiKeyService.Delete:output_type -> fits.api.v1.ApiKeyServiceDeleteResponse
+	15, // [15:20] is the sub-list for method output_type
+	10, // [10:15] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_v1_apikey_proto_init() }
@@ -726,6 +756,7 @@ func file_fits_api_v1_apikey_proto_init() {
 	}
 	file_fits_api_v1_common_proto_init()
 	file_fits_api_v1_predefined_rules_proto_init()
+	file_fits_api_v1_token_proto_init()
 	file_fits_api_v1_apikey_proto_msgTypes[0].OneofWrappers = []any{}
 	file_fits_api_v1_apikey_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}

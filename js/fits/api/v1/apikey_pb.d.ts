@@ -1,4 +1,5 @@
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
+import type { PermissionsByVisibility } from "./token_pb.js";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 /**
@@ -81,6 +82,15 @@ export type ApiKey = Message<"fits.api.v1.ApiKey"> & {
      * @generated from field: optional google.protobuf.Timestamp last_used_at = 10;
      */
     lastUsedAt?: Timestamp | undefined;
+    /**
+     * Permissions limit the methods this api key can call.
+     * If unset the api key inherits the full permissions of the user it belongs to.
+     * If set, the api key can only call the intersection of these permissions and
+     * the permissions of the user it belongs to, see ApiKeyServiceCreateRequest.permissions.
+     *
+     * @generated from field: repeated fits.api.v1.PermissionsByVisibility permissions = 11;
+     */
+    permissions: PermissionsByVisibility[];
 };
 /**
  * Describes the message fits.api.v1.ApiKey.
@@ -106,6 +116,16 @@ export type ApiKeyServiceCreateRequest = Message<"fits.api.v1.ApiKeyServiceCreat
      * @generated from field: optional google.protobuf.Timestamp expires_at = 2;
      */
     expiresAt?: Timestamp | undefined;
+    /**
+     * Permissions limit the methods this api key can call.
+     * If unset the api key inherits the full permissions of the user it belongs to.
+     * If set, the api key can only call the intersection of these permissions and
+     * the permissions of the user it belongs to. Operator permissions are rejected,
+     * a user can never obtain them.
+     *
+     * @generated from field: repeated fits.api.v1.PermissionsByVisibility permissions = 3;
+     */
+    permissions: PermissionsByVisibility[];
 };
 /**
  * Describes the message fits.api.v1.ApiKeyServiceCreateRequest.

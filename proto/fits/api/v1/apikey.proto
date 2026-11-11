@@ -5,6 +5,7 @@ package fits.api.v1;
 import "buf/validate/validate.proto";
 import "fits/api/v1/common.proto";
 import "fits/api/v1/predefined_rules.proto";
+import "fits/api/v1/token.proto";
 import "google/protobuf/timestamp.proto";
 
 // ApiKeyService provides api key (personal access token) management operations.
@@ -79,6 +80,11 @@ message ApiKey {
   // LastUsedAt is the date when this api key was last successfully used for authentication.
   // If unset the api key was never used.
   optional google.protobuf.Timestamp last_used_at = 10;
+  // Permissions limit the methods this api key can call.
+  // If unset the api key inherits the full permissions of the user it belongs to.
+  // If set, the api key can only call the intersection of these permissions and
+  // the permissions of the user it belongs to, see ApiKeyServiceCreateRequest.permissions.
+  repeated PermissionsByVisibility permissions = 11;
 }
 
 // ApiKeyServiceCreateRequest is the request payload to create an api key
@@ -88,6 +94,12 @@ message ApiKeyServiceCreateRequest {
   // ExpiresAt is the date after which this api key can not be used anymore.
   // If unset the api key does not expire.
   optional google.protobuf.Timestamp expires_at = 2;
+  // Permissions limit the methods this api key can call.
+  // If unset the api key inherits the full permissions of the user it belongs to.
+  // If set, the api key can only call the intersection of these permissions and
+  // the permissions of the user it belongs to. Operator permissions are rejected,
+  // a user can never obtain them.
+  repeated PermissionsByVisibility permissions = 3;
 }
 
 // ApiKeyServiceCreateResponse is the response payload of an api key create request
