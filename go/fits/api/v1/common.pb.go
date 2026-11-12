@@ -197,6 +197,118 @@ func (OperatorRole) EnumDescriptor() ([]byte, []int) {
 	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{2}
 }
 
+// Resource identifies the resource type a resource scoped method acts on.
+// The resource instance id is carried by the request as `uuid`, or `id` when it is not a uuid.
+type Resource int32
+
+const (
+	// RESOURCE_UNSPECIFIED is not specified
+	Resource_RESOURCE_UNSPECIFIED Resource = 0
+	// RESOURCE_MANAGED_VM identifies a ManagedVM (fits.api.mvm.v1.ManagedVM)
+	Resource_RESOURCE_MANAGED_VM Resource = 1
+	// RESOURCE_PUBLIC_CLOUD_VM identifies a VM (fits.api.pcvm.v1.PublicCloudVM)
+	Resource_RESOURCE_PUBLIC_CLOUD_VM Resource = 2
+)
+
+// Enum value maps for Resource.
+var (
+	Resource_name = map[int32]string{
+		0: "RESOURCE_UNSPECIFIED",
+		1: "RESOURCE_MANAGED_VM",
+		2: "RESOURCE_PUBLIC_CLOUD_VM",
+	}
+	Resource_value = map[string]int32{
+		"RESOURCE_UNSPECIFIED":     0,
+		"RESOURCE_MANAGED_VM":      1,
+		"RESOURCE_PUBLIC_CLOUD_VM": 2,
+	}
+)
+
+func (x Resource) Enum() *Resource {
+	p := new(Resource)
+	*p = x
+	return p
+}
+
+func (x Resource) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Resource) Descriptor() protoreflect.EnumDescriptor {
+	return file_fits_api_v1_common_proto_enumTypes[3].Descriptor()
+}
+
+func (Resource) Type() protoreflect.EnumType {
+	return &file_fits_api_v1_common_proto_enumTypes[3]
+}
+
+func (x Resource) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Resource.Descriptor instead.
+func (Resource) EnumDescriptor() ([]byte, []int) {
+	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{3}
+}
+
+// ResourceRole specifies what role a logged in user needs to call this product scoped service.
+// Resource roles are independent of project roles.
+type ResourceRole int32
+
+const (
+	// RESOURCE_ROLE_UNSPECIFIED is not specified
+	ResourceRole_RESOURCE_ROLE_UNSPECIFIED ResourceRole = 0
+	// RESOURCE_ROLE_ADMIN the logged in user needs at least admin role to call this method
+	ResourceRole_RESOURCE_ROLE_ADMIN ResourceRole = 1
+	// RESOURCE_ROLE_EDITOR the logged in user needs at least editor role to call this method
+	ResourceRole_RESOURCE_ROLE_EDITOR ResourceRole = 2
+	// RESOURCE_ROLE_VIEWER the logged in user needs at least viewer role to call this method
+	ResourceRole_RESOURCE_ROLE_VIEWER ResourceRole = 3
+)
+
+// Enum value maps for ResourceRole.
+var (
+	ResourceRole_name = map[int32]string{
+		0: "RESOURCE_ROLE_UNSPECIFIED",
+		1: "RESOURCE_ROLE_ADMIN",
+		2: "RESOURCE_ROLE_EDITOR",
+		3: "RESOURCE_ROLE_VIEWER",
+	}
+	ResourceRole_value = map[string]int32{
+		"RESOURCE_ROLE_UNSPECIFIED": 0,
+		"RESOURCE_ROLE_ADMIN":       1,
+		"RESOURCE_ROLE_EDITOR":      2,
+		"RESOURCE_ROLE_VIEWER":      3,
+	}
+)
+
+func (x ResourceRole) Enum() *ResourceRole {
+	p := new(ResourceRole)
+	*p = x
+	return p
+}
+
+func (x ResourceRole) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ResourceRole) Descriptor() protoreflect.EnumDescriptor {
+	return file_fits_api_v1_common_proto_enumTypes[4].Descriptor()
+}
+
+func (ResourceRole) Type() protoreflect.EnumType {
+	return &file_fits_api_v1_common_proto_enumTypes[4]
+}
+
+func (x ResourceRole) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ResourceRole.Descriptor instead.
+func (ResourceRole) EnumDescriptor() ([]byte, []int) {
+	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{4}
+}
+
 // Visibility of a method
 type Visibility int32
 
@@ -234,11 +346,11 @@ func (x Visibility) String() string {
 }
 
 func (Visibility) Descriptor() protoreflect.EnumDescriptor {
-	return file_fits_api_v1_common_proto_enumTypes[3].Descriptor()
+	return file_fits_api_v1_common_proto_enumTypes[5].Descriptor()
 }
 
 func (Visibility) Type() protoreflect.EnumType {
-	return &file_fits_api_v1_common_proto_enumTypes[3]
+	return &file_fits_api_v1_common_proto_enumTypes[5]
 }
 
 func (x Visibility) Number() protoreflect.EnumNumber {
@@ -247,7 +359,7 @@ func (x Visibility) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Visibility.Descriptor instead.
 func (Visibility) EnumDescriptor() ([]byte, []int) {
-	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{3}
+	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{5}
 }
 
 // Auditing option specified per service method
@@ -289,11 +401,11 @@ func (x Auditing) String() string {
 }
 
 func (Auditing) Descriptor() protoreflect.EnumDescriptor {
-	return file_fits_api_v1_common_proto_enumTypes[4].Descriptor()
+	return file_fits_api_v1_common_proto_enumTypes[6].Descriptor()
 }
 
 func (Auditing) Type() protoreflect.EnumType {
-	return &file_fits_api_v1_common_proto_enumTypes[4]
+	return &file_fits_api_v1_common_proto_enumTypes[6]
 }
 
 func (x Auditing) Number() protoreflect.EnumNumber {
@@ -302,7 +414,7 @@ func (x Auditing) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Auditing.Descriptor instead.
 func (Auditing) EnumDescriptor() ([]byte, []int) {
-	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{4}
+	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{6}
 }
 
 // OptimisticLockingStrategy defines how optimistic locking should be handled.
@@ -344,11 +456,11 @@ func (x OptimisticLockingStrategy) String() string {
 }
 
 func (OptimisticLockingStrategy) Descriptor() protoreflect.EnumDescriptor {
-	return file_fits_api_v1_common_proto_enumTypes[5].Descriptor()
+	return file_fits_api_v1_common_proto_enumTypes[7].Descriptor()
 }
 
 func (OptimisticLockingStrategy) Type() protoreflect.EnumType {
-	return &file_fits_api_v1_common_proto_enumTypes[5]
+	return &file_fits_api_v1_common_proto_enumTypes[7]
 }
 
 func (x OptimisticLockingStrategy) Number() protoreflect.EnumNumber {
@@ -357,8 +469,123 @@ func (x OptimisticLockingStrategy) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use OptimisticLockingStrategy.Descriptor instead.
 func (OptimisticLockingStrategy) EnumDescriptor() ([]byte, []int) {
-	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{5}
+	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{7}
 }
+
+// ResourceRoleAssignment grants a resource role on one resource instance.
+type ResourceRoleAssignment struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Resource the role applies to.
+	Resource Resource `protobuf:"varint,1,opt,name=resource,proto3,enum=fits.api.v1.Resource" json:"resource,omitempty"`
+	// ID of the resource instance. Actual format differs by resource type.
+	ResourceId string `protobuf:"bytes,2,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
+	// Role granted on the resource.
+	Role ResourceRole `protobuf:"varint,3,opt,name=role,proto3,enum=fits.api.v1.ResourceRole" json:"role,omitempty"`
+	// Scope of the resource role.
+	//
+	// Types that are valid to be assigned to Scope:
+	//
+	//	*ResourceRoleAssignment_ProjectUuid
+	//	*ResourceRoleAssignment_Namespace
+	Scope         isResourceRoleAssignment_Scope `protobuf_oneof:"scope"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ResourceRoleAssignment) Reset() {
+	*x = ResourceRoleAssignment{}
+	mi := &file_fits_api_v1_common_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResourceRoleAssignment) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResourceRoleAssignment) ProtoMessage() {}
+
+func (x *ResourceRoleAssignment) ProtoReflect() protoreflect.Message {
+	mi := &file_fits_api_v1_common_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResourceRoleAssignment.ProtoReflect.Descriptor instead.
+func (*ResourceRoleAssignment) Descriptor() ([]byte, []int) {
+	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *ResourceRoleAssignment) GetResource() Resource {
+	if x != nil {
+		return x.Resource
+	}
+	return Resource_RESOURCE_UNSPECIFIED
+}
+
+func (x *ResourceRoleAssignment) GetResourceId() string {
+	if x != nil {
+		return x.ResourceId
+	}
+	return ""
+}
+
+func (x *ResourceRoleAssignment) GetRole() ResourceRole {
+	if x != nil {
+		return x.Role
+	}
+	return ResourceRole_RESOURCE_ROLE_UNSPECIFIED
+}
+
+func (x *ResourceRoleAssignment) GetScope() isResourceRoleAssignment_Scope {
+	if x != nil {
+		return x.Scope
+	}
+	return nil
+}
+
+func (x *ResourceRoleAssignment) GetProjectUuid() string {
+	if x != nil {
+		if x, ok := x.Scope.(*ResourceRoleAssignment_ProjectUuid); ok {
+			return x.ProjectUuid
+		}
+	}
+	return ""
+}
+
+func (x *ResourceRoleAssignment) GetNamespace() string {
+	if x != nil {
+		if x, ok := x.Scope.(*ResourceRoleAssignment_Namespace); ok {
+			return x.Namespace
+		}
+	}
+	return ""
+}
+
+type isResourceRoleAssignment_Scope interface {
+	isResourceRoleAssignment_Scope()
+}
+
+type ResourceRoleAssignment_ProjectUuid struct {
+	// UUID of the project the resource belongs to.
+	// Some resource types might not be scoped by projects.
+	ProjectUuid string `protobuf:"bytes,4,opt,name=project_uuid,json=projectUuid,proto3,oneof"`
+}
+
+type ResourceRoleAssignment_Namespace struct {
+	// Namespace is used when the resource has a different scope than a project.
+	Namespace string `protobuf:"bytes,5,opt,name=namespace,proto3,oneof"`
+}
+
+func (*ResourceRoleAssignment_ProjectUuid) isResourceRoleAssignment_Scope() {}
+
+func (*ResourceRoleAssignment_Namespace) isResourceRoleAssignment_Scope() {}
 
 // Paging defines paging for methods with a lot of results
 type Paging struct {
@@ -374,7 +601,7 @@ type Paging struct {
 
 func (x *Paging) Reset() {
 	*x = Paging{}
-	mi := &file_fits_api_v1_common_proto_msgTypes[0]
+	mi := &file_fits_api_v1_common_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -386,7 +613,7 @@ func (x *Paging) String() string {
 func (*Paging) ProtoMessage() {}
 
 func (x *Paging) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_common_proto_msgTypes[0]
+	mi := &file_fits_api_v1_common_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -399,7 +626,7 @@ func (x *Paging) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Paging.ProtoReflect.Descriptor instead.
 func (*Paging) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{0}
+	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Paging) GetPage() uint64 {
@@ -427,7 +654,7 @@ type Labels struct {
 
 func (x *Labels) Reset() {
 	*x = Labels{}
-	mi := &file_fits_api_v1_common_proto_msgTypes[1]
+	mi := &file_fits_api_v1_common_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -439,7 +666,7 @@ func (x *Labels) String() string {
 func (*Labels) ProtoMessage() {}
 
 func (x *Labels) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_common_proto_msgTypes[1]
+	mi := &file_fits_api_v1_common_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -452,7 +679,7 @@ func (x *Labels) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Labels.ProtoReflect.Descriptor instead.
 func (*Labels) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{1}
+	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *Labels) GetLabels() map[string]string {
@@ -480,7 +707,7 @@ type Meta struct {
 
 func (x *Meta) Reset() {
 	*x = Meta{}
-	mi := &file_fits_api_v1_common_proto_msgTypes[2]
+	mi := &file_fits_api_v1_common_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -492,7 +719,7 @@ func (x *Meta) String() string {
 func (*Meta) ProtoMessage() {}
 
 func (x *Meta) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_common_proto_msgTypes[2]
+	mi := &file_fits_api_v1_common_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -505,7 +732,7 @@ func (x *Meta) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Meta.ProtoReflect.Descriptor instead.
 func (*Meta) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{2}
+	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Meta) GetLabels() *Labels {
@@ -549,7 +776,7 @@ type UpdateLabels struct {
 
 func (x *UpdateLabels) Reset() {
 	*x = UpdateLabels{}
-	mi := &file_fits_api_v1_common_proto_msgTypes[3]
+	mi := &file_fits_api_v1_common_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -561,7 +788,7 @@ func (x *UpdateLabels) String() string {
 func (*UpdateLabels) ProtoMessage() {}
 
 func (x *UpdateLabels) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_common_proto_msgTypes[3]
+	mi := &file_fits_api_v1_common_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -574,7 +801,7 @@ func (x *UpdateLabels) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateLabels.ProtoReflect.Descriptor instead.
 func (*UpdateLabels) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{3}
+	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *UpdateLabels) GetUpdate() *Labels {
@@ -605,7 +832,7 @@ type UpdateMeta struct {
 
 func (x *UpdateMeta) Reset() {
 	*x = UpdateMeta{}
-	mi := &file_fits_api_v1_common_proto_msgTypes[4]
+	mi := &file_fits_api_v1_common_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -617,7 +844,7 @@ func (x *UpdateMeta) String() string {
 func (*UpdateMeta) ProtoMessage() {}
 
 func (x *UpdateMeta) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_v1_common_proto_msgTypes[4]
+	mi := &file_fits_api_v1_common_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -630,7 +857,7 @@ func (x *UpdateMeta) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateMeta.ProtoReflect.Descriptor instead.
 func (*UpdateMeta) Descriptor() ([]byte, []int) {
-	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{4}
+	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *UpdateMeta) GetUpdatedAt() *timestamppb.Timestamp {
@@ -689,6 +916,22 @@ var file_fits_api_v1_common_proto_extTypes = []protoimpl.ExtensionInfo{
 		Filename:      "fits/api/v1/common.proto",
 	},
 	{
+		ExtendedType:  (*descriptorpb.MethodOptions)(nil),
+		ExtensionType: ([]ResourceRole)(nil),
+		Field:         51005,
+		Name:          "fits.api.v1.resource_roles",
+		Tag:           "varint,51005,rep,packed,name=resource_roles,enum=fits.api.v1.ResourceRole",
+		Filename:      "fits/api/v1/common.proto",
+	},
+	{
+		ExtendedType:  (*descriptorpb.MethodOptions)(nil),
+		ExtensionType: (*Resource)(nil),
+		Field:         51006,
+		Name:          "fits.api.v1.resource",
+		Tag:           "varint,51006,opt,name=resource,enum=fits.api.v1.Resource",
+		Filename:      "fits/api/v1/common.proto",
+	},
+	{
 		ExtendedType:  (*descriptorpb.EnumValueOptions)(nil),
 		ExtensionType: (*string)(nil),
 		Field:         52000,
@@ -720,6 +963,14 @@ var (
 	//
 	// optional fits.api.v1.Auditing auditing = 51004;
 	E_Auditing = &file_fits_api_v1_common_proto_extTypes[4]
+	// ResourceRoles are used to define which resource role a logged in user must provide to call this method
+	//
+	// repeated fits.api.v1.ResourceRole resource_roles = 51005;
+	E_ResourceRoles = &file_fits_api_v1_common_proto_extTypes[5]
+	// Resource defines the resource a resource scoped method acts on. Required whenever resource_roles is set.
+	//
+	// optional fits.api.v1.Resource resource = 51006;
+	E_Resource = &file_fits_api_v1_common_proto_extTypes[6]
 )
 
 // Extension fields to descriptorpb.EnumValueOptions.
@@ -727,14 +978,22 @@ var (
 	// StringValue which can be set to a enum
 	//
 	// optional string enum_string_value = 52000;
-	E_EnumStringValue = &file_fits_api_v1_common_proto_extTypes[5]
+	E_EnumStringValue = &file_fits_api_v1_common_proto_extTypes[7]
 )
 
 var File_fits_api_v1_common_proto protoreflect.FileDescriptor
 
 const file_fits_api_v1_common_proto_rawDesc = "" +
 	"\n" +
-	"\x18fits/api/v1/common.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a google/protobuf/descriptor.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"O\n" +
+	"\x18fits/api/v1/common.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a google/protobuf/descriptor.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9d\x02\n" +
+	"\x16ResourceRoleAssignment\x12;\n" +
+	"\bresource\x18\x01 \x01(\x0e2\x15.fits.api.v1.ResourceB\b\xbaH\x05\x82\x01\x02\x10\x01R\bresource\x12)\n" +
+	"\vresource_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\n" +
+	"resourceId\x127\n" +
+	"\x04role\x18\x03 \x01(\x0e2\x19.fits.api.v1.ResourceRoleB\b\xbaH\x05\x82\x01\x02\x10\x01R\x04role\x120\n" +
+	"\fproject_uuid\x18\x04 \x01(\tB\v\xbaH\br\x06\x98\xb4\xae\xb1\x02\x01H\x00R\vprojectUuid\x12'\n" +
+	"\tnamespace\x18\x05 \x01(\tB\a\xbaH\x04r\x02\x18-H\x00R\tnamespaceB\a\n" +
+	"\x05scope\"O\n" +
 	"\x06Paging\x12\x17\n" +
 	"\x04page\x18\x01 \x01(\x04H\x00R\x04page\x88\x01\x01\x12\x19\n" +
 	"\x05count\x18\x02 \x01(\x04H\x01R\x05count\x88\x01\x01B\a\n" +
@@ -778,7 +1037,16 @@ const file_fits_api_v1_common_proto_rawDesc = "" +
 	"\fOperatorRole\x12\x1d\n" +
 	"\x19OPERATOR_ROLE_UNSPECIFIED\x10\x00\x12\x18\n" +
 	"\x14OPERATOR_ROLE_EDITOR\x10\x01\x12\x18\n" +
-	"\x14OPERATOR_ROLE_VIEWER\x10\x02*T\n" +
+	"\x14OPERATOR_ROLE_VIEWER\x10\x02*[\n" +
+	"\bResource\x12\x18\n" +
+	"\x14RESOURCE_UNSPECIFIED\x10\x00\x12\x17\n" +
+	"\x13RESOURCE_MANAGED_VM\x10\x01\x12\x1c\n" +
+	"\x18RESOURCE_PUBLIC_CLOUD_VM\x10\x02*z\n" +
+	"\fResourceRole\x12\x1d\n" +
+	"\x19RESOURCE_ROLE_UNSPECIFIED\x10\x00\x12\x17\n" +
+	"\x13RESOURCE_ROLE_ADMIN\x10\x01\x12\x18\n" +
+	"\x14RESOURCE_ROLE_EDITOR\x10\x02\x12\x18\n" +
+	"\x14RESOURCE_ROLE_VIEWER\x10\x03*T\n" +
 	"\n" +
 	"Visibility\x12\x1a\n" +
 	"\x16VISIBILITY_UNSPECIFIED\x10\x00\x12\x15\n" +
@@ -798,7 +1066,9 @@ const file_fits_api_v1_common_proto_rawDesc = "" +
 	"\n" +
 	"visibility\x12\x1e.google.protobuf.MethodOptions\x18\xbb\x8e\x03 \x01(\x0e2\x17.fits.api.v1.VisibilityR\n" +
 	"visibility:S\n" +
-	"\bauditing\x12\x1e.google.protobuf.MethodOptions\x18\xbc\x8e\x03 \x01(\x0e2\x15.fits.api.v1.AuditingR\bauditing:O\n" +
+	"\bauditing\x12\x1e.google.protobuf.MethodOptions\x18\xbc\x8e\x03 \x01(\x0e2\x15.fits.api.v1.AuditingR\bauditing:b\n" +
+	"\x0eresource_roles\x12\x1e.google.protobuf.MethodOptions\x18\xbd\x8e\x03 \x03(\x0e2\x19.fits.api.v1.ResourceRoleR\rresourceRoles:S\n" +
+	"\bresource\x12\x1e.google.protobuf.MethodOptions\x18\xbe\x8e\x03 \x01(\x0e2\x15.fits.api.v1.ResourceR\bresource:O\n" +
 	"\x11enum_string_value\x12!.google.protobuf.EnumValueOptions\x18\xa0\x96\x03 \x01(\tR\x0fenumStringValueB\x97\x01\n" +
 	"\x0fcom.fits.api.v1B\vCommonProtoP\x01Z)github.com/fi-ts/api/go/fits/api/v1;apiv1\xa2\x02\x03FAX\xaa\x02\vFits.Api.V1\xca\x02\vFits\\Api\\V1\xe2\x02\x17Fits\\Api\\V1\\GPBMetadata\xea\x02\rFits::Api::V1b\x06proto3"
 
@@ -814,49 +1084,58 @@ func file_fits_api_v1_common_proto_rawDescGZIP() []byte {
 	return file_fits_api_v1_common_proto_rawDescData
 }
 
-var file_fits_api_v1_common_proto_enumTypes = make([]protoimpl.EnumInfo, 6)
-var file_fits_api_v1_common_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_fits_api_v1_common_proto_enumTypes = make([]protoimpl.EnumInfo, 8)
+var file_fits_api_v1_common_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_fits_api_v1_common_proto_goTypes = []any{
 	(TenantRole)(0),                       // 0: fits.api.v1.TenantRole
 	(ProjectRole)(0),                      // 1: fits.api.v1.ProjectRole
 	(OperatorRole)(0),                     // 2: fits.api.v1.OperatorRole
-	(Visibility)(0),                       // 3: fits.api.v1.Visibility
-	(Auditing)(0),                         // 4: fits.api.v1.Auditing
-	(OptimisticLockingStrategy)(0),        // 5: fits.api.v1.OptimisticLockingStrategy
-	(*Paging)(nil),                        // 6: fits.api.v1.Paging
-	(*Labels)(nil),                        // 7: fits.api.v1.Labels
-	(*Meta)(nil),                          // 8: fits.api.v1.Meta
-	(*UpdateLabels)(nil),                  // 9: fits.api.v1.UpdateLabels
-	(*UpdateMeta)(nil),                    // 10: fits.api.v1.UpdateMeta
-	nil,                                   // 11: fits.api.v1.Labels.LabelsEntry
-	(*timestamppb.Timestamp)(nil),         // 12: google.protobuf.Timestamp
-	(*descriptorpb.MethodOptions)(nil),    // 13: google.protobuf.MethodOptions
-	(*descriptorpb.EnumValueOptions)(nil), // 14: google.protobuf.EnumValueOptions
+	(Resource)(0),                         // 3: fits.api.v1.Resource
+	(ResourceRole)(0),                     // 4: fits.api.v1.ResourceRole
+	(Visibility)(0),                       // 5: fits.api.v1.Visibility
+	(Auditing)(0),                         // 6: fits.api.v1.Auditing
+	(OptimisticLockingStrategy)(0),        // 7: fits.api.v1.OptimisticLockingStrategy
+	(*ResourceRoleAssignment)(nil),        // 8: fits.api.v1.ResourceRoleAssignment
+	(*Paging)(nil),                        // 9: fits.api.v1.Paging
+	(*Labels)(nil),                        // 10: fits.api.v1.Labels
+	(*Meta)(nil),                          // 11: fits.api.v1.Meta
+	(*UpdateLabels)(nil),                  // 12: fits.api.v1.UpdateLabels
+	(*UpdateMeta)(nil),                    // 13: fits.api.v1.UpdateMeta
+	nil,                                   // 14: fits.api.v1.Labels.LabelsEntry
+	(*timestamppb.Timestamp)(nil),         // 15: google.protobuf.Timestamp
+	(*descriptorpb.MethodOptions)(nil),    // 16: google.protobuf.MethodOptions
+	(*descriptorpb.EnumValueOptions)(nil), // 17: google.protobuf.EnumValueOptions
 }
 var file_fits_api_v1_common_proto_depIdxs = []int32{
-	11, // 0: fits.api.v1.Labels.labels:type_name -> fits.api.v1.Labels.LabelsEntry
-	7,  // 1: fits.api.v1.Meta.labels:type_name -> fits.api.v1.Labels
-	12, // 2: fits.api.v1.Meta.created_at:type_name -> google.protobuf.Timestamp
-	12, // 3: fits.api.v1.Meta.updated_at:type_name -> google.protobuf.Timestamp
-	7,  // 4: fits.api.v1.UpdateLabels.update:type_name -> fits.api.v1.Labels
-	12, // 5: fits.api.v1.UpdateMeta.updated_at:type_name -> google.protobuf.Timestamp
-	5,  // 6: fits.api.v1.UpdateMeta.locking_strategy:type_name -> fits.api.v1.OptimisticLockingStrategy
-	13, // 7: fits.api.v1.tenant_roles:extendee -> google.protobuf.MethodOptions
-	13, // 8: fits.api.v1.project_roles:extendee -> google.protobuf.MethodOptions
-	13, // 9: fits.api.v1.operator_roles:extendee -> google.protobuf.MethodOptions
-	13, // 10: fits.api.v1.visibility:extendee -> google.protobuf.MethodOptions
-	13, // 11: fits.api.v1.auditing:extendee -> google.protobuf.MethodOptions
-	14, // 12: fits.api.v1.enum_string_value:extendee -> google.protobuf.EnumValueOptions
-	0,  // 13: fits.api.v1.tenant_roles:type_name -> fits.api.v1.TenantRole
-	1,  // 14: fits.api.v1.project_roles:type_name -> fits.api.v1.ProjectRole
-	2,  // 15: fits.api.v1.operator_roles:type_name -> fits.api.v1.OperatorRole
-	3,  // 16: fits.api.v1.visibility:type_name -> fits.api.v1.Visibility
-	4,  // 17: fits.api.v1.auditing:type_name -> fits.api.v1.Auditing
-	18, // [18:18] is the sub-list for method output_type
-	18, // [18:18] is the sub-list for method input_type
-	13, // [13:18] is the sub-list for extension type_name
-	7,  // [7:13] is the sub-list for extension extendee
-	0,  // [0:7] is the sub-list for field type_name
+	3,  // 0: fits.api.v1.ResourceRoleAssignment.resource:type_name -> fits.api.v1.Resource
+	4,  // 1: fits.api.v1.ResourceRoleAssignment.role:type_name -> fits.api.v1.ResourceRole
+	14, // 2: fits.api.v1.Labels.labels:type_name -> fits.api.v1.Labels.LabelsEntry
+	10, // 3: fits.api.v1.Meta.labels:type_name -> fits.api.v1.Labels
+	15, // 4: fits.api.v1.Meta.created_at:type_name -> google.protobuf.Timestamp
+	15, // 5: fits.api.v1.Meta.updated_at:type_name -> google.protobuf.Timestamp
+	10, // 6: fits.api.v1.UpdateLabels.update:type_name -> fits.api.v1.Labels
+	15, // 7: fits.api.v1.UpdateMeta.updated_at:type_name -> google.protobuf.Timestamp
+	7,  // 8: fits.api.v1.UpdateMeta.locking_strategy:type_name -> fits.api.v1.OptimisticLockingStrategy
+	16, // 9: fits.api.v1.tenant_roles:extendee -> google.protobuf.MethodOptions
+	16, // 10: fits.api.v1.project_roles:extendee -> google.protobuf.MethodOptions
+	16, // 11: fits.api.v1.operator_roles:extendee -> google.protobuf.MethodOptions
+	16, // 12: fits.api.v1.visibility:extendee -> google.protobuf.MethodOptions
+	16, // 13: fits.api.v1.auditing:extendee -> google.protobuf.MethodOptions
+	16, // 14: fits.api.v1.resource_roles:extendee -> google.protobuf.MethodOptions
+	16, // 15: fits.api.v1.resource:extendee -> google.protobuf.MethodOptions
+	17, // 16: fits.api.v1.enum_string_value:extendee -> google.protobuf.EnumValueOptions
+	0,  // 17: fits.api.v1.tenant_roles:type_name -> fits.api.v1.TenantRole
+	1,  // 18: fits.api.v1.project_roles:type_name -> fits.api.v1.ProjectRole
+	2,  // 19: fits.api.v1.operator_roles:type_name -> fits.api.v1.OperatorRole
+	5,  // 20: fits.api.v1.visibility:type_name -> fits.api.v1.Visibility
+	6,  // 21: fits.api.v1.auditing:type_name -> fits.api.v1.Auditing
+	4,  // 22: fits.api.v1.resource_roles:type_name -> fits.api.v1.ResourceRole
+	3,  // 23: fits.api.v1.resource:type_name -> fits.api.v1.Resource
+	24, // [24:24] is the sub-list for method output_type
+	24, // [24:24] is the sub-list for method input_type
+	17, // [17:24] is the sub-list for extension type_name
+	9,  // [9:17] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_v1_common_proto_init() }
@@ -865,16 +1144,20 @@ func file_fits_api_v1_common_proto_init() {
 		return
 	}
 	file_fits_api_v1_predefined_rules_proto_init()
-	file_fits_api_v1_common_proto_msgTypes[0].OneofWrappers = []any{}
-	file_fits_api_v1_common_proto_msgTypes[2].OneofWrappers = []any{}
+	file_fits_api_v1_common_proto_msgTypes[0].OneofWrappers = []any{
+		(*ResourceRoleAssignment_ProjectUuid)(nil),
+		(*ResourceRoleAssignment_Namespace)(nil),
+	}
+	file_fits_api_v1_common_proto_msgTypes[1].OneofWrappers = []any{}
+	file_fits_api_v1_common_proto_msgTypes[3].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_fits_api_v1_common_proto_rawDesc), len(file_fits_api_v1_common_proto_rawDesc)),
-			NumEnums:      6,
-			NumMessages:   6,
-			NumExtensions: 6,
+			NumEnums:      8,
+			NumMessages:   7,
+			NumExtensions: 8,
 			NumServices:   0,
 		},
 		GoTypes:           file_fits_api_v1_common_proto_goTypes,

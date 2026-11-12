@@ -28,7 +28,7 @@ from google.protobuf import descriptor_pb2 as google_dot_protobuf_dot_descriptor
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x18\x66its/api/v1/common.proto\x12\x0b\x66its.api.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a google/protobuf/descriptor.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"O\n\x06Paging\x12\x17\n\x04page\x18\x01 \x01(\x04H\x00R\x04page\x88\x01\x01\x12\x19\n\x05\x63ount\x18\x02 \x01(\x04H\x01R\x05\x63ount\x88\x01\x01\x42\x07\n\x05_pageB\x08\n\x06_count\"\x9c\x01\n\x06Labels\x12W\n\x06labels\x18\x01 \x03(\x0b\x32\x1f.fits.api.v1.Labels.LabelsEntryB\x1e\xbaH\x1b\x9a\x01\x18\"\x07r\x05\x10\x01\x18\x80\x02*\x07r\x05\x10\x00\x18\x80\x02\xb8\x95\xb8\xb1\x02\x01R\x06labels\x1a\x39\n\x0bLabelsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"\xd9\x01\n\x04Meta\x12\x30\n\x06labels\x18\x01 \x01(\x0b\x32\x13.fits.api.v1.LabelsH\x00R\x06labels\x88\x01\x01\x12\x39\n\ncreated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\x12\x39\n\nupdated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x1e\n\ngeneration\x18\x04 \x01(\x04R\ngenerationB\t\n\x07_labels\"S\n\x0cUpdateLabels\x12+\n\x06update\x18\x01 \x01(\x0b\x32\x13.fits.api.v1.LabelsR\x06update\x12\x16\n\x06remove\x18\x02 \x03(\tR\x06remove\"\xa4\x01\n\nUpdateMeta\x12\x39\n\nupdated_at\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tupdatedAt\x12[\n\x10locking_strategy\x18\x02 \x01(\x0e\x32&.fits.api.v1.OptimisticLockingStrategyB\x08\xbaH\x05\x82\x01\x02\x10\x01R\x0flockingStrategy*\x87\x01\n\nTenantRole\x12\x1b\n\x17TENANT_ROLE_UNSPECIFIED\x10\x00\x12\x15\n\x11TENANT_ROLE_ADMIN\x10\x01\x12\x16\n\x12TENANT_ROLE_EDITOR\x10\x02\x12\x16\n\x12TENANT_ROLE_VIEWER\x10\x03\x12\x15\n\x11TENANT_ROLE_GUEST\x10\x04*u\n\x0bProjectRole\x12\x1c\n\x18PROJECT_ROLE_UNSPECIFIED\x10\x00\x12\x16\n\x12PROJECT_ROLE_ADMIN\x10\x01\x12\x17\n\x13PROJECT_ROLE_EDITOR\x10\x02\x12\x17\n\x13PROJECT_ROLE_VIEWER\x10\x03*a\n\x0cOperatorRole\x12\x1d\n\x19OPERATOR_ROLE_UNSPECIFIED\x10\x00\x12\x18\n\x14OPERATOR_ROLE_EDITOR\x10\x01\x12\x18\n\x14OPERATOR_ROLE_VIEWER\x10\x02*T\n\nVisibility\x12\x1a\n\x16VISIBILITY_UNSPECIFIED\x10\x00\x12\x15\n\x11VISIBILITY_PUBLIC\x10\x01\x12\x13\n\x0fVISIBILITY_SELF\x10\x02*R\n\x08\x41uditing\x12\x18\n\x14\x41UDITING_UNSPECIFIED\x10\x00\x12\x15\n\x11\x41UDITING_INCLUDED\x10\x01\x12\x15\n\x11\x41UDITING_EXCLUDED\x10\x02*\x98\x01\n\x19OptimisticLockingStrategy\x12+\n\'OPTIMISTIC_LOCKING_STRATEGY_UNSPECIFIED\x10\x00\x12&\n\"OPTIMISTIC_LOCKING_STRATEGY_CLIENT\x10\x01\x12&\n\"OPTIMISTIC_LOCKING_STRATEGY_SERVER\x10\x02:\\\n\x0ctenant_roles\x12\x1e.google.protobuf.MethodOptions\x18\xb8\x8e\x03 \x03(\x0e\x32\x17.fits.api.v1.TenantRoleR\x0btenantRoles:_\n\rproject_roles\x12\x1e.google.protobuf.MethodOptions\x18\xb9\x8e\x03 \x03(\x0e\x32\x18.fits.api.v1.ProjectRoleR\x0cprojectRoles:b\n\x0eoperator_roles\x12\x1e.google.protobuf.MethodOptions\x18\xba\x8e\x03 \x03(\x0e\x32\x19.fits.api.v1.OperatorRoleR\roperatorRoles:Y\n\nvisibility\x12\x1e.google.protobuf.MethodOptions\x18\xbb\x8e\x03 \x01(\x0e\x32\x17.fits.api.v1.VisibilityR\nvisibility:S\n\x08\x61uditing\x12\x1e.google.protobuf.MethodOptions\x18\xbc\x8e\x03 \x01(\x0e\x32\x15.fits.api.v1.AuditingR\x08\x61uditing:O\n\x11\x65num_string_value\x12!.google.protobuf.EnumValueOptions\x18\xa0\x96\x03 \x01(\tR\x0f\x65numStringValueB\x97\x01\n\x0f\x63om.fits.api.v1B\x0b\x43ommonProtoP\x01Z)github.com/fi-ts/api/go/fits/api/v1;apiv1\xa2\x02\x03\x46\x41X\xaa\x02\x0b\x46its.Api.V1\xca\x02\x0b\x46its\\Api\\V1\xe2\x02\x17\x46its\\Api\\V1\\GPBMetadata\xea\x02\rFits::Api::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x18\x66its/api/v1/common.proto\x12\x0b\x66its.api.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a google/protobuf/descriptor.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9d\x02\n\x16ResourceRoleAssignment\x12;\n\x08resource\x18\x01 \x01(\x0e\x32\x15.fits.api.v1.ResourceB\x08\xbaH\x05\x82\x01\x02\x10\x01R\x08resource\x12)\n\x0bresource_id\x18\x02 \x01(\tB\x08\xbaH\x05r\x03\x18\x80\x02R\nresourceId\x12\x37\n\x04role\x18\x03 \x01(\x0e\x32\x19.fits.api.v1.ResourceRoleB\x08\xbaH\x05\x82\x01\x02\x10\x01R\x04role\x12\x30\n\x0cproject_uuid\x18\x04 \x01(\tB\x0b\xbaH\x08r\x06\x98\xb4\xae\xb1\x02\x01H\x00R\x0bprojectUuid\x12\'\n\tnamespace\x18\x05 \x01(\tB\x07\xbaH\x04r\x02\x18-H\x00R\tnamespaceB\x07\n\x05scope\"O\n\x06Paging\x12\x17\n\x04page\x18\x01 \x01(\x04H\x00R\x04page\x88\x01\x01\x12\x19\n\x05\x63ount\x18\x02 \x01(\x04H\x01R\x05\x63ount\x88\x01\x01\x42\x07\n\x05_pageB\x08\n\x06_count\"\x9c\x01\n\x06Labels\x12W\n\x06labels\x18\x01 \x03(\x0b\x32\x1f.fits.api.v1.Labels.LabelsEntryB\x1e\xbaH\x1b\x9a\x01\x18\"\x07r\x05\x10\x01\x18\x80\x02*\x07r\x05\x10\x00\x18\x80\x02\xb8\x95\xb8\xb1\x02\x01R\x06labels\x1a\x39\n\x0bLabelsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"\xd9\x01\n\x04Meta\x12\x30\n\x06labels\x18\x01 \x01(\x0b\x32\x13.fits.api.v1.LabelsH\x00R\x06labels\x88\x01\x01\x12\x39\n\ncreated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\x12\x39\n\nupdated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x1e\n\ngeneration\x18\x04 \x01(\x04R\ngenerationB\t\n\x07_labels\"S\n\x0cUpdateLabels\x12+\n\x06update\x18\x01 \x01(\x0b\x32\x13.fits.api.v1.LabelsR\x06update\x12\x16\n\x06remove\x18\x02 \x03(\tR\x06remove\"\xa4\x01\n\nUpdateMeta\x12\x39\n\nupdated_at\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tupdatedAt\x12[\n\x10locking_strategy\x18\x02 \x01(\x0e\x32&.fits.api.v1.OptimisticLockingStrategyB\x08\xbaH\x05\x82\x01\x02\x10\x01R\x0flockingStrategy*\x87\x01\n\nTenantRole\x12\x1b\n\x17TENANT_ROLE_UNSPECIFIED\x10\x00\x12\x15\n\x11TENANT_ROLE_ADMIN\x10\x01\x12\x16\n\x12TENANT_ROLE_EDITOR\x10\x02\x12\x16\n\x12TENANT_ROLE_VIEWER\x10\x03\x12\x15\n\x11TENANT_ROLE_GUEST\x10\x04*u\n\x0bProjectRole\x12\x1c\n\x18PROJECT_ROLE_UNSPECIFIED\x10\x00\x12\x16\n\x12PROJECT_ROLE_ADMIN\x10\x01\x12\x17\n\x13PROJECT_ROLE_EDITOR\x10\x02\x12\x17\n\x13PROJECT_ROLE_VIEWER\x10\x03*a\n\x0cOperatorRole\x12\x1d\n\x19OPERATOR_ROLE_UNSPECIFIED\x10\x00\x12\x18\n\x14OPERATOR_ROLE_EDITOR\x10\x01\x12\x18\n\x14OPERATOR_ROLE_VIEWER\x10\x02*[\n\x08Resource\x12\x18\n\x14RESOURCE_UNSPECIFIED\x10\x00\x12\x17\n\x13RESOURCE_MANAGED_VM\x10\x01\x12\x1c\n\x18RESOURCE_PUBLIC_CLOUD_VM\x10\x02*z\n\x0cResourceRole\x12\x1d\n\x19RESOURCE_ROLE_UNSPECIFIED\x10\x00\x12\x17\n\x13RESOURCE_ROLE_ADMIN\x10\x01\x12\x18\n\x14RESOURCE_ROLE_EDITOR\x10\x02\x12\x18\n\x14RESOURCE_ROLE_VIEWER\x10\x03*T\n\nVisibility\x12\x1a\n\x16VISIBILITY_UNSPECIFIED\x10\x00\x12\x15\n\x11VISIBILITY_PUBLIC\x10\x01\x12\x13\n\x0fVISIBILITY_SELF\x10\x02*R\n\x08\x41uditing\x12\x18\n\x14\x41UDITING_UNSPECIFIED\x10\x00\x12\x15\n\x11\x41UDITING_INCLUDED\x10\x01\x12\x15\n\x11\x41UDITING_EXCLUDED\x10\x02*\x98\x01\n\x19OptimisticLockingStrategy\x12+\n\'OPTIMISTIC_LOCKING_STRATEGY_UNSPECIFIED\x10\x00\x12&\n\"OPTIMISTIC_LOCKING_STRATEGY_CLIENT\x10\x01\x12&\n\"OPTIMISTIC_LOCKING_STRATEGY_SERVER\x10\x02:\\\n\x0ctenant_roles\x12\x1e.google.protobuf.MethodOptions\x18\xb8\x8e\x03 \x03(\x0e\x32\x17.fits.api.v1.TenantRoleR\x0btenantRoles:_\n\rproject_roles\x12\x1e.google.protobuf.MethodOptions\x18\xb9\x8e\x03 \x03(\x0e\x32\x18.fits.api.v1.ProjectRoleR\x0cprojectRoles:b\n\x0eoperator_roles\x12\x1e.google.protobuf.MethodOptions\x18\xba\x8e\x03 \x03(\x0e\x32\x19.fits.api.v1.OperatorRoleR\roperatorRoles:Y\n\nvisibility\x12\x1e.google.protobuf.MethodOptions\x18\xbb\x8e\x03 \x01(\x0e\x32\x17.fits.api.v1.VisibilityR\nvisibility:S\n\x08\x61uditing\x12\x1e.google.protobuf.MethodOptions\x18\xbc\x8e\x03 \x01(\x0e\x32\x15.fits.api.v1.AuditingR\x08\x61uditing:b\n\x0eresource_roles\x12\x1e.google.protobuf.MethodOptions\x18\xbd\x8e\x03 \x03(\x0e\x32\x19.fits.api.v1.ResourceRoleR\rresourceRoles:S\n\x08resource\x12\x1e.google.protobuf.MethodOptions\x18\xbe\x8e\x03 \x01(\x0e\x32\x15.fits.api.v1.ResourceR\x08resource:O\n\x11\x65num_string_value\x12!.google.protobuf.EnumValueOptions\x18\xa0\x96\x03 \x01(\tR\x0f\x65numStringValueB\x97\x01\n\x0f\x63om.fits.api.v1B\x0b\x43ommonProtoP\x01Z)github.com/fi-ts/api/go/fits/api/v1;apiv1\xa2\x02\x03\x46\x41X\xaa\x02\x0b\x46its.Api.V1\xca\x02\x0b\x46its\\Api\\V1\xe2\x02\x17\x46its\\Api\\V1\\GPBMetadata\xea\x02\rFits::Api::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -36,34 +36,50 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'fits.api.v1.common_pb2', _g
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'\n\017com.fits.api.v1B\013CommonProtoP\001Z)github.com/fi-ts/api/go/fits/api/v1;apiv1\242\002\003FAX\252\002\013Fits.Api.V1\312\002\013Fits\\Api\\V1\342\002\027Fits\\Api\\V1\\GPBMetadata\352\002\rFits::Api::V1'
+  _globals['_RESOURCEROLEASSIGNMENT'].fields_by_name['resource']._loaded_options = None
+  _globals['_RESOURCEROLEASSIGNMENT'].fields_by_name['resource']._serialized_options = b'\272H\005\202\001\002\020\001'
+  _globals['_RESOURCEROLEASSIGNMENT'].fields_by_name['resource_id']._loaded_options = None
+  _globals['_RESOURCEROLEASSIGNMENT'].fields_by_name['resource_id']._serialized_options = b'\272H\005r\003\030\200\002'
+  _globals['_RESOURCEROLEASSIGNMENT'].fields_by_name['role']._loaded_options = None
+  _globals['_RESOURCEROLEASSIGNMENT'].fields_by_name['role']._serialized_options = b'\272H\005\202\001\002\020\001'
+  _globals['_RESOURCEROLEASSIGNMENT'].fields_by_name['project_uuid']._loaded_options = None
+  _globals['_RESOURCEROLEASSIGNMENT'].fields_by_name['project_uuid']._serialized_options = b'\272H\010r\006\230\264\256\261\002\001'
+  _globals['_RESOURCEROLEASSIGNMENT'].fields_by_name['namespace']._loaded_options = None
+  _globals['_RESOURCEROLEASSIGNMENT'].fields_by_name['namespace']._serialized_options = b'\272H\004r\002\030-'
   _globals['_LABELS_LABELSENTRY']._loaded_options = None
   _globals['_LABELS_LABELSENTRY']._serialized_options = b'8\001'
   _globals['_LABELS'].fields_by_name['labels']._loaded_options = None
   _globals['_LABELS'].fields_by_name['labels']._serialized_options = b'\272H\033\232\001\030\"\007r\005\020\001\030\200\002*\007r\005\020\000\030\200\002\270\225\270\261\002\001'
   _globals['_UPDATEMETA'].fields_by_name['locking_strategy']._loaded_options = None
   _globals['_UPDATEMETA'].fields_by_name['locking_strategy']._serialized_options = b'\272H\005\202\001\002\020\001'
-  _globals['_TENANTROLE']._serialized_start=886
-  _globals['_TENANTROLE']._serialized_end=1021
-  _globals['_PROJECTROLE']._serialized_start=1023
-  _globals['_PROJECTROLE']._serialized_end=1140
-  _globals['_OPERATORROLE']._serialized_start=1142
-  _globals['_OPERATORROLE']._serialized_end=1239
-  _globals['_VISIBILITY']._serialized_start=1241
-  _globals['_VISIBILITY']._serialized_end=1325
-  _globals['_AUDITING']._serialized_start=1327
-  _globals['_AUDITING']._serialized_end=1409
-  _globals['_OPTIMISTICLOCKINGSTRATEGY']._serialized_start=1412
-  _globals['_OPTIMISTICLOCKINGSTRATEGY']._serialized_end=1564
-  _globals['_PAGING']._serialized_start=173
-  _globals['_PAGING']._serialized_end=252
-  _globals['_LABELS']._serialized_start=255
-  _globals['_LABELS']._serialized_end=411
-  _globals['_LABELS_LABELSENTRY']._serialized_start=354
-  _globals['_LABELS_LABELSENTRY']._serialized_end=411
-  _globals['_META']._serialized_start=414
-  _globals['_META']._serialized_end=631
-  _globals['_UPDATELABELS']._serialized_start=633
-  _globals['_UPDATELABELS']._serialized_end=716
-  _globals['_UPDATEMETA']._serialized_start=719
-  _globals['_UPDATEMETA']._serialized_end=883
+  _globals['_TENANTROLE']._serialized_start=1174
+  _globals['_TENANTROLE']._serialized_end=1309
+  _globals['_PROJECTROLE']._serialized_start=1311
+  _globals['_PROJECTROLE']._serialized_end=1428
+  _globals['_OPERATORROLE']._serialized_start=1430
+  _globals['_OPERATORROLE']._serialized_end=1527
+  _globals['_RESOURCE']._serialized_start=1529
+  _globals['_RESOURCE']._serialized_end=1620
+  _globals['_RESOURCEROLE']._serialized_start=1622
+  _globals['_RESOURCEROLE']._serialized_end=1744
+  _globals['_VISIBILITY']._serialized_start=1746
+  _globals['_VISIBILITY']._serialized_end=1830
+  _globals['_AUDITING']._serialized_start=1832
+  _globals['_AUDITING']._serialized_end=1914
+  _globals['_OPTIMISTICLOCKINGSTRATEGY']._serialized_start=1917
+  _globals['_OPTIMISTICLOCKINGSTRATEGY']._serialized_end=2069
+  _globals['_RESOURCEROLEASSIGNMENT']._serialized_start=174
+  _globals['_RESOURCEROLEASSIGNMENT']._serialized_end=459
+  _globals['_PAGING']._serialized_start=461
+  _globals['_PAGING']._serialized_end=540
+  _globals['_LABELS']._serialized_start=543
+  _globals['_LABELS']._serialized_end=699
+  _globals['_LABELS_LABELSENTRY']._serialized_start=642
+  _globals['_LABELS_LABELSENTRY']._serialized_end=699
+  _globals['_META']._serialized_start=702
+  _globals['_META']._serialized_end=919
+  _globals['_UPDATELABELS']._serialized_start=921
+  _globals['_UPDATELABELS']._serialized_end=1004
+  _globals['_UPDATEMETA']._serialized_start=1007
+  _globals['_UPDATEMETA']._serialized_end=1171
 # @@protoc_insertion_point(module_scope)
