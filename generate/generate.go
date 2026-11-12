@@ -114,6 +114,7 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 			Operator: permissions.Operator{},
 			Tenant:   permissions.Tenant{},
 			Project:  permissions.Project{},
+			Resource: permissions.Resource{},
 		}
 		methods = permissions.Methods{
 			// Allow service reflection to list available methods
@@ -130,9 +131,11 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 			Operator: map[string]bool{},
 			Tenant:   map[string]bool{},
 			Project:  map[string]bool{},
+			Resource: map[string]bool{},
 		}
 		auditable = permissions.Auditable{}
 		services  = []string{}
+		resources = permissions.Resources{}
 	)
 
 	files, err := walk(root)
@@ -187,6 +190,20 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 							visibility.Operator[methodName] = true
 						case v1.OperatorRole_OPERATOR_ROLE_UNSPECIFIED.String():
 							// noop
+						// Resource
+						case v1.ResourceRole_RESOURCE_ROLE_ADMIN.String(), v1.ResourceRole_RESOURCE_ROLE_EDITOR.String(), v1.ResourceRole_RESOURCE_ROLE_VIEWER.String():
+							apirole := v1.ResourceRole(v1.ResourceRole_value[role])
+							if methods := roles.Resource[apirole]; methods == nil {
+								roles.Resource[apirole] = permissions.Methods{}
+							}
+							roles.Resource[apirole][methodName] = struct{}{}
+							visibility.Resource[methodName] = true
+						case v1.ResourceRole_RESOURCE_ROLE_UNSPECIFIED.String():
+							// noop
+						case v1.Resource_RESOURCE_MANAGED_VM.String(), v1.Resource_RESOURCE_PUBLIC_CLOUD_VM.String():
+							resources[methodName] = v1.Resource(v1.Resource_value[role])
+						case v1.Resource_RESOURCE_UNSPECIFIED.String():
+							// noop
 						// Visibility
 						case v1.Visibility_VISIBILITY_PUBLIC.String():
 							visibility.Public[methodName] = true
@@ -219,6 +236,7 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 		Visibility: visibility,
 		Auditable:  auditable,
 		Services:   services,
+		Resources:  resources,
 	}
 
 	return sp, nil

@@ -90,6 +90,8 @@ message Token {
   string first_name = 15 [(buf.validate.field).string = {max_len: 256}];
   // LastName is the family name of the user the token was issued for.
   string last_name = 16 [(buf.validate.field).string = {max_len: 256}];
+  // ResourceRoles lists the product roles of the token owner
+  repeated ResourceRoleAssignment resource_roles = 17;
 }
 
 // TokenType specifies different use cases of tokens

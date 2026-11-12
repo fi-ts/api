@@ -6,6 +6,62 @@ import type { Message } from "@bufbuild/protobuf";
  */
 export declare const file_fits_api_v1_common: GenFile;
 /**
+ * ResourceRoleAssignment grants a resource role on one resource instance.
+ *
+ * @generated from message fits.api.v1.ResourceRoleAssignment
+ */
+export type ResourceRoleAssignment = Message<"fits.api.v1.ResourceRoleAssignment"> & {
+    /**
+     * Resource the role applies to.
+     *
+     * @generated from field: fits.api.v1.Resource resource = 1;
+     */
+    resource: Resource;
+    /**
+     * ID of the resource instance. Actual format differs by resource type.
+     *
+     * @generated from field: string resource_id = 2;
+     */
+    resourceId: string;
+    /**
+     * Role granted on the resource.
+     *
+     * @generated from field: fits.api.v1.ResourceRole role = 3;
+     */
+    role: ResourceRole;
+    /**
+     * Scope of the resource role.
+     *
+     * @generated from oneof fits.api.v1.ResourceRoleAssignment.scope
+     */
+    scope: {
+        /**
+         * UUID of the project the resource belongs to.
+         * Some resource types might not be scoped by projects.
+         *
+         * @generated from field: string project_uuid = 4;
+         */
+        value: string;
+        case: "projectUuid";
+    } | {
+        /**
+         * Namespace is used when the resource has a different scope than a project.
+         *
+         * @generated from field: string namespace = 5;
+         */
+        value: string;
+        case: "namespace";
+    } | {
+        case: undefined;
+        value?: undefined;
+    };
+};
+/**
+ * Describes the message fits.api.v1.ResourceRoleAssignment.
+ * Use `create(ResourceRoleAssignmentSchema)` to create a new message.
+ */
+export declare const ResourceRoleAssignmentSchema: GenMessage<ResourceRoleAssignment>;
+/**
  * Paging defines paging for methods with a lot of results
  *
  * @generated from message fits.api.v1.Paging
@@ -244,6 +300,72 @@ export declare enum OperatorRole {
  */
 export declare const OperatorRoleSchema: GenEnum<OperatorRole>;
 /**
+ * Resource identifies the resource type a resource scoped method acts on.
+ * The resource instance id is carried by the request as `uuid`, or `id` when it is not a uuid.
+ *
+ * @generated from enum fits.api.v1.Resource
+ */
+export declare enum Resource {
+    /**
+     * RESOURCE_UNSPECIFIED is not specified
+     *
+     * @generated from enum value: RESOURCE_UNSPECIFIED = 0;
+     */
+    UNSPECIFIED = 0,
+    /**
+     * RESOURCE_MANAGED_VM identifies a ManagedVM (fits.api.mvm.v1.ManagedVM)
+     *
+     * @generated from enum value: RESOURCE_MANAGED_VM = 1;
+     */
+    MANAGED_VM = 1,
+    /**
+     * RESOURCE_PUBLIC_CLOUD_VM identifies a VM (fits.api.pcvm.v1.PublicCloudVM)
+     *
+     * @generated from enum value: RESOURCE_PUBLIC_CLOUD_VM = 2;
+     */
+    PUBLIC_CLOUD_VM = 2
+}
+/**
+ * Describes the enum fits.api.v1.Resource.
+ */
+export declare const ResourceSchema: GenEnum<Resource>;
+/**
+ * ResourceRole specifies what role a logged in user needs to call this product scoped service.
+ * Resource roles are independent of project roles.
+ *
+ * @generated from enum fits.api.v1.ResourceRole
+ */
+export declare enum ResourceRole {
+    /**
+     * RESOURCE_ROLE_UNSPECIFIED is not specified
+     *
+     * @generated from enum value: RESOURCE_ROLE_UNSPECIFIED = 0;
+     */
+    UNSPECIFIED = 0,
+    /**
+     * RESOURCE_ROLE_ADMIN the logged in user needs at least admin role to call this method
+     *
+     * @generated from enum value: RESOURCE_ROLE_ADMIN = 1;
+     */
+    ADMIN = 1,
+    /**
+     * RESOURCE_ROLE_EDITOR the logged in user needs at least editor role to call this method
+     *
+     * @generated from enum value: RESOURCE_ROLE_EDITOR = 2;
+     */
+    EDITOR = 2,
+    /**
+     * RESOURCE_ROLE_VIEWER the logged in user needs at least viewer role to call this method
+     *
+     * @generated from enum value: RESOURCE_ROLE_VIEWER = 3;
+     */
+    VIEWER = 3
+}
+/**
+ * Describes the enum fits.api.v1.ResourceRole.
+ */
+export declare const ResourceRoleSchema: GenEnum<ResourceRole>;
+/**
  * Visibility of a method
  *
  * @generated from enum fits.api.v1.Visibility
@@ -364,6 +486,18 @@ export declare const visibility: GenExtension<MethodOptions, Visibility>;
  * @generated from extension: fits.api.v1.Auditing auditing = 51004;
  */
 export declare const auditing: GenExtension<MethodOptions, Auditing>;
+/**
+ * ResourceRoles are used to define which resource role a logged in user must provide to call this method
+ *
+ * @generated from extension: repeated fits.api.v1.ResourceRole resource_roles = 51005;
+ */
+export declare const resource_roles: GenExtension<MethodOptions, ResourceRole[]>;
+/**
+ * Resource defines the resource a resource scoped method acts on. Required whenever resource_roles is set.
+ *
+ * @generated from extension: fits.api.v1.Resource resource = 51006;
+ */
+export declare const resource: GenExtension<MethodOptions, Resource>;
 /**
  * StringValue which can be set to a enum
  *

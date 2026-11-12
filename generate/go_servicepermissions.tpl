@@ -44,6 +44,15 @@ func GetServicePermissions() *ServicePermissions {
 					},
 				{{- end }}
 			},
+			Resource: Resource{
+				{{- range $role, $methods := .Roles.Resource }}
+					v1.ResourceRole_{{ $role }}: map[string]struct{}{
+						{{- range $method,$v := $methods }}
+							"{{ $method }}":{{ $v }},
+						{{- end }}
+					},
+				{{- end }}
+			},
 		},
 		Methods:    map[string]struct{}{
 {{- range $key, $value := .Methods }}
@@ -76,10 +85,20 @@ func GetServicePermissions() *ServicePermissions {
 	"{{ $key }}": {{ $value }} ,
 {{- end }}
 			},
+			Resource:    map[string]bool{
+{{- range $key, $value := .Visibility.Resource }}
+	"{{ $key }}": {{ $value }} ,
+{{- end }}
+			},
 		},
 		Auditable:  map[string]bool{
 {{- range $key, $value := .Auditable }}
 	"{{ $key }}": {{ $value }} ,
+{{- end }}
+		},
+		Resources:  map[string]v1.Resource{
+{{- range $key, $value := .Resources }}
+	"{{ $key }}": v1.Resource_{{ $value }} ,
 {{- end }}
 		},
 	}
@@ -110,6 +129,17 @@ func IsProjectScope(req connect.AnyRequest) bool {
 	return ok
 }
 
+func IsResourceScope(req connect.AnyRequest) bool {
+	_, ok := GetServicePermissions().Visibility.Resource[req.Spec().Procedure]
+	return ok
+}
+
+// GetResource returns the resource a resource scoped method acts on.
+func GetResource(req connect.AnyRequest) (v1.Resource, bool) {
+	resource, ok := GetServicePermissions().Resources[req.Spec().Procedure]
+	return resource, ok
+}
+
 func IsAuditable(req connect.AnyRequest) bool {
 	_, ok := GetServicePermissions().Auditable[req.Spec().Procedure]
 	return ok
@@ -127,7 +157,7 @@ func GetTenantFromRequest(req connect.AnyRequest) (string, bool) {
 }
 
 func GetProjectFromRequest(req connect.AnyRequest) (string, bool) {
-	if !IsProjectScope(req) {
+	if !IsProjectScope(req) && !IsResourceScope(req) {
 		return "", false
 	}
 	switch rq := req.Any().(type) {
@@ -137,6 +167,20 @@ func GetProjectFromRequest(req connect.AnyRequest) (string, bool) {
 		// fallback once every request is streamlined.
 	case interface{ GetProject() string }:
 		return rq.GetProject(), true
+	}
+	return "", false
+}
+
+// GetResourceFromRequest returns the product instance id from a product scoped request.
+func GetResourceFromRequest(req connect.AnyRequest) (string, bool) {
+	if !IsResourceScope(req) {
+		return "", false
+	}
+	switch rq := req.Any().(type) {
+	case interface{ GetUuid() string }:
+		return rq.GetUuid(), true
+	case interface{ GetId() string }:
+		return rq.GetId(), true
 	}
 	return "", false
 }

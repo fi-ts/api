@@ -45,6 +45,30 @@ enum OperatorRole {
   OPERATOR_ROLE_VIEWER = 2;
 }
 
+// Resource identifies the resource type a resource scoped method acts on.
+// The resource instance id is carried by the request as `uuid`, or `id` when it is not a uuid.
+enum Resource {
+  // RESOURCE_UNSPECIFIED is not specified
+  RESOURCE_UNSPECIFIED = 0;
+  // RESOURCE_MANAGED_VM identifies a ManagedVM (fits.api.mvm.v1.ManagedVM)
+  RESOURCE_MANAGED_VM = 1;
+  // RESOURCE_PUBLIC_CLOUD_VM identifies a VM (fits.api.pcvm.v1.PublicCloudVM)
+  RESOURCE_PUBLIC_CLOUD_VM = 2;
+}
+
+// ResourceRole specifies what role a logged in user needs to call this product scoped service.
+// Resource roles are independent of project roles.
+enum ResourceRole {
+  // RESOURCE_ROLE_UNSPECIFIED is not specified
+  RESOURCE_ROLE_UNSPECIFIED = 0;
+  // RESOURCE_ROLE_ADMIN the logged in user needs at least admin role to call this method
+  RESOURCE_ROLE_ADMIN = 1;
+  // RESOURCE_ROLE_EDITOR the logged in user needs at least editor role to call this method
+  RESOURCE_ROLE_EDITOR = 2;
+  // RESOURCE_ROLE_VIEWER the logged in user needs at least viewer role to call this method
+  RESOURCE_ROLE_VIEWER = 3;
+}
+
 // Visibility of a method
 enum Visibility {
   // VISIBILITY_UNSPECIFIED is not defined
@@ -79,6 +103,28 @@ extend google.protobuf.MethodOptions {
   Visibility visibility = 51003;
   // Auditing defines if calls to this method should be audited or not
   Auditing auditing = 51004;
+  // ResourceRoles are used to define which resource role a logged in user must provide to call this method
+  repeated ResourceRole resource_roles = 51005;
+  // Resource defines the resource a resource scoped method acts on. Required whenever resource_roles is set.
+  Resource resource = 51006;
+}
+
+// ResourceRoleAssignment grants a resource role on one resource instance.
+message ResourceRoleAssignment {
+  // Resource the role applies to.
+  Resource resource = 1 [(buf.validate.field).enum.defined_only = true];
+  // ID of the resource instance. Actual format differs by resource type.
+  string resource_id = 2 [(buf.validate.field).string = {max_len: 256}];
+  // Role granted on the resource.
+  ResourceRole role = 3 [(buf.validate.field).enum.defined_only = true];
+  // Scope of the resource role.
+  oneof scope {
+    // UUID of the project the resource belongs to.
+    // Some resource types might not be scoped by projects.
+    string project_uuid = 4 [(buf.validate.field).string.(fits.api.v1.is_project_subject_permission) = true];
+    // Namespace is used when the resource has a different scope than a project.
+    string namespace = 5 [(buf.validate.field).string = {max_len: 45}];
+  }
 }
 
 // EnumValueOptions, can be accessed with go/enum/GetFormatStringValue
