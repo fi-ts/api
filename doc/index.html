@@ -2055,7 +2055,7 @@ having a direct membership within the tenant.</p></td>
         
       
         <h3 id="fits.api.mvm.v1.ContactServiceUpdateRequest">ContactServiceUpdateRequest</h3>
-        <p>ContactServiceUpdateRequest is the request payload for a contact update request.</p>
+        <p>ContactServiceUpdateRequest is the request payload for a contact update request.</p><p>The upstream offers no conditional-update mechanism, so no optimistic locking is enforced.</p><p>Concurrent edits can overwrite each other. Tag 3 is reserved for a future update_meta, should the upstream gain atomic conditional-update support.</p>
 
         
           <table class="field-table">
@@ -2076,13 +2076,6 @@ having a direct membership within the tenant.</p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>UUID of the contact to update. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>update_meta</td>
-                  <td><a href="#fits.api.v1.UpdateMeta">fits.api.v1.UpdateMeta</a></td>
-                  <td></td>
-                  <td><p>UpdateMeta contains the timestamp and strategy to be used in this update request. </p></td>
                 </tr>
               
                 <tr>
@@ -2166,7 +2159,9 @@ having a direct membership within the tenant.</p></td>
                 <td>Update</td>
                 <td><a href="#fits.api.mvm.v1.ContactServiceUpdateRequest">ContactServiceUpdateRequest</a></td>
                 <td><a href="#fits.api.mvm.v1.ContactServiceUpdateResponse">ContactServiceUpdateResponse</a></td>
-                <td><p>Updates an existing contact person.</p></td>
+                <td><p>Updates an existing contact person.
+The upstream offers no conditional-update mechanism, so no optimistic locking is enforced.
+Concurrent edits can overwrite each other.</p></td>
               </tr>
             
               <tr>
@@ -3527,14 +3522,6 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>meta</td>
-                  <td><a href="#fits.api.v1.Meta">fits.api.v1.Meta</a></td>
-                  <td></td>
-                  <td><p>Metadata for this MVM.
-TODO: dates are available in the nulink db but not passed through yet. </p></td>
-                </tr>
-              
-                <tr>
                   <td>fqdn</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -3651,6 +3638,13 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Internal reference number provided by the user, e.g. a ticket ID. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>labels</td>
+                  <td><a href="#fits.api.v1.Labels">fits.api.v1.Labels</a></td>
+                  <td>optional</td>
+                  <td><p>Labels on this MVM. </p></td>
                 </tr>
               
             </tbody>
@@ -4476,13 +4470,6 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                 </tr>
               
                 <tr>
-                  <td>meta</td>
-                  <td><a href="#fits.api.v1.Meta">fits.api.v1.Meta</a></td>
-                  <td></td>
-                  <td><p>Metadata for this VM including labels. </p></td>
-                </tr>
-              
-                <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -4515,6 +4502,13 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                   <td><a href="#fits.api.pcvm.v1.Status">Status</a></td>
                   <td></td>
                   <td><p>The status of the VM. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>labels</td>
+                  <td><a href="#fits.api.v1.Labels">fits.api.v1.Labels</a></td>
+                  <td>optional</td>
+                  <td><p>Labels on this VM. </p></td>
                 </tr>
               
             </tbody>
@@ -4780,7 +4774,7 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
         
       
         <h3 id="fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest">PublicCloudVMServiceUpdateRequest</h3>
-        <p>The request to update a VM.</p>
+        <p>The request to update a VM.</p><p>The upstream offers no conditional-update mechanism, so no optimistic locking is enforced.</p><p>Concurrent edits can overwrite each other. Tag 3 is reserved for a future update_meta, should the upstream gain atomic conditional-update support.</p>
 
         
           <table class="field-table">
@@ -4801,13 +4795,6 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>UUID of the project this VM belongs to. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>update_meta</td>
-                  <td><a href="#fits.api.v1.UpdateMeta">fits.api.v1.UpdateMeta</a></td>
-                  <td></td>
-                  <td><p>UpdateMeta contains the timestamp and strategy to be used in this update request. </p></td>
                 </tr>
               
                 <tr>
@@ -5119,7 +5106,9 @@ Downgrades are not possible. </p></td>
                 <td>Update</td>
                 <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest">PublicCloudVMServiceUpdateRequest</a></td>
                 <td><a href="#fits.api.pcvm.v1.PublicCloudVMServiceUpdateResponse">PublicCloudVMServiceUpdateResponse</a></td>
-                <td><p>Updates a VM.</p></td>
+                <td><p>Updates a VM.
+The upstream offers no conditional-update mechanism, so no optimistic locking is enforced.
+Concurrent edits can overwrite each other.</p></td>
               </tr>
             
               <tr>

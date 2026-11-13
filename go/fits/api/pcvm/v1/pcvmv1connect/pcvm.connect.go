@@ -65,6 +65,8 @@ type PublicCloudVMServiceClient interface {
 	// Returns the list of all VMs.
 	List(context.Context, *v1.PublicCloudVMServiceListRequest) (*v1.PublicCloudVMServiceListResponse, error)
 	// Updates a VM.
+	// The upstream offers no conditional-update mechanism, so no optimistic locking is enforced.
+	// Concurrent edits can overwrite each other.
 	Update(context.Context, *v1.PublicCloudVMServiceUpdateRequest) (*v1.PublicCloudVMServiceUpdateResponse, error)
 	// Deletes a VM immediately.
 	Delete(context.Context, *v1.PublicCloudVMServiceDeleteRequest) (*v1.PublicCloudVMServiceDeleteResponse, error)
@@ -216,6 +218,8 @@ type PublicCloudVMServiceHandler interface {
 	// Returns the list of all VMs.
 	List(context.Context, *v1.PublicCloudVMServiceListRequest) (*v1.PublicCloudVMServiceListResponse, error)
 	// Updates a VM.
+	// The upstream offers no conditional-update mechanism, so no optimistic locking is enforced.
+	// Concurrent edits can overwrite each other.
 	Update(context.Context, *v1.PublicCloudVMServiceUpdateRequest) (*v1.PublicCloudVMServiceUpdateResponse, error)
 	// Deletes a VM immediately.
 	Delete(context.Context, *v1.PublicCloudVMServiceDeleteRequest) (*v1.PublicCloudVMServiceDeleteResponse, error)

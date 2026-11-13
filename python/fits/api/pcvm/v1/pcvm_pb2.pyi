@@ -48,22 +48,22 @@ SIZE_MEDIUM: Size
 SIZE_LARGE: Size
 
 class PublicCloudVM(_message.Message):
-    __slots__ = ("uuid", "meta", "name", "tenant", "project_uuid", "size", "status")
+    __slots__ = ("uuid", "name", "tenant", "project_uuid", "size", "status", "labels")
     UUID_FIELD_NUMBER: _ClassVar[int]
-    META_FIELD_NUMBER: _ClassVar[int]
     NAME_FIELD_NUMBER: _ClassVar[int]
     TENANT_FIELD_NUMBER: _ClassVar[int]
     PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
     SIZE_FIELD_NUMBER: _ClassVar[int]
     STATUS_FIELD_NUMBER: _ClassVar[int]
+    LABELS_FIELD_NUMBER: _ClassVar[int]
     uuid: str
-    meta: _common_pb2.Meta
     name: str
     tenant: str
     project_uuid: str
     size: Size
     status: Status
-    def __init__(self, uuid: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., name: _Optional[str] = ..., tenant: _Optional[str] = ..., project_uuid: _Optional[str] = ..., size: _Optional[_Union[Size, str]] = ..., status: _Optional[_Union[Status, _Mapping]] = ...) -> None: ...
+    labels: _common_pb2.Labels
+    def __init__(self, uuid: _Optional[str] = ..., name: _Optional[str] = ..., tenant: _Optional[str] = ..., project_uuid: _Optional[str] = ..., size: _Optional[_Union[Size, str]] = ..., status: _Optional[_Union[Status, _Mapping]] = ..., labels: _Optional[_Union[_common_pb2.Labels, _Mapping]] = ...) -> None: ...
 
 class Status(_message.Message):
     __slots__ = ("state", "info", "operation")
@@ -132,20 +132,18 @@ class PublicCloudVMServiceListResponse(_message.Message):
     def __init__(self, vms: _Optional[_Iterable[_Union[PublicCloudVM, _Mapping]]] = ...) -> None: ...
 
 class PublicCloudVMServiceUpdateRequest(_message.Message):
-    __slots__ = ("uuid", "project_uuid", "update_meta", "labels", "name", "size")
+    __slots__ = ("uuid", "project_uuid", "labels", "name", "size")
     UUID_FIELD_NUMBER: _ClassVar[int]
     PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
-    UPDATE_META_FIELD_NUMBER: _ClassVar[int]
     LABELS_FIELD_NUMBER: _ClassVar[int]
     NAME_FIELD_NUMBER: _ClassVar[int]
     SIZE_FIELD_NUMBER: _ClassVar[int]
     uuid: str
     project_uuid: str
-    update_meta: _common_pb2.UpdateMeta
     labels: _common_pb2.UpdateLabels
     name: str
     size: Size
-    def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., update_meta: _Optional[_Union[_common_pb2.UpdateMeta, _Mapping]] = ..., labels: _Optional[_Union[_common_pb2.UpdateLabels, _Mapping]] = ..., name: _Optional[str] = ..., size: _Optional[_Union[Size, str]] = ...) -> None: ...
+    def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.UpdateLabels, _Mapping]] = ..., name: _Optional[str] = ..., size: _Optional[_Union[Size, str]] = ...) -> None: ...
 
 class PublicCloudVMServiceUpdateResponse(_message.Message):
     __slots__ = ("vm",)
