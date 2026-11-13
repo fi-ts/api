@@ -42,12 +42,6 @@ export type Project = Message<"fits.api.v1.Project"> & {
      * @generated from field: string tenant = 5;
      */
     tenant: string;
-    /**
-     * AvatarUrl of the Project
-     *
-     * @generated from field: optional string avatar_url = 6;
-     */
-    avatarUrl?: string | undefined;
 };
 /**
  * Describes the message fits.api.v1.Project.
@@ -169,15 +163,9 @@ export type ProjectServiceCreateRequest = Message<"fits.api.v1.ProjectServiceCre
      */
     description: string;
     /**
-     * Avatar URL of the project
-     *
-     * @generated from field: optional string avatar_url = 4;
-     */
-    avatarUrl?: string | undefined;
-    /**
      * Labels on the project
      *
-     * @generated from field: fits.api.v1.Labels labels = 5;
+     * @generated from field: fits.api.v1.Labels labels = 4;
      */
     labels?: Labels | undefined;
 };
@@ -271,15 +259,9 @@ export type ProjectServiceUpdateRequest = Message<"fits.api.v1.ProjectServiceUpd
      */
     description?: string | undefined;
     /**
-     * Avatar URL of the project
-     *
-     * @generated from field: optional string avatar_url = 5;
-     */
-    avatarUrl?: string | undefined;
-    /**
      * Labels on this project
      *
-     * @generated from field: optional fits.api.v1.UpdateLabels labels = 6;
+     * @generated from field: optional fits.api.v1.UpdateLabels labels = 5;
      */
     labels?: UpdateLabels | undefined;
 };
