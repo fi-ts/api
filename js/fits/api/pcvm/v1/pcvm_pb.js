@@ -114,7 +114,7 @@ export var State;
      */
     State[State["HEALTHY"] = 1] = "HEALTHY";
     /**
-     * STATE_HEALTHY: there are some health warnings for this VM.
+     * STATE_WARNING: there are some health warnings for this VM.
      *
      * @generated from enum value: STATE_WARNING = 2;
      */
@@ -168,7 +168,7 @@ export var Operation;
      */
     Operation[Operation["DELETED"] = 4] = "DELETED";
     /**
-     * OPERATION_ERROR: the
+     * OPERATION_ERROR: there is an error.
      *
      * @generated from enum value: OPERATION_ERROR = 5;
      */

@@ -525,7 +525,7 @@ export enum State {
   HEALTHY = 1,
 
   /**
-   * STATE_HEALTHY: there are some health warnings for this VM.
+   * STATE_WARNING: there are some health warnings for this VM.
    *
    * @generated from enum value: STATE_WARNING = 2;
    */
@@ -587,7 +587,7 @@ export enum Operation {
   DELETED = 4,
 
   /**
-   * OPERATION_ERROR: the
+   * OPERATION_ERROR: there is an error.
    *
    * @generated from enum value: OPERATION_ERROR = 5;
    */

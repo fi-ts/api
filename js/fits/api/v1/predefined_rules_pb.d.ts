@@ -5,11 +5,11 @@ import type { MapRules, RepeatedRules, StringRules } from "../../../buf/validate
  */
 export declare const file_fits_api_v1_predefined_rules: GenFile;
 /**
- * Macaddress returns true if the given string is a valid macadress
+ * MacAddress returns true if the given string is a valid mac address
  *
- * @generated from extension: optional bool macaddress = 80048951;
+ * @generated from extension: optional bool mac_address = 80048951;
  */
-export declare const macaddress: GenExtension<StringRules, boolean>;
+export declare const mac_address: GenExtension<StringRules, boolean>;
 /**
  * IsName returns true if name field satisfies our requirements
  *
@@ -70,6 +70,21 @@ export declare const is_phone: GenExtension<StringRules, boolean>;
  * @generated from extension: optional bool is_name_code = 80048964;
  */
 export declare const is_name_code: GenExtension<StringRules, boolean>;
+/**
+ * IsFqdn validates if the given string is a valid fully qualified domain name (FQDN),
+ * e.g. host.example.com. Each label is alphanumeric/hyphen, the TLD is alphabetic
+ * (min 2 chars), and the total length is at most 253 characters.
+ *
+ * @generated from extension: optional bool is_fqdn = 80048965;
+ */
+export declare const is_fqdn: GenExtension<StringRules, boolean>;
+/**
+ * IsOrderNumber validates a user-supplied ticket/reference ID (order number):
+ * 2-128 characters, no leading/trailing whitespace.
+ *
+ * @generated from extension: optional bool is_order_number = 80048966;
+ */
+export declare const is_order_number: GenExtension<StringRules, boolean>;
 /**
  * IsTenantSubjectPermission returns true if name field satisfies our requirements.
  *

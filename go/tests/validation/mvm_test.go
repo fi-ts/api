@@ -15,14 +15,16 @@ func TestValidateNetworkInterface(t *testing.T) {
 			wantErrorMessage: `validation errors:
  - uuid: value is empty, which is not a valid UUID
  - vlan_uuid: value is empty, which is not a valid UUID
- - ipaddress: must be a valid IP address or hostname`,
+ - ip_address: must be a valid IP address or hostname
+ - mac_address: this string must be a valid mac address`,
 		},
 		{
 			name: "valid",
 			msg: &mvmv1.NetworkInterface{
-				Uuid:      testUUID,
-				VlanUuid:  testUUID,
-				Ipaddress: "10.0.0.1",
+				Uuid:       testUUID,
+				VlanUuid:   testUUID,
+				IpAddress:  "10.0.0.1",
+				MacAddress: "aa:bb:cc:dd:ee:ff",
 			},
 			wantErr: false,
 		},
@@ -58,12 +60,13 @@ func TestValidateManagedVM(t *testing.T) {
 			wantErrorMessage: `validation errors:
  - details: exactly one field is required in oneof
  - uuid: value is empty, which is not a valid UUID
- - fqdn: must be within 2 and 128 characters
+ - fqdn: must be a valid FQDN, e.g. host.example.com
  - tenant: must be within 2 and 128 characters
  - project_uuid: value is empty, which is not a valid UUID
  - os_uuid: value is empty, which is not a valid UUID
  - location_uuid: value is empty, which is not a valid UUID
- - contact_uuid: value is empty, which is not a valid UUID`,
+ - contact_uuid: value is empty, which is not a valid UUID
+ - order_number: must be within 2 and 128 characters and not start or end with whitespace`,
 		},
 	}
 

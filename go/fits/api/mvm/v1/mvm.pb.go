@@ -426,9 +426,9 @@ type NetworkInterface struct {
 	// UUID of the VLAN.
 	VlanUuid string `protobuf:"bytes,2,opt,name=vlan_uuid,json=vlanUuid,proto3" json:"vlan_uuid,omitempty"`
 	// IPv4 address assigned to this interface.
-	Ipaddress string `protobuf:"bytes,3,opt,name=ipaddress,proto3" json:"ipaddress,omitempty"`
+	IpAddress string `protobuf:"bytes,3,opt,name=ip_address,json=ipAddress,proto3" json:"ip_address,omitempty"`
 	// MAC address of this interface.
-	Macaddress    string `protobuf:"bytes,4,opt,name=macaddress,proto3" json:"macaddress,omitempty"` // TODO: add validation
+	MacAddress    string `protobuf:"bytes,4,opt,name=mac_address,json=macAddress,proto3" json:"mac_address,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -477,16 +477,16 @@ func (x *NetworkInterface) GetVlanUuid() string {
 	return ""
 }
 
-func (x *NetworkInterface) GetIpaddress() string {
+func (x *NetworkInterface) GetIpAddress() string {
 	if x != nil {
-		return x.Ipaddress
+		return x.IpAddress
 	}
 	return ""
 }
 
-func (x *NetworkInterface) GetMacaddress() string {
+func (x *NetworkInterface) GetMacAddress() string {
 	if x != nil {
-		return x.Macaddress
+		return x.MacAddress
 	}
 	return ""
 }
@@ -617,7 +617,7 @@ type ManagedVM struct {
 	// Number of CPU cores.
 	Cpu uint32 `protobuf:"varint,9,opt,name=cpu,proto3" json:"cpu,omitempty"`
 	// RAM in GB.
-	Ram uint32 `protobuf:"varint,10,opt,name=ram,proto3" json:"ram,omitempty"`
+	RamGb uint32 `protobuf:"varint,10,opt,name=ram_gb,json=ramGb,proto3" json:"ram_gb,omitempty"`
 	// Whether backup is enabled.
 	Backup bool `protobuf:"varint,11,opt,name=backup,proto3" json:"backup,omitempty"`
 	// Whether the MVM is encrypted.
@@ -627,7 +627,7 @@ type ManagedVM struct {
 	// Availability level.
 	Availability Availability `protobuf:"varint,14,opt,name=availability,proto3,enum=fits.api.mvm.v1.Availability" json:"availability,omitempty"`
 	// Service class.
-	Serviceclass ServiceClass `protobuf:"varint,15,opt,name=serviceclass,proto3,enum=fits.api.mvm.v1.ServiceClass" json:"serviceclass,omitempty"`
+	ServiceClass ServiceClass `protobuf:"varint,15,opt,name=service_class,json=serviceClass,proto3,enum=fits.api.mvm.v1.ServiceClass" json:"service_class,omitempty"`
 	// OS-specific configuration.
 	//
 	// Types that are valid to be assigned to Details:
@@ -736,9 +736,9 @@ func (x *ManagedVM) GetCpu() uint32 {
 	return 0
 }
 
-func (x *ManagedVM) GetRam() uint32 {
+func (x *ManagedVM) GetRamGb() uint32 {
 	if x != nil {
-		return x.Ram
+		return x.RamGb
 	}
 	return 0
 }
@@ -771,9 +771,9 @@ func (x *ManagedVM) GetAvailability() Availability {
 	return Availability_AVAILABILITY_UNSPECIFIED
 }
 
-func (x *ManagedVM) GetServiceclass() ServiceClass {
+func (x *ManagedVM) GetServiceClass() ServiceClass {
 	if x != nil {
-		return x.Serviceclass
+		return x.ServiceClass
 	}
 	return ServiceClass_SERVICE_CLASS_UNSPECIFIED
 }
@@ -1064,7 +1064,7 @@ type MVMServiceCreateRequest struct {
 	// Number of CPU cores.
 	Cpu uint32 `protobuf:"varint,6,opt,name=cpu,proto3" json:"cpu,omitempty"`
 	// RAM in GB. Must be a power of 2.
-	Ram uint32 `protobuf:"varint,7,opt,name=ram,proto3" json:"ram,omitempty"`
+	RamGb uint32 `protobuf:"varint,7,opt,name=ram_gb,json=ramGb,proto3" json:"ram_gb,omitempty"`
 	// Customer reference for this operation provided by the user, e.g. a ticket ID.
 	OrderNumber string `protobuf:"bytes,8,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
 	// Optional key-value labels for accounting purposes.
@@ -1077,7 +1077,7 @@ type MVMServiceCreateRequest struct {
 	// Availability level.
 	Availability Availability `protobuf:"varint,12,opt,name=availability,proto3,enum=fits.api.mvm.v1.Availability" json:"availability,omitempty"`
 	// Service class; only certain combinations with availability are valid.
-	Serviceclass ServiceClass `protobuf:"varint,13,opt,name=serviceclass,proto3,enum=fits.api.mvm.v1.ServiceClass" json:"serviceclass,omitempty"`
+	ServiceClass ServiceClass `protobuf:"varint,13,opt,name=service_class,json=serviceClass,proto3,enum=fits.api.mvm.v1.ServiceClass" json:"service_class,omitempty"`
 	// OS type and its configuration.
 	//
 	// Types that are valid to be assigned to Mvmtype:
@@ -1163,9 +1163,9 @@ func (x *MVMServiceCreateRequest) GetCpu() uint32 {
 	return 0
 }
 
-func (x *MVMServiceCreateRequest) GetRam() uint32 {
+func (x *MVMServiceCreateRequest) GetRamGb() uint32 {
 	if x != nil {
-		return x.Ram
+		return x.RamGb
 	}
 	return 0
 }
@@ -1205,9 +1205,9 @@ func (x *MVMServiceCreateRequest) GetAvailability() Availability {
 	return Availability_AVAILABILITY_UNSPECIFIED
 }
 
-func (x *MVMServiceCreateRequest) GetServiceclass() ServiceClass {
+func (x *MVMServiceCreateRequest) GetServiceClass() ServiceClass {
 	if x != nil {
-		return x.Serviceclass
+		return x.ServiceClass
 	}
 	return ServiceClass_SERVICE_CLASS_UNSPECIFIED
 }
@@ -1273,7 +1273,7 @@ type LinuxDisk struct {
 	// Whether the disk grows automatically when space runs low.
 	AutoExtend bool `protobuf:"varint,3,opt,name=auto_extend,json=autoExtend,proto3" json:"auto_extend,omitempty"`
 	// Size of the disk in GB; defaults to 50 when unset.
-	Size *uint64 `protobuf:"varint,4,opt,name=size,proto3,oneof" json:"size,omitempty"`
+	SizeGb *uint64 `protobuf:"varint,4,opt,name=size_gb,json=sizeGb,proto3,oneof" json:"size_gb,omitempty"`
 	// Mount point (e.g. "/data"). Fixed to "/appdata" for the system disk;
 	// free-form for data disks.
 	MountPoint *string `protobuf:"bytes,5,opt,name=mount_point,json=mountPoint,proto3,oneof" json:"mount_point,omitempty"`
@@ -1336,9 +1336,9 @@ func (x *LinuxDisk) GetAutoExtend() bool {
 	return false
 }
 
-func (x *LinuxDisk) GetSize() uint64 {
-	if x != nil && x.Size != nil {
-		return *x.Size
+func (x *LinuxDisk) GetSizeGb() uint64 {
+	if x != nil && x.SizeGb != nil {
+		return *x.SizeGb
 	}
 	return 0
 }
@@ -1368,10 +1368,10 @@ type WindowsDisk struct {
 	// Whether the disk grows automatically when space runs low.
 	AutoExtend bool `protobuf:"varint,3,opt,name=auto_extend,json=autoExtend,proto3" json:"auto_extend,omitempty"`
 	// Size of the disk in GB; defaults to 50 when unset.
-	Size *uint64 `protobuf:"varint,4,opt,name=size,proto3,oneof" json:"size,omitempty"`
+	SizeGb *uint64 `protobuf:"varint,4,opt,name=size_gb,json=sizeGb,proto3,oneof" json:"size_gb,omitempty"`
 	// Drive letter (e.g. "D"). Fixed to "F" for the system disk; free-form
 	// for data disks.
-	Driveletter *string `protobuf:"bytes,5,opt,name=driveletter,proto3,oneof" json:"driveletter,omitempty"`
+	DriveLetter *string `protobuf:"bytes,5,opt,name=drive_letter,json=driveLetter,proto3,oneof" json:"drive_letter,omitempty"`
 	// Kind of the disk; determines which operations are allowed on it.
 	// Provided by the client in create/add requests and populated by the
 	// API in responses.
@@ -1431,16 +1431,16 @@ func (x *WindowsDisk) GetAutoExtend() bool {
 	return false
 }
 
-func (x *WindowsDisk) GetSize() uint64 {
-	if x != nil && x.Size != nil {
-		return *x.Size
+func (x *WindowsDisk) GetSizeGb() uint64 {
+	if x != nil && x.SizeGb != nil {
+		return *x.SizeGb
 	}
 	return 0
 }
 
-func (x *WindowsDisk) GetDriveletter() string {
-	if x != nil && x.Driveletter != nil {
-		return *x.Driveletter
+func (x *WindowsDisk) GetDriveLetter() string {
+	if x != nil && x.DriveLetter != nil {
+		return *x.DriveLetter
 	}
 	return ""
 }
@@ -2189,7 +2189,7 @@ type MVMServiceUpdateDiskRequest struct {
 	// New auto-extend behavior; unset keeps the current value.
 	AutoExtend *bool `protobuf:"varint,5,opt,name=auto_extend,json=autoExtend,proto3,oneof" json:"auto_extend,omitempty"`
 	// New size of the disk in GB; unset keeps the current value.
-	Size          *uint64 `protobuf:"varint,6,opt,name=size,proto3,oneof" json:"size,omitempty"`
+	SizeGb        *uint64 `protobuf:"varint,6,opt,name=size_gb,json=sizeGb,proto3,oneof" json:"size_gb,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2259,9 +2259,9 @@ func (x *MVMServiceUpdateDiskRequest) GetAutoExtend() bool {
 	return false
 }
 
-func (x *MVMServiceUpdateDiskRequest) GetSize() uint64 {
-	if x != nil && x.Size != nil {
-		return *x.Size
+func (x *MVMServiceUpdateDiskRequest) GetSizeGb() uint64 {
+	if x != nil && x.SizeGb != nil {
+		return *x.SizeGb
 	}
 	return 0
 }
@@ -2772,48 +2772,48 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\fLinuxDetails\x120\n" +
 	"\x05disks\x18\x01 \x03(\v2\x1a.fits.api.mvm.v1.LinuxDiskR\x05disks\x12%\n" +
 	"\tldap_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bldapUuid\x12(\n" +
-	"\tldap_fqdn\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\bldapFqdn\"\x9d\x01\n" +
+	"\tldap_fqdn\x18\x03 \x01(\tB\v\xbaH\br\x06\xa8\xb4\xae\xb1\x02\x01R\bldapFqdn\"\x9d\x01\n" +
 	"\x0eWindowsDetails\x122\n" +
 	"\x05disks\x18\x01 \x03(\v2\x1c.fits.api.mvm.v1.WindowsDiskR\x05disks\x12)\n" +
 	"\vdomain_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\n" +
 	"domainUuid\x12,\n" +
-	"\vdomain_fqdn\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\n" +
-	"domainFqdn\"\xa2\x01\n" +
+	"\vdomain_fqdn\x18\x03 \x01(\tB\v\xbaH\br\x06\xa8\xb4\xae\xb1\x02\x01R\n" +
+	"domainFqdn\"\xb1\x01\n" +
 	"\x10NetworkInterface\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12%\n" +
-	"\tvlan_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bvlanUuid\x12)\n" +
-	"\tipaddress\x18\x03 \x01(\tB\v\xbaH\br\x06賮\xb1\x02\x01R\tipaddress\x12\x1e\n" +
+	"\tvlan_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bvlanUuid\x12*\n" +
 	"\n" +
-	"macaddress\x18\x04 \x01(\tR\n" +
-	"macaddress\"@\n" +
+	"ip_address\x18\x03 \x01(\tB\v\xbaH\br\x06賮\xb1\x02\x01R\tipAddress\x12,\n" +
+	"\vmac_address\x18\x04 \x01(\tB\v\xbaH\br\x06\xb8\xb3\xae\xb1\x02\x01R\n" +
+	"macAddress\"@\n" +
 	"\x17InitialNetworkInterface\x12%\n" +
 	"\tvlan_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bvlanUuid\"a\n" +
 	"\x06Status\x126\n" +
 	"\x05state\x18\x01 \x01(\x0e2\x16.fits.api.mvm.v1.StateB\b\xbaH\x05\x82\x01\x02\x10\x01R\x05state\x12\x1f\n" +
-	"\x04info\x18\x02 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\x04info\"\xf1\x06\n" +
+	"\x04info\x18\x02 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\x04info\"\x84\a\n" +
 	"\tManagedVM\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12%\n" +
 	"\x04meta\x18\x02 \x01(\v2\x11.fits.api.v1.MetaR\x04meta\x12\x1f\n" +
-	"\x04fqdn\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x04fqdn\x12#\n" +
+	"\x04fqdn\x18\x03 \x01(\tB\v\xbaH\br\x06\xa8\xb4\xae\xb1\x02\x01R\x04fqdn\x12#\n" +
 	"\x06tenant\x18\x04 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12+\n" +
 	"\fproject_uuid\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12!\n" +
 	"\aos_uuid\x18\x06 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06osUuid\x12-\n" +
 	"\rlocation_uuid\x18\a \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\flocationUuid\x12+\n" +
 	"\fcontact_uuid\x18\b \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vcontactUuid\x12\x10\n" +
-	"\x03cpu\x18\t \x01(\rR\x03cpu\x12\x10\n" +
-	"\x03ram\x18\n" +
-	" \x01(\rR\x03ram\x12\x16\n" +
+	"\x03cpu\x18\t \x01(\rR\x03cpu\x12\x15\n" +
+	"\x06ram_gb\x18\n" +
+	" \x01(\rR\x05ramGb\x12\x16\n" +
 	"\x06backup\x18\v \x01(\bR\x06backup\x12\x1c\n" +
 	"\tencrypted\x18\f \x01(\bR\tencrypted\x12/\n" +
 	"\x06status\x18\r \x01(\v2\x17.fits.api.mvm.v1.StatusR\x06status\x12K\n" +
-	"\favailability\x18\x0e \x01(\x0e2\x1d.fits.api.mvm.v1.AvailabilityB\b\xbaH\x05\x82\x01\x02\x10\x01R\favailability\x12K\n" +
-	"\fserviceclass\x18\x0f \x01(\x0e2\x1d.fits.api.mvm.v1.ServiceClassB\b\xbaH\x05\x82\x01\x02\x10\x01R\fserviceclass\x12J\n" +
+	"\favailability\x18\x0e \x01(\x0e2\x1d.fits.api.mvm.v1.AvailabilityB\b\xbaH\x05\x82\x01\x02\x10\x01R\favailability\x12L\n" +
+	"\rservice_class\x18\x0f \x01(\x0e2\x1d.fits.api.mvm.v1.ServiceClassB\b\xbaH\x05\x82\x01\x02\x10\x01R\fserviceClass\x12J\n" +
 	"\x0fwindows_details\x18\x10 \x01(\v2\x1f.fits.api.mvm.v1.WindowsDetailsH\x00R\x0ewindowsDetails\x12D\n" +
 	"\rlinux_details\x18\x11 \x01(\v2\x1d.fits.api.mvm.v1.LinuxDetailsH\x00R\flinuxDetails\x12A\n" +
 	"\n" +
 	"interfaces\x18\x12 \x03(\v2!.fits.api.mvm.v1.NetworkInterfaceR\n" +
-	"interfaces\x12!\n" +
-	"\forder_number\x18\x13 \x01(\tR\vorderNumberB\x10\n" +
+	"interfaces\x12.\n" +
+	"\forder_number\x18\x13 \x01(\tB\v\xbaH\br\x06\xb0\xb4\xae\xb1\x02\x01R\vorderNumberB\x10\n" +
 	"\adetails\x12\x05\xbaH\x02\b\x01\"a\n" +
 	"\x14MVMServiceGetRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
@@ -2826,51 +2826,55 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\x05disks\x18\x02 \x03(\v2\x1c.fits.api.mvm.v1.WindowsDiskB\b\xbaH\x05\x92\x01\x02\b\x01R\x05disks\"\x81\x01\n" +
 	"\x1cMVMServiceCreateLinuxRequest\x12%\n" +
 	"\tldap_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bldapUuid\x12:\n" +
-	"\x05disks\x18\x02 \x03(\v2\x1a.fits.api.mvm.v1.LinuxDiskB\b\xbaH\x05\x92\x01\x02\b\x01R\x05disks\"\xbf\x06\n" +
+	"\x05disks\x18\x02 \x03(\v2\x1a.fits.api.mvm.v1.LinuxDiskB\b\xbaH\x05\x92\x01\x02\b\x01R\x05disks\"\xd2\x06\n" +
 	"\x17MVMServiceCreateRequest\x12+\n" +
 	"\fproject_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12(\n" +
 	"\tname_code\x18\x02 \x01(\tB\v\xbaH\br\x06\xa0\xb4\xae\xb1\x02\x01R\bnameCode\x12!\n" +
 	"\aos_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06osUuid\x12-\n" +
 	"\rlocation_uuid\x18\x04 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\flocationUuid\x12+\n" +
 	"\fcontact_uuid\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vcontactUuid\x12\x10\n" +
-	"\x03cpu\x18\x06 \x01(\rR\x03cpu\x12\x10\n" +
-	"\x03ram\x18\a \x01(\rR\x03ram\x12!\n" +
-	"\forder_number\x18\b \x01(\tR\vorderNumber\x12+\n" +
+	"\x03cpu\x18\x06 \x01(\rR\x03cpu\x12\x15\n" +
+	"\x06ram_gb\x18\a \x01(\rR\x05ramGb\x12.\n" +
+	"\forder_number\x18\b \x01(\tB\v\xbaH\br\x06\xb0\xb4\xae\xb1\x02\x01R\vorderNumber\x12+\n" +
 	"\x06labels\x18\t \x01(\v2\x13.fits.api.v1.LabelsR\x06labels\x12\x16\n" +
 	"\x06backup\x18\n" +
 	" \x01(\bR\x06backup\x12\x1c\n" +
 	"\tencrypted\x18\v \x01(\bR\tencrypted\x12K\n" +
-	"\favailability\x18\f \x01(\x0e2\x1d.fits.api.mvm.v1.AvailabilityB\b\xbaH\x05\x82\x01\x02\x10\x01R\favailability\x12K\n" +
-	"\fserviceclass\x18\r \x01(\x0e2\x1d.fits.api.mvm.v1.ServiceClassB\b\xbaH\x05\x82\x01\x02\x10\x01R\fserviceclass\x12K\n" +
+	"\favailability\x18\f \x01(\x0e2\x1d.fits.api.mvm.v1.AvailabilityB\b\xbaH\x05\x82\x01\x02\x10\x01R\favailability\x12L\n" +
+	"\rservice_class\x18\r \x01(\x0e2\x1d.fits.api.mvm.v1.ServiceClassB\b\xbaH\x05\x82\x01\x02\x10\x01R\fserviceClass\x12K\n" +
 	"\awindows\x18\x0e \x01(\v2/.fits.api.mvm.v1.MVMServiceCreateWindowsRequestH\x00R\awindows\x12E\n" +
 	"\x05linux\x18\x0f \x01(\v2-.fits.api.mvm.v1.MVMServiceCreateLinuxRequestH\x00R\x05linux\x12d\n" +
 	"\x19initial_network_interface\x18\x10 \x01(\v2(.fits.api.mvm.v1.InitialNetworkInterfaceR\x17initialNetworkInterfaceB\x10\n" +
-	"\amvmtype\x12\x05\xbaH\x02\b\x01\"\x9b\x02\n" +
+	"\amvmtype\x12\x05\xbaH\x02\b\x01\"\xbf\x02\n" +
 	"\tLinuxDisk\x12!\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x04uuid\x88\x01\x01\x12\x14\n" +
-	"\x05label\x18\x02 \x01(\tR\x05label\x12\x1f\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x04uuid\x88\x01\x01\x12!\n" +
+	"\x05label\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x05label\x12\x1f\n" +
 	"\vauto_extend\x18\x03 \x01(\bR\n" +
-	"autoExtend\x12\x17\n" +
-	"\x04size\x18\x04 \x01(\x04H\x01R\x04size\x88\x01\x01\x12$\n" +
-	"\vmount_point\x18\x05 \x01(\tH\x02R\n" +
+	"autoExtend\x12\x1c\n" +
+	"\asize_gb\x18\x04 \x01(\x04H\x01R\x06sizeGb\x88\x01\x01\x123\n" +
+	"\vmount_point\x18\x05 \x01(\tB\r\xbaH\n" +
+	"r\b\U00033bb1\x02\x01\x10\x01H\x02R\n" +
 	"mountPoint\x88\x01\x01\x12E\n" +
 	"\tdisk_type\x18\x06 \x01(\x0e2\x19.fits.api.mvm.v1.DiskTypeB\b\xbaH\x05\x82\x01\x02\x10\x01H\x03R\bdiskType\x88\x01\x01B\a\n" +
-	"\x05_uuidB\a\n" +
-	"\x05_sizeB\x0e\n" +
+	"\x05_uuidB\n" +
+	"\n" +
+	"\b_size_gbB\x0e\n" +
 	"\f_mount_pointB\f\n" +
 	"\n" +
-	"_disk_type\"\x9e\x02\n" +
+	"_disk_type\"\xcb\x02\n" +
 	"\vWindowsDisk\x12!\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x04uuid\x88\x01\x01\x12\x14\n" +
-	"\x05label\x18\x02 \x01(\tR\x05label\x12\x1f\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x04uuid\x88\x01\x01\x12!\n" +
+	"\x05label\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x05label\x12\x1f\n" +
 	"\vauto_extend\x18\x03 \x01(\bR\n" +
-	"autoExtend\x12\x17\n" +
-	"\x04size\x18\x04 \x01(\x04H\x01R\x04size\x88\x01\x01\x12%\n" +
-	"\vdriveletter\x18\x05 \x01(\tH\x02R\vdriveletter\x88\x01\x01\x12E\n" +
+	"autoExtend\x12\x1c\n" +
+	"\asize_gb\x18\x04 \x01(\x04H\x01R\x06sizeGb\x88\x01\x01\x12<\n" +
+	"\fdrive_letter\x18\x05 \x01(\tB\x14\xbaH\x11r\x0f2\n" +
+	"^[A-Za-z]$\x98\x01\x01H\x02R\vdriveLetter\x88\x01\x01\x12E\n" +
 	"\tdisk_type\x18\x06 \x01(\x0e2\x19.fits.api.mvm.v1.DiskTypeB\b\xbaH\x05\x82\x01\x02\x10\x01H\x03R\bdiskType\x88\x01\x01B\a\n" +
-	"\x05_uuidB\a\n" +
-	"\x05_sizeB\x0e\n" +
-	"\f_driveletterB\f\n" +
+	"\x05_uuidB\n" +
+	"\n" +
+	"\b_size_gbB\x0f\n" +
+	"\r_drive_letterB\f\n" +
 	"\n" +
 	"_disk_type\"8\n" +
 	"\x18MVMServiceCreateResponse\x12\x1c\n" +
@@ -2878,11 +2882,11 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\x15MVMServiceListRequest\x12+\n" +
 	"\fproject_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\"H\n" +
 	"\x16MVMServiceListResponse\x12.\n" +
-	"\x04mvms\x18\x01 \x03(\v2\x1a.fits.api.mvm.v1.ManagedVMR\x04mvms\"\x87\x01\n" +
+	"\x04mvms\x18\x01 \x03(\v2\x1a.fits.api.mvm.v1.ManagedVMR\x04mvms\"\x94\x01\n" +
 	"\x17MVMServiceDeleteRequest\x12+\n" +
 	"\fproject_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12\x1c\n" +
-	"\x04uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12!\n" +
-	"\forder_number\x18\x03 \x01(\tR\vorderNumber\"\x1a\n" +
+	"\x04uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12.\n" +
+	"\forder_number\x18\x03 \x01(\tB\v\xbaH\br\x06\xb0\xb4\xae\xb1\x02\x01R\vorderNumber\"\x1a\n" +
 	"\x18MVMServiceDeleteResponse\"k\n" +
 	"\x1fMVMServiceValidateCreateRequest\x12H\n" +
 	"\x06create\x18\x01 \x01(\v2(.fits.api.mvm.v1.MVMServiceCreateRequestB\x06\xbaH\x03\xc8\x01\x01R\x06create\"\"\n" +
@@ -2897,48 +2901,49 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\x19MVMServiceAddDiskResponse\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"\x1e\n" +
 	"\x1cMVMServiceUpdateDiskResponse\"\x1e\n" +
-	"\x1cMVMServiceDeleteDiskResponse\"\x85\x02\n" +
+	"\x1cMVMServiceDeleteDiskResponse\"\x92\x02\n" +
 	"\x18MVMServiceAddDiskRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
-	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12!\n" +
-	"\forder_number\x18\x03 \x01(\tR\vorderNumber\x122\n" +
+	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12.\n" +
+	"\forder_number\x18\x03 \x01(\tB\v\xbaH\br\x06\xb0\xb4\xae\xb1\x02\x01R\vorderNumber\x122\n" +
 	"\x05linux\x18\x04 \x01(\v2\x1a.fits.api.mvm.v1.LinuxDiskH\x00R\x05linux\x128\n" +
 	"\awindows\x18\x05 \x01(\v2\x1c.fits.api.mvm.v1.WindowsDiskH\x00R\awindowsB\r\n" +
-	"\x04disk\x12\x05\xbaH\x02\b\x01\"\x8a\x02\n" +
+	"\x04disk\x12\x05\xbaH\x02\b\x01\"\x9f\x02\n" +
 	"\x1bMVMServiceUpdateDiskRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12%\n" +
 	"\tdisk_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bdiskUuid\x12+\n" +
-	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12!\n" +
-	"\forder_number\x18\x04 \x01(\tR\vorderNumber\x12$\n" +
+	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12.\n" +
+	"\forder_number\x18\x04 \x01(\tB\v\xbaH\br\x06\xb0\xb4\xae\xb1\x02\x01R\vorderNumber\x12$\n" +
 	"\vauto_extend\x18\x05 \x01(\bH\x00R\n" +
-	"autoExtend\x88\x01\x01\x12\x17\n" +
-	"\x04size\x18\x06 \x01(\x04H\x01R\x04size\x88\x01\x01B\x0e\n" +
-	"\f_auto_extendB\a\n" +
-	"\x05_size\"\xb2\x01\n" +
+	"autoExtend\x88\x01\x01\x12\x1c\n" +
+	"\asize_gb\x18\x06 \x01(\x04H\x01R\x06sizeGb\x88\x01\x01B\x0e\n" +
+	"\f_auto_extendB\n" +
+	"\n" +
+	"\b_size_gb\"\xbf\x01\n" +
 	"\x1bMVMServiceDeleteDiskRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12%\n" +
 	"\tdisk_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bdiskUuid\x12+\n" +
-	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12!\n" +
-	"\forder_number\x18\x04 \x01(\tR\vorderNumber\"E\n" +
+	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12.\n" +
+	"\forder_number\x18\x04 \x01(\tB\v\xbaH\br\x06\xb0\xb4\xae\xb1\x02\x01R\vorderNumber\"E\n" +
 	"%MVMServiceAddNetworkInterfaceResponse\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"(\n" +
 	"&MVMServiceMoveNetworkInterfaceResponse\"*\n" +
-	"(MVMServiceDeleteNetworkInterfaceResponse\"\x94\x01\n" +
+	"(MVMServiceDeleteNetworkInterfaceResponse\"\xa1\x01\n" +
 	"$MVMServiceAddNetworkInterfaceRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
-	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12!\n" +
-	"\forder_number\x18\x03 \x01(\tR\vorderNumber\"\xf8\x01\n" +
+	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12.\n" +
+	"\forder_number\x18\x03 \x01(\tB\v\xbaH\br\x06\xb0\xb4\xae\xb1\x02\x01R\vorderNumber\"\x85\x02\n" +
 	"%MVMServiceMoveNetworkInterfaceRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12/\n" +
 	"\x0einterface_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rinterfaceUuid\x12+\n" +
-	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12!\n" +
-	"\forder_number\x18\x04 \x01(\tR\vorderNumber\x120\n" +
-	"\x0ftarget_mvm_uuid\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rtargetMvmUuid\"\xc8\x01\n" +
+	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12.\n" +
+	"\forder_number\x18\x04 \x01(\tB\v\xbaH\br\x06\xb0\xb4\xae\xb1\x02\x01R\vorderNumber\x120\n" +
+	"\x0ftarget_mvm_uuid\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rtargetMvmUuid\"\xd5\x01\n" +
 	"'MVMServiceDeleteNetworkInterfaceRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12/\n" +
 	"\x0einterface_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rinterfaceUuid\x12+\n" +
-	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12!\n" +
-	"\forder_number\x18\x04 \x01(\tR\vorderNumber\"\xa1\x01\n" +
+	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12.\n" +
+	"\forder_number\x18\x04 \x01(\tB\v\xbaH\br\x06\xb0\xb4\xae\xb1\x02\x01R\vorderNumber\"\xa1\x01\n" +
 	",MVMServiceValidateAddNetworkInterfaceRequest\x12q\n" +
 	"\x15add_network_interface\x18\x01 \x01(\v25.fits.api.mvm.v1.MVMServiceAddNetworkInterfaceRequestB\x06\xbaH\x03\xc8\x01\x01R\x13addNetworkInterface\"/\n" +
 	"-MVMServiceValidateAddNetworkInterfaceResponse*\xa6\x01\n" +
@@ -3066,7 +3071,7 @@ var file_fits_api_mvm_v1_mvm_proto_depIdxs = []int32{
 	42, // 3: fits.api.mvm.v1.ManagedVM.meta:type_name -> fits.api.v1.Meta
 	8,  // 4: fits.api.mvm.v1.ManagedVM.status:type_name -> fits.api.mvm.v1.Status
 	0,  // 5: fits.api.mvm.v1.ManagedVM.availability:type_name -> fits.api.mvm.v1.Availability
-	1,  // 6: fits.api.mvm.v1.ManagedVM.serviceclass:type_name -> fits.api.mvm.v1.ServiceClass
+	1,  // 6: fits.api.mvm.v1.ManagedVM.service_class:type_name -> fits.api.mvm.v1.ServiceClass
 	5,  // 7: fits.api.mvm.v1.ManagedVM.windows_details:type_name -> fits.api.mvm.v1.WindowsDetails
 	4,  // 8: fits.api.mvm.v1.ManagedVM.linux_details:type_name -> fits.api.mvm.v1.LinuxDetails
 	6,  // 9: fits.api.mvm.v1.ManagedVM.interfaces:type_name -> fits.api.mvm.v1.NetworkInterface
@@ -3075,7 +3080,7 @@ var file_fits_api_mvm_v1_mvm_proto_depIdxs = []int32{
 	15, // 12: fits.api.mvm.v1.MVMServiceCreateLinuxRequest.disks:type_name -> fits.api.mvm.v1.LinuxDisk
 	43, // 13: fits.api.mvm.v1.MVMServiceCreateRequest.labels:type_name -> fits.api.v1.Labels
 	0,  // 14: fits.api.mvm.v1.MVMServiceCreateRequest.availability:type_name -> fits.api.mvm.v1.Availability
-	1,  // 15: fits.api.mvm.v1.MVMServiceCreateRequest.serviceclass:type_name -> fits.api.mvm.v1.ServiceClass
+	1,  // 15: fits.api.mvm.v1.MVMServiceCreateRequest.service_class:type_name -> fits.api.mvm.v1.ServiceClass
 	12, // 16: fits.api.mvm.v1.MVMServiceCreateRequest.windows:type_name -> fits.api.mvm.v1.MVMServiceCreateWindowsRequest
 	13, // 17: fits.api.mvm.v1.MVMServiceCreateRequest.linux:type_name -> fits.api.mvm.v1.MVMServiceCreateLinuxRequest
 	7,  // 18: fits.api.mvm.v1.MVMServiceCreateRequest.initial_network_interface:type_name -> fits.api.mvm.v1.InitialNetworkInterface
