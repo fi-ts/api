@@ -3,8 +3,8 @@ from google.protobuf import descriptor as _descriptor
 from typing import ClassVar as _ClassVar
 
 DESCRIPTOR: _descriptor.FileDescriptor
-MACADDRESS_FIELD_NUMBER: _ClassVar[int]
-macaddress: _descriptor.FieldDescriptor
+MAC_ADDRESS_FIELD_NUMBER: _ClassVar[int]
+mac_address: _descriptor.FieldDescriptor
 IS_NAME_FIELD_NUMBER: _ClassVar[int]
 is_name: _descriptor.FieldDescriptor
 IS_DESCRIPTION_FIELD_NUMBER: _ClassVar[int]
@@ -25,6 +25,10 @@ IS_PHONE_FIELD_NUMBER: _ClassVar[int]
 is_phone: _descriptor.FieldDescriptor
 IS_NAME_CODE_FIELD_NUMBER: _ClassVar[int]
 is_name_code: _descriptor.FieldDescriptor
+IS_FQDN_FIELD_NUMBER: _ClassVar[int]
+is_fqdn: _descriptor.FieldDescriptor
+IS_ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
+is_order_number: _descriptor.FieldDescriptor
 IS_TENANT_SUBJECT_PERMISSION_FIELD_NUMBER: _ClassVar[int]
 is_tenant_subject_permission: _descriptor.FieldDescriptor
 IS_PROJECT_SUBJECT_PERMISSION_FIELD_NUMBER: _ClassVar[int]

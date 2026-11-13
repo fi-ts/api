@@ -86,17 +86,15 @@ export type NetworkInterface = Message<"fits.api.mvm.v1.NetworkInterface"> & {
     /**
      * IPv4 address assigned to this interface.
      *
-     * @generated from field: string ipaddress = 3;
+     * @generated from field: string ip_address = 3;
      */
-    ipaddress: string;
+    ipAddress: string;
     /**
      * MAC address of this interface.
      *
-     * TODO: add validation
-     *
-     * @generated from field: string macaddress = 4;
+     * @generated from field: string mac_address = 4;
      */
-    macaddress: string;
+    macAddress: string;
 };
 /**
  * Describes the message fits.api.mvm.v1.NetworkInterface.
@@ -211,9 +209,9 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
     /**
      * RAM in GB.
      *
-     * @generated from field: uint32 ram = 10;
+     * @generated from field: uint32 ram_gb = 10;
      */
-    ram: number;
+    ramGb: number;
     /**
      * Whether backup is enabled.
      *
@@ -241,9 +239,9 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
     /**
      * Service class.
      *
-     * @generated from field: fits.api.mvm.v1.ServiceClass serviceclass = 15;
+     * @generated from field: fits.api.mvm.v1.ServiceClass service_class = 15;
      */
-    serviceclass: ServiceClass;
+    serviceClass: ServiceClass;
     /**
      * OS-specific configuration.
      *
@@ -424,9 +422,9 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
     /**
      * RAM in GB. Must be a power of 2.
      *
-     * @generated from field: uint32 ram = 7;
+     * @generated from field: uint32 ram_gb = 7;
      */
-    ram: number;
+    ramGb: number;
     /**
      * Customer reference for this operation provided by the user, e.g. a ticket ID.
      *
@@ -461,9 +459,9 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
     /**
      * Service class; only certain combinations with availability are valid.
      *
-     * @generated from field: fits.api.mvm.v1.ServiceClass serviceclass = 13;
+     * @generated from field: fits.api.mvm.v1.ServiceClass service_class = 13;
      */
-    serviceclass: ServiceClass;
+    serviceClass: ServiceClass;
     /**
      * OS type and its configuration.
      *
@@ -529,9 +527,9 @@ export type LinuxDisk = Message<"fits.api.mvm.v1.LinuxDisk"> & {
     /**
      * Size of the disk in GB; defaults to 50 when unset.
      *
-     * @generated from field: optional uint64 size = 4;
+     * @generated from field: optional uint64 size_gb = 4;
      */
-    size?: bigint | undefined;
+    sizeGb?: bigint | undefined;
     /**
      * Mount point (e.g. "/data"). Fixed to "/appdata" for the system disk;
      * free-form for data disks.
@@ -581,16 +579,16 @@ export type WindowsDisk = Message<"fits.api.mvm.v1.WindowsDisk"> & {
     /**
      * Size of the disk in GB; defaults to 50 when unset.
      *
-     * @generated from field: optional uint64 size = 4;
+     * @generated from field: optional uint64 size_gb = 4;
      */
-    size?: bigint | undefined;
+    sizeGb?: bigint | undefined;
     /**
      * Drive letter (e.g. "D"). Fixed to "F" for the system disk; free-form
      * for data disks.
      *
-     * @generated from field: optional string driveletter = 5;
+     * @generated from field: optional string drive_letter = 5;
      */
-    driveletter?: string | undefined;
+    driveLetter?: string | undefined;
     /**
      * Kind of the disk; determines which operations are allowed on it.
      * Provided by the client in create/add requests and populated by the
@@ -922,9 +920,9 @@ export type MVMServiceUpdateDiskRequest = Message<"fits.api.mvm.v1.MVMServiceUpd
     /**
      * New size of the disk in GB; unset keeps the current value.
      *
-     * @generated from field: optional uint64 size = 6;
+     * @generated from field: optional uint64 size_gb = 6;
      */
-    size?: bigint | undefined;
+    sizeGb?: bigint | undefined;
 };
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceUpdateDiskRequest.

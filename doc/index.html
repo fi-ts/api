@@ -268,6 +268,14 @@
                   <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
                 </li>
               
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
               
             </ul>
           </li>
@@ -1221,6 +1229,16 @@
               </tr>
             
               <tr>
+                <td>is_fqdn</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80048965</td>
+                <td><p>IsFqdn validates if the given string is a valid fully qualified domain name (FQDN),
+e.g. host.example.com. Each label is alphanumeric/hyphen, the TLD is alphabetic
+(min 2 chars), and the total length is at most 253 characters.</p></td>
+              </tr>
+            
+              <tr>
                 <td>is_ip_or_hostname</td>
                 <td><a href="#bool">bool</a></td>
                 <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
@@ -1250,6 +1268,15 @@
                 <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
                 <td>80048964</td>
                 <td><p>IsNameCode validates if the given string is a 4-character code consisting of digits and letters.</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_order_number</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80048966</td>
+                <td><p>IsOrderNumber validates a user-supplied ticket/reference ID (order number):
+2-128 characters, no leading/trailing whitespace.</p></td>
               </tr>
             
               <tr>
@@ -1301,11 +1328,11 @@
               </tr>
             
               <tr>
-                <td>macaddress</td>
+                <td>mac_address</td>
                 <td><a href="#bool">bool</a></td>
                 <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
                 <td>80048951</td>
-                <td><p>Macaddress returns true if the given string is a valid macadress</p></td>
+                <td><p>MacAddress returns true if the given string is a valid mac address</p></td>
               </tr>
             
               <tr>
@@ -2595,7 +2622,7 @@ having a direct membership within the tenant.</p></td>
                 </tr>
               
                 <tr>
-                  <td>size</td>
+                  <td>size_gb</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td>optional</td>
                   <td><p>Size of the disk in GB; defaults to 50 when unset. </p></td>
@@ -2848,7 +2875,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>ram</td>
+                  <td>ram_gb</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p>RAM in GB. Must be a power of 2. </p></td>
@@ -2891,7 +2918,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>serviceclass</td>
+                  <td>service_class</td>
                   <td><a href="#fits.api.mvm.v1.ServiceClass">ServiceClass</a></td>
                   <td></td>
                   <td><p>Service class; only certain combinations with availability are valid. </p></td>
@@ -3338,7 +3365,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>size</td>
+                  <td>size_gb</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td>optional</td>
                   <td><p>New size of the disk in GB; unset keeps the current value. </p></td>
@@ -3557,7 +3584,7 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
                 </tr>
               
                 <tr>
-                  <td>ram</td>
+                  <td>ram_gb</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p>RAM in GB. </p></td>
@@ -3592,7 +3619,7 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
                 </tr>
               
                 <tr>
-                  <td>serviceclass</td>
+                  <td>service_class</td>
                   <td><a href="#fits.api.mvm.v1.ServiceClass">ServiceClass</a></td>
                   <td></td>
                   <td><p>Service class. </p></td>
@@ -3658,19 +3685,17 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
                 </tr>
               
                 <tr>
-                  <td>ipaddress</td>
+                  <td>ip_address</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>IPv4 address assigned to this interface. </p></td>
                 </tr>
               
                 <tr>
-                  <td>macaddress</td>
+                  <td>mac_address</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>MAC address of this interface.
-
-TODO: add validation </p></td>
+                  <td><p>MAC address of this interface. </p></td>
                 </tr>
               
             </tbody>
@@ -3781,14 +3806,14 @@ TODO: add validation </p></td>
                 </tr>
               
                 <tr>
-                  <td>size</td>
+                  <td>size_gb</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td>optional</td>
                   <td><p>Size of the disk in GB; defaults to 50 when unset. </p></td>
                 </tr>
               
                 <tr>
-                  <td>driveletter</td>
+                  <td>drive_letter</td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
                   <td><p>Drive letter (e.g. &#34;D&#34;). Fixed to &#34;F&#34; for the system disk; free-form
@@ -4981,7 +5006,7 @@ Downgrades are not possible. </p></td>
               <tr>
                 <td>OPERATION_ERROR</td>
                 <td>5</td>
-                <td><p>OPERATION_ERROR: the</p></td>
+                <td><p>OPERATION_ERROR: there is an error.</p></td>
               </tr>
             
           </tbody>
@@ -5045,7 +5070,7 @@ Downgrades are not possible. </p></td>
               <tr>
                 <td>STATE_WARNING</td>
                 <td>2</td>
-                <td><p>STATE_HEALTHY: there are some health warnings for this VM.</p></td>
+                <td><p>STATE_WARNING: there are some health warnings for this VM.</p></td>
               </tr>
             
               <tr>
