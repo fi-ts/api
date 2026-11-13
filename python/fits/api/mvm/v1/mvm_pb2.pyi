@@ -107,9 +107,8 @@ class Status(_message.Message):
     def __init__(self, state: _Optional[_Union[State, str]] = ..., info: _Optional[str] = ...) -> None: ...
 
 class ManagedVM(_message.Message):
-    __slots__ = ("uuid", "meta", "fqdn", "tenant", "project_uuid", "os_uuid", "location_uuid", "contact_uuid", "cpu", "ram_gb", "backup", "encrypted", "status", "availability", "service_class", "windows_details", "linux_details", "interfaces", "order_number")
+    __slots__ = ("uuid", "fqdn", "tenant", "project_uuid", "os_uuid", "location_uuid", "contact_uuid", "cpu", "ram_gb", "backup", "encrypted", "status", "availability", "service_class", "windows_details", "linux_details", "interfaces", "order_number", "labels")
     UUID_FIELD_NUMBER: _ClassVar[int]
-    META_FIELD_NUMBER: _ClassVar[int]
     FQDN_FIELD_NUMBER: _ClassVar[int]
     TENANT_FIELD_NUMBER: _ClassVar[int]
     PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
@@ -127,8 +126,8 @@ class ManagedVM(_message.Message):
     LINUX_DETAILS_FIELD_NUMBER: _ClassVar[int]
     INTERFACES_FIELD_NUMBER: _ClassVar[int]
     ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
+    LABELS_FIELD_NUMBER: _ClassVar[int]
     uuid: str
-    meta: _common_pb2.Meta
     fqdn: str
     tenant: str
     project_uuid: str
@@ -146,7 +145,8 @@ class ManagedVM(_message.Message):
     linux_details: LinuxDetails
     interfaces: _containers.RepeatedCompositeFieldContainer[NetworkInterface]
     order_number: str
-    def __init__(self, uuid: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., fqdn: _Optional[str] = ..., tenant: _Optional[str] = ..., project_uuid: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram_gb: _Optional[int] = ..., backup: _Optional[bool] = ..., encrypted: _Optional[bool] = ..., status: _Optional[_Union[Status, _Mapping]] = ..., availability: _Optional[_Union[Availability, str]] = ..., service_class: _Optional[_Union[ServiceClass, str]] = ..., windows_details: _Optional[_Union[WindowsDetails, _Mapping]] = ..., linux_details: _Optional[_Union[LinuxDetails, _Mapping]] = ..., interfaces: _Optional[_Iterable[_Union[NetworkInterface, _Mapping]]] = ..., order_number: _Optional[str] = ...) -> None: ...
+    labels: _common_pb2.Labels
+    def __init__(self, uuid: _Optional[str] = ..., fqdn: _Optional[str] = ..., tenant: _Optional[str] = ..., project_uuid: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram_gb: _Optional[int] = ..., backup: _Optional[bool] = ..., encrypted: _Optional[bool] = ..., status: _Optional[_Union[Status, _Mapping]] = ..., availability: _Optional[_Union[Availability, str]] = ..., service_class: _Optional[_Union[ServiceClass, str]] = ..., windows_details: _Optional[_Union[WindowsDetails, _Mapping]] = ..., linux_details: _Optional[_Union[LinuxDetails, _Mapping]] = ..., interfaces: _Optional[_Iterable[_Union[NetworkInterface, _Mapping]]] = ..., order_number: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.Labels, _Mapping]] = ...) -> None: ...
 
 class MVMServiceGetRequest(_message.Message):
     __slots__ = ("uuid", "project_uuid")

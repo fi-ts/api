@@ -1,5 +1,4 @@
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import type { UpdateMeta } from "../../v1/common_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file fits/api/mvm/v1/contact.proto.
@@ -163,6 +162,8 @@ export type ContactServiceCreateResponse = Message<"fits.api.mvm.v1.ContactServi
 export declare const ContactServiceCreateResponseSchema: GenMessage<ContactServiceCreateResponse>;
 /**
  * ContactServiceUpdateRequest is the request payload for a contact update request.
+ * The upstream offers no conditional-update mechanism, so no optimistic locking is enforced.
+ * Concurrent edits can overwrite each other. Tag 3 is reserved for a future update_meta, should the upstream gain atomic conditional-update support.
  *
  * @generated from message fits.api.mvm.v1.ContactServiceUpdateRequest
  */
@@ -179,12 +180,6 @@ export type ContactServiceUpdateRequest = Message<"fits.api.mvm.v1.ContactServic
      * @generated from field: string uuid = 2;
      */
     uuid: string;
-    /**
-     * UpdateMeta contains the timestamp and strategy to be used in this update request.
-     *
-     * @generated from field: fits.api.v1.UpdateMeta update_meta = 3;
-     */
-    updateMeta?: UpdateMeta | undefined;
     /**
      * First name of the contact.
      *
@@ -295,6 +290,8 @@ export declare const ContactService: GenService<{
     };
     /**
      * Updates an existing contact person.
+     * The upstream offers no conditional-update mechanism, so no optimistic locking is enforced.
+     * Concurrent edits can overwrite each other.
      *
      * @generated from rpc fits.api.mvm.v1.ContactService.Update
      */

@@ -4,7 +4,6 @@ import (
 	"testing"
 
 	pcvmv1 "github.com/fi-ts/api/go/fits/api/pcvm/v1"
-	v1 "github.com/fi-ts/api/go/fits/api/v1"
 )
 
 func TestValidatePublicCloudVMServiceGetRequest(t *testing.T) {
@@ -58,15 +57,13 @@ func TestValidatePublicCloudVMServiceUpdateRequest(t *testing.T) {
 			wantErr: true,
 			wantErrorMessage: `validation errors:
  - uuid: value is empty, which is not a valid UUID
- - project_uuid: value is empty, which is not a valid UUID
- - update_meta: value is required`,
+ - project_uuid: value is empty, which is not a valid UUID`,
 		},
 		{
 			name: "valid",
 			msg: &pcvmv1.PublicCloudVMServiceUpdateRequest{
 				Uuid:        testUUID,
 				ProjectUuid: testUUID,
-				UpdateMeta:  &v1.UpdateMeta{LockingStrategy: v1.OptimisticLockingStrategy_OPTIMISTIC_LOCKING_STRATEGY_SERVER},
 			},
 			wantErr: false,
 		},
@@ -112,7 +109,6 @@ func TestValidatePublicCloudVMServiceValidateUpdateRequest(t *testing.T) {
 				Update: &pcvmv1.PublicCloudVMServiceUpdateRequest{
 					Uuid:        testUUID,
 					ProjectUuid: testUUID,
-					UpdateMeta:  &v1.UpdateMeta{LockingStrategy: v1.OptimisticLockingStrategy_OPTIMISTIC_LOCKING_STRATEGY_SERVER},
 				},
 			},
 			wantErr: false,

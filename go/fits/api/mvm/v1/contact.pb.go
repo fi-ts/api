@@ -8,7 +8,7 @@ package mvmv1
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
-	v1 "github.com/fi-ts/api/go/fits/api/v1"
+	_ "github.com/fi-ts/api/go/fits/api/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -353,14 +353,14 @@ func (x *ContactServiceCreateResponse) GetUuid() string {
 }
 
 // ContactServiceUpdateRequest is the request payload for a contact update request.
+// The upstream offers no conditional-update mechanism, so no optimistic locking is enforced.
+// Concurrent edits can overwrite each other. Tag 3 is reserved for a future update_meta, should the upstream gain atomic conditional-update support.
 type ContactServiceUpdateRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Tenant the contact belongs to.
 	Tenant string `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"`
 	// UUID of the contact to update.
 	Uuid string `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	// UpdateMeta contains the timestamp and strategy to be used in this update request.
-	UpdateMeta *v1.UpdateMeta `protobuf:"bytes,3,opt,name=update_meta,json=updateMeta,proto3" json:"update_meta,omitempty"`
 	// First name of the contact.
 	FirstName string `protobuf:"bytes,4,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
 	// Last name of the contact.
@@ -417,13 +417,6 @@ func (x *ContactServiceUpdateRequest) GetUuid() string {
 		return x.Uuid
 	}
 	return ""
-}
-
-func (x *ContactServiceUpdateRequest) GetUpdateMeta() *v1.UpdateMeta {
-	if x != nil {
-		return x.UpdateMeta
-	}
-	return nil
 }
 
 func (x *ContactServiceUpdateRequest) GetFirstName() string {
@@ -621,12 +614,10 @@ const file_fits_api_mvm_v1_contact_proto_rawDesc = "" +
 	"\x05phone\x18\x05 \x01(\tR\x05phone\x12\x1d\n" +
 	"\x05email\x18\x06 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\"<\n" +
 	"\x1cContactServiceCreateResponse\x12\x1c\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"\xda\x02\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"\xab\x02\n" +
 	"\x1bContactServiceUpdateRequest\x12#\n" +
 	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12\x1c\n" +
-	"\x04uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12@\n" +
-	"\vupdate_meta\x18\x03 \x01(\v2\x17.fits.api.v1.UpdateMetaB\x06\xbaH\x03\xc8\x01\x01R\n" +
-	"updateMeta\x12*\n" +
+	"\x04uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12*\n" +
 	"\n" +
 	"first_name\x18\x04 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\tfirstName\x12(\n" +
 	"\tlast_name\x18\x05 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\blastName\x12+\n" +
@@ -634,7 +625,7 @@ const file_fits_api_mvm_v1_contact_proto_rawDesc = "" +
 	"department\x18\x06 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\n" +
 	"department\x12\x14\n" +
 	"\x05phone\x18\a \x01(\tR\x05phone\x12\x1d\n" +
-	"\x05email\x18\b \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\"\x1e\n" +
+	"\x05email\x18\b \x01(\tB\a\xbaH\x04r\x02`\x01R\x05emailJ\x04\b\x03\x10\x04R\vupdate_meta\"\x1e\n" +
 	"\x1cContactServiceUpdateResponse\"`\n" +
 	"\x1bContactServiceDeleteRequest\x12#\n" +
 	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12\x1c\n" +
@@ -673,24 +664,22 @@ var file_fits_api_mvm_v1_contact_proto_goTypes = []any{
 	(*ContactServiceUpdateResponse)(nil), // 6: fits.api.mvm.v1.ContactServiceUpdateResponse
 	(*ContactServiceDeleteRequest)(nil),  // 7: fits.api.mvm.v1.ContactServiceDeleteRequest
 	(*ContactServiceDeleteResponse)(nil), // 8: fits.api.mvm.v1.ContactServiceDeleteResponse
-	(*v1.UpdateMeta)(nil),                // 9: fits.api.v1.UpdateMeta
 }
 var file_fits_api_mvm_v1_contact_proto_depIdxs = []int32{
 	0, // 0: fits.api.mvm.v1.ContactServiceListResponse.contacts:type_name -> fits.api.mvm.v1.Contact
-	9, // 1: fits.api.mvm.v1.ContactServiceUpdateRequest.update_meta:type_name -> fits.api.v1.UpdateMeta
-	1, // 2: fits.api.mvm.v1.ContactService.List:input_type -> fits.api.mvm.v1.ContactServiceListRequest
-	3, // 3: fits.api.mvm.v1.ContactService.Create:input_type -> fits.api.mvm.v1.ContactServiceCreateRequest
-	5, // 4: fits.api.mvm.v1.ContactService.Update:input_type -> fits.api.mvm.v1.ContactServiceUpdateRequest
-	7, // 5: fits.api.mvm.v1.ContactService.Delete:input_type -> fits.api.mvm.v1.ContactServiceDeleteRequest
-	2, // 6: fits.api.mvm.v1.ContactService.List:output_type -> fits.api.mvm.v1.ContactServiceListResponse
-	4, // 7: fits.api.mvm.v1.ContactService.Create:output_type -> fits.api.mvm.v1.ContactServiceCreateResponse
-	6, // 8: fits.api.mvm.v1.ContactService.Update:output_type -> fits.api.mvm.v1.ContactServiceUpdateResponse
-	8, // 9: fits.api.mvm.v1.ContactService.Delete:output_type -> fits.api.mvm.v1.ContactServiceDeleteResponse
-	6, // [6:10] is the sub-list for method output_type
-	2, // [2:6] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	1, // 1: fits.api.mvm.v1.ContactService.List:input_type -> fits.api.mvm.v1.ContactServiceListRequest
+	3, // 2: fits.api.mvm.v1.ContactService.Create:input_type -> fits.api.mvm.v1.ContactServiceCreateRequest
+	5, // 3: fits.api.mvm.v1.ContactService.Update:input_type -> fits.api.mvm.v1.ContactServiceUpdateRequest
+	7, // 4: fits.api.mvm.v1.ContactService.Delete:input_type -> fits.api.mvm.v1.ContactServiceDeleteRequest
+	2, // 5: fits.api.mvm.v1.ContactService.List:output_type -> fits.api.mvm.v1.ContactServiceListResponse
+	4, // 6: fits.api.mvm.v1.ContactService.Create:output_type -> fits.api.mvm.v1.ContactServiceCreateResponse
+	6, // 7: fits.api.mvm.v1.ContactService.Update:output_type -> fits.api.mvm.v1.ContactServiceUpdateResponse
+	8, // 8: fits.api.mvm.v1.ContactService.Delete:output_type -> fits.api.mvm.v1.ContactServiceDeleteResponse
+	5, // [5:9] is the sub-list for method output_type
+	1, // [1:5] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_mvm_v1_contact_proto_init() }

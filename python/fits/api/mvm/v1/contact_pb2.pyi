@@ -62,10 +62,9 @@ class ContactServiceCreateResponse(_message.Message):
     def __init__(self, uuid: _Optional[str] = ...) -> None: ...
 
 class ContactServiceUpdateRequest(_message.Message):
-    __slots__ = ("tenant", "uuid", "update_meta", "first_name", "last_name", "department", "phone", "email")
+    __slots__ = ("tenant", "uuid", "first_name", "last_name", "department", "phone", "email")
     TENANT_FIELD_NUMBER: _ClassVar[int]
     UUID_FIELD_NUMBER: _ClassVar[int]
-    UPDATE_META_FIELD_NUMBER: _ClassVar[int]
     FIRST_NAME_FIELD_NUMBER: _ClassVar[int]
     LAST_NAME_FIELD_NUMBER: _ClassVar[int]
     DEPARTMENT_FIELD_NUMBER: _ClassVar[int]
@@ -73,13 +72,12 @@ class ContactServiceUpdateRequest(_message.Message):
     EMAIL_FIELD_NUMBER: _ClassVar[int]
     tenant: str
     uuid: str
-    update_meta: _common_pb2.UpdateMeta
     first_name: str
     last_name: str
     department: str
     phone: str
     email: str
-    def __init__(self, tenant: _Optional[str] = ..., uuid: _Optional[str] = ..., update_meta: _Optional[_Union[_common_pb2.UpdateMeta, _Mapping]] = ..., first_name: _Optional[str] = ..., last_name: _Optional[str] = ..., department: _Optional[str] = ..., phone: _Optional[str] = ..., email: _Optional[str] = ...) -> None: ...
+    def __init__(self, tenant: _Optional[str] = ..., uuid: _Optional[str] = ..., first_name: _Optional[str] = ..., last_name: _Optional[str] = ..., department: _Optional[str] = ..., phone: _Optional[str] = ..., email: _Optional[str] = ...) -> None: ...
 
 class ContactServiceUpdateResponse(_message.Message):
     __slots__ = ()

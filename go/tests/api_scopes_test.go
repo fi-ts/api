@@ -122,6 +122,18 @@ func Test_FieldNumbering(t *testing.T) {
 		require.NoError(t, err)
 
 		for _, mt := range fd.GetMessageType() {
+			// Collect all tag numbers that are either defined as fields or
+			// reserved. Reserved tags intentionally create gaps in the field
+			// numbering (e.g. a withdrawn meta/update_meta field), so they must
+			// count as "present" or the contiguity check would flag them.
+			reserved := map[int32]bool{}
+			for _, rr := range mt.GetReservedRange() {
+				// ReservedRange end is exclusive.
+				for n := rr.GetStart(); n < rr.GetEnd(); n++ {
+					reserved[n] = true
+				}
+			}
+
 			var (
 				firstField = true
 				lastNumber int32
@@ -136,8 +148,14 @@ func Test_FieldNumbering(t *testing.T) {
 						// }
 						firstField = false
 					} else {
-						if lastNumber+1 != *field.Number {
-							errs = append(errs, fmt.Errorf("%s %s %s %d != %d", filename, *mt.Name, *field.Name, lastNumber+1, *field.Number))
+						// Advance past any reserved tags sitting between the last
+						// field and this one; those gaps are intentional.
+						expected := lastNumber + 1
+						for reserved[expected] {
+							expected++
+						}
+						if expected != *field.Number {
+							errs = append(errs, fmt.Errorf("%s %s %s %d != %d", filename, *mt.Name, *field.Name, expected, *field.Number))
 						}
 					}
 					lastNumber = *field.Number
@@ -169,6 +187,41 @@ func Test_FieldNumbering(t *testing.T) {
 		}
 	}
 	require.NoError(t, errors.Join(errs...))
+}
+
+// hasReservedName reports whether the message named startMsg in fd, or any
+// same-file message it references (transitively), reserves the given field
+// name. This mirrors the inputFields walk so that Validate*UpdateRequest
+// wrappers are accepted when the nested update request reserves update_meta.
+func hasReservedName(fd *descriptorpb.FileDescriptorProto, startMsg, reservedName string) bool {
+	byName := map[string]*descriptorpb.DescriptorProto{}
+	for _, mt := range fd.GetMessageType() {
+		byName[mt.GetName()] = mt
+	}
+	visited := map[string]bool{}
+	var walk func(name string) bool
+	walk = func(name string) bool {
+		if visited[name] {
+			return false
+		}
+		visited[name] = true
+		mt, ok := byName[name]
+		if !ok {
+			return false
+		}
+		if slices.Contains(mt.GetReservedName(), reservedName) {
+			return true
+		}
+		for _, f := range mt.GetField() {
+			if tn := f.GetTypeName(); tn != "" {
+				if walk(strings.TrimPrefix(tn, ".")) {
+					return true
+				}
+			}
+		}
+		return false
+	}
+	return walk(startMsg)
 }
 
 func validateProto(root string) error {
@@ -282,6 +335,13 @@ func validateProto(root string) error {
 							if field.GetName() == "update_meta" {
 								hasUpdatedAtField = true
 							}
+						}
+						// A product whose upstream cannot enforce locking atomically
+						// omits update_meta and reserves its name instead. Treat a
+						// reserved "update_meta" as satisfying the contract: the tag
+						// is held for a future, atomically-enforced locking field.
+						if !hasUpdatedAtField && hasReservedName(fd, method.GetInputType(), "update_meta") {
+							hasUpdatedAtField = true
 						}
 						updateRequest = mt.GetName()
 						if !hasUpdatedAtField {

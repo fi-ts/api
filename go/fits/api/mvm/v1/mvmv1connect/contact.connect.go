@@ -50,6 +50,8 @@ type ContactServiceClient interface {
 	// Creates a new contact person.
 	Create(context.Context, *v1.ContactServiceCreateRequest) (*v1.ContactServiceCreateResponse, error)
 	// Updates an existing contact person.
+	// The upstream offers no conditional-update mechanism, so no optimistic locking is enforced.
+	// Concurrent edits can overwrite each other.
 	Update(context.Context, *v1.ContactServiceUpdateRequest) (*v1.ContactServiceUpdateResponse, error)
 	// Deletes a contact person.
 	Delete(context.Context, *v1.ContactServiceDeleteRequest) (*v1.ContactServiceDeleteResponse, error)
@@ -144,6 +146,8 @@ type ContactServiceHandler interface {
 	// Creates a new contact person.
 	Create(context.Context, *v1.ContactServiceCreateRequest) (*v1.ContactServiceCreateResponse, error)
 	// Updates an existing contact person.
+	// The upstream offers no conditional-update mechanism, so no optimistic locking is enforced.
+	// Concurrent edits can overwrite each other.
 	Update(context.Context, *v1.ContactServiceUpdateRequest) (*v1.ContactServiceUpdateResponse, error)
 	// Deletes a contact person.
 	Delete(context.Context, *v1.ContactServiceDeleteRequest) (*v1.ContactServiceDeleteResponse, error)

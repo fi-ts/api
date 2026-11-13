@@ -207,8 +207,6 @@ type PublicCloudVM struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// UUID of this VM.
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	// Metadata for this VM including labels.
-	Meta *v1.Meta `protobuf:"bytes,2,opt,name=meta,proto3" json:"meta,omitempty"`
 	// Name of the VM.
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	// Tenant this VM belongs to.
@@ -218,7 +216,9 @@ type PublicCloudVM struct {
 	// Size of the VM.
 	Size Size `protobuf:"varint,6,opt,name=size,proto3,enum=fits.api.pcvm.v1.Size" json:"size,omitempty"`
 	// The status of the VM.
-	Status        *Status `protobuf:"bytes,7,opt,name=status,proto3" json:"status,omitempty"`
+	Status *Status `protobuf:"bytes,7,opt,name=status,proto3" json:"status,omitempty"`
+	// Labels on this VM.
+	Labels        *v1.Labels `protobuf:"bytes,8,opt,name=labels,proto3,oneof" json:"labels,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -260,13 +260,6 @@ func (x *PublicCloudVM) GetUuid() string {
 	return ""
 }
 
-func (x *PublicCloudVM) GetMeta() *v1.Meta {
-	if x != nil {
-		return x.Meta
-	}
-	return nil
-}
-
 func (x *PublicCloudVM) GetName() string {
 	if x != nil {
 		return x.Name
@@ -298,6 +291,13 @@ func (x *PublicCloudVM) GetSize() Size {
 func (x *PublicCloudVM) GetStatus() *Status {
 	if x != nil {
 		return x.Status
+	}
+	return nil
+}
+
+func (x *PublicCloudVM) GetLabels() *v1.Labels {
+	if x != nil {
+		return x.Labels
 	}
 	return nil
 }
@@ -752,14 +752,14 @@ func (x *PublicCloudVMServiceListResponse) GetVms() []*PublicCloudVM {
 }
 
 // The request to update a VM.
+// The upstream offers no conditional-update mechanism, so no optimistic locking is enforced.
+// Concurrent edits can overwrite each other. Tag 3 is reserved for a future update_meta, should the upstream gain atomic conditional-update support.
 type PublicCloudVMServiceUpdateRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// UUID of the VM to update.
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	// UUID of the project this VM belongs to.
 	ProjectUuid string `protobuf:"bytes,2,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
-	// UpdateMeta contains the timestamp and strategy to be used in this update request.
-	UpdateMeta *v1.UpdateMeta `protobuf:"bytes,3,opt,name=update_meta,json=updateMeta,proto3" json:"update_meta,omitempty"`
 	// The labels to update.
 	Labels *v1.UpdateLabels `protobuf:"bytes,4,opt,name=labels,proto3,oneof" json:"labels,omitempty"`
 	// Name of the VM.
@@ -813,13 +813,6 @@ func (x *PublicCloudVMServiceUpdateRequest) GetProjectUuid() string {
 		return x.ProjectUuid
 	}
 	return ""
-}
-
-func (x *PublicCloudVMServiceUpdateRequest) GetUpdateMeta() *v1.UpdateMeta {
-	if x != nil {
-		return x.UpdateMeta
-	}
-	return nil
 }
 
 func (x *PublicCloudVMServiceUpdateRequest) GetLabels() *v1.UpdateLabels {
@@ -1152,15 +1145,16 @@ var File_fits_api_pcvm_v1_pcvm_proto protoreflect.FileDescriptor
 
 const file_fits_api_pcvm_v1_pcvm_proto_rawDesc = "" +
 	"\n" +
-	"\x1bfits/api/pcvm/v1/pcvm.proto\x12\x10fits.api.pcvm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xa5\x02\n" +
+	"\x1bfits/api/pcvm/v1/pcvm.proto\x12\x10fits.api.pcvm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xc7\x02\n" +
 	"\rPublicCloudVM\x12\x1c\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12%\n" +
-	"\x04meta\x18\x02 \x01(\v2\x11.fits.api.v1.MetaR\x04meta\x12\x1f\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x1f\n" +
 	"\x04name\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x04name\x12#\n" +
 	"\x06tenant\x18\x04 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12+\n" +
 	"\fproject_uuid\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12*\n" +
 	"\x04size\x18\x06 \x01(\x0e2\x16.fits.api.pcvm.v1.SizeR\x04size\x120\n" +
-	"\x06status\x18\a \x01(\v2\x18.fits.api.pcvm.v1.StatusR\x06status\"\x93\x01\n" +
+	"\x06status\x18\a \x01(\v2\x18.fits.api.pcvm.v1.StatusR\x06status\x120\n" +
+	"\x06labels\x18\b \x01(\v2\x13.fits.api.v1.LabelsH\x00R\x06labels\x88\x01\x01B\t\n" +
+	"\a_labelsJ\x04\b\x02\x10\x03R\x04meta\"\x93\x01\n" +
 	"\x06Status\x12-\n" +
 	"\x05state\x18\x01 \x01(\x0e2\x17.fits.api.pcvm.v1.StateR\x05state\x12\x1f\n" +
 	"\x04info\x18\x02 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\x04info\x129\n" +
@@ -1187,18 +1181,16 @@ const file_fits_api_pcvm_v1_pcvm_proto_rawDesc = "" +
 	"\x06paging\x18\x02 \x01(\v2\x13.fits.api.v1.PagingR\x06paging\x12:\n" +
 	"\x05query\x18\x03 \x01(\v2$.fits.api.pcvm.v1.PublicCloudVMQueryR\x05query\"U\n" +
 	" PublicCloudVMServiceListResponse\x121\n" +
-	"\x03vms\x18\x01 \x03(\v2\x1f.fits.api.pcvm.v1.PublicCloudVMR\x03vms\"\xdc\x02\n" +
+	"\x03vms\x18\x01 \x03(\v2\x1f.fits.api.pcvm.v1.PublicCloudVMR\x03vms\"\xad\x02\n" +
 	"!PublicCloudVMServiceUpdateRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
-	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12@\n" +
-	"\vupdate_meta\x18\x03 \x01(\v2\x17.fits.api.v1.UpdateMetaB\x06\xbaH\x03\xc8\x01\x01R\n" +
-	"updateMeta\x126\n" +
+	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x126\n" +
 	"\x06labels\x18\x04 \x01(\v2\x19.fits.api.v1.UpdateLabelsH\x00R\x06labels\x88\x01\x01\x12$\n" +
 	"\x04name\x18\x05 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01H\x01R\x04name\x88\x01\x01\x12/\n" +
 	"\x04size\x18\x06 \x01(\x0e2\x16.fits.api.pcvm.v1.SizeH\x02R\x04size\x88\x01\x01B\t\n" +
 	"\a_labelsB\a\n" +
 	"\x05_nameB\a\n" +
-	"\x05_size\"U\n" +
+	"\x05_sizeJ\x04\b\x03\x10\x04R\vupdate_meta\"U\n" +
 	"\"PublicCloudVMServiceUpdateResponse\x12/\n" +
 	"\x02vm\x18\x01 \x01(\v2\x1f.fits.api.pcvm.v1.PublicCloudVMR\x02vm\"n\n" +
 	"!PublicCloudVMServiceDeleteRequest\x12\x1c\n" +
@@ -1282,51 +1274,48 @@ var file_fits_api_pcvm_v1_pcvm_proto_goTypes = []any{
 	(*PublicCloudVMServiceValidateCreateResponse)(nil), // 17: fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateResponse
 	(*PublicCloudVMServiceValidateUpdateRequest)(nil),  // 18: fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateRequest
 	(*PublicCloudVMServiceValidateUpdateResponse)(nil), // 19: fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateResponse
-	(*v1.Meta)(nil),                                    // 20: fits.api.v1.Meta
-	(*v1.Labels)(nil),                                  // 21: fits.api.v1.Labels
-	(*v1.Paging)(nil),                                  // 22: fits.api.v1.Paging
-	(*v1.UpdateMeta)(nil),                              // 23: fits.api.v1.UpdateMeta
-	(*v1.UpdateLabels)(nil),                            // 24: fits.api.v1.UpdateLabels
+	(*v1.Labels)(nil),                                  // 20: fits.api.v1.Labels
+	(*v1.Paging)(nil),                                  // 21: fits.api.v1.Paging
+	(*v1.UpdateLabels)(nil),                            // 22: fits.api.v1.UpdateLabels
 }
 var file_fits_api_pcvm_v1_pcvm_proto_depIdxs = []int32{
-	20, // 0: fits.api.pcvm.v1.PublicCloudVM.meta:type_name -> fits.api.v1.Meta
-	2,  // 1: fits.api.pcvm.v1.PublicCloudVM.size:type_name -> fits.api.pcvm.v1.Size
-	4,  // 2: fits.api.pcvm.v1.PublicCloudVM.status:type_name -> fits.api.pcvm.v1.Status
+	2,  // 0: fits.api.pcvm.v1.PublicCloudVM.size:type_name -> fits.api.pcvm.v1.Size
+	4,  // 1: fits.api.pcvm.v1.PublicCloudVM.status:type_name -> fits.api.pcvm.v1.Status
+	20, // 2: fits.api.pcvm.v1.PublicCloudVM.labels:type_name -> fits.api.v1.Labels
 	0,  // 3: fits.api.pcvm.v1.Status.state:type_name -> fits.api.pcvm.v1.State
 	1,  // 4: fits.api.pcvm.v1.Status.operation:type_name -> fits.api.pcvm.v1.Operation
-	21, // 5: fits.api.pcvm.v1.PublicCloudVMQuery.labels:type_name -> fits.api.v1.Labels
+	20, // 5: fits.api.pcvm.v1.PublicCloudVMQuery.labels:type_name -> fits.api.v1.Labels
 	3,  // 6: fits.api.pcvm.v1.PublicCloudVMServiceGetResponse.vm:type_name -> fits.api.pcvm.v1.PublicCloudVM
-	21, // 7: fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest.labels:type_name -> fits.api.v1.Labels
+	20, // 7: fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest.labels:type_name -> fits.api.v1.Labels
 	2,  // 8: fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest.size:type_name -> fits.api.pcvm.v1.Size
 	3,  // 9: fits.api.pcvm.v1.PublicCloudVMServiceCreateResponse.vm:type_name -> fits.api.pcvm.v1.PublicCloudVM
-	22, // 10: fits.api.pcvm.v1.PublicCloudVMServiceListRequest.paging:type_name -> fits.api.v1.Paging
+	21, // 10: fits.api.pcvm.v1.PublicCloudVMServiceListRequest.paging:type_name -> fits.api.v1.Paging
 	5,  // 11: fits.api.pcvm.v1.PublicCloudVMServiceListRequest.query:type_name -> fits.api.pcvm.v1.PublicCloudVMQuery
 	3,  // 12: fits.api.pcvm.v1.PublicCloudVMServiceListResponse.vms:type_name -> fits.api.pcvm.v1.PublicCloudVM
-	23, // 13: fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest.update_meta:type_name -> fits.api.v1.UpdateMeta
-	24, // 14: fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest.labels:type_name -> fits.api.v1.UpdateLabels
-	2,  // 15: fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest.size:type_name -> fits.api.pcvm.v1.Size
-	3,  // 16: fits.api.pcvm.v1.PublicCloudVMServiceUpdateResponse.vm:type_name -> fits.api.pcvm.v1.PublicCloudVM
-	8,  // 17: fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateRequest.create:type_name -> fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest
-	12, // 18: fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateRequest.update:type_name -> fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest
-	6,  // 19: fits.api.pcvm.v1.PublicCloudVMService.Get:input_type -> fits.api.pcvm.v1.PublicCloudVMServiceGetRequest
-	8,  // 20: fits.api.pcvm.v1.PublicCloudVMService.Create:input_type -> fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest
-	10, // 21: fits.api.pcvm.v1.PublicCloudVMService.List:input_type -> fits.api.pcvm.v1.PublicCloudVMServiceListRequest
-	12, // 22: fits.api.pcvm.v1.PublicCloudVMService.Update:input_type -> fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest
-	14, // 23: fits.api.pcvm.v1.PublicCloudVMService.Delete:input_type -> fits.api.pcvm.v1.PublicCloudVMServiceDeleteRequest
-	16, // 24: fits.api.pcvm.v1.PublicCloudVMService.ValidateCreate:input_type -> fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateRequest
-	18, // 25: fits.api.pcvm.v1.PublicCloudVMService.ValidateUpdate:input_type -> fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateRequest
-	7,  // 26: fits.api.pcvm.v1.PublicCloudVMService.Get:output_type -> fits.api.pcvm.v1.PublicCloudVMServiceGetResponse
-	9,  // 27: fits.api.pcvm.v1.PublicCloudVMService.Create:output_type -> fits.api.pcvm.v1.PublicCloudVMServiceCreateResponse
-	11, // 28: fits.api.pcvm.v1.PublicCloudVMService.List:output_type -> fits.api.pcvm.v1.PublicCloudVMServiceListResponse
-	13, // 29: fits.api.pcvm.v1.PublicCloudVMService.Update:output_type -> fits.api.pcvm.v1.PublicCloudVMServiceUpdateResponse
-	15, // 30: fits.api.pcvm.v1.PublicCloudVMService.Delete:output_type -> fits.api.pcvm.v1.PublicCloudVMServiceDeleteResponse
-	17, // 31: fits.api.pcvm.v1.PublicCloudVMService.ValidateCreate:output_type -> fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateResponse
-	19, // 32: fits.api.pcvm.v1.PublicCloudVMService.ValidateUpdate:output_type -> fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateResponse
-	26, // [26:33] is the sub-list for method output_type
-	19, // [19:26] is the sub-list for method input_type
-	19, // [19:19] is the sub-list for extension type_name
-	19, // [19:19] is the sub-list for extension extendee
-	0,  // [0:19] is the sub-list for field type_name
+	22, // 13: fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest.labels:type_name -> fits.api.v1.UpdateLabels
+	2,  // 14: fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest.size:type_name -> fits.api.pcvm.v1.Size
+	3,  // 15: fits.api.pcvm.v1.PublicCloudVMServiceUpdateResponse.vm:type_name -> fits.api.pcvm.v1.PublicCloudVM
+	8,  // 16: fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateRequest.create:type_name -> fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest
+	12, // 17: fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateRequest.update:type_name -> fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest
+	6,  // 18: fits.api.pcvm.v1.PublicCloudVMService.Get:input_type -> fits.api.pcvm.v1.PublicCloudVMServiceGetRequest
+	8,  // 19: fits.api.pcvm.v1.PublicCloudVMService.Create:input_type -> fits.api.pcvm.v1.PublicCloudVMServiceCreateRequest
+	10, // 20: fits.api.pcvm.v1.PublicCloudVMService.List:input_type -> fits.api.pcvm.v1.PublicCloudVMServiceListRequest
+	12, // 21: fits.api.pcvm.v1.PublicCloudVMService.Update:input_type -> fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest
+	14, // 22: fits.api.pcvm.v1.PublicCloudVMService.Delete:input_type -> fits.api.pcvm.v1.PublicCloudVMServiceDeleteRequest
+	16, // 23: fits.api.pcvm.v1.PublicCloudVMService.ValidateCreate:input_type -> fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateRequest
+	18, // 24: fits.api.pcvm.v1.PublicCloudVMService.ValidateUpdate:input_type -> fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateRequest
+	7,  // 25: fits.api.pcvm.v1.PublicCloudVMService.Get:output_type -> fits.api.pcvm.v1.PublicCloudVMServiceGetResponse
+	9,  // 26: fits.api.pcvm.v1.PublicCloudVMService.Create:output_type -> fits.api.pcvm.v1.PublicCloudVMServiceCreateResponse
+	11, // 27: fits.api.pcvm.v1.PublicCloudVMService.List:output_type -> fits.api.pcvm.v1.PublicCloudVMServiceListResponse
+	13, // 28: fits.api.pcvm.v1.PublicCloudVMService.Update:output_type -> fits.api.pcvm.v1.PublicCloudVMServiceUpdateResponse
+	15, // 29: fits.api.pcvm.v1.PublicCloudVMService.Delete:output_type -> fits.api.pcvm.v1.PublicCloudVMServiceDeleteResponse
+	17, // 30: fits.api.pcvm.v1.PublicCloudVMService.ValidateCreate:output_type -> fits.api.pcvm.v1.PublicCloudVMServiceValidateCreateResponse
+	19, // 31: fits.api.pcvm.v1.PublicCloudVMService.ValidateUpdate:output_type -> fits.api.pcvm.v1.PublicCloudVMServiceValidateUpdateResponse
+	25, // [25:32] is the sub-list for method output_type
+	18, // [18:25] is the sub-list for method input_type
+	18, // [18:18] is the sub-list for extension type_name
+	18, // [18:18] is the sub-list for extension extendee
+	0,  // [0:18] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_pcvm_v1_pcvm_proto_init() }
@@ -1334,6 +1323,7 @@ func file_fits_api_pcvm_v1_pcvm_proto_init() {
 	if File_fits_api_pcvm_v1_pcvm_proto != nil {
 		return
 	}
+	file_fits_api_pcvm_v1_pcvm_proto_msgTypes[0].OneofWrappers = []any{}
 	file_fits_api_pcvm_v1_pcvm_proto_msgTypes[2].OneofWrappers = []any{}
 	file_fits_api_pcvm_v1_pcvm_proto_msgTypes[9].OneofWrappers = []any{}
 	type x struct{}

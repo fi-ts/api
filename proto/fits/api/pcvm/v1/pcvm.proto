@@ -32,6 +32,8 @@ service PublicCloudVMService {
   }
 
   // Updates a VM.
+  // The upstream offers no conditional-update mechanism, so no optimistic locking is enforced.
+  // Concurrent edits can overwrite each other.
   rpc Update(PublicCloudVMServiceUpdateRequest) returns (PublicCloudVMServiceUpdateResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
@@ -66,8 +68,8 @@ service PublicCloudVMService {
 message PublicCloudVM {
   // UUID of this VM.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
-  // Metadata for this VM including labels.
-  fits.api.v1.Meta meta = 2;
+  reserved 2; // meta - the upstream cannot provide created_at/updated_at/generation yet
+  reserved "meta";
   // Name of the VM.
   string name = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // Tenant this VM belongs to.
@@ -80,6 +82,9 @@ message PublicCloudVM {
 
   // The status of the VM.
   Status status = 7;
+
+  // Labels on this VM.
+  optional fits.api.v1.Labels labels = 8;
 }
 
 // The Status of a VM.
@@ -190,13 +195,15 @@ message PublicCloudVMServiceListResponse {
 }
 
 // The request to update a VM.
+// The upstream offers no conditional-update mechanism, so no optimistic locking is enforced.
+// Concurrent edits can overwrite each other. Tag 3 is reserved for a future update_meta, should the upstream gain atomic conditional-update support.
 message PublicCloudVMServiceUpdateRequest {
   // UUID of the VM to update.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
   // UUID of the project this VM belongs to.
   string project_uuid = 2 [(buf.validate.field).string.uuid = true];
-  // UpdateMeta contains the timestamp and strategy to be used in this update request.
-  fits.api.v1.UpdateMeta update_meta = 3 [(buf.validate.field).required = true];
+  reserved 3; // update_meta - reserved for optimistic locking if the upstream ever supports it
+  reserved "update_meta";
 
   // The labels to update.
   optional fits.api.v1.UpdateLabels labels = 4;

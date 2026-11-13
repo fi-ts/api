@@ -1,5 +1,5 @@
 import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import type { Labels, Meta, Paging, UpdateLabels, UpdateMeta } from "../../v1/common_pb.js";
+import type { Labels, Paging, UpdateLabels } from "../../v1/common_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file fits/api/pcvm/v1/pcvm.proto.
@@ -17,12 +17,6 @@ export type PublicCloudVM = Message<"fits.api.pcvm.v1.PublicCloudVM"> & {
      * @generated from field: string uuid = 1;
      */
     uuid: string;
-    /**
-     * Metadata for this VM including labels.
-     *
-     * @generated from field: fits.api.v1.Meta meta = 2;
-     */
-    meta?: Meta | undefined;
     /**
      * Name of the VM.
      *
@@ -53,6 +47,12 @@ export type PublicCloudVM = Message<"fits.api.pcvm.v1.PublicCloudVM"> & {
      * @generated from field: fits.api.pcvm.v1.Status status = 7;
      */
     status?: Status | undefined;
+    /**
+     * Labels on this VM.
+     *
+     * @generated from field: optional fits.api.v1.Labels labels = 8;
+     */
+    labels?: Labels | undefined;
 };
 /**
  * Describes the message fits.api.pcvm.v1.PublicCloudVM.
@@ -259,6 +259,8 @@ export type PublicCloudVMServiceListResponse = Message<"fits.api.pcvm.v1.PublicC
 export declare const PublicCloudVMServiceListResponseSchema: GenMessage<PublicCloudVMServiceListResponse>;
 /**
  * The request to update a VM.
+ * The upstream offers no conditional-update mechanism, so no optimistic locking is enforced.
+ * Concurrent edits can overwrite each other. Tag 3 is reserved for a future update_meta, should the upstream gain atomic conditional-update support.
  *
  * @generated from message fits.api.pcvm.v1.PublicCloudVMServiceUpdateRequest
  */
@@ -275,12 +277,6 @@ export type PublicCloudVMServiceUpdateRequest = Message<"fits.api.pcvm.v1.Public
      * @generated from field: string project_uuid = 2;
      */
     projectUuid: string;
-    /**
-     * UpdateMeta contains the timestamp and strategy to be used in this update request.
-     *
-     * @generated from field: fits.api.v1.UpdateMeta update_meta = 3;
-     */
-    updateMeta?: UpdateMeta | undefined;
     /**
      * The labels to update.
      *
@@ -573,6 +569,8 @@ export declare const PublicCloudVMService: GenService<{
     };
     /**
      * Updates a VM.
+     * The upstream offers no conditional-update mechanism, so no optimistic locking is enforced.
+     * Concurrent edits can overwrite each other.
      *
      * @generated from rpc fits.api.pcvm.v1.PublicCloudVMService.Update
      */
