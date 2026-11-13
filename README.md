@@ -82,10 +82,8 @@ message ProjectServiceCreateRequest {
   string name = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // Description of this project
   string description = 3 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
-  // Avatar URL of the project
-  optional string avatar_url = 4;
   // Labels on the project
-  Labels labels = 5;
+  Labels labels = 4;
 }
 ```
 

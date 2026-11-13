@@ -10,20 +10,18 @@ from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class Project(_message.Message):
-    __slots__ = ("uuid", "meta", "name", "description", "tenant", "avatar_url")
+    __slots__ = ("uuid", "meta", "name", "description", "tenant")
     UUID_FIELD_NUMBER: _ClassVar[int]
     META_FIELD_NUMBER: _ClassVar[int]
     NAME_FIELD_NUMBER: _ClassVar[int]
     DESCRIPTION_FIELD_NUMBER: _ClassVar[int]
     TENANT_FIELD_NUMBER: _ClassVar[int]
-    AVATAR_URL_FIELD_NUMBER: _ClassVar[int]
     uuid: str
     meta: _common_pb2.Meta
     name: str
     description: str
     tenant: str
-    avatar_url: str
-    def __init__(self, uuid: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., name: _Optional[str] = ..., description: _Optional[str] = ..., tenant: _Optional[str] = ..., avatar_url: _Optional[str] = ...) -> None: ...
+    def __init__(self, uuid: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., name: _Optional[str] = ..., description: _Optional[str] = ..., tenant: _Optional[str] = ...) -> None: ...
 
 class ProjectServiceListRequest(_message.Message):
     __slots__ = ("id", "name", "tenant", "labels")
@@ -56,18 +54,16 @@ class ProjectServiceGetResponse(_message.Message):
     def __init__(self, project: _Optional[_Union[Project, _Mapping]] = ...) -> None: ...
 
 class ProjectServiceCreateRequest(_message.Message):
-    __slots__ = ("tenant", "name", "description", "avatar_url", "labels")
+    __slots__ = ("tenant", "name", "description", "labels")
     TENANT_FIELD_NUMBER: _ClassVar[int]
     NAME_FIELD_NUMBER: _ClassVar[int]
     DESCRIPTION_FIELD_NUMBER: _ClassVar[int]
-    AVATAR_URL_FIELD_NUMBER: _ClassVar[int]
     LABELS_FIELD_NUMBER: _ClassVar[int]
     tenant: str
     name: str
     description: str
-    avatar_url: str
     labels: _common_pb2.Labels
-    def __init__(self, tenant: _Optional[str] = ..., name: _Optional[str] = ..., description: _Optional[str] = ..., avatar_url: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.Labels, _Mapping]] = ...) -> None: ...
+    def __init__(self, tenant: _Optional[str] = ..., name: _Optional[str] = ..., description: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.Labels, _Mapping]] = ...) -> None: ...
 
 class ProjectServiceCreateResponse(_message.Message):
     __slots__ = ("project",)
@@ -88,20 +84,18 @@ class ProjectServiceDeleteResponse(_message.Message):
     def __init__(self, project: _Optional[_Union[Project, _Mapping]] = ...) -> None: ...
 
 class ProjectServiceUpdateRequest(_message.Message):
-    __slots__ = ("project", "update_meta", "name", "description", "avatar_url", "labels")
+    __slots__ = ("project", "update_meta", "name", "description", "labels")
     PROJECT_FIELD_NUMBER: _ClassVar[int]
     UPDATE_META_FIELD_NUMBER: _ClassVar[int]
     NAME_FIELD_NUMBER: _ClassVar[int]
     DESCRIPTION_FIELD_NUMBER: _ClassVar[int]
-    AVATAR_URL_FIELD_NUMBER: _ClassVar[int]
     LABELS_FIELD_NUMBER: _ClassVar[int]
     project: str
     update_meta: _common_pb2.UpdateMeta
     name: str
     description: str
-    avatar_url: str
     labels: _common_pb2.UpdateLabels
-    def __init__(self, project: _Optional[str] = ..., update_meta: _Optional[_Union[_common_pb2.UpdateMeta, _Mapping]] = ..., name: _Optional[str] = ..., description: _Optional[str] = ..., avatar_url: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.UpdateLabels, _Mapping]] = ...) -> None: ...
+    def __init__(self, project: _Optional[str] = ..., update_meta: _Optional[_Union[_common_pb2.UpdateMeta, _Mapping]] = ..., name: _Optional[str] = ..., description: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.UpdateLabels, _Mapping]] = ...) -> None: ...
 
 class ProjectServiceUpdateResponse(_message.Message):
     __slots__ = ("project",)
