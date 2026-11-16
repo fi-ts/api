@@ -322,19 +322,25 @@ class MVMServiceDeleteDiskResponse(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...
 
+class Disk(_message.Message):
+    __slots__ = ("linux", "windows")
+    LINUX_FIELD_NUMBER: _ClassVar[int]
+    WINDOWS_FIELD_NUMBER: _ClassVar[int]
+    linux: LinuxDisk
+    windows: WindowsDisk
+    def __init__(self, linux: _Optional[_Union[LinuxDisk, _Mapping]] = ..., windows: _Optional[_Union[WindowsDisk, _Mapping]] = ...) -> None: ...
+
 class MVMServiceAddDiskRequest(_message.Message):
-    __slots__ = ("uuid", "project_uuid", "order_number", "linux", "windows")
+    __slots__ = ("uuid", "project_uuid", "order_number", "disks")
     UUID_FIELD_NUMBER: _ClassVar[int]
     PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
     ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
-    LINUX_FIELD_NUMBER: _ClassVar[int]
-    WINDOWS_FIELD_NUMBER: _ClassVar[int]
+    DISKS_FIELD_NUMBER: _ClassVar[int]
     uuid: str
     project_uuid: str
     order_number: str
-    linux: LinuxDisk
-    windows: WindowsDisk
-    def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ..., linux: _Optional[_Union[LinuxDisk, _Mapping]] = ..., windows: _Optional[_Union[WindowsDisk, _Mapping]] = ...) -> None: ...
+    disks: _containers.RepeatedCompositeFieldContainer[Disk]
+    def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ..., disks: _Optional[_Iterable[_Union[Disk, _Mapping]]] = ...) -> None: ...
 
 class MVMServiceUpdateDiskRequest(_message.Message):
     __slots__ = ("uuid", "disk_uuid", "project_uuid", "order_number", "auto_extend", "size")

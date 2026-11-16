@@ -493,6 +493,10 @@
             <ul>
               
                 <li>
+                  <a href="#fits.api.mvm.v1.Disk"><span class="badge">M</span>Disk</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.mvm.v1.InitialNetworkInterface"><span class="badge">M</span>InitialNetworkInterface</a>
                 </li>
               
@@ -2501,6 +2505,37 @@ having a direct membership within the tenant.</p></td>
       <p></p>
 
       
+        <h3 id="fits.api.mvm.v1.Disk">Disk</h3>
+        <p>Disk contains either a Windows or Linux disk.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>linux</td>
+                  <td><a href="#fits.api.mvm.v1.LinuxDisk">LinuxDisk</a></td>
+                  <td></td>
+                  <td><p>Linux data disks. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>windows</td>
+                  <td><a href="#fits.api.mvm.v1.WindowsDisk">WindowsDisk</a></td>
+                  <td></td>
+                  <td><p>Windows data disks. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="fits.api.mvm.v1.InitialNetworkInterface">InitialNetworkInterface</h3>
         <p>The InitialNetworkInterface needs to be provided at creation of a MVM.</p><p>It provides the UUID of the target VLAN for the MVM's first network interface.</p><p>The created MVM comes with a NetworkInterface connected to this VLAN.</p>
 
@@ -2657,17 +2692,10 @@ API in responses. </p></td>
                 </tr>
               
                 <tr>
-                  <td>linux</td>
-                  <td><a href="#fits.api.mvm.v1.LinuxDisk">LinuxDisk</a></td>
-                  <td></td>
-                  <td><p>Linux data disk. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>windows</td>
-                  <td><a href="#fits.api.mvm.v1.WindowsDisk">WindowsDisk</a></td>
-                  <td></td>
-                  <td><p>Windows data disk. </p></td>
+                  <td>disks</td>
+                  <td><a href="#fits.api.mvm.v1.Disk">Disk</a></td>
+                  <td>repeated</td>
+                  <td><p>Disks to add. </p></td>
                 </tr>
               
             </tbody>
