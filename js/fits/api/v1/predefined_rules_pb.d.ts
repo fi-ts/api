@@ -65,6 +65,12 @@ export declare const is_ipv4_cidr: GenExtension<StringRules, boolean>;
  */
 export declare const is_phone: GenExtension<StringRules, boolean>;
 /**
+ * IsNameCode validates if the given string is a 4-character code consisting of digits and letters.
+ *
+ * @generated from extension: optional bool is_name_code = 80048964;
+ */
+export declare const is_name_code: GenExtension<StringRules, boolean>;
+/**
  * IsTenantSubjectPermission returns true if name field satisfies our requirements.
  *
  * @generated from extension: optional bool is_tenant_subject_permission = 80048962;

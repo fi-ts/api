@@ -392,11 +392,11 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
      */
     projectUuid: string;
     /**
-     * Optional name; the FQDN is derived from it.
+     * Required 4-character code (digits and letters); the FQDN is derived from it.
      *
-     * @generated from field: optional string name = 2;
+     * @generated from field: string name_code = 2;
      */
-    name?: string | undefined;
+    nameCode: string;
     /**
      * UUID of the operating system image to install.
      *
@@ -874,7 +874,14 @@ export declare const MVMServiceValidateUpdateDiskResponseSchema: GenMessage<MVMS
  *
  * @generated from message fits.api.mvm.v1.MVMServiceAddDiskResponse
  */
-export type MVMServiceAddDiskResponse = Message<"fits.api.mvm.v1.MVMServiceAddDiskResponse"> & {};
+export type MVMServiceAddDiskResponse = Message<"fits.api.mvm.v1.MVMServiceAddDiskResponse"> & {
+    /**
+     * UUID of the created disk.
+     *
+     * @generated from field: string uuid = 1;
+     */
+    uuid: string;
+};
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceAddDiskResponse.
  * Use `create(MVMServiceAddDiskResponseSchema)` to create a new message.
@@ -903,6 +910,43 @@ export type MVMServiceDeleteDiskResponse = Message<"fits.api.mvm.v1.MVMServiceDe
  */
 export declare const MVMServiceDeleteDiskResponseSchema: GenMessage<MVMServiceDeleteDiskResponse>;
 /**
+ * Disk contains either a Windows or Linux disk.
+ *
+ * @generated from message fits.api.mvm.v1.Disk
+ */
+export type Disk = Message<"fits.api.mvm.v1.Disk"> & {
+    /**
+     * OS-specific disk specification; must match the MVM's OS type.
+     *
+     * @generated from oneof fits.api.mvm.v1.Disk.disk
+     */
+    disk: {
+        /**
+         * Linux data disks.
+         *
+         * @generated from field: fits.api.mvm.v1.LinuxDisk linux = 4;
+         */
+        value: LinuxDisk;
+        case: "linux";
+    } | {
+        /**
+         * Windows data disks.
+         *
+         * @generated from field: fits.api.mvm.v1.WindowsDisk windows = 5;
+         */
+        value: WindowsDisk;
+        case: "windows";
+    } | {
+        case: undefined;
+        value?: undefined;
+    };
+};
+/**
+ * Describes the message fits.api.mvm.v1.Disk.
+ * Use `create(DiskSchema)` to create a new message.
+ */
+export declare const DiskSchema: GenMessage<Disk>;
+/**
  * Request to order an additional data disk for a MVM.
  *
  * @generated from message fits.api.mvm.v1.MVMServiceAddDiskRequest
@@ -927,30 +971,11 @@ export type MVMServiceAddDiskRequest = Message<"fits.api.mvm.v1.MVMServiceAddDis
      */
     orderNumber: string;
     /**
-     * OS-specific disk specification; must match the MVM's OS type.
+     * Disks to add.
      *
-     * @generated from oneof fits.api.mvm.v1.MVMServiceAddDiskRequest.disk
+     * @generated from field: repeated fits.api.mvm.v1.Disk disks = 4;
      */
-    disk: {
-        /**
-         * Linux data disk.
-         *
-         * @generated from field: fits.api.mvm.v1.LinuxDisk linux = 4;
-         */
-        value: LinuxDisk;
-        case: "linux";
-    } | {
-        /**
-         * Windows data disk.
-         *
-         * @generated from field: fits.api.mvm.v1.WindowsDisk windows = 5;
-         */
-        value: WindowsDisk;
-        case: "windows";
-    } | {
-        case: undefined;
-        value?: undefined;
-    };
+    disks: Disk[];
 };
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceAddDiskRequest.
@@ -1048,7 +1073,14 @@ export declare const MVMServiceDeleteDiskRequestSchema: GenMessage<MVMServiceDel
  *
  * @generated from message fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse
  */
-export type MVMServiceAddNetworkInterfaceResponse = Message<"fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse"> & {};
+export type MVMServiceAddNetworkInterfaceResponse = Message<"fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse"> & {
+    /**
+     * UUID of the created network interface.
+     *
+     * @generated from field: string uuid = 1;
+     */
+    uuid: string;
+};
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse.
  * Use `create(MVMServiceAddNetworkInterfaceResponseSchema)` to create a new message.

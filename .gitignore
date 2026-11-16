@@ -1,2 +1,3 @@
 openapi.json
 node_modules
+proto/protoc-gen-go-mcp

@@ -179,9 +179,9 @@ class MVMServiceCreateLinuxRequest(_message.Message):
     def __init__(self, ldap_uuid: _Optional[str] = ..., disks: _Optional[_Iterable[_Union[LinuxDisk, _Mapping]]] = ...) -> None: ...
 
 class MVMServiceCreateRequest(_message.Message):
-    __slots__ = ("project_uuid", "name", "os_uuid", "location_uuid", "contact_uuid", "cpu", "ram", "order_number", "labels", "backup", "encrypted", "availability", "service_class", "windows", "linux", "initial_network_interface")
+    __slots__ = ("project_uuid", "name_code", "os_uuid", "location_uuid", "contact_uuid", "cpu", "ram", "order_number", "labels", "backup", "encrypted", "availability", "service_class", "windows", "linux", "initial_network_interface")
     PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
-    NAME_FIELD_NUMBER: _ClassVar[int]
+    NAME_CODE_FIELD_NUMBER: _ClassVar[int]
     OS_UUID_FIELD_NUMBER: _ClassVar[int]
     LOCATION_UUID_FIELD_NUMBER: _ClassVar[int]
     CONTACT_UUID_FIELD_NUMBER: _ClassVar[int]
@@ -197,7 +197,7 @@ class MVMServiceCreateRequest(_message.Message):
     LINUX_FIELD_NUMBER: _ClassVar[int]
     INITIAL_NETWORK_INTERFACE_FIELD_NUMBER: _ClassVar[int]
     project_uuid: str
-    name: str
+    name_code: str
     os_uuid: str
     location_uuid: str
     contact_uuid: str
@@ -212,7 +212,7 @@ class MVMServiceCreateRequest(_message.Message):
     windows: MVMServiceCreateWindowsRequest
     linux: MVMServiceCreateLinuxRequest
     initial_network_interface: InitialNetworkInterface
-    def __init__(self, project_uuid: _Optional[str] = ..., name: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., order_number: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.Labels, _Mapping]] = ..., backup: _Optional[bool] = ..., encrypted: _Optional[bool] = ..., availability: _Optional[_Union[Availability, str]] = ..., service_class: _Optional[_Union[ServiceClass, str]] = ..., windows: _Optional[_Union[MVMServiceCreateWindowsRequest, _Mapping]] = ..., linux: _Optional[_Union[MVMServiceCreateLinuxRequest, _Mapping]] = ..., initial_network_interface: _Optional[_Union[InitialNetworkInterface, _Mapping]] = ...) -> None: ...
+    def __init__(self, project_uuid: _Optional[str] = ..., name_code: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., order_number: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.Labels, _Mapping]] = ..., backup: _Optional[bool] = ..., encrypted: _Optional[bool] = ..., availability: _Optional[_Union[Availability, str]] = ..., service_class: _Optional[_Union[ServiceClass, str]] = ..., windows: _Optional[_Union[MVMServiceCreateWindowsRequest, _Mapping]] = ..., linux: _Optional[_Union[MVMServiceCreateLinuxRequest, _Mapping]] = ..., initial_network_interface: _Optional[_Union[InitialNetworkInterface, _Mapping]] = ...) -> None: ...
 
 class LinuxDisk(_message.Message):
     __slots__ = ("uuid", "label", "auto_extend", "size", "mount_point", "disk_type")
@@ -333,8 +333,10 @@ class MVMServiceValidateUpdateDiskResponse(_message.Message):
     def __init__(self) -> None: ...
 
 class MVMServiceAddDiskResponse(_message.Message):
-    __slots__ = ()
-    def __init__(self) -> None: ...
+    __slots__ = ("uuid",)
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    def __init__(self, uuid: _Optional[str] = ...) -> None: ...
 
 class MVMServiceUpdateDiskResponse(_message.Message):
     __slots__ = ()
@@ -344,19 +346,25 @@ class MVMServiceDeleteDiskResponse(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...
 
+class Disk(_message.Message):
+    __slots__ = ("linux", "windows")
+    LINUX_FIELD_NUMBER: _ClassVar[int]
+    WINDOWS_FIELD_NUMBER: _ClassVar[int]
+    linux: LinuxDisk
+    windows: WindowsDisk
+    def __init__(self, linux: _Optional[_Union[LinuxDisk, _Mapping]] = ..., windows: _Optional[_Union[WindowsDisk, _Mapping]] = ...) -> None: ...
+
 class MVMServiceAddDiskRequest(_message.Message):
-    __slots__ = ("uuid", "project_uuid", "order_number", "linux", "windows")
+    __slots__ = ("uuid", "project_uuid", "order_number", "disks")
     UUID_FIELD_NUMBER: _ClassVar[int]
     PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
     ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
-    LINUX_FIELD_NUMBER: _ClassVar[int]
-    WINDOWS_FIELD_NUMBER: _ClassVar[int]
+    DISKS_FIELD_NUMBER: _ClassVar[int]
     uuid: str
     project_uuid: str
     order_number: str
-    linux: LinuxDisk
-    windows: WindowsDisk
-    def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ..., linux: _Optional[_Union[LinuxDisk, _Mapping]] = ..., windows: _Optional[_Union[WindowsDisk, _Mapping]] = ...) -> None: ...
+    disks: _containers.RepeatedCompositeFieldContainer[Disk]
+    def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ..., disks: _Optional[_Iterable[_Union[Disk, _Mapping]]] = ...) -> None: ...
 
 class MVMServiceUpdateDiskRequest(_message.Message):
     __slots__ = ("uuid", "disk_uuid", "project_uuid", "order_number", "auto_extend", "size")
@@ -387,8 +395,10 @@ class MVMServiceDeleteDiskRequest(_message.Message):
     def __init__(self, uuid: _Optional[str] = ..., disk_uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ...) -> None: ...
 
 class MVMServiceAddNetworkInterfaceResponse(_message.Message):
-    __slots__ = ()
-    def __init__(self) -> None: ...
+    __slots__ = ("uuid",)
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    def __init__(self, uuid: _Optional[str] = ...) -> None: ...
 
 class MVMServiceMoveNetworkInterfaceResponse(_message.Message):
     __slots__ = ()

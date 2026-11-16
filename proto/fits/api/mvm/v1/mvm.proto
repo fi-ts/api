@@ -316,8 +316,8 @@ message MVMServiceCreateLinuxRequest {
 message MVMServiceCreateRequest {
   // UUID of the project this MVM belongs to.
   string project_uuid = 1 [(buf.validate.field).string.uuid = true];
-  // Optional name; the FQDN is derived from it.
-  optional string name = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Required 4-character code (digits and letters); the FQDN is derived from it.
+  string name_code = 2 [(buf.validate.field).string.(fits.api.v1.is_name_code) = true];
   // UUID of the operating system image to install.
   string os_uuid = 3 [(buf.validate.field).string.uuid = true];
   // UUID of the datacenter location; the MVM is scheduled into one data center within it.
@@ -497,13 +497,28 @@ message MVMServiceValidateUpdateDiskResponse {}
 // can be inspected via Get.
 
 // Response for AddDisk.
-message MVMServiceAddDiskResponse {}
+message MVMServiceAddDiskResponse {
+  // UUID of the created disk.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+}
 
 // Response for UpdateDisk.
 message MVMServiceUpdateDiskResponse {}
 
 // Response for DeleteDisk.
 message MVMServiceDeleteDiskResponse {}
+
+// Disk contains either a Windows or Linux disk.
+message Disk {
+  // OS-specific disk specification; must match the MVM's OS type.
+  oneof disk {
+    option (buf.validate.oneof).required = true;
+    // Linux data disks.
+    LinuxDisk linux = 4;
+    // Windows data disks.
+    WindowsDisk windows = 5;
+  }
+}
 
 // Request to order an additional data disk for a MVM.
 message MVMServiceAddDiskRequest {
@@ -513,14 +528,8 @@ message MVMServiceAddDiskRequest {
   string project_uuid = 2 [(buf.validate.field).string.uuid = true];
   // Customer reference for this operation.
   string order_number = 3;
-  // OS-specific disk specification; must match the MVM's OS type.
-  oneof disk {
-    option (buf.validate.oneof).required = true;
-    // Linux data disk.
-    LinuxDisk linux = 4;
-    // Windows data disk.
-    WindowsDisk windows = 5;
-  }
+  // Disks to add.
+  repeated Disk disks = 4;
 }
 
 // Request to change an existing disk; only size and auto-extend are
@@ -558,7 +567,10 @@ message MVMServiceDeleteDiskRequest {
 // interfaces can be inspected via Get.
 
 // Response for AddNetworkInterface.
-message MVMServiceAddNetworkInterfaceResponse {}
+message MVMServiceAddNetworkInterfaceResponse {
+  // UUID of the created network interface.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+}
 
 // Response for MoveNetworkInterface.
 message MVMServiceMoveNetworkInterfaceResponse {}
