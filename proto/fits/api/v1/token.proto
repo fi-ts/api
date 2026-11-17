@@ -65,14 +65,14 @@ message Token {
   // TokenType describes the type of this token
   TokenType token_type = 8 [(buf.validate.field).enum.defined_only = true];
   // ProjectRoles associates a project id with the corresponding role of the token owner
-  map<string, ProjectRole> project_roles = 9;
+  map<string, ProjectContext> project_roles = 9 [
+    (buf.validate.field).map.(fits.api.v1.project_roles_keys_valid) = true,
+    (buf.validate.field).map.(fits.api.v1.keys_trimmed) = true
+  ];
   // TenantRoles associates a tenant id with the corresponding role of the token owner.
-  map<string, TenantRole> tenant_roles = 10 [
+  map<string, TenantContext> tenant_roles = 10 [
     (buf.validate.field).map.(fits.api.v1.tenant_roles_keys_valid) = true,
-    (buf.validate.field).map.(fits.api.v1.keys_trimmed) = true,
-    (buf.validate.field).map.values = {
-      enum: {defined_only: true}
-    }
+    (buf.validate.field).map.(fits.api.v1.keys_trimmed) = true
   ];
   reserved 11;
   // RawRoles are the normalized roles transmitted by the OIDC provider.
@@ -89,6 +89,22 @@ message Token {
   string first_name = 15 [(buf.validate.field).string = {max_len: 256}];
   // LastName is the family name of the user the token was issued for.
   string last_name = 16 [(buf.validate.field).string = {max_len: 256}];
+}
+
+// ProjectContext provides the role context leading to the project role.
+message ProjectContext {
+  // Role that the user has in this project.
+  ProjectRole role = 1 [(buf.validate.field).enum = {defined_only: true}];
+  // Context that lead to this role.
+  RoleContext context = 2 [(buf.validate.field).enum = {defined_only: true}];
+}
+
+// TenantContext provides the role context leading to the tenant role.
+message TenantContext {
+  // Role that the user has in this tenant.
+  TenantRole role = 1 [(buf.validate.field).enum = {defined_only: true}];
+  // Context that lead to this role.
+  RoleContext context = 2 [(buf.validate.field).enum = {defined_only: true}];
 }
 
 // TokenType specifies different use cases of tokens

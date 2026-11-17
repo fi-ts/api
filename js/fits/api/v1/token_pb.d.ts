@@ -1,5 +1,5 @@
 import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import type { Meta, ProjectRole, TenantRole } from "./common_pb.js";
+import type { Meta, ProjectRole, RoleContext, TenantRole } from "./common_pb.js";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 /**
@@ -74,18 +74,18 @@ export type Token = Message<"fits.api.v1.Token"> & {
     /**
      * ProjectRoles associates a project id with the corresponding role of the token owner
      *
-     * @generated from field: map<string, fits.api.v1.ProjectRole> project_roles = 9;
+     * @generated from field: map<string, fits.api.v1.ProjectContext> project_roles = 9;
      */
     projectRoles: {
-        [key: string]: ProjectRole;
+        [key: string]: ProjectContext;
     };
     /**
      * TenantRoles associates a tenant id with the corresponding role of the token owner.
      *
-     * @generated from field: map<string, fits.api.v1.TenantRole> tenant_roles = 10;
+     * @generated from field: map<string, fits.api.v1.TenantContext> tenant_roles = 10;
      */
     tenantRoles: {
-        [key: string]: TenantRole;
+        [key: string]: TenantContext;
     };
     /**
      * RawRoles are the normalized roles transmitted by the OIDC provider.
@@ -123,6 +123,54 @@ export type Token = Message<"fits.api.v1.Token"> & {
  * Use `create(TokenSchema)` to create a new message.
  */
 export declare const TokenSchema: GenMessage<Token>;
+/**
+ * ProjectContext provides the role context leading to the project role.
+ *
+ * @generated from message fits.api.v1.ProjectContext
+ */
+export type ProjectContext = Message<"fits.api.v1.ProjectContext"> & {
+    /**
+     * Role that the user has in this project.
+     *
+     * @generated from field: fits.api.v1.ProjectRole role = 1;
+     */
+    role: ProjectRole;
+    /**
+     * Context that lead to this role.
+     *
+     * @generated from field: fits.api.v1.RoleContext context = 2;
+     */
+    context: RoleContext;
+};
+/**
+ * Describes the message fits.api.v1.ProjectContext.
+ * Use `create(ProjectContextSchema)` to create a new message.
+ */
+export declare const ProjectContextSchema: GenMessage<ProjectContext>;
+/**
+ * TenantContext provides the role context leading to the tenant role.
+ *
+ * @generated from message fits.api.v1.TenantContext
+ */
+export type TenantContext = Message<"fits.api.v1.TenantContext"> & {
+    /**
+     * Role that the user has in this tenant.
+     *
+     * @generated from field: fits.api.v1.TenantRole role = 1;
+     */
+    role: TenantRole;
+    /**
+     * Context that lead to this role.
+     *
+     * @generated from field: fits.api.v1.RoleContext context = 2;
+     */
+    context: RoleContext;
+};
+/**
+ * Describes the message fits.api.v1.TenantContext.
+ * Use `create(TenantContextSchema)` to create a new message.
+ */
+export declare const TenantContextSchema: GenMessage<TenantContext>;
 /**
  * MethodPermission is a mapping from a subject/project to a service method
  *
