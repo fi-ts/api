@@ -33,20 +33,38 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
-	// MVMServiceGetProcedure is the fully-qualified name of the MVMService's Get RPC.
-	MVMServiceGetProcedure = "/fits.api.mvm.v1.MVMService/Get"
 	// MVMServiceCreateProcedure is the fully-qualified name of the MVMService's Create RPC.
 	MVMServiceCreateProcedure = "/fits.api.mvm.v1.MVMService/Create"
-	// MVMServiceUpdateProcedure is the fully-qualified name of the MVMService's Update RPC.
-	MVMServiceUpdateProcedure = "/fits.api.mvm.v1.MVMService/Update"
+	// MVMServiceValidateCreateProcedure is the fully-qualified name of the MVMService's ValidateCreate
+	// RPC.
+	MVMServiceValidateCreateProcedure = "/fits.api.mvm.v1.MVMService/ValidateCreate"
+	// MVMServiceGetProcedure is the fully-qualified name of the MVMService's Get RPC.
+	MVMServiceGetProcedure = "/fits.api.mvm.v1.MVMService/Get"
 	// MVMServiceListProcedure is the fully-qualified name of the MVMService's List RPC.
 	MVMServiceListProcedure = "/fits.api.mvm.v1.MVMService/List"
+	// MVMServiceUpdateProcedure is the fully-qualified name of the MVMService's Update RPC.
+	MVMServiceUpdateProcedure = "/fits.api.mvm.v1.MVMService/Update"
+	// MVMServiceValidateUpdateProcedure is the fully-qualified name of the MVMService's ValidateUpdate
+	// RPC.
+	MVMServiceValidateUpdateProcedure = "/fits.api.mvm.v1.MVMService/ValidateUpdate"
+	// MVMServiceUpdateServiceClassProcedure is the fully-qualified name of the MVMService's
+	// UpdateServiceClass RPC.
+	MVMServiceUpdateServiceClassProcedure = "/fits.api.mvm.v1.MVMService/UpdateServiceClass"
+	// MVMServiceValidateUpdateServiceClassProcedure is the fully-qualified name of the MVMService's
+	// ValidateUpdateServiceClass RPC.
+	MVMServiceValidateUpdateServiceClassProcedure = "/fits.api.mvm.v1.MVMService/ValidateUpdateServiceClass"
 	// MVMServiceDeleteProcedure is the fully-qualified name of the MVMService's Delete RPC.
 	MVMServiceDeleteProcedure = "/fits.api.mvm.v1.MVMService/Delete"
 	// MVMServiceAddDiskProcedure is the fully-qualified name of the MVMService's AddDisk RPC.
 	MVMServiceAddDiskProcedure = "/fits.api.mvm.v1.MVMService/AddDisk"
+	// MVMServiceValidateAddDiskProcedure is the fully-qualified name of the MVMService's
+	// ValidateAddDisk RPC.
+	MVMServiceValidateAddDiskProcedure = "/fits.api.mvm.v1.MVMService/ValidateAddDisk"
 	// MVMServiceUpdateDiskProcedure is the fully-qualified name of the MVMService's UpdateDisk RPC.
 	MVMServiceUpdateDiskProcedure = "/fits.api.mvm.v1.MVMService/UpdateDisk"
+	// MVMServiceValidateUpdateDiskProcedure is the fully-qualified name of the MVMService's
+	// ValidateUpdateDisk RPC.
+	MVMServiceValidateUpdateDiskProcedure = "/fits.api.mvm.v1.MVMService/ValidateUpdateDisk"
 	// MVMServiceDeleteDiskProcedure is the fully-qualified name of the MVMService's DeleteDisk RPC.
 	MVMServiceDeleteDiskProcedure = "/fits.api.mvm.v1.MVMService/DeleteDisk"
 	// MVMServiceAddNetworkInterfaceProcedure is the fully-qualified name of the MVMService's
@@ -58,38 +76,52 @@ const (
 	// MVMServiceDeleteNetworkInterfaceProcedure is the fully-qualified name of the MVMService's
 	// DeleteNetworkInterface RPC.
 	MVMServiceDeleteNetworkInterfaceProcedure = "/fits.api.mvm.v1.MVMService/DeleteNetworkInterface"
-	// MVMServiceValidateCreateProcedure is the fully-qualified name of the MVMService's ValidateCreate
+	// MVMServiceRestartProcedure is the fully-qualified name of the MVMService's Restart RPC.
+	MVMServiceRestartProcedure = "/fits.api.mvm.v1.MVMService/Restart"
+	// MVMServiceReinstallProcedure is the fully-qualified name of the MVMService's Reinstall RPC.
+	MVMServiceReinstallProcedure = "/fits.api.mvm.v1.MVMService/Reinstall"
+	// MVMServiceValidateReinstallProcedure is the fully-qualified name of the MVMService's
+	// ValidateReinstall RPC.
+	MVMServiceValidateReinstallProcedure = "/fits.api.mvm.v1.MVMService/ValidateReinstall"
+	// MVMServiceAddSnapshotProcedure is the fully-qualified name of the MVMService's AddSnapshot RPC.
+	MVMServiceAddSnapshotProcedure = "/fits.api.mvm.v1.MVMService/AddSnapshot"
+	// MVMServiceDeleteSnapshotProcedure is the fully-qualified name of the MVMService's DeleteSnapshot
 	// RPC.
-	MVMServiceValidateCreateProcedure = "/fits.api.mvm.v1.MVMService/ValidateCreate"
-	// MVMServiceValidateAddDiskProcedure is the fully-qualified name of the MVMService's
-	// ValidateAddDisk RPC.
-	MVMServiceValidateAddDiskProcedure = "/fits.api.mvm.v1.MVMService/ValidateAddDisk"
-	// MVMServiceValidateUpdateDiskProcedure is the fully-qualified name of the MVMService's
-	// ValidateUpdateDisk RPC.
-	MVMServiceValidateUpdateDiskProcedure = "/fits.api.mvm.v1.MVMService/ValidateUpdateDisk"
-	// MVMServiceValidateAddNetworkInterfaceProcedure is the fully-qualified name of the MVMService's
-	// ValidateAddNetworkInterface RPC.
-	MVMServiceValidateAddNetworkInterfaceProcedure = "/fits.api.mvm.v1.MVMService/ValidateAddNetworkInterface"
+	MVMServiceDeleteSnapshotProcedure = "/fits.api.mvm.v1.MVMService/DeleteSnapshot"
+	// MVMServiceMoveProcedure is the fully-qualified name of the MVMService's Move RPC.
+	MVMServiceMoveProcedure = "/fits.api.mvm.v1.MVMService/Move"
 )
 
 // MVMServiceClient is a client for the fits.api.mvm.v1.MVMService service.
 type MVMServiceClient interface {
-	// Returns the MVM with the specified UUID.
-	Get(context.Context, *v1.MVMServiceGetRequest) (*v1.MVMServiceGetResponse, error)
 	// Creates a new MVM.
 	Create(context.Context, *v1.MVMServiceCreateRequest) (*v1.MVMServiceCreateResponse, error)
-	// Updates a MVM.
-	Update(context.Context, *v1.MVMServiceUpdateRequest) (*v1.MVMServiceUpdateResponse, error)
+	// Validates a MVM create request without creating anything (dry-run).
+	ValidateCreate(context.Context, *v1.MVMServiceValidateCreateRequest) (*v1.MVMServiceValidateCreateResponse, error)
+	// Returns the MVM with the specified UUID.
+	Get(context.Context, *v1.MVMServiceGetRequest) (*v1.MVMServiceGetResponse, error)
 	// Returns the list of all MVMs.
 	List(context.Context, *v1.MVMServiceListRequest) (*v1.MVMServiceListResponse, error)
+	// Updates a MVM.
+	Update(context.Context, *v1.MVMServiceUpdateRequest) (*v1.MVMServiceUpdateResponse, error)
+	// Validates an Update request without changing anything.
+	ValidateUpdate(context.Context, *v1.MVMServiceValidateUpdateRequest) (*v1.MVMServiceValidateUpdateResponse, error)
+	// Deprecated: Updates the service class of a MVM.
+	UpdateServiceClass(context.Context, *v1.MVMServiceUpdateServiceClassRequest) (*v1.MVMServiceUpdateServiceClassResponse, error)
+	// Deprecated: Validates an UpdateServiceClass request without changing anything.
+	ValidateUpdateServiceClass(context.Context, *v1.MVMServiceValidateUpdateServiceClassRequest) (*v1.MVMServiceValidateUpdateServiceClassResponse, error)
 	// Deletes a MVM.
 	Delete(context.Context, *v1.MVMServiceDeleteRequest) (*v1.MVMServiceDeleteResponse, error)
 	// Orders an additional data disk for a MVM. System disks are ordered at
 	// MVM creation and cannot be added later.
 	AddDisk(context.Context, *v1.MVMServiceAddDiskRequest) (*v1.MVMServiceAddDiskResponse, error)
+	// Validates an AddDisk request without ordering anything.
+	ValidateAddDisk(context.Context, *v1.MVMServiceValidateAddDiskRequest) (*v1.MVMServiceValidateAddDiskResponse, error)
 	// Changes the size or auto-extend behavior of an existing disk; see
 	// DiskType for which operations apply per disk kind.
 	UpdateDisk(context.Context, *v1.MVMServiceUpdateDiskRequest) (*v1.MVMServiceUpdateDiskResponse, error)
+	// Validates an UpdateDisk request without changing anything.
+	ValidateUpdateDisk(context.Context, *v1.MVMServiceValidateUpdateDiskRequest) (*v1.MVMServiceValidateUpdateDiskResponse, error)
 	// Cancels a data disk. OS and system disks cannot be deleted.
 	DeleteDisk(context.Context, *v1.MVMServiceDeleteDiskRequest) (*v1.MVMServiceDeleteDiskResponse, error)
 	// Orders an additional network interface for a MVM.
@@ -98,15 +130,18 @@ type MVMServiceClient interface {
 	MoveNetworkInterface(context.Context, *v1.MVMServiceMoveNetworkInterfaceRequest) (*v1.MVMServiceMoveNetworkInterfaceResponse, error)
 	// Deletes a network interface from a MVM.
 	DeleteNetworkInterface(context.Context, *v1.MVMServiceDeleteNetworkInterfaceRequest) (*v1.MVMServiceDeleteNetworkInterfaceResponse, error)
-	// Validates a MVM create request without creating anything. Intended for
-	// form pre-checks; the create endpoint validates again before executing.
-	ValidateCreate(context.Context, *v1.MVMServiceValidateCreateRequest) (*v1.MVMServiceValidateCreateResponse, error)
-	// Validates an AddDisk request without ordering anything.
-	ValidateAddDisk(context.Context, *v1.MVMServiceValidateAddDiskRequest) (*v1.MVMServiceValidateAddDiskResponse, error)
-	// Validates an UpdateDisk request without changing anything.
-	ValidateUpdateDisk(context.Context, *v1.MVMServiceValidateUpdateDiskRequest) (*v1.MVMServiceValidateUpdateDiskResponse, error)
-	// Validates an AddNetworkInterface request without ordering anything.
-	ValidateAddNetworkInterface(context.Context, *v1.MVMServiceValidateAddNetworkInterfaceRequest) (*v1.MVMServiceValidateAddNetworkInterfaceResponse, error)
+	// Restarts a MVM.
+	Restart(context.Context, *v1.MVMServiceRestartRequest) (*v1.MVMServiceRestartResponse, error)
+	// Reinstalls the operating system of a MVM.
+	Reinstall(context.Context, *v1.MVMServiceReinstallRequest) (*v1.MVMServiceReinstallResponse, error)
+	// Validates a Reinstall request without reinstalling anything.
+	ValidateReinstall(context.Context, *v1.MVMServiceValidateReinstallRequest) (*v1.MVMServiceValidateReinstallResponse, error)
+	// Creates a snapshot of a MVM.
+	AddSnapshot(context.Context, *v1.MVMServiceAddSnapshotRequest) (*v1.MVMServiceAddSnapshotResponse, error)
+	// Deletes a snapshot of a MVM.
+	DeleteSnapshot(context.Context, *v1.MVMServiceDeleteSnapshotRequest) (*v1.MVMServiceDeleteSnapshotResponse, error)
+	// Moves a MVM from one datacenter to another.
+	Move(context.Context, *v1.MVMServiceMoveRequest) (*v1.MVMServiceMoveResponse, error)
 }
 
 // NewMVMServiceClient constructs a client for the fits.api.mvm.v1.MVMService service. By default,
@@ -120,16 +155,28 @@ func NewMVMServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 	baseURL = strings.TrimRight(baseURL, "/")
 	mVMServiceMethods := v1.File_fits_api_mvm_v1_mvm_proto.Services().ByName("MVMService").Methods()
 	return &mVMServiceClient{
+		create: connect.NewClient[v1.MVMServiceCreateRequest, v1.MVMServiceCreateResponse](
+			httpClient,
+			baseURL+MVMServiceCreateProcedure,
+			connect.WithSchema(mVMServiceMethods.ByName("Create")),
+			connect.WithClientOptions(opts...),
+		),
+		validateCreate: connect.NewClient[v1.MVMServiceValidateCreateRequest, v1.MVMServiceValidateCreateResponse](
+			httpClient,
+			baseURL+MVMServiceValidateCreateProcedure,
+			connect.WithSchema(mVMServiceMethods.ByName("ValidateCreate")),
+			connect.WithClientOptions(opts...),
+		),
 		get: connect.NewClient[v1.MVMServiceGetRequest, v1.MVMServiceGetResponse](
 			httpClient,
 			baseURL+MVMServiceGetProcedure,
 			connect.WithSchema(mVMServiceMethods.ByName("Get")),
 			connect.WithClientOptions(opts...),
 		),
-		create: connect.NewClient[v1.MVMServiceCreateRequest, v1.MVMServiceCreateResponse](
+		list: connect.NewClient[v1.MVMServiceListRequest, v1.MVMServiceListResponse](
 			httpClient,
-			baseURL+MVMServiceCreateProcedure,
-			connect.WithSchema(mVMServiceMethods.ByName("Create")),
+			baseURL+MVMServiceListProcedure,
+			connect.WithSchema(mVMServiceMethods.ByName("List")),
 			connect.WithClientOptions(opts...),
 		),
 		update: connect.NewClient[v1.MVMServiceUpdateRequest, v1.MVMServiceUpdateResponse](
@@ -138,10 +185,22 @@ func NewMVMServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(mVMServiceMethods.ByName("Update")),
 			connect.WithClientOptions(opts...),
 		),
-		list: connect.NewClient[v1.MVMServiceListRequest, v1.MVMServiceListResponse](
+		validateUpdate: connect.NewClient[v1.MVMServiceValidateUpdateRequest, v1.MVMServiceValidateUpdateResponse](
 			httpClient,
-			baseURL+MVMServiceListProcedure,
-			connect.WithSchema(mVMServiceMethods.ByName("List")),
+			baseURL+MVMServiceValidateUpdateProcedure,
+			connect.WithSchema(mVMServiceMethods.ByName("ValidateUpdate")),
+			connect.WithClientOptions(opts...),
+		),
+		updateServiceClass: connect.NewClient[v1.MVMServiceUpdateServiceClassRequest, v1.MVMServiceUpdateServiceClassResponse](
+			httpClient,
+			baseURL+MVMServiceUpdateServiceClassProcedure,
+			connect.WithSchema(mVMServiceMethods.ByName("UpdateServiceClass")),
+			connect.WithClientOptions(opts...),
+		),
+		validateUpdateServiceClass: connect.NewClient[v1.MVMServiceValidateUpdateServiceClassRequest, v1.MVMServiceValidateUpdateServiceClassResponse](
+			httpClient,
+			baseURL+MVMServiceValidateUpdateServiceClassProcedure,
+			connect.WithSchema(mVMServiceMethods.ByName("ValidateUpdateServiceClass")),
 			connect.WithClientOptions(opts...),
 		),
 		delete: connect.NewClient[v1.MVMServiceDeleteRequest, v1.MVMServiceDeleteResponse](
@@ -156,10 +215,22 @@ func NewMVMServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(mVMServiceMethods.ByName("AddDisk")),
 			connect.WithClientOptions(opts...),
 		),
+		validateAddDisk: connect.NewClient[v1.MVMServiceValidateAddDiskRequest, v1.MVMServiceValidateAddDiskResponse](
+			httpClient,
+			baseURL+MVMServiceValidateAddDiskProcedure,
+			connect.WithSchema(mVMServiceMethods.ByName("ValidateAddDisk")),
+			connect.WithClientOptions(opts...),
+		),
 		updateDisk: connect.NewClient[v1.MVMServiceUpdateDiskRequest, v1.MVMServiceUpdateDiskResponse](
 			httpClient,
 			baseURL+MVMServiceUpdateDiskProcedure,
 			connect.WithSchema(mVMServiceMethods.ByName("UpdateDisk")),
+			connect.WithClientOptions(opts...),
+		),
+		validateUpdateDisk: connect.NewClient[v1.MVMServiceValidateUpdateDiskRequest, v1.MVMServiceValidateUpdateDiskResponse](
+			httpClient,
+			baseURL+MVMServiceValidateUpdateDiskProcedure,
+			connect.WithSchema(mVMServiceMethods.ByName("ValidateUpdateDisk")),
 			connect.WithClientOptions(opts...),
 		),
 		deleteDisk: connect.NewClient[v1.MVMServiceDeleteDiskRequest, v1.MVMServiceDeleteDiskResponse](
@@ -186,28 +257,40 @@ func NewMVMServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(mVMServiceMethods.ByName("DeleteNetworkInterface")),
 			connect.WithClientOptions(opts...),
 		),
-		validateCreate: connect.NewClient[v1.MVMServiceValidateCreateRequest, v1.MVMServiceValidateCreateResponse](
+		restart: connect.NewClient[v1.MVMServiceRestartRequest, v1.MVMServiceRestartResponse](
 			httpClient,
-			baseURL+MVMServiceValidateCreateProcedure,
-			connect.WithSchema(mVMServiceMethods.ByName("ValidateCreate")),
+			baseURL+MVMServiceRestartProcedure,
+			connect.WithSchema(mVMServiceMethods.ByName("Restart")),
 			connect.WithClientOptions(opts...),
 		),
-		validateAddDisk: connect.NewClient[v1.MVMServiceValidateAddDiskRequest, v1.MVMServiceValidateAddDiskResponse](
+		reinstall: connect.NewClient[v1.MVMServiceReinstallRequest, v1.MVMServiceReinstallResponse](
 			httpClient,
-			baseURL+MVMServiceValidateAddDiskProcedure,
-			connect.WithSchema(mVMServiceMethods.ByName("ValidateAddDisk")),
+			baseURL+MVMServiceReinstallProcedure,
+			connect.WithSchema(mVMServiceMethods.ByName("Reinstall")),
 			connect.WithClientOptions(opts...),
 		),
-		validateUpdateDisk: connect.NewClient[v1.MVMServiceValidateUpdateDiskRequest, v1.MVMServiceValidateUpdateDiskResponse](
+		validateReinstall: connect.NewClient[v1.MVMServiceValidateReinstallRequest, v1.MVMServiceValidateReinstallResponse](
 			httpClient,
-			baseURL+MVMServiceValidateUpdateDiskProcedure,
-			connect.WithSchema(mVMServiceMethods.ByName("ValidateUpdateDisk")),
+			baseURL+MVMServiceValidateReinstallProcedure,
+			connect.WithSchema(mVMServiceMethods.ByName("ValidateReinstall")),
 			connect.WithClientOptions(opts...),
 		),
-		validateAddNetworkInterface: connect.NewClient[v1.MVMServiceValidateAddNetworkInterfaceRequest, v1.MVMServiceValidateAddNetworkInterfaceResponse](
+		addSnapshot: connect.NewClient[v1.MVMServiceAddSnapshotRequest, v1.MVMServiceAddSnapshotResponse](
 			httpClient,
-			baseURL+MVMServiceValidateAddNetworkInterfaceProcedure,
-			connect.WithSchema(mVMServiceMethods.ByName("ValidateAddNetworkInterface")),
+			baseURL+MVMServiceAddSnapshotProcedure,
+			connect.WithSchema(mVMServiceMethods.ByName("AddSnapshot")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteSnapshot: connect.NewClient[v1.MVMServiceDeleteSnapshotRequest, v1.MVMServiceDeleteSnapshotResponse](
+			httpClient,
+			baseURL+MVMServiceDeleteSnapshotProcedure,
+			connect.WithSchema(mVMServiceMethods.ByName("DeleteSnapshot")),
+			connect.WithClientOptions(opts...),
+		),
+		move: connect.NewClient[v1.MVMServiceMoveRequest, v1.MVMServiceMoveResponse](
+			httpClient,
+			baseURL+MVMServiceMoveProcedure,
+			connect.WithSchema(mVMServiceMethods.ByName("Move")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -215,21 +298,47 @@ func NewMVMServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 
 // mVMServiceClient implements MVMServiceClient.
 type mVMServiceClient struct {
-	get                         *connect.Client[v1.MVMServiceGetRequest, v1.MVMServiceGetResponse]
-	create                      *connect.Client[v1.MVMServiceCreateRequest, v1.MVMServiceCreateResponse]
-	update                      *connect.Client[v1.MVMServiceUpdateRequest, v1.MVMServiceUpdateResponse]
-	list                        *connect.Client[v1.MVMServiceListRequest, v1.MVMServiceListResponse]
-	delete                      *connect.Client[v1.MVMServiceDeleteRequest, v1.MVMServiceDeleteResponse]
-	addDisk                     *connect.Client[v1.MVMServiceAddDiskRequest, v1.MVMServiceAddDiskResponse]
-	updateDisk                  *connect.Client[v1.MVMServiceUpdateDiskRequest, v1.MVMServiceUpdateDiskResponse]
-	deleteDisk                  *connect.Client[v1.MVMServiceDeleteDiskRequest, v1.MVMServiceDeleteDiskResponse]
-	addNetworkInterface         *connect.Client[v1.MVMServiceAddNetworkInterfaceRequest, v1.MVMServiceAddNetworkInterfaceResponse]
-	moveNetworkInterface        *connect.Client[v1.MVMServiceMoveNetworkInterfaceRequest, v1.MVMServiceMoveNetworkInterfaceResponse]
-	deleteNetworkInterface      *connect.Client[v1.MVMServiceDeleteNetworkInterfaceRequest, v1.MVMServiceDeleteNetworkInterfaceResponse]
-	validateCreate              *connect.Client[v1.MVMServiceValidateCreateRequest, v1.MVMServiceValidateCreateResponse]
-	validateAddDisk             *connect.Client[v1.MVMServiceValidateAddDiskRequest, v1.MVMServiceValidateAddDiskResponse]
-	validateUpdateDisk          *connect.Client[v1.MVMServiceValidateUpdateDiskRequest, v1.MVMServiceValidateUpdateDiskResponse]
-	validateAddNetworkInterface *connect.Client[v1.MVMServiceValidateAddNetworkInterfaceRequest, v1.MVMServiceValidateAddNetworkInterfaceResponse]
+	create                     *connect.Client[v1.MVMServiceCreateRequest, v1.MVMServiceCreateResponse]
+	validateCreate             *connect.Client[v1.MVMServiceValidateCreateRequest, v1.MVMServiceValidateCreateResponse]
+	get                        *connect.Client[v1.MVMServiceGetRequest, v1.MVMServiceGetResponse]
+	list                       *connect.Client[v1.MVMServiceListRequest, v1.MVMServiceListResponse]
+	update                     *connect.Client[v1.MVMServiceUpdateRequest, v1.MVMServiceUpdateResponse]
+	validateUpdate             *connect.Client[v1.MVMServiceValidateUpdateRequest, v1.MVMServiceValidateUpdateResponse]
+	updateServiceClass         *connect.Client[v1.MVMServiceUpdateServiceClassRequest, v1.MVMServiceUpdateServiceClassResponse]
+	validateUpdateServiceClass *connect.Client[v1.MVMServiceValidateUpdateServiceClassRequest, v1.MVMServiceValidateUpdateServiceClassResponse]
+	delete                     *connect.Client[v1.MVMServiceDeleteRequest, v1.MVMServiceDeleteResponse]
+	addDisk                    *connect.Client[v1.MVMServiceAddDiskRequest, v1.MVMServiceAddDiskResponse]
+	validateAddDisk            *connect.Client[v1.MVMServiceValidateAddDiskRequest, v1.MVMServiceValidateAddDiskResponse]
+	updateDisk                 *connect.Client[v1.MVMServiceUpdateDiskRequest, v1.MVMServiceUpdateDiskResponse]
+	validateUpdateDisk         *connect.Client[v1.MVMServiceValidateUpdateDiskRequest, v1.MVMServiceValidateUpdateDiskResponse]
+	deleteDisk                 *connect.Client[v1.MVMServiceDeleteDiskRequest, v1.MVMServiceDeleteDiskResponse]
+	addNetworkInterface        *connect.Client[v1.MVMServiceAddNetworkInterfaceRequest, v1.MVMServiceAddNetworkInterfaceResponse]
+	moveNetworkInterface       *connect.Client[v1.MVMServiceMoveNetworkInterfaceRequest, v1.MVMServiceMoveNetworkInterfaceResponse]
+	deleteNetworkInterface     *connect.Client[v1.MVMServiceDeleteNetworkInterfaceRequest, v1.MVMServiceDeleteNetworkInterfaceResponse]
+	restart                    *connect.Client[v1.MVMServiceRestartRequest, v1.MVMServiceRestartResponse]
+	reinstall                  *connect.Client[v1.MVMServiceReinstallRequest, v1.MVMServiceReinstallResponse]
+	validateReinstall          *connect.Client[v1.MVMServiceValidateReinstallRequest, v1.MVMServiceValidateReinstallResponse]
+	addSnapshot                *connect.Client[v1.MVMServiceAddSnapshotRequest, v1.MVMServiceAddSnapshotResponse]
+	deleteSnapshot             *connect.Client[v1.MVMServiceDeleteSnapshotRequest, v1.MVMServiceDeleteSnapshotResponse]
+	move                       *connect.Client[v1.MVMServiceMoveRequest, v1.MVMServiceMoveResponse]
+}
+
+// Create calls fits.api.mvm.v1.MVMService.Create.
+func (c *mVMServiceClient) Create(ctx context.Context, req *v1.MVMServiceCreateRequest) (*v1.MVMServiceCreateResponse, error) {
+	response, err := c.create.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
+// ValidateCreate calls fits.api.mvm.v1.MVMService.ValidateCreate.
+func (c *mVMServiceClient) ValidateCreate(ctx context.Context, req *v1.MVMServiceValidateCreateRequest) (*v1.MVMServiceValidateCreateResponse, error) {
+	response, err := c.validateCreate.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
 }
 
 // Get calls fits.api.mvm.v1.MVMService.Get.
@@ -241,9 +350,9 @@ func (c *mVMServiceClient) Get(ctx context.Context, req *v1.MVMServiceGetRequest
 	return nil, err
 }
 
-// Create calls fits.api.mvm.v1.MVMService.Create.
-func (c *mVMServiceClient) Create(ctx context.Context, req *v1.MVMServiceCreateRequest) (*v1.MVMServiceCreateResponse, error) {
-	response, err := c.create.CallUnary(ctx, connect.NewRequest(req))
+// List calls fits.api.mvm.v1.MVMService.List.
+func (c *mVMServiceClient) List(ctx context.Context, req *v1.MVMServiceListRequest) (*v1.MVMServiceListResponse, error) {
+	response, err := c.list.CallUnary(ctx, connect.NewRequest(req))
 	if response != nil {
 		return response.Msg, err
 	}
@@ -259,9 +368,27 @@ func (c *mVMServiceClient) Update(ctx context.Context, req *v1.MVMServiceUpdateR
 	return nil, err
 }
 
-// List calls fits.api.mvm.v1.MVMService.List.
-func (c *mVMServiceClient) List(ctx context.Context, req *v1.MVMServiceListRequest) (*v1.MVMServiceListResponse, error) {
-	response, err := c.list.CallUnary(ctx, connect.NewRequest(req))
+// ValidateUpdate calls fits.api.mvm.v1.MVMService.ValidateUpdate.
+func (c *mVMServiceClient) ValidateUpdate(ctx context.Context, req *v1.MVMServiceValidateUpdateRequest) (*v1.MVMServiceValidateUpdateResponse, error) {
+	response, err := c.validateUpdate.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
+// UpdateServiceClass calls fits.api.mvm.v1.MVMService.UpdateServiceClass.
+func (c *mVMServiceClient) UpdateServiceClass(ctx context.Context, req *v1.MVMServiceUpdateServiceClassRequest) (*v1.MVMServiceUpdateServiceClassResponse, error) {
+	response, err := c.updateServiceClass.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
+// ValidateUpdateServiceClass calls fits.api.mvm.v1.MVMService.ValidateUpdateServiceClass.
+func (c *mVMServiceClient) ValidateUpdateServiceClass(ctx context.Context, req *v1.MVMServiceValidateUpdateServiceClassRequest) (*v1.MVMServiceValidateUpdateServiceClassResponse, error) {
+	response, err := c.validateUpdateServiceClass.CallUnary(ctx, connect.NewRequest(req))
 	if response != nil {
 		return response.Msg, err
 	}
@@ -286,9 +413,27 @@ func (c *mVMServiceClient) AddDisk(ctx context.Context, req *v1.MVMServiceAddDis
 	return nil, err
 }
 
+// ValidateAddDisk calls fits.api.mvm.v1.MVMService.ValidateAddDisk.
+func (c *mVMServiceClient) ValidateAddDisk(ctx context.Context, req *v1.MVMServiceValidateAddDiskRequest) (*v1.MVMServiceValidateAddDiskResponse, error) {
+	response, err := c.validateAddDisk.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
 // UpdateDisk calls fits.api.mvm.v1.MVMService.UpdateDisk.
 func (c *mVMServiceClient) UpdateDisk(ctx context.Context, req *v1.MVMServiceUpdateDiskRequest) (*v1.MVMServiceUpdateDiskResponse, error) {
 	response, err := c.updateDisk.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
+// ValidateUpdateDisk calls fits.api.mvm.v1.MVMService.ValidateUpdateDisk.
+func (c *mVMServiceClient) ValidateUpdateDisk(ctx context.Context, req *v1.MVMServiceValidateUpdateDiskRequest) (*v1.MVMServiceValidateUpdateDiskResponse, error) {
+	response, err := c.validateUpdateDisk.CallUnary(ctx, connect.NewRequest(req))
 	if response != nil {
 		return response.Msg, err
 	}
@@ -331,36 +476,54 @@ func (c *mVMServiceClient) DeleteNetworkInterface(ctx context.Context, req *v1.M
 	return nil, err
 }
 
-// ValidateCreate calls fits.api.mvm.v1.MVMService.ValidateCreate.
-func (c *mVMServiceClient) ValidateCreate(ctx context.Context, req *v1.MVMServiceValidateCreateRequest) (*v1.MVMServiceValidateCreateResponse, error) {
-	response, err := c.validateCreate.CallUnary(ctx, connect.NewRequest(req))
+// Restart calls fits.api.mvm.v1.MVMService.Restart.
+func (c *mVMServiceClient) Restart(ctx context.Context, req *v1.MVMServiceRestartRequest) (*v1.MVMServiceRestartResponse, error) {
+	response, err := c.restart.CallUnary(ctx, connect.NewRequest(req))
 	if response != nil {
 		return response.Msg, err
 	}
 	return nil, err
 }
 
-// ValidateAddDisk calls fits.api.mvm.v1.MVMService.ValidateAddDisk.
-func (c *mVMServiceClient) ValidateAddDisk(ctx context.Context, req *v1.MVMServiceValidateAddDiskRequest) (*v1.MVMServiceValidateAddDiskResponse, error) {
-	response, err := c.validateAddDisk.CallUnary(ctx, connect.NewRequest(req))
+// Reinstall calls fits.api.mvm.v1.MVMService.Reinstall.
+func (c *mVMServiceClient) Reinstall(ctx context.Context, req *v1.MVMServiceReinstallRequest) (*v1.MVMServiceReinstallResponse, error) {
+	response, err := c.reinstall.CallUnary(ctx, connect.NewRequest(req))
 	if response != nil {
 		return response.Msg, err
 	}
 	return nil, err
 }
 
-// ValidateUpdateDisk calls fits.api.mvm.v1.MVMService.ValidateUpdateDisk.
-func (c *mVMServiceClient) ValidateUpdateDisk(ctx context.Context, req *v1.MVMServiceValidateUpdateDiskRequest) (*v1.MVMServiceValidateUpdateDiskResponse, error) {
-	response, err := c.validateUpdateDisk.CallUnary(ctx, connect.NewRequest(req))
+// ValidateReinstall calls fits.api.mvm.v1.MVMService.ValidateReinstall.
+func (c *mVMServiceClient) ValidateReinstall(ctx context.Context, req *v1.MVMServiceValidateReinstallRequest) (*v1.MVMServiceValidateReinstallResponse, error) {
+	response, err := c.validateReinstall.CallUnary(ctx, connect.NewRequest(req))
 	if response != nil {
 		return response.Msg, err
 	}
 	return nil, err
 }
 
-// ValidateAddNetworkInterface calls fits.api.mvm.v1.MVMService.ValidateAddNetworkInterface.
-func (c *mVMServiceClient) ValidateAddNetworkInterface(ctx context.Context, req *v1.MVMServiceValidateAddNetworkInterfaceRequest) (*v1.MVMServiceValidateAddNetworkInterfaceResponse, error) {
-	response, err := c.validateAddNetworkInterface.CallUnary(ctx, connect.NewRequest(req))
+// AddSnapshot calls fits.api.mvm.v1.MVMService.AddSnapshot.
+func (c *mVMServiceClient) AddSnapshot(ctx context.Context, req *v1.MVMServiceAddSnapshotRequest) (*v1.MVMServiceAddSnapshotResponse, error) {
+	response, err := c.addSnapshot.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
+// DeleteSnapshot calls fits.api.mvm.v1.MVMService.DeleteSnapshot.
+func (c *mVMServiceClient) DeleteSnapshot(ctx context.Context, req *v1.MVMServiceDeleteSnapshotRequest) (*v1.MVMServiceDeleteSnapshotResponse, error) {
+	response, err := c.deleteSnapshot.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
+// Move calls fits.api.mvm.v1.MVMService.Move.
+func (c *mVMServiceClient) Move(ctx context.Context, req *v1.MVMServiceMoveRequest) (*v1.MVMServiceMoveResponse, error) {
+	response, err := c.move.CallUnary(ctx, connect.NewRequest(req))
 	if response != nil {
 		return response.Msg, err
 	}
@@ -369,22 +532,34 @@ func (c *mVMServiceClient) ValidateAddNetworkInterface(ctx context.Context, req 
 
 // MVMServiceHandler is an implementation of the fits.api.mvm.v1.MVMService service.
 type MVMServiceHandler interface {
-	// Returns the MVM with the specified UUID.
-	Get(context.Context, *v1.MVMServiceGetRequest) (*v1.MVMServiceGetResponse, error)
 	// Creates a new MVM.
 	Create(context.Context, *v1.MVMServiceCreateRequest) (*v1.MVMServiceCreateResponse, error)
-	// Updates a MVM.
-	Update(context.Context, *v1.MVMServiceUpdateRequest) (*v1.MVMServiceUpdateResponse, error)
+	// Validates a MVM create request without creating anything (dry-run).
+	ValidateCreate(context.Context, *v1.MVMServiceValidateCreateRequest) (*v1.MVMServiceValidateCreateResponse, error)
+	// Returns the MVM with the specified UUID.
+	Get(context.Context, *v1.MVMServiceGetRequest) (*v1.MVMServiceGetResponse, error)
 	// Returns the list of all MVMs.
 	List(context.Context, *v1.MVMServiceListRequest) (*v1.MVMServiceListResponse, error)
+	// Updates a MVM.
+	Update(context.Context, *v1.MVMServiceUpdateRequest) (*v1.MVMServiceUpdateResponse, error)
+	// Validates an Update request without changing anything.
+	ValidateUpdate(context.Context, *v1.MVMServiceValidateUpdateRequest) (*v1.MVMServiceValidateUpdateResponse, error)
+	// Deprecated: Updates the service class of a MVM.
+	UpdateServiceClass(context.Context, *v1.MVMServiceUpdateServiceClassRequest) (*v1.MVMServiceUpdateServiceClassResponse, error)
+	// Deprecated: Validates an UpdateServiceClass request without changing anything.
+	ValidateUpdateServiceClass(context.Context, *v1.MVMServiceValidateUpdateServiceClassRequest) (*v1.MVMServiceValidateUpdateServiceClassResponse, error)
 	// Deletes a MVM.
 	Delete(context.Context, *v1.MVMServiceDeleteRequest) (*v1.MVMServiceDeleteResponse, error)
 	// Orders an additional data disk for a MVM. System disks are ordered at
 	// MVM creation and cannot be added later.
 	AddDisk(context.Context, *v1.MVMServiceAddDiskRequest) (*v1.MVMServiceAddDiskResponse, error)
+	// Validates an AddDisk request without ordering anything.
+	ValidateAddDisk(context.Context, *v1.MVMServiceValidateAddDiskRequest) (*v1.MVMServiceValidateAddDiskResponse, error)
 	// Changes the size or auto-extend behavior of an existing disk; see
 	// DiskType for which operations apply per disk kind.
 	UpdateDisk(context.Context, *v1.MVMServiceUpdateDiskRequest) (*v1.MVMServiceUpdateDiskResponse, error)
+	// Validates an UpdateDisk request without changing anything.
+	ValidateUpdateDisk(context.Context, *v1.MVMServiceValidateUpdateDiskRequest) (*v1.MVMServiceValidateUpdateDiskResponse, error)
 	// Cancels a data disk. OS and system disks cannot be deleted.
 	DeleteDisk(context.Context, *v1.MVMServiceDeleteDiskRequest) (*v1.MVMServiceDeleteDiskResponse, error)
 	// Orders an additional network interface for a MVM.
@@ -393,15 +568,18 @@ type MVMServiceHandler interface {
 	MoveNetworkInterface(context.Context, *v1.MVMServiceMoveNetworkInterfaceRequest) (*v1.MVMServiceMoveNetworkInterfaceResponse, error)
 	// Deletes a network interface from a MVM.
 	DeleteNetworkInterface(context.Context, *v1.MVMServiceDeleteNetworkInterfaceRequest) (*v1.MVMServiceDeleteNetworkInterfaceResponse, error)
-	// Validates a MVM create request without creating anything. Intended for
-	// form pre-checks; the create endpoint validates again before executing.
-	ValidateCreate(context.Context, *v1.MVMServiceValidateCreateRequest) (*v1.MVMServiceValidateCreateResponse, error)
-	// Validates an AddDisk request without ordering anything.
-	ValidateAddDisk(context.Context, *v1.MVMServiceValidateAddDiskRequest) (*v1.MVMServiceValidateAddDiskResponse, error)
-	// Validates an UpdateDisk request without changing anything.
-	ValidateUpdateDisk(context.Context, *v1.MVMServiceValidateUpdateDiskRequest) (*v1.MVMServiceValidateUpdateDiskResponse, error)
-	// Validates an AddNetworkInterface request without ordering anything.
-	ValidateAddNetworkInterface(context.Context, *v1.MVMServiceValidateAddNetworkInterfaceRequest) (*v1.MVMServiceValidateAddNetworkInterfaceResponse, error)
+	// Restarts a MVM.
+	Restart(context.Context, *v1.MVMServiceRestartRequest) (*v1.MVMServiceRestartResponse, error)
+	// Reinstalls the operating system of a MVM.
+	Reinstall(context.Context, *v1.MVMServiceReinstallRequest) (*v1.MVMServiceReinstallResponse, error)
+	// Validates a Reinstall request without reinstalling anything.
+	ValidateReinstall(context.Context, *v1.MVMServiceValidateReinstallRequest) (*v1.MVMServiceValidateReinstallResponse, error)
+	// Creates a snapshot of a MVM.
+	AddSnapshot(context.Context, *v1.MVMServiceAddSnapshotRequest) (*v1.MVMServiceAddSnapshotResponse, error)
+	// Deletes a snapshot of a MVM.
+	DeleteSnapshot(context.Context, *v1.MVMServiceDeleteSnapshotRequest) (*v1.MVMServiceDeleteSnapshotResponse, error)
+	// Moves a MVM from one datacenter to another.
+	Move(context.Context, *v1.MVMServiceMoveRequest) (*v1.MVMServiceMoveResponse, error)
 }
 
 // NewMVMServiceHandler builds an HTTP handler from the service implementation. It returns the path
@@ -411,16 +589,28 @@ type MVMServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewMVMServiceHandler(svc MVMServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
 	mVMServiceMethods := v1.File_fits_api_mvm_v1_mvm_proto.Services().ByName("MVMService").Methods()
+	mVMServiceCreateHandler := connect.NewUnaryHandlerSimple(
+		MVMServiceCreateProcedure,
+		svc.Create,
+		connect.WithSchema(mVMServiceMethods.ByName("Create")),
+		connect.WithHandlerOptions(opts...),
+	)
+	mVMServiceValidateCreateHandler := connect.NewUnaryHandlerSimple(
+		MVMServiceValidateCreateProcedure,
+		svc.ValidateCreate,
+		connect.WithSchema(mVMServiceMethods.ByName("ValidateCreate")),
+		connect.WithHandlerOptions(opts...),
+	)
 	mVMServiceGetHandler := connect.NewUnaryHandlerSimple(
 		MVMServiceGetProcedure,
 		svc.Get,
 		connect.WithSchema(mVMServiceMethods.ByName("Get")),
 		connect.WithHandlerOptions(opts...),
 	)
-	mVMServiceCreateHandler := connect.NewUnaryHandlerSimple(
-		MVMServiceCreateProcedure,
-		svc.Create,
-		connect.WithSchema(mVMServiceMethods.ByName("Create")),
+	mVMServiceListHandler := connect.NewUnaryHandlerSimple(
+		MVMServiceListProcedure,
+		svc.List,
+		connect.WithSchema(mVMServiceMethods.ByName("List")),
 		connect.WithHandlerOptions(opts...),
 	)
 	mVMServiceUpdateHandler := connect.NewUnaryHandlerSimple(
@@ -429,10 +619,22 @@ func NewMVMServiceHandler(svc MVMServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(mVMServiceMethods.ByName("Update")),
 		connect.WithHandlerOptions(opts...),
 	)
-	mVMServiceListHandler := connect.NewUnaryHandlerSimple(
-		MVMServiceListProcedure,
-		svc.List,
-		connect.WithSchema(mVMServiceMethods.ByName("List")),
+	mVMServiceValidateUpdateHandler := connect.NewUnaryHandlerSimple(
+		MVMServiceValidateUpdateProcedure,
+		svc.ValidateUpdate,
+		connect.WithSchema(mVMServiceMethods.ByName("ValidateUpdate")),
+		connect.WithHandlerOptions(opts...),
+	)
+	mVMServiceUpdateServiceClassHandler := connect.NewUnaryHandlerSimple(
+		MVMServiceUpdateServiceClassProcedure,
+		svc.UpdateServiceClass,
+		connect.WithSchema(mVMServiceMethods.ByName("UpdateServiceClass")),
+		connect.WithHandlerOptions(opts...),
+	)
+	mVMServiceValidateUpdateServiceClassHandler := connect.NewUnaryHandlerSimple(
+		MVMServiceValidateUpdateServiceClassProcedure,
+		svc.ValidateUpdateServiceClass,
+		connect.WithSchema(mVMServiceMethods.ByName("ValidateUpdateServiceClass")),
 		connect.WithHandlerOptions(opts...),
 	)
 	mVMServiceDeleteHandler := connect.NewUnaryHandlerSimple(
@@ -447,10 +649,22 @@ func NewMVMServiceHandler(svc MVMServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(mVMServiceMethods.ByName("AddDisk")),
 		connect.WithHandlerOptions(opts...),
 	)
+	mVMServiceValidateAddDiskHandler := connect.NewUnaryHandlerSimple(
+		MVMServiceValidateAddDiskProcedure,
+		svc.ValidateAddDisk,
+		connect.WithSchema(mVMServiceMethods.ByName("ValidateAddDisk")),
+		connect.WithHandlerOptions(opts...),
+	)
 	mVMServiceUpdateDiskHandler := connect.NewUnaryHandlerSimple(
 		MVMServiceUpdateDiskProcedure,
 		svc.UpdateDisk,
 		connect.WithSchema(mVMServiceMethods.ByName("UpdateDisk")),
+		connect.WithHandlerOptions(opts...),
+	)
+	mVMServiceValidateUpdateDiskHandler := connect.NewUnaryHandlerSimple(
+		MVMServiceValidateUpdateDiskProcedure,
+		svc.ValidateUpdateDisk,
+		connect.WithSchema(mVMServiceMethods.ByName("ValidateUpdateDisk")),
 		connect.WithHandlerOptions(opts...),
 	)
 	mVMServiceDeleteDiskHandler := connect.NewUnaryHandlerSimple(
@@ -477,46 +691,70 @@ func NewMVMServiceHandler(svc MVMServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(mVMServiceMethods.ByName("DeleteNetworkInterface")),
 		connect.WithHandlerOptions(opts...),
 	)
-	mVMServiceValidateCreateHandler := connect.NewUnaryHandlerSimple(
-		MVMServiceValidateCreateProcedure,
-		svc.ValidateCreate,
-		connect.WithSchema(mVMServiceMethods.ByName("ValidateCreate")),
+	mVMServiceRestartHandler := connect.NewUnaryHandlerSimple(
+		MVMServiceRestartProcedure,
+		svc.Restart,
+		connect.WithSchema(mVMServiceMethods.ByName("Restart")),
 		connect.WithHandlerOptions(opts...),
 	)
-	mVMServiceValidateAddDiskHandler := connect.NewUnaryHandlerSimple(
-		MVMServiceValidateAddDiskProcedure,
-		svc.ValidateAddDisk,
-		connect.WithSchema(mVMServiceMethods.ByName("ValidateAddDisk")),
+	mVMServiceReinstallHandler := connect.NewUnaryHandlerSimple(
+		MVMServiceReinstallProcedure,
+		svc.Reinstall,
+		connect.WithSchema(mVMServiceMethods.ByName("Reinstall")),
 		connect.WithHandlerOptions(opts...),
 	)
-	mVMServiceValidateUpdateDiskHandler := connect.NewUnaryHandlerSimple(
-		MVMServiceValidateUpdateDiskProcedure,
-		svc.ValidateUpdateDisk,
-		connect.WithSchema(mVMServiceMethods.ByName("ValidateUpdateDisk")),
+	mVMServiceValidateReinstallHandler := connect.NewUnaryHandlerSimple(
+		MVMServiceValidateReinstallProcedure,
+		svc.ValidateReinstall,
+		connect.WithSchema(mVMServiceMethods.ByName("ValidateReinstall")),
 		connect.WithHandlerOptions(opts...),
 	)
-	mVMServiceValidateAddNetworkInterfaceHandler := connect.NewUnaryHandlerSimple(
-		MVMServiceValidateAddNetworkInterfaceProcedure,
-		svc.ValidateAddNetworkInterface,
-		connect.WithSchema(mVMServiceMethods.ByName("ValidateAddNetworkInterface")),
+	mVMServiceAddSnapshotHandler := connect.NewUnaryHandlerSimple(
+		MVMServiceAddSnapshotProcedure,
+		svc.AddSnapshot,
+		connect.WithSchema(mVMServiceMethods.ByName("AddSnapshot")),
+		connect.WithHandlerOptions(opts...),
+	)
+	mVMServiceDeleteSnapshotHandler := connect.NewUnaryHandlerSimple(
+		MVMServiceDeleteSnapshotProcedure,
+		svc.DeleteSnapshot,
+		connect.WithSchema(mVMServiceMethods.ByName("DeleteSnapshot")),
+		connect.WithHandlerOptions(opts...),
+	)
+	mVMServiceMoveHandler := connect.NewUnaryHandlerSimple(
+		MVMServiceMoveProcedure,
+		svc.Move,
+		connect.WithSchema(mVMServiceMethods.ByName("Move")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/fits.api.mvm.v1.MVMService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case MVMServiceGetProcedure:
-			mVMServiceGetHandler.ServeHTTP(w, r)
 		case MVMServiceCreateProcedure:
 			mVMServiceCreateHandler.ServeHTTP(w, r)
-		case MVMServiceUpdateProcedure:
-			mVMServiceUpdateHandler.ServeHTTP(w, r)
+		case MVMServiceValidateCreateProcedure:
+			mVMServiceValidateCreateHandler.ServeHTTP(w, r)
+		case MVMServiceGetProcedure:
+			mVMServiceGetHandler.ServeHTTP(w, r)
 		case MVMServiceListProcedure:
 			mVMServiceListHandler.ServeHTTP(w, r)
+		case MVMServiceUpdateProcedure:
+			mVMServiceUpdateHandler.ServeHTTP(w, r)
+		case MVMServiceValidateUpdateProcedure:
+			mVMServiceValidateUpdateHandler.ServeHTTP(w, r)
+		case MVMServiceUpdateServiceClassProcedure:
+			mVMServiceUpdateServiceClassHandler.ServeHTTP(w, r)
+		case MVMServiceValidateUpdateServiceClassProcedure:
+			mVMServiceValidateUpdateServiceClassHandler.ServeHTTP(w, r)
 		case MVMServiceDeleteProcedure:
 			mVMServiceDeleteHandler.ServeHTTP(w, r)
 		case MVMServiceAddDiskProcedure:
 			mVMServiceAddDiskHandler.ServeHTTP(w, r)
+		case MVMServiceValidateAddDiskProcedure:
+			mVMServiceValidateAddDiskHandler.ServeHTTP(w, r)
 		case MVMServiceUpdateDiskProcedure:
 			mVMServiceUpdateDiskHandler.ServeHTTP(w, r)
+		case MVMServiceValidateUpdateDiskProcedure:
+			mVMServiceValidateUpdateDiskHandler.ServeHTTP(w, r)
 		case MVMServiceDeleteDiskProcedure:
 			mVMServiceDeleteDiskHandler.ServeHTTP(w, r)
 		case MVMServiceAddNetworkInterfaceProcedure:
@@ -525,14 +763,18 @@ func NewMVMServiceHandler(svc MVMServiceHandler, opts ...connect.HandlerOption) 
 			mVMServiceMoveNetworkInterfaceHandler.ServeHTTP(w, r)
 		case MVMServiceDeleteNetworkInterfaceProcedure:
 			mVMServiceDeleteNetworkInterfaceHandler.ServeHTTP(w, r)
-		case MVMServiceValidateCreateProcedure:
-			mVMServiceValidateCreateHandler.ServeHTTP(w, r)
-		case MVMServiceValidateAddDiskProcedure:
-			mVMServiceValidateAddDiskHandler.ServeHTTP(w, r)
-		case MVMServiceValidateUpdateDiskProcedure:
-			mVMServiceValidateUpdateDiskHandler.ServeHTTP(w, r)
-		case MVMServiceValidateAddNetworkInterfaceProcedure:
-			mVMServiceValidateAddNetworkInterfaceHandler.ServeHTTP(w, r)
+		case MVMServiceRestartProcedure:
+			mVMServiceRestartHandler.ServeHTTP(w, r)
+		case MVMServiceReinstallProcedure:
+			mVMServiceReinstallHandler.ServeHTTP(w, r)
+		case MVMServiceValidateReinstallProcedure:
+			mVMServiceValidateReinstallHandler.ServeHTTP(w, r)
+		case MVMServiceAddSnapshotProcedure:
+			mVMServiceAddSnapshotHandler.ServeHTTP(w, r)
+		case MVMServiceDeleteSnapshotProcedure:
+			mVMServiceDeleteSnapshotHandler.ServeHTTP(w, r)
+		case MVMServiceMoveProcedure:
+			mVMServiceMoveHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -542,20 +784,36 @@ func NewMVMServiceHandler(svc MVMServiceHandler, opts ...connect.HandlerOption) 
 // UnimplementedMVMServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedMVMServiceHandler struct{}
 
+func (UnimplementedMVMServiceHandler) Create(context.Context, *v1.MVMServiceCreateRequest) (*v1.MVMServiceCreateResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.Create is not implemented"))
+}
+
+func (UnimplementedMVMServiceHandler) ValidateCreate(context.Context, *v1.MVMServiceValidateCreateRequest) (*v1.MVMServiceValidateCreateResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.ValidateCreate is not implemented"))
+}
+
 func (UnimplementedMVMServiceHandler) Get(context.Context, *v1.MVMServiceGetRequest) (*v1.MVMServiceGetResponse, error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.Get is not implemented"))
 }
 
-func (UnimplementedMVMServiceHandler) Create(context.Context, *v1.MVMServiceCreateRequest) (*v1.MVMServiceCreateResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.Create is not implemented"))
+func (UnimplementedMVMServiceHandler) List(context.Context, *v1.MVMServiceListRequest) (*v1.MVMServiceListResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.List is not implemented"))
 }
 
 func (UnimplementedMVMServiceHandler) Update(context.Context, *v1.MVMServiceUpdateRequest) (*v1.MVMServiceUpdateResponse, error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.Update is not implemented"))
 }
 
-func (UnimplementedMVMServiceHandler) List(context.Context, *v1.MVMServiceListRequest) (*v1.MVMServiceListResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.List is not implemented"))
+func (UnimplementedMVMServiceHandler) ValidateUpdate(context.Context, *v1.MVMServiceValidateUpdateRequest) (*v1.MVMServiceValidateUpdateResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.ValidateUpdate is not implemented"))
+}
+
+func (UnimplementedMVMServiceHandler) UpdateServiceClass(context.Context, *v1.MVMServiceUpdateServiceClassRequest) (*v1.MVMServiceUpdateServiceClassResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.UpdateServiceClass is not implemented"))
+}
+
+func (UnimplementedMVMServiceHandler) ValidateUpdateServiceClass(context.Context, *v1.MVMServiceValidateUpdateServiceClassRequest) (*v1.MVMServiceValidateUpdateServiceClassResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.ValidateUpdateServiceClass is not implemented"))
 }
 
 func (UnimplementedMVMServiceHandler) Delete(context.Context, *v1.MVMServiceDeleteRequest) (*v1.MVMServiceDeleteResponse, error) {
@@ -566,8 +824,16 @@ func (UnimplementedMVMServiceHandler) AddDisk(context.Context, *v1.MVMServiceAdd
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.AddDisk is not implemented"))
 }
 
+func (UnimplementedMVMServiceHandler) ValidateAddDisk(context.Context, *v1.MVMServiceValidateAddDiskRequest) (*v1.MVMServiceValidateAddDiskResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.ValidateAddDisk is not implemented"))
+}
+
 func (UnimplementedMVMServiceHandler) UpdateDisk(context.Context, *v1.MVMServiceUpdateDiskRequest) (*v1.MVMServiceUpdateDiskResponse, error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.UpdateDisk is not implemented"))
+}
+
+func (UnimplementedMVMServiceHandler) ValidateUpdateDisk(context.Context, *v1.MVMServiceValidateUpdateDiskRequest) (*v1.MVMServiceValidateUpdateDiskResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.ValidateUpdateDisk is not implemented"))
 }
 
 func (UnimplementedMVMServiceHandler) DeleteDisk(context.Context, *v1.MVMServiceDeleteDiskRequest) (*v1.MVMServiceDeleteDiskResponse, error) {
@@ -586,18 +852,26 @@ func (UnimplementedMVMServiceHandler) DeleteNetworkInterface(context.Context, *v
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.DeleteNetworkInterface is not implemented"))
 }
 
-func (UnimplementedMVMServiceHandler) ValidateCreate(context.Context, *v1.MVMServiceValidateCreateRequest) (*v1.MVMServiceValidateCreateResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.ValidateCreate is not implemented"))
+func (UnimplementedMVMServiceHandler) Restart(context.Context, *v1.MVMServiceRestartRequest) (*v1.MVMServiceRestartResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.Restart is not implemented"))
 }
 
-func (UnimplementedMVMServiceHandler) ValidateAddDisk(context.Context, *v1.MVMServiceValidateAddDiskRequest) (*v1.MVMServiceValidateAddDiskResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.ValidateAddDisk is not implemented"))
+func (UnimplementedMVMServiceHandler) Reinstall(context.Context, *v1.MVMServiceReinstallRequest) (*v1.MVMServiceReinstallResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.Reinstall is not implemented"))
 }
 
-func (UnimplementedMVMServiceHandler) ValidateUpdateDisk(context.Context, *v1.MVMServiceValidateUpdateDiskRequest) (*v1.MVMServiceValidateUpdateDiskResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.ValidateUpdateDisk is not implemented"))
+func (UnimplementedMVMServiceHandler) ValidateReinstall(context.Context, *v1.MVMServiceValidateReinstallRequest) (*v1.MVMServiceValidateReinstallResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.ValidateReinstall is not implemented"))
 }
 
-func (UnimplementedMVMServiceHandler) ValidateAddNetworkInterface(context.Context, *v1.MVMServiceValidateAddNetworkInterfaceRequest) (*v1.MVMServiceValidateAddNetworkInterfaceResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.ValidateAddNetworkInterface is not implemented"))
+func (UnimplementedMVMServiceHandler) AddSnapshot(context.Context, *v1.MVMServiceAddSnapshotRequest) (*v1.MVMServiceAddSnapshotResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.AddSnapshot is not implemented"))
+}
+
+func (UnimplementedMVMServiceHandler) DeleteSnapshot(context.Context, *v1.MVMServiceDeleteSnapshotRequest) (*v1.MVMServiceDeleteSnapshotResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.DeleteSnapshot is not implemented"))
+}
+
+func (UnimplementedMVMServiceHandler) Move(context.Context, *v1.MVMServiceMoveRequest) (*v1.MVMServiceMoveResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.Move is not implemented"))
 }

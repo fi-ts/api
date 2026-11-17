@@ -525,6 +525,14 @@
                 </li>
               
                 <li>
+                  <a href="#fits.api.mvm.v1.MVMServiceAddSnapshotRequest"><span class="badge">M</span>MVMServiceAddSnapshotRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.MVMServiceAddSnapshotResponse"><span class="badge">M</span>MVMServiceAddSnapshotResponse</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.mvm.v1.MVMServiceCreateLinuxRequest"><span class="badge">M</span>MVMServiceCreateLinuxRequest</a>
                 </li>
               
@@ -565,6 +573,14 @@
                 </li>
               
                 <li>
+                  <a href="#fits.api.mvm.v1.MVMServiceDeleteSnapshotRequest"><span class="badge">M</span>MVMServiceDeleteSnapshotRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.MVMServiceDeleteSnapshotResponse"><span class="badge">M</span>MVMServiceDeleteSnapshotResponse</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.mvm.v1.MVMServiceGetRequest"><span class="badge">M</span>MVMServiceGetRequest</a>
                 </li>
               
@@ -589,6 +605,30 @@
                 </li>
               
                 <li>
+                  <a href="#fits.api.mvm.v1.MVMServiceMoveRequest"><span class="badge">M</span>MVMServiceMoveRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.MVMServiceMoveResponse"><span class="badge">M</span>MVMServiceMoveResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.MVMServiceReinstallRequest"><span class="badge">M</span>MVMServiceReinstallRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.MVMServiceReinstallResponse"><span class="badge">M</span>MVMServiceReinstallResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.MVMServiceRestartRequest"><span class="badge">M</span>MVMServiceRestartRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.MVMServiceRestartResponse"><span class="badge">M</span>MVMServiceRestartResponse</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.mvm.v1.MVMServiceUpdateDiskRequest"><span class="badge">M</span>MVMServiceUpdateDiskRequest</a>
                 </li>
               
@@ -605,19 +645,19 @@
                 </li>
               
                 <li>
+                  <a href="#fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest"><span class="badge">M</span>MVMServiceUpdateServiceClassRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.MVMServiceUpdateServiceClassResponse"><span class="badge">M</span>MVMServiceUpdateServiceClassResponse</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.mvm.v1.MVMServiceValidateAddDiskRequest"><span class="badge">M</span>MVMServiceValidateAddDiskRequest</a>
                 </li>
               
                 <li>
                   <a href="#fits.api.mvm.v1.MVMServiceValidateAddDiskResponse"><span class="badge">M</span>MVMServiceValidateAddDiskResponse</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceRequest"><span class="badge">M</span>MVMServiceValidateAddNetworkInterfaceRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceResponse"><span class="badge">M</span>MVMServiceValidateAddNetworkInterfaceResponse</a>
                 </li>
               
                 <li>
@@ -629,6 +669,14 @@
                 </li>
               
                 <li>
+                  <a href="#fits.api.mvm.v1.MVMServiceValidateReinstallRequest"><span class="badge">M</span>MVMServiceValidateReinstallRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.MVMServiceValidateReinstallResponse"><span class="badge">M</span>MVMServiceValidateReinstallResponse</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest"><span class="badge">M</span>MVMServiceValidateUpdateDiskRequest</a>
                 </li>
               
@@ -637,11 +685,31 @@
                 </li>
               
                 <li>
+                  <a href="#fits.api.mvm.v1.MVMServiceValidateUpdateRequest"><span class="badge">M</span>MVMServiceValidateUpdateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.MVMServiceValidateUpdateResponse"><span class="badge">M</span>MVMServiceValidateUpdateResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassRequest"><span class="badge">M</span>MVMServiceValidateUpdateServiceClassRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassResponse"><span class="badge">M</span>MVMServiceValidateUpdateServiceClassResponse</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.mvm.v1.ManagedVM"><span class="badge">M</span>ManagedVM</a>
                 </li>
               
                 <li>
                   <a href="#fits.api.mvm.v1.NetworkInterface"><span class="badge">M</span>NetworkInterface</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.Snapshot"><span class="badge">M</span>Snapshot</a>
                 </li>
               
                 <li>
@@ -2816,6 +2884,75 @@ API in responses. </p></td>
 
         
       
+        <h3 id="fits.api.mvm.v1.MVMServiceAddSnapshotRequest">MVMServiceAddSnapshotRequest</h3>
+        <p>Request to create a snapshot of a MVM.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the MVM to create the snapshot for. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the project the MVM belongs to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>order_number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Customer reference for this operation. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name of the snapshot; alphanumeric only. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.MVMServiceAddSnapshotResponse">MVMServiceAddSnapshotResponse</h3>
+        <p>Response for AddSnapshot.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the created snapshot. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="fits.api.mvm.v1.MVMServiceCreateLinuxRequest">MVMServiceCreateLinuxRequest</h3>
         <p>Linux-specific create request parts.</p>
 
@@ -3149,17 +3286,17 @@ one system disk plus any number of data disks (see DiskType). </p></td>
             <tbody>
               
                 <tr>
-                  <td>project_uuid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>UUID of the project the MVM belongs to. </p></td>
-                </tr>
-              
-                <tr>
                   <td>uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>UUID of the MVM to delete. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the project the MVM belongs to. </p></td>
                 </tr>
               
                 <tr>
@@ -3178,6 +3315,58 @@ one system disk plus any number of data disks (see DiskType). </p></td>
       
         <h3 id="fits.api.mvm.v1.MVMServiceDeleteResponse">MVMServiceDeleteResponse</h3>
         <p>Response for Delete; an empty response means the cancellation was accepted.</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.mvm.v1.MVMServiceDeleteSnapshotRequest">MVMServiceDeleteSnapshotRequest</h3>
+        <p>Request to delete a snapshot of a MVM.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the MVM the snapshot belongs to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>snapshot_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the snapshot to delete. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the project the MVM belongs to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>order_number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Customer reference for this operation. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.MVMServiceDeleteSnapshotResponse">MVMServiceDeleteSnapshotResponse</h3>
+        <p>Response for DeleteSnapshot; an empty response means the deletion was accepted.</p>
 
         
 
@@ -3345,6 +3534,156 @@ one system disk plus any number of data disks (see DiskType). </p></td>
 
         
       
+        <h3 id="fits.api.mvm.v1.MVMServiceMoveRequest">MVMServiceMoveRequest</h3>
+        <p>Request to move a MVM from one datacenter to another.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the MVM to move. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the project the MVM belongs to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>order_number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Customer reference for this operation. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>location_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>If not provided, another datacenter within the same location will be chosen automatically.
+TODO server pinning </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.MVMServiceMoveResponse">MVMServiceMoveResponse</h3>
+        <p>Response for Move; an empty response means the move was accepted.</p><p>The move is applied asynchronously; poll Get until the state settles.</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.mvm.v1.MVMServiceReinstallRequest">MVMServiceReinstallRequest</h3>
+        <p>Request to reinstall the operating system of a MVM.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the MVM to reinstall. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the project the MVM belongs to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>order_number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Customer reference for this operation. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>os_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>UUID of the operating system image to install. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.MVMServiceReinstallResponse">MVMServiceReinstallResponse</h3>
+        <p>Response for Reinstall; an empty response means the reinstall was accepted.</p><p>The reinstall is applied asynchronously; poll Get until the state settles.</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.mvm.v1.MVMServiceRestartRequest">MVMServiceRestartRequest</h3>
+        <p>Request to restart a MVM.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the MVM to restart. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the project the MVM belongs to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>order_number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Customer reference for this operation. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.MVMServiceRestartResponse">MVMServiceRestartResponse</h3>
+        <p>Response for Restart; an empty response means the restart was accepted.</p><p>The restart is applied asynchronously; poll Get until the state settles.</p>
+
+        
+
+        
+      
         <h3 id="fits.api.mvm.v1.MVMServiceUpdateDiskRequest">MVMServiceUpdateDiskRequest</h3>
         <p>Request to change an existing disk; only size and auto-extend are</p><p>mutable (see DiskType for applicability per disk kind).</p>
 
@@ -3436,13 +3775,6 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Order reference for this operation. </p></td>
-                </tr>
-              
-                <tr>
                   <td>update_meta</td>
                   <td><a href="#fits.api.v1.UpdateMeta">fits.api.v1.UpdateMeta</a></td>
                   <td></td>
@@ -3450,24 +3782,17 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>cpu</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td>optional</td>
-                  <td><p>Number of vCPUs (1-64); unset keeps the current value. </p></td>
+                  <td>order_number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Order reference for this operation. </p></td>
                 </tr>
               
                 <tr>
-                  <td>ram</td>
-                  <td><a href="#uint32">uint32</a></td>
+                  <td>labels</td>
+                  <td><a href="#fits.api.v1.UpdateLabels">fits.api.v1.UpdateLabels</a></td>
                   <td>optional</td>
-                  <td><p>RAM size in GB; unset keeps the current value. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>service_class</td>
-                  <td><a href="#fits.api.mvm.v1.ServiceClass">ServiceClass</a></td>
-                  <td>optional</td>
-                  <td><p>Target service class; unset keeps the current value. </p></td>
+                  <td><p>The labels to update. </p></td>
                 </tr>
               
                 <tr>
@@ -3475,6 +3800,20 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
                   <td><p>UUID of the new contact; unset keeps the current value. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>cpu</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td>optional</td>
+                  <td><p>Number of vCPUs; unset keeps the current value. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ram_gb</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td>optional</td>
+                  <td><p>RAM size in GB; unset keeps the current value. </p></td>
                 </tr>
               
             </tbody>
@@ -3485,7 +3824,59 @@ one system disk plus any number of data disks (see DiskType). </p></td>
         
       
         <h3 id="fits.api.mvm.v1.MVMServiceUpdateResponse">MVMServiceUpdateResponse</h3>
-        <p>Response for Update; an empty response means the update was accepted.</p><p>The update is applied asynchronously; poll Get until the state settles.</p><p>PROPOSAL (open for discussion): return the MVM after accepting the update.</p><p>The update is applied asynchronously, so the returned MVM reflects the</p><p>accepted state and may still report STATE_UPDATING.</p><p>It would be populated best-effort from a read-back after the write; if the</p><p>read-back fails the field stays unset while the RPC still succeeds.</p><p>Clients must not rely on it being present and must still poll Get to</p><p>observe completion or failure of the asynchronous operation.</p><p>optional ManagedVM mvm = 1;</p>
+        <p>Response for Update; an empty response means the update was accepted.</p><p>The update is applied asynchronously; poll Get until the state settles.</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest">MVMServiceUpdateServiceClassRequest</h3>
+        <p>Deprecated: request for a service class update.</p><p>Will be optional fields of the MVMServiceUpdateRequest.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the MVM to update service class for. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the project the MVM belongs to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>service_class</td>
+                  <td><a href="#fits.api.mvm.v1.ServiceClass">ServiceClass</a></td>
+                  <td>optional</td>
+                  <td><p>Target service class; unset keeps the current value. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>availability</td>
+                  <td><a href="#fits.api.mvm.v1.Availability">Availability</a></td>
+                  <td>optional</td>
+                  <td><p>Target availability level; unset keeps current value. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.MVMServiceUpdateServiceClassResponse">MVMServiceUpdateServiceClassResponse</h3>
+        <p>Deprecated: response for a service class update.</p><p>An empty response means the update was accepted.</p><p>The update is applied asynchronously; poll Get until the state settles.</p>
 
         
 
@@ -3522,37 +3913,6 @@ one system disk plus any number of data disks (see DiskType). </p></td>
 
         
       
-        <h3 id="fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceRequest">MVMServiceValidateAddNetworkInterfaceRequest</h3>
-        <p>Request to validate an AddNetworkInterface without ordering anything.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>add_network_interface</td>
-                  <td><a href="#fits.api.mvm.v1.MVMServiceAddNetworkInterfaceRequest">MVMServiceAddNetworkInterfaceRequest</a></td>
-                  <td></td>
-                  <td><p>The add network interface request to validate. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceResponse">MVMServiceValidateAddNetworkInterfaceResponse</h3>
-        <p>Response for ValidateAddNetworkInterface; violations are returned as an InvalidArgument error.</p>
-
-        
-
-        
-      
         <h3 id="fits.api.mvm.v1.MVMServiceValidateCreateRequest">MVMServiceValidateCreateRequest</h3>
         <p>Request to validate a MVM create without creating anything.</p>
 
@@ -3584,6 +3944,37 @@ one system disk plus any number of data disks (see DiskType). </p></td>
 
         
       
+        <h3 id="fits.api.mvm.v1.MVMServiceValidateReinstallRequest">MVMServiceValidateReinstallRequest</h3>
+        <p>Request to validate a Reinstall without reinstalling anything.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>reinstall</td>
+                  <td><a href="#fits.api.mvm.v1.MVMServiceReinstallRequest">MVMServiceReinstallRequest</a></td>
+                  <td></td>
+                  <td><p>The reinstall request to validate. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.MVMServiceValidateReinstallResponse">MVMServiceValidateReinstallResponse</h3>
+        <p>Response for ValidateReinstall; violations are returned as an InvalidArgument error.</p>
+
+        
+
+        
+      
         <h3 id="fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest">MVMServiceValidateUpdateDiskRequest</h3>
         <p>Request to validate an UpdateDisk without changing anything.</p>
 
@@ -3610,6 +4001,68 @@ one system disk plus any number of data disks (see DiskType). </p></td>
       
         <h3 id="fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse">MVMServiceValidateUpdateDiskResponse</h3>
         <p>Response for ValidateUpdateDisk; violations are returned as an InvalidArgument error.</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.mvm.v1.MVMServiceValidateUpdateRequest">MVMServiceValidateUpdateRequest</h3>
+        <p>Request to validate a MVM update without updating anything.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>update</td>
+                  <td><a href="#fits.api.mvm.v1.MVMServiceUpdateRequest">MVMServiceUpdateRequest</a></td>
+                  <td></td>
+                  <td><p>The update request to validate. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.MVMServiceValidateUpdateResponse">MVMServiceValidateUpdateResponse</h3>
+        <p>Response for ValidateUpdate; violations are returned as an InvalidArgument error.</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassRequest">MVMServiceValidateUpdateServiceClassRequest</h3>
+        <p>Deprecated: Request to validate a MVM service class update without updating anything.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>update_service_class</td>
+                  <td><a href="#fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest">MVMServiceUpdateServiceClassRequest</a></td>
+                  <td></td>
+                  <td><p>The UpdateServiceClass request to validate. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassResponse">MVMServiceValidateUpdateServiceClassResponse</h3>
+        <p>Deprecated: Response for ValidateUpdateServiceClass; violations are returned as an InvalidArgument error.</p>
 
         
 
@@ -3759,6 +4212,13 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
                   <td><p>Internal reference number provided by the user, e.g. a ticket ID. </p></td>
                 </tr>
               
+                <tr>
+                  <td>snapshots</td>
+                  <td><a href="#fits.api.mvm.v1.Snapshot">Snapshot</a></td>
+                  <td>repeated</td>
+                  <td><p>Snapshots of the MVM. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -3804,6 +4264,37 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
                   <td><p>MAC address of this interface.
 
 TODO: add validation </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.Snapshot">Snapshot</h3>
+        <p>A snapshot of a MVM.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of this snapshot. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name of the snapshot. </p></td>
                 </tr>
               
             </tbody>
@@ -4121,6 +4612,20 @@ deletable.</p></td>
           <tbody>
             
               <tr>
+                <td>Create</td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceCreateRequest">MVMServiceCreateRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceCreateResponse">MVMServiceCreateResponse</a></td>
+                <td><p>Creates a new MVM.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ValidateCreate</td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceValidateCreateRequest">MVMServiceValidateCreateRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceValidateCreateResponse">MVMServiceValidateCreateResponse</a></td>
+                <td><p>Validates a MVM create request without creating anything (dry-run).</p></td>
+              </tr>
+            
+              <tr>
                 <td>Get</td>
                 <td><a href="#fits.api.mvm.v1.MVMServiceGetRequest">MVMServiceGetRequest</a></td>
                 <td><a href="#fits.api.mvm.v1.MVMServiceGetResponse">MVMServiceGetResponse</a></td>
@@ -4128,10 +4633,10 @@ deletable.</p></td>
               </tr>
             
               <tr>
-                <td>Create</td>
-                <td><a href="#fits.api.mvm.v1.MVMServiceCreateRequest">MVMServiceCreateRequest</a></td>
-                <td><a href="#fits.api.mvm.v1.MVMServiceCreateResponse">MVMServiceCreateResponse</a></td>
-                <td><p>Creates a new MVM.</p></td>
+                <td>List</td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceListRequest">MVMServiceListRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceListResponse">MVMServiceListResponse</a></td>
+                <td><p>Returns the list of all MVMs.</p></td>
               </tr>
             
               <tr>
@@ -4142,10 +4647,24 @@ deletable.</p></td>
               </tr>
             
               <tr>
-                <td>List</td>
-                <td><a href="#fits.api.mvm.v1.MVMServiceListRequest">MVMServiceListRequest</a></td>
-                <td><a href="#fits.api.mvm.v1.MVMServiceListResponse">MVMServiceListResponse</a></td>
-                <td><p>Returns the list of all MVMs.</p></td>
+                <td>ValidateUpdate</td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceValidateUpdateRequest">MVMServiceValidateUpdateRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceValidateUpdateResponse">MVMServiceValidateUpdateResponse</a></td>
+                <td><p>Validates an Update request without changing anything.</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateServiceClass</td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest">MVMServiceUpdateServiceClassRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceUpdateServiceClassResponse">MVMServiceUpdateServiceClassResponse</a></td>
+                <td><p>Deprecated: Updates the service class of a MVM.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ValidateUpdateServiceClass</td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassRequest">MVMServiceValidateUpdateServiceClassRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassResponse">MVMServiceValidateUpdateServiceClassResponse</a></td>
+                <td><p>Deprecated: Validates an UpdateServiceClass request without changing anything.</p></td>
               </tr>
             
               <tr>
@@ -4164,11 +4683,25 @@ MVM creation and cannot be added later.</p></td>
               </tr>
             
               <tr>
+                <td>ValidateAddDisk</td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceValidateAddDiskRequest">MVMServiceValidateAddDiskRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceValidateAddDiskResponse">MVMServiceValidateAddDiskResponse</a></td>
+                <td><p>Validates an AddDisk request without ordering anything.</p></td>
+              </tr>
+            
+              <tr>
                 <td>UpdateDisk</td>
                 <td><a href="#fits.api.mvm.v1.MVMServiceUpdateDiskRequest">MVMServiceUpdateDiskRequest</a></td>
                 <td><a href="#fits.api.mvm.v1.MVMServiceUpdateDiskResponse">MVMServiceUpdateDiskResponse</a></td>
                 <td><p>Changes the size or auto-extend behavior of an existing disk; see
 DiskType for which operations apply per disk kind.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ValidateUpdateDisk</td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest">MVMServiceValidateUpdateDiskRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse">MVMServiceValidateUpdateDiskResponse</a></td>
+                <td><p>Validates an UpdateDisk request without changing anything.</p></td>
               </tr>
             
               <tr>
@@ -4200,32 +4733,45 @@ DiskType for which operations apply per disk kind.</p></td>
               </tr>
             
               <tr>
-                <td>ValidateCreate</td>
-                <td><a href="#fits.api.mvm.v1.MVMServiceValidateCreateRequest">MVMServiceValidateCreateRequest</a></td>
-                <td><a href="#fits.api.mvm.v1.MVMServiceValidateCreateResponse">MVMServiceValidateCreateResponse</a></td>
-                <td><p>Validates a MVM create request without creating anything. Intended for
-form pre-checks; the create endpoint validates again before executing.</p></td>
+                <td>Restart</td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceRestartRequest">MVMServiceRestartRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceRestartResponse">MVMServiceRestartResponse</a></td>
+                <td><p>Restarts a MVM.</p></td>
               </tr>
             
               <tr>
-                <td>ValidateAddDisk</td>
-                <td><a href="#fits.api.mvm.v1.MVMServiceValidateAddDiskRequest">MVMServiceValidateAddDiskRequest</a></td>
-                <td><a href="#fits.api.mvm.v1.MVMServiceValidateAddDiskResponse">MVMServiceValidateAddDiskResponse</a></td>
-                <td><p>Validates an AddDisk request without ordering anything.</p></td>
+                <td>Reinstall</td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceReinstallRequest">MVMServiceReinstallRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceReinstallResponse">MVMServiceReinstallResponse</a></td>
+                <td><p>Reinstalls the operating system of a MVM.</p></td>
               </tr>
             
               <tr>
-                <td>ValidateUpdateDisk</td>
-                <td><a href="#fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest">MVMServiceValidateUpdateDiskRequest</a></td>
-                <td><a href="#fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse">MVMServiceValidateUpdateDiskResponse</a></td>
-                <td><p>Validates an UpdateDisk request without changing anything.</p></td>
+                <td>ValidateReinstall</td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceValidateReinstallRequest">MVMServiceValidateReinstallRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceValidateReinstallResponse">MVMServiceValidateReinstallResponse</a></td>
+                <td><p>Validates a Reinstall request without reinstalling anything.</p></td>
               </tr>
             
               <tr>
-                <td>ValidateAddNetworkInterface</td>
-                <td><a href="#fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceRequest">MVMServiceValidateAddNetworkInterfaceRequest</a></td>
-                <td><a href="#fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceResponse">MVMServiceValidateAddNetworkInterfaceResponse</a></td>
-                <td><p>Validates an AddNetworkInterface request without ordering anything.</p></td>
+                <td>AddSnapshot</td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceAddSnapshotRequest">MVMServiceAddSnapshotRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceAddSnapshotResponse">MVMServiceAddSnapshotResponse</a></td>
+                <td><p>Creates a snapshot of a MVM.</p></td>
+              </tr>
+            
+              <tr>
+                <td>DeleteSnapshot</td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceDeleteSnapshotRequest">MVMServiceDeleteSnapshotRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceDeleteSnapshotResponse">MVMServiceDeleteSnapshotResponse</a></td>
+                <td><p>Deletes a snapshot of a MVM.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Move</td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceMoveRequest">MVMServiceMoveRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceMoveResponse">MVMServiceMoveResponse</a></td>
+                <td><p>Moves a MVM from one datacenter to another.</p></td>
               </tr>
             
           </tbody>

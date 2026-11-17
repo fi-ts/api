@@ -40,9 +40,9 @@ func TestValidateRequestsExposeProjectUuid(t *testing.T) {
 			want: project,
 		},
 		{
-			name: "validate add network interface forwards nested project",
-			req: &MVMServiceValidateAddNetworkInterfaceRequest{
-				AddNetworkInterface: &MVMServiceAddNetworkInterfaceRequest{ProjectUuid: project},
+			name: "validate reinstall forwards nested project",
+			req: &MVMServiceValidateReinstallRequest{
+				Reinstall: &MVMServiceReinstallRequest{ProjectUuid: project},
 			},
 			want: project,
 		},
@@ -67,14 +67,14 @@ func TestValidateRequestsNilReceiver(t *testing.T) {
 		create     *MVMServiceValidateCreateRequest
 		addDisk    *MVMServiceValidateAddDiskRequest
 		updateDisk *MVMServiceValidateUpdateDiskRequest
-		addNIC     *MVMServiceValidateAddNetworkInterfaceRequest
+		reinstall  *MVMServiceValidateReinstallRequest
 	)
 	// A nil receiver must not panic; it simply has no project.
 	for _, got := range []string{
 		create.GetProjectUuid(),
 		addDisk.GetProjectUuid(),
 		updateDisk.GetProjectUuid(),
-		addNIC.GetProjectUuid(),
+		reinstall.GetProjectUuid(),
 	} {
 		if got != "" {
 			t.Errorf("GetProjectUuid() on nil receiver = %q, want empty", got)

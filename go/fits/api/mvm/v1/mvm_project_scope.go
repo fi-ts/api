@@ -38,12 +38,11 @@ func (x *MVMServiceValidateUpdateDiskRequest) GetProjectUuid() string {
 	return x.GetUpdateDisk().GetProjectUuid()
 }
 
-// GetProjectUuid returns the project of the wrapped add-network-interface
-// request so the request satisfies the project-scope resolution used by
-// authorization.
-func (x *MVMServiceValidateAddNetworkInterfaceRequest) GetProjectUuid() string {
+// GetProjectUuid returns the project of the wrapped reinstall request so the
+// request satisfies the project-scope resolution used by authorization.
+func (x *MVMServiceValidateReinstallRequest) GetProjectUuid() string {
 	if x == nil {
 		return ""
 	}
-	return x.GetAddNetworkInterface().GetProjectUuid()
+	return x.GetReinstall().GetProjectUuid()
 }

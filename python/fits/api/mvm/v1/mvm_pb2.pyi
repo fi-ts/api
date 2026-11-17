@@ -60,6 +60,46 @@ DISK_TYPE_OS: DiskType
 DISK_TYPE_SYSTEM: DiskType
 DISK_TYPE_DATA: DiskType
 
+class LinuxDisk(_message.Message):
+    __slots__ = ("uuid", "label", "auto_extend", "size", "mount_point", "disk_type")
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    LABEL_FIELD_NUMBER: _ClassVar[int]
+    AUTO_EXTEND_FIELD_NUMBER: _ClassVar[int]
+    SIZE_FIELD_NUMBER: _ClassVar[int]
+    MOUNT_POINT_FIELD_NUMBER: _ClassVar[int]
+    DISK_TYPE_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    label: str
+    auto_extend: bool
+    size: int
+    mount_point: str
+    disk_type: DiskType
+    def __init__(self, uuid: _Optional[str] = ..., label: _Optional[str] = ..., auto_extend: _Optional[bool] = ..., size: _Optional[int] = ..., mount_point: _Optional[str] = ..., disk_type: _Optional[_Union[DiskType, str]] = ...) -> None: ...
+
+class WindowsDisk(_message.Message):
+    __slots__ = ("uuid", "label", "auto_extend", "size", "driveletter", "disk_type")
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    LABEL_FIELD_NUMBER: _ClassVar[int]
+    AUTO_EXTEND_FIELD_NUMBER: _ClassVar[int]
+    SIZE_FIELD_NUMBER: _ClassVar[int]
+    DRIVELETTER_FIELD_NUMBER: _ClassVar[int]
+    DISK_TYPE_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    label: str
+    auto_extend: bool
+    size: int
+    driveletter: str
+    disk_type: DiskType
+    def __init__(self, uuid: _Optional[str] = ..., label: _Optional[str] = ..., auto_extend: _Optional[bool] = ..., size: _Optional[int] = ..., driveletter: _Optional[str] = ..., disk_type: _Optional[_Union[DiskType, str]] = ...) -> None: ...
+
+class Disk(_message.Message):
+    __slots__ = ("linux", "windows")
+    LINUX_FIELD_NUMBER: _ClassVar[int]
+    WINDOWS_FIELD_NUMBER: _ClassVar[int]
+    linux: LinuxDisk
+    windows: WindowsDisk
+    def __init__(self, linux: _Optional[_Union[LinuxDisk, _Mapping]] = ..., windows: _Optional[_Union[WindowsDisk, _Mapping]] = ...) -> None: ...
+
 class LinuxDetails(_message.Message):
     __slots__ = ("disks", "ldap_uuid", "ldap_fqdn")
     DISKS_FIELD_NUMBER: _ClassVar[int]
@@ -107,7 +147,7 @@ class Status(_message.Message):
     def __init__(self, state: _Optional[_Union[State, str]] = ..., info: _Optional[str] = ...) -> None: ...
 
 class ManagedVM(_message.Message):
-    __slots__ = ("uuid", "meta", "fqdn", "tenant", "project_uuid", "os_uuid", "location_uuid", "contact_uuid", "cpu", "ram", "backup", "encrypted", "status", "availability", "service_class", "windows_details", "linux_details", "interfaces", "order_number")
+    __slots__ = ("uuid", "meta", "fqdn", "tenant", "project_uuid", "os_uuid", "location_uuid", "contact_uuid", "cpu", "ram", "backup", "encrypted", "status", "availability", "service_class", "windows_details", "linux_details", "interfaces", "order_number", "snapshots")
     UUID_FIELD_NUMBER: _ClassVar[int]
     META_FIELD_NUMBER: _ClassVar[int]
     FQDN_FIELD_NUMBER: _ClassVar[int]
@@ -127,6 +167,7 @@ class ManagedVM(_message.Message):
     LINUX_DETAILS_FIELD_NUMBER: _ClassVar[int]
     INTERFACES_FIELD_NUMBER: _ClassVar[int]
     ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
+    SNAPSHOTS_FIELD_NUMBER: _ClassVar[int]
     uuid: str
     meta: _common_pb2.Meta
     fqdn: str
@@ -146,7 +187,16 @@ class ManagedVM(_message.Message):
     linux_details: LinuxDetails
     interfaces: _containers.RepeatedCompositeFieldContainer[NetworkInterface]
     order_number: str
-    def __init__(self, uuid: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., fqdn: _Optional[str] = ..., tenant: _Optional[str] = ..., project_uuid: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., backup: _Optional[bool] = ..., encrypted: _Optional[bool] = ..., status: _Optional[_Union[Status, _Mapping]] = ..., availability: _Optional[_Union[Availability, str]] = ..., service_class: _Optional[_Union[ServiceClass, str]] = ..., windows_details: _Optional[_Union[WindowsDetails, _Mapping]] = ..., linux_details: _Optional[_Union[LinuxDetails, _Mapping]] = ..., interfaces: _Optional[_Iterable[_Union[NetworkInterface, _Mapping]]] = ..., order_number: _Optional[str] = ...) -> None: ...
+    snapshots: _containers.RepeatedCompositeFieldContainer[Snapshot]
+    def __init__(self, uuid: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., fqdn: _Optional[str] = ..., tenant: _Optional[str] = ..., project_uuid: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., backup: _Optional[bool] = ..., encrypted: _Optional[bool] = ..., status: _Optional[_Union[Status, _Mapping]] = ..., availability: _Optional[_Union[Availability, str]] = ..., service_class: _Optional[_Union[ServiceClass, str]] = ..., windows_details: _Optional[_Union[WindowsDetails, _Mapping]] = ..., linux_details: _Optional[_Union[LinuxDetails, _Mapping]] = ..., interfaces: _Optional[_Iterable[_Union[NetworkInterface, _Mapping]]] = ..., order_number: _Optional[str] = ..., snapshots: _Optional[_Iterable[_Union[Snapshot, _Mapping]]] = ...) -> None: ...
+
+class Snapshot(_message.Message):
+    __slots__ = ("uuid", "name")
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    NAME_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    name: str
+    def __init__(self, uuid: _Optional[str] = ..., name: _Optional[str] = ...) -> None: ...
 
 class MVMServiceGetRequest(_message.Message):
     __slots__ = ("uuid", "project_uuid")
@@ -161,6 +211,18 @@ class MVMServiceGetResponse(_message.Message):
     MVM_FIELD_NUMBER: _ClassVar[int]
     mvm: ManagedVM
     def __init__(self, mvm: _Optional[_Union[ManagedVM, _Mapping]] = ...) -> None: ...
+
+class MVMServiceListRequest(_message.Message):
+    __slots__ = ("project_uuid",)
+    PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
+    project_uuid: str
+    def __init__(self, project_uuid: _Optional[str] = ...) -> None: ...
+
+class MVMServiceListResponse(_message.Message):
+    __slots__ = ("mvms",)
+    MVMS_FIELD_NUMBER: _ClassVar[int]
+    mvms: _containers.RepeatedCompositeFieldContainer[ManagedVM]
+    def __init__(self, mvms: _Optional[_Iterable[_Union[ManagedVM, _Mapping]]] = ...) -> None: ...
 
 class MVMServiceCreateWindowsRequest(_message.Message):
     __slots__ = ("domain_uuid", "disks")
@@ -214,93 +276,11 @@ class MVMServiceCreateRequest(_message.Message):
     initial_network_interface: InitialNetworkInterface
     def __init__(self, project_uuid: _Optional[str] = ..., name_code: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., order_number: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.Labels, _Mapping]] = ..., backup: _Optional[bool] = ..., encrypted: _Optional[bool] = ..., availability: _Optional[_Union[Availability, str]] = ..., service_class: _Optional[_Union[ServiceClass, str]] = ..., windows: _Optional[_Union[MVMServiceCreateWindowsRequest, _Mapping]] = ..., linux: _Optional[_Union[MVMServiceCreateLinuxRequest, _Mapping]] = ..., initial_network_interface: _Optional[_Union[InitialNetworkInterface, _Mapping]] = ...) -> None: ...
 
-class LinuxDisk(_message.Message):
-    __slots__ = ("uuid", "label", "auto_extend", "size", "mount_point", "disk_type")
-    UUID_FIELD_NUMBER: _ClassVar[int]
-    LABEL_FIELD_NUMBER: _ClassVar[int]
-    AUTO_EXTEND_FIELD_NUMBER: _ClassVar[int]
-    SIZE_FIELD_NUMBER: _ClassVar[int]
-    MOUNT_POINT_FIELD_NUMBER: _ClassVar[int]
-    DISK_TYPE_FIELD_NUMBER: _ClassVar[int]
-    uuid: str
-    label: str
-    auto_extend: bool
-    size: int
-    mount_point: str
-    disk_type: DiskType
-    def __init__(self, uuid: _Optional[str] = ..., label: _Optional[str] = ..., auto_extend: _Optional[bool] = ..., size: _Optional[int] = ..., mount_point: _Optional[str] = ..., disk_type: _Optional[_Union[DiskType, str]] = ...) -> None: ...
-
-class WindowsDisk(_message.Message):
-    __slots__ = ("uuid", "label", "auto_extend", "size", "driveletter", "disk_type")
-    UUID_FIELD_NUMBER: _ClassVar[int]
-    LABEL_FIELD_NUMBER: _ClassVar[int]
-    AUTO_EXTEND_FIELD_NUMBER: _ClassVar[int]
-    SIZE_FIELD_NUMBER: _ClassVar[int]
-    DRIVELETTER_FIELD_NUMBER: _ClassVar[int]
-    DISK_TYPE_FIELD_NUMBER: _ClassVar[int]
-    uuid: str
-    label: str
-    auto_extend: bool
-    size: int
-    driveletter: str
-    disk_type: DiskType
-    def __init__(self, uuid: _Optional[str] = ..., label: _Optional[str] = ..., auto_extend: _Optional[bool] = ..., size: _Optional[int] = ..., driveletter: _Optional[str] = ..., disk_type: _Optional[_Union[DiskType, str]] = ...) -> None: ...
-
 class MVMServiceCreateResponse(_message.Message):
     __slots__ = ("uuid",)
     UUID_FIELD_NUMBER: _ClassVar[int]
     uuid: str
     def __init__(self, uuid: _Optional[str] = ...) -> None: ...
-
-class MVMServiceUpdateRequest(_message.Message):
-    __slots__ = ("uuid", "project_uuid", "order_number", "update_meta", "cpu", "ram", "service_class", "contact_uuid")
-    UUID_FIELD_NUMBER: _ClassVar[int]
-    PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
-    ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
-    UPDATE_META_FIELD_NUMBER: _ClassVar[int]
-    CPU_FIELD_NUMBER: _ClassVar[int]
-    RAM_FIELD_NUMBER: _ClassVar[int]
-    SERVICE_CLASS_FIELD_NUMBER: _ClassVar[int]
-    CONTACT_UUID_FIELD_NUMBER: _ClassVar[int]
-    uuid: str
-    project_uuid: str
-    order_number: str
-    update_meta: _common_pb2.UpdateMeta
-    cpu: int
-    ram: int
-    service_class: ServiceClass
-    contact_uuid: str
-    def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ..., update_meta: _Optional[_Union[_common_pb2.UpdateMeta, _Mapping]] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., service_class: _Optional[_Union[ServiceClass, str]] = ..., contact_uuid: _Optional[str] = ...) -> None: ...
-
-class MVMServiceUpdateResponse(_message.Message):
-    __slots__ = ()
-    def __init__(self) -> None: ...
-
-class MVMServiceListRequest(_message.Message):
-    __slots__ = ("project_uuid",)
-    PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
-    project_uuid: str
-    def __init__(self, project_uuid: _Optional[str] = ...) -> None: ...
-
-class MVMServiceListResponse(_message.Message):
-    __slots__ = ("mvms",)
-    MVMS_FIELD_NUMBER: _ClassVar[int]
-    mvms: _containers.RepeatedCompositeFieldContainer[ManagedVM]
-    def __init__(self, mvms: _Optional[_Iterable[_Union[ManagedVM, _Mapping]]] = ...) -> None: ...
-
-class MVMServiceDeleteRequest(_message.Message):
-    __slots__ = ("project_uuid", "uuid", "order_number")
-    PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
-    UUID_FIELD_NUMBER: _ClassVar[int]
-    ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
-    project_uuid: str
-    uuid: str
-    order_number: str
-    def __init__(self, project_uuid: _Optional[str] = ..., uuid: _Optional[str] = ..., order_number: _Optional[str] = ...) -> None: ...
-
-class MVMServiceDeleteResponse(_message.Message):
-    __slots__ = ()
-    def __init__(self) -> None: ...
 
 class MVMServiceValidateCreateRequest(_message.Message):
     __slots__ = ("create",)
@@ -312,47 +292,79 @@ class MVMServiceValidateCreateResponse(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...
 
-class MVMServiceValidateAddDiskRequest(_message.Message):
-    __slots__ = ("add_disk",)
-    ADD_DISK_FIELD_NUMBER: _ClassVar[int]
-    add_disk: MVMServiceAddDiskRequest
-    def __init__(self, add_disk: _Optional[_Union[MVMServiceAddDiskRequest, _Mapping]] = ...) -> None: ...
-
-class MVMServiceValidateAddDiskResponse(_message.Message):
-    __slots__ = ()
-    def __init__(self) -> None: ...
-
-class MVMServiceValidateUpdateDiskRequest(_message.Message):
-    __slots__ = ("update_disk",)
-    UPDATE_DISK_FIELD_NUMBER: _ClassVar[int]
-    update_disk: MVMServiceUpdateDiskRequest
-    def __init__(self, update_disk: _Optional[_Union[MVMServiceUpdateDiskRequest, _Mapping]] = ...) -> None: ...
-
-class MVMServiceValidateUpdateDiskResponse(_message.Message):
-    __slots__ = ()
-    def __init__(self) -> None: ...
-
-class MVMServiceAddDiskResponse(_message.Message):
-    __slots__ = ("uuid",)
+class MVMServiceUpdateRequest(_message.Message):
+    __slots__ = ("uuid", "project_uuid", "update_meta", "order_number", "labels", "contact_uuid", "cpu", "ram_gb")
     UUID_FIELD_NUMBER: _ClassVar[int]
+    PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
+    UPDATE_META_FIELD_NUMBER: _ClassVar[int]
+    ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
+    LABELS_FIELD_NUMBER: _ClassVar[int]
+    CONTACT_UUID_FIELD_NUMBER: _ClassVar[int]
+    CPU_FIELD_NUMBER: _ClassVar[int]
+    RAM_GB_FIELD_NUMBER: _ClassVar[int]
     uuid: str
-    def __init__(self, uuid: _Optional[str] = ...) -> None: ...
+    project_uuid: str
+    update_meta: _common_pb2.UpdateMeta
+    order_number: str
+    labels: _common_pb2.UpdateLabels
+    contact_uuid: str
+    cpu: int
+    ram_gb: int
+    def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., update_meta: _Optional[_Union[_common_pb2.UpdateMeta, _Mapping]] = ..., order_number: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.UpdateLabels, _Mapping]] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram_gb: _Optional[int] = ...) -> None: ...
 
-class MVMServiceUpdateDiskResponse(_message.Message):
+class MVMServiceUpdateResponse(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...
 
-class MVMServiceDeleteDiskResponse(_message.Message):
+class MVMServiceValidateUpdateRequest(_message.Message):
+    __slots__ = ("update",)
+    UPDATE_FIELD_NUMBER: _ClassVar[int]
+    update: MVMServiceUpdateRequest
+    def __init__(self, update: _Optional[_Union[MVMServiceUpdateRequest, _Mapping]] = ...) -> None: ...
+
+class MVMServiceValidateUpdateResponse(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...
 
-class Disk(_message.Message):
-    __slots__ = ("linux", "windows")
-    LINUX_FIELD_NUMBER: _ClassVar[int]
-    WINDOWS_FIELD_NUMBER: _ClassVar[int]
-    linux: LinuxDisk
-    windows: WindowsDisk
-    def __init__(self, linux: _Optional[_Union[LinuxDisk, _Mapping]] = ..., windows: _Optional[_Union[WindowsDisk, _Mapping]] = ...) -> None: ...
+class MVMServiceUpdateServiceClassRequest(_message.Message):
+    __slots__ = ("uuid", "project_uuid", "service_class", "availability")
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
+    SERVICE_CLASS_FIELD_NUMBER: _ClassVar[int]
+    AVAILABILITY_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    project_uuid: str
+    service_class: ServiceClass
+    availability: Availability
+    def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., service_class: _Optional[_Union[ServiceClass, str]] = ..., availability: _Optional[_Union[Availability, str]] = ...) -> None: ...
+
+class MVMServiceUpdateServiceClassResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class MVMServiceValidateUpdateServiceClassRequest(_message.Message):
+    __slots__ = ("update_service_class",)
+    UPDATE_SERVICE_CLASS_FIELD_NUMBER: _ClassVar[int]
+    update_service_class: MVMServiceUpdateServiceClassRequest
+    def __init__(self, update_service_class: _Optional[_Union[MVMServiceUpdateServiceClassRequest, _Mapping]] = ...) -> None: ...
+
+class MVMServiceValidateUpdateServiceClassResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class MVMServiceDeleteRequest(_message.Message):
+    __slots__ = ("uuid", "project_uuid", "order_number")
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
+    ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    project_uuid: str
+    order_number: str
+    def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ...) -> None: ...
+
+class MVMServiceDeleteResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
 
 class MVMServiceAddDiskRequest(_message.Message):
     __slots__ = ("uuid", "project_uuid", "order_number", "disks")
@@ -365,6 +377,22 @@ class MVMServiceAddDiskRequest(_message.Message):
     order_number: str
     disks: _containers.RepeatedCompositeFieldContainer[Disk]
     def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ..., disks: _Optional[_Iterable[_Union[Disk, _Mapping]]] = ...) -> None: ...
+
+class MVMServiceAddDiskResponse(_message.Message):
+    __slots__ = ("uuid",)
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    def __init__(self, uuid: _Optional[str] = ...) -> None: ...
+
+class MVMServiceValidateAddDiskRequest(_message.Message):
+    __slots__ = ("add_disk",)
+    ADD_DISK_FIELD_NUMBER: _ClassVar[int]
+    add_disk: MVMServiceAddDiskRequest
+    def __init__(self, add_disk: _Optional[_Union[MVMServiceAddDiskRequest, _Mapping]] = ...) -> None: ...
+
+class MVMServiceValidateAddDiskResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
 
 class MVMServiceUpdateDiskRequest(_message.Message):
     __slots__ = ("uuid", "disk_uuid", "project_uuid", "order_number", "auto_extend", "size")
@@ -382,6 +410,20 @@ class MVMServiceUpdateDiskRequest(_message.Message):
     size: int
     def __init__(self, uuid: _Optional[str] = ..., disk_uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ..., auto_extend: _Optional[bool] = ..., size: _Optional[int] = ...) -> None: ...
 
+class MVMServiceUpdateDiskResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class MVMServiceValidateUpdateDiskRequest(_message.Message):
+    __slots__ = ("update_disk",)
+    UPDATE_DISK_FIELD_NUMBER: _ClassVar[int]
+    update_disk: MVMServiceUpdateDiskRequest
+    def __init__(self, update_disk: _Optional[_Union[MVMServiceUpdateDiskRequest, _Mapping]] = ...) -> None: ...
+
+class MVMServiceValidateUpdateDiskResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
 class MVMServiceDeleteDiskRequest(_message.Message):
     __slots__ = ("uuid", "disk_uuid", "project_uuid", "order_number")
     UUID_FIELD_NUMBER: _ClassVar[int]
@@ -394,17 +436,7 @@ class MVMServiceDeleteDiskRequest(_message.Message):
     order_number: str
     def __init__(self, uuid: _Optional[str] = ..., disk_uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ...) -> None: ...
 
-class MVMServiceAddNetworkInterfaceResponse(_message.Message):
-    __slots__ = ("uuid",)
-    UUID_FIELD_NUMBER: _ClassVar[int]
-    uuid: str
-    def __init__(self, uuid: _Optional[str] = ...) -> None: ...
-
-class MVMServiceMoveNetworkInterfaceResponse(_message.Message):
-    __slots__ = ()
-    def __init__(self) -> None: ...
-
-class MVMServiceDeleteNetworkInterfaceResponse(_message.Message):
+class MVMServiceDeleteDiskResponse(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...
 
@@ -417,6 +449,12 @@ class MVMServiceAddNetworkInterfaceRequest(_message.Message):
     project_uuid: str
     order_number: str
     def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ...) -> None: ...
+
+class MVMServiceAddNetworkInterfaceResponse(_message.Message):
+    __slots__ = ("uuid",)
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    def __init__(self, uuid: _Optional[str] = ...) -> None: ...
 
 class MVMServiceMoveNetworkInterfaceRequest(_message.Message):
     __slots__ = ("uuid", "interface_uuid", "project_uuid", "order_number", "target_mvm_uuid")
@@ -432,6 +470,10 @@ class MVMServiceMoveNetworkInterfaceRequest(_message.Message):
     target_mvm_uuid: str
     def __init__(self, uuid: _Optional[str] = ..., interface_uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ..., target_mvm_uuid: _Optional[str] = ...) -> None: ...
 
+class MVMServiceMoveNetworkInterfaceResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
 class MVMServiceDeleteNetworkInterfaceRequest(_message.Message):
     __slots__ = ("uuid", "interface_uuid", "project_uuid", "order_number")
     UUID_FIELD_NUMBER: _ClassVar[int]
@@ -444,12 +486,96 @@ class MVMServiceDeleteNetworkInterfaceRequest(_message.Message):
     order_number: str
     def __init__(self, uuid: _Optional[str] = ..., interface_uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ...) -> None: ...
 
-class MVMServiceValidateAddNetworkInterfaceRequest(_message.Message):
-    __slots__ = ("add_network_interface",)
-    ADD_NETWORK_INTERFACE_FIELD_NUMBER: _ClassVar[int]
-    add_network_interface: MVMServiceAddNetworkInterfaceRequest
-    def __init__(self, add_network_interface: _Optional[_Union[MVMServiceAddNetworkInterfaceRequest, _Mapping]] = ...) -> None: ...
+class MVMServiceDeleteNetworkInterfaceResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
 
-class MVMServiceValidateAddNetworkInterfaceResponse(_message.Message):
+class MVMServiceRestartRequest(_message.Message):
+    __slots__ = ("uuid", "project_uuid", "order_number")
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
+    ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    project_uuid: str
+    order_number: str
+    def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ...) -> None: ...
+
+class MVMServiceRestartResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class MVMServiceReinstallRequest(_message.Message):
+    __slots__ = ("uuid", "project_uuid", "order_number", "os_uuid")
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
+    ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
+    OS_UUID_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    project_uuid: str
+    order_number: str
+    os_uuid: str
+    def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ..., os_uuid: _Optional[str] = ...) -> None: ...
+
+class MVMServiceReinstallResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class MVMServiceValidateReinstallRequest(_message.Message):
+    __slots__ = ("reinstall",)
+    REINSTALL_FIELD_NUMBER: _ClassVar[int]
+    reinstall: MVMServiceReinstallRequest
+    def __init__(self, reinstall: _Optional[_Union[MVMServiceReinstallRequest, _Mapping]] = ...) -> None: ...
+
+class MVMServiceValidateReinstallResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class MVMServiceAddSnapshotRequest(_message.Message):
+    __slots__ = ("uuid", "project_uuid", "order_number", "name")
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
+    ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
+    NAME_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    project_uuid: str
+    order_number: str
+    name: str
+    def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ..., name: _Optional[str] = ...) -> None: ...
+
+class MVMServiceAddSnapshotResponse(_message.Message):
+    __slots__ = ("uuid",)
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    def __init__(self, uuid: _Optional[str] = ...) -> None: ...
+
+class MVMServiceDeleteSnapshotRequest(_message.Message):
+    __slots__ = ("uuid", "snapshot_uuid", "project_uuid", "order_number")
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    SNAPSHOT_UUID_FIELD_NUMBER: _ClassVar[int]
+    PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
+    ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    snapshot_uuid: str
+    project_uuid: str
+    order_number: str
+    def __init__(self, uuid: _Optional[str] = ..., snapshot_uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ...) -> None: ...
+
+class MVMServiceDeleteSnapshotResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
+
+class MVMServiceMoveRequest(_message.Message):
+    __slots__ = ("uuid", "project_uuid", "order_number", "location_uuid")
+    UUID_FIELD_NUMBER: _ClassVar[int]
+    PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
+    ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
+    LOCATION_UUID_FIELD_NUMBER: _ClassVar[int]
+    uuid: str
+    project_uuid: str
+    order_number: str
+    location_uuid: str
+    def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ..., location_uuid: _Optional[str] = ...) -> None: ...
+
+class MVMServiceMoveResponse(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...

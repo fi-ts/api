@@ -18,16 +18,28 @@ import fits.api.mvm.v1.mvm_pb2 as fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2
 
 
 class MVMService(Protocol):
+    async def create(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
+    async def validate_create(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
     async def get(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceGetRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceGetResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
-    async def create(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateResponse:
+    async def list(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
     async def update(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
-    async def list(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListResponse:
+    async def validate_update(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
+    async def update_service_class(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateServiceClassRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateServiceClassResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
+    async def validate_update_service_class(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateServiceClassRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateServiceClassResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
     async def delete(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteResponse:
@@ -36,7 +48,13 @@ class MVMService(Protocol):
     async def add_disk(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDiskResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
+    async def validate_add_disk(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
     async def update_disk(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateDiskResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
+    async def validate_update_disk(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
     async def delete_disk(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteDiskResponse:
@@ -51,16 +69,22 @@ class MVMService(Protocol):
     async def delete_network_interface(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteNetworkInterfaceRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteNetworkInterfaceResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
-    async def validate_create(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateResponse:
+    async def restart(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceRestartRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceRestartResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
-    async def validate_add_disk(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse:
+    async def reinstall(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceReinstallRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceReinstallResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
-    async def validate_update_disk(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskResponse:
+    async def validate_reinstall(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateReinstallRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateReinstallResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
-    async def validate_add_network_interface(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddNetworkInterfaceRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddNetworkInterfaceResponse:
+    async def add_snapshot(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddSnapshotRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddSnapshotResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
+    async def delete_snapshot(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteSnapshotRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteSnapshotResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
+    async def move(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
 
@@ -69,6 +93,26 @@ class MVMServiceASGIApplication(ConnectASGIApplication[MVMService]):
         super().__init__(
             service=service,
             endpoints=lambda svc: {
+                "/fits.api.mvm.v1.MVMService/Create": Endpoint.unary(
+                    method=MethodInfo(
+                        name="Create",
+                        service_name="fits.api.mvm.v1.MVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.create,
+                ),
+                "/fits.api.mvm.v1.MVMService/ValidateCreate": Endpoint.unary(
+                    method=MethodInfo(
+                        name="ValidateCreate",
+                        service_name="fits.api.mvm.v1.MVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.validate_create,
+                ),
                 "/fits.api.mvm.v1.MVMService/Get": Endpoint.unary(
                     method=MethodInfo(
                         name="Get",
@@ -79,15 +123,15 @@ class MVMServiceASGIApplication(ConnectASGIApplication[MVMService]):
                     ),
                     function=svc.get,
                 ),
-                "/fits.api.mvm.v1.MVMService/Create": Endpoint.unary(
+                "/fits.api.mvm.v1.MVMService/List": Endpoint.unary(
                     method=MethodInfo(
-                        name="Create",
+                        name="List",
                         service_name="fits.api.mvm.v1.MVMService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateResponse,
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
-                    function=svc.create,
+                    function=svc.list,
                 ),
                 "/fits.api.mvm.v1.MVMService/Update": Endpoint.unary(
                     method=MethodInfo(
@@ -99,15 +143,35 @@ class MVMServiceASGIApplication(ConnectASGIApplication[MVMService]):
                     ),
                     function=svc.update,
                 ),
-                "/fits.api.mvm.v1.MVMService/List": Endpoint.unary(
+                "/fits.api.mvm.v1.MVMService/ValidateUpdate": Endpoint.unary(
                     method=MethodInfo(
-                        name="List",
+                        name="ValidateUpdate",
                         service_name="fits.api.mvm.v1.MVMService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListResponse,
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
-                    function=svc.list,
+                    function=svc.validate_update,
+                ),
+                "/fits.api.mvm.v1.MVMService/UpdateServiceClass": Endpoint.unary(
+                    method=MethodInfo(
+                        name="UpdateServiceClass",
+                        service_name="fits.api.mvm.v1.MVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateServiceClassRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateServiceClassResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.update_service_class,
+                ),
+                "/fits.api.mvm.v1.MVMService/ValidateUpdateServiceClass": Endpoint.unary(
+                    method=MethodInfo(
+                        name="ValidateUpdateServiceClass",
+                        service_name="fits.api.mvm.v1.MVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateServiceClassRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateServiceClassResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.validate_update_service_class,
                 ),
                 "/fits.api.mvm.v1.MVMService/Delete": Endpoint.unary(
                     method=MethodInfo(
@@ -129,6 +193,16 @@ class MVMServiceASGIApplication(ConnectASGIApplication[MVMService]):
                     ),
                     function=svc.add_disk,
                 ),
+                "/fits.api.mvm.v1.MVMService/ValidateAddDisk": Endpoint.unary(
+                    method=MethodInfo(
+                        name="ValidateAddDisk",
+                        service_name="fits.api.mvm.v1.MVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.validate_add_disk,
+                ),
                 "/fits.api.mvm.v1.MVMService/UpdateDisk": Endpoint.unary(
                     method=MethodInfo(
                         name="UpdateDisk",
@@ -138,6 +212,16 @@ class MVMServiceASGIApplication(ConnectASGIApplication[MVMService]):
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=svc.update_disk,
+                ),
+                "/fits.api.mvm.v1.MVMService/ValidateUpdateDisk": Endpoint.unary(
+                    method=MethodInfo(
+                        name="ValidateUpdateDisk",
+                        service_name="fits.api.mvm.v1.MVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.validate_update_disk,
                 ),
                 "/fits.api.mvm.v1.MVMService/DeleteDisk": Endpoint.unary(
                     method=MethodInfo(
@@ -179,45 +263,65 @@ class MVMServiceASGIApplication(ConnectASGIApplication[MVMService]):
                     ),
                     function=svc.delete_network_interface,
                 ),
-                "/fits.api.mvm.v1.MVMService/ValidateCreate": Endpoint.unary(
+                "/fits.api.mvm.v1.MVMService/Restart": Endpoint.unary(
                     method=MethodInfo(
-                        name="ValidateCreate",
+                        name="Restart",
                         service_name="fits.api.mvm.v1.MVMService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateResponse,
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceRestartRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceRestartResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
-                    function=svc.validate_create,
+                    function=svc.restart,
                 ),
-                "/fits.api.mvm.v1.MVMService/ValidateAddDisk": Endpoint.unary(
+                "/fits.api.mvm.v1.MVMService/Reinstall": Endpoint.unary(
                     method=MethodInfo(
-                        name="ValidateAddDisk",
+                        name="Reinstall",
                         service_name="fits.api.mvm.v1.MVMService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse,
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceReinstallRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceReinstallResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
-                    function=svc.validate_add_disk,
+                    function=svc.reinstall,
                 ),
-                "/fits.api.mvm.v1.MVMService/ValidateUpdateDisk": Endpoint.unary(
+                "/fits.api.mvm.v1.MVMService/ValidateReinstall": Endpoint.unary(
                     method=MethodInfo(
-                        name="ValidateUpdateDisk",
+                        name="ValidateReinstall",
                         service_name="fits.api.mvm.v1.MVMService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskResponse,
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateReinstallRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateReinstallResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
-                    function=svc.validate_update_disk,
+                    function=svc.validate_reinstall,
                 ),
-                "/fits.api.mvm.v1.MVMService/ValidateAddNetworkInterface": Endpoint.unary(
+                "/fits.api.mvm.v1.MVMService/AddSnapshot": Endpoint.unary(
                     method=MethodInfo(
-                        name="ValidateAddNetworkInterface",
+                        name="AddSnapshot",
                         service_name="fits.api.mvm.v1.MVMService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddNetworkInterfaceRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddNetworkInterfaceResponse,
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddSnapshotRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddSnapshotResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
-                    function=svc.validate_add_network_interface,
+                    function=svc.add_snapshot,
+                ),
+                "/fits.api.mvm.v1.MVMService/DeleteSnapshot": Endpoint.unary(
+                    method=MethodInfo(
+                        name="DeleteSnapshot",
+                        service_name="fits.api.mvm.v1.MVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteSnapshotRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteSnapshotResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.delete_snapshot,
+                ),
+                "/fits.api.mvm.v1.MVMService/Move": Endpoint.unary(
+                    method=MethodInfo(
+                        name="Move",
+                        service_name="fits.api.mvm.v1.MVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.move,
                 ),
             },
             interceptors=interceptors,
@@ -233,6 +337,46 @@ class MVMServiceASGIApplication(ConnectASGIApplication[MVMService]):
 
 
 class MVMServiceClient(ConnectClient):
+    async def create(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="Create",
+                service_name="fits.api.mvm.v1.MVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    async def validate_create(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="ValidateCreate",
+                service_name="fits.api.mvm.v1.MVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
     async def get(
         self,
         request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceGetRequest,
@@ -253,20 +397,20 @@ class MVMServiceClient(ConnectClient):
             timeout_ms=timeout_ms,
         )
 
-    async def create(
+    async def list(
         self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateRequest,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateResponse:
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListResponse:
         return await self.execute_unary(
             request=request,
             method=MethodInfo(
-                name="Create",
+                name="List",
                 service_name="fits.api.mvm.v1.MVMService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateResponse,
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
@@ -293,20 +437,60 @@ class MVMServiceClient(ConnectClient):
             timeout_ms=timeout_ms,
         )
 
-    async def list(
+    async def validate_update(
         self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListRequest,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListResponse:
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateResponse:
         return await self.execute_unary(
             request=request,
             method=MethodInfo(
-                name="List",
+                name="ValidateUpdate",
                 service_name="fits.api.mvm.v1.MVMService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListResponse,
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    async def update_service_class(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateServiceClassRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateServiceClassResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="UpdateServiceClass",
+                service_name="fits.api.mvm.v1.MVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateServiceClassRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateServiceClassResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    async def validate_update_service_class(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateServiceClassRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateServiceClassResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="ValidateUpdateServiceClass",
+                service_name="fits.api.mvm.v1.MVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateServiceClassRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateServiceClassResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
@@ -353,6 +537,26 @@ class MVMServiceClient(ConnectClient):
             timeout_ms=timeout_ms,
         )
 
+    async def validate_add_disk(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="ValidateAddDisk",
+                service_name="fits.api.mvm.v1.MVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
     async def update_disk(
         self,
         request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateDiskRequest,
@@ -367,6 +571,26 @@ class MVMServiceClient(ConnectClient):
                 service_name="fits.api.mvm.v1.MVMService",
                 input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateDiskRequest,
                 output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateDiskResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    async def validate_update_disk(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="ValidateUpdateDisk",
+                service_name="fits.api.mvm.v1.MVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
@@ -453,80 +677,120 @@ class MVMServiceClient(ConnectClient):
             timeout_ms=timeout_ms,
         )
 
-    async def validate_create(
+    async def restart(
         self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateRequest,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceRestartRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateResponse:
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceRestartResponse:
         return await self.execute_unary(
             request=request,
             method=MethodInfo(
-                name="ValidateCreate",
+                name="Restart",
                 service_name="fits.api.mvm.v1.MVMService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateResponse,
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceRestartRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceRestartResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
             timeout_ms=timeout_ms,
         )
 
-    async def validate_add_disk(
+    async def reinstall(
         self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceReinstallRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse:
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceReinstallResponse:
         return await self.execute_unary(
             request=request,
             method=MethodInfo(
-                name="ValidateAddDisk",
+                name="Reinstall",
                 service_name="fits.api.mvm.v1.MVMService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse,
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceReinstallRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceReinstallResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
             timeout_ms=timeout_ms,
         )
 
-    async def validate_update_disk(
+    async def validate_reinstall(
         self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskRequest,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateReinstallRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskResponse:
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateReinstallResponse:
         return await self.execute_unary(
             request=request,
             method=MethodInfo(
-                name="ValidateUpdateDisk",
+                name="ValidateReinstall",
                 service_name="fits.api.mvm.v1.MVMService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskResponse,
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateReinstallRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateReinstallResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
             timeout_ms=timeout_ms,
         )
 
-    async def validate_add_network_interface(
+    async def add_snapshot(
         self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddNetworkInterfaceRequest,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddSnapshotRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddNetworkInterfaceResponse:
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddSnapshotResponse:
         return await self.execute_unary(
             request=request,
             method=MethodInfo(
-                name="ValidateAddNetworkInterface",
+                name="AddSnapshot",
                 service_name="fits.api.mvm.v1.MVMService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddNetworkInterfaceRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddNetworkInterfaceResponse,
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddSnapshotRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddSnapshotResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    async def delete_snapshot(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteSnapshotRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteSnapshotResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="DeleteSnapshot",
+                service_name="fits.api.mvm.v1.MVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteSnapshotRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteSnapshotResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    async def move(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="Move",
+                service_name="fits.api.mvm.v1.MVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
@@ -538,19 +802,31 @@ class MVMServiceClient(ConnectClient):
 
 
 class MVMServiceSync(Protocol):
+    def create(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def validate_create(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def get(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceGetRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceGetResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-    def create(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateResponse:
+    def list(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def update(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-    def list(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListResponse:
+    def validate_update(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def update_service_class(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateServiceClassRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateServiceClassResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def validate_update_service_class(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateServiceClassRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateServiceClassResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def delete(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def add_disk(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDiskResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def validate_add_disk(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def update_disk(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateDiskResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def validate_update_disk(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def delete_disk(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteDiskResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
@@ -560,13 +836,17 @@ class MVMServiceSync(Protocol):
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def delete_network_interface(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteNetworkInterfaceRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteNetworkInterfaceResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-    def validate_create(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateResponse:
+    def restart(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceRestartRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceRestartResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-    def validate_add_disk(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse:
+    def reinstall(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceReinstallRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceReinstallResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-    def validate_update_disk(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskResponse:
+    def validate_reinstall(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateReinstallRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateReinstallResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-    def validate_add_network_interface(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddNetworkInterfaceRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddNetworkInterfaceResponse:
+    def add_snapshot(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddSnapshotRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddSnapshotResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def delete_snapshot(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteSnapshotRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteSnapshotResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def move(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
 
@@ -574,6 +854,26 @@ class MVMServiceWSGIApplication(ConnectWSGIApplication):
     def __init__(self, service: MVMServiceSync, interceptors: Iterable[InterceptorSync]=(), read_max_bytes: int | None = None, compressions: Iterable[Compression] | None = None, codecs: Iterable[Codec] | None = None) -> None:
         super().__init__(
             endpoints={
+                "/fits.api.mvm.v1.MVMService/Create": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="Create",
+                        service_name="fits.api.mvm.v1.MVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.create,
+                ),
+                "/fits.api.mvm.v1.MVMService/ValidateCreate": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="ValidateCreate",
+                        service_name="fits.api.mvm.v1.MVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.validate_create,
+                ),
                 "/fits.api.mvm.v1.MVMService/Get": EndpointSync.unary(
                     method=MethodInfo(
                         name="Get",
@@ -584,15 +884,15 @@ class MVMServiceWSGIApplication(ConnectWSGIApplication):
                     ),
                     function=service.get,
                 ),
-                "/fits.api.mvm.v1.MVMService/Create": EndpointSync.unary(
+                "/fits.api.mvm.v1.MVMService/List": EndpointSync.unary(
                     method=MethodInfo(
-                        name="Create",
+                        name="List",
                         service_name="fits.api.mvm.v1.MVMService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateResponse,
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
-                    function=service.create,
+                    function=service.list,
                 ),
                 "/fits.api.mvm.v1.MVMService/Update": EndpointSync.unary(
                     method=MethodInfo(
@@ -604,15 +904,35 @@ class MVMServiceWSGIApplication(ConnectWSGIApplication):
                     ),
                     function=service.update,
                 ),
-                "/fits.api.mvm.v1.MVMService/List": EndpointSync.unary(
+                "/fits.api.mvm.v1.MVMService/ValidateUpdate": EndpointSync.unary(
                     method=MethodInfo(
-                        name="List",
+                        name="ValidateUpdate",
                         service_name="fits.api.mvm.v1.MVMService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListResponse,
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
-                    function=service.list,
+                    function=service.validate_update,
+                ),
+                "/fits.api.mvm.v1.MVMService/UpdateServiceClass": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="UpdateServiceClass",
+                        service_name="fits.api.mvm.v1.MVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateServiceClassRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateServiceClassResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.update_service_class,
+                ),
+                "/fits.api.mvm.v1.MVMService/ValidateUpdateServiceClass": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="ValidateUpdateServiceClass",
+                        service_name="fits.api.mvm.v1.MVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateServiceClassRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateServiceClassResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.validate_update_service_class,
                 ),
                 "/fits.api.mvm.v1.MVMService/Delete": EndpointSync.unary(
                     method=MethodInfo(
@@ -634,6 +954,16 @@ class MVMServiceWSGIApplication(ConnectWSGIApplication):
                     ),
                     function=service.add_disk,
                 ),
+                "/fits.api.mvm.v1.MVMService/ValidateAddDisk": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="ValidateAddDisk",
+                        service_name="fits.api.mvm.v1.MVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.validate_add_disk,
+                ),
                 "/fits.api.mvm.v1.MVMService/UpdateDisk": EndpointSync.unary(
                     method=MethodInfo(
                         name="UpdateDisk",
@@ -643,6 +973,16 @@ class MVMServiceWSGIApplication(ConnectWSGIApplication):
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=service.update_disk,
+                ),
+                "/fits.api.mvm.v1.MVMService/ValidateUpdateDisk": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="ValidateUpdateDisk",
+                        service_name="fits.api.mvm.v1.MVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.validate_update_disk,
                 ),
                 "/fits.api.mvm.v1.MVMService/DeleteDisk": EndpointSync.unary(
                     method=MethodInfo(
@@ -684,45 +1024,65 @@ class MVMServiceWSGIApplication(ConnectWSGIApplication):
                     ),
                     function=service.delete_network_interface,
                 ),
-                "/fits.api.mvm.v1.MVMService/ValidateCreate": EndpointSync.unary(
+                "/fits.api.mvm.v1.MVMService/Restart": EndpointSync.unary(
                     method=MethodInfo(
-                        name="ValidateCreate",
+                        name="Restart",
                         service_name="fits.api.mvm.v1.MVMService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateResponse,
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceRestartRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceRestartResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
-                    function=service.validate_create,
+                    function=service.restart,
                 ),
-                "/fits.api.mvm.v1.MVMService/ValidateAddDisk": EndpointSync.unary(
+                "/fits.api.mvm.v1.MVMService/Reinstall": EndpointSync.unary(
                     method=MethodInfo(
-                        name="ValidateAddDisk",
+                        name="Reinstall",
                         service_name="fits.api.mvm.v1.MVMService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse,
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceReinstallRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceReinstallResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
-                    function=service.validate_add_disk,
+                    function=service.reinstall,
                 ),
-                "/fits.api.mvm.v1.MVMService/ValidateUpdateDisk": EndpointSync.unary(
+                "/fits.api.mvm.v1.MVMService/ValidateReinstall": EndpointSync.unary(
                     method=MethodInfo(
-                        name="ValidateUpdateDisk",
+                        name="ValidateReinstall",
                         service_name="fits.api.mvm.v1.MVMService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskResponse,
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateReinstallRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateReinstallResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
-                    function=service.validate_update_disk,
+                    function=service.validate_reinstall,
                 ),
-                "/fits.api.mvm.v1.MVMService/ValidateAddNetworkInterface": EndpointSync.unary(
+                "/fits.api.mvm.v1.MVMService/AddSnapshot": EndpointSync.unary(
                     method=MethodInfo(
-                        name="ValidateAddNetworkInterface",
+                        name="AddSnapshot",
                         service_name="fits.api.mvm.v1.MVMService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddNetworkInterfaceRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddNetworkInterfaceResponse,
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddSnapshotRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddSnapshotResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
-                    function=service.validate_add_network_interface,
+                    function=service.add_snapshot,
+                ),
+                "/fits.api.mvm.v1.MVMService/DeleteSnapshot": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="DeleteSnapshot",
+                        service_name="fits.api.mvm.v1.MVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteSnapshotRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteSnapshotResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.delete_snapshot,
+                ),
+                "/fits.api.mvm.v1.MVMService/Move": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="Move",
+                        service_name="fits.api.mvm.v1.MVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.move,
                 ),
             },
             interceptors=interceptors,
@@ -738,6 +1098,46 @@ class MVMServiceWSGIApplication(ConnectWSGIApplication):
 
 
 class MVMServiceClientSync(ConnectClientSync):
+    def create(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="Create",
+                service_name="fits.api.mvm.v1.MVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def validate_create(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="ValidateCreate",
+                service_name="fits.api.mvm.v1.MVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
     def get(
         self,
         request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceGetRequest,
@@ -758,20 +1158,20 @@ class MVMServiceClientSync(ConnectClientSync):
             timeout_ms=timeout_ms,
         )
 
-    def create(
+    def list(
         self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateRequest,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateResponse:
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListResponse:
         return self.execute_unary(
             request=request,
             method=MethodInfo(
-                name="Create",
+                name="List",
                 service_name="fits.api.mvm.v1.MVMService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceCreateResponse,
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
@@ -798,20 +1198,60 @@ class MVMServiceClientSync(ConnectClientSync):
             timeout_ms=timeout_ms,
         )
 
-    def list(
+    def validate_update(
         self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListRequest,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListResponse:
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateResponse:
         return self.execute_unary(
             request=request,
             method=MethodInfo(
-                name="List",
+                name="ValidateUpdate",
                 service_name="fits.api.mvm.v1.MVMService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceListResponse,
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def update_service_class(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateServiceClassRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateServiceClassResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="UpdateServiceClass",
+                service_name="fits.api.mvm.v1.MVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateServiceClassRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateServiceClassResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def validate_update_service_class(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateServiceClassRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateServiceClassResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="ValidateUpdateServiceClass",
+                service_name="fits.api.mvm.v1.MVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateServiceClassRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateServiceClassResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
@@ -858,6 +1298,26 @@ class MVMServiceClientSync(ConnectClientSync):
             timeout_ms=timeout_ms,
         )
 
+    def validate_add_disk(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="ValidateAddDisk",
+                service_name="fits.api.mvm.v1.MVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
     def update_disk(
         self,
         request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateDiskRequest,
@@ -872,6 +1332,26 @@ class MVMServiceClientSync(ConnectClientSync):
                 service_name="fits.api.mvm.v1.MVMService",
                 input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateDiskRequest,
                 output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateDiskResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def validate_update_disk(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="ValidateUpdateDisk",
+                service_name="fits.api.mvm.v1.MVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
@@ -958,80 +1438,120 @@ class MVMServiceClientSync(ConnectClientSync):
             timeout_ms=timeout_ms,
         )
 
-    def validate_create(
+    def restart(
         self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateRequest,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceRestartRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateResponse:
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceRestartResponse:
         return self.execute_unary(
             request=request,
             method=MethodInfo(
-                name="ValidateCreate",
+                name="Restart",
                 service_name="fits.api.mvm.v1.MVMService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateCreateResponse,
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceRestartRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceRestartResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
             timeout_ms=timeout_ms,
         )
 
-    def validate_add_disk(
+    def reinstall(
         self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceReinstallRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse:
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceReinstallResponse:
         return self.execute_unary(
             request=request,
             method=MethodInfo(
-                name="ValidateAddDisk",
+                name="Reinstall",
                 service_name="fits.api.mvm.v1.MVMService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse,
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceReinstallRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceReinstallResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
             timeout_ms=timeout_ms,
         )
 
-    def validate_update_disk(
+    def validate_reinstall(
         self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskRequest,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateReinstallRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskResponse:
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateReinstallResponse:
         return self.execute_unary(
             request=request,
             method=MethodInfo(
-                name="ValidateUpdateDisk",
+                name="ValidateReinstall",
                 service_name="fits.api.mvm.v1.MVMService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateUpdateDiskResponse,
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateReinstallRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateReinstallResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
             timeout_ms=timeout_ms,
         )
 
-    def validate_add_network_interface(
+    def add_snapshot(
         self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddNetworkInterfaceRequest,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddSnapshotRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddNetworkInterfaceResponse:
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddSnapshotResponse:
         return self.execute_unary(
             request=request,
             method=MethodInfo(
-                name="ValidateAddNetworkInterface",
+                name="AddSnapshot",
                 service_name="fits.api.mvm.v1.MVMService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddNetworkInterfaceRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddNetworkInterfaceResponse,
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddSnapshotRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddSnapshotResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def delete_snapshot(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteSnapshotRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteSnapshotResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="DeleteSnapshot",
+                service_name="fits.api.mvm.v1.MVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteSnapshotRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteSnapshotResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def move(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="Move",
+                service_name="fits.api.mvm.v1.MVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,

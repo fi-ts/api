@@ -1,10 +1,151 @@
 import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import type { Labels, Meta, UpdateMeta } from "../../v1/common_pb.js";
+import type { Labels, Meta, UpdateLabels, UpdateMeta } from "../../v1/common_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file fits/api/mvm/v1/mvm.proto.
  */
 export declare const file_fits_api_mvm_v1_mvm: GenFile;
+/**
+ * Disk configuration for a Linux MVM. See DiskType for the kinds of disks
+ * (os, system, data) and their lifecycle rules.
+ *
+ * @generated from message fits.api.mvm.v1.LinuxDisk
+ */
+export type LinuxDisk = Message<"fits.api.mvm.v1.LinuxDisk"> & {
+    /**
+     * UUID of the disk; set for existing disks, unset for new ones.
+     *
+     * @generated from field: optional string uuid = 1;
+     */
+    uuid?: string | undefined;
+    /**
+     * Label (name) of the disk.
+     *
+     * @generated from field: string label = 2;
+     */
+    label: string;
+    /**
+     * Whether the disk grows automatically when space runs low.
+     *
+     * @generated from field: bool auto_extend = 3;
+     */
+    autoExtend: boolean;
+    /**
+     * Size of the disk in GB; defaults to 50 when unset.
+     *
+     * @generated from field: optional uint64 size = 4;
+     */
+    size?: bigint | undefined;
+    /**
+     * Mount point (e.g. "/data"). Fixed to "/appdata" for the system disk;
+     * free-form for data disks.
+     *
+     * @generated from field: optional string mount_point = 5;
+     */
+    mountPoint?: string | undefined;
+    /**
+     * Kind of the disk; determines which operations are allowed on it.
+     * Provided by the client in create/add requests and populated by the
+     * API in responses.
+     *
+     * @generated from field: optional fits.api.mvm.v1.DiskType disk_type = 6;
+     */
+    diskType?: DiskType | undefined;
+};
+/**
+ * Describes the message fits.api.mvm.v1.LinuxDisk.
+ * Use `create(LinuxDiskSchema)` to create a new message.
+ */
+export declare const LinuxDiskSchema: GenMessage<LinuxDisk>;
+/**
+ * Disk configuration for a Windows MVM. See DiskType for the kinds of
+ * disks (os, system, data) and their lifecycle rules.
+ *
+ * @generated from message fits.api.mvm.v1.WindowsDisk
+ */
+export type WindowsDisk = Message<"fits.api.mvm.v1.WindowsDisk"> & {
+    /**
+     * UUID of the disk; set for existing disks, unset for new ones.
+     *
+     * @generated from field: optional string uuid = 1;
+     */
+    uuid?: string | undefined;
+    /**
+     * Label (name) of the disk.
+     *
+     * @generated from field: string label = 2;
+     */
+    label: string;
+    /**
+     * Whether the disk grows automatically when space runs low.
+     *
+     * @generated from field: bool auto_extend = 3;
+     */
+    autoExtend: boolean;
+    /**
+     * Size of the disk in GB; defaults to 50 when unset.
+     *
+     * @generated from field: optional uint64 size = 4;
+     */
+    size?: bigint | undefined;
+    /**
+     * Drive letter (e.g. "D"). Fixed to "F" for the system disk; free-form
+     * for data disks.
+     *
+     * @generated from field: optional string driveletter = 5;
+     */
+    driveletter?: string | undefined;
+    /**
+     * Kind of the disk; determines which operations are allowed on it.
+     * Provided by the client in create/add requests and populated by the
+     * API in responses.
+     *
+     * @generated from field: optional fits.api.mvm.v1.DiskType disk_type = 6;
+     */
+    diskType?: DiskType | undefined;
+};
+/**
+ * Describes the message fits.api.mvm.v1.WindowsDisk.
+ * Use `create(WindowsDiskSchema)` to create a new message.
+ */
+export declare const WindowsDiskSchema: GenMessage<WindowsDisk>;
+/**
+ * Disk contains either a Windows or Linux disk.
+ *
+ * @generated from message fits.api.mvm.v1.Disk
+ */
+export type Disk = Message<"fits.api.mvm.v1.Disk"> & {
+    /**
+     * OS-specific disk specification; must match the MVM's OS type.
+     *
+     * @generated from oneof fits.api.mvm.v1.Disk.disk
+     */
+    disk: {
+        /**
+         * Linux data disks.
+         *
+         * @generated from field: fits.api.mvm.v1.LinuxDisk linux = 4;
+         */
+        value: LinuxDisk;
+        case: "linux";
+    } | {
+        /**
+         * Windows data disks.
+         *
+         * @generated from field: fits.api.mvm.v1.WindowsDisk windows = 5;
+         */
+        value: WindowsDisk;
+        case: "windows";
+    } | {
+        case: undefined;
+        value?: undefined;
+    };
+};
+/**
+ * Describes the message fits.api.mvm.v1.Disk.
+ * Use `create(DiskSchema)` to create a new message.
+ */
+export declare const DiskSchema: GenMessage<Disk>;
 /**
  * Linux-specific MVM details.
  *
@@ -281,12 +422,42 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
      * @generated from field: string order_number = 19;
      */
     orderNumber: string;
+    /**
+     * Snapshots of the MVM.
+     *
+     * @generated from field: repeated fits.api.mvm.v1.Snapshot snapshots = 20;
+     */
+    snapshots: Snapshot[];
 };
 /**
  * Describes the message fits.api.mvm.v1.ManagedVM.
  * Use `create(ManagedVMSchema)` to create a new message.
  */
 export declare const ManagedVMSchema: GenMessage<ManagedVM>;
+/**
+ * A snapshot of a MVM.
+ *
+ * @generated from message fits.api.mvm.v1.Snapshot
+ */
+export type Snapshot = Message<"fits.api.mvm.v1.Snapshot"> & {
+    /**
+     * UUID of this snapshot.
+     *
+     * @generated from field: string uuid = 1;
+     */
+    uuid: string;
+    /**
+     * Name of the snapshot.
+     *
+     * @generated from field: string name = 2;
+     */
+    name: string;
+};
+/**
+ * Describes the message fits.api.mvm.v1.Snapshot.
+ * Use `create(SnapshotSchema)` to create a new message.
+ */
+export declare const SnapshotSchema: GenMessage<Snapshot>;
 /**
  * Request to get a MVM by UUID.
  *
@@ -329,6 +500,42 @@ export type MVMServiceGetResponse = Message<"fits.api.mvm.v1.MVMServiceGetRespon
  * Use `create(MVMServiceGetResponseSchema)` to create a new message.
  */
 export declare const MVMServiceGetResponseSchema: GenMessage<MVMServiceGetResponse>;
+/**
+ * Request to list MVMs.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceListRequest
+ */
+export type MVMServiceListRequest = Message<"fits.api.mvm.v1.MVMServiceListRequest"> & {
+    /**
+     * UUID of the project to list MVMs for.
+     *
+     * @generated from field: string project_uuid = 1;
+     */
+    projectUuid: string;
+};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceListRequest.
+ * Use `create(MVMServiceListRequestSchema)` to create a new message.
+ */
+export declare const MVMServiceListRequestSchema: GenMessage<MVMServiceListRequest>;
+/**
+ * Response containing the list of MVMs.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceListResponse
+ */
+export type MVMServiceListResponse = Message<"fits.api.mvm.v1.MVMServiceListResponse"> & {
+    /**
+     * The MVM instances.
+     *
+     * @generated from field: repeated fits.api.mvm.v1.ManagedVM mvms = 1;
+     */
+    mvms: ManagedVM[];
+};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceListResponse.
+ * Use `create(MVMServiceListResponseSchema)` to create a new message.
+ */
+export declare const MVMServiceListResponseSchema: GenMessage<MVMServiceListResponse>;
 /**
  * Windows-specific create request parts.
  *
@@ -502,110 +709,6 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
  */
 export declare const MVMServiceCreateRequestSchema: GenMessage<MVMServiceCreateRequest>;
 /**
- * Disk configuration for a Linux MVM. See DiskType for the kinds of disks
- * (os, system, data) and their lifecycle rules.
- *
- * @generated from message fits.api.mvm.v1.LinuxDisk
- */
-export type LinuxDisk = Message<"fits.api.mvm.v1.LinuxDisk"> & {
-    /**
-     * UUID of the disk; set for existing disks, unset for new ones.
-     *
-     * @generated from field: optional string uuid = 1;
-     */
-    uuid?: string | undefined;
-    /**
-     * Label (name) of the disk.
-     *
-     * @generated from field: string label = 2;
-     */
-    label: string;
-    /**
-     * Whether the disk grows automatically when space runs low.
-     *
-     * @generated from field: bool auto_extend = 3;
-     */
-    autoExtend: boolean;
-    /**
-     * Size of the disk in GB; defaults to 50 when unset.
-     *
-     * @generated from field: optional uint64 size = 4;
-     */
-    size?: bigint | undefined;
-    /**
-     * Mount point (e.g. "/data"). Fixed to "/appdata" for the system disk;
-     * free-form for data disks.
-     *
-     * @generated from field: optional string mount_point = 5;
-     */
-    mountPoint?: string | undefined;
-    /**
-     * Kind of the disk; determines which operations are allowed on it.
-     * Provided by the client in create/add requests and populated by the
-     * API in responses.
-     *
-     * @generated from field: optional fits.api.mvm.v1.DiskType disk_type = 6;
-     */
-    diskType?: DiskType | undefined;
-};
-/**
- * Describes the message fits.api.mvm.v1.LinuxDisk.
- * Use `create(LinuxDiskSchema)` to create a new message.
- */
-export declare const LinuxDiskSchema: GenMessage<LinuxDisk>;
-/**
- * Disk configuration for a Windows MVM. See DiskType for the kinds of
- * disks (os, system, data) and their lifecycle rules.
- *
- * @generated from message fits.api.mvm.v1.WindowsDisk
- */
-export type WindowsDisk = Message<"fits.api.mvm.v1.WindowsDisk"> & {
-    /**
-     * UUID of the disk; set for existing disks, unset for new ones.
-     *
-     * @generated from field: optional string uuid = 1;
-     */
-    uuid?: string | undefined;
-    /**
-     * Label (name) of the disk.
-     *
-     * @generated from field: string label = 2;
-     */
-    label: string;
-    /**
-     * Whether the disk grows automatically when space runs low.
-     *
-     * @generated from field: bool auto_extend = 3;
-     */
-    autoExtend: boolean;
-    /**
-     * Size of the disk in GB; defaults to 50 when unset.
-     *
-     * @generated from field: optional uint64 size = 4;
-     */
-    size?: bigint | undefined;
-    /**
-     * Drive letter (e.g. "D"). Fixed to "F" for the system disk; free-form
-     * for data disks.
-     *
-     * @generated from field: optional string driveletter = 5;
-     */
-    driveletter?: string | undefined;
-    /**
-     * Kind of the disk; determines which operations are allowed on it.
-     * Provided by the client in create/add requests and populated by the
-     * API in responses.
-     *
-     * @generated from field: optional fits.api.mvm.v1.DiskType disk_type = 6;
-     */
-    diskType?: DiskType | undefined;
-};
-/**
- * Describes the message fits.api.mvm.v1.WindowsDisk.
- * Use `create(WindowsDiskSchema)` to create a new message.
- */
-export declare const WindowsDiskSchema: GenMessage<WindowsDisk>;
-/**
  * Response for MVM create requests.
  *
  * @generated from message fits.api.mvm.v1.MVMServiceCreateResponse
@@ -623,165 +726,6 @@ export type MVMServiceCreateResponse = Message<"fits.api.mvm.v1.MVMServiceCreate
  * Use `create(MVMServiceCreateResponseSchema)` to create a new message.
  */
 export declare const MVMServiceCreateResponseSchema: GenMessage<MVMServiceCreateResponse>;
-/**
- * Request to trigger the update of an existing MVM.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceUpdateRequest
- */
-export type MVMServiceUpdateRequest = Message<"fits.api.mvm.v1.MVMServiceUpdateRequest"> & {
-    /**
-     * UUID of the MVM to update.
-     *
-     * @generated from field: string uuid = 1;
-     */
-    uuid: string;
-    /**
-     * UUID of the project this MVM belongs to.
-     *
-     * @generated from field: string project_uuid = 2;
-     */
-    projectUuid: string;
-    /**
-     * Order reference for this operation.
-     *
-     * @generated from field: string order_number = 3;
-     */
-    orderNumber: string;
-    /**
-     * Timestamp and strategy for this update.
-     *
-     * @generated from field: fits.api.v1.UpdateMeta update_meta = 4;
-     */
-    updateMeta?: UpdateMeta | undefined;
-    /**
-     * Number of vCPUs (1-64); unset keeps the current value.
-     *
-     * @generated from field: optional uint32 cpu = 5;
-     */
-    cpu?: number | undefined;
-    /**
-     * RAM size in GB; unset keeps the current value.
-     *
-     * @generated from field: optional uint32 ram = 6;
-     */
-    ram?: number | undefined;
-    /**
-     * Target service class; unset keeps the current value.
-     *
-     * @generated from field: optional fits.api.mvm.v1.ServiceClass service_class = 7;
-     */
-    serviceClass?: ServiceClass | undefined;
-    /**
-     * UUID of the new contact; unset keeps the current value.
-     *
-     * @generated from field: optional string contact_uuid = 8;
-     */
-    contactUuid?: string | undefined;
-};
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceUpdateRequest.
- * Use `create(MVMServiceUpdateRequestSchema)` to create a new message.
- */
-export declare const MVMServiceUpdateRequestSchema: GenMessage<MVMServiceUpdateRequest>;
-/**
- * Response for Update; an empty response means the update was accepted.
- * The update is applied asynchronously; poll Get until the state settles.
- *
- * PROPOSAL (open for discussion): return the MVM after accepting the update.
- * The update is applied asynchronously, so the returned MVM reflects the
- * accepted state and may still report STATE_UPDATING.
- * It would be populated best-effort from a read-back after the write; if the
- * read-back fails the field stays unset while the RPC still succeeds.
- * Clients must not rely on it being present and must still poll Get to
- * observe completion or failure of the asynchronous operation.
- *
- * optional ManagedVM mvm = 1;
- *
- * @generated from message fits.api.mvm.v1.MVMServiceUpdateResponse
- */
-export type MVMServiceUpdateResponse = Message<"fits.api.mvm.v1.MVMServiceUpdateResponse"> & {};
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceUpdateResponse.
- * Use `create(MVMServiceUpdateResponseSchema)` to create a new message.
- */
-export declare const MVMServiceUpdateResponseSchema: GenMessage<MVMServiceUpdateResponse>;
-/**
- * Request to list MVMs.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceListRequest
- */
-export type MVMServiceListRequest = Message<"fits.api.mvm.v1.MVMServiceListRequest"> & {
-    /**
-     * UUID of the project to list MVMs for.
-     *
-     * @generated from field: string project_uuid = 1;
-     */
-    projectUuid: string;
-};
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceListRequest.
- * Use `create(MVMServiceListRequestSchema)` to create a new message.
- */
-export declare const MVMServiceListRequestSchema: GenMessage<MVMServiceListRequest>;
-/**
- * Response containing the list of MVMs.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceListResponse
- */
-export type MVMServiceListResponse = Message<"fits.api.mvm.v1.MVMServiceListResponse"> & {
-    /**
-     * The MVM instances.
-     *
-     * @generated from field: repeated fits.api.mvm.v1.ManagedVM mvms = 1;
-     */
-    mvms: ManagedVM[];
-};
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceListResponse.
- * Use `create(MVMServiceListResponseSchema)` to create a new message.
- */
-export declare const MVMServiceListResponseSchema: GenMessage<MVMServiceListResponse>;
-/**
- * Request to cancel a MVM instance.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceDeleteRequest
- */
-export type MVMServiceDeleteRequest = Message<"fits.api.mvm.v1.MVMServiceDeleteRequest"> & {
-    /**
-     * UUID of the project the MVM belongs to.
-     *
-     * @generated from field: string project_uuid = 1;
-     */
-    projectUuid: string;
-    /**
-     * UUID of the MVM to delete.
-     *
-     * @generated from field: string uuid = 2;
-     */
-    uuid: string;
-    /**
-     * Customer reference for this operation.
-     *
-     * @generated from field: string order_number = 3;
-     */
-    orderNumber: string;
-};
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceDeleteRequest.
- * Use `create(MVMServiceDeleteRequestSchema)` to create a new message.
- */
-export declare const MVMServiceDeleteRequestSchema: GenMessage<MVMServiceDeleteRequest>;
-/**
- * Response for Delete; an empty response means the cancellation was accepted.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceDeleteResponse
- */
-export type MVMServiceDeleteResponse = Message<"fits.api.mvm.v1.MVMServiceDeleteResponse"> & {};
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceDeleteResponse.
- * Use `create(MVMServiceDeleteResponseSchema)` to create a new message.
- */
-export declare const MVMServiceDeleteResponseSchema: GenMessage<MVMServiceDeleteResponse>;
 /**
  * Request to validate a MVM create without creating anything.
  *
@@ -812,140 +756,226 @@ export type MVMServiceValidateCreateResponse = Message<"fits.api.mvm.v1.MVMServi
  */
 export declare const MVMServiceValidateCreateResponseSchema: GenMessage<MVMServiceValidateCreateResponse>;
 /**
- * Request to validate an AddDisk without ordering anything.
+ * Request to trigger the update of an existing MVM.
  *
- * @generated from message fits.api.mvm.v1.MVMServiceValidateAddDiskRequest
+ * @generated from message fits.api.mvm.v1.MVMServiceUpdateRequest
  */
-export type MVMServiceValidateAddDiskRequest = Message<"fits.api.mvm.v1.MVMServiceValidateAddDiskRequest"> & {
+export type MVMServiceUpdateRequest = Message<"fits.api.mvm.v1.MVMServiceUpdateRequest"> & {
     /**
-     * The add disk request to validate.
-     *
-     * @generated from field: fits.api.mvm.v1.MVMServiceAddDiskRequest add_disk = 1;
-     */
-    addDisk?: MVMServiceAddDiskRequest | undefined;
-};
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceValidateAddDiskRequest.
- * Use `create(MVMServiceValidateAddDiskRequestSchema)` to create a new message.
- */
-export declare const MVMServiceValidateAddDiskRequestSchema: GenMessage<MVMServiceValidateAddDiskRequest>;
-/**
- * Response for ValidateAddDisk; violations are returned as an InvalidArgument error.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceValidateAddDiskResponse
- */
-export type MVMServiceValidateAddDiskResponse = Message<"fits.api.mvm.v1.MVMServiceValidateAddDiskResponse"> & {};
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceValidateAddDiskResponse.
- * Use `create(MVMServiceValidateAddDiskResponseSchema)` to create a new message.
- */
-export declare const MVMServiceValidateAddDiskResponseSchema: GenMessage<MVMServiceValidateAddDiskResponse>;
-/**
- * Request to validate an UpdateDisk without changing anything.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest
- */
-export type MVMServiceValidateUpdateDiskRequest = Message<"fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest"> & {
-    /**
-     * The update disk request to validate.
-     *
-     * @generated from field: fits.api.mvm.v1.MVMServiceUpdateDiskRequest update_disk = 1;
-     */
-    updateDisk?: MVMServiceUpdateDiskRequest | undefined;
-};
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest.
- * Use `create(MVMServiceValidateUpdateDiskRequestSchema)` to create a new message.
- */
-export declare const MVMServiceValidateUpdateDiskRequestSchema: GenMessage<MVMServiceValidateUpdateDiskRequest>;
-/**
- * Response for ValidateUpdateDisk; violations are returned as an InvalidArgument error.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse
- */
-export type MVMServiceValidateUpdateDiskResponse = Message<"fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse"> & {};
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse.
- * Use `create(MVMServiceValidateUpdateDiskResponseSchema)` to create a new message.
- */
-export declare const MVMServiceValidateUpdateDiskResponseSchema: GenMessage<MVMServiceValidateUpdateDiskResponse>;
-/**
- * Response for AddDisk.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceAddDiskResponse
- */
-export type MVMServiceAddDiskResponse = Message<"fits.api.mvm.v1.MVMServiceAddDiskResponse"> & {
-    /**
-     * UUID of the created disk.
+     * UUID of the MVM to update.
      *
      * @generated from field: string uuid = 1;
      */
     uuid: string;
-};
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceAddDiskResponse.
- * Use `create(MVMServiceAddDiskResponseSchema)` to create a new message.
- */
-export declare const MVMServiceAddDiskResponseSchema: GenMessage<MVMServiceAddDiskResponse>;
-/**
- * Response for UpdateDisk.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceUpdateDiskResponse
- */
-export type MVMServiceUpdateDiskResponse = Message<"fits.api.mvm.v1.MVMServiceUpdateDiskResponse"> & {};
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceUpdateDiskResponse.
- * Use `create(MVMServiceUpdateDiskResponseSchema)` to create a new message.
- */
-export declare const MVMServiceUpdateDiskResponseSchema: GenMessage<MVMServiceUpdateDiskResponse>;
-/**
- * Response for DeleteDisk.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceDeleteDiskResponse
- */
-export type MVMServiceDeleteDiskResponse = Message<"fits.api.mvm.v1.MVMServiceDeleteDiskResponse"> & {};
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceDeleteDiskResponse.
- * Use `create(MVMServiceDeleteDiskResponseSchema)` to create a new message.
- */
-export declare const MVMServiceDeleteDiskResponseSchema: GenMessage<MVMServiceDeleteDiskResponse>;
-/**
- * Disk contains either a Windows or Linux disk.
- *
- * @generated from message fits.api.mvm.v1.Disk
- */
-export type Disk = Message<"fits.api.mvm.v1.Disk"> & {
     /**
-     * OS-specific disk specification; must match the MVM's OS type.
+     * UUID of the project this MVM belongs to.
      *
-     * @generated from oneof fits.api.mvm.v1.Disk.disk
+     * @generated from field: string project_uuid = 2;
      */
-    disk: {
-        /**
-         * Linux data disks.
-         *
-         * @generated from field: fits.api.mvm.v1.LinuxDisk linux = 4;
-         */
-        value: LinuxDisk;
-        case: "linux";
-    } | {
-        /**
-         * Windows data disks.
-         *
-         * @generated from field: fits.api.mvm.v1.WindowsDisk windows = 5;
-         */
-        value: WindowsDisk;
-        case: "windows";
-    } | {
-        case: undefined;
-        value?: undefined;
-    };
+    projectUuid: string;
+    /**
+     * Timestamp and strategy for this update.
+     *
+     * @generated from field: fits.api.v1.UpdateMeta update_meta = 3;
+     */
+    updateMeta?: UpdateMeta | undefined;
+    /**
+     * Order reference for this operation.
+     *
+     * @generated from field: string order_number = 4;
+     */
+    orderNumber: string;
+    /**
+     * The labels to update.
+     *
+     * @generated from field: optional fits.api.v1.UpdateLabels labels = 5;
+     */
+    labels?: UpdateLabels | undefined;
+    /**
+     * UUID of the new contact; unset keeps the current value.
+     *
+     * @generated from field: optional string contact_uuid = 6;
+     */
+    contactUuid?: string | undefined;
+    /**
+     * Number of vCPUs; unset keeps the current value.
+     *
+     * @generated from field: optional uint32 cpu = 7;
+     */
+    cpu?: number | undefined;
+    /**
+     * RAM size in GB; unset keeps the current value.
+     *
+     * @generated from field: optional uint32 ram_gb = 8;
+     */
+    ramGb?: number | undefined;
 };
 /**
- * Describes the message fits.api.mvm.v1.Disk.
- * Use `create(DiskSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceUpdateRequest.
+ * Use `create(MVMServiceUpdateRequestSchema)` to create a new message.
  */
-export declare const DiskSchema: GenMessage<Disk>;
+export declare const MVMServiceUpdateRequestSchema: GenMessage<MVMServiceUpdateRequest>;
+/**
+ * Response for Update; an empty response means the update was accepted.
+ * The update is applied asynchronously; poll Get until the state settles.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceUpdateResponse
+ */
+export type MVMServiceUpdateResponse = Message<"fits.api.mvm.v1.MVMServiceUpdateResponse"> & {};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceUpdateResponse.
+ * Use `create(MVMServiceUpdateResponseSchema)` to create a new message.
+ */
+export declare const MVMServiceUpdateResponseSchema: GenMessage<MVMServiceUpdateResponse>;
+/**
+ * Request to validate a MVM update without updating anything.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceValidateUpdateRequest
+ */
+export type MVMServiceValidateUpdateRequest = Message<"fits.api.mvm.v1.MVMServiceValidateUpdateRequest"> & {
+    /**
+     * The update request to validate.
+     *
+     * @generated from field: fits.api.mvm.v1.MVMServiceUpdateRequest update = 1;
+     */
+    update?: MVMServiceUpdateRequest | undefined;
+};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceValidateUpdateRequest.
+ * Use `create(MVMServiceValidateUpdateRequestSchema)` to create a new message.
+ */
+export declare const MVMServiceValidateUpdateRequestSchema: GenMessage<MVMServiceValidateUpdateRequest>;
+/**
+ * Response for ValidateUpdate; violations are returned as an InvalidArgument error.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceValidateUpdateResponse
+ */
+export type MVMServiceValidateUpdateResponse = Message<"fits.api.mvm.v1.MVMServiceValidateUpdateResponse"> & {};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceValidateUpdateResponse.
+ * Use `create(MVMServiceValidateUpdateResponseSchema)` to create a new message.
+ */
+export declare const MVMServiceValidateUpdateResponseSchema: GenMessage<MVMServiceValidateUpdateResponse>;
+/**
+ * Deprecated: request for a service class update.
+ * Will be optional fields of the MVMServiceUpdateRequest.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest
+ */
+export type MVMServiceUpdateServiceClassRequest = Message<"fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest"> & {
+    /**
+     * UUID of the MVM to update service class for.
+     *
+     * @generated from field: string uuid = 1;
+     */
+    uuid: string;
+    /**
+     * UUID of the project the MVM belongs to.
+     *
+     * @generated from field: string project_uuid = 2;
+     */
+    projectUuid: string;
+    /**
+     * Target service class; unset keeps the current value.
+     *
+     * @generated from field: optional fits.api.mvm.v1.ServiceClass service_class = 3;
+     */
+    serviceClass?: ServiceClass | undefined;
+    /**
+     * Target availability level; unset keeps current value.
+     *
+     * @generated from field: optional fits.api.mvm.v1.Availability availability = 4;
+     */
+    availability?: Availability | undefined;
+};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest.
+ * Use `create(MVMServiceUpdateServiceClassRequestSchema)` to create a new message.
+ */
+export declare const MVMServiceUpdateServiceClassRequestSchema: GenMessage<MVMServiceUpdateServiceClassRequest>;
+/**
+ * Deprecated: response for a service class update.
+ * An empty response means the update was accepted.
+ * The update is applied asynchronously; poll Get until the state settles.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceUpdateServiceClassResponse
+ */
+export type MVMServiceUpdateServiceClassResponse = Message<"fits.api.mvm.v1.MVMServiceUpdateServiceClassResponse"> & {};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceUpdateServiceClassResponse.
+ * Use `create(MVMServiceUpdateServiceClassResponseSchema)` to create a new message.
+ */
+export declare const MVMServiceUpdateServiceClassResponseSchema: GenMessage<MVMServiceUpdateServiceClassResponse>;
+/**
+ * Deprecated: Request to validate a MVM service class update without updating anything.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassRequest
+ */
+export type MVMServiceValidateUpdateServiceClassRequest = Message<"fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassRequest"> & {
+    /**
+     * The UpdateServiceClass request to validate.
+     *
+     * @generated from field: fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest update_service_class = 1;
+     */
+    updateServiceClass?: MVMServiceUpdateServiceClassRequest | undefined;
+};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassRequest.
+ * Use `create(MVMServiceValidateUpdateServiceClassRequestSchema)` to create a new message.
+ */
+export declare const MVMServiceValidateUpdateServiceClassRequestSchema: GenMessage<MVMServiceValidateUpdateServiceClassRequest>;
+/**
+ * Deprecated: Response for ValidateUpdateServiceClass; violations are returned as an InvalidArgument error.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassResponse
+ */
+export type MVMServiceValidateUpdateServiceClassResponse = Message<"fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassResponse"> & {};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassResponse.
+ * Use `create(MVMServiceValidateUpdateServiceClassResponseSchema)` to create a new message.
+ */
+export declare const MVMServiceValidateUpdateServiceClassResponseSchema: GenMessage<MVMServiceValidateUpdateServiceClassResponse>;
+/**
+ * Request to cancel a MVM instance.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceDeleteRequest
+ */
+export type MVMServiceDeleteRequest = Message<"fits.api.mvm.v1.MVMServiceDeleteRequest"> & {
+    /**
+     * UUID of the MVM to delete.
+     *
+     * @generated from field: string uuid = 1;
+     */
+    uuid: string;
+    /**
+     * UUID of the project the MVM belongs to.
+     *
+     * @generated from field: string project_uuid = 2;
+     */
+    projectUuid: string;
+    /**
+     * Customer reference for this operation.
+     *
+     * @generated from field: string order_number = 3;
+     */
+    orderNumber: string;
+};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceDeleteRequest.
+ * Use `create(MVMServiceDeleteRequestSchema)` to create a new message.
+ */
+export declare const MVMServiceDeleteRequestSchema: GenMessage<MVMServiceDeleteRequest>;
+/**
+ * Response for Delete; an empty response means the cancellation was accepted.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceDeleteResponse
+ */
+export type MVMServiceDeleteResponse = Message<"fits.api.mvm.v1.MVMServiceDeleteResponse"> & {};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceDeleteResponse.
+ * Use `create(MVMServiceDeleteResponseSchema)` to create a new message.
+ */
+export declare const MVMServiceDeleteResponseSchema: GenMessage<MVMServiceDeleteResponse>;
 /**
  * Request to order an additional data disk for a MVM.
  *
@@ -982,6 +1012,53 @@ export type MVMServiceAddDiskRequest = Message<"fits.api.mvm.v1.MVMServiceAddDis
  * Use `create(MVMServiceAddDiskRequestSchema)` to create a new message.
  */
 export declare const MVMServiceAddDiskRequestSchema: GenMessage<MVMServiceAddDiskRequest>;
+/**
+ * Response for AddDisk.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceAddDiskResponse
+ */
+export type MVMServiceAddDiskResponse = Message<"fits.api.mvm.v1.MVMServiceAddDiskResponse"> & {
+    /**
+     * UUID of the created disk.
+     *
+     * @generated from field: string uuid = 1;
+     */
+    uuid: string;
+};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceAddDiskResponse.
+ * Use `create(MVMServiceAddDiskResponseSchema)` to create a new message.
+ */
+export declare const MVMServiceAddDiskResponseSchema: GenMessage<MVMServiceAddDiskResponse>;
+/**
+ * Request to validate an AddDisk without ordering anything.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceValidateAddDiskRequest
+ */
+export type MVMServiceValidateAddDiskRequest = Message<"fits.api.mvm.v1.MVMServiceValidateAddDiskRequest"> & {
+    /**
+     * The add disk request to validate.
+     *
+     * @generated from field: fits.api.mvm.v1.MVMServiceAddDiskRequest add_disk = 1;
+     */
+    addDisk?: MVMServiceAddDiskRequest | undefined;
+};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceValidateAddDiskRequest.
+ * Use `create(MVMServiceValidateAddDiskRequestSchema)` to create a new message.
+ */
+export declare const MVMServiceValidateAddDiskRequestSchema: GenMessage<MVMServiceValidateAddDiskRequest>;
+/**
+ * Response for ValidateAddDisk; violations are returned as an InvalidArgument error.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceValidateAddDiskResponse
+ */
+export type MVMServiceValidateAddDiskResponse = Message<"fits.api.mvm.v1.MVMServiceValidateAddDiskResponse"> & {};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceValidateAddDiskResponse.
+ * Use `create(MVMServiceValidateAddDiskResponseSchema)` to create a new message.
+ */
+export declare const MVMServiceValidateAddDiskResponseSchema: GenMessage<MVMServiceValidateAddDiskResponse>;
 /**
  * Request to change an existing disk; only size and auto-extend are
  * mutable (see DiskType for applicability per disk kind).
@@ -1032,6 +1109,46 @@ export type MVMServiceUpdateDiskRequest = Message<"fits.api.mvm.v1.MVMServiceUpd
  */
 export declare const MVMServiceUpdateDiskRequestSchema: GenMessage<MVMServiceUpdateDiskRequest>;
 /**
+ * Response for UpdateDisk.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceUpdateDiskResponse
+ */
+export type MVMServiceUpdateDiskResponse = Message<"fits.api.mvm.v1.MVMServiceUpdateDiskResponse"> & {};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceUpdateDiskResponse.
+ * Use `create(MVMServiceUpdateDiskResponseSchema)` to create a new message.
+ */
+export declare const MVMServiceUpdateDiskResponseSchema: GenMessage<MVMServiceUpdateDiskResponse>;
+/**
+ * Request to validate an UpdateDisk without changing anything.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest
+ */
+export type MVMServiceValidateUpdateDiskRequest = Message<"fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest"> & {
+    /**
+     * The update disk request to validate.
+     *
+     * @generated from field: fits.api.mvm.v1.MVMServiceUpdateDiskRequest update_disk = 1;
+     */
+    updateDisk?: MVMServiceUpdateDiskRequest | undefined;
+};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest.
+ * Use `create(MVMServiceValidateUpdateDiskRequestSchema)` to create a new message.
+ */
+export declare const MVMServiceValidateUpdateDiskRequestSchema: GenMessage<MVMServiceValidateUpdateDiskRequest>;
+/**
+ * Response for ValidateUpdateDisk; violations are returned as an InvalidArgument error.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse
+ */
+export type MVMServiceValidateUpdateDiskResponse = Message<"fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse"> & {};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse.
+ * Use `create(MVMServiceValidateUpdateDiskResponseSchema)` to create a new message.
+ */
+export declare const MVMServiceValidateUpdateDiskResponseSchema: GenMessage<MVMServiceValidateUpdateDiskResponse>;
+/**
  * Request to cancel a data disk; OS and system disks are rejected by the
  * upstream.
  *
@@ -1069,45 +1186,16 @@ export type MVMServiceDeleteDiskRequest = Message<"fits.api.mvm.v1.MVMServiceDel
  */
 export declare const MVMServiceDeleteDiskRequestSchema: GenMessage<MVMServiceDeleteDiskRequest>;
 /**
- * Response for AddNetworkInterface.
+ * Response for DeleteDisk.
  *
- * @generated from message fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse
+ * @generated from message fits.api.mvm.v1.MVMServiceDeleteDiskResponse
  */
-export type MVMServiceAddNetworkInterfaceResponse = Message<"fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse"> & {
-    /**
-     * UUID of the created network interface.
-     *
-     * @generated from field: string uuid = 1;
-     */
-    uuid: string;
-};
+export type MVMServiceDeleteDiskResponse = Message<"fits.api.mvm.v1.MVMServiceDeleteDiskResponse"> & {};
 /**
- * Describes the message fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse.
- * Use `create(MVMServiceAddNetworkInterfaceResponseSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceDeleteDiskResponse.
+ * Use `create(MVMServiceDeleteDiskResponseSchema)` to create a new message.
  */
-export declare const MVMServiceAddNetworkInterfaceResponseSchema: GenMessage<MVMServiceAddNetworkInterfaceResponse>;
-/**
- * Response for MoveNetworkInterface.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceResponse
- */
-export type MVMServiceMoveNetworkInterfaceResponse = Message<"fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceResponse"> & {};
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceResponse.
- * Use `create(MVMServiceMoveNetworkInterfaceResponseSchema)` to create a new message.
- */
-export declare const MVMServiceMoveNetworkInterfaceResponseSchema: GenMessage<MVMServiceMoveNetworkInterfaceResponse>;
-/**
- * Response for DeleteNetworkInterface.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceResponse
- */
-export type MVMServiceDeleteNetworkInterfaceResponse = Message<"fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceResponse"> & {};
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceResponse.
- * Use `create(MVMServiceDeleteNetworkInterfaceResponseSchema)` to create a new message.
- */
-export declare const MVMServiceDeleteNetworkInterfaceResponseSchema: GenMessage<MVMServiceDeleteNetworkInterfaceResponse>;
+export declare const MVMServiceDeleteDiskResponseSchema: GenMessage<MVMServiceDeleteDiskResponse>;
 /**
  * Request to order an additional network interface for a MVM.
  * Nulink treats interface and IP as a 1:1 relation; move and delete
@@ -1140,6 +1228,24 @@ export type MVMServiceAddNetworkInterfaceRequest = Message<"fits.api.mvm.v1.MVMS
  * Use `create(MVMServiceAddNetworkInterfaceRequestSchema)` to create a new message.
  */
 export declare const MVMServiceAddNetworkInterfaceRequestSchema: GenMessage<MVMServiceAddNetworkInterfaceRequest>;
+/**
+ * Response for AddNetworkInterface.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse
+ */
+export type MVMServiceAddNetworkInterfaceResponse = Message<"fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse"> & {
+    /**
+     * UUID of the created network interface.
+     *
+     * @generated from field: string uuid = 1;
+     */
+    uuid: string;
+};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse.
+ * Use `create(MVMServiceAddNetworkInterfaceResponseSchema)` to create a new message.
+ */
+export declare const MVMServiceAddNetworkInterfaceResponseSchema: GenMessage<MVMServiceAddNetworkInterfaceResponse>;
 /**
  * Request to move a network interface from one MVM to another.
  *
@@ -1183,6 +1289,17 @@ export type MVMServiceMoveNetworkInterfaceRequest = Message<"fits.api.mvm.v1.MVM
  */
 export declare const MVMServiceMoveNetworkInterfaceRequestSchema: GenMessage<MVMServiceMoveNetworkInterfaceRequest>;
 /**
+ * Response for MoveNetworkInterface.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceResponse
+ */
+export type MVMServiceMoveNetworkInterfaceResponse = Message<"fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceResponse"> & {};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceResponse.
+ * Use `create(MVMServiceMoveNetworkInterfaceResponseSchema)` to create a new message.
+ */
+export declare const MVMServiceMoveNetworkInterfaceResponseSchema: GenMessage<MVMServiceMoveNetworkInterfaceResponse>;
+/**
  * Request to delete a network interface from a MVM.
  *
  * @generated from message fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceRequest
@@ -1219,34 +1336,285 @@ export type MVMServiceDeleteNetworkInterfaceRequest = Message<"fits.api.mvm.v1.M
  */
 export declare const MVMServiceDeleteNetworkInterfaceRequestSchema: GenMessage<MVMServiceDeleteNetworkInterfaceRequest>;
 /**
- * Request to validate an AddNetworkInterface without ordering anything.
+ * Response for DeleteNetworkInterface.
  *
- * @generated from message fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceRequest
+ * @generated from message fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceResponse
  */
-export type MVMServiceValidateAddNetworkInterfaceRequest = Message<"fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceRequest"> & {
+export type MVMServiceDeleteNetworkInterfaceResponse = Message<"fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceResponse"> & {};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceResponse.
+ * Use `create(MVMServiceDeleteNetworkInterfaceResponseSchema)` to create a new message.
+ */
+export declare const MVMServiceDeleteNetworkInterfaceResponseSchema: GenMessage<MVMServiceDeleteNetworkInterfaceResponse>;
+/**
+ * Request to restart a MVM.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceRestartRequest
+ */
+export type MVMServiceRestartRequest = Message<"fits.api.mvm.v1.MVMServiceRestartRequest"> & {
     /**
-     * The add network interface request to validate.
+     * UUID of the MVM to restart.
      *
-     * @generated from field: fits.api.mvm.v1.MVMServiceAddNetworkInterfaceRequest add_network_interface = 1;
+     * @generated from field: string uuid = 1;
      */
-    addNetworkInterface?: MVMServiceAddNetworkInterfaceRequest | undefined;
+    uuid: string;
+    /**
+     * UUID of the project the MVM belongs to.
+     *
+     * @generated from field: string project_uuid = 2;
+     */
+    projectUuid: string;
+    /**
+     * Customer reference for this operation.
+     *
+     * @generated from field: string order_number = 3;
+     */
+    orderNumber: string;
 };
 /**
- * Describes the message fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceRequest.
- * Use `create(MVMServiceValidateAddNetworkInterfaceRequestSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceRestartRequest.
+ * Use `create(MVMServiceRestartRequestSchema)` to create a new message.
  */
-export declare const MVMServiceValidateAddNetworkInterfaceRequestSchema: GenMessage<MVMServiceValidateAddNetworkInterfaceRequest>;
+export declare const MVMServiceRestartRequestSchema: GenMessage<MVMServiceRestartRequest>;
 /**
- * Response for ValidateAddNetworkInterface; violations are returned as an InvalidArgument error.
+ * Response for Restart; an empty response means the restart was accepted.
+ * The restart is applied asynchronously; poll Get until the state settles.
  *
- * @generated from message fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceResponse
+ * @generated from message fits.api.mvm.v1.MVMServiceRestartResponse
  */
-export type MVMServiceValidateAddNetworkInterfaceResponse = Message<"fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceResponse"> & {};
+export type MVMServiceRestartResponse = Message<"fits.api.mvm.v1.MVMServiceRestartResponse"> & {};
 /**
- * Describes the message fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceResponse.
- * Use `create(MVMServiceValidateAddNetworkInterfaceResponseSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceRestartResponse.
+ * Use `create(MVMServiceRestartResponseSchema)` to create a new message.
  */
-export declare const MVMServiceValidateAddNetworkInterfaceResponseSchema: GenMessage<MVMServiceValidateAddNetworkInterfaceResponse>;
+export declare const MVMServiceRestartResponseSchema: GenMessage<MVMServiceRestartResponse>;
+/**
+ * Request to reinstall the operating system of a MVM.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceReinstallRequest
+ */
+export type MVMServiceReinstallRequest = Message<"fits.api.mvm.v1.MVMServiceReinstallRequest"> & {
+    /**
+     * UUID of the MVM to reinstall.
+     *
+     * @generated from field: string uuid = 1;
+     */
+    uuid: string;
+    /**
+     * UUID of the project the MVM belongs to.
+     *
+     * @generated from field: string project_uuid = 2;
+     */
+    projectUuid: string;
+    /**
+     * Customer reference for this operation.
+     *
+     * @generated from field: string order_number = 3;
+     */
+    orderNumber: string;
+    /**
+     * UUID of the operating system image to install.
+     *
+     * @generated from field: optional string os_uuid = 4;
+     */
+    osUuid?: string | undefined;
+};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceReinstallRequest.
+ * Use `create(MVMServiceReinstallRequestSchema)` to create a new message.
+ */
+export declare const MVMServiceReinstallRequestSchema: GenMessage<MVMServiceReinstallRequest>;
+/**
+ * Response for Reinstall; an empty response means the reinstall was accepted.
+ * The reinstall is applied asynchronously; poll Get until the state settles.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceReinstallResponse
+ */
+export type MVMServiceReinstallResponse = Message<"fits.api.mvm.v1.MVMServiceReinstallResponse"> & {};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceReinstallResponse.
+ * Use `create(MVMServiceReinstallResponseSchema)` to create a new message.
+ */
+export declare const MVMServiceReinstallResponseSchema: GenMessage<MVMServiceReinstallResponse>;
+/**
+ * Request to validate a Reinstall without reinstalling anything.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceValidateReinstallRequest
+ */
+export type MVMServiceValidateReinstallRequest = Message<"fits.api.mvm.v1.MVMServiceValidateReinstallRequest"> & {
+    /**
+     * The reinstall request to validate.
+     *
+     * @generated from field: fits.api.mvm.v1.MVMServiceReinstallRequest reinstall = 1;
+     */
+    reinstall?: MVMServiceReinstallRequest | undefined;
+};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceValidateReinstallRequest.
+ * Use `create(MVMServiceValidateReinstallRequestSchema)` to create a new message.
+ */
+export declare const MVMServiceValidateReinstallRequestSchema: GenMessage<MVMServiceValidateReinstallRequest>;
+/**
+ * Response for ValidateReinstall; violations are returned as an InvalidArgument error.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceValidateReinstallResponse
+ */
+export type MVMServiceValidateReinstallResponse = Message<"fits.api.mvm.v1.MVMServiceValidateReinstallResponse"> & {};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceValidateReinstallResponse.
+ * Use `create(MVMServiceValidateReinstallResponseSchema)` to create a new message.
+ */
+export declare const MVMServiceValidateReinstallResponseSchema: GenMessage<MVMServiceValidateReinstallResponse>;
+/**
+ * Request to create a snapshot of a MVM.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceAddSnapshotRequest
+ */
+export type MVMServiceAddSnapshotRequest = Message<"fits.api.mvm.v1.MVMServiceAddSnapshotRequest"> & {
+    /**
+     * UUID of the MVM to create the snapshot for.
+     *
+     * @generated from field: string uuid = 1;
+     */
+    uuid: string;
+    /**
+     * UUID of the project the MVM belongs to.
+     *
+     * @generated from field: string project_uuid = 2;
+     */
+    projectUuid: string;
+    /**
+     * Customer reference for this operation.
+     *
+     * @generated from field: string order_number = 3;
+     */
+    orderNumber: string;
+    /**
+     * Name of the snapshot; alphanumeric only.
+     *
+     * @generated from field: string name = 4;
+     */
+    name: string;
+};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceAddSnapshotRequest.
+ * Use `create(MVMServiceAddSnapshotRequestSchema)` to create a new message.
+ */
+export declare const MVMServiceAddSnapshotRequestSchema: GenMessage<MVMServiceAddSnapshotRequest>;
+/**
+ * Response for AddSnapshot.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceAddSnapshotResponse
+ */
+export type MVMServiceAddSnapshotResponse = Message<"fits.api.mvm.v1.MVMServiceAddSnapshotResponse"> & {
+    /**
+     * UUID of the created snapshot.
+     *
+     * @generated from field: string uuid = 1;
+     */
+    uuid: string;
+};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceAddSnapshotResponse.
+ * Use `create(MVMServiceAddSnapshotResponseSchema)` to create a new message.
+ */
+export declare const MVMServiceAddSnapshotResponseSchema: GenMessage<MVMServiceAddSnapshotResponse>;
+/**
+ * Request to delete a snapshot of a MVM.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceDeleteSnapshotRequest
+ */
+export type MVMServiceDeleteSnapshotRequest = Message<"fits.api.mvm.v1.MVMServiceDeleteSnapshotRequest"> & {
+    /**
+     * UUID of the MVM the snapshot belongs to.
+     *
+     * @generated from field: string uuid = 1;
+     */
+    uuid: string;
+    /**
+     * UUID of the snapshot to delete.
+     *
+     * @generated from field: string snapshot_uuid = 2;
+     */
+    snapshotUuid: string;
+    /**
+     * UUID of the project the MVM belongs to.
+     *
+     * @generated from field: string project_uuid = 3;
+     */
+    projectUuid: string;
+    /**
+     * Customer reference for this operation.
+     *
+     * @generated from field: string order_number = 4;
+     */
+    orderNumber: string;
+};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceDeleteSnapshotRequest.
+ * Use `create(MVMServiceDeleteSnapshotRequestSchema)` to create a new message.
+ */
+export declare const MVMServiceDeleteSnapshotRequestSchema: GenMessage<MVMServiceDeleteSnapshotRequest>;
+/**
+ * Response for DeleteSnapshot; an empty response means the deletion was accepted.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceDeleteSnapshotResponse
+ */
+export type MVMServiceDeleteSnapshotResponse = Message<"fits.api.mvm.v1.MVMServiceDeleteSnapshotResponse"> & {};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceDeleteSnapshotResponse.
+ * Use `create(MVMServiceDeleteSnapshotResponseSchema)` to create a new message.
+ */
+export declare const MVMServiceDeleteSnapshotResponseSchema: GenMessage<MVMServiceDeleteSnapshotResponse>;
+/**
+ * Request to move a MVM from one datacenter to another.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceMoveRequest
+ */
+export type MVMServiceMoveRequest = Message<"fits.api.mvm.v1.MVMServiceMoveRequest"> & {
+    /**
+     * UUID of the MVM to move.
+     *
+     * @generated from field: string uuid = 1;
+     */
+    uuid: string;
+    /**
+     * UUID of the project the MVM belongs to.
+     *
+     * @generated from field: string project_uuid = 2;
+     */
+    projectUuid: string;
+    /**
+     * Customer reference for this operation.
+     *
+     * @generated from field: string order_number = 3;
+     */
+    orderNumber: string;
+    /**
+     * If not provided, another datacenter within the same location will be chosen automatically.
+     * TODO server pinning
+     *
+     * @generated from field: optional string location_uuid = 4;
+     */
+    locationUuid?: string | undefined;
+};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceMoveRequest.
+ * Use `create(MVMServiceMoveRequestSchema)` to create a new message.
+ */
+export declare const MVMServiceMoveRequestSchema: GenMessage<MVMServiceMoveRequest>;
+/**
+ * Response for Move; an empty response means the move was accepted.
+ * The move is applied asynchronously; poll Get until the state settles.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceMoveResponse
+ */
+export type MVMServiceMoveResponse = Message<"fits.api.mvm.v1.MVMServiceMoveResponse"> & {};
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceMoveResponse.
+ * Use `create(MVMServiceMoveResponseSchema)` to create a new message.
+ */
+export declare const MVMServiceMoveResponseSchema: GenMessage<MVMServiceMoveResponse>;
 /**
  * Availability specifies the availability level of a MVM; higher value = higher availability.
  *
@@ -1439,6 +1807,26 @@ export declare const DiskTypeSchema: GenEnum<DiskType>;
  */
 export declare const MVMService: GenService<{
     /**
+     * Creates a new MVM.
+     *
+     * @generated from rpc fits.api.mvm.v1.MVMService.Create
+     */
+    create: {
+        methodKind: "unary";
+        input: typeof MVMServiceCreateRequestSchema;
+        output: typeof MVMServiceCreateResponseSchema;
+    };
+    /**
+     * Validates a MVM create request without creating anything (dry-run).
+     *
+     * @generated from rpc fits.api.mvm.v1.MVMService.ValidateCreate
+     */
+    validateCreate: {
+        methodKind: "unary";
+        input: typeof MVMServiceValidateCreateRequestSchema;
+        output: typeof MVMServiceValidateCreateResponseSchema;
+    };
+    /**
      * Returns the MVM with the specified UUID.
      *
      * @generated from rpc fits.api.mvm.v1.MVMService.Get
@@ -1449,14 +1837,14 @@ export declare const MVMService: GenService<{
         output: typeof MVMServiceGetResponseSchema;
     };
     /**
-     * Creates a new MVM.
+     * Returns the list of all MVMs.
      *
-     * @generated from rpc fits.api.mvm.v1.MVMService.Create
+     * @generated from rpc fits.api.mvm.v1.MVMService.List
      */
-    create: {
+    list: {
         methodKind: "unary";
-        input: typeof MVMServiceCreateRequestSchema;
-        output: typeof MVMServiceCreateResponseSchema;
+        input: typeof MVMServiceListRequestSchema;
+        output: typeof MVMServiceListResponseSchema;
     };
     /**
      * Updates a MVM.
@@ -1469,14 +1857,34 @@ export declare const MVMService: GenService<{
         output: typeof MVMServiceUpdateResponseSchema;
     };
     /**
-     * Returns the list of all MVMs.
+     * Validates an Update request without changing anything.
      *
-     * @generated from rpc fits.api.mvm.v1.MVMService.List
+     * @generated from rpc fits.api.mvm.v1.MVMService.ValidateUpdate
      */
-    list: {
+    validateUpdate: {
         methodKind: "unary";
-        input: typeof MVMServiceListRequestSchema;
-        output: typeof MVMServiceListResponseSchema;
+        input: typeof MVMServiceValidateUpdateRequestSchema;
+        output: typeof MVMServiceValidateUpdateResponseSchema;
+    };
+    /**
+     * Deprecated: Updates the service class of a MVM.
+     *
+     * @generated from rpc fits.api.mvm.v1.MVMService.UpdateServiceClass
+     */
+    updateServiceClass: {
+        methodKind: "unary";
+        input: typeof MVMServiceUpdateServiceClassRequestSchema;
+        output: typeof MVMServiceUpdateServiceClassResponseSchema;
+    };
+    /**
+     * Deprecated: Validates an UpdateServiceClass request without changing anything.
+     *
+     * @generated from rpc fits.api.mvm.v1.MVMService.ValidateUpdateServiceClass
+     */
+    validateUpdateServiceClass: {
+        methodKind: "unary";
+        input: typeof MVMServiceValidateUpdateServiceClassRequestSchema;
+        output: typeof MVMServiceValidateUpdateServiceClassResponseSchema;
     };
     /**
      * Deletes a MVM.
@@ -1500,6 +1908,16 @@ export declare const MVMService: GenService<{
         output: typeof MVMServiceAddDiskResponseSchema;
     };
     /**
+     * Validates an AddDisk request without ordering anything.
+     *
+     * @generated from rpc fits.api.mvm.v1.MVMService.ValidateAddDisk
+     */
+    validateAddDisk: {
+        methodKind: "unary";
+        input: typeof MVMServiceValidateAddDiskRequestSchema;
+        output: typeof MVMServiceValidateAddDiskResponseSchema;
+    };
+    /**
      * Changes the size or auto-extend behavior of an existing disk; see
      * DiskType for which operations apply per disk kind.
      *
@@ -1509,6 +1927,16 @@ export declare const MVMService: GenService<{
         methodKind: "unary";
         input: typeof MVMServiceUpdateDiskRequestSchema;
         output: typeof MVMServiceUpdateDiskResponseSchema;
+    };
+    /**
+     * Validates an UpdateDisk request without changing anything.
+     *
+     * @generated from rpc fits.api.mvm.v1.MVMService.ValidateUpdateDisk
+     */
+    validateUpdateDisk: {
+        methodKind: "unary";
+        input: typeof MVMServiceValidateUpdateDiskRequestSchema;
+        output: typeof MVMServiceValidateUpdateDiskResponseSchema;
     };
     /**
      * Cancels a data disk. OS and system disks cannot be deleted.
@@ -1551,44 +1979,63 @@ export declare const MVMService: GenService<{
         output: typeof MVMServiceDeleteNetworkInterfaceResponseSchema;
     };
     /**
-     * Validates a MVM create request without creating anything. Intended for
-     * form pre-checks; the create endpoint validates again before executing.
+     * Restarts a MVM.
      *
-     * @generated from rpc fits.api.mvm.v1.MVMService.ValidateCreate
+     * @generated from rpc fits.api.mvm.v1.MVMService.Restart
      */
-    validateCreate: {
+    restart: {
         methodKind: "unary";
-        input: typeof MVMServiceValidateCreateRequestSchema;
-        output: typeof MVMServiceValidateCreateResponseSchema;
+        input: typeof MVMServiceRestartRequestSchema;
+        output: typeof MVMServiceRestartResponseSchema;
     };
     /**
-     * Validates an AddDisk request without ordering anything.
+     * Reinstalls the operating system of a MVM.
      *
-     * @generated from rpc fits.api.mvm.v1.MVMService.ValidateAddDisk
+     * @generated from rpc fits.api.mvm.v1.MVMService.Reinstall
      */
-    validateAddDisk: {
+    reinstall: {
         methodKind: "unary";
-        input: typeof MVMServiceValidateAddDiskRequestSchema;
-        output: typeof MVMServiceValidateAddDiskResponseSchema;
+        input: typeof MVMServiceReinstallRequestSchema;
+        output: typeof MVMServiceReinstallResponseSchema;
     };
     /**
-     * Validates an UpdateDisk request without changing anything.
+     * Validates a Reinstall request without reinstalling anything.
      *
-     * @generated from rpc fits.api.mvm.v1.MVMService.ValidateUpdateDisk
+     * @generated from rpc fits.api.mvm.v1.MVMService.ValidateReinstall
      */
-    validateUpdateDisk: {
+    validateReinstall: {
         methodKind: "unary";
-        input: typeof MVMServiceValidateUpdateDiskRequestSchema;
-        output: typeof MVMServiceValidateUpdateDiskResponseSchema;
+        input: typeof MVMServiceValidateReinstallRequestSchema;
+        output: typeof MVMServiceValidateReinstallResponseSchema;
     };
     /**
-     * Validates an AddNetworkInterface request without ordering anything.
+     * Creates a snapshot of a MVM.
      *
-     * @generated from rpc fits.api.mvm.v1.MVMService.ValidateAddNetworkInterface
+     * @generated from rpc fits.api.mvm.v1.MVMService.AddSnapshot
      */
-    validateAddNetworkInterface: {
+    addSnapshot: {
         methodKind: "unary";
-        input: typeof MVMServiceValidateAddNetworkInterfaceRequestSchema;
-        output: typeof MVMServiceValidateAddNetworkInterfaceResponseSchema;
+        input: typeof MVMServiceAddSnapshotRequestSchema;
+        output: typeof MVMServiceAddSnapshotResponseSchema;
+    };
+    /**
+     * Deletes a snapshot of a MVM.
+     *
+     * @generated from rpc fits.api.mvm.v1.MVMService.DeleteSnapshot
+     */
+    deleteSnapshot: {
+        methodKind: "unary";
+        input: typeof MVMServiceDeleteSnapshotRequestSchema;
+        output: typeof MVMServiceDeleteSnapshotResponseSchema;
+    };
+    /**
+     * Moves a MVM from one datacenter to another.
+     *
+     * @generated from rpc fits.api.mvm.v1.MVMService.Move
+     */
+    move: {
+        methodKind: "unary";
+        input: typeof MVMServiceMoveRequestSchema;
+        output: typeof MVMServiceMoveResponseSchema;
     };
 }>;
