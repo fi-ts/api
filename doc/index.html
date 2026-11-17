@@ -930,6 +930,10 @@
                 </li>
               
                 <li>
+                  <a href="#fits.api.v1.ProjectContext"><span class="badge">M</span>ProjectContext</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.v1.ProjectPermissions"><span class="badge">M</span>ProjectPermissions</a>
                 </li>
               
@@ -939,6 +943,10 @@
               
                 <li>
                   <a href="#fits.api.v1.SelfPermissions"><span class="badge">M</span>SelfPermissions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.TenantContext"><span class="badge">M</span>TenantContext</a>
                 </li>
               
                 <li>
@@ -5657,6 +5665,37 @@ otherwise either a projectid or a tenant login should be specified </p></td>
 
         
       
+        <h3 id="fits.api.v1.ProjectContext">ProjectContext</h3>
+        <p>ProjectContext provides the role context leading to the project role.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>role</td>
+                  <td><a href="#fits.api.v1.ProjectRole">ProjectRole</a></td>
+                  <td></td>
+                  <td><p>Role that the user has in this project. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>context</td>
+                  <td><a href="#fits.api.v1.RoleContext">RoleContext</a></td>
+                  <td></td>
+                  <td><p>Context that lead to this role. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="fits.api.v1.ProjectPermissions">ProjectPermissions</h3>
         <p>ProjectPermissions carries project method permissions.</p>
 
@@ -5728,6 +5767,37 @@ Asterisk (*) can be specified to match any subject. </p></td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p>Methods which should be accessible. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.v1.TenantContext">TenantContext</h3>
+        <p>TenantContext provides the role context leading to the tenant role.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>role</td>
+                  <td><a href="#fits.api.v1.TenantRole">TenantRole</a></td>
+                  <td></td>
+                  <td><p>Role that the user has in this tenant. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>context</td>
+                  <td><a href="#fits.api.v1.RoleContext">RoleContext</a></td>
+                  <td></td>
+                  <td><p>Context that lead to this role. </p></td>
                 </tr>
               
             </tbody>
@@ -5910,7 +5980,7 @@ Asterisk (*) can be specified to match any subject. </p></td>
               
                 <tr>
                   <td>value</td>
-                  <td><a href="#fits.api.v1.ProjectRole">ProjectRole</a></td>
+                  <td><a href="#fits.api.v1.ProjectContext">ProjectContext</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -5941,7 +6011,7 @@ Asterisk (*) can be specified to match any subject. </p></td>
               
                 <tr>
                   <td>value</td>
-                  <td><a href="#fits.api.v1.TenantRole">TenantRole</a></td>
+                  <td><a href="#fits.api.v1.TenantContext">TenantContext</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
