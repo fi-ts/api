@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package fits.api.mvm.v1;
+
+import "buf/validate/validate.proto";
+import "fits/api/v1/common.proto";
+import "fits/api/v1/predefined_rules.proto";
+import "google/protobuf/timestamp.proto";
+
+// CsvExportService offers MVM operations in the provider context.
+service CsvExportService {
+  // Create makes a new MVM and lets the operator set its billing fields.
+  rpc CsvExport(CsvExportRequest) returns (stream CsvExportResponse) {
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_ADMIN;
+    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
+  }
+  // TODO: remove this placeholder method.
+  // protoc-gen-go-mcp skips streaming methods but still emits its fixed import block,
+  // so a service with only streaming RPCs generates an mcp file with unused imports
+  // that does not compile. This unary method only exists to make the generated code compile.
+  // It will be removed once CsvExport moves to a different service.
+  rpc TodoRemoveDummy(TodoRemoveDummyRequest) returns (TodoRemoveDummyResponse) {
+    option (fits.api.v1.tenant_roles) = TENANT_ROLE_ADMIN;
+    option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
+  }
+}
+
+// TODO: remove together with TodoRemoveDummy.
+message TodoRemoveDummyRequest {
+  // Tenant
+  string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+}
+
+// TODO: remove together with TodoRemoveDummy.
+message TodoRemoveDummyResponse {}
+
+// Request to export MVM accounting information as a CSV file.
+message CsvExportRequest {
+  // Tenant
+  string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Start of the time range (inclusive).
+  google.protobuf.Timestamp from = 2;
+  // End of the time range (inclusive).
+  google.protobuf.Timestamp to = 3;
+}
+
+// CSV export of the mapped MVM accounting information.
+message CsvExportResponse {
+  // One chunk of the CSV.
+  string chunk = 1;
+}

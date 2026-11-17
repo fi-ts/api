@@ -668,6 +668,37 @@
         
           
           <li>
+            <a href="#fits%2fapi%2fmvm%2fv1%2fmvm_export.proto">fits/api/mvm/v1/mvm_export.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.CsvExportRequest"><span class="badge">M</span>CsvExportRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.CsvExportResponse"><span class="badge">M</span>CsvExportResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.TodoRemoveDummyRequest"><span class="badge">M</span>TodoRemoveDummyRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.TodoRemoveDummyResponse"><span class="badge">M</span>TodoRemoveDummyResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.CsvExportService"><span class="badge">S</span>CsvExportService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#fits%2fapi%2fmvm%2fv1%2fos.proto">fits/api/mvm/v1/os.proto</a>
             <ul>
               
@@ -4061,6 +4092,143 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                 <td><a href="#fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceRequest">MVMServiceValidateAddNetworkInterfaceRequest</a></td>
                 <td><a href="#fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceResponse">MVMServiceValidateAddNetworkInterfaceResponse</a></td>
                 <td><p>Validates an AddNetworkInterface request without ordering anything.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="fits/api/mvm/v1/mvm_export.proto">fits/api/mvm/v1/mvm_export.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.mvm.v1.CsvExportRequest">CsvExportRequest</h3>
+        <p>Request to export MVM accounting information as a CSV file.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant </p></td>
+                </tr>
+              
+                <tr>
+                  <td>from</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>Start of the time range (inclusive). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>to</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>End of the time range (inclusive). </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.CsvExportResponse">CsvExportResponse</h3>
+        <p>CSV export of the mapped MVM accounting information.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>chunk</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>One chunk of the CSV. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.TodoRemoveDummyRequest">TodoRemoveDummyRequest</h3>
+        <p>TODO: remove together with TodoRemoveDummy.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tenant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Tenant </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.TodoRemoveDummyResponse">TodoRemoveDummyResponse</h3>
+        <p>TODO: remove together with TodoRemoveDummy.</p>
+
+        
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="fits.api.mvm.v1.CsvExportService">CsvExportService</h3>
+        <p>CsvExportService offers MVM operations in the provider context.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>CsvExport</td>
+                <td><a href="#fits.api.mvm.v1.CsvExportRequest">CsvExportRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.CsvExportResponse">CsvExportResponse</a> stream</td>
+                <td><p>Create makes a new MVM and lets the operator set its billing fields.</p></td>
+              </tr>
+            
+              <tr>
+                <td>TodoRemoveDummy</td>
+                <td><a href="#fits.api.mvm.v1.TodoRemoveDummyRequest">TodoRemoveDummyRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.TodoRemoveDummyResponse">TodoRemoveDummyResponse</a></td>
+                <td><p>TODO: remove this placeholder method.
+protoc-gen-go-mcp skips streaming methods but still emits its fixed import block,
+so a service with only streaming RPCs generates an mcp file with unused imports
+that does not compile. This unary method only exists to make the generated code compile.
+It will be removed once CsvExport moves to a different service.</p></td>
               </tr>
             
           </tbody>

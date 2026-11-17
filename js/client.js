@@ -15,6 +15,7 @@ import { DomainService as Apimvmv1DomainService } from "./fits/api/mvm/v1/domain
 import { LDAPService as Apimvmv1LDAPService } from "./fits/api/mvm/v1/ldap_pb";
 import { LocationService as Apimvmv1LocationService } from "./fits/api/mvm/v1/location_pb";
 import { MVMService as Apimvmv1MVMService } from "./fits/api/mvm/v1/mvm_pb";
+import { CsvExportService as Apimvmv1CsvExportService } from "./fits/api/mvm/v1/mvm_export_pb";
 import { OSService as Apimvmv1OSService } from "./fits/api/mvm/v1/os_pb";
 import { VLANService as Apimvmv1VLANService } from "./fits/api/mvm/v1/vlan_pb";
 import { PublicCloudVMService as Apipcvmv1PublicCloudVMService } from "./fits/api/pcvm/v1/pcvm_pb";
@@ -104,6 +105,12 @@ class Apimvmv1Impl {
             this._mvm = createClient(Apimvmv1MVMService, this.transport);
         }
         return this._mvm;
+    }
+    csvExport() {
+        if (!this._csvExport) {
+            this._csvExport = createClient(Apimvmv1CsvExportService, this.transport);
+        }
+        return this._csvExport;
     }
     os() {
         if (!this._os) {
