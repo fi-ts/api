@@ -111,15 +111,15 @@ type Token struct {
 	// TenantRoles associates a tenant id with the corresponding role of the token owner.
 	TenantRoles map[string]TenantRole `protobuf:"bytes,10,rep,name=tenant_roles,json=tenantRoles,proto3" json:"tenant_roles,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=fits.api.v1.TenantRole"`
 	// RawRoles are the normalized roles transmitted by the OIDC provider.
-	RawRoles []string `protobuf:"bytes,12,rep,name=raw_roles,json=rawRoles,proto3" json:"raw_roles,omitempty"`
+	RawRoles []string `protobuf:"bytes,11,rep,name=raw_roles,json=rawRoles,proto3" json:"raw_roles,omitempty"`
 	// Name is the display name of the user the token was issued for.
-	Name string `protobuf:"bytes,13,opt,name=name,proto3" json:"name,omitempty"`
+	Name string `protobuf:"bytes,12,opt,name=name,proto3" json:"name,omitempty"`
 	// Email is the email address of the user the token was issued for.
-	Email string `protobuf:"bytes,14,opt,name=email,proto3" json:"email,omitempty"`
+	Email string `protobuf:"bytes,13,opt,name=email,proto3" json:"email,omitempty"`
 	// FirstName is the given name of the user the token was issued for.
-	FirstName string `protobuf:"bytes,15,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	FirstName string `protobuf:"bytes,14,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
 	// LastName is the family name of the user the token was issued for.
-	LastName      string `protobuf:"bytes,16,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
+	LastName      string `protobuf:"bytes,15,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -906,7 +906,7 @@ var File_fits_api_v1_token_proto protoreflect.FileDescriptor
 
 const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\n" +
-	"\x17fits/api/v1/token.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe9\b\n" +
+	"\x17fits/api/v1/token.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe3\b\n" +
 	"\x05Token\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x1e\n" +
 	"\x04user\x18\x02 \x01(\tB\n" +
@@ -921,19 +921,19 @@ const file_fits_api_v1_token_proto_rawDesc = "" +
 	"\rproject_roles\x18\t \x03(\v2$.fits.api.v1.Token.ProjectRolesEntryR\fprojectRoles\x12a\n" +
 	"\ftenant_roles\x18\n" +
 	" \x03(\v2#.fits.api.v1.Token.TenantRolesEntryB\x19\xbaH\x16\x9a\x01\x13\xc0\x95\xb8\xb1\x02\x01Е\xb8\xb1\x02\x01*\x05\x82\x01\x02\x10\x01R\vtenantRoles\x121\n" +
-	"\traw_roles\x18\f \x03(\tB\x14\xbaH\x11\x92\x01\x0eФ\xb3\xb1\x02\x01ؤ\xb3\xb1\x02\x01\x18\x01R\brawRoles\x12\x1c\n" +
-	"\x04name\x18\r \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\x04name\x12\x1e\n" +
-	"\x05email\x18\x0e \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\x05email\x12'\n" +
+	"\traw_roles\x18\v \x03(\tB\x14\xbaH\x11\x92\x01\x0eФ\xb3\xb1\x02\x01ؤ\xb3\xb1\x02\x01\x18\x01R\brawRoles\x12\x1c\n" +
+	"\x04name\x18\f \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\x04name\x12\x1e\n" +
+	"\x05email\x18\r \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\x05email\x12'\n" +
 	"\n" +
-	"first_name\x18\x0f \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\tfirstName\x12%\n" +
-	"\tlast_name\x18\x10 \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\blastName\x1aY\n" +
+	"first_name\x18\x0e \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\tfirstName\x12%\n" +
+	"\tlast_name\x18\x0f \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\blastName\x1aY\n" +
 	"\x11ProjectRolesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12.\n" +
 	"\x05value\x18\x02 \x01(\x0e2\x18.fits.api.v1.ProjectRoleR\x05value:\x028\x01\x1aW\n" +
 	"\x10TenantRolesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12-\n" +
 	"\x05value\x18\x02 \x01(\x0e2\x17.fits.api.v1.TenantRoleR\x05value:\x028\x01:\x9f\x01\xbaH\x9b\x01\x1a\x98\x01\n" +
-	"\x1btoken.permissions.usertoken\x12)token type user must not have permissions\x1aN(this.token_type == 2 && this.permissions.size() == 0) || this.token_type != 2J\x04\b\v\x10\f\"[\n" +
+	"\x1btoken.permissions.usertoken\x12)token type user must not have permissions\x1aN(this.token_type == 2 && this.permissions.size() == 0) || this.token_type != 2\"[\n" +
 	"\x10MethodPermission\x12\"\n" +
 	"\asubject\x18\x01 \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\asubject\x12#\n" +
 	"\amethods\x18\x02 \x03(\tB\t\xbaH\x06\x92\x01\x03\x10\xf4\x03R\amethods\"\x8c\x02\n" +

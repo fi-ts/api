@@ -90,31 +90,31 @@ export type Token = Message<"fits.api.v1.Token"> & {
     /**
      * RawRoles are the normalized roles transmitted by the OIDC provider.
      *
-     * @generated from field: repeated string raw_roles = 12;
+     * @generated from field: repeated string raw_roles = 11;
      */
     rawRoles: string[];
     /**
      * Name is the display name of the user the token was issued for.
      *
-     * @generated from field: string name = 13;
+     * @generated from field: string name = 12;
      */
     name: string;
     /**
      * Email is the email address of the user the token was issued for.
      *
-     * @generated from field: string email = 14;
+     * @generated from field: string email = 13;
      */
     email: string;
     /**
      * FirstName is the given name of the user the token was issued for.
      *
-     * @generated from field: string first_name = 15;
+     * @generated from field: string first_name = 14;
      */
     firstName: string;
     /**
      * LastName is the family name of the user the token was issued for.
      *
-     * @generated from field: string last_name = 16;
+     * @generated from field: string last_name = 15;
      */
     lastName: string;
 };
