@@ -84,15 +84,3 @@ class ContactServiceUpdateRequest(_message.Message):
 class ContactServiceUpdateResponse(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...
-
-class ContactServiceDeleteRequest(_message.Message):
-    __slots__ = ("tenant", "uuid")
-    TENANT_FIELD_NUMBER: _ClassVar[int]
-    UUID_FIELD_NUMBER: _ClassVar[int]
-    tenant: str
-    uuid: str
-    def __init__(self, tenant: _Optional[str] = ..., uuid: _Optional[str] = ...) -> None: ...
-
-class ContactServiceDeleteResponse(_message.Message):
-    __slots__ = ()
-    def __init__(self) -> None: ...
