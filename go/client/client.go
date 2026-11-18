@@ -31,6 +31,8 @@ type (
 		LDAP() mvmv1connect.LDAPServiceClient
 		Location() mvmv1connect.LocationServiceClient
 		MVM() mvmv1connect.MVMServiceClient
+		OnBehalfMVM() mvmv1connect.OnBehalfMVMServiceClient
+		ProviderMVM() mvmv1connect.ProviderMVMServiceClient
 		OS() mvmv1connect.OSServiceClient
 		VLAN() mvmv1connect.VLANServiceClient
 
@@ -38,13 +40,15 @@ type (
 	}
 
 	apimvmv1 struct {
-		contactservice  mvmv1connect.ContactServiceClient
-		domainservice   mvmv1connect.DomainServiceClient
-		ldapservice     mvmv1connect.LDAPServiceClient
-		locationservice mvmv1connect.LocationServiceClient
-		mvmservice      mvmv1connect.MVMServiceClient
-		osservice       mvmv1connect.OSServiceClient
-		vlanservice     mvmv1connect.VLANServiceClient
+		contactservice     mvmv1connect.ContactServiceClient
+		domainservice      mvmv1connect.DomainServiceClient
+		ldapservice        mvmv1connect.LDAPServiceClient
+		locationservice    mvmv1connect.LocationServiceClient
+		mvmservice         mvmv1connect.MVMServiceClient
+		onbehalfmvmservice mvmv1connect.OnBehalfMVMServiceClient
+		providermvmservice mvmv1connect.ProviderMVMServiceClient
+		osservice          mvmv1connect.OSServiceClient
+		vlanservice        mvmv1connect.VLANServiceClient
 	}
 
 	Apipcvmv1 interface {
@@ -110,6 +114,18 @@ func (c *client) Apimvmv1() Apimvmv1 {
 			connect.WithInterceptors(c.interceptors...),
 			compress.WithAll(compress.LevelBalanced),
 		),
+		onbehalfmvmservice: mvmv1connect.NewOnBehalfMVMServiceClient(
+			c.config.HttpClient(),
+			c.config.BaseURL,
+			connect.WithInterceptors(c.interceptors...),
+			compress.WithAll(compress.LevelBalanced),
+		),
+		providermvmservice: mvmv1connect.NewProviderMVMServiceClient(
+			c.config.HttpClient(),
+			c.config.BaseURL,
+			connect.WithInterceptors(c.interceptors...),
+			compress.WithAll(compress.LevelBalanced),
+		),
 		osservice: mvmv1connect.NewOSServiceClient(
 			c.config.HttpClient(),
 			c.config.BaseURL,
@@ -140,6 +156,12 @@ func (c *apimvmv1) Location() mvmv1connect.LocationServiceClient {
 }
 func (c *apimvmv1) MVM() mvmv1connect.MVMServiceClient {
 	return c.mvmservice
+}
+func (c *apimvmv1) OnBehalfMVM() mvmv1connect.OnBehalfMVMServiceClient {
+	return c.onbehalfmvmservice
+}
+func (c *apimvmv1) ProviderMVM() mvmv1connect.ProviderMVMServiceClient {
+	return c.providermvmservice
 }
 func (c *apimvmv1) OS() mvmv1connect.OSServiceClient {
 	return c.osservice
@@ -231,6 +253,8 @@ func (c *apimvmv1) EnableMCP(mcps runtime.MCPServer, opts ...runtime.Option) {
 	mvmv1mcp.ForwardToLDAPServiceClient(mcps, c.LDAP(), opts...)
 	mvmv1mcp.ForwardToLocationServiceClient(mcps, c.Location(), opts...)
 	mvmv1mcp.ForwardToMVMServiceClient(mcps, c.MVM(), opts...)
+	mvmv1mcp.ForwardToOnBehalfMVMServiceClient(mcps, c.OnBehalfMVM(), opts...)
+	mvmv1mcp.ForwardToProviderMVMServiceClient(mcps, c.ProviderMVM(), opts...)
 	mvmv1mcp.ForwardToOSServiceClient(mcps, c.OS(), opts...)
 	mvmv1mcp.ForwardToVLANServiceClient(mcps, c.VLAN(), opts...)
 }

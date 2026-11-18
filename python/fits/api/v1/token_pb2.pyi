@@ -23,21 +23,21 @@ TOKEN_TYPE_API: TokenType
 TOKEN_TYPE_USER: TokenType
 
 class Token(_message.Message):
-    __slots__ = ("uuid", "user", "meta", "description", "permissions", "expires", "issued_at", "token_type", "project_roles", "tenant_roles", "operator_role", "raw_roles", "name", "email", "first_name", "last_name")
+    __slots__ = ("uuid", "user", "meta", "description", "permissions", "expires", "issued_at", "token_type", "project_roles", "tenant_roles", "raw_roles", "name", "email", "first_name", "last_name")
     class ProjectRolesEntry(_message.Message):
         __slots__ = ("key", "value")
         KEY_FIELD_NUMBER: _ClassVar[int]
         VALUE_FIELD_NUMBER: _ClassVar[int]
         key: str
-        value: _common_pb2.ProjectRole
-        def __init__(self, key: _Optional[str] = ..., value: _Optional[_Union[_common_pb2.ProjectRole, str]] = ...) -> None: ...
+        value: ProjectContext
+        def __init__(self, key: _Optional[str] = ..., value: _Optional[_Union[ProjectContext, _Mapping]] = ...) -> None: ...
     class TenantRolesEntry(_message.Message):
         __slots__ = ("key", "value")
         KEY_FIELD_NUMBER: _ClassVar[int]
         VALUE_FIELD_NUMBER: _ClassVar[int]
         key: str
-        value: _common_pb2.TenantRole
-        def __init__(self, key: _Optional[str] = ..., value: _Optional[_Union[_common_pb2.TenantRole, str]] = ...) -> None: ...
+        value: TenantContext
+        def __init__(self, key: _Optional[str] = ..., value: _Optional[_Union[TenantContext, _Mapping]] = ...) -> None: ...
     UUID_FIELD_NUMBER: _ClassVar[int]
     USER_FIELD_NUMBER: _ClassVar[int]
     META_FIELD_NUMBER: _ClassVar[int]
@@ -48,7 +48,6 @@ class Token(_message.Message):
     TOKEN_TYPE_FIELD_NUMBER: _ClassVar[int]
     PROJECT_ROLES_FIELD_NUMBER: _ClassVar[int]
     TENANT_ROLES_FIELD_NUMBER: _ClassVar[int]
-    OPERATOR_ROLE_FIELD_NUMBER: _ClassVar[int]
     RAW_ROLES_FIELD_NUMBER: _ClassVar[int]
     NAME_FIELD_NUMBER: _ClassVar[int]
     EMAIL_FIELD_NUMBER: _ClassVar[int]
@@ -62,15 +61,30 @@ class Token(_message.Message):
     expires: _timestamp_pb2.Timestamp
     issued_at: _timestamp_pb2.Timestamp
     token_type: TokenType
-    project_roles: _containers.ScalarMap[str, _common_pb2.ProjectRole]
-    tenant_roles: _containers.ScalarMap[str, _common_pb2.TenantRole]
-    operator_role: _common_pb2.OperatorRole
+    project_roles: _containers.MessageMap[str, ProjectContext]
+    tenant_roles: _containers.MessageMap[str, TenantContext]
     raw_roles: _containers.RepeatedScalarFieldContainer[str]
     name: str
     email: str
     first_name: str
     last_name: str
-    def __init__(self, uuid: _Optional[str] = ..., user: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., description: _Optional[str] = ..., permissions: _Optional[_Iterable[_Union[PermissionsByVisibility, _Mapping]]] = ..., expires: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., issued_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., token_type: _Optional[_Union[TokenType, str]] = ..., project_roles: _Optional[_Mapping[str, _common_pb2.ProjectRole]] = ..., tenant_roles: _Optional[_Mapping[str, _common_pb2.TenantRole]] = ..., operator_role: _Optional[_Union[_common_pb2.OperatorRole, str]] = ..., raw_roles: _Optional[_Iterable[str]] = ..., name: _Optional[str] = ..., email: _Optional[str] = ..., first_name: _Optional[str] = ..., last_name: _Optional[str] = ...) -> None: ...
+    def __init__(self, uuid: _Optional[str] = ..., user: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., description: _Optional[str] = ..., permissions: _Optional[_Iterable[_Union[PermissionsByVisibility, _Mapping]]] = ..., expires: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., issued_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., token_type: _Optional[_Union[TokenType, str]] = ..., project_roles: _Optional[_Mapping[str, ProjectContext]] = ..., tenant_roles: _Optional[_Mapping[str, TenantContext]] = ..., raw_roles: _Optional[_Iterable[str]] = ..., name: _Optional[str] = ..., email: _Optional[str] = ..., first_name: _Optional[str] = ..., last_name: _Optional[str] = ...) -> None: ...
+
+class ProjectContext(_message.Message):
+    __slots__ = ("role", "context")
+    ROLE_FIELD_NUMBER: _ClassVar[int]
+    CONTEXT_FIELD_NUMBER: _ClassVar[int]
+    role: _common_pb2.ProjectRole
+    context: _common_pb2.RoleContext
+    def __init__(self, role: _Optional[_Union[_common_pb2.ProjectRole, str]] = ..., context: _Optional[_Union[_common_pb2.RoleContext, str]] = ...) -> None: ...
+
+class TenantContext(_message.Message):
+    __slots__ = ("role", "context")
+    ROLE_FIELD_NUMBER: _ClassVar[int]
+    CONTEXT_FIELD_NUMBER: _ClassVar[int]
+    role: _common_pb2.TenantRole
+    context: _common_pb2.RoleContext
+    def __init__(self, role: _Optional[_Union[_common_pb2.TenantRole, str]] = ..., context: _Optional[_Union[_common_pb2.RoleContext, str]] = ...) -> None: ...
 
 class MethodPermission(_message.Message):
     __slots__ = ("subject", "methods")
@@ -81,18 +95,16 @@ class MethodPermission(_message.Message):
     def __init__(self, subject: _Optional[str] = ..., methods: _Optional[_Iterable[str]] = ...) -> None: ...
 
 class PermissionsByVisibility(_message.Message):
-    __slots__ = ("public", "self", "project", "tenant", "operator")
+    __slots__ = ("public", "self", "project", "tenant")
     PUBLIC_FIELD_NUMBER: _ClassVar[int]
     SELF_FIELD_NUMBER: _ClassVar[int]
     PROJECT_FIELD_NUMBER: _ClassVar[int]
     TENANT_FIELD_NUMBER: _ClassVar[int]
-    OPERATOR_FIELD_NUMBER: _ClassVar[int]
     public: PublicPermissions
     self: SelfPermissions
     project: ProjectPermissions
     tenant: TenantPermissions
-    operator: OperatorPermissions
-    def __init__(self_, public: _Optional[_Union[PublicPermissions, _Mapping]] = ..., self: _Optional[_Union[SelfPermissions, _Mapping]] = ..., project: _Optional[_Union[ProjectPermissions, _Mapping]] = ..., tenant: _Optional[_Union[TenantPermissions, _Mapping]] = ..., operator: _Optional[_Union[OperatorPermissions, _Mapping]] = ...) -> None: ...
+    def __init__(self_, public: _Optional[_Union[PublicPermissions, _Mapping]] = ..., self: _Optional[_Union[SelfPermissions, _Mapping]] = ..., project: _Optional[_Union[ProjectPermissions, _Mapping]] = ..., tenant: _Optional[_Union[TenantPermissions, _Mapping]] = ...) -> None: ...
 
 class PublicPermissions(_message.Message):
     __slots__ = ("methods",)
@@ -121,12 +133,6 @@ class TenantPermissions(_message.Message):
     login: str
     methods: _containers.RepeatedScalarFieldContainer[str]
     def __init__(self, login: _Optional[str] = ..., methods: _Optional[_Iterable[str]] = ...) -> None: ...
-
-class OperatorPermissions(_message.Message):
-    __slots__ = ("methods",)
-    METHODS_FIELD_NUMBER: _ClassVar[int]
-    methods: _containers.RepeatedScalarFieldContainer[str]
-    def __init__(self, methods: _Optional[_Iterable[str]] = ...) -> None: ...
 
 class TokenServiceListRequest(_message.Message):
     __slots__ = ()

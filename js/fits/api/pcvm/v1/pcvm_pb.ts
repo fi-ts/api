@@ -587,7 +587,7 @@ export enum Operation {
   DELETED = 4,
 
   /**
-   * OPERATION_ERROR: the
+   * OPERATION_ERROR: the VM is in error state.
    *
    * @generated from enum value: OPERATION_ERROR = 5;
    */
