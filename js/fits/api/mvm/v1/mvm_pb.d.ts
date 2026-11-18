@@ -207,35 +207,54 @@ export type WindowsDetails = Message<"fits.api.mvm.v1.WindowsDetails"> & {
  */
 export declare const WindowsDetailsSchema: GenMessage<WindowsDetails>;
 /**
+ * An IPv4 address of a MVM. IPv4 only; IPv6 is not yet supported.
+ *
+ * @generated from message fits.api.mvm.v1.IPAddress
+ */
+export type IPAddress = Message<"fits.api.mvm.v1.IPAddress"> & {
+    /**
+     * UUID of this IP address.
+     *
+     * @generated from field: string uuid = 1;
+     */
+    uuid: string;
+    /**
+     * The IPv4 address.
+     *
+     * @generated from field: string ip_address = 2;
+     */
+    ipAddress: string;
+    /**
+     * The network interface this IP address is bound to.
+     * Unset for additional IP addresses that share an existing interface such addresses can be deleted via DeleteIPAddress.
+     *
+     * @generated from field: optional fits.api.mvm.v1.NetworkInterface network_interface = 3;
+     */
+    networkInterface?: NetworkInterface | undefined;
+};
+/**
+ * Describes the message fits.api.mvm.v1.IPAddress.
+ * Use `create(IPAddressSchema)` to create a new message.
+ */
+export declare const IPAddressSchema: GenMessage<IPAddress>;
+/**
  * A network interface of a MVM. IPv4 only; IPv6 is not yet supported.
  *
  * @generated from message fits.api.mvm.v1.NetworkInterface
  */
 export type NetworkInterface = Message<"fits.api.mvm.v1.NetworkInterface"> & {
     /**
-     * UUID of this interface.
-     *
-     * @generated from field: string uuid = 1;
-     */
-    uuid: string;
-    /**
      * UUID of the VLAN.
      *
-     * @generated from field: string vlan_uuid = 2;
+     * @generated from field: string vlan_uuid = 1;
      */
     vlanUuid: string;
-    /**
-     * IPv4 address assigned to this interface.
-     *
-     * @generated from field: string ipaddress = 3;
-     */
-    ipaddress: string;
     /**
      * MAC address of this interface.
      *
      * TODO: add validation
      *
-     * @generated from field: string macaddress = 4;
+     * @generated from field: string macaddress = 2;
      */
     macaddress: string;
 };
@@ -411,11 +430,11 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
         value?: undefined;
     };
     /**
-     * Network interfaces attached to the MVM (IPv4 only).
+     * IP addresses attached to the MVM (IPv4 only).
      *
-     * @generated from field: repeated fits.api.mvm.v1.NetworkInterface interfaces = 18;
+     * @generated from field: repeated fits.api.mvm.v1.IPAddress ip_addresses = 18;
      */
-    interfaces: NetworkInterface[];
+    ipAddresses: IPAddress[];
     /**
      * Internal reference number provided by the user, e.g. a ticket ID.
      *
@@ -1197,15 +1216,13 @@ export type MVMServiceDeleteDiskResponse = Message<"fits.api.mvm.v1.MVMServiceDe
  */
 export declare const MVMServiceDeleteDiskResponseSchema: GenMessage<MVMServiceDeleteDiskResponse>;
 /**
- * Request to order an additional network interface for a MVM.
- * Nulink treats interface and IP as a 1:1 relation; move and delete
- * operate on the interface_uuid.
+ * Request to order an additional IP address for a MVM.
  *
- * @generated from message fits.api.mvm.v1.MVMServiceAddNetworkInterfaceRequest
+ * @generated from message fits.api.mvm.v1.MVMServiceAddIPAddressRequest
  */
-export type MVMServiceAddNetworkInterfaceRequest = Message<"fits.api.mvm.v1.MVMServiceAddNetworkInterfaceRequest"> & {
+export type MVMServiceAddIPAddressRequest = Message<"fits.api.mvm.v1.MVMServiceAddIPAddressRequest"> & {
     /**
-     * UUID of the MVM to attach the interface to.
+     * UUID of the MVM to attach the IP address to.
      *
      * @generated from field: string uuid = 1;
      */
@@ -1224,46 +1241,46 @@ export type MVMServiceAddNetworkInterfaceRequest = Message<"fits.api.mvm.v1.MVMS
     orderNumber: string;
 };
 /**
- * Describes the message fits.api.mvm.v1.MVMServiceAddNetworkInterfaceRequest.
- * Use `create(MVMServiceAddNetworkInterfaceRequestSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceAddIPAddressRequest.
+ * Use `create(MVMServiceAddIPAddressRequestSchema)` to create a new message.
  */
-export declare const MVMServiceAddNetworkInterfaceRequestSchema: GenMessage<MVMServiceAddNetworkInterfaceRequest>;
+export declare const MVMServiceAddIPAddressRequestSchema: GenMessage<MVMServiceAddIPAddressRequest>;
 /**
- * Response for AddNetworkInterface.
+ * Response for AddIPAddress.
  *
- * @generated from message fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse
+ * @generated from message fits.api.mvm.v1.MVMServiceAddIPAddressResponse
  */
-export type MVMServiceAddNetworkInterfaceResponse = Message<"fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse"> & {
+export type MVMServiceAddIPAddressResponse = Message<"fits.api.mvm.v1.MVMServiceAddIPAddressResponse"> & {
     /**
-     * UUID of the created network interface.
+     * UUID of the created IP address.
      *
      * @generated from field: string uuid = 1;
      */
     uuid: string;
 };
 /**
- * Describes the message fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse.
- * Use `create(MVMServiceAddNetworkInterfaceResponseSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceAddIPAddressResponse.
+ * Use `create(MVMServiceAddIPAddressResponseSchema)` to create a new message.
  */
-export declare const MVMServiceAddNetworkInterfaceResponseSchema: GenMessage<MVMServiceAddNetworkInterfaceResponse>;
+export declare const MVMServiceAddIPAddressResponseSchema: GenMessage<MVMServiceAddIPAddressResponse>;
 /**
- * Request to move a network interface from one MVM to another.
+ * Request to move an IP address from one MVM to another.
  *
- * @generated from message fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceRequest
+ * @generated from message fits.api.mvm.v1.MVMServiceMoveIPAddressRequest
  */
-export type MVMServiceMoveNetworkInterfaceRequest = Message<"fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceRequest"> & {
+export type MVMServiceMoveIPAddressRequest = Message<"fits.api.mvm.v1.MVMServiceMoveIPAddressRequest"> & {
     /**
-     * UUID of the MVM the interface currently belongs to.
+     * UUID of the MVM the IP address currently belongs to.
      *
      * @generated from field: string uuid = 1;
      */
     uuid: string;
     /**
-     * UUID of the network interface holding the IP.
+     * UUID of the IP address to move.
      *
-     * @generated from field: string interface_uuid = 2;
+     * @generated from field: string ip_address_uuid = 2;
      */
-    interfaceUuid: string;
+    ipAddressUuid: string;
     /**
      * UUID of the project the MVM belongs to.
      *
@@ -1277,46 +1294,46 @@ export type MVMServiceMoveNetworkInterfaceRequest = Message<"fits.api.mvm.v1.MVM
      */
     orderNumber: string;
     /**
-     * UUID of the MVM to move the interface to.
+     * UUID of the MVM to move the IP address to.
      *
      * @generated from field: string target_mvm_uuid = 5;
      */
     targetMvmUuid: string;
 };
 /**
- * Describes the message fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceRequest.
- * Use `create(MVMServiceMoveNetworkInterfaceRequestSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceMoveIPAddressRequest.
+ * Use `create(MVMServiceMoveIPAddressRequestSchema)` to create a new message.
  */
-export declare const MVMServiceMoveNetworkInterfaceRequestSchema: GenMessage<MVMServiceMoveNetworkInterfaceRequest>;
+export declare const MVMServiceMoveIPAddressRequestSchema: GenMessage<MVMServiceMoveIPAddressRequest>;
 /**
- * Response for MoveNetworkInterface.
+ * Response for MoveIPAddress.
  *
- * @generated from message fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceResponse
+ * @generated from message fits.api.mvm.v1.MVMServiceMoveIPAddressResponse
  */
-export type MVMServiceMoveNetworkInterfaceResponse = Message<"fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceResponse"> & {};
+export type MVMServiceMoveIPAddressResponse = Message<"fits.api.mvm.v1.MVMServiceMoveIPAddressResponse"> & {};
 /**
- * Describes the message fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceResponse.
- * Use `create(MVMServiceMoveNetworkInterfaceResponseSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceMoveIPAddressResponse.
+ * Use `create(MVMServiceMoveIPAddressResponseSchema)` to create a new message.
  */
-export declare const MVMServiceMoveNetworkInterfaceResponseSchema: GenMessage<MVMServiceMoveNetworkInterfaceResponse>;
+export declare const MVMServiceMoveIPAddressResponseSchema: GenMessage<MVMServiceMoveIPAddressResponse>;
 /**
- * Request to delete a network interface from a MVM.
+ * Request to delete an IP address from a MVM.
  *
- * @generated from message fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceRequest
+ * @generated from message fits.api.mvm.v1.MVMServiceDeleteIPAddressRequest
  */
-export type MVMServiceDeleteNetworkInterfaceRequest = Message<"fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceRequest"> & {
+export type MVMServiceDeleteIPAddressRequest = Message<"fits.api.mvm.v1.MVMServiceDeleteIPAddressRequest"> & {
     /**
-     * UUID of the MVM the interface belongs to.
+     * UUID of the MVM the IP address belongs to.
      *
      * @generated from field: string uuid = 1;
      */
     uuid: string;
     /**
-     * UUID of the network interface holding the IP.
+     * UUID of the IP address to delete.
      *
-     * @generated from field: string interface_uuid = 2;
+     * @generated from field: string ip_address_uuid = 2;
      */
-    interfaceUuid: string;
+    ipAddressUuid: string;
     /**
      * UUID of the project the MVM belongs to.
      *
@@ -1331,21 +1348,21 @@ export type MVMServiceDeleteNetworkInterfaceRequest = Message<"fits.api.mvm.v1.M
     orderNumber: string;
 };
 /**
- * Describes the message fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceRequest.
- * Use `create(MVMServiceDeleteNetworkInterfaceRequestSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceDeleteIPAddressRequest.
+ * Use `create(MVMServiceDeleteIPAddressRequestSchema)` to create a new message.
  */
-export declare const MVMServiceDeleteNetworkInterfaceRequestSchema: GenMessage<MVMServiceDeleteNetworkInterfaceRequest>;
+export declare const MVMServiceDeleteIPAddressRequestSchema: GenMessage<MVMServiceDeleteIPAddressRequest>;
 /**
- * Response for DeleteNetworkInterface.
+ * Response for DeleteIPAddress.
  *
- * @generated from message fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceResponse
+ * @generated from message fits.api.mvm.v1.MVMServiceDeleteIPAddressResponse
  */
-export type MVMServiceDeleteNetworkInterfaceResponse = Message<"fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceResponse"> & {};
+export type MVMServiceDeleteIPAddressResponse = Message<"fits.api.mvm.v1.MVMServiceDeleteIPAddressResponse"> & {};
 /**
- * Describes the message fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceResponse.
- * Use `create(MVMServiceDeleteNetworkInterfaceResponseSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceDeleteIPAddressResponse.
+ * Use `create(MVMServiceDeleteIPAddressResponseSchema)` to create a new message.
  */
-export declare const MVMServiceDeleteNetworkInterfaceResponseSchema: GenMessage<MVMServiceDeleteNetworkInterfaceResponse>;
+export declare const MVMServiceDeleteIPAddressResponseSchema: GenMessage<MVMServiceDeleteIPAddressResponse>;
 /**
  * Request to restart a MVM.
  *
@@ -1418,6 +1435,18 @@ export type MVMServiceReinstallRequest = Message<"fits.api.mvm.v1.MVMServiceRein
      * @generated from field: optional string os_uuid = 4;
      */
     osUuid?: string | undefined;
+    /**
+     * Whether backup is enabled after the reinstall; unset keeps the current value.
+     *
+     * @generated from field: optional bool backup = 5;
+     */
+    backup?: boolean | undefined;
+    /**
+     * Whether the MVM is encrypted after the reinstall; unset keeps the current value.
+     *
+     * @generated from field: optional bool encrypted = 6;
+     */
+    encrypted?: boolean | undefined;
 };
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceReinstallRequest.
@@ -1592,7 +1621,6 @@ export type MVMServiceMoveRequest = Message<"fits.api.mvm.v1.MVMServiceMoveReque
     orderNumber: string;
     /**
      * If not provided, another datacenter within the same location will be chosen automatically.
-     * TODO server pinning
      *
      * @generated from field: optional string location_uuid = 4;
      */
@@ -1949,34 +1977,34 @@ export declare const MVMService: GenService<{
         output: typeof MVMServiceDeleteDiskResponseSchema;
     };
     /**
-     * Orders an additional network interface for a MVM.
+     * Orders an additional IP address for a MVM.
      *
-     * @generated from rpc fits.api.mvm.v1.MVMService.AddNetworkInterface
+     * @generated from rpc fits.api.mvm.v1.MVMService.AddIPAddress
      */
-    addNetworkInterface: {
+    addIPAddress: {
         methodKind: "unary";
-        input: typeof MVMServiceAddNetworkInterfaceRequestSchema;
-        output: typeof MVMServiceAddNetworkInterfaceResponseSchema;
+        input: typeof MVMServiceAddIPAddressRequestSchema;
+        output: typeof MVMServiceAddIPAddressResponseSchema;
     };
     /**
-     * Moves a network interface from one MVM to another.
+     * Moves an IP address from one MVM to another.
      *
-     * @generated from rpc fits.api.mvm.v1.MVMService.MoveNetworkInterface
+     * @generated from rpc fits.api.mvm.v1.MVMService.MoveIPAddress
      */
-    moveNetworkInterface: {
+    moveIPAddress: {
         methodKind: "unary";
-        input: typeof MVMServiceMoveNetworkInterfaceRequestSchema;
-        output: typeof MVMServiceMoveNetworkInterfaceResponseSchema;
+        input: typeof MVMServiceMoveIPAddressRequestSchema;
+        output: typeof MVMServiceMoveIPAddressResponseSchema;
     };
     /**
-     * Deletes a network interface from a MVM.
+     * Deletes an IP address from a MVM.
      *
-     * @generated from rpc fits.api.mvm.v1.MVMService.DeleteNetworkInterface
+     * @generated from rpc fits.api.mvm.v1.MVMService.DeleteIPAddress
      */
-    deleteNetworkInterface: {
+    deleteIPAddress: {
         methodKind: "unary";
-        input: typeof MVMServiceDeleteNetworkInterfaceRequestSchema;
-        output: typeof MVMServiceDeleteNetworkInterfaceResponseSchema;
+        input: typeof MVMServiceDeleteIPAddressRequestSchema;
+        output: typeof MVMServiceDeleteIPAddressResponseSchema;
     };
     /**
      * Restarts a MVM.

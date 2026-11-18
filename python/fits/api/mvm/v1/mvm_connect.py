@@ -60,13 +60,13 @@ class MVMService(Protocol):
     async def delete_disk(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteDiskResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
-    async def add_network_interface(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddNetworkInterfaceRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddNetworkInterfaceResponse:
+    async def add_i_p_address(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddIPAddressRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddIPAddressResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
-    async def move_network_interface(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveNetworkInterfaceRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveNetworkInterfaceResponse:
+    async def move_i_p_address(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveIPAddressRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveIPAddressResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
-    async def delete_network_interface(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteNetworkInterfaceRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteNetworkInterfaceResponse:
+    async def delete_i_p_address(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteIPAddressRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteIPAddressResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
     async def restart(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceRestartRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceRestartResponse:
@@ -233,35 +233,35 @@ class MVMServiceASGIApplication(ConnectASGIApplication[MVMService]):
                     ),
                     function=svc.delete_disk,
                 ),
-                "/fits.api.mvm.v1.MVMService/AddNetworkInterface": Endpoint.unary(
+                "/fits.api.mvm.v1.MVMService/AddIPAddress": Endpoint.unary(
                     method=MethodInfo(
-                        name="AddNetworkInterface",
+                        name="AddIPAddress",
                         service_name="fits.api.mvm.v1.MVMService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddNetworkInterfaceRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddNetworkInterfaceResponse,
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddIPAddressRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddIPAddressResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
-                    function=svc.add_network_interface,
+                    function=svc.add_i_p_address,
                 ),
-                "/fits.api.mvm.v1.MVMService/MoveNetworkInterface": Endpoint.unary(
+                "/fits.api.mvm.v1.MVMService/MoveIPAddress": Endpoint.unary(
                     method=MethodInfo(
-                        name="MoveNetworkInterface",
+                        name="MoveIPAddress",
                         service_name="fits.api.mvm.v1.MVMService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveNetworkInterfaceRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveNetworkInterfaceResponse,
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveIPAddressRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveIPAddressResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
-                    function=svc.move_network_interface,
+                    function=svc.move_i_p_address,
                 ),
-                "/fits.api.mvm.v1.MVMService/DeleteNetworkInterface": Endpoint.unary(
+                "/fits.api.mvm.v1.MVMService/DeleteIPAddress": Endpoint.unary(
                     method=MethodInfo(
-                        name="DeleteNetworkInterface",
+                        name="DeleteIPAddress",
                         service_name="fits.api.mvm.v1.MVMService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteNetworkInterfaceRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteNetworkInterfaceResponse,
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteIPAddressRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteIPAddressResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
-                    function=svc.delete_network_interface,
+                    function=svc.delete_i_p_address,
                 ),
                 "/fits.api.mvm.v1.MVMService/Restart": Endpoint.unary(
                     method=MethodInfo(
@@ -617,60 +617,60 @@ class MVMServiceClient(ConnectClient):
             timeout_ms=timeout_ms,
         )
 
-    async def add_network_interface(
+    async def add_i_p_address(
         self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddNetworkInterfaceRequest,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddIPAddressRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddNetworkInterfaceResponse:
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddIPAddressResponse:
         return await self.execute_unary(
             request=request,
             method=MethodInfo(
-                name="AddNetworkInterface",
+                name="AddIPAddress",
                 service_name="fits.api.mvm.v1.MVMService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddNetworkInterfaceRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddNetworkInterfaceResponse,
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddIPAddressRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddIPAddressResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
             timeout_ms=timeout_ms,
         )
 
-    async def move_network_interface(
+    async def move_i_p_address(
         self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveNetworkInterfaceRequest,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveIPAddressRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveNetworkInterfaceResponse:
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveIPAddressResponse:
         return await self.execute_unary(
             request=request,
             method=MethodInfo(
-                name="MoveNetworkInterface",
+                name="MoveIPAddress",
                 service_name="fits.api.mvm.v1.MVMService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveNetworkInterfaceRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveNetworkInterfaceResponse,
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveIPAddressRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveIPAddressResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
             timeout_ms=timeout_ms,
         )
 
-    async def delete_network_interface(
+    async def delete_i_p_address(
         self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteNetworkInterfaceRequest,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteIPAddressRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteNetworkInterfaceResponse:
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteIPAddressResponse:
         return await self.execute_unary(
             request=request,
             method=MethodInfo(
-                name="DeleteNetworkInterface",
+                name="DeleteIPAddress",
                 service_name="fits.api.mvm.v1.MVMService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteNetworkInterfaceRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteNetworkInterfaceResponse,
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteIPAddressRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteIPAddressResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
@@ -830,11 +830,11 @@ class MVMServiceSync(Protocol):
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def delete_disk(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteDiskResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-    def add_network_interface(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddNetworkInterfaceRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddNetworkInterfaceResponse:
+    def add_i_p_address(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddIPAddressRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddIPAddressResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-    def move_network_interface(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveNetworkInterfaceRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveNetworkInterfaceResponse:
+    def move_i_p_address(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveIPAddressRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveIPAddressResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-    def delete_network_interface(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteNetworkInterfaceRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteNetworkInterfaceResponse:
+    def delete_i_p_address(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteIPAddressRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteIPAddressResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def restart(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceRestartRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceRestartResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
@@ -994,35 +994,35 @@ class MVMServiceWSGIApplication(ConnectWSGIApplication):
                     ),
                     function=service.delete_disk,
                 ),
-                "/fits.api.mvm.v1.MVMService/AddNetworkInterface": EndpointSync.unary(
+                "/fits.api.mvm.v1.MVMService/AddIPAddress": EndpointSync.unary(
                     method=MethodInfo(
-                        name="AddNetworkInterface",
+                        name="AddIPAddress",
                         service_name="fits.api.mvm.v1.MVMService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddNetworkInterfaceRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddNetworkInterfaceResponse,
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddIPAddressRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddIPAddressResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
-                    function=service.add_network_interface,
+                    function=service.add_i_p_address,
                 ),
-                "/fits.api.mvm.v1.MVMService/MoveNetworkInterface": EndpointSync.unary(
+                "/fits.api.mvm.v1.MVMService/MoveIPAddress": EndpointSync.unary(
                     method=MethodInfo(
-                        name="MoveNetworkInterface",
+                        name="MoveIPAddress",
                         service_name="fits.api.mvm.v1.MVMService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveNetworkInterfaceRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveNetworkInterfaceResponse,
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveIPAddressRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveIPAddressResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
-                    function=service.move_network_interface,
+                    function=service.move_i_p_address,
                 ),
-                "/fits.api.mvm.v1.MVMService/DeleteNetworkInterface": EndpointSync.unary(
+                "/fits.api.mvm.v1.MVMService/DeleteIPAddress": EndpointSync.unary(
                     method=MethodInfo(
-                        name="DeleteNetworkInterface",
+                        name="DeleteIPAddress",
                         service_name="fits.api.mvm.v1.MVMService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteNetworkInterfaceRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteNetworkInterfaceResponse,
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteIPAddressRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteIPAddressResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
-                    function=service.delete_network_interface,
+                    function=service.delete_i_p_address,
                 ),
                 "/fits.api.mvm.v1.MVMService/Restart": EndpointSync.unary(
                     method=MethodInfo(
@@ -1378,60 +1378,60 @@ class MVMServiceClientSync(ConnectClientSync):
             timeout_ms=timeout_ms,
         )
 
-    def add_network_interface(
+    def add_i_p_address(
         self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddNetworkInterfaceRequest,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddIPAddressRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddNetworkInterfaceResponse:
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddIPAddressResponse:
         return self.execute_unary(
             request=request,
             method=MethodInfo(
-                name="AddNetworkInterface",
+                name="AddIPAddress",
                 service_name="fits.api.mvm.v1.MVMService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddNetworkInterfaceRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddNetworkInterfaceResponse,
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddIPAddressRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddIPAddressResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
             timeout_ms=timeout_ms,
         )
 
-    def move_network_interface(
+    def move_i_p_address(
         self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveNetworkInterfaceRequest,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveIPAddressRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveNetworkInterfaceResponse:
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveIPAddressResponse:
         return self.execute_unary(
             request=request,
             method=MethodInfo(
-                name="MoveNetworkInterface",
+                name="MoveIPAddress",
                 service_name="fits.api.mvm.v1.MVMService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveNetworkInterfaceRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveNetworkInterfaceResponse,
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveIPAddressRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceMoveIPAddressResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
             timeout_ms=timeout_ms,
         )
 
-    def delete_network_interface(
+    def delete_i_p_address(
         self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteNetworkInterfaceRequest,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteIPAddressRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteNetworkInterfaceResponse:
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteIPAddressResponse:
         return self.execute_unary(
             request=request,
             method=MethodInfo(
-                name="DeleteNetworkInterface",
+                name="DeleteIPAddress",
                 service_name="fits.api.mvm.v1.MVMService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteNetworkInterfaceRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteNetworkInterfaceResponse,
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteIPAddressRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteIPAddressResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,

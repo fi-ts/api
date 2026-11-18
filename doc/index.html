@@ -497,6 +497,10 @@
                 </li>
               
                 <li>
+                  <a href="#fits.api.mvm.v1.IPAddress"><span class="badge">M</span>IPAddress</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.mvm.v1.InitialNetworkInterface"><span class="badge">M</span>InitialNetworkInterface</a>
                 </li>
               
@@ -517,11 +521,11 @@
                 </li>
               
                 <li>
-                  <a href="#fits.api.mvm.v1.MVMServiceAddNetworkInterfaceRequest"><span class="badge">M</span>MVMServiceAddNetworkInterfaceRequest</a>
+                  <a href="#fits.api.mvm.v1.MVMServiceAddIPAddressRequest"><span class="badge">M</span>MVMServiceAddIPAddressRequest</a>
                 </li>
               
                 <li>
-                  <a href="#fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse"><span class="badge">M</span>MVMServiceAddNetworkInterfaceResponse</a>
+                  <a href="#fits.api.mvm.v1.MVMServiceAddIPAddressResponse"><span class="badge">M</span>MVMServiceAddIPAddressResponse</a>
                 </li>
               
                 <li>
@@ -557,11 +561,11 @@
                 </li>
               
                 <li>
-                  <a href="#fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceRequest"><span class="badge">M</span>MVMServiceDeleteNetworkInterfaceRequest</a>
+                  <a href="#fits.api.mvm.v1.MVMServiceDeleteIPAddressRequest"><span class="badge">M</span>MVMServiceDeleteIPAddressRequest</a>
                 </li>
               
                 <li>
-                  <a href="#fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceResponse"><span class="badge">M</span>MVMServiceDeleteNetworkInterfaceResponse</a>
+                  <a href="#fits.api.mvm.v1.MVMServiceDeleteIPAddressResponse"><span class="badge">M</span>MVMServiceDeleteIPAddressResponse</a>
                 </li>
               
                 <li>
@@ -597,11 +601,11 @@
                 </li>
               
                 <li>
-                  <a href="#fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceRequest"><span class="badge">M</span>MVMServiceMoveNetworkInterfaceRequest</a>
+                  <a href="#fits.api.mvm.v1.MVMServiceMoveIPAddressRequest"><span class="badge">M</span>MVMServiceMoveIPAddressRequest</a>
                 </li>
               
                 <li>
-                  <a href="#fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceResponse"><span class="badge">M</span>MVMServiceMoveNetworkInterfaceResponse</a>
+                  <a href="#fits.api.mvm.v1.MVMServiceMoveIPAddressResponse"><span class="badge">M</span>MVMServiceMoveIPAddressResponse</a>
                 </li>
               
                 <li>
@@ -2629,6 +2633,45 @@ having a direct membership within the tenant.</p></td>
 
         
       
+        <h3 id="fits.api.mvm.v1.IPAddress">IPAddress</h3>
+        <p>An IPv4 address of a MVM. IPv4 only; IPv6 is not yet supported.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of this IP address. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ip_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The IPv4 address. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>network_interface</td>
+                  <td><a href="#fits.api.mvm.v1.NetworkInterface">NetworkInterface</a></td>
+                  <td>optional</td>
+                  <td><p>The network interface this IP address is bound to.
+Unset for additional IP addresses that share an existing interface such addresses can be deleted via DeleteIPAddress. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="fits.api.mvm.v1.InitialNetworkInterface">InitialNetworkInterface</h3>
         <p>The InitialNetworkInterface needs to be provided at creation of a MVM.</p><p>It provides the UUID of the target VLAN for the MVM's first network interface.</p><p>The created MVM comes with a NetworkInterface connected to this VLAN.</p>
 
@@ -2822,8 +2865,8 @@ API in responses. </p></td>
 
         
       
-        <h3 id="fits.api.mvm.v1.MVMServiceAddNetworkInterfaceRequest">MVMServiceAddNetworkInterfaceRequest</h3>
-        <p>Request to order an additional network interface for a MVM.</p><p>Nulink treats interface and IP as a 1:1 relation; move and delete</p><p>operate on the interface_uuid.</p>
+        <h3 id="fits.api.mvm.v1.MVMServiceAddIPAddressRequest">MVMServiceAddIPAddressRequest</h3>
+        <p>Request to order an additional IP address for a MVM.</p>
 
         
           <table class="field-table">
@@ -2836,7 +2879,7 @@ API in responses. </p></td>
                   <td>uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>UUID of the MVM to attach the interface to. </p></td>
+                  <td><p>UUID of the MVM to attach the IP address to. </p></td>
                 </tr>
               
                 <tr>
@@ -2860,8 +2903,8 @@ API in responses. </p></td>
 
         
       
-        <h3 id="fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse">MVMServiceAddNetworkInterfaceResponse</h3>
-        <p>Response for AddNetworkInterface.</p>
+        <h3 id="fits.api.mvm.v1.MVMServiceAddIPAddressResponse">MVMServiceAddIPAddressResponse</h3>
+        <p>Response for AddIPAddress.</p>
 
         
           <table class="field-table">
@@ -2874,7 +2917,7 @@ API in responses. </p></td>
                   <td>uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>UUID of the created network interface. </p></td>
+                  <td><p>UUID of the created IP address. </p></td>
                 </tr>
               
             </tbody>
@@ -3223,8 +3266,8 @@ one system disk plus any number of data disks (see DiskType). </p></td>
 
         
       
-        <h3 id="fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceRequest">MVMServiceDeleteNetworkInterfaceRequest</h3>
-        <p>Request to delete a network interface from a MVM.</p>
+        <h3 id="fits.api.mvm.v1.MVMServiceDeleteIPAddressRequest">MVMServiceDeleteIPAddressRequest</h3>
+        <p>Request to delete an IP address from a MVM.</p>
 
         
           <table class="field-table">
@@ -3237,14 +3280,14 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>UUID of the MVM the interface belongs to. </p></td>
+                  <td><p>UUID of the MVM the IP address belongs to. </p></td>
                 </tr>
               
                 <tr>
-                  <td>interface_uuid</td>
+                  <td>ip_address_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>UUID of the network interface holding the IP. </p></td>
+                  <td><p>UUID of the IP address to delete. </p></td>
                 </tr>
               
                 <tr>
@@ -3268,8 +3311,8 @@ one system disk plus any number of data disks (see DiskType). </p></td>
 
         
       
-        <h3 id="fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceResponse">MVMServiceDeleteNetworkInterfaceResponse</h3>
-        <p>Response for DeleteNetworkInterface.</p>
+        <h3 id="fits.api.mvm.v1.MVMServiceDeleteIPAddressResponse">MVMServiceDeleteIPAddressResponse</h3>
+        <p>Response for DeleteIPAddress.</p>
 
         
 
@@ -3475,8 +3518,8 @@ one system disk plus any number of data disks (see DiskType). </p></td>
 
         
       
-        <h3 id="fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceRequest">MVMServiceMoveNetworkInterfaceRequest</h3>
-        <p>Request to move a network interface from one MVM to another.</p>
+        <h3 id="fits.api.mvm.v1.MVMServiceMoveIPAddressRequest">MVMServiceMoveIPAddressRequest</h3>
+        <p>Request to move an IP address from one MVM to another.</p>
 
         
           <table class="field-table">
@@ -3489,14 +3532,14 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>UUID of the MVM the interface currently belongs to. </p></td>
+                  <td><p>UUID of the MVM the IP address currently belongs to. </p></td>
                 </tr>
               
                 <tr>
-                  <td>interface_uuid</td>
+                  <td>ip_address_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>UUID of the network interface holding the IP. </p></td>
+                  <td><p>UUID of the IP address to move. </p></td>
                 </tr>
               
                 <tr>
@@ -3517,7 +3560,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>target_mvm_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>UUID of the MVM to move the interface to. </p></td>
+                  <td><p>UUID of the MVM to move the IP address to. </p></td>
                 </tr>
               
             </tbody>
@@ -3527,8 +3570,8 @@ one system disk plus any number of data disks (see DiskType). </p></td>
 
         
       
-        <h3 id="fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceResponse">MVMServiceMoveNetworkInterfaceResponse</h3>
-        <p>Response for MoveNetworkInterface.</p>
+        <h3 id="fits.api.mvm.v1.MVMServiceMoveIPAddressResponse">MVMServiceMoveIPAddressResponse</h3>
+        <p>Response for MoveIPAddress.</p>
 
         
 
@@ -3569,8 +3612,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>location_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
-                  <td><p>If not provided, another datacenter within the same location will be chosen automatically.
-TODO server pinning </p></td>
+                  <td><p>If not provided, another datacenter within the same location will be chosen automatically. </p></td>
                 </tr>
               
             </tbody>
@@ -3623,6 +3665,20 @@ TODO server pinning </p></td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
                   <td><p>UUID of the operating system image to install. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>backup</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Whether backup is enabled after the reinstall; unset keeps the current value. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>encrypted</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Whether the MVM is encrypted after the reinstall; unset keeps the current value. </p></td>
                 </tr>
               
             </tbody>
@@ -4199,10 +4255,10 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
                 </tr>
               
                 <tr>
-                  <td>interfaces</td>
-                  <td><a href="#fits.api.mvm.v1.NetworkInterface">NetworkInterface</a></td>
+                  <td>ip_addresses</td>
+                  <td><a href="#fits.api.mvm.v1.IPAddress">IPAddress</a></td>
                   <td>repeated</td>
-                  <td><p>Network interfaces attached to the MVM (IPv4 only). </p></td>
+                  <td><p>IP addresses attached to the MVM (IPv4 only). </p></td>
                 </tr>
               
                 <tr>
@@ -4237,24 +4293,10 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
             <tbody>
               
                 <tr>
-                  <td>uuid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>UUID of this interface. </p></td>
-                </tr>
-              
-                <tr>
                   <td>vlan_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>UUID of the VLAN. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>ipaddress</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>IPv4 address assigned to this interface. </p></td>
                 </tr>
               
                 <tr>
@@ -4712,24 +4754,24 @@ DiskType for which operations apply per disk kind.</p></td>
               </tr>
             
               <tr>
-                <td>AddNetworkInterface</td>
-                <td><a href="#fits.api.mvm.v1.MVMServiceAddNetworkInterfaceRequest">MVMServiceAddNetworkInterfaceRequest</a></td>
-                <td><a href="#fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse">MVMServiceAddNetworkInterfaceResponse</a></td>
-                <td><p>Orders an additional network interface for a MVM.</p></td>
+                <td>AddIPAddress</td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceAddIPAddressRequest">MVMServiceAddIPAddressRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceAddIPAddressResponse">MVMServiceAddIPAddressResponse</a></td>
+                <td><p>Orders an additional IP address for a MVM.</p></td>
               </tr>
             
               <tr>
-                <td>MoveNetworkInterface</td>
-                <td><a href="#fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceRequest">MVMServiceMoveNetworkInterfaceRequest</a></td>
-                <td><a href="#fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceResponse">MVMServiceMoveNetworkInterfaceResponse</a></td>
-                <td><p>Moves a network interface from one MVM to another.</p></td>
+                <td>MoveIPAddress</td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceMoveIPAddressRequest">MVMServiceMoveIPAddressRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceMoveIPAddressResponse">MVMServiceMoveIPAddressResponse</a></td>
+                <td><p>Moves an IP address from one MVM to another.</p></td>
               </tr>
             
               <tr>
-                <td>DeleteNetworkInterface</td>
-                <td><a href="#fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceRequest">MVMServiceDeleteNetworkInterfaceRequest</a></td>
-                <td><a href="#fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceResponse">MVMServiceDeleteNetworkInterfaceResponse</a></td>
-                <td><p>Deletes a network interface from a MVM.</p></td>
+                <td>DeleteIPAddress</td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceDeleteIPAddressRequest">MVMServiceDeleteIPAddressRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceDeleteIPAddressResponse">MVMServiceDeleteIPAddressResponse</a></td>
+                <td><p>Deletes an IP address from a MVM.</p></td>
               </tr>
             
               <tr>

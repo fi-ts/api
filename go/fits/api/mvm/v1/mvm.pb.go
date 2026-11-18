@@ -695,24 +695,85 @@ func (x *WindowsDetails) GetDomainFqdn() string {
 	return ""
 }
 
+// An IPv4 address of a MVM. IPv4 only; IPv6 is not yet supported.
+type IPAddress struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// UUID of this IP address.
+	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	// The IPv4 address.
+	IpAddress string `protobuf:"bytes,2,opt,name=ip_address,json=ipAddress,proto3" json:"ip_address,omitempty"`
+	// The network interface this IP address is bound to.
+	// Unset for additional IP addresses that share an existing interface such addresses can be deleted via DeleteIPAddress.
+	NetworkInterface *NetworkInterface `protobuf:"bytes,3,opt,name=network_interface,json=networkInterface,proto3,oneof" json:"network_interface,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *IPAddress) Reset() {
+	*x = IPAddress{}
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IPAddress) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IPAddress) ProtoMessage() {}
+
+func (x *IPAddress) ProtoReflect() protoreflect.Message {
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IPAddress.ProtoReflect.Descriptor instead.
+func (*IPAddress) Descriptor() ([]byte, []int) {
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *IPAddress) GetUuid() string {
+	if x != nil {
+		return x.Uuid
+	}
+	return ""
+}
+
+func (x *IPAddress) GetIpAddress() string {
+	if x != nil {
+		return x.IpAddress
+	}
+	return ""
+}
+
+func (x *IPAddress) GetNetworkInterface() *NetworkInterface {
+	if x != nil {
+		return x.NetworkInterface
+	}
+	return nil
+}
+
 // A network interface of a MVM. IPv4 only; IPv6 is not yet supported.
 type NetworkInterface struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// UUID of this interface.
-	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	// UUID of the VLAN.
-	VlanUuid string `protobuf:"bytes,2,opt,name=vlan_uuid,json=vlanUuid,proto3" json:"vlan_uuid,omitempty"`
-	// IPv4 address assigned to this interface.
-	Ipaddress string `protobuf:"bytes,3,opt,name=ipaddress,proto3" json:"ipaddress,omitempty"`
+	VlanUuid string `protobuf:"bytes,1,opt,name=vlan_uuid,json=vlanUuid,proto3" json:"vlan_uuid,omitempty"`
 	// MAC address of this interface.
-	Macaddress    string `protobuf:"bytes,4,opt,name=macaddress,proto3" json:"macaddress,omitempty"` // TODO: add validation
+	Macaddress    string `protobuf:"bytes,2,opt,name=macaddress,proto3" json:"macaddress,omitempty"` // TODO: add validation
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *NetworkInterface) Reset() {
 	*x = NetworkInterface{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[5]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -724,7 +785,7 @@ func (x *NetworkInterface) String() string {
 func (*NetworkInterface) ProtoMessage() {}
 
 func (x *NetworkInterface) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[5]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -737,26 +798,12 @@ func (x *NetworkInterface) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NetworkInterface.ProtoReflect.Descriptor instead.
 func (*NetworkInterface) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *NetworkInterface) GetUuid() string {
-	if x != nil {
-		return x.Uuid
-	}
-	return ""
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *NetworkInterface) GetVlanUuid() string {
 	if x != nil {
 		return x.VlanUuid
-	}
-	return ""
-}
-
-func (x *NetworkInterface) GetIpaddress() string {
-	if x != nil {
-		return x.Ipaddress
 	}
 	return ""
 }
@@ -781,7 +828,7 @@ type InitialNetworkInterface struct {
 
 func (x *InitialNetworkInterface) Reset() {
 	*x = InitialNetworkInterface{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[6]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -793,7 +840,7 @@ func (x *InitialNetworkInterface) String() string {
 func (*InitialNetworkInterface) ProtoMessage() {}
 
 func (x *InitialNetworkInterface) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[6]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -806,7 +853,7 @@ func (x *InitialNetworkInterface) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InitialNetworkInterface.ProtoReflect.Descriptor instead.
 func (*InitialNetworkInterface) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{6}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *InitialNetworkInterface) GetVlanUuid() string {
@@ -829,7 +876,7 @@ type Status struct {
 
 func (x *Status) Reset() {
 	*x = Status{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[7]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -841,7 +888,7 @@ func (x *Status) String() string {
 func (*Status) ProtoMessage() {}
 
 func (x *Status) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[7]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -854,7 +901,7 @@ func (x *Status) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Status.ProtoReflect.Descriptor instead.
 func (*Status) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{7}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *Status) GetState() State {
@@ -912,8 +959,8 @@ type ManagedVM struct {
 	//	*ManagedVM_WindowsDetails
 	//	*ManagedVM_LinuxDetails
 	Details isManagedVM_Details `protobuf_oneof:"details"`
-	// Network interfaces attached to the MVM (IPv4 only).
-	Interfaces []*NetworkInterface `protobuf:"bytes,18,rep,name=interfaces,proto3" json:"interfaces,omitempty"`
+	// IP addresses attached to the MVM (IPv4 only).
+	IpAddresses []*IPAddress `protobuf:"bytes,18,rep,name=ip_addresses,json=ipAddresses,proto3" json:"ip_addresses,omitempty"`
 	// Internal reference number provided by the user, e.g. a ticket ID.
 	OrderNumber string `protobuf:"bytes,19,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
 	// Snapshots of the MVM.
@@ -924,7 +971,7 @@ type ManagedVM struct {
 
 func (x *ManagedVM) Reset() {
 	*x = ManagedVM{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[8]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -936,7 +983,7 @@ func (x *ManagedVM) String() string {
 func (*ManagedVM) ProtoMessage() {}
 
 func (x *ManagedVM) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[8]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -949,7 +996,7 @@ func (x *ManagedVM) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ManagedVM.ProtoReflect.Descriptor instead.
 func (*ManagedVM) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{8}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ManagedVM) GetUuid() string {
@@ -1082,9 +1129,9 @@ func (x *ManagedVM) GetLinuxDetails() *LinuxDetails {
 	return nil
 }
 
-func (x *ManagedVM) GetInterfaces() []*NetworkInterface {
+func (x *ManagedVM) GetIpAddresses() []*IPAddress {
 	if x != nil {
-		return x.Interfaces
+		return x.IpAddresses
 	}
 	return nil
 }
@@ -1134,7 +1181,7 @@ type Snapshot struct {
 
 func (x *Snapshot) Reset() {
 	*x = Snapshot{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[9]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1146,7 +1193,7 @@ func (x *Snapshot) String() string {
 func (*Snapshot) ProtoMessage() {}
 
 func (x *Snapshot) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[9]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1159,7 +1206,7 @@ func (x *Snapshot) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Snapshot.ProtoReflect.Descriptor instead.
 func (*Snapshot) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{9}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *Snapshot) GetUuid() string {
@@ -1189,7 +1236,7 @@ type MVMServiceGetRequest struct {
 
 func (x *MVMServiceGetRequest) Reset() {
 	*x = MVMServiceGetRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[10]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1201,7 +1248,7 @@ func (x *MVMServiceGetRequest) String() string {
 func (*MVMServiceGetRequest) ProtoMessage() {}
 
 func (x *MVMServiceGetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[10]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1214,7 +1261,7 @@ func (x *MVMServiceGetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceGetRequest.ProtoReflect.Descriptor instead.
 func (*MVMServiceGetRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{10}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *MVMServiceGetRequest) GetUuid() string {
@@ -1242,7 +1289,7 @@ type MVMServiceGetResponse struct {
 
 func (x *MVMServiceGetResponse) Reset() {
 	*x = MVMServiceGetResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[11]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1254,7 +1301,7 @@ func (x *MVMServiceGetResponse) String() string {
 func (*MVMServiceGetResponse) ProtoMessage() {}
 
 func (x *MVMServiceGetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[11]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1267,7 +1314,7 @@ func (x *MVMServiceGetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceGetResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceGetResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{11}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *MVMServiceGetResponse) GetMvm() *ManagedVM {
@@ -1288,7 +1335,7 @@ type MVMServiceListRequest struct {
 
 func (x *MVMServiceListRequest) Reset() {
 	*x = MVMServiceListRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[12]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1300,7 +1347,7 @@ func (x *MVMServiceListRequest) String() string {
 func (*MVMServiceListRequest) ProtoMessage() {}
 
 func (x *MVMServiceListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[12]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1313,7 +1360,7 @@ func (x *MVMServiceListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceListRequest.ProtoReflect.Descriptor instead.
 func (*MVMServiceListRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{12}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *MVMServiceListRequest) GetProjectUuid() string {
@@ -1334,7 +1381,7 @@ type MVMServiceListResponse struct {
 
 func (x *MVMServiceListResponse) Reset() {
 	*x = MVMServiceListResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[13]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1346,7 +1393,7 @@ func (x *MVMServiceListResponse) String() string {
 func (*MVMServiceListResponse) ProtoMessage() {}
 
 func (x *MVMServiceListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[13]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1359,7 +1406,7 @@ func (x *MVMServiceListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceListResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceListResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{13}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *MVMServiceListResponse) GetMvms() []*ManagedVM {
@@ -1383,7 +1430,7 @@ type MVMServiceCreateWindowsRequest struct {
 
 func (x *MVMServiceCreateWindowsRequest) Reset() {
 	*x = MVMServiceCreateWindowsRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[14]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1395,7 +1442,7 @@ func (x *MVMServiceCreateWindowsRequest) String() string {
 func (*MVMServiceCreateWindowsRequest) ProtoMessage() {}
 
 func (x *MVMServiceCreateWindowsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[14]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1408,7 +1455,7 @@ func (x *MVMServiceCreateWindowsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceCreateWindowsRequest.ProtoReflect.Descriptor instead.
 func (*MVMServiceCreateWindowsRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{14}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *MVMServiceCreateWindowsRequest) GetDomainUuid() string {
@@ -1439,7 +1486,7 @@ type MVMServiceCreateLinuxRequest struct {
 
 func (x *MVMServiceCreateLinuxRequest) Reset() {
 	*x = MVMServiceCreateLinuxRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[15]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1451,7 +1498,7 @@ func (x *MVMServiceCreateLinuxRequest) String() string {
 func (*MVMServiceCreateLinuxRequest) ProtoMessage() {}
 
 func (x *MVMServiceCreateLinuxRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[15]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1464,7 +1511,7 @@ func (x *MVMServiceCreateLinuxRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceCreateLinuxRequest.ProtoReflect.Descriptor instead.
 func (*MVMServiceCreateLinuxRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{15}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *MVMServiceCreateLinuxRequest) GetLdapUuid() string {
@@ -1526,7 +1573,7 @@ type MVMServiceCreateRequest struct {
 
 func (x *MVMServiceCreateRequest) Reset() {
 	*x = MVMServiceCreateRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[16]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1538,7 +1585,7 @@ func (x *MVMServiceCreateRequest) String() string {
 func (*MVMServiceCreateRequest) ProtoMessage() {}
 
 func (x *MVMServiceCreateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[16]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1551,7 +1598,7 @@ func (x *MVMServiceCreateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceCreateRequest.ProtoReflect.Descriptor instead.
 func (*MVMServiceCreateRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{16}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *MVMServiceCreateRequest) GetProjectUuid() string {
@@ -1706,7 +1753,7 @@ type MVMServiceCreateResponse struct {
 
 func (x *MVMServiceCreateResponse) Reset() {
 	*x = MVMServiceCreateResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[17]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1718,7 +1765,7 @@ func (x *MVMServiceCreateResponse) String() string {
 func (*MVMServiceCreateResponse) ProtoMessage() {}
 
 func (x *MVMServiceCreateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[17]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1731,7 +1778,7 @@ func (x *MVMServiceCreateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceCreateResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceCreateResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{17}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *MVMServiceCreateResponse) GetUuid() string {
@@ -1752,7 +1799,7 @@ type MVMServiceValidateCreateRequest struct {
 
 func (x *MVMServiceValidateCreateRequest) Reset() {
 	*x = MVMServiceValidateCreateRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[18]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1764,7 +1811,7 @@ func (x *MVMServiceValidateCreateRequest) String() string {
 func (*MVMServiceValidateCreateRequest) ProtoMessage() {}
 
 func (x *MVMServiceValidateCreateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[18]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1777,7 +1824,7 @@ func (x *MVMServiceValidateCreateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceValidateCreateRequest.ProtoReflect.Descriptor instead.
 func (*MVMServiceValidateCreateRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{18}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *MVMServiceValidateCreateRequest) GetCreate() *MVMServiceCreateRequest {
@@ -1796,7 +1843,7 @@ type MVMServiceValidateCreateResponse struct {
 
 func (x *MVMServiceValidateCreateResponse) Reset() {
 	*x = MVMServiceValidateCreateResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[19]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1808,7 +1855,7 @@ func (x *MVMServiceValidateCreateResponse) String() string {
 func (*MVMServiceValidateCreateResponse) ProtoMessage() {}
 
 func (x *MVMServiceValidateCreateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[19]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1821,7 +1868,7 @@ func (x *MVMServiceValidateCreateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceValidateCreateResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceValidateCreateResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{19}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{20}
 }
 
 // Request to trigger the update of an existing MVM.
@@ -1849,7 +1896,7 @@ type MVMServiceUpdateRequest struct {
 
 func (x *MVMServiceUpdateRequest) Reset() {
 	*x = MVMServiceUpdateRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[20]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1861,7 +1908,7 @@ func (x *MVMServiceUpdateRequest) String() string {
 func (*MVMServiceUpdateRequest) ProtoMessage() {}
 
 func (x *MVMServiceUpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[20]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1874,7 +1921,7 @@ func (x *MVMServiceUpdateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceUpdateRequest.ProtoReflect.Descriptor instead.
 func (*MVMServiceUpdateRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{20}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *MVMServiceUpdateRequest) GetUuid() string {
@@ -1943,7 +1990,7 @@ type MVMServiceUpdateResponse struct {
 
 func (x *MVMServiceUpdateResponse) Reset() {
 	*x = MVMServiceUpdateResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[21]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1955,7 +2002,7 @@ func (x *MVMServiceUpdateResponse) String() string {
 func (*MVMServiceUpdateResponse) ProtoMessage() {}
 
 func (x *MVMServiceUpdateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[21]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1968,7 +2015,7 @@ func (x *MVMServiceUpdateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceUpdateResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceUpdateResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{21}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{22}
 }
 
 // Request to validate a MVM update without updating anything.
@@ -1982,7 +2029,7 @@ type MVMServiceValidateUpdateRequest struct {
 
 func (x *MVMServiceValidateUpdateRequest) Reset() {
 	*x = MVMServiceValidateUpdateRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[22]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1994,7 +2041,7 @@ func (x *MVMServiceValidateUpdateRequest) String() string {
 func (*MVMServiceValidateUpdateRequest) ProtoMessage() {}
 
 func (x *MVMServiceValidateUpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[22]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2007,7 +2054,7 @@ func (x *MVMServiceValidateUpdateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceValidateUpdateRequest.ProtoReflect.Descriptor instead.
 func (*MVMServiceValidateUpdateRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{22}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *MVMServiceValidateUpdateRequest) GetUpdate() *MVMServiceUpdateRequest {
@@ -2026,7 +2073,7 @@ type MVMServiceValidateUpdateResponse struct {
 
 func (x *MVMServiceValidateUpdateResponse) Reset() {
 	*x = MVMServiceValidateUpdateResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[23]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2038,7 +2085,7 @@ func (x *MVMServiceValidateUpdateResponse) String() string {
 func (*MVMServiceValidateUpdateResponse) ProtoMessage() {}
 
 func (x *MVMServiceValidateUpdateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[23]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2051,7 +2098,7 @@ func (x *MVMServiceValidateUpdateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceValidateUpdateResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceValidateUpdateResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{23}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{24}
 }
 
 // Deprecated: request for a service class update.
@@ -2072,7 +2119,7 @@ type MVMServiceUpdateServiceClassRequest struct {
 
 func (x *MVMServiceUpdateServiceClassRequest) Reset() {
 	*x = MVMServiceUpdateServiceClassRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[24]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2084,7 +2131,7 @@ func (x *MVMServiceUpdateServiceClassRequest) String() string {
 func (*MVMServiceUpdateServiceClassRequest) ProtoMessage() {}
 
 func (x *MVMServiceUpdateServiceClassRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[24]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2097,7 +2144,7 @@ func (x *MVMServiceUpdateServiceClassRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use MVMServiceUpdateServiceClassRequest.ProtoReflect.Descriptor instead.
 func (*MVMServiceUpdateServiceClassRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{24}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *MVMServiceUpdateServiceClassRequest) GetUuid() string {
@@ -2139,7 +2186,7 @@ type MVMServiceUpdateServiceClassResponse struct {
 
 func (x *MVMServiceUpdateServiceClassResponse) Reset() {
 	*x = MVMServiceUpdateServiceClassResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[25]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2151,7 +2198,7 @@ func (x *MVMServiceUpdateServiceClassResponse) String() string {
 func (*MVMServiceUpdateServiceClassResponse) ProtoMessage() {}
 
 func (x *MVMServiceUpdateServiceClassResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[25]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2164,7 +2211,7 @@ func (x *MVMServiceUpdateServiceClassResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use MVMServiceUpdateServiceClassResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceUpdateServiceClassResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{25}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{26}
 }
 
 // Deprecated: Request to validate a MVM service class update without updating anything.
@@ -2178,7 +2225,7 @@ type MVMServiceValidateUpdateServiceClassRequest struct {
 
 func (x *MVMServiceValidateUpdateServiceClassRequest) Reset() {
 	*x = MVMServiceValidateUpdateServiceClassRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[26]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2190,7 +2237,7 @@ func (x *MVMServiceValidateUpdateServiceClassRequest) String() string {
 func (*MVMServiceValidateUpdateServiceClassRequest) ProtoMessage() {}
 
 func (x *MVMServiceValidateUpdateServiceClassRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[26]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2203,7 +2250,7 @@ func (x *MVMServiceValidateUpdateServiceClassRequest) ProtoReflect() protoreflec
 
 // Deprecated: Use MVMServiceValidateUpdateServiceClassRequest.ProtoReflect.Descriptor instead.
 func (*MVMServiceValidateUpdateServiceClassRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{26}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *MVMServiceValidateUpdateServiceClassRequest) GetUpdateServiceClass() *MVMServiceUpdateServiceClassRequest {
@@ -2222,7 +2269,7 @@ type MVMServiceValidateUpdateServiceClassResponse struct {
 
 func (x *MVMServiceValidateUpdateServiceClassResponse) Reset() {
 	*x = MVMServiceValidateUpdateServiceClassResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[27]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2234,7 +2281,7 @@ func (x *MVMServiceValidateUpdateServiceClassResponse) String() string {
 func (*MVMServiceValidateUpdateServiceClassResponse) ProtoMessage() {}
 
 func (x *MVMServiceValidateUpdateServiceClassResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[27]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2247,7 +2294,7 @@ func (x *MVMServiceValidateUpdateServiceClassResponse) ProtoReflect() protorefle
 
 // Deprecated: Use MVMServiceValidateUpdateServiceClassResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceValidateUpdateServiceClassResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{27}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{28}
 }
 
 // Request to cancel a MVM instance.
@@ -2265,7 +2312,7 @@ type MVMServiceDeleteRequest struct {
 
 func (x *MVMServiceDeleteRequest) Reset() {
 	*x = MVMServiceDeleteRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[28]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2277,7 +2324,7 @@ func (x *MVMServiceDeleteRequest) String() string {
 func (*MVMServiceDeleteRequest) ProtoMessage() {}
 
 func (x *MVMServiceDeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[28]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2290,7 +2337,7 @@ func (x *MVMServiceDeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceDeleteRequest.ProtoReflect.Descriptor instead.
 func (*MVMServiceDeleteRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{28}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *MVMServiceDeleteRequest) GetUuid() string {
@@ -2323,7 +2370,7 @@ type MVMServiceDeleteResponse struct {
 
 func (x *MVMServiceDeleteResponse) Reset() {
 	*x = MVMServiceDeleteResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[29]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2335,7 +2382,7 @@ func (x *MVMServiceDeleteResponse) String() string {
 func (*MVMServiceDeleteResponse) ProtoMessage() {}
 
 func (x *MVMServiceDeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[29]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2348,7 +2395,7 @@ func (x *MVMServiceDeleteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceDeleteResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceDeleteResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{29}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{30}
 }
 
 // Request to order an additional data disk for a MVM.
@@ -2368,7 +2415,7 @@ type MVMServiceAddDiskRequest struct {
 
 func (x *MVMServiceAddDiskRequest) Reset() {
 	*x = MVMServiceAddDiskRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[30]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2380,7 +2427,7 @@ func (x *MVMServiceAddDiskRequest) String() string {
 func (*MVMServiceAddDiskRequest) ProtoMessage() {}
 
 func (x *MVMServiceAddDiskRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[30]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2393,7 +2440,7 @@ func (x *MVMServiceAddDiskRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceAddDiskRequest.ProtoReflect.Descriptor instead.
 func (*MVMServiceAddDiskRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{30}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *MVMServiceAddDiskRequest) GetUuid() string {
@@ -2435,7 +2482,7 @@ type MVMServiceAddDiskResponse struct {
 
 func (x *MVMServiceAddDiskResponse) Reset() {
 	*x = MVMServiceAddDiskResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[31]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2447,7 +2494,7 @@ func (x *MVMServiceAddDiskResponse) String() string {
 func (*MVMServiceAddDiskResponse) ProtoMessage() {}
 
 func (x *MVMServiceAddDiskResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[31]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2460,7 +2507,7 @@ func (x *MVMServiceAddDiskResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceAddDiskResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceAddDiskResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{31}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *MVMServiceAddDiskResponse) GetUuid() string {
@@ -2481,7 +2528,7 @@ type MVMServiceValidateAddDiskRequest struct {
 
 func (x *MVMServiceValidateAddDiskRequest) Reset() {
 	*x = MVMServiceValidateAddDiskRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[32]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2493,7 +2540,7 @@ func (x *MVMServiceValidateAddDiskRequest) String() string {
 func (*MVMServiceValidateAddDiskRequest) ProtoMessage() {}
 
 func (x *MVMServiceValidateAddDiskRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[32]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2506,7 +2553,7 @@ func (x *MVMServiceValidateAddDiskRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceValidateAddDiskRequest.ProtoReflect.Descriptor instead.
 func (*MVMServiceValidateAddDiskRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{32}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *MVMServiceValidateAddDiskRequest) GetAddDisk() *MVMServiceAddDiskRequest {
@@ -2525,7 +2572,7 @@ type MVMServiceValidateAddDiskResponse struct {
 
 func (x *MVMServiceValidateAddDiskResponse) Reset() {
 	*x = MVMServiceValidateAddDiskResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[33]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2537,7 +2584,7 @@ func (x *MVMServiceValidateAddDiskResponse) String() string {
 func (*MVMServiceValidateAddDiskResponse) ProtoMessage() {}
 
 func (x *MVMServiceValidateAddDiskResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[33]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2550,7 +2597,7 @@ func (x *MVMServiceValidateAddDiskResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use MVMServiceValidateAddDiskResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceValidateAddDiskResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{33}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{34}
 }
 
 // Request to change an existing disk; only size and auto-extend are
@@ -2575,7 +2622,7 @@ type MVMServiceUpdateDiskRequest struct {
 
 func (x *MVMServiceUpdateDiskRequest) Reset() {
 	*x = MVMServiceUpdateDiskRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[34]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2587,7 +2634,7 @@ func (x *MVMServiceUpdateDiskRequest) String() string {
 func (*MVMServiceUpdateDiskRequest) ProtoMessage() {}
 
 func (x *MVMServiceUpdateDiskRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[34]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2600,7 +2647,7 @@ func (x *MVMServiceUpdateDiskRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceUpdateDiskRequest.ProtoReflect.Descriptor instead.
 func (*MVMServiceUpdateDiskRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{34}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *MVMServiceUpdateDiskRequest) GetUuid() string {
@@ -2654,7 +2701,7 @@ type MVMServiceUpdateDiskResponse struct {
 
 func (x *MVMServiceUpdateDiskResponse) Reset() {
 	*x = MVMServiceUpdateDiskResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[35]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2666,7 +2713,7 @@ func (x *MVMServiceUpdateDiskResponse) String() string {
 func (*MVMServiceUpdateDiskResponse) ProtoMessage() {}
 
 func (x *MVMServiceUpdateDiskResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[35]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2679,7 +2726,7 @@ func (x *MVMServiceUpdateDiskResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceUpdateDiskResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceUpdateDiskResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{35}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{36}
 }
 
 // Request to validate an UpdateDisk without changing anything.
@@ -2693,7 +2740,7 @@ type MVMServiceValidateUpdateDiskRequest struct {
 
 func (x *MVMServiceValidateUpdateDiskRequest) Reset() {
 	*x = MVMServiceValidateUpdateDiskRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[36]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2705,7 +2752,7 @@ func (x *MVMServiceValidateUpdateDiskRequest) String() string {
 func (*MVMServiceValidateUpdateDiskRequest) ProtoMessage() {}
 
 func (x *MVMServiceValidateUpdateDiskRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[36]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2718,7 +2765,7 @@ func (x *MVMServiceValidateUpdateDiskRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use MVMServiceValidateUpdateDiskRequest.ProtoReflect.Descriptor instead.
 func (*MVMServiceValidateUpdateDiskRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{36}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *MVMServiceValidateUpdateDiskRequest) GetUpdateDisk() *MVMServiceUpdateDiskRequest {
@@ -2737,7 +2784,7 @@ type MVMServiceValidateUpdateDiskResponse struct {
 
 func (x *MVMServiceValidateUpdateDiskResponse) Reset() {
 	*x = MVMServiceValidateUpdateDiskResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[37]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2749,7 +2796,7 @@ func (x *MVMServiceValidateUpdateDiskResponse) String() string {
 func (*MVMServiceValidateUpdateDiskResponse) ProtoMessage() {}
 
 func (x *MVMServiceValidateUpdateDiskResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[37]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2762,7 +2809,7 @@ func (x *MVMServiceValidateUpdateDiskResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use MVMServiceValidateUpdateDiskResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceValidateUpdateDiskResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{37}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{38}
 }
 
 // Request to cancel a data disk; OS and system disks are rejected by the
@@ -2783,7 +2830,7 @@ type MVMServiceDeleteDiskRequest struct {
 
 func (x *MVMServiceDeleteDiskRequest) Reset() {
 	*x = MVMServiceDeleteDiskRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[38]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2795,7 +2842,7 @@ func (x *MVMServiceDeleteDiskRequest) String() string {
 func (*MVMServiceDeleteDiskRequest) ProtoMessage() {}
 
 func (x *MVMServiceDeleteDiskRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[38]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2808,7 +2855,7 @@ func (x *MVMServiceDeleteDiskRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceDeleteDiskRequest.ProtoReflect.Descriptor instead.
 func (*MVMServiceDeleteDiskRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{38}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *MVMServiceDeleteDiskRequest) GetUuid() string {
@@ -2848,7 +2895,7 @@ type MVMServiceDeleteDiskResponse struct {
 
 func (x *MVMServiceDeleteDiskResponse) Reset() {
 	*x = MVMServiceDeleteDiskResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[39]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2860,7 +2907,7 @@ func (x *MVMServiceDeleteDiskResponse) String() string {
 func (*MVMServiceDeleteDiskResponse) ProtoMessage() {}
 
 func (x *MVMServiceDeleteDiskResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[39]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2873,15 +2920,13 @@ func (x *MVMServiceDeleteDiskResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceDeleteDiskResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceDeleteDiskResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{39}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{40}
 }
 
-// Request to order an additional network interface for a MVM.
-// Nulink treats interface and IP as a 1:1 relation; move and delete
-// operate on the interface_uuid.
-type MVMServiceAddNetworkInterfaceRequest struct {
+// Request to order an additional IP address for a MVM.
+type MVMServiceAddIPAddressRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// UUID of the MVM to attach the interface to.
+	// UUID of the MVM to attach the IP address to.
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	// UUID of the project the MVM belongs to.
 	ProjectUuid string `protobuf:"bytes,2,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
@@ -2891,21 +2936,21 @@ type MVMServiceAddNetworkInterfaceRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *MVMServiceAddNetworkInterfaceRequest) Reset() {
-	*x = MVMServiceAddNetworkInterfaceRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[40]
+func (x *MVMServiceAddIPAddressRequest) Reset() {
+	*x = MVMServiceAddIPAddressRequest{}
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *MVMServiceAddNetworkInterfaceRequest) String() string {
+func (x *MVMServiceAddIPAddressRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MVMServiceAddNetworkInterfaceRequest) ProtoMessage() {}
+func (*MVMServiceAddIPAddressRequest) ProtoMessage() {}
 
-func (x *MVMServiceAddNetworkInterfaceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[40]
+func (x *MVMServiceAddIPAddressRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2916,56 +2961,56 @@ func (x *MVMServiceAddNetworkInterfaceRequest) ProtoReflect() protoreflect.Messa
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MVMServiceAddNetworkInterfaceRequest.ProtoReflect.Descriptor instead.
-func (*MVMServiceAddNetworkInterfaceRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{40}
+// Deprecated: Use MVMServiceAddIPAddressRequest.ProtoReflect.Descriptor instead.
+func (*MVMServiceAddIPAddressRequest) Descriptor() ([]byte, []int) {
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{41}
 }
 
-func (x *MVMServiceAddNetworkInterfaceRequest) GetUuid() string {
+func (x *MVMServiceAddIPAddressRequest) GetUuid() string {
 	if x != nil {
 		return x.Uuid
 	}
 	return ""
 }
 
-func (x *MVMServiceAddNetworkInterfaceRequest) GetProjectUuid() string {
+func (x *MVMServiceAddIPAddressRequest) GetProjectUuid() string {
 	if x != nil {
 		return x.ProjectUuid
 	}
 	return ""
 }
 
-func (x *MVMServiceAddNetworkInterfaceRequest) GetOrderNumber() string {
+func (x *MVMServiceAddIPAddressRequest) GetOrderNumber() string {
 	if x != nil {
 		return x.OrderNumber
 	}
 	return ""
 }
 
-// Response for AddNetworkInterface.
-type MVMServiceAddNetworkInterfaceResponse struct {
+// Response for AddIPAddress.
+type MVMServiceAddIPAddressResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// UUID of the created network interface.
+	// UUID of the created IP address.
 	Uuid          string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *MVMServiceAddNetworkInterfaceResponse) Reset() {
-	*x = MVMServiceAddNetworkInterfaceResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[41]
+func (x *MVMServiceAddIPAddressResponse) Reset() {
+	*x = MVMServiceAddIPAddressResponse{}
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *MVMServiceAddNetworkInterfaceResponse) String() string {
+func (x *MVMServiceAddIPAddressResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MVMServiceAddNetworkInterfaceResponse) ProtoMessage() {}
+func (*MVMServiceAddIPAddressResponse) ProtoMessage() {}
 
-func (x *MVMServiceAddNetworkInterfaceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[41]
+func (x *MVMServiceAddIPAddressResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2976,50 +3021,50 @@ func (x *MVMServiceAddNetworkInterfaceResponse) ProtoReflect() protoreflect.Mess
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MVMServiceAddNetworkInterfaceResponse.ProtoReflect.Descriptor instead.
-func (*MVMServiceAddNetworkInterfaceResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{41}
+// Deprecated: Use MVMServiceAddIPAddressResponse.ProtoReflect.Descriptor instead.
+func (*MVMServiceAddIPAddressResponse) Descriptor() ([]byte, []int) {
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{42}
 }
 
-func (x *MVMServiceAddNetworkInterfaceResponse) GetUuid() string {
+func (x *MVMServiceAddIPAddressResponse) GetUuid() string {
 	if x != nil {
 		return x.Uuid
 	}
 	return ""
 }
 
-// Request to move a network interface from one MVM to another.
-type MVMServiceMoveNetworkInterfaceRequest struct {
+// Request to move an IP address from one MVM to another.
+type MVMServiceMoveIPAddressRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// UUID of the MVM the interface currently belongs to.
+	// UUID of the MVM the IP address currently belongs to.
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	// UUID of the network interface holding the IP.
-	InterfaceUuid string `protobuf:"bytes,2,opt,name=interface_uuid,json=interfaceUuid,proto3" json:"interface_uuid,omitempty"`
+	// UUID of the IP address to move.
+	IpAddressUuid string `protobuf:"bytes,2,opt,name=ip_address_uuid,json=ipAddressUuid,proto3" json:"ip_address_uuid,omitempty"`
 	// UUID of the project the MVM belongs to.
 	ProjectUuid string `protobuf:"bytes,3,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
 	// Customer reference for this operation.
 	OrderNumber string `protobuf:"bytes,4,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
-	// UUID of the MVM to move the interface to.
+	// UUID of the MVM to move the IP address to.
 	TargetMvmUuid string `protobuf:"bytes,5,opt,name=target_mvm_uuid,json=targetMvmUuid,proto3" json:"target_mvm_uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *MVMServiceMoveNetworkInterfaceRequest) Reset() {
-	*x = MVMServiceMoveNetworkInterfaceRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[42]
+func (x *MVMServiceMoveIPAddressRequest) Reset() {
+	*x = MVMServiceMoveIPAddressRequest{}
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *MVMServiceMoveNetworkInterfaceRequest) String() string {
+func (x *MVMServiceMoveIPAddressRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MVMServiceMoveNetworkInterfaceRequest) ProtoMessage() {}
+func (*MVMServiceMoveIPAddressRequest) ProtoMessage() {}
 
-func (x *MVMServiceMoveNetworkInterfaceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[42]
+func (x *MVMServiceMoveIPAddressRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3030,68 +3075,68 @@ func (x *MVMServiceMoveNetworkInterfaceRequest) ProtoReflect() protoreflect.Mess
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MVMServiceMoveNetworkInterfaceRequest.ProtoReflect.Descriptor instead.
-func (*MVMServiceMoveNetworkInterfaceRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{42}
+// Deprecated: Use MVMServiceMoveIPAddressRequest.ProtoReflect.Descriptor instead.
+func (*MVMServiceMoveIPAddressRequest) Descriptor() ([]byte, []int) {
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{43}
 }
 
-func (x *MVMServiceMoveNetworkInterfaceRequest) GetUuid() string {
+func (x *MVMServiceMoveIPAddressRequest) GetUuid() string {
 	if x != nil {
 		return x.Uuid
 	}
 	return ""
 }
 
-func (x *MVMServiceMoveNetworkInterfaceRequest) GetInterfaceUuid() string {
+func (x *MVMServiceMoveIPAddressRequest) GetIpAddressUuid() string {
 	if x != nil {
-		return x.InterfaceUuid
+		return x.IpAddressUuid
 	}
 	return ""
 }
 
-func (x *MVMServiceMoveNetworkInterfaceRequest) GetProjectUuid() string {
+func (x *MVMServiceMoveIPAddressRequest) GetProjectUuid() string {
 	if x != nil {
 		return x.ProjectUuid
 	}
 	return ""
 }
 
-func (x *MVMServiceMoveNetworkInterfaceRequest) GetOrderNumber() string {
+func (x *MVMServiceMoveIPAddressRequest) GetOrderNumber() string {
 	if x != nil {
 		return x.OrderNumber
 	}
 	return ""
 }
 
-func (x *MVMServiceMoveNetworkInterfaceRequest) GetTargetMvmUuid() string {
+func (x *MVMServiceMoveIPAddressRequest) GetTargetMvmUuid() string {
 	if x != nil {
 		return x.TargetMvmUuid
 	}
 	return ""
 }
 
-// Response for MoveNetworkInterface.
-type MVMServiceMoveNetworkInterfaceResponse struct {
+// Response for MoveIPAddress.
+type MVMServiceMoveIPAddressResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *MVMServiceMoveNetworkInterfaceResponse) Reset() {
-	*x = MVMServiceMoveNetworkInterfaceResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[43]
+func (x *MVMServiceMoveIPAddressResponse) Reset() {
+	*x = MVMServiceMoveIPAddressResponse{}
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *MVMServiceMoveNetworkInterfaceResponse) String() string {
+func (x *MVMServiceMoveIPAddressResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MVMServiceMoveNetworkInterfaceResponse) ProtoMessage() {}
+func (*MVMServiceMoveIPAddressResponse) ProtoMessage() {}
 
-func (x *MVMServiceMoveNetworkInterfaceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[43]
+func (x *MVMServiceMoveIPAddressResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3102,18 +3147,18 @@ func (x *MVMServiceMoveNetworkInterfaceResponse) ProtoReflect() protoreflect.Mes
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MVMServiceMoveNetworkInterfaceResponse.ProtoReflect.Descriptor instead.
-func (*MVMServiceMoveNetworkInterfaceResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{43}
+// Deprecated: Use MVMServiceMoveIPAddressResponse.ProtoReflect.Descriptor instead.
+func (*MVMServiceMoveIPAddressResponse) Descriptor() ([]byte, []int) {
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{44}
 }
 
-// Request to delete a network interface from a MVM.
-type MVMServiceDeleteNetworkInterfaceRequest struct {
+// Request to delete an IP address from a MVM.
+type MVMServiceDeleteIPAddressRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// UUID of the MVM the interface belongs to.
+	// UUID of the MVM the IP address belongs to.
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	// UUID of the network interface holding the IP.
-	InterfaceUuid string `protobuf:"bytes,2,opt,name=interface_uuid,json=interfaceUuid,proto3" json:"interface_uuid,omitempty"`
+	// UUID of the IP address to delete.
+	IpAddressUuid string `protobuf:"bytes,2,opt,name=ip_address_uuid,json=ipAddressUuid,proto3" json:"ip_address_uuid,omitempty"`
 	// UUID of the project the MVM belongs to.
 	ProjectUuid string `protobuf:"bytes,3,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
 	// Order reference for this operation.
@@ -3122,21 +3167,21 @@ type MVMServiceDeleteNetworkInterfaceRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *MVMServiceDeleteNetworkInterfaceRequest) Reset() {
-	*x = MVMServiceDeleteNetworkInterfaceRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[44]
+func (x *MVMServiceDeleteIPAddressRequest) Reset() {
+	*x = MVMServiceDeleteIPAddressRequest{}
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *MVMServiceDeleteNetworkInterfaceRequest) String() string {
+func (x *MVMServiceDeleteIPAddressRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MVMServiceDeleteNetworkInterfaceRequest) ProtoMessage() {}
+func (*MVMServiceDeleteIPAddressRequest) ProtoMessage() {}
 
-func (x *MVMServiceDeleteNetworkInterfaceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[44]
+func (x *MVMServiceDeleteIPAddressRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3147,61 +3192,61 @@ func (x *MVMServiceDeleteNetworkInterfaceRequest) ProtoReflect() protoreflect.Me
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MVMServiceDeleteNetworkInterfaceRequest.ProtoReflect.Descriptor instead.
-func (*MVMServiceDeleteNetworkInterfaceRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{44}
+// Deprecated: Use MVMServiceDeleteIPAddressRequest.ProtoReflect.Descriptor instead.
+func (*MVMServiceDeleteIPAddressRequest) Descriptor() ([]byte, []int) {
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{45}
 }
 
-func (x *MVMServiceDeleteNetworkInterfaceRequest) GetUuid() string {
+func (x *MVMServiceDeleteIPAddressRequest) GetUuid() string {
 	if x != nil {
 		return x.Uuid
 	}
 	return ""
 }
 
-func (x *MVMServiceDeleteNetworkInterfaceRequest) GetInterfaceUuid() string {
+func (x *MVMServiceDeleteIPAddressRequest) GetIpAddressUuid() string {
 	if x != nil {
-		return x.InterfaceUuid
+		return x.IpAddressUuid
 	}
 	return ""
 }
 
-func (x *MVMServiceDeleteNetworkInterfaceRequest) GetProjectUuid() string {
+func (x *MVMServiceDeleteIPAddressRequest) GetProjectUuid() string {
 	if x != nil {
 		return x.ProjectUuid
 	}
 	return ""
 }
 
-func (x *MVMServiceDeleteNetworkInterfaceRequest) GetOrderNumber() string {
+func (x *MVMServiceDeleteIPAddressRequest) GetOrderNumber() string {
 	if x != nil {
 		return x.OrderNumber
 	}
 	return ""
 }
 
-// Response for DeleteNetworkInterface.
-type MVMServiceDeleteNetworkInterfaceResponse struct {
+// Response for DeleteIPAddress.
+type MVMServiceDeleteIPAddressResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *MVMServiceDeleteNetworkInterfaceResponse) Reset() {
-	*x = MVMServiceDeleteNetworkInterfaceResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[45]
+func (x *MVMServiceDeleteIPAddressResponse) Reset() {
+	*x = MVMServiceDeleteIPAddressResponse{}
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *MVMServiceDeleteNetworkInterfaceResponse) String() string {
+func (x *MVMServiceDeleteIPAddressResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MVMServiceDeleteNetworkInterfaceResponse) ProtoMessage() {}
+func (*MVMServiceDeleteIPAddressResponse) ProtoMessage() {}
 
-func (x *MVMServiceDeleteNetworkInterfaceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[45]
+func (x *MVMServiceDeleteIPAddressResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3212,9 +3257,9 @@ func (x *MVMServiceDeleteNetworkInterfaceResponse) ProtoReflect() protoreflect.M
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MVMServiceDeleteNetworkInterfaceResponse.ProtoReflect.Descriptor instead.
-func (*MVMServiceDeleteNetworkInterfaceResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{45}
+// Deprecated: Use MVMServiceDeleteIPAddressResponse.ProtoReflect.Descriptor instead.
+func (*MVMServiceDeleteIPAddressResponse) Descriptor() ([]byte, []int) {
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{46}
 }
 
 // Request to restart a MVM.
@@ -3232,7 +3277,7 @@ type MVMServiceRestartRequest struct {
 
 func (x *MVMServiceRestartRequest) Reset() {
 	*x = MVMServiceRestartRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[46]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3244,7 +3289,7 @@ func (x *MVMServiceRestartRequest) String() string {
 func (*MVMServiceRestartRequest) ProtoMessage() {}
 
 func (x *MVMServiceRestartRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[46]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3257,7 +3302,7 @@ func (x *MVMServiceRestartRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceRestartRequest.ProtoReflect.Descriptor instead.
 func (*MVMServiceRestartRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{46}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *MVMServiceRestartRequest) GetUuid() string {
@@ -3291,7 +3336,7 @@ type MVMServiceRestartResponse struct {
 
 func (x *MVMServiceRestartResponse) Reset() {
 	*x = MVMServiceRestartResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[47]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3303,7 +3348,7 @@ func (x *MVMServiceRestartResponse) String() string {
 func (*MVMServiceRestartResponse) ProtoMessage() {}
 
 func (x *MVMServiceRestartResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[47]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3316,7 +3361,7 @@ func (x *MVMServiceRestartResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceRestartResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceRestartResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{47}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{48}
 }
 
 // Request to reinstall the operating system of a MVM.
@@ -3329,14 +3374,18 @@ type MVMServiceReinstallRequest struct {
 	// Customer reference for this operation.
 	OrderNumber string `protobuf:"bytes,3,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
 	// UUID of the operating system image to install.
-	OsUuid        *string `protobuf:"bytes,4,opt,name=os_uuid,json=osUuid,proto3,oneof" json:"os_uuid,omitempty"`
+	OsUuid *string `protobuf:"bytes,4,opt,name=os_uuid,json=osUuid,proto3,oneof" json:"os_uuid,omitempty"`
+	// Whether backup is enabled after the reinstall; unset keeps the current value.
+	Backup *bool `protobuf:"varint,5,opt,name=backup,proto3,oneof" json:"backup,omitempty"`
+	// Whether the MVM is encrypted after the reinstall; unset keeps the current value.
+	Encrypted     *bool `protobuf:"varint,6,opt,name=encrypted,proto3,oneof" json:"encrypted,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *MVMServiceReinstallRequest) Reset() {
 	*x = MVMServiceReinstallRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[48]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3348,7 +3397,7 @@ func (x *MVMServiceReinstallRequest) String() string {
 func (*MVMServiceReinstallRequest) ProtoMessage() {}
 
 func (x *MVMServiceReinstallRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[48]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3361,7 +3410,7 @@ func (x *MVMServiceReinstallRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceReinstallRequest.ProtoReflect.Descriptor instead.
 func (*MVMServiceReinstallRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{48}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *MVMServiceReinstallRequest) GetUuid() string {
@@ -3392,6 +3441,20 @@ func (x *MVMServiceReinstallRequest) GetOsUuid() string {
 	return ""
 }
 
+func (x *MVMServiceReinstallRequest) GetBackup() bool {
+	if x != nil && x.Backup != nil {
+		return *x.Backup
+	}
+	return false
+}
+
+func (x *MVMServiceReinstallRequest) GetEncrypted() bool {
+	if x != nil && x.Encrypted != nil {
+		return *x.Encrypted
+	}
+	return false
+}
+
 // Response for Reinstall; an empty response means the reinstall was accepted.
 // The reinstall is applied asynchronously; poll Get until the state settles.
 type MVMServiceReinstallResponse struct {
@@ -3402,7 +3465,7 @@ type MVMServiceReinstallResponse struct {
 
 func (x *MVMServiceReinstallResponse) Reset() {
 	*x = MVMServiceReinstallResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[49]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3414,7 +3477,7 @@ func (x *MVMServiceReinstallResponse) String() string {
 func (*MVMServiceReinstallResponse) ProtoMessage() {}
 
 func (x *MVMServiceReinstallResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[49]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3427,7 +3490,7 @@ func (x *MVMServiceReinstallResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceReinstallResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceReinstallResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{49}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{50}
 }
 
 // Request to validate a Reinstall without reinstalling anything.
@@ -3441,7 +3504,7 @@ type MVMServiceValidateReinstallRequest struct {
 
 func (x *MVMServiceValidateReinstallRequest) Reset() {
 	*x = MVMServiceValidateReinstallRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[50]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3453,7 +3516,7 @@ func (x *MVMServiceValidateReinstallRequest) String() string {
 func (*MVMServiceValidateReinstallRequest) ProtoMessage() {}
 
 func (x *MVMServiceValidateReinstallRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[50]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3466,7 +3529,7 @@ func (x *MVMServiceValidateReinstallRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use MVMServiceValidateReinstallRequest.ProtoReflect.Descriptor instead.
 func (*MVMServiceValidateReinstallRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{50}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *MVMServiceValidateReinstallRequest) GetReinstall() *MVMServiceReinstallRequest {
@@ -3485,7 +3548,7 @@ type MVMServiceValidateReinstallResponse struct {
 
 func (x *MVMServiceValidateReinstallResponse) Reset() {
 	*x = MVMServiceValidateReinstallResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[51]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3497,7 +3560,7 @@ func (x *MVMServiceValidateReinstallResponse) String() string {
 func (*MVMServiceValidateReinstallResponse) ProtoMessage() {}
 
 func (x *MVMServiceValidateReinstallResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[51]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3510,7 +3573,7 @@ func (x *MVMServiceValidateReinstallResponse) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use MVMServiceValidateReinstallResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceValidateReinstallResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{51}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{52}
 }
 
 // Request to create a snapshot of a MVM.
@@ -3530,7 +3593,7 @@ type MVMServiceAddSnapshotRequest struct {
 
 func (x *MVMServiceAddSnapshotRequest) Reset() {
 	*x = MVMServiceAddSnapshotRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[52]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3542,7 +3605,7 @@ func (x *MVMServiceAddSnapshotRequest) String() string {
 func (*MVMServiceAddSnapshotRequest) ProtoMessage() {}
 
 func (x *MVMServiceAddSnapshotRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[52]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3555,7 +3618,7 @@ func (x *MVMServiceAddSnapshotRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceAddSnapshotRequest.ProtoReflect.Descriptor instead.
 func (*MVMServiceAddSnapshotRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{52}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *MVMServiceAddSnapshotRequest) GetUuid() string {
@@ -3597,7 +3660,7 @@ type MVMServiceAddSnapshotResponse struct {
 
 func (x *MVMServiceAddSnapshotResponse) Reset() {
 	*x = MVMServiceAddSnapshotResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[53]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3609,7 +3672,7 @@ func (x *MVMServiceAddSnapshotResponse) String() string {
 func (*MVMServiceAddSnapshotResponse) ProtoMessage() {}
 
 func (x *MVMServiceAddSnapshotResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[53]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3622,7 +3685,7 @@ func (x *MVMServiceAddSnapshotResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceAddSnapshotResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceAddSnapshotResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{53}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *MVMServiceAddSnapshotResponse) GetUuid() string {
@@ -3649,7 +3712,7 @@ type MVMServiceDeleteSnapshotRequest struct {
 
 func (x *MVMServiceDeleteSnapshotRequest) Reset() {
 	*x = MVMServiceDeleteSnapshotRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[54]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3661,7 +3724,7 @@ func (x *MVMServiceDeleteSnapshotRequest) String() string {
 func (*MVMServiceDeleteSnapshotRequest) ProtoMessage() {}
 
 func (x *MVMServiceDeleteSnapshotRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[54]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3674,7 +3737,7 @@ func (x *MVMServiceDeleteSnapshotRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceDeleteSnapshotRequest.ProtoReflect.Descriptor instead.
 func (*MVMServiceDeleteSnapshotRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{54}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *MVMServiceDeleteSnapshotRequest) GetUuid() string {
@@ -3714,7 +3777,7 @@ type MVMServiceDeleteSnapshotResponse struct {
 
 func (x *MVMServiceDeleteSnapshotResponse) Reset() {
 	*x = MVMServiceDeleteSnapshotResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[55]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3726,7 +3789,7 @@ func (x *MVMServiceDeleteSnapshotResponse) String() string {
 func (*MVMServiceDeleteSnapshotResponse) ProtoMessage() {}
 
 func (x *MVMServiceDeleteSnapshotResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[55]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3739,7 +3802,7 @@ func (x *MVMServiceDeleteSnapshotResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceDeleteSnapshotResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceDeleteSnapshotResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{55}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{56}
 }
 
 // Request to move a MVM from one datacenter to another.
@@ -3752,7 +3815,6 @@ type MVMServiceMoveRequest struct {
 	// Customer reference for this operation.
 	OrderNumber string `protobuf:"bytes,3,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
 	// If not provided, another datacenter within the same location will be chosen automatically.
-	// TODO server pinning
 	LocationUuid  *string `protobuf:"bytes,4,opt,name=location_uuid,json=locationUuid,proto3,oneof" json:"location_uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -3760,7 +3822,7 @@ type MVMServiceMoveRequest struct {
 
 func (x *MVMServiceMoveRequest) Reset() {
 	*x = MVMServiceMoveRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[56]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3772,7 +3834,7 @@ func (x *MVMServiceMoveRequest) String() string {
 func (*MVMServiceMoveRequest) ProtoMessage() {}
 
 func (x *MVMServiceMoveRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[56]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3785,7 +3847,7 @@ func (x *MVMServiceMoveRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceMoveRequest.ProtoReflect.Descriptor instead.
 func (*MVMServiceMoveRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{56}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *MVMServiceMoveRequest) GetUuid() string {
@@ -3826,7 +3888,7 @@ type MVMServiceMoveResponse struct {
 
 func (x *MVMServiceMoveResponse) Reset() {
 	*x = MVMServiceMoveResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[57]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3838,7 +3900,7 @@ func (x *MVMServiceMoveResponse) String() string {
 func (*MVMServiceMoveResponse) ProtoMessage() {}
 
 func (x *MVMServiceMoveResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[57]
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3851,7 +3913,7 @@ func (x *MVMServiceMoveResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MVMServiceMoveResponse.ProtoReflect.Descriptor instead.
 func (*MVMServiceMoveResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{57}
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{58}
 }
 
 var File_fits_api_mvm_v1_mvm_proto protoreflect.FileDescriptor
@@ -3899,19 +3961,23 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\vdomain_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\n" +
 	"domainUuid\x12,\n" +
 	"\vdomain_fqdn\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\n" +
-	"domainFqdn\"\xa2\x01\n" +
-	"\x10NetworkInterface\x12\x1c\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12%\n" +
-	"\tvlan_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bvlanUuid\x12)\n" +
-	"\tipaddress\x18\x03 \x01(\tB\v\xbaH\br\x06賮\xb1\x02\x01R\tipaddress\x12\x1e\n" +
+	"domainFqdn\"\xc0\x01\n" +
+	"\tIPAddress\x12\x1c\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12*\n" +
 	"\n" +
-	"macaddress\x18\x04 \x01(\tR\n" +
+	"ip_address\x18\x02 \x01(\tB\v\xbaH\br\x06賮\xb1\x02\x01R\tipAddress\x12S\n" +
+	"\x11network_interface\x18\x03 \x01(\v2!.fits.api.mvm.v1.NetworkInterfaceH\x00R\x10networkInterface\x88\x01\x01B\x14\n" +
+	"\x12_network_interface\"Y\n" +
+	"\x10NetworkInterface\x12%\n" +
+	"\tvlan_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bvlanUuid\x12\x1e\n" +
+	"\n" +
+	"macaddress\x18\x02 \x01(\tR\n" +
 	"macaddress\"@\n" +
 	"\x17InitialNetworkInterface\x12%\n" +
 	"\tvlan_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bvlanUuid\"a\n" +
 	"\x06Status\x126\n" +
 	"\x05state\x18\x01 \x01(\x0e2\x16.fits.api.mvm.v1.StateB\b\xbaH\x05\x82\x01\x02\x10\x01R\x05state\x12\x1f\n" +
-	"\x04info\x18\x02 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\x04info\"\xab\a\n" +
+	"\x04info\x18\x02 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\x04info\"\xa7\a\n" +
 	"\tManagedVM\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12%\n" +
 	"\x04meta\x18\x02 \x01(\v2\x11.fits.api.v1.MetaR\x04meta\x12\x1f\n" +
@@ -3930,10 +3996,8 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\favailability\x18\x0e \x01(\x0e2\x1d.fits.api.mvm.v1.AvailabilityB\b\xbaH\x05\x82\x01\x02\x10\x01R\favailability\x12L\n" +
 	"\rservice_class\x18\x0f \x01(\x0e2\x1d.fits.api.mvm.v1.ServiceClassB\b\xbaH\x05\x82\x01\x02\x10\x01R\fserviceClass\x12J\n" +
 	"\x0fwindows_details\x18\x10 \x01(\v2\x1f.fits.api.mvm.v1.WindowsDetailsH\x00R\x0ewindowsDetails\x12D\n" +
-	"\rlinux_details\x18\x11 \x01(\v2\x1d.fits.api.mvm.v1.LinuxDetailsH\x00R\flinuxDetails\x12A\n" +
-	"\n" +
-	"interfaces\x18\x12 \x03(\v2!.fits.api.mvm.v1.NetworkInterfaceR\n" +
-	"interfaces\x12!\n" +
+	"\rlinux_details\x18\x11 \x01(\v2\x1d.fits.api.mvm.v1.LinuxDetailsH\x00R\flinuxDetails\x12=\n" +
+	"\fip_addresses\x18\x12 \x03(\v2\x1a.fits.api.mvm.v1.IPAddressR\vipAddresses\x12!\n" +
 	"\forder_number\x18\x13 \x01(\tR\vorderNumber\x127\n" +
 	"\tsnapshots\x18\x14 \x03(\v2\x19.fits.api.mvm.v1.SnapshotR\tsnapshotsB\x10\n" +
 	"\adetails\x12\x05\xbaH\x02\b\x01\"<\n" +
@@ -4046,38 +4110,43 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\tdisk_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bdiskUuid\x12+\n" +
 	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12!\n" +
 	"\forder_number\x18\x04 \x01(\tR\vorderNumber\"\x1e\n" +
-	"\x1cMVMServiceDeleteDiskResponse\"\x94\x01\n" +
-	"$MVMServiceAddNetworkInterfaceRequest\x12\x1c\n" +
+	"\x1cMVMServiceDeleteDiskResponse\"\x8d\x01\n" +
+	"\x1dMVMServiceAddIPAddressRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
 	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12!\n" +
-	"\forder_number\x18\x03 \x01(\tR\vorderNumber\"E\n" +
-	"%MVMServiceAddNetworkInterfaceResponse\x12\x1c\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"\xf8\x01\n" +
-	"%MVMServiceMoveNetworkInterfaceRequest\x12\x1c\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12/\n" +
-	"\x0einterface_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rinterfaceUuid\x12+\n" +
+	"\forder_number\x18\x03 \x01(\tR\vorderNumber\">\n" +
+	"\x1eMVMServiceAddIPAddressResponse\x12\x1c\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"\xf2\x01\n" +
+	"\x1eMVMServiceMoveIPAddressRequest\x12\x1c\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x120\n" +
+	"\x0fip_address_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\ripAddressUuid\x12+\n" +
 	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12!\n" +
 	"\forder_number\x18\x04 \x01(\tR\vorderNumber\x120\n" +
-	"\x0ftarget_mvm_uuid\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rtargetMvmUuid\"(\n" +
-	"&MVMServiceMoveNetworkInterfaceResponse\"\xc8\x01\n" +
-	"'MVMServiceDeleteNetworkInterfaceRequest\x12\x1c\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12/\n" +
-	"\x0einterface_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rinterfaceUuid\x12+\n" +
+	"\x0ftarget_mvm_uuid\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rtargetMvmUuid\"!\n" +
+	"\x1fMVMServiceMoveIPAddressResponse\"\xc2\x01\n" +
+	" MVMServiceDeleteIPAddressRequest\x12\x1c\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x120\n" +
+	"\x0fip_address_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\ripAddressUuid\x12+\n" +
 	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12!\n" +
-	"\forder_number\x18\x04 \x01(\tR\vorderNumber\"*\n" +
-	"(MVMServiceDeleteNetworkInterfaceResponse\"\x88\x01\n" +
+	"\forder_number\x18\x04 \x01(\tR\vorderNumber\"#\n" +
+	"!MVMServiceDeleteIPAddressResponse\"\x88\x01\n" +
 	"\x18MVMServiceRestartRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
 	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12!\n" +
 	"\forder_number\x18\x03 \x01(\tR\vorderNumber\"\x1b\n" +
-	"\x19MVMServiceRestartResponse\"\xbe\x01\n" +
+	"\x19MVMServiceRestartResponse\"\x97\x02\n" +
 	"\x1aMVMServiceReinstallRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
 	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12!\n" +
 	"\forder_number\x18\x03 \x01(\tR\vorderNumber\x12&\n" +
-	"\aos_uuid\x18\x04 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x06osUuid\x88\x01\x01B\n" +
+	"\aos_uuid\x18\x04 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x06osUuid\x88\x01\x01\x12\x1b\n" +
+	"\x06backup\x18\x05 \x01(\bH\x01R\x06backup\x88\x01\x01\x12!\n" +
+	"\tencrypted\x18\x06 \x01(\bH\x02R\tencrypted\x88\x01\x01B\n" +
 	"\n" +
-	"\b_os_uuid\"\x1d\n" +
+	"\b_os_uuidB\t\n" +
+	"\a_backupB\f\n" +
+	"\n" +
+	"_encrypted\"\x1d\n" +
 	"\x1bMVMServiceReinstallResponse\"w\n" +
 	"\"MVMServiceValidateReinstallRequest\x12Q\n" +
 	"\treinstall\x18\x01 \x01(\v2+.fits.api.mvm.v1.MVMServiceReinstallRequestB\x06\xbaH\x03\xc8\x01\x01R\treinstall\"%\n" +
@@ -4126,7 +4195,7 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\fDISK_TYPE_OS\x10\x01\x1a\x06\x82\xb2\x19\x02os\x12 \n" +
 	"\x10DISK_TYPE_SYSTEM\x10\x02\x1a\n" +
 	"\x82\xb2\x19\x06system\x12\x1c\n" +
-	"\x0eDISK_TYPE_DATA\x10\x03\x1a\b\x82\xb2\x19\x04data2\xda\x16\n" +
+	"\x0eDISK_TYPE_DATA\x10\x03\x1a\b\x82\xb2\x19\x04data2\x99\x16\n" +
 	"\n" +
 	"MVMService\x12i\n" +
 	"\x06Create\x12(.fits.api.mvm.v1.MVMServiceCreateRequest\x1a).fits.api.mvm.v1.MVMServiceCreateResponse\"\n" +
@@ -4154,12 +4223,12 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\x12ValidateUpdateDisk\x124.fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest\x1a5.fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse\"\n" +
 	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x02\x12t\n" +
 	"\n" +
-	"DeleteDisk\x12,.fits.api.mvm.v1.MVMServiceDeleteDiskRequest\x1a-.fits.api.mvm.v1.MVMServiceDeleteDiskResponse\"\t\xca\xf3\x18\x01\x01\xe0\xf3\x18\x01\x12\x90\x01\n" +
-	"\x13AddNetworkInterface\x125.fits.api.mvm.v1.MVMServiceAddNetworkInterfaceRequest\x1a6.fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse\"\n" +
-	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12\x93\x01\n" +
-	"\x14MoveNetworkInterface\x126.fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceRequest\x1a7.fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceResponse\"\n" +
-	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12\x98\x01\n" +
-	"\x16DeleteNetworkInterface\x128.fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceRequest\x1a9.fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceResponse\"\t\xca\xf3\x18\x01\x01\xe0\xf3\x18\x01\x12l\n" +
+	"DeleteDisk\x12,.fits.api.mvm.v1.MVMServiceDeleteDiskRequest\x1a-.fits.api.mvm.v1.MVMServiceDeleteDiskResponse\"\t\xca\xf3\x18\x01\x01\xe0\xf3\x18\x01\x12{\n" +
+	"\fAddIPAddress\x12..fits.api.mvm.v1.MVMServiceAddIPAddressRequest\x1a/.fits.api.mvm.v1.MVMServiceAddIPAddressResponse\"\n" +
+	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12~\n" +
+	"\rMoveIPAddress\x12/.fits.api.mvm.v1.MVMServiceMoveIPAddressRequest\x1a0.fits.api.mvm.v1.MVMServiceMoveIPAddressResponse\"\n" +
+	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12\x83\x01\n" +
+	"\x0fDeleteIPAddress\x121.fits.api.mvm.v1.MVMServiceDeleteIPAddressRequest\x1a2.fits.api.mvm.v1.MVMServiceDeleteIPAddressResponse\"\t\xca\xf3\x18\x01\x01\xe0\xf3\x18\x01\x12l\n" +
 	"\aRestart\x12).fits.api.mvm.v1.MVMServiceRestartRequest\x1a*.fits.api.mvm.v1.MVMServiceRestartResponse\"\n" +
 	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12q\n" +
 	"\tReinstall\x12+.fits.api.mvm.v1.MVMServiceReinstallRequest\x1a,.fits.api.mvm.v1.MVMServiceReinstallResponse\"\t\xca\xf3\x18\x01\x01\xe0\xf3\x18\x01\x12\x89\x01\n" +
@@ -4184,7 +4253,7 @@ func file_fits_api_mvm_v1_mvm_proto_rawDescGZIP() []byte {
 }
 
 var file_fits_api_mvm_v1_mvm_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_fits_api_mvm_v1_mvm_proto_msgTypes = make([]protoimpl.MessageInfo, 58)
+var file_fits_api_mvm_v1_mvm_proto_msgTypes = make([]protoimpl.MessageInfo, 59)
 var file_fits_api_mvm_v1_mvm_proto_goTypes = []any{
 	(Availability)(0),                                    // 0: fits.api.mvm.v1.Availability
 	(ServiceClass)(0),                                    // 1: fits.api.mvm.v1.ServiceClass
@@ -4195,63 +4264,64 @@ var file_fits_api_mvm_v1_mvm_proto_goTypes = []any{
 	(*Disk)(nil),                                         // 6: fits.api.mvm.v1.Disk
 	(*LinuxDetails)(nil),                                 // 7: fits.api.mvm.v1.LinuxDetails
 	(*WindowsDetails)(nil),                               // 8: fits.api.mvm.v1.WindowsDetails
-	(*NetworkInterface)(nil),                             // 9: fits.api.mvm.v1.NetworkInterface
-	(*InitialNetworkInterface)(nil),                      // 10: fits.api.mvm.v1.InitialNetworkInterface
-	(*Status)(nil),                                       // 11: fits.api.mvm.v1.Status
-	(*ManagedVM)(nil),                                    // 12: fits.api.mvm.v1.ManagedVM
-	(*Snapshot)(nil),                                     // 13: fits.api.mvm.v1.Snapshot
-	(*MVMServiceGetRequest)(nil),                         // 14: fits.api.mvm.v1.MVMServiceGetRequest
-	(*MVMServiceGetResponse)(nil),                        // 15: fits.api.mvm.v1.MVMServiceGetResponse
-	(*MVMServiceListRequest)(nil),                        // 16: fits.api.mvm.v1.MVMServiceListRequest
-	(*MVMServiceListResponse)(nil),                       // 17: fits.api.mvm.v1.MVMServiceListResponse
-	(*MVMServiceCreateWindowsRequest)(nil),               // 18: fits.api.mvm.v1.MVMServiceCreateWindowsRequest
-	(*MVMServiceCreateLinuxRequest)(nil),                 // 19: fits.api.mvm.v1.MVMServiceCreateLinuxRequest
-	(*MVMServiceCreateRequest)(nil),                      // 20: fits.api.mvm.v1.MVMServiceCreateRequest
-	(*MVMServiceCreateResponse)(nil),                     // 21: fits.api.mvm.v1.MVMServiceCreateResponse
-	(*MVMServiceValidateCreateRequest)(nil),              // 22: fits.api.mvm.v1.MVMServiceValidateCreateRequest
-	(*MVMServiceValidateCreateResponse)(nil),             // 23: fits.api.mvm.v1.MVMServiceValidateCreateResponse
-	(*MVMServiceUpdateRequest)(nil),                      // 24: fits.api.mvm.v1.MVMServiceUpdateRequest
-	(*MVMServiceUpdateResponse)(nil),                     // 25: fits.api.mvm.v1.MVMServiceUpdateResponse
-	(*MVMServiceValidateUpdateRequest)(nil),              // 26: fits.api.mvm.v1.MVMServiceValidateUpdateRequest
-	(*MVMServiceValidateUpdateResponse)(nil),             // 27: fits.api.mvm.v1.MVMServiceValidateUpdateResponse
-	(*MVMServiceUpdateServiceClassRequest)(nil),          // 28: fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest
-	(*MVMServiceUpdateServiceClassResponse)(nil),         // 29: fits.api.mvm.v1.MVMServiceUpdateServiceClassResponse
-	(*MVMServiceValidateUpdateServiceClassRequest)(nil),  // 30: fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassRequest
-	(*MVMServiceValidateUpdateServiceClassResponse)(nil), // 31: fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassResponse
-	(*MVMServiceDeleteRequest)(nil),                      // 32: fits.api.mvm.v1.MVMServiceDeleteRequest
-	(*MVMServiceDeleteResponse)(nil),                     // 33: fits.api.mvm.v1.MVMServiceDeleteResponse
-	(*MVMServiceAddDiskRequest)(nil),                     // 34: fits.api.mvm.v1.MVMServiceAddDiskRequest
-	(*MVMServiceAddDiskResponse)(nil),                    // 35: fits.api.mvm.v1.MVMServiceAddDiskResponse
-	(*MVMServiceValidateAddDiskRequest)(nil),             // 36: fits.api.mvm.v1.MVMServiceValidateAddDiskRequest
-	(*MVMServiceValidateAddDiskResponse)(nil),            // 37: fits.api.mvm.v1.MVMServiceValidateAddDiskResponse
-	(*MVMServiceUpdateDiskRequest)(nil),                  // 38: fits.api.mvm.v1.MVMServiceUpdateDiskRequest
-	(*MVMServiceUpdateDiskResponse)(nil),                 // 39: fits.api.mvm.v1.MVMServiceUpdateDiskResponse
-	(*MVMServiceValidateUpdateDiskRequest)(nil),          // 40: fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest
-	(*MVMServiceValidateUpdateDiskResponse)(nil),         // 41: fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse
-	(*MVMServiceDeleteDiskRequest)(nil),                  // 42: fits.api.mvm.v1.MVMServiceDeleteDiskRequest
-	(*MVMServiceDeleteDiskResponse)(nil),                 // 43: fits.api.mvm.v1.MVMServiceDeleteDiskResponse
-	(*MVMServiceAddNetworkInterfaceRequest)(nil),         // 44: fits.api.mvm.v1.MVMServiceAddNetworkInterfaceRequest
-	(*MVMServiceAddNetworkInterfaceResponse)(nil),        // 45: fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse
-	(*MVMServiceMoveNetworkInterfaceRequest)(nil),        // 46: fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceRequest
-	(*MVMServiceMoveNetworkInterfaceResponse)(nil),       // 47: fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceResponse
-	(*MVMServiceDeleteNetworkInterfaceRequest)(nil),      // 48: fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceRequest
-	(*MVMServiceDeleteNetworkInterfaceResponse)(nil),     // 49: fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceResponse
-	(*MVMServiceRestartRequest)(nil),                     // 50: fits.api.mvm.v1.MVMServiceRestartRequest
-	(*MVMServiceRestartResponse)(nil),                    // 51: fits.api.mvm.v1.MVMServiceRestartResponse
-	(*MVMServiceReinstallRequest)(nil),                   // 52: fits.api.mvm.v1.MVMServiceReinstallRequest
-	(*MVMServiceReinstallResponse)(nil),                  // 53: fits.api.mvm.v1.MVMServiceReinstallResponse
-	(*MVMServiceValidateReinstallRequest)(nil),           // 54: fits.api.mvm.v1.MVMServiceValidateReinstallRequest
-	(*MVMServiceValidateReinstallResponse)(nil),          // 55: fits.api.mvm.v1.MVMServiceValidateReinstallResponse
-	(*MVMServiceAddSnapshotRequest)(nil),                 // 56: fits.api.mvm.v1.MVMServiceAddSnapshotRequest
-	(*MVMServiceAddSnapshotResponse)(nil),                // 57: fits.api.mvm.v1.MVMServiceAddSnapshotResponse
-	(*MVMServiceDeleteSnapshotRequest)(nil),              // 58: fits.api.mvm.v1.MVMServiceDeleteSnapshotRequest
-	(*MVMServiceDeleteSnapshotResponse)(nil),             // 59: fits.api.mvm.v1.MVMServiceDeleteSnapshotResponse
-	(*MVMServiceMoveRequest)(nil),                        // 60: fits.api.mvm.v1.MVMServiceMoveRequest
-	(*MVMServiceMoveResponse)(nil),                       // 61: fits.api.mvm.v1.MVMServiceMoveResponse
-	(*v1.Meta)(nil),                                      // 62: fits.api.v1.Meta
-	(*v1.Labels)(nil),                                    // 63: fits.api.v1.Labels
-	(*v1.UpdateMeta)(nil),                                // 64: fits.api.v1.UpdateMeta
-	(*v1.UpdateLabels)(nil),                              // 65: fits.api.v1.UpdateLabels
+	(*IPAddress)(nil),                                    // 9: fits.api.mvm.v1.IPAddress
+	(*NetworkInterface)(nil),                             // 10: fits.api.mvm.v1.NetworkInterface
+	(*InitialNetworkInterface)(nil),                      // 11: fits.api.mvm.v1.InitialNetworkInterface
+	(*Status)(nil),                                       // 12: fits.api.mvm.v1.Status
+	(*ManagedVM)(nil),                                    // 13: fits.api.mvm.v1.ManagedVM
+	(*Snapshot)(nil),                                     // 14: fits.api.mvm.v1.Snapshot
+	(*MVMServiceGetRequest)(nil),                         // 15: fits.api.mvm.v1.MVMServiceGetRequest
+	(*MVMServiceGetResponse)(nil),                        // 16: fits.api.mvm.v1.MVMServiceGetResponse
+	(*MVMServiceListRequest)(nil),                        // 17: fits.api.mvm.v1.MVMServiceListRequest
+	(*MVMServiceListResponse)(nil),                       // 18: fits.api.mvm.v1.MVMServiceListResponse
+	(*MVMServiceCreateWindowsRequest)(nil),               // 19: fits.api.mvm.v1.MVMServiceCreateWindowsRequest
+	(*MVMServiceCreateLinuxRequest)(nil),                 // 20: fits.api.mvm.v1.MVMServiceCreateLinuxRequest
+	(*MVMServiceCreateRequest)(nil),                      // 21: fits.api.mvm.v1.MVMServiceCreateRequest
+	(*MVMServiceCreateResponse)(nil),                     // 22: fits.api.mvm.v1.MVMServiceCreateResponse
+	(*MVMServiceValidateCreateRequest)(nil),              // 23: fits.api.mvm.v1.MVMServiceValidateCreateRequest
+	(*MVMServiceValidateCreateResponse)(nil),             // 24: fits.api.mvm.v1.MVMServiceValidateCreateResponse
+	(*MVMServiceUpdateRequest)(nil),                      // 25: fits.api.mvm.v1.MVMServiceUpdateRequest
+	(*MVMServiceUpdateResponse)(nil),                     // 26: fits.api.mvm.v1.MVMServiceUpdateResponse
+	(*MVMServiceValidateUpdateRequest)(nil),              // 27: fits.api.mvm.v1.MVMServiceValidateUpdateRequest
+	(*MVMServiceValidateUpdateResponse)(nil),             // 28: fits.api.mvm.v1.MVMServiceValidateUpdateResponse
+	(*MVMServiceUpdateServiceClassRequest)(nil),          // 29: fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest
+	(*MVMServiceUpdateServiceClassResponse)(nil),         // 30: fits.api.mvm.v1.MVMServiceUpdateServiceClassResponse
+	(*MVMServiceValidateUpdateServiceClassRequest)(nil),  // 31: fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassRequest
+	(*MVMServiceValidateUpdateServiceClassResponse)(nil), // 32: fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassResponse
+	(*MVMServiceDeleteRequest)(nil),                      // 33: fits.api.mvm.v1.MVMServiceDeleteRequest
+	(*MVMServiceDeleteResponse)(nil),                     // 34: fits.api.mvm.v1.MVMServiceDeleteResponse
+	(*MVMServiceAddDiskRequest)(nil),                     // 35: fits.api.mvm.v1.MVMServiceAddDiskRequest
+	(*MVMServiceAddDiskResponse)(nil),                    // 36: fits.api.mvm.v1.MVMServiceAddDiskResponse
+	(*MVMServiceValidateAddDiskRequest)(nil),             // 37: fits.api.mvm.v1.MVMServiceValidateAddDiskRequest
+	(*MVMServiceValidateAddDiskResponse)(nil),            // 38: fits.api.mvm.v1.MVMServiceValidateAddDiskResponse
+	(*MVMServiceUpdateDiskRequest)(nil),                  // 39: fits.api.mvm.v1.MVMServiceUpdateDiskRequest
+	(*MVMServiceUpdateDiskResponse)(nil),                 // 40: fits.api.mvm.v1.MVMServiceUpdateDiskResponse
+	(*MVMServiceValidateUpdateDiskRequest)(nil),          // 41: fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest
+	(*MVMServiceValidateUpdateDiskResponse)(nil),         // 42: fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse
+	(*MVMServiceDeleteDiskRequest)(nil),                  // 43: fits.api.mvm.v1.MVMServiceDeleteDiskRequest
+	(*MVMServiceDeleteDiskResponse)(nil),                 // 44: fits.api.mvm.v1.MVMServiceDeleteDiskResponse
+	(*MVMServiceAddIPAddressRequest)(nil),                // 45: fits.api.mvm.v1.MVMServiceAddIPAddressRequest
+	(*MVMServiceAddIPAddressResponse)(nil),               // 46: fits.api.mvm.v1.MVMServiceAddIPAddressResponse
+	(*MVMServiceMoveIPAddressRequest)(nil),               // 47: fits.api.mvm.v1.MVMServiceMoveIPAddressRequest
+	(*MVMServiceMoveIPAddressResponse)(nil),              // 48: fits.api.mvm.v1.MVMServiceMoveIPAddressResponse
+	(*MVMServiceDeleteIPAddressRequest)(nil),             // 49: fits.api.mvm.v1.MVMServiceDeleteIPAddressRequest
+	(*MVMServiceDeleteIPAddressResponse)(nil),            // 50: fits.api.mvm.v1.MVMServiceDeleteIPAddressResponse
+	(*MVMServiceRestartRequest)(nil),                     // 51: fits.api.mvm.v1.MVMServiceRestartRequest
+	(*MVMServiceRestartResponse)(nil),                    // 52: fits.api.mvm.v1.MVMServiceRestartResponse
+	(*MVMServiceReinstallRequest)(nil),                   // 53: fits.api.mvm.v1.MVMServiceReinstallRequest
+	(*MVMServiceReinstallResponse)(nil),                  // 54: fits.api.mvm.v1.MVMServiceReinstallResponse
+	(*MVMServiceValidateReinstallRequest)(nil),           // 55: fits.api.mvm.v1.MVMServiceValidateReinstallRequest
+	(*MVMServiceValidateReinstallResponse)(nil),          // 56: fits.api.mvm.v1.MVMServiceValidateReinstallResponse
+	(*MVMServiceAddSnapshotRequest)(nil),                 // 57: fits.api.mvm.v1.MVMServiceAddSnapshotRequest
+	(*MVMServiceAddSnapshotResponse)(nil),                // 58: fits.api.mvm.v1.MVMServiceAddSnapshotResponse
+	(*MVMServiceDeleteSnapshotRequest)(nil),              // 59: fits.api.mvm.v1.MVMServiceDeleteSnapshotRequest
+	(*MVMServiceDeleteSnapshotResponse)(nil),             // 60: fits.api.mvm.v1.MVMServiceDeleteSnapshotResponse
+	(*MVMServiceMoveRequest)(nil),                        // 61: fits.api.mvm.v1.MVMServiceMoveRequest
+	(*MVMServiceMoveResponse)(nil),                       // 62: fits.api.mvm.v1.MVMServiceMoveResponse
+	(*v1.Meta)(nil),                                      // 63: fits.api.v1.Meta
+	(*v1.Labels)(nil),                                    // 64: fits.api.v1.Labels
+	(*v1.UpdateMeta)(nil),                                // 65: fits.api.v1.UpdateMeta
+	(*v1.UpdateLabels)(nil),                              // 66: fits.api.v1.UpdateLabels
 }
 var file_fits_api_mvm_v1_mvm_proto_depIdxs = []int32{
 	3,  // 0: fits.api.mvm.v1.LinuxDisk.disk_type:type_name -> fits.api.mvm.v1.DiskType
@@ -4260,87 +4330,88 @@ var file_fits_api_mvm_v1_mvm_proto_depIdxs = []int32{
 	5,  // 3: fits.api.mvm.v1.Disk.windows:type_name -> fits.api.mvm.v1.WindowsDisk
 	4,  // 4: fits.api.mvm.v1.LinuxDetails.disks:type_name -> fits.api.mvm.v1.LinuxDisk
 	5,  // 5: fits.api.mvm.v1.WindowsDetails.disks:type_name -> fits.api.mvm.v1.WindowsDisk
-	2,  // 6: fits.api.mvm.v1.Status.state:type_name -> fits.api.mvm.v1.State
-	62, // 7: fits.api.mvm.v1.ManagedVM.meta:type_name -> fits.api.v1.Meta
-	11, // 8: fits.api.mvm.v1.ManagedVM.status:type_name -> fits.api.mvm.v1.Status
-	0,  // 9: fits.api.mvm.v1.ManagedVM.availability:type_name -> fits.api.mvm.v1.Availability
-	1,  // 10: fits.api.mvm.v1.ManagedVM.service_class:type_name -> fits.api.mvm.v1.ServiceClass
-	8,  // 11: fits.api.mvm.v1.ManagedVM.windows_details:type_name -> fits.api.mvm.v1.WindowsDetails
-	7,  // 12: fits.api.mvm.v1.ManagedVM.linux_details:type_name -> fits.api.mvm.v1.LinuxDetails
-	9,  // 13: fits.api.mvm.v1.ManagedVM.interfaces:type_name -> fits.api.mvm.v1.NetworkInterface
-	13, // 14: fits.api.mvm.v1.ManagedVM.snapshots:type_name -> fits.api.mvm.v1.Snapshot
-	12, // 15: fits.api.mvm.v1.MVMServiceGetResponse.mvm:type_name -> fits.api.mvm.v1.ManagedVM
-	12, // 16: fits.api.mvm.v1.MVMServiceListResponse.mvms:type_name -> fits.api.mvm.v1.ManagedVM
-	5,  // 17: fits.api.mvm.v1.MVMServiceCreateWindowsRequest.disks:type_name -> fits.api.mvm.v1.WindowsDisk
-	4,  // 18: fits.api.mvm.v1.MVMServiceCreateLinuxRequest.disks:type_name -> fits.api.mvm.v1.LinuxDisk
-	63, // 19: fits.api.mvm.v1.MVMServiceCreateRequest.labels:type_name -> fits.api.v1.Labels
-	0,  // 20: fits.api.mvm.v1.MVMServiceCreateRequest.availability:type_name -> fits.api.mvm.v1.Availability
-	1,  // 21: fits.api.mvm.v1.MVMServiceCreateRequest.service_class:type_name -> fits.api.mvm.v1.ServiceClass
-	18, // 22: fits.api.mvm.v1.MVMServiceCreateRequest.windows:type_name -> fits.api.mvm.v1.MVMServiceCreateWindowsRequest
-	19, // 23: fits.api.mvm.v1.MVMServiceCreateRequest.linux:type_name -> fits.api.mvm.v1.MVMServiceCreateLinuxRequest
-	10, // 24: fits.api.mvm.v1.MVMServiceCreateRequest.initial_network_interface:type_name -> fits.api.mvm.v1.InitialNetworkInterface
-	20, // 25: fits.api.mvm.v1.MVMServiceValidateCreateRequest.create:type_name -> fits.api.mvm.v1.MVMServiceCreateRequest
-	64, // 26: fits.api.mvm.v1.MVMServiceUpdateRequest.update_meta:type_name -> fits.api.v1.UpdateMeta
-	65, // 27: fits.api.mvm.v1.MVMServiceUpdateRequest.labels:type_name -> fits.api.v1.UpdateLabels
-	24, // 28: fits.api.mvm.v1.MVMServiceValidateUpdateRequest.update:type_name -> fits.api.mvm.v1.MVMServiceUpdateRequest
-	1,  // 29: fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest.service_class:type_name -> fits.api.mvm.v1.ServiceClass
-	0,  // 30: fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest.availability:type_name -> fits.api.mvm.v1.Availability
-	28, // 31: fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassRequest.update_service_class:type_name -> fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest
-	6,  // 32: fits.api.mvm.v1.MVMServiceAddDiskRequest.disks:type_name -> fits.api.mvm.v1.Disk
-	34, // 33: fits.api.mvm.v1.MVMServiceValidateAddDiskRequest.add_disk:type_name -> fits.api.mvm.v1.MVMServiceAddDiskRequest
-	38, // 34: fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest.update_disk:type_name -> fits.api.mvm.v1.MVMServiceUpdateDiskRequest
-	52, // 35: fits.api.mvm.v1.MVMServiceValidateReinstallRequest.reinstall:type_name -> fits.api.mvm.v1.MVMServiceReinstallRequest
-	20, // 36: fits.api.mvm.v1.MVMService.Create:input_type -> fits.api.mvm.v1.MVMServiceCreateRequest
-	22, // 37: fits.api.mvm.v1.MVMService.ValidateCreate:input_type -> fits.api.mvm.v1.MVMServiceValidateCreateRequest
-	14, // 38: fits.api.mvm.v1.MVMService.Get:input_type -> fits.api.mvm.v1.MVMServiceGetRequest
-	16, // 39: fits.api.mvm.v1.MVMService.List:input_type -> fits.api.mvm.v1.MVMServiceListRequest
-	24, // 40: fits.api.mvm.v1.MVMService.Update:input_type -> fits.api.mvm.v1.MVMServiceUpdateRequest
-	26, // 41: fits.api.mvm.v1.MVMService.ValidateUpdate:input_type -> fits.api.mvm.v1.MVMServiceValidateUpdateRequest
-	28, // 42: fits.api.mvm.v1.MVMService.UpdateServiceClass:input_type -> fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest
-	30, // 43: fits.api.mvm.v1.MVMService.ValidateUpdateServiceClass:input_type -> fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassRequest
-	32, // 44: fits.api.mvm.v1.MVMService.Delete:input_type -> fits.api.mvm.v1.MVMServiceDeleteRequest
-	34, // 45: fits.api.mvm.v1.MVMService.AddDisk:input_type -> fits.api.mvm.v1.MVMServiceAddDiskRequest
-	36, // 46: fits.api.mvm.v1.MVMService.ValidateAddDisk:input_type -> fits.api.mvm.v1.MVMServiceValidateAddDiskRequest
-	38, // 47: fits.api.mvm.v1.MVMService.UpdateDisk:input_type -> fits.api.mvm.v1.MVMServiceUpdateDiskRequest
-	40, // 48: fits.api.mvm.v1.MVMService.ValidateUpdateDisk:input_type -> fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest
-	42, // 49: fits.api.mvm.v1.MVMService.DeleteDisk:input_type -> fits.api.mvm.v1.MVMServiceDeleteDiskRequest
-	44, // 50: fits.api.mvm.v1.MVMService.AddNetworkInterface:input_type -> fits.api.mvm.v1.MVMServiceAddNetworkInterfaceRequest
-	46, // 51: fits.api.mvm.v1.MVMService.MoveNetworkInterface:input_type -> fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceRequest
-	48, // 52: fits.api.mvm.v1.MVMService.DeleteNetworkInterface:input_type -> fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceRequest
-	50, // 53: fits.api.mvm.v1.MVMService.Restart:input_type -> fits.api.mvm.v1.MVMServiceRestartRequest
-	52, // 54: fits.api.mvm.v1.MVMService.Reinstall:input_type -> fits.api.mvm.v1.MVMServiceReinstallRequest
-	54, // 55: fits.api.mvm.v1.MVMService.ValidateReinstall:input_type -> fits.api.mvm.v1.MVMServiceValidateReinstallRequest
-	56, // 56: fits.api.mvm.v1.MVMService.AddSnapshot:input_type -> fits.api.mvm.v1.MVMServiceAddSnapshotRequest
-	58, // 57: fits.api.mvm.v1.MVMService.DeleteSnapshot:input_type -> fits.api.mvm.v1.MVMServiceDeleteSnapshotRequest
-	60, // 58: fits.api.mvm.v1.MVMService.Move:input_type -> fits.api.mvm.v1.MVMServiceMoveRequest
-	21, // 59: fits.api.mvm.v1.MVMService.Create:output_type -> fits.api.mvm.v1.MVMServiceCreateResponse
-	23, // 60: fits.api.mvm.v1.MVMService.ValidateCreate:output_type -> fits.api.mvm.v1.MVMServiceValidateCreateResponse
-	15, // 61: fits.api.mvm.v1.MVMService.Get:output_type -> fits.api.mvm.v1.MVMServiceGetResponse
-	17, // 62: fits.api.mvm.v1.MVMService.List:output_type -> fits.api.mvm.v1.MVMServiceListResponse
-	25, // 63: fits.api.mvm.v1.MVMService.Update:output_type -> fits.api.mvm.v1.MVMServiceUpdateResponse
-	27, // 64: fits.api.mvm.v1.MVMService.ValidateUpdate:output_type -> fits.api.mvm.v1.MVMServiceValidateUpdateResponse
-	29, // 65: fits.api.mvm.v1.MVMService.UpdateServiceClass:output_type -> fits.api.mvm.v1.MVMServiceUpdateServiceClassResponse
-	31, // 66: fits.api.mvm.v1.MVMService.ValidateUpdateServiceClass:output_type -> fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassResponse
-	33, // 67: fits.api.mvm.v1.MVMService.Delete:output_type -> fits.api.mvm.v1.MVMServiceDeleteResponse
-	35, // 68: fits.api.mvm.v1.MVMService.AddDisk:output_type -> fits.api.mvm.v1.MVMServiceAddDiskResponse
-	37, // 69: fits.api.mvm.v1.MVMService.ValidateAddDisk:output_type -> fits.api.mvm.v1.MVMServiceValidateAddDiskResponse
-	39, // 70: fits.api.mvm.v1.MVMService.UpdateDisk:output_type -> fits.api.mvm.v1.MVMServiceUpdateDiskResponse
-	41, // 71: fits.api.mvm.v1.MVMService.ValidateUpdateDisk:output_type -> fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse
-	43, // 72: fits.api.mvm.v1.MVMService.DeleteDisk:output_type -> fits.api.mvm.v1.MVMServiceDeleteDiskResponse
-	45, // 73: fits.api.mvm.v1.MVMService.AddNetworkInterface:output_type -> fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse
-	47, // 74: fits.api.mvm.v1.MVMService.MoveNetworkInterface:output_type -> fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceResponse
-	49, // 75: fits.api.mvm.v1.MVMService.DeleteNetworkInterface:output_type -> fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceResponse
-	51, // 76: fits.api.mvm.v1.MVMService.Restart:output_type -> fits.api.mvm.v1.MVMServiceRestartResponse
-	53, // 77: fits.api.mvm.v1.MVMService.Reinstall:output_type -> fits.api.mvm.v1.MVMServiceReinstallResponse
-	55, // 78: fits.api.mvm.v1.MVMService.ValidateReinstall:output_type -> fits.api.mvm.v1.MVMServiceValidateReinstallResponse
-	57, // 79: fits.api.mvm.v1.MVMService.AddSnapshot:output_type -> fits.api.mvm.v1.MVMServiceAddSnapshotResponse
-	59, // 80: fits.api.mvm.v1.MVMService.DeleteSnapshot:output_type -> fits.api.mvm.v1.MVMServiceDeleteSnapshotResponse
-	61, // 81: fits.api.mvm.v1.MVMService.Move:output_type -> fits.api.mvm.v1.MVMServiceMoveResponse
-	59, // [59:82] is the sub-list for method output_type
-	36, // [36:59] is the sub-list for method input_type
-	36, // [36:36] is the sub-list for extension type_name
-	36, // [36:36] is the sub-list for extension extendee
-	0,  // [0:36] is the sub-list for field type_name
+	10, // 6: fits.api.mvm.v1.IPAddress.network_interface:type_name -> fits.api.mvm.v1.NetworkInterface
+	2,  // 7: fits.api.mvm.v1.Status.state:type_name -> fits.api.mvm.v1.State
+	63, // 8: fits.api.mvm.v1.ManagedVM.meta:type_name -> fits.api.v1.Meta
+	12, // 9: fits.api.mvm.v1.ManagedVM.status:type_name -> fits.api.mvm.v1.Status
+	0,  // 10: fits.api.mvm.v1.ManagedVM.availability:type_name -> fits.api.mvm.v1.Availability
+	1,  // 11: fits.api.mvm.v1.ManagedVM.service_class:type_name -> fits.api.mvm.v1.ServiceClass
+	8,  // 12: fits.api.mvm.v1.ManagedVM.windows_details:type_name -> fits.api.mvm.v1.WindowsDetails
+	7,  // 13: fits.api.mvm.v1.ManagedVM.linux_details:type_name -> fits.api.mvm.v1.LinuxDetails
+	9,  // 14: fits.api.mvm.v1.ManagedVM.ip_addresses:type_name -> fits.api.mvm.v1.IPAddress
+	14, // 15: fits.api.mvm.v1.ManagedVM.snapshots:type_name -> fits.api.mvm.v1.Snapshot
+	13, // 16: fits.api.mvm.v1.MVMServiceGetResponse.mvm:type_name -> fits.api.mvm.v1.ManagedVM
+	13, // 17: fits.api.mvm.v1.MVMServiceListResponse.mvms:type_name -> fits.api.mvm.v1.ManagedVM
+	5,  // 18: fits.api.mvm.v1.MVMServiceCreateWindowsRequest.disks:type_name -> fits.api.mvm.v1.WindowsDisk
+	4,  // 19: fits.api.mvm.v1.MVMServiceCreateLinuxRequest.disks:type_name -> fits.api.mvm.v1.LinuxDisk
+	64, // 20: fits.api.mvm.v1.MVMServiceCreateRequest.labels:type_name -> fits.api.v1.Labels
+	0,  // 21: fits.api.mvm.v1.MVMServiceCreateRequest.availability:type_name -> fits.api.mvm.v1.Availability
+	1,  // 22: fits.api.mvm.v1.MVMServiceCreateRequest.service_class:type_name -> fits.api.mvm.v1.ServiceClass
+	19, // 23: fits.api.mvm.v1.MVMServiceCreateRequest.windows:type_name -> fits.api.mvm.v1.MVMServiceCreateWindowsRequest
+	20, // 24: fits.api.mvm.v1.MVMServiceCreateRequest.linux:type_name -> fits.api.mvm.v1.MVMServiceCreateLinuxRequest
+	11, // 25: fits.api.mvm.v1.MVMServiceCreateRequest.initial_network_interface:type_name -> fits.api.mvm.v1.InitialNetworkInterface
+	21, // 26: fits.api.mvm.v1.MVMServiceValidateCreateRequest.create:type_name -> fits.api.mvm.v1.MVMServiceCreateRequest
+	65, // 27: fits.api.mvm.v1.MVMServiceUpdateRequest.update_meta:type_name -> fits.api.v1.UpdateMeta
+	66, // 28: fits.api.mvm.v1.MVMServiceUpdateRequest.labels:type_name -> fits.api.v1.UpdateLabels
+	25, // 29: fits.api.mvm.v1.MVMServiceValidateUpdateRequest.update:type_name -> fits.api.mvm.v1.MVMServiceUpdateRequest
+	1,  // 30: fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest.service_class:type_name -> fits.api.mvm.v1.ServiceClass
+	0,  // 31: fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest.availability:type_name -> fits.api.mvm.v1.Availability
+	29, // 32: fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassRequest.update_service_class:type_name -> fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest
+	6,  // 33: fits.api.mvm.v1.MVMServiceAddDiskRequest.disks:type_name -> fits.api.mvm.v1.Disk
+	35, // 34: fits.api.mvm.v1.MVMServiceValidateAddDiskRequest.add_disk:type_name -> fits.api.mvm.v1.MVMServiceAddDiskRequest
+	39, // 35: fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest.update_disk:type_name -> fits.api.mvm.v1.MVMServiceUpdateDiskRequest
+	53, // 36: fits.api.mvm.v1.MVMServiceValidateReinstallRequest.reinstall:type_name -> fits.api.mvm.v1.MVMServiceReinstallRequest
+	21, // 37: fits.api.mvm.v1.MVMService.Create:input_type -> fits.api.mvm.v1.MVMServiceCreateRequest
+	23, // 38: fits.api.mvm.v1.MVMService.ValidateCreate:input_type -> fits.api.mvm.v1.MVMServiceValidateCreateRequest
+	15, // 39: fits.api.mvm.v1.MVMService.Get:input_type -> fits.api.mvm.v1.MVMServiceGetRequest
+	17, // 40: fits.api.mvm.v1.MVMService.List:input_type -> fits.api.mvm.v1.MVMServiceListRequest
+	25, // 41: fits.api.mvm.v1.MVMService.Update:input_type -> fits.api.mvm.v1.MVMServiceUpdateRequest
+	27, // 42: fits.api.mvm.v1.MVMService.ValidateUpdate:input_type -> fits.api.mvm.v1.MVMServiceValidateUpdateRequest
+	29, // 43: fits.api.mvm.v1.MVMService.UpdateServiceClass:input_type -> fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest
+	31, // 44: fits.api.mvm.v1.MVMService.ValidateUpdateServiceClass:input_type -> fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassRequest
+	33, // 45: fits.api.mvm.v1.MVMService.Delete:input_type -> fits.api.mvm.v1.MVMServiceDeleteRequest
+	35, // 46: fits.api.mvm.v1.MVMService.AddDisk:input_type -> fits.api.mvm.v1.MVMServiceAddDiskRequest
+	37, // 47: fits.api.mvm.v1.MVMService.ValidateAddDisk:input_type -> fits.api.mvm.v1.MVMServiceValidateAddDiskRequest
+	39, // 48: fits.api.mvm.v1.MVMService.UpdateDisk:input_type -> fits.api.mvm.v1.MVMServiceUpdateDiskRequest
+	41, // 49: fits.api.mvm.v1.MVMService.ValidateUpdateDisk:input_type -> fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest
+	43, // 50: fits.api.mvm.v1.MVMService.DeleteDisk:input_type -> fits.api.mvm.v1.MVMServiceDeleteDiskRequest
+	45, // 51: fits.api.mvm.v1.MVMService.AddIPAddress:input_type -> fits.api.mvm.v1.MVMServiceAddIPAddressRequest
+	47, // 52: fits.api.mvm.v1.MVMService.MoveIPAddress:input_type -> fits.api.mvm.v1.MVMServiceMoveIPAddressRequest
+	49, // 53: fits.api.mvm.v1.MVMService.DeleteIPAddress:input_type -> fits.api.mvm.v1.MVMServiceDeleteIPAddressRequest
+	51, // 54: fits.api.mvm.v1.MVMService.Restart:input_type -> fits.api.mvm.v1.MVMServiceRestartRequest
+	53, // 55: fits.api.mvm.v1.MVMService.Reinstall:input_type -> fits.api.mvm.v1.MVMServiceReinstallRequest
+	55, // 56: fits.api.mvm.v1.MVMService.ValidateReinstall:input_type -> fits.api.mvm.v1.MVMServiceValidateReinstallRequest
+	57, // 57: fits.api.mvm.v1.MVMService.AddSnapshot:input_type -> fits.api.mvm.v1.MVMServiceAddSnapshotRequest
+	59, // 58: fits.api.mvm.v1.MVMService.DeleteSnapshot:input_type -> fits.api.mvm.v1.MVMServiceDeleteSnapshotRequest
+	61, // 59: fits.api.mvm.v1.MVMService.Move:input_type -> fits.api.mvm.v1.MVMServiceMoveRequest
+	22, // 60: fits.api.mvm.v1.MVMService.Create:output_type -> fits.api.mvm.v1.MVMServiceCreateResponse
+	24, // 61: fits.api.mvm.v1.MVMService.ValidateCreate:output_type -> fits.api.mvm.v1.MVMServiceValidateCreateResponse
+	16, // 62: fits.api.mvm.v1.MVMService.Get:output_type -> fits.api.mvm.v1.MVMServiceGetResponse
+	18, // 63: fits.api.mvm.v1.MVMService.List:output_type -> fits.api.mvm.v1.MVMServiceListResponse
+	26, // 64: fits.api.mvm.v1.MVMService.Update:output_type -> fits.api.mvm.v1.MVMServiceUpdateResponse
+	28, // 65: fits.api.mvm.v1.MVMService.ValidateUpdate:output_type -> fits.api.mvm.v1.MVMServiceValidateUpdateResponse
+	30, // 66: fits.api.mvm.v1.MVMService.UpdateServiceClass:output_type -> fits.api.mvm.v1.MVMServiceUpdateServiceClassResponse
+	32, // 67: fits.api.mvm.v1.MVMService.ValidateUpdateServiceClass:output_type -> fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassResponse
+	34, // 68: fits.api.mvm.v1.MVMService.Delete:output_type -> fits.api.mvm.v1.MVMServiceDeleteResponse
+	36, // 69: fits.api.mvm.v1.MVMService.AddDisk:output_type -> fits.api.mvm.v1.MVMServiceAddDiskResponse
+	38, // 70: fits.api.mvm.v1.MVMService.ValidateAddDisk:output_type -> fits.api.mvm.v1.MVMServiceValidateAddDiskResponse
+	40, // 71: fits.api.mvm.v1.MVMService.UpdateDisk:output_type -> fits.api.mvm.v1.MVMServiceUpdateDiskResponse
+	42, // 72: fits.api.mvm.v1.MVMService.ValidateUpdateDisk:output_type -> fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse
+	44, // 73: fits.api.mvm.v1.MVMService.DeleteDisk:output_type -> fits.api.mvm.v1.MVMServiceDeleteDiskResponse
+	46, // 74: fits.api.mvm.v1.MVMService.AddIPAddress:output_type -> fits.api.mvm.v1.MVMServiceAddIPAddressResponse
+	48, // 75: fits.api.mvm.v1.MVMService.MoveIPAddress:output_type -> fits.api.mvm.v1.MVMServiceMoveIPAddressResponse
+	50, // 76: fits.api.mvm.v1.MVMService.DeleteIPAddress:output_type -> fits.api.mvm.v1.MVMServiceDeleteIPAddressResponse
+	52, // 77: fits.api.mvm.v1.MVMService.Restart:output_type -> fits.api.mvm.v1.MVMServiceRestartResponse
+	54, // 78: fits.api.mvm.v1.MVMService.Reinstall:output_type -> fits.api.mvm.v1.MVMServiceReinstallResponse
+	56, // 79: fits.api.mvm.v1.MVMService.ValidateReinstall:output_type -> fits.api.mvm.v1.MVMServiceValidateReinstallResponse
+	58, // 80: fits.api.mvm.v1.MVMService.AddSnapshot:output_type -> fits.api.mvm.v1.MVMServiceAddSnapshotResponse
+	60, // 81: fits.api.mvm.v1.MVMService.DeleteSnapshot:output_type -> fits.api.mvm.v1.MVMServiceDeleteSnapshotResponse
+	62, // 82: fits.api.mvm.v1.MVMService.Move:output_type -> fits.api.mvm.v1.MVMServiceMoveResponse
+	60, // [60:83] is the sub-list for method output_type
+	37, // [37:60] is the sub-list for method input_type
+	37, // [37:37] is the sub-list for extension type_name
+	37, // [37:37] is the sub-list for extension extendee
+	0,  // [0:37] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_mvm_v1_mvm_proto_init() }
@@ -4354,26 +4425,27 @@ func file_fits_api_mvm_v1_mvm_proto_init() {
 		(*Disk_Linux)(nil),
 		(*Disk_Windows)(nil),
 	}
-	file_fits_api_mvm_v1_mvm_proto_msgTypes[8].OneofWrappers = []any{
+	file_fits_api_mvm_v1_mvm_proto_msgTypes[5].OneofWrappers = []any{}
+	file_fits_api_mvm_v1_mvm_proto_msgTypes[9].OneofWrappers = []any{
 		(*ManagedVM_WindowsDetails)(nil),
 		(*ManagedVM_LinuxDetails)(nil),
 	}
-	file_fits_api_mvm_v1_mvm_proto_msgTypes[16].OneofWrappers = []any{
+	file_fits_api_mvm_v1_mvm_proto_msgTypes[17].OneofWrappers = []any{
 		(*MVMServiceCreateRequest_Windows)(nil),
 		(*MVMServiceCreateRequest_Linux)(nil),
 	}
-	file_fits_api_mvm_v1_mvm_proto_msgTypes[20].OneofWrappers = []any{}
-	file_fits_api_mvm_v1_mvm_proto_msgTypes[24].OneofWrappers = []any{}
-	file_fits_api_mvm_v1_mvm_proto_msgTypes[34].OneofWrappers = []any{}
-	file_fits_api_mvm_v1_mvm_proto_msgTypes[48].OneofWrappers = []any{}
-	file_fits_api_mvm_v1_mvm_proto_msgTypes[56].OneofWrappers = []any{}
+	file_fits_api_mvm_v1_mvm_proto_msgTypes[21].OneofWrappers = []any{}
+	file_fits_api_mvm_v1_mvm_proto_msgTypes[25].OneofWrappers = []any{}
+	file_fits_api_mvm_v1_mvm_proto_msgTypes[35].OneofWrappers = []any{}
+	file_fits_api_mvm_v1_mvm_proto_msgTypes[49].OneofWrappers = []any{}
+	file_fits_api_mvm_v1_mvm_proto_msgTypes[57].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_fits_api_mvm_v1_mvm_proto_rawDesc), len(file_fits_api_mvm_v1_mvm_proto_rawDesc)),
 			NumEnums:      4,
-			NumMessages:   58,
+			NumMessages:   59,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

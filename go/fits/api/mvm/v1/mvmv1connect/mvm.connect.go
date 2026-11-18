@@ -67,15 +67,14 @@ const (
 	MVMServiceValidateUpdateDiskProcedure = "/fits.api.mvm.v1.MVMService/ValidateUpdateDisk"
 	// MVMServiceDeleteDiskProcedure is the fully-qualified name of the MVMService's DeleteDisk RPC.
 	MVMServiceDeleteDiskProcedure = "/fits.api.mvm.v1.MVMService/DeleteDisk"
-	// MVMServiceAddNetworkInterfaceProcedure is the fully-qualified name of the MVMService's
-	// AddNetworkInterface RPC.
-	MVMServiceAddNetworkInterfaceProcedure = "/fits.api.mvm.v1.MVMService/AddNetworkInterface"
-	// MVMServiceMoveNetworkInterfaceProcedure is the fully-qualified name of the MVMService's
-	// MoveNetworkInterface RPC.
-	MVMServiceMoveNetworkInterfaceProcedure = "/fits.api.mvm.v1.MVMService/MoveNetworkInterface"
-	// MVMServiceDeleteNetworkInterfaceProcedure is the fully-qualified name of the MVMService's
-	// DeleteNetworkInterface RPC.
-	MVMServiceDeleteNetworkInterfaceProcedure = "/fits.api.mvm.v1.MVMService/DeleteNetworkInterface"
+	// MVMServiceAddIPAddressProcedure is the fully-qualified name of the MVMService's AddIPAddress RPC.
+	MVMServiceAddIPAddressProcedure = "/fits.api.mvm.v1.MVMService/AddIPAddress"
+	// MVMServiceMoveIPAddressProcedure is the fully-qualified name of the MVMService's MoveIPAddress
+	// RPC.
+	MVMServiceMoveIPAddressProcedure = "/fits.api.mvm.v1.MVMService/MoveIPAddress"
+	// MVMServiceDeleteIPAddressProcedure is the fully-qualified name of the MVMService's
+	// DeleteIPAddress RPC.
+	MVMServiceDeleteIPAddressProcedure = "/fits.api.mvm.v1.MVMService/DeleteIPAddress"
 	// MVMServiceRestartProcedure is the fully-qualified name of the MVMService's Restart RPC.
 	MVMServiceRestartProcedure = "/fits.api.mvm.v1.MVMService/Restart"
 	// MVMServiceReinstallProcedure is the fully-qualified name of the MVMService's Reinstall RPC.
@@ -124,12 +123,12 @@ type MVMServiceClient interface {
 	ValidateUpdateDisk(context.Context, *v1.MVMServiceValidateUpdateDiskRequest) (*v1.MVMServiceValidateUpdateDiskResponse, error)
 	// Cancels a data disk. OS and system disks cannot be deleted.
 	DeleteDisk(context.Context, *v1.MVMServiceDeleteDiskRequest) (*v1.MVMServiceDeleteDiskResponse, error)
-	// Orders an additional network interface for a MVM.
-	AddNetworkInterface(context.Context, *v1.MVMServiceAddNetworkInterfaceRequest) (*v1.MVMServiceAddNetworkInterfaceResponse, error)
-	// Moves a network interface from one MVM to another.
-	MoveNetworkInterface(context.Context, *v1.MVMServiceMoveNetworkInterfaceRequest) (*v1.MVMServiceMoveNetworkInterfaceResponse, error)
-	// Deletes a network interface from a MVM.
-	DeleteNetworkInterface(context.Context, *v1.MVMServiceDeleteNetworkInterfaceRequest) (*v1.MVMServiceDeleteNetworkInterfaceResponse, error)
+	// Orders an additional IP address for a MVM.
+	AddIPAddress(context.Context, *v1.MVMServiceAddIPAddressRequest) (*v1.MVMServiceAddIPAddressResponse, error)
+	// Moves an IP address from one MVM to another.
+	MoveIPAddress(context.Context, *v1.MVMServiceMoveIPAddressRequest) (*v1.MVMServiceMoveIPAddressResponse, error)
+	// Deletes an IP address from a MVM.
+	DeleteIPAddress(context.Context, *v1.MVMServiceDeleteIPAddressRequest) (*v1.MVMServiceDeleteIPAddressResponse, error)
 	// Restarts a MVM.
 	Restart(context.Context, *v1.MVMServiceRestartRequest) (*v1.MVMServiceRestartResponse, error)
 	// Reinstalls the operating system of a MVM.
@@ -239,22 +238,22 @@ func NewMVMServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(mVMServiceMethods.ByName("DeleteDisk")),
 			connect.WithClientOptions(opts...),
 		),
-		addNetworkInterface: connect.NewClient[v1.MVMServiceAddNetworkInterfaceRequest, v1.MVMServiceAddNetworkInterfaceResponse](
+		addIPAddress: connect.NewClient[v1.MVMServiceAddIPAddressRequest, v1.MVMServiceAddIPAddressResponse](
 			httpClient,
-			baseURL+MVMServiceAddNetworkInterfaceProcedure,
-			connect.WithSchema(mVMServiceMethods.ByName("AddNetworkInterface")),
+			baseURL+MVMServiceAddIPAddressProcedure,
+			connect.WithSchema(mVMServiceMethods.ByName("AddIPAddress")),
 			connect.WithClientOptions(opts...),
 		),
-		moveNetworkInterface: connect.NewClient[v1.MVMServiceMoveNetworkInterfaceRequest, v1.MVMServiceMoveNetworkInterfaceResponse](
+		moveIPAddress: connect.NewClient[v1.MVMServiceMoveIPAddressRequest, v1.MVMServiceMoveIPAddressResponse](
 			httpClient,
-			baseURL+MVMServiceMoveNetworkInterfaceProcedure,
-			connect.WithSchema(mVMServiceMethods.ByName("MoveNetworkInterface")),
+			baseURL+MVMServiceMoveIPAddressProcedure,
+			connect.WithSchema(mVMServiceMethods.ByName("MoveIPAddress")),
 			connect.WithClientOptions(opts...),
 		),
-		deleteNetworkInterface: connect.NewClient[v1.MVMServiceDeleteNetworkInterfaceRequest, v1.MVMServiceDeleteNetworkInterfaceResponse](
+		deleteIPAddress: connect.NewClient[v1.MVMServiceDeleteIPAddressRequest, v1.MVMServiceDeleteIPAddressResponse](
 			httpClient,
-			baseURL+MVMServiceDeleteNetworkInterfaceProcedure,
-			connect.WithSchema(mVMServiceMethods.ByName("DeleteNetworkInterface")),
+			baseURL+MVMServiceDeleteIPAddressProcedure,
+			connect.WithSchema(mVMServiceMethods.ByName("DeleteIPAddress")),
 			connect.WithClientOptions(opts...),
 		),
 		restart: connect.NewClient[v1.MVMServiceRestartRequest, v1.MVMServiceRestartResponse](
@@ -312,9 +311,9 @@ type mVMServiceClient struct {
 	updateDisk                 *connect.Client[v1.MVMServiceUpdateDiskRequest, v1.MVMServiceUpdateDiskResponse]
 	validateUpdateDisk         *connect.Client[v1.MVMServiceValidateUpdateDiskRequest, v1.MVMServiceValidateUpdateDiskResponse]
 	deleteDisk                 *connect.Client[v1.MVMServiceDeleteDiskRequest, v1.MVMServiceDeleteDiskResponse]
-	addNetworkInterface        *connect.Client[v1.MVMServiceAddNetworkInterfaceRequest, v1.MVMServiceAddNetworkInterfaceResponse]
-	moveNetworkInterface       *connect.Client[v1.MVMServiceMoveNetworkInterfaceRequest, v1.MVMServiceMoveNetworkInterfaceResponse]
-	deleteNetworkInterface     *connect.Client[v1.MVMServiceDeleteNetworkInterfaceRequest, v1.MVMServiceDeleteNetworkInterfaceResponse]
+	addIPAddress               *connect.Client[v1.MVMServiceAddIPAddressRequest, v1.MVMServiceAddIPAddressResponse]
+	moveIPAddress              *connect.Client[v1.MVMServiceMoveIPAddressRequest, v1.MVMServiceMoveIPAddressResponse]
+	deleteIPAddress            *connect.Client[v1.MVMServiceDeleteIPAddressRequest, v1.MVMServiceDeleteIPAddressResponse]
 	restart                    *connect.Client[v1.MVMServiceRestartRequest, v1.MVMServiceRestartResponse]
 	reinstall                  *connect.Client[v1.MVMServiceReinstallRequest, v1.MVMServiceReinstallResponse]
 	validateReinstall          *connect.Client[v1.MVMServiceValidateReinstallRequest, v1.MVMServiceValidateReinstallResponse]
@@ -449,27 +448,27 @@ func (c *mVMServiceClient) DeleteDisk(ctx context.Context, req *v1.MVMServiceDel
 	return nil, err
 }
 
-// AddNetworkInterface calls fits.api.mvm.v1.MVMService.AddNetworkInterface.
-func (c *mVMServiceClient) AddNetworkInterface(ctx context.Context, req *v1.MVMServiceAddNetworkInterfaceRequest) (*v1.MVMServiceAddNetworkInterfaceResponse, error) {
-	response, err := c.addNetworkInterface.CallUnary(ctx, connect.NewRequest(req))
+// AddIPAddress calls fits.api.mvm.v1.MVMService.AddIPAddress.
+func (c *mVMServiceClient) AddIPAddress(ctx context.Context, req *v1.MVMServiceAddIPAddressRequest) (*v1.MVMServiceAddIPAddressResponse, error) {
+	response, err := c.addIPAddress.CallUnary(ctx, connect.NewRequest(req))
 	if response != nil {
 		return response.Msg, err
 	}
 	return nil, err
 }
 
-// MoveNetworkInterface calls fits.api.mvm.v1.MVMService.MoveNetworkInterface.
-func (c *mVMServiceClient) MoveNetworkInterface(ctx context.Context, req *v1.MVMServiceMoveNetworkInterfaceRequest) (*v1.MVMServiceMoveNetworkInterfaceResponse, error) {
-	response, err := c.moveNetworkInterface.CallUnary(ctx, connect.NewRequest(req))
+// MoveIPAddress calls fits.api.mvm.v1.MVMService.MoveIPAddress.
+func (c *mVMServiceClient) MoveIPAddress(ctx context.Context, req *v1.MVMServiceMoveIPAddressRequest) (*v1.MVMServiceMoveIPAddressResponse, error) {
+	response, err := c.moveIPAddress.CallUnary(ctx, connect.NewRequest(req))
 	if response != nil {
 		return response.Msg, err
 	}
 	return nil, err
 }
 
-// DeleteNetworkInterface calls fits.api.mvm.v1.MVMService.DeleteNetworkInterface.
-func (c *mVMServiceClient) DeleteNetworkInterface(ctx context.Context, req *v1.MVMServiceDeleteNetworkInterfaceRequest) (*v1.MVMServiceDeleteNetworkInterfaceResponse, error) {
-	response, err := c.deleteNetworkInterface.CallUnary(ctx, connect.NewRequest(req))
+// DeleteIPAddress calls fits.api.mvm.v1.MVMService.DeleteIPAddress.
+func (c *mVMServiceClient) DeleteIPAddress(ctx context.Context, req *v1.MVMServiceDeleteIPAddressRequest) (*v1.MVMServiceDeleteIPAddressResponse, error) {
+	response, err := c.deleteIPAddress.CallUnary(ctx, connect.NewRequest(req))
 	if response != nil {
 		return response.Msg, err
 	}
@@ -562,12 +561,12 @@ type MVMServiceHandler interface {
 	ValidateUpdateDisk(context.Context, *v1.MVMServiceValidateUpdateDiskRequest) (*v1.MVMServiceValidateUpdateDiskResponse, error)
 	// Cancels a data disk. OS and system disks cannot be deleted.
 	DeleteDisk(context.Context, *v1.MVMServiceDeleteDiskRequest) (*v1.MVMServiceDeleteDiskResponse, error)
-	// Orders an additional network interface for a MVM.
-	AddNetworkInterface(context.Context, *v1.MVMServiceAddNetworkInterfaceRequest) (*v1.MVMServiceAddNetworkInterfaceResponse, error)
-	// Moves a network interface from one MVM to another.
-	MoveNetworkInterface(context.Context, *v1.MVMServiceMoveNetworkInterfaceRequest) (*v1.MVMServiceMoveNetworkInterfaceResponse, error)
-	// Deletes a network interface from a MVM.
-	DeleteNetworkInterface(context.Context, *v1.MVMServiceDeleteNetworkInterfaceRequest) (*v1.MVMServiceDeleteNetworkInterfaceResponse, error)
+	// Orders an additional IP address for a MVM.
+	AddIPAddress(context.Context, *v1.MVMServiceAddIPAddressRequest) (*v1.MVMServiceAddIPAddressResponse, error)
+	// Moves an IP address from one MVM to another.
+	MoveIPAddress(context.Context, *v1.MVMServiceMoveIPAddressRequest) (*v1.MVMServiceMoveIPAddressResponse, error)
+	// Deletes an IP address from a MVM.
+	DeleteIPAddress(context.Context, *v1.MVMServiceDeleteIPAddressRequest) (*v1.MVMServiceDeleteIPAddressResponse, error)
 	// Restarts a MVM.
 	Restart(context.Context, *v1.MVMServiceRestartRequest) (*v1.MVMServiceRestartResponse, error)
 	// Reinstalls the operating system of a MVM.
@@ -673,22 +672,22 @@ func NewMVMServiceHandler(svc MVMServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(mVMServiceMethods.ByName("DeleteDisk")),
 		connect.WithHandlerOptions(opts...),
 	)
-	mVMServiceAddNetworkInterfaceHandler := connect.NewUnaryHandlerSimple(
-		MVMServiceAddNetworkInterfaceProcedure,
-		svc.AddNetworkInterface,
-		connect.WithSchema(mVMServiceMethods.ByName("AddNetworkInterface")),
+	mVMServiceAddIPAddressHandler := connect.NewUnaryHandlerSimple(
+		MVMServiceAddIPAddressProcedure,
+		svc.AddIPAddress,
+		connect.WithSchema(mVMServiceMethods.ByName("AddIPAddress")),
 		connect.WithHandlerOptions(opts...),
 	)
-	mVMServiceMoveNetworkInterfaceHandler := connect.NewUnaryHandlerSimple(
-		MVMServiceMoveNetworkInterfaceProcedure,
-		svc.MoveNetworkInterface,
-		connect.WithSchema(mVMServiceMethods.ByName("MoveNetworkInterface")),
+	mVMServiceMoveIPAddressHandler := connect.NewUnaryHandlerSimple(
+		MVMServiceMoveIPAddressProcedure,
+		svc.MoveIPAddress,
+		connect.WithSchema(mVMServiceMethods.ByName("MoveIPAddress")),
 		connect.WithHandlerOptions(opts...),
 	)
-	mVMServiceDeleteNetworkInterfaceHandler := connect.NewUnaryHandlerSimple(
-		MVMServiceDeleteNetworkInterfaceProcedure,
-		svc.DeleteNetworkInterface,
-		connect.WithSchema(mVMServiceMethods.ByName("DeleteNetworkInterface")),
+	mVMServiceDeleteIPAddressHandler := connect.NewUnaryHandlerSimple(
+		MVMServiceDeleteIPAddressProcedure,
+		svc.DeleteIPAddress,
+		connect.WithSchema(mVMServiceMethods.ByName("DeleteIPAddress")),
 		connect.WithHandlerOptions(opts...),
 	)
 	mVMServiceRestartHandler := connect.NewUnaryHandlerSimple(
@@ -757,12 +756,12 @@ func NewMVMServiceHandler(svc MVMServiceHandler, opts ...connect.HandlerOption) 
 			mVMServiceValidateUpdateDiskHandler.ServeHTTP(w, r)
 		case MVMServiceDeleteDiskProcedure:
 			mVMServiceDeleteDiskHandler.ServeHTTP(w, r)
-		case MVMServiceAddNetworkInterfaceProcedure:
-			mVMServiceAddNetworkInterfaceHandler.ServeHTTP(w, r)
-		case MVMServiceMoveNetworkInterfaceProcedure:
-			mVMServiceMoveNetworkInterfaceHandler.ServeHTTP(w, r)
-		case MVMServiceDeleteNetworkInterfaceProcedure:
-			mVMServiceDeleteNetworkInterfaceHandler.ServeHTTP(w, r)
+		case MVMServiceAddIPAddressProcedure:
+			mVMServiceAddIPAddressHandler.ServeHTTP(w, r)
+		case MVMServiceMoveIPAddressProcedure:
+			mVMServiceMoveIPAddressHandler.ServeHTTP(w, r)
+		case MVMServiceDeleteIPAddressProcedure:
+			mVMServiceDeleteIPAddressHandler.ServeHTTP(w, r)
 		case MVMServiceRestartProcedure:
 			mVMServiceRestartHandler.ServeHTTP(w, r)
 		case MVMServiceReinstallProcedure:
@@ -840,16 +839,16 @@ func (UnimplementedMVMServiceHandler) DeleteDisk(context.Context, *v1.MVMService
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.DeleteDisk is not implemented"))
 }
 
-func (UnimplementedMVMServiceHandler) AddNetworkInterface(context.Context, *v1.MVMServiceAddNetworkInterfaceRequest) (*v1.MVMServiceAddNetworkInterfaceResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.AddNetworkInterface is not implemented"))
+func (UnimplementedMVMServiceHandler) AddIPAddress(context.Context, *v1.MVMServiceAddIPAddressRequest) (*v1.MVMServiceAddIPAddressResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.AddIPAddress is not implemented"))
 }
 
-func (UnimplementedMVMServiceHandler) MoveNetworkInterface(context.Context, *v1.MVMServiceMoveNetworkInterfaceRequest) (*v1.MVMServiceMoveNetworkInterfaceResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.MoveNetworkInterface is not implemented"))
+func (UnimplementedMVMServiceHandler) MoveIPAddress(context.Context, *v1.MVMServiceMoveIPAddressRequest) (*v1.MVMServiceMoveIPAddressResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.MoveIPAddress is not implemented"))
 }
 
-func (UnimplementedMVMServiceHandler) DeleteNetworkInterface(context.Context, *v1.MVMServiceDeleteNetworkInterfaceRequest) (*v1.MVMServiceDeleteNetworkInterfaceResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.DeleteNetworkInterface is not implemented"))
+func (UnimplementedMVMServiceHandler) DeleteIPAddress(context.Context, *v1.MVMServiceDeleteIPAddressRequest) (*v1.MVMServiceDeleteIPAddressResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.DeleteIPAddress is not implemented"))
 }
 
 func (UnimplementedMVMServiceHandler) Restart(context.Context, *v1.MVMServiceRestartRequest) (*v1.MVMServiceRestartResponse, error) {

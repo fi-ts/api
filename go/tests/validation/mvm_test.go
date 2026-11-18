@@ -6,23 +6,54 @@ import (
 	mvmv1 "github.com/fi-ts/api/go/fits/api/mvm/v1"
 )
 
-func TestValidateNetworkInterface(t *testing.T) {
+func TestValidateIPAddress(t *testing.T) {
 	tests := prototests{
 		{
 			name:    "empty",
-			msg:     &mvmv1.NetworkInterface{},
+			msg:     &mvmv1.IPAddress{},
 			wantErr: true,
 			wantErrorMessage: `validation errors:
  - uuid: value is empty, which is not a valid UUID
- - vlan_uuid: value is empty, which is not a valid UUID
- - ipaddress: must be a valid IP address or hostname`,
+ - ip_address: must be a valid IP address or hostname`,
+		},
+		{
+			name: "valid",
+			msg: &mvmv1.IPAddress{
+				Uuid:      testUUID,
+				IpAddress: "10.0.0.1",
+			},
+			wantErr: false,
+		},
+		{
+			name: "valid with network interface",
+			msg: &mvmv1.IPAddress{
+				Uuid:      testUUID,
+				IpAddress: "10.0.0.1",
+				NetworkInterface: &mvmv1.NetworkInterface{
+					VlanUuid:   testUUID,
+					Macaddress: "AA:BB:CC:DD:EE:01",
+				},
+			},
+			wantErr: false,
+		},
+	}
+
+	validateProtos(t, tests)
+}
+
+func TestValidateNetworkInterface(t *testing.T) {
+	tests := prototests{
+		{
+			name:             "empty",
+			msg:              &mvmv1.NetworkInterface{},
+			wantErr:          true,
+			wantErrorMessage: `validation error: vlan_uuid: value is empty, which is not a valid UUID`,
 		},
 		{
 			name: "valid",
 			msg: &mvmv1.NetworkInterface{
-				Uuid:      testUUID,
-				VlanUuid:  testUUID,
-				Ipaddress: "10.0.0.1",
+				VlanUuid:   testUUID,
+				Macaddress: "AA:BB:CC:DD:EE:01",
 			},
 			wantErr: false,
 		},
