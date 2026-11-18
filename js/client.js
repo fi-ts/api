@@ -18,6 +18,7 @@ import { MVMService as Apimvmv1MVMService } from "./fits/api/mvm/v1/mvm_pb";
 import { OSService as Apimvmv1OSService } from "./fits/api/mvm/v1/os_pb";
 import { VLANService as Apimvmv1VLANService } from "./fits/api/mvm/v1/vlan_pb";
 import { PublicCloudVMService as Apipcvmv1PublicCloudVMService } from "./fits/api/pcvm/v1/pcvm_pb";
+import { ApiKeyService as Apiv1ApiKeyService } from "./fits/api/v1/apikey_pb";
 import { HealthService as Apiv1HealthService } from "./fits/api/v1/health_pb";
 import { MethodService as Apiv1MethodService } from "./fits/api/v1/method_pb";
 import { ProjectService as Apiv1ProjectService } from "./fits/api/v1/project_pb";
@@ -132,6 +133,12 @@ class Apipcvmv1Impl {
 class Apiv1Impl {
     constructor(transport) {
         this.transport = transport;
+    }
+    apiKey() {
+        if (!this._apiKey) {
+            this._apiKey = createClient(Apiv1ApiKeyService, this.transport);
+        }
+        return this._apiKey;
     }
     health() {
         if (!this._health) {

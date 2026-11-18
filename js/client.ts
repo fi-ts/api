@@ -25,6 +25,8 @@ import { PublicCloudVMService as Apipcvmv1PublicCloudVMService } from "./fits/ap
 
 
 
+import { ApiKeyService as Apiv1ApiKeyService } from "./fits/api/v1/apikey_pb";
+
 import { HealthService as Apiv1HealthService } from "./fits/api/v1/health_pb";
 
 import { MethodService as Apiv1MethodService } from "./fits/api/v1/method_pb";
@@ -83,6 +85,8 @@ export interface Apipcvmv1 {
 
 
 export interface Apiv1 {
+
+  apiKey(): ConnectClient<typeof Apiv1ApiKeyService>;
 
   health(): ConnectClient<typeof Apiv1HealthService>;
 
@@ -272,6 +276,8 @@ class Apiv1Impl implements Apiv1 {
   private transport: Transport;
 
 
+  private _apiKey?: ConnectClient<typeof Apiv1ApiKeyService>;
+
   private _health?: ConnectClient<typeof Apiv1HealthService>;
 
   private _method?: ConnectClient<typeof Apiv1MethodService>;
@@ -289,6 +295,13 @@ class Apiv1Impl implements Apiv1 {
     this.transport = transport;
   }
 
+
+  apiKey(): ConnectClient<typeof Apiv1ApiKeyService> {
+    if (!this._apiKey) {
+      this._apiKey = createClient(Apiv1ApiKeyService, this.transport);
+    }
+    return this._apiKey;
+  }
 
   health(): ConnectClient<typeof Apiv1HealthService> {
     if (!this._health) {

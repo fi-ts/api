@@ -12,6 +12,7 @@ import fits.api.mvm.v1.vlan_connect as fits_api_mvm_v1_vlan_connect
 
 import fits.api.pcvm.v1.pcvm_connect as fits_api_pcvm_v1_pcvm_connect
 
+import fits.api.v1.apikey_connect as fits_api_v1_apikey_connect
 import fits.api.v1.health_connect as fits_api_v1_health_connect
 import fits.api.v1.method_connect as fits_api_v1_method_connect
 import fits.api.v1.project_connect as fits_api_v1_project_connect
@@ -92,6 +93,9 @@ class Client:
             self._client = client
             self._interceptors = list(interceptors)
 
+
+        def apikey(self):
+            return fits_api_v1_apikey_connect.ApiKeyServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
         def health(self):
             return fits_api_v1_health_connect.HealthServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
