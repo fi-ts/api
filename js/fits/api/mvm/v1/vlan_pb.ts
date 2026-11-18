@@ -5,6 +5,8 @@
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../../../buf/validate/validate_pb.js";
+import type { Stage } from "./stage_pb.js";
+import { file_fits_api_mvm_v1_stage } from "./stage_pb.js";
 import { file_fits_api_v1_common } from "../../v1/common_pb.js";
 import { file_fits_api_v1_predefined_rules } from "../../v1/predefined_rules_pb.js";
 import type { Message } from "@bufbuild/protobuf";
@@ -13,7 +15,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/mvm/v1/vlan.proto.
  */
 export const file_fits_api_mvm_v1_vlan: GenFile = /*@__PURE__*/
-  fileDesc("ChpmaXRzL2FwaS9tdm0vdjEvdmxhbi5wcm90bxIPZml0cy5hcGkubXZtLnYxIuYBCgRWTEFOEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEg8KB3ZsYW5faWQYAiABKAUSIQoMc3VibmV0X3RpdGxlGAMgASgJQgu6SAhyBsCzrrECARIgCgtzdWJuZXRfY2lkchgEIAEoCUILukgIcgaAtK6xAgESHwoNbG9jYXRpb25fdXVpZBgFIAEoCUIIukgFcgOwAQESGwoGdGVuYW50GAYgASgJQgu6SAhyBsCzrrECARIiCgtkb21haW5fdXVpZBgHIAEoCUIIukgFcgOwAQFIAIgBAUIOCgxfZG9tYWluX3V1aWQiPwoJVkxBTlF1ZXJ5EiIKC2RvbWFpbl91dWlkGAEgASgJQgi6SAVyA7ABAUgAiAEBQg4KDF9kb21haW5fdXVpZCKBAQoWVkxBTlNlcnZpY2VMaXN0UmVxdWVzdBIbCgZ0ZW5hbnQYASABKAlCC7pICHIGwLOusQIBEh8KDWxvY2F0aW9uX3V1aWQYAiABKAlCCLpIBXIDsAEBEikKBXF1ZXJ5GAMgASgLMhouZml0cy5hcGkubXZtLnYxLlZMQU5RdWVyeSI/ChdWTEFOU2VydmljZUxpc3RSZXNwb25zZRIkCgV2bGFucxgBIAMoCzIVLmZpdHMuYXBpLm12bS52MS5WTEFOMnUKC1ZMQU5TZXJ2aWNlEmYKBExpc3QSJy5maXRzLmFwaS5tdm0udjEuVkxBTlNlcnZpY2VMaXN0UmVxdWVzdBooLmZpdHMuYXBpLm12bS52MS5WTEFOU2VydmljZUxpc3RSZXNwb25zZSILwvMYAwECA+DzGAJCrgEKE2NvbS5maXRzLmFwaS5tdm0udjFCCVZsYW5Qcm90b1ABWi1naXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS9tdm0vdjE7bXZtdjGiAgNGQU2qAg9GaXRzLkFwaS5Ndm0uVjHKAg9GaXRzXEFwaVxNdm1cVjHiAhtGaXRzXEFwaVxNdm1cVjFcR1BCTWV0YWRhdGHqAhJGaXRzOjpBcGk6Ok12bTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
+  fileDesc("ChpmaXRzL2FwaS9tdm0vdjEvdmxhbi5wcm90bxIPZml0cy5hcGkubXZtLnYxIo0CCgRWTEFOEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEg8KB3ZsYW5faWQYAiABKAUSIQoMc3VibmV0X3RpdGxlGAMgASgJQgu6SAhyBsCzrrECARIgCgtzdWJuZXRfY2lkchgEIAEoCUILukgIcgaAtK6xAgESHwoNbG9jYXRpb25fdXVpZBgFIAEoCUIIukgFcgOwAQESGwoGdGVuYW50GAYgASgJQgu6SAhyBsCzrrECARIlCgVzdGFnZRgHIAEoCzIWLmZpdHMuYXBpLm12bS52MS5TdGFnZRIiCgtkb21haW5fdXVpZBgIIAEoCUIIukgFcgOwAQFIAIgBAUIOCgxfZG9tYWluX3V1aWQicQoJVkxBTlF1ZXJ5EiIKC2RvbWFpbl91dWlkGAEgASgJQgi6SAVyA7ABAUgAiAEBEiEKCnN0YWdlX3V1aWQYAiABKAlCCLpIBXIDsAEBSAGIAQFCDgoMX2RvbWFpbl91dWlkQg0KC19zdGFnZV91dWlkIoEBChZWTEFOU2VydmljZUxpc3RSZXF1ZXN0EhsKBnRlbmFudBgBIAEoCUILukgIcgbAs66xAgESHwoNbG9jYXRpb25fdXVpZBgCIAEoCUIIukgFcgOwAQESKQoFcXVlcnkYAyABKAsyGi5maXRzLmFwaS5tdm0udjEuVkxBTlF1ZXJ5Ij8KF1ZMQU5TZXJ2aWNlTGlzdFJlc3BvbnNlEiQKBXZsYW5zGAEgAygLMhUuZml0cy5hcGkubXZtLnYxLlZMQU4ydQoLVkxBTlNlcnZpY2USZgoETGlzdBInLmZpdHMuYXBpLm12bS52MS5WTEFOU2VydmljZUxpc3RSZXF1ZXN0GiguZml0cy5hcGkubXZtLnYxLlZMQU5TZXJ2aWNlTGlzdFJlc3BvbnNlIgvC8xgDAQID4PMYAkKuAQoTY29tLmZpdHMuYXBpLm12bS52MUIJVmxhblByb3RvUAFaLWdpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL212bS92MTttdm12MaICA0ZBTaoCD0ZpdHMuQXBpLk12bS5WMcoCD0ZpdHNcQXBpXE12bVxWMeICG0ZpdHNcQXBpXE12bVxWMVxHUEJNZXRhZGF0YeoCEkZpdHM6OkFwaTo6TXZtOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_mvm_v1_stage, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
 
 /**
  * VLAN is a VLAN that a MVM can be connected to.
@@ -36,7 +38,7 @@ export type VLAN = Message<"fits.api.mvm.v1.VLAN"> & {
   vlanId: number;
 
   /**
-   * Title of the subnet this VLAN belongs to, including the stage type, e.g. "pod01-vlan2001 (Production)".
+   * Title of the subnet this VLAN belongs to.
    *
    * @generated from field: string subnet_title = 3;
    */
@@ -64,9 +66,16 @@ export type VLAN = Message<"fits.api.mvm.v1.VLAN"> & {
   tenant: string;
 
   /**
+   * Stage the VLAN belongs to.
+   *
+   * @generated from field: fits.api.mvm.v1.Stage stage = 7;
+   */
+  stage?: Stage | undefined;
+
+  /**
    * UUID of the Windows domain this VLAN is associated with. Only set for Windows.
    *
-   * @generated from field: optional string domain_uuid = 7;
+   * @generated from field: optional string domain_uuid = 8;
    */
   domainUuid?: string | undefined;
 };
@@ -90,6 +99,13 @@ export type VLANQuery = Message<"fits.api.mvm.v1.VLANQuery"> & {
    * @generated from field: optional string domain_uuid = 1;
    */
   domainUuid?: string | undefined;
+
+  /**
+   * Filter the listed VLANs by Stage.
+   *
+   * @generated from field: optional string stage_uuid = 2;
+   */
+  stageUuid?: string | undefined;
 };
 
 /**
