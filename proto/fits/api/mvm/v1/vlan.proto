@@ -3,6 +3,7 @@ syntax = "proto3";
 package fits.api.mvm.v1;
 
 import "buf/validate/validate.proto";
+import "fits/api/mvm/v1/stage.proto";
 import "fits/api/v1/common.proto";
 import "fits/api/v1/predefined_rules.proto";
 
@@ -23,7 +24,7 @@ message VLAN {
   string uuid = 1 [(buf.validate.field).string.uuid = true];
   // ID of this VLAN. The actual VLAN ID a network interface is attached to.
   int32 vlan_id = 2;
-  // Title of the subnet this VLAN belongs to, including the stage type, e.g. "pod01-vlan2001 (Production)".
+  // Title of the subnet this VLAN belongs to.
   string subnet_title = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // CIDR of the subnet this VLAN belongs to.
   string subnet_cidr = 4 [(buf.validate.field).string.(fits.api.v1.is_ipv4_cidr) = true];
@@ -31,14 +32,18 @@ message VLAN {
   string location_uuid = 5 [(buf.validate.field).string.uuid = true];
   // Tenant this VLAN belongs to.
   string tenant = 6 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Stage the VLAN belongs to.
+  Stage stage = 7;
   // UUID of the Windows domain this VLAN is associated with. Only set for Windows.
-  optional string domain_uuid = 7 [(buf.validate.field).string.uuid = true];
+  optional string domain_uuid = 8 [(buf.validate.field).string.uuid = true];
 }
 
 // VLANQuery contains fields which can be specified to list specific VLANs.
 message VLANQuery {
   // Filter the listed VLANs by the Windows domain they are associated with.
   optional string domain_uuid = 1 [(buf.validate.field).string.uuid = true];
+  // Filter the listed VLANs by Stage.
+  optional string stage_uuid = 2 [(buf.validate.field).string.uuid = true];
 }
 
 // VLANServiceListRequest is the request payload for a VLAN list request.
