@@ -27,7 +27,7 @@ from fits.api.v1 import common_pb2 as fits_dot_api_dot_v1_dot_common__pb2
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n#fits/api/mvm/v1/mvm_on_behalf.proto\x12\x0f\x66its.api.mvm.v1\x1a\x19\x66its/api/mvm/v1/mvm.proto\x1a\x18\x66its/api/v1/common.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd9\x01\n\x1fOnBehalfMVMServiceCreateRequest\x12\x42\n\x07request\x18\x01 \x01(\x0b\x32(.fits.api.mvm.v1.MVMServiceCreateRequestR\x07request\x12\x1a\n\x08\x62illable\x18\x02 \x01(\x08R\x08\x62illable\x12\x44\n\rbillable_from\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampH\x00R\x0c\x62illableFrom\x88\x01\x01\x42\x10\n\x0e_billable_from\"i\n OnBehalfMVMServiceCreateResponse\x12\x45\n\x08response\x18\x01 \x01(\x0b\x32).fits.api.mvm.v1.MVMServiceCreateResponseR\x08response2\x93\x01\n\x12OnBehalfMVMService\x12}\n\x06\x43reate\x12\x30.fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest\x1a\x31.fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse\"\x0e\xca\xf3\x18\x02\x01\x02\xd0\xf3\x18\x02\xe0\xf3\x18\x01\x42\xb5\x01\n\x13\x63om.fits.api.mvm.v1B\x10MvmOnBehalfProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03\x46\x41M\xaa\x02\x0f\x46its.Api.Mvm.V1\xca\x02\x0f\x46its\\Api\\Mvm\\V1\xe2\x02\x1b\x46its\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12\x46its::Api::Mvm::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n#fits/api/mvm/v1/mvm_on_behalf.proto\x12\x0f\x66its.api.mvm.v1\x1a\x19\x66its/api/mvm/v1/mvm.proto\x1a\x18\x66its/api/v1/common.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd9\x01\n\x1fOnBehalfMVMServiceCreateRequest\x12\x42\n\x07request\x18\x01 \x01(\x0b\x32(.fits.api.mvm.v1.MVMServiceCreateRequestR\x07request\x12\x1a\n\x08\x62illable\x18\x02 \x01(\x08R\x08\x62illable\x12\x44\n\rbillable_from\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampH\x00R\x0c\x62illableFrom\x88\x01\x01\x42\x10\n\x0e_billable_from\"i\n OnBehalfMVMServiceCreateResponse\x12\x45\n\x08response\x18\x01 \x01(\x0b\x32).fits.api.mvm.v1.MVMServiceCreateResponseR\x08response\"\xc0\x01\n\x1fOnBehalfMVMServiceDeleteRequest\x12\x42\n\x07request\x18\x01 \x01(\x0b\x32(.fits.api.mvm.v1.MVMServiceDeleteRequestR\x07request\x12\x46\n\x0e\x65xecution_date\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampH\x00R\rexecutionDate\x88\x01\x01\x42\x11\n\x0f_execution_date\"i\n OnBehalfMVMServiceDeleteResponse\x12\x45\n\x08response\x18\x01 \x01(\x0b\x32).fits.api.mvm.v1.MVMServiceDeleteResponseR\x08response2\x93\x01\n\x12OnBehalfMVMService\x12}\n\x06\x43reate\x12\x30.fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest\x1a\x31.fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse\"\x0e\xca\xf3\x18\x02\x01\x02\xd0\xf3\x18\x02\xe0\xf3\x18\x01\x42\xb5\x01\n\x13\x63om.fits.api.mvm.v1B\x10MvmOnBehalfProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03\x46\x41M\xaa\x02\x0f\x46its.Api.Mvm.V1\xca\x02\x0f\x46its\\Api\\Mvm\\V1\xe2\x02\x1b\x46its\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12\x46its::Api::Mvm::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -41,6 +41,10 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_ONBEHALFMVMSERVICECREATEREQUEST']._serialized_end=360
   _globals['_ONBEHALFMVMSERVICECREATERESPONSE']._serialized_start=362
   _globals['_ONBEHALFMVMSERVICECREATERESPONSE']._serialized_end=467
-  _globals['_ONBEHALFMVMSERVICE']._serialized_start=470
-  _globals['_ONBEHALFMVMSERVICE']._serialized_end=617
+  _globals['_ONBEHALFMVMSERVICEDELETEREQUEST']._serialized_start=470
+  _globals['_ONBEHALFMVMSERVICEDELETEREQUEST']._serialized_end=662
+  _globals['_ONBEHALFMVMSERVICEDELETERESPONSE']._serialized_start=664
+  _globals['_ONBEHALFMVMSERVICEDELETERESPONSE']._serialized_end=769
+  _globals['_ONBEHALFMVMSERVICE']._serialized_start=772
+  _globals['_ONBEHALFMVMSERVICE']._serialized_end=919
 # @@protoc_insertion_point(module_scope)

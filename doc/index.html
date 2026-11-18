@@ -687,6 +687,14 @@
                   <a href="#fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse"><span class="badge">M</span>OnBehalfMVMServiceCreateResponse</a>
                 </li>
               
+                <li>
+                  <a href="#fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest"><span class="badge">M</span>OnBehalfMVMServiceDeleteRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse"><span class="badge">M</span>OnBehalfMVMServiceDeleteResponse</a>
+                </li>
+              
               
               
               
@@ -4224,6 +4232,62 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
                   <td><a href="#fits.api.mvm.v1.MVMServiceCreateResponse">MVMServiceCreateResponse</a></td>
                   <td></td>
                   <td><p>The public create response. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest">OnBehalfMVMServiceDeleteRequest</h3>
+        <p>Request to delete an MVM on behalf of a customer tenant.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#fits.api.mvm.v1.MVMServiceDeleteRequest">MVMServiceDeleteRequest</a></td>
+                  <td></td>
+                  <td><p>The public delete request. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>execution_date</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p>The future date when the MVM will be deleted.
+If unset, the MVM is deleted immediately. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse">OnBehalfMVMServiceDeleteResponse</h3>
+        <p>Response for an on-behalf MVM delete.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>response</td>
+                  <td><a href="#fits.api.mvm.v1.MVMServiceDeleteResponse">MVMServiceDeleteResponse</a></td>
+                  <td></td>
+                  <td><p>The public delete response. </p></td>
                 </tr>
               
             </tbody>

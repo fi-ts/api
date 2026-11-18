@@ -25,3 +25,17 @@ class OnBehalfMVMServiceCreateResponse(_message.Message):
     RESPONSE_FIELD_NUMBER: _ClassVar[int]
     response: _mvm_pb2.MVMServiceCreateResponse
     def __init__(self, response: _Optional[_Union[_mvm_pb2.MVMServiceCreateResponse, _Mapping]] = ...) -> None: ...
+
+class OnBehalfMVMServiceDeleteRequest(_message.Message):
+    __slots__ = ("request", "execution_date")
+    REQUEST_FIELD_NUMBER: _ClassVar[int]
+    EXECUTION_DATE_FIELD_NUMBER: _ClassVar[int]
+    request: _mvm_pb2.MVMServiceDeleteRequest
+    execution_date: _timestamp_pb2.Timestamp
+    def __init__(self, request: _Optional[_Union[_mvm_pb2.MVMServiceDeleteRequest, _Mapping]] = ..., execution_date: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ...) -> None: ...
+
+class OnBehalfMVMServiceDeleteResponse(_message.Message):
+    __slots__ = ("response",)
+    RESPONSE_FIELD_NUMBER: _ClassVar[int]
+    response: _mvm_pb2.MVMServiceDeleteResponse
+    def __init__(self, response: _Optional[_Union[_mvm_pb2.MVMServiceDeleteResponse, _Mapping]] = ...) -> None: ...

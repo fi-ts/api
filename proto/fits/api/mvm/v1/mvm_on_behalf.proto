@@ -32,3 +32,18 @@ message OnBehalfMVMServiceCreateResponse {
   // The public create response.
   MVMServiceCreateResponse response = 1;
 }
+
+// Request to delete an MVM on behalf of a customer tenant.
+message OnBehalfMVMServiceDeleteRequest {
+  // The public delete request.
+  MVMServiceDeleteRequest request = 1;
+  // The future date when the MVM will be deleted.
+  // If unset, the MVM is deleted immediately.
+  optional google.protobuf.Timestamp execution_date = 2;
+}
+
+// Response for an on-behalf MVM delete.
+message OnBehalfMVMServiceDeleteResponse {
+  // The public delete response.
+  MVMServiceDeleteResponse response = 1;
+}

@@ -1,5 +1,5 @@
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import type { MVMServiceCreateRequest, MVMServiceCreateResponse } from "./mvm_pb.js";
+import type { MVMServiceCreateRequest, MVMServiceCreateResponse, MVMServiceDeleteRequest, MVMServiceDeleteResponse } from "./mvm_pb.js";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 /**
@@ -54,6 +54,49 @@ export type OnBehalfMVMServiceCreateResponse = Message<"fits.api.mvm.v1.OnBehalf
  * Use `create(OnBehalfMVMServiceCreateResponseSchema)` to create a new message.
  */
 export declare const OnBehalfMVMServiceCreateResponseSchema: GenMessage<OnBehalfMVMServiceCreateResponse>;
+/**
+ * Request to delete an MVM on behalf of a customer tenant.
+ *
+ * @generated from message fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest
+ */
+export type OnBehalfMVMServiceDeleteRequest = Message<"fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest"> & {
+    /**
+     * The public delete request.
+     *
+     * @generated from field: fits.api.mvm.v1.MVMServiceDeleteRequest request = 1;
+     */
+    request?: MVMServiceDeleteRequest | undefined;
+    /**
+     * The future date when the MVM will be deleted.
+     * If unset, the MVM is deleted immediately.
+     *
+     * @generated from field: optional google.protobuf.Timestamp execution_date = 2;
+     */
+    executionDate?: Timestamp | undefined;
+};
+/**
+ * Describes the message fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest.
+ * Use `create(OnBehalfMVMServiceDeleteRequestSchema)` to create a new message.
+ */
+export declare const OnBehalfMVMServiceDeleteRequestSchema: GenMessage<OnBehalfMVMServiceDeleteRequest>;
+/**
+ * Response for an on-behalf MVM delete.
+ *
+ * @generated from message fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse
+ */
+export type OnBehalfMVMServiceDeleteResponse = Message<"fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse"> & {
+    /**
+     * The public delete response.
+     *
+     * @generated from field: fits.api.mvm.v1.MVMServiceDeleteResponse response = 1;
+     */
+    response?: MVMServiceDeleteResponse | undefined;
+};
+/**
+ * Describes the message fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse.
+ * Use `create(OnBehalfMVMServiceDeleteResponseSchema)` to create a new message.
+ */
+export declare const OnBehalfMVMServiceDeleteResponseSchema: GenMessage<OnBehalfMVMServiceDeleteResponse>;
 /**
  * OnBehalfMVMService offers MVM operations on behalf of a customer tenant.
  *

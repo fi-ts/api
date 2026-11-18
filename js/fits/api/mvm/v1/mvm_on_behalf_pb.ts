@@ -4,7 +4,7 @@
 
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
-import type { MVMServiceCreateRequest, MVMServiceCreateResponse } from "./mvm_pb.js";
+import type { MVMServiceCreateRequest, MVMServiceCreateResponse, MVMServiceDeleteRequest, MVMServiceDeleteResponse } from "./mvm_pb.js";
 import { file_fits_api_mvm_v1_mvm } from "./mvm_pb.js";
 import { file_fits_api_v1_common } from "../../v1/common_pb.js";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
@@ -15,7 +15,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/mvm/v1/mvm_on_behalf.proto.
  */
 export const file_fits_api_mvm_v1_mvm_on_behalf: GenFile = /*@__PURE__*/
-  fileDesc("CiNmaXRzL2FwaS9tdm0vdjEvbXZtX29uX2JlaGFsZi5wcm90bxIPZml0cy5hcGkubXZtLnYxIrgBCh9PbkJlaGFsZk1WTVNlcnZpY2VDcmVhdGVSZXF1ZXN0EjkKB3JlcXVlc3QYASABKAsyKC5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZUNyZWF0ZVJlcXVlc3QSEAoIYmlsbGFibGUYAiABKAgSNgoNYmlsbGFibGVfZnJvbRgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIAIgBAUIQCg5fYmlsbGFibGVfZnJvbSJfCiBPbkJlaGFsZk1WTVNlcnZpY2VDcmVhdGVSZXNwb25zZRI7CghyZXNwb25zZRgBIAEoCzIpLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlQ3JlYXRlUmVzcG9uc2UykwEKEk9uQmVoYWxmTVZNU2VydmljZRJ9CgZDcmVhdGUSMC5maXRzLmFwaS5tdm0udjEuT25CZWhhbGZNVk1TZXJ2aWNlQ3JlYXRlUmVxdWVzdBoxLmZpdHMuYXBpLm12bS52MS5PbkJlaGFsZk1WTVNlcnZpY2VDcmVhdGVSZXNwb25zZSIOyvMYAgEC0PMYAuDzGAFCtQEKE2NvbS5maXRzLmFwaS5tdm0udjFCEE12bU9uQmVoYWxmUHJvdG9QAVotZ2l0aHViLmNvbS9maS10cy9hcGkvZ28vZml0cy9hcGkvbXZtL3YxO212bXYxogIDRkFNqgIPRml0cy5BcGkuTXZtLlYxygIPRml0c1xBcGlcTXZtXFYx4gIbRml0c1xBcGlcTXZtXFYxXEdQQk1ldGFkYXRh6gISRml0czo6QXBpOjpNdm06OlYxYgZwcm90bzM", [file_fits_api_mvm_v1_mvm, file_fits_api_v1_common, file_google_protobuf_timestamp]);
+  fileDesc("CiNmaXRzL2FwaS9tdm0vdjEvbXZtX29uX2JlaGFsZi5wcm90bxIPZml0cy5hcGkubXZtLnYxIrgBCh9PbkJlaGFsZk1WTVNlcnZpY2VDcmVhdGVSZXF1ZXN0EjkKB3JlcXVlc3QYASABKAsyKC5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZUNyZWF0ZVJlcXVlc3QSEAoIYmlsbGFibGUYAiABKAgSNgoNYmlsbGFibGVfZnJvbRgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIAIgBAUIQCg5fYmlsbGFibGVfZnJvbSJfCiBPbkJlaGFsZk1WTVNlcnZpY2VDcmVhdGVSZXNwb25zZRI7CghyZXNwb25zZRgBIAEoCzIpLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlQ3JlYXRlUmVzcG9uc2UiqAEKH09uQmVoYWxmTVZNU2VydmljZURlbGV0ZVJlcXVlc3QSOQoHcmVxdWVzdBgBIAEoCzIoLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlRGVsZXRlUmVxdWVzdBI3Cg5leGVjdXRpb25fZGF0ZRgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIAIgBAUIRCg9fZXhlY3V0aW9uX2RhdGUiXwogT25CZWhhbGZNVk1TZXJ2aWNlRGVsZXRlUmVzcG9uc2USOwoIcmVzcG9uc2UYASABKAsyKS5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZURlbGV0ZVJlc3BvbnNlMpMBChJPbkJlaGFsZk1WTVNlcnZpY2USfQoGQ3JlYXRlEjAuZml0cy5hcGkubXZtLnYxLk9uQmVoYWxmTVZNU2VydmljZUNyZWF0ZVJlcXVlc3QaMS5maXRzLmFwaS5tdm0udjEuT25CZWhhbGZNVk1TZXJ2aWNlQ3JlYXRlUmVzcG9uc2UiDsrzGAIBAtDzGALg8xgBQrUBChNjb20uZml0cy5hcGkubXZtLnYxQhBNdm1PbkJlaGFsZlByb3RvUAFaLWdpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL212bS92MTttdm12MaICA0ZBTaoCD0ZpdHMuQXBpLk12bS5WMcoCD0ZpdHNcQXBpXE12bVxWMeICG0ZpdHNcQXBpXE12bVxWMVxHUEJNZXRhZGF0YeoCEkZpdHM6OkFwaTo6TXZtOjpWMWIGcHJvdG8z", [file_fits_api_mvm_v1_mvm, file_fits_api_v1_common, file_google_protobuf_timestamp]);
 
 /**
  * Request to create an MVM on behalf of a customer tenant.
@@ -72,6 +72,56 @@ export type OnBehalfMVMServiceCreateResponse = Message<"fits.api.mvm.v1.OnBehalf
  */
 export const OnBehalfMVMServiceCreateResponseSchema: GenMessage<OnBehalfMVMServiceCreateResponse> = /*@__PURE__*/
   messageDesc(file_fits_api_mvm_v1_mvm_on_behalf, 1);
+
+/**
+ * Request to delete an MVM on behalf of a customer tenant.
+ *
+ * @generated from message fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest
+ */
+export type OnBehalfMVMServiceDeleteRequest = Message<"fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest"> & {
+  /**
+   * The public delete request.
+   *
+   * @generated from field: fits.api.mvm.v1.MVMServiceDeleteRequest request = 1;
+   */
+  request?: MVMServiceDeleteRequest | undefined;
+
+  /**
+   * The future date when the MVM will be deleted.
+   * If unset, the MVM is deleted immediately.
+   *
+   * @generated from field: optional google.protobuf.Timestamp execution_date = 2;
+   */
+  executionDate?: Timestamp | undefined;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest.
+ * Use `create(OnBehalfMVMServiceDeleteRequestSchema)` to create a new message.
+ */
+export const OnBehalfMVMServiceDeleteRequestSchema: GenMessage<OnBehalfMVMServiceDeleteRequest> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm_on_behalf, 2);
+
+/**
+ * Response for an on-behalf MVM delete.
+ *
+ * @generated from message fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse
+ */
+export type OnBehalfMVMServiceDeleteResponse = Message<"fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse"> & {
+  /**
+   * The public delete response.
+   *
+   * @generated from field: fits.api.mvm.v1.MVMServiceDeleteResponse response = 1;
+   */
+  response?: MVMServiceDeleteResponse | undefined;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse.
+ * Use `create(OnBehalfMVMServiceDeleteResponseSchema)` to create a new message.
+ */
+export const OnBehalfMVMServiceDeleteResponseSchema: GenMessage<OnBehalfMVMServiceDeleteResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm_on_behalf, 3);
 
 /**
  * OnBehalfMVMService offers MVM operations on behalf of a customer tenant.
