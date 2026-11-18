@@ -138,7 +138,7 @@ class NetworkInterface(_message.Message):
     macaddress: str
     def __init__(self, vlan_uuid: _Optional[str] = ..., macaddress: _Optional[str] = ...) -> None: ...
 
-class InitialNetworkInterface(_message.Message):
+class InitialIPAddress(_message.Message):
     __slots__ = ("vlan_uuid",)
     VLAN_UUID_FIELD_NUMBER: _ClassVar[int]
     vlan_uuid: str
@@ -247,7 +247,7 @@ class MVMServiceCreateLinuxRequest(_message.Message):
     def __init__(self, ldap_uuid: _Optional[str] = ..., disks: _Optional[_Iterable[_Union[LinuxDisk, _Mapping]]] = ...) -> None: ...
 
 class MVMServiceCreateRequest(_message.Message):
-    __slots__ = ("project_uuid", "name_code", "os_uuid", "location_uuid", "contact_uuid", "cpu", "ram", "order_number", "labels", "backup", "encrypted", "availability", "service_class", "windows", "linux", "initial_network_interface")
+    __slots__ = ("project_uuid", "name_code", "os_uuid", "location_uuid", "contact_uuid", "cpu", "ram", "order_number", "labels", "backup", "encrypted", "availability", "service_class", "windows", "linux", "initial_ip_address")
     PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
     NAME_CODE_FIELD_NUMBER: _ClassVar[int]
     OS_UUID_FIELD_NUMBER: _ClassVar[int]
@@ -263,7 +263,7 @@ class MVMServiceCreateRequest(_message.Message):
     SERVICE_CLASS_FIELD_NUMBER: _ClassVar[int]
     WINDOWS_FIELD_NUMBER: _ClassVar[int]
     LINUX_FIELD_NUMBER: _ClassVar[int]
-    INITIAL_NETWORK_INTERFACE_FIELD_NUMBER: _ClassVar[int]
+    INITIAL_IP_ADDRESS_FIELD_NUMBER: _ClassVar[int]
     project_uuid: str
     name_code: str
     os_uuid: str
@@ -279,8 +279,8 @@ class MVMServiceCreateRequest(_message.Message):
     service_class: ServiceClass
     windows: MVMServiceCreateWindowsRequest
     linux: MVMServiceCreateLinuxRequest
-    initial_network_interface: InitialNetworkInterface
-    def __init__(self, project_uuid: _Optional[str] = ..., name_code: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., order_number: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.Labels, _Mapping]] = ..., backup: _Optional[bool] = ..., encrypted: _Optional[bool] = ..., availability: _Optional[_Union[Availability, str]] = ..., service_class: _Optional[_Union[ServiceClass, str]] = ..., windows: _Optional[_Union[MVMServiceCreateWindowsRequest, _Mapping]] = ..., linux: _Optional[_Union[MVMServiceCreateLinuxRequest, _Mapping]] = ..., initial_network_interface: _Optional[_Union[InitialNetworkInterface, _Mapping]] = ...) -> None: ...
+    initial_ip_address: InitialIPAddress
+    def __init__(self, project_uuid: _Optional[str] = ..., name_code: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram: _Optional[int] = ..., order_number: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.Labels, _Mapping]] = ..., backup: _Optional[bool] = ..., encrypted: _Optional[bool] = ..., availability: _Optional[_Union[Availability, str]] = ..., service_class: _Optional[_Union[ServiceClass, str]] = ..., windows: _Optional[_Union[MVMServiceCreateWindowsRequest, _Mapping]] = ..., linux: _Optional[_Union[MVMServiceCreateLinuxRequest, _Mapping]] = ..., initial_ip_address: _Optional[_Union[InitialIPAddress, _Mapping]] = ...) -> None: ...
 
 class MVMServiceCreateResponse(_message.Message):
     __slots__ = ("uuid",)

@@ -815,10 +815,11 @@ func (x *NetworkInterface) GetMacaddress() string {
 	return ""
 }
 
-// The InitialNetworkInterface needs to be provided at creation of a MVM.
-// It provides the UUID of the target VLAN for the MVM's first network interface.
-// The created MVM comes with a NetworkInterface connected to this VLAN.
-type InitialNetworkInterface struct {
+// The InitialIPAddress needs to be provided at creation of a MVM.
+// It provides the UUID of the target VLAN for the MVM's first IP address.
+// The created MVM comes with an IPAddress on a network interface connected
+// to this VLAN.
+type InitialIPAddress struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// UUID of the VLAN.
 	VlanUuid      string `protobuf:"bytes,1,opt,name=vlan_uuid,json=vlanUuid,proto3" json:"vlan_uuid,omitempty"`
@@ -826,20 +827,20 @@ type InitialNetworkInterface struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *InitialNetworkInterface) Reset() {
-	*x = InitialNetworkInterface{}
+func (x *InitialIPAddress) Reset() {
+	*x = InitialIPAddress{}
 	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *InitialNetworkInterface) String() string {
+func (x *InitialIPAddress) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*InitialNetworkInterface) ProtoMessage() {}
+func (*InitialIPAddress) ProtoMessage() {}
 
-func (x *InitialNetworkInterface) ProtoReflect() protoreflect.Message {
+func (x *InitialIPAddress) ProtoReflect() protoreflect.Message {
 	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -851,12 +852,12 @@ func (x *InitialNetworkInterface) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use InitialNetworkInterface.ProtoReflect.Descriptor instead.
-func (*InitialNetworkInterface) Descriptor() ([]byte, []int) {
+// Deprecated: Use InitialIPAddress.ProtoReflect.Descriptor instead.
+func (*InitialIPAddress) Descriptor() ([]byte, []int) {
 	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *InitialNetworkInterface) GetVlanUuid() string {
+func (x *InitialIPAddress) GetVlanUuid() string {
 	if x != nil {
 		return x.VlanUuid
 	}
@@ -1565,10 +1566,10 @@ type MVMServiceCreateRequest struct {
 	//	*MVMServiceCreateRequest_Windows
 	//	*MVMServiceCreateRequest_Linux
 	Mvmtype isMVMServiceCreateRequest_Mvmtype `protobuf_oneof:"mvmtype"`
-	// Provides the target VLAN for the initial network interface.
-	InitialNetworkInterface *InitialNetworkInterface `protobuf:"bytes,16,opt,name=initial_network_interface,json=initialNetworkInterface,proto3" json:"initial_network_interface,omitempty"`
-	unknownFields           protoimpl.UnknownFields
-	sizeCache               protoimpl.SizeCache
+	// Provides the target VLAN for the initial IP address.
+	InitialIpAddress *InitialIPAddress `protobuf:"bytes,16,opt,name=initial_ip_address,json=initialIpAddress,proto3" json:"initial_ip_address,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *MVMServiceCreateRequest) Reset() {
@@ -1717,9 +1718,9 @@ func (x *MVMServiceCreateRequest) GetLinux() *MVMServiceCreateLinuxRequest {
 	return nil
 }
 
-func (x *MVMServiceCreateRequest) GetInitialNetworkInterface() *InitialNetworkInterface {
+func (x *MVMServiceCreateRequest) GetInitialIpAddress() *InitialIPAddress {
 	if x != nil {
-		return x.InitialNetworkInterface
+		return x.InitialIpAddress
 	}
 	return nil
 }
@@ -3972,8 +3973,8 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\tvlan_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bvlanUuid\x12\x1e\n" +
 	"\n" +
 	"macaddress\x18\x02 \x01(\tR\n" +
-	"macaddress\"@\n" +
-	"\x17InitialNetworkInterface\x12%\n" +
+	"macaddress\"9\n" +
+	"\x10InitialIPAddress\x12%\n" +
 	"\tvlan_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bvlanUuid\"a\n" +
 	"\x06Status\x126\n" +
 	"\x05state\x18\x01 \x01(\x0e2\x16.fits.api.mvm.v1.StateB\b\xbaH\x05\x82\x01\x02\x10\x01R\x05state\x12\x1f\n" +
@@ -4019,7 +4020,7 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\x05disks\x18\x02 \x03(\v2\x1c.fits.api.mvm.v1.WindowsDiskB\b\xbaH\x05\x92\x01\x02\b\x01R\x05disks\"\x81\x01\n" +
 	"\x1cMVMServiceCreateLinuxRequest\x12%\n" +
 	"\tldap_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bldapUuid\x12:\n" +
-	"\x05disks\x18\x02 \x03(\v2\x1a.fits.api.mvm.v1.LinuxDiskB\b\xbaH\x05\x92\x01\x02\b\x01R\x05disks\"\xc0\x06\n" +
+	"\x05disks\x18\x02 \x03(\v2\x1a.fits.api.mvm.v1.LinuxDiskB\b\xbaH\x05\x92\x01\x02\b\x01R\x05disks\"\xab\x06\n" +
 	"\x17MVMServiceCreateRequest\x12+\n" +
 	"\fproject_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12(\n" +
 	"\tname_code\x18\x02 \x01(\tB\v\xbaH\br\x06\xa0\xb4\xae\xb1\x02\x01R\bnameCode\x12!\n" +
@@ -4036,8 +4037,8 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\favailability\x18\f \x01(\x0e2\x1d.fits.api.mvm.v1.AvailabilityB\b\xbaH\x05\x82\x01\x02\x10\x01R\favailability\x12L\n" +
 	"\rservice_class\x18\r \x01(\x0e2\x1d.fits.api.mvm.v1.ServiceClassB\b\xbaH\x05\x82\x01\x02\x10\x01R\fserviceClass\x12K\n" +
 	"\awindows\x18\x0e \x01(\v2/.fits.api.mvm.v1.MVMServiceCreateWindowsRequestH\x00R\awindows\x12E\n" +
-	"\x05linux\x18\x0f \x01(\v2-.fits.api.mvm.v1.MVMServiceCreateLinuxRequestH\x00R\x05linux\x12d\n" +
-	"\x19initial_network_interface\x18\x10 \x01(\v2(.fits.api.mvm.v1.InitialNetworkInterfaceR\x17initialNetworkInterfaceB\x10\n" +
+	"\x05linux\x18\x0f \x01(\v2-.fits.api.mvm.v1.MVMServiceCreateLinuxRequestH\x00R\x05linux\x12O\n" +
+	"\x12initial_ip_address\x18\x10 \x01(\v2!.fits.api.mvm.v1.InitialIPAddressR\x10initialIpAddressB\x10\n" +
 	"\amvmtype\x12\x05\xbaH\x02\b\x01\"8\n" +
 	"\x18MVMServiceCreateResponse\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"k\n" +
@@ -4266,7 +4267,7 @@ var file_fits_api_mvm_v1_mvm_proto_goTypes = []any{
 	(*WindowsDetails)(nil),                               // 8: fits.api.mvm.v1.WindowsDetails
 	(*IPAddress)(nil),                                    // 9: fits.api.mvm.v1.IPAddress
 	(*NetworkInterface)(nil),                             // 10: fits.api.mvm.v1.NetworkInterface
-	(*InitialNetworkInterface)(nil),                      // 11: fits.api.mvm.v1.InitialNetworkInterface
+	(*InitialIPAddress)(nil),                             // 11: fits.api.mvm.v1.InitialIPAddress
 	(*Status)(nil),                                       // 12: fits.api.mvm.v1.Status
 	(*ManagedVM)(nil),                                    // 13: fits.api.mvm.v1.ManagedVM
 	(*Snapshot)(nil),                                     // 14: fits.api.mvm.v1.Snapshot
@@ -4349,7 +4350,7 @@ var file_fits_api_mvm_v1_mvm_proto_depIdxs = []int32{
 	1,  // 22: fits.api.mvm.v1.MVMServiceCreateRequest.service_class:type_name -> fits.api.mvm.v1.ServiceClass
 	19, // 23: fits.api.mvm.v1.MVMServiceCreateRequest.windows:type_name -> fits.api.mvm.v1.MVMServiceCreateWindowsRequest
 	20, // 24: fits.api.mvm.v1.MVMServiceCreateRequest.linux:type_name -> fits.api.mvm.v1.MVMServiceCreateLinuxRequest
-	11, // 25: fits.api.mvm.v1.MVMServiceCreateRequest.initial_network_interface:type_name -> fits.api.mvm.v1.InitialNetworkInterface
+	11, // 25: fits.api.mvm.v1.MVMServiceCreateRequest.initial_ip_address:type_name -> fits.api.mvm.v1.InitialIPAddress
 	21, // 26: fits.api.mvm.v1.MVMServiceValidateCreateRequest.create:type_name -> fits.api.mvm.v1.MVMServiceCreateRequest
 	65, // 27: fits.api.mvm.v1.MVMServiceUpdateRequest.update_meta:type_name -> fits.api.v1.UpdateMeta
 	66, // 28: fits.api.mvm.v1.MVMServiceUpdateRequest.labels:type_name -> fits.api.v1.UpdateLabels

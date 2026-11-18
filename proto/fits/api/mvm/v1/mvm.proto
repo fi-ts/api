@@ -318,10 +318,11 @@ message NetworkInterface {
   string macaddress = 2; // TODO: add validation
 }
 
-// The InitialNetworkInterface needs to be provided at creation of a MVM.
-// It provides the UUID of the target VLAN for the MVM's first network interface.
-// The created MVM comes with a NetworkInterface connected to this VLAN.
-message InitialNetworkInterface {
+// The InitialIPAddress needs to be provided at creation of a MVM.
+// It provides the UUID of the target VLAN for the MVM's first IP address.
+// The created MVM comes with an IPAddress on a network interface connected
+// to this VLAN.
+message InitialIPAddress {
   // UUID of the VLAN.
   string vlan_uuid = 1 [(buf.validate.field).string.uuid = true];
 }
@@ -472,8 +473,8 @@ message MVMServiceCreateRequest {
     // Linux-specific settings (LDAP + disk).
     MVMServiceCreateLinuxRequest linux = 15;
   }
-  // Provides the target VLAN for the initial network interface.
-  InitialNetworkInterface initial_network_interface = 16;
+  // Provides the target VLAN for the initial IP address.
+  InitialIPAddress initial_ip_address = 16;
 }
 
 // Response for MVM create requests.

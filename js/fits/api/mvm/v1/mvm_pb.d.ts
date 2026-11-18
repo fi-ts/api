@@ -264,13 +264,14 @@ export type NetworkInterface = Message<"fits.api.mvm.v1.NetworkInterface"> & {
  */
 export declare const NetworkInterfaceSchema: GenMessage<NetworkInterface>;
 /**
- * The InitialNetworkInterface needs to be provided at creation of a MVM.
- * It provides the UUID of the target VLAN for the MVM's first network interface.
- * The created MVM comes with a NetworkInterface connected to this VLAN.
+ * The InitialIPAddress needs to be provided at creation of a MVM.
+ * It provides the UUID of the target VLAN for the MVM's first IP address.
+ * The created MVM comes with an IPAddress on a network interface connected
+ * to this VLAN.
  *
- * @generated from message fits.api.mvm.v1.InitialNetworkInterface
+ * @generated from message fits.api.mvm.v1.InitialIPAddress
  */
-export type InitialNetworkInterface = Message<"fits.api.mvm.v1.InitialNetworkInterface"> & {
+export type InitialIPAddress = Message<"fits.api.mvm.v1.InitialIPAddress"> & {
     /**
      * UUID of the VLAN.
      *
@@ -279,10 +280,10 @@ export type InitialNetworkInterface = Message<"fits.api.mvm.v1.InitialNetworkInt
     vlanUuid: string;
 };
 /**
- * Describes the message fits.api.mvm.v1.InitialNetworkInterface.
- * Use `create(InitialNetworkInterfaceSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.InitialIPAddress.
+ * Use `create(InitialIPAddressSchema)` to create a new message.
  */
-export declare const InitialNetworkInterfaceSchema: GenMessage<InitialNetworkInterface>;
+export declare const InitialIPAddressSchema: GenMessage<InitialIPAddress>;
 /**
  * The status of the MVM.
  *
@@ -716,11 +717,11 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
         value?: undefined;
     };
     /**
-     * Provides the target VLAN for the initial network interface.
+     * Provides the target VLAN for the initial IP address.
      *
-     * @generated from field: fits.api.mvm.v1.InitialNetworkInterface initial_network_interface = 16;
+     * @generated from field: fits.api.mvm.v1.InitialIPAddress initial_ip_address = 16;
      */
-    initialNetworkInterface?: InitialNetworkInterface | undefined;
+    initialIpAddress?: InitialIPAddress | undefined;
 };
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceCreateRequest.

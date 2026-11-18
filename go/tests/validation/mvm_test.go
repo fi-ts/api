@@ -62,17 +62,17 @@ func TestValidateNetworkInterface(t *testing.T) {
 	validateProtos(t, tests)
 }
 
-func TestValidateInitialNetworkInterface(t *testing.T) {
+func TestValidateInitialIPAddress(t *testing.T) {
 	tests := prototests{
 		{
 			name:             "empty",
-			msg:              &mvmv1.InitialNetworkInterface{},
+			msg:              &mvmv1.InitialIPAddress{},
 			wantErr:          true,
 			wantErrorMessage: `validation error: vlan_uuid: value is empty, which is not a valid UUID`,
 		},
 		{
 			name:    "valid",
-			msg:     &mvmv1.InitialNetworkInterface{VlanUuid: testUUID},
+			msg:     &mvmv1.InitialIPAddress{VlanUuid: testUUID},
 			wantErr: false,
 		},
 	}

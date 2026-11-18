@@ -493,7 +493,7 @@
                 </li>
               
                 <li>
-                  <a href="#fits.api.mvm.v1.InitialNetworkInterface"><span class="badge">M</span>InitialNetworkInterface</a>
+                  <a href="#fits.api.mvm.v1.InitialIPAddress"><span class="badge">M</span>InitialIPAddress</a>
                 </li>
               
                 <li>
@@ -2602,8 +2602,8 @@ Unset for additional IP addresses that share an existing interface such addresse
 
         
       
-        <h3 id="fits.api.mvm.v1.InitialNetworkInterface">InitialNetworkInterface</h3>
-        <p>The InitialNetworkInterface needs to be provided at creation of a MVM.</p><p>It provides the UUID of the target VLAN for the MVM's first network interface.</p><p>The created MVM comes with a NetworkInterface connected to this VLAN.</p>
+        <h3 id="fits.api.mvm.v1.InitialIPAddress">InitialIPAddress</h3>
+        <p>The InitialIPAddress needs to be provided at creation of a MVM.</p><p>It provides the UUID of the target VLAN for the MVM's first IP address.</p><p>The created MVM comes with an IPAddress on a network interface connected</p><p>to this VLAN.</p>
 
         
           <table class="field-table">
@@ -3075,10 +3075,10 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>initial_network_interface</td>
-                  <td><a href="#fits.api.mvm.v1.InitialNetworkInterface">InitialNetworkInterface</a></td>
+                  <td>initial_ip_address</td>
+                  <td><a href="#fits.api.mvm.v1.InitialIPAddress">InitialIPAddress</a></td>
                   <td></td>
-                  <td><p>Provides the target VLAN for the initial network interface. </p></td>
+                  <td><p>Provides the target VLAN for the initial IP address. </p></td>
                 </tr>
               
             </tbody>
