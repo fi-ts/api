@@ -17,8 +17,6 @@ import { MVMService as Apimvmv1MVMService } from "./fits/api/mvm/v1/mvm_pb";
 
 import { OnBehalfMVMService as Apimvmv1OnBehalfMVMService } from "./fits/api/mvm/v1/mvm_on_behalf_pb";
 
-import { ProviderMVMService as Apimvmv1ProviderMVMService } from "./fits/api/mvm/v1/mvm_provider_pb";
-
 import { OSService as Apimvmv1OSService } from "./fits/api/mvm/v1/os_pb";
 
 import { VLANService as Apimvmv1VLANService } from "./fits/api/mvm/v1/vlan_pb";
@@ -73,8 +71,6 @@ export interface Apimvmv1 {
   mvm(): ConnectClient<typeof Apimvmv1MVMService>;
 
   onBehalfMVM(): ConnectClient<typeof Apimvmv1OnBehalfMVMService>;
-
-  providerMVM(): ConnectClient<typeof Apimvmv1ProviderMVMService>;
 
   os(): ConnectClient<typeof Apimvmv1OSService>;
 
@@ -194,8 +190,6 @@ class Apimvmv1Impl implements Apimvmv1 {
 
   private _onBehalfMVM?: ConnectClient<typeof Apimvmv1OnBehalfMVMService>;
 
-  private _providerMVM?: ConnectClient<typeof Apimvmv1ProviderMVMService>;
-
   private _os?: ConnectClient<typeof Apimvmv1OSService>;
 
   private _vlan?: ConnectClient<typeof Apimvmv1VLANService>;
@@ -246,13 +240,6 @@ class Apimvmv1Impl implements Apimvmv1 {
       this._onBehalfMVM = createClient(Apimvmv1OnBehalfMVMService, this.transport);
     }
     return this._onBehalfMVM;
-  }
-
-  providerMVM(): ConnectClient<typeof Apimvmv1ProviderMVMService> {
-    if (!this._providerMVM) {
-      this._providerMVM = createClient(Apimvmv1ProviderMVMService, this.transport);
-    }
-    return this._providerMVM;
   }
 
   os(): ConnectClient<typeof Apimvmv1OSService> {
