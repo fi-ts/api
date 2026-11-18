@@ -27,9 +27,6 @@ class ContactService(Protocol):
     async def update(self, request: fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceUpdateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceUpdateResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
-    async def delete(self, request: fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceDeleteRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceDeleteResponse:
-        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-
 
 class ContactServiceASGIApplication(ConnectASGIApplication[ContactService]):
     def __init__(self, service: ContactService | AsyncGenerator[ContactService], *, interceptors: Iterable[Interceptor]=(), read_max_bytes: int | None = None, compressions: Iterable[Compression] | None = None, codecs: Iterable[Codec] | None = None) -> None:
@@ -65,16 +62,6 @@ class ContactServiceASGIApplication(ConnectASGIApplication[ContactService]):
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=svc.update,
-                ),
-                "/fits.api.mvm.v1.ContactService/Delete": Endpoint.unary(
-                    method=MethodInfo(
-                        name="Delete",
-                        service_name="fits.api.mvm.v1.ContactService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceDeleteRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceDeleteResponse,
-                        idempotency_level=IdempotencyLevel.UNKNOWN,
-                    ),
-                    function=svc.delete,
                 ),
             },
             interceptors=interceptors,
@@ -150,26 +137,6 @@ class ContactServiceClient(ConnectClient):
             timeout_ms=timeout_ms,
         )
 
-    async def delete(
-        self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceDeleteRequest,
-        *,
-        headers: Headers | Mapping[str, str] | None = None,
-        timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceDeleteResponse:
-        return await self.execute_unary(
-            request=request,
-            method=MethodInfo(
-                name="Delete",
-                service_name="fits.api.mvm.v1.ContactService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceDeleteRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceDeleteResponse,
-                idempotency_level=IdempotencyLevel.UNKNOWN,
-            ),
-            headers=headers,
-            timeout_ms=timeout_ms,
-        )
-
 
 
 
@@ -180,8 +147,6 @@ class ContactServiceSync(Protocol):
     def create(self, request: fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceCreateResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def update(self, request: fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceUpdateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceUpdateResponse:
-        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-    def delete(self, request: fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceDeleteRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceDeleteResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
 
@@ -218,16 +183,6 @@ class ContactServiceWSGIApplication(ConnectWSGIApplication):
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=service.update,
-                ),
-                "/fits.api.mvm.v1.ContactService/Delete": EndpointSync.unary(
-                    method=MethodInfo(
-                        name="Delete",
-                        service_name="fits.api.mvm.v1.ContactService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceDeleteRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceDeleteResponse,
-                        idempotency_level=IdempotencyLevel.UNKNOWN,
-                    ),
-                    function=service.delete,
                 ),
             },
             interceptors=interceptors,
@@ -297,26 +252,6 @@ class ContactServiceClientSync(ConnectClientSync):
                 service_name="fits.api.mvm.v1.ContactService",
                 input=fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceUpdateRequest,
                 output=fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceUpdateResponse,
-                idempotency_level=IdempotencyLevel.UNKNOWN,
-            ),
-            headers=headers,
-            timeout_ms=timeout_ms,
-        )
-
-    def delete(
-        self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceDeleteRequest,
-        *,
-        headers: Headers | Mapping[str, str] | None = None,
-        timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceDeleteResponse:
-        return self.execute_unary(
-            request=request,
-            method=MethodInfo(
-                name="Delete",
-                service_name="fits.api.mvm.v1.ContactService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceDeleteRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_contact__pb2.ContactServiceDeleteResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,

@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/mvm/v1/contact.proto.
  */
 export const file_fits_api_mvm_v1_contact: GenFile = /*@__PURE__*/
-  fileDesc("Ch1maXRzL2FwaS9tdm0vdjEvY29udGFjdC5wcm90bxIPZml0cy5hcGkubXZtLnYxItQBCgdDb250YWN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEh8KCmZpcnN0X25hbWUYAiABKAlCC7pICHIGwLOusQIBEh4KCWxhc3RfbmFtZRgDIAEoCUILukgIcgbAs66xAgESHwoKZGVwYXJ0bWVudBgEIAEoCUILukgIcgbAs66xAgESGgoFcGhvbmUYBSABKAlCC7pICHIGiLSusQIBEhYKBWVtYWlsGAYgASgJQge6SARyAmABEhsKBnRlbmFudBgHIAEoCUILukgIcgbAs66xAgEiOAoZQ29udGFjdFNlcnZpY2VMaXN0UmVxdWVzdBIbCgZ0ZW5hbnQYASABKAlCC7pICHIGwLOusQIBIkgKGkNvbnRhY3RTZXJ2aWNlTGlzdFJlc3BvbnNlEioKCGNvbnRhY3RzGAEgAygLMhguZml0cy5hcGkubXZtLnYxLkNvbnRhY3QiwwEKG0NvbnRhY3RTZXJ2aWNlQ3JlYXRlUmVxdWVzdBIbCgZ0ZW5hbnQYASABKAlCC7pICHIGwLOusQIBEh8KCmZpcnN0X25hbWUYAiABKAlCC7pICHIGwLOusQIBEh4KCWxhc3RfbmFtZRgDIAEoCUILukgIcgbAs66xAgESHwoKZGVwYXJ0bWVudBgEIAEoCUILukgIcgbAs66xAgESDQoFcGhvbmUYBSABKAkSFgoFZW1haWwYBiABKAlCB7pIBHICYAEiNgocQ29udGFjdFNlcnZpY2VDcmVhdGVSZXNwb25zZRIWCgR1dWlkGAEgASgJQgi6SAVyA7ABASKRAgobQ29udGFjdFNlcnZpY2VVcGRhdGVSZXF1ZXN0EhsKBnRlbmFudBgBIAEoCUILukgIcgbAs66xAgESFgoEdXVpZBgCIAEoCUIIukgFcgOwAQESNAoLdXBkYXRlX21ldGEYAyABKAsyFy5maXRzLmFwaS52MS5VcGRhdGVNZXRhQga6SAPIAQESHwoKZmlyc3RfbmFtZRgEIAEoCUILukgIcgbAs66xAgESHgoJbGFzdF9uYW1lGAUgASgJQgu6SAhyBsCzrrECARIfCgpkZXBhcnRtZW50GAYgASgJQgu6SAhyBsCzrrECARINCgVwaG9uZRgHIAEoCRIWCgVlbWFpbBgIIAEoCUIHukgEcgJgASJJChxDb250YWN0U2VydmljZVVwZGF0ZVJlc3BvbnNlEikKB2NvbnRhY3QYASABKAsyGC5maXRzLmFwaS5tdm0udjEuQ29udGFjdCJSChtDb250YWN0U2VydmljZURlbGV0ZVJlcXVlc3QSGwoGdGVuYW50GAEgASgJQgu6SAhyBsCzrrECARIWCgR1dWlkGAIgASgJQgi6SAVyA7ABASIeChxDb250YWN0U2VydmljZURlbGV0ZVJlc3BvbnNlMtcDCg5Db250YWN0U2VydmljZRJsCgRMaXN0EiouZml0cy5hcGkubXZtLnYxLkNvbnRhY3RTZXJ2aWNlTGlzdFJlcXVlc3QaKy5maXRzLmFwaS5tdm0udjEuQ29udGFjdFNlcnZpY2VMaXN0UmVzcG9uc2UiC8LzGAMBAgPg8xgCEnEKBkNyZWF0ZRIsLmZpdHMuYXBpLm12bS52MS5Db250YWN0U2VydmljZUNyZWF0ZVJlcXVlc3QaLS5maXRzLmFwaS5tdm0udjEuQ29udGFjdFNlcnZpY2VDcmVhdGVSZXNwb25zZSIKwvMYAgEC4PMYARJxCgZVcGRhdGUSLC5maXRzLmFwaS5tdm0udjEuQ29udGFjdFNlcnZpY2VVcGRhdGVSZXF1ZXN0Gi0uZml0cy5hcGkubXZtLnYxLkNvbnRhY3RTZXJ2aWNlVXBkYXRlUmVzcG9uc2UiCsLzGAIBAuDzGAEScQoGRGVsZXRlEiwuZml0cy5hcGkubXZtLnYxLkNvbnRhY3RTZXJ2aWNlRGVsZXRlUmVxdWVzdBotLmZpdHMuYXBpLm12bS52MS5Db250YWN0U2VydmljZURlbGV0ZVJlc3BvbnNlIgrC8xgCAQLg8xgBQrEBChNjb20uZml0cy5hcGkubXZtLnYxQgxDb250YWN0UHJvdG9QAVotZ2l0aHViLmNvbS9maS10cy9hcGkvZ28vZml0cy9hcGkvbXZtL3YxO212bXYxogIDRkFNqgIPRml0cy5BcGkuTXZtLlYxygIPRml0c1xBcGlcTXZtXFYx4gIbRml0c1xBcGlcTXZtXFYxXEdQQk1ldGFkYXRh6gISRml0czo6QXBpOjpNdm06OlYxYgZwcm90bzM", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
+  fileDesc("Ch1maXRzL2FwaS9tdm0vdjEvY29udGFjdC5wcm90bxIPZml0cy5hcGkubXZtLnYxItQBCgdDb250YWN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEh8KCmZpcnN0X25hbWUYAiABKAlCC7pICHIGwLOusQIBEh4KCWxhc3RfbmFtZRgDIAEoCUILukgIcgbAs66xAgESHwoKZGVwYXJ0bWVudBgEIAEoCUILukgIcgbAs66xAgESGgoFcGhvbmUYBSABKAlCC7pICHIGiLSusQIBEhYKBWVtYWlsGAYgASgJQge6SARyAmABEhsKBnRlbmFudBgHIAEoCUILukgIcgbAs66xAgEiOAoZQ29udGFjdFNlcnZpY2VMaXN0UmVxdWVzdBIbCgZ0ZW5hbnQYASABKAlCC7pICHIGwLOusQIBIkgKGkNvbnRhY3RTZXJ2aWNlTGlzdFJlc3BvbnNlEioKCGNvbnRhY3RzGAEgAygLMhguZml0cy5hcGkubXZtLnYxLkNvbnRhY3QiwwEKG0NvbnRhY3RTZXJ2aWNlQ3JlYXRlUmVxdWVzdBIbCgZ0ZW5hbnQYASABKAlCC7pICHIGwLOusQIBEh8KCmZpcnN0X25hbWUYAiABKAlCC7pICHIGwLOusQIBEh4KCWxhc3RfbmFtZRgDIAEoCUILukgIcgbAs66xAgESHwoKZGVwYXJ0bWVudBgEIAEoCUILukgIcgbAs66xAgESDQoFcGhvbmUYBSABKAkSFgoFZW1haWwYBiABKAlCB7pIBHICYAEiNgocQ29udGFjdFNlcnZpY2VDcmVhdGVSZXNwb25zZRIWCgR1dWlkGAEgASgJQgi6SAVyA7ABASKRAgobQ29udGFjdFNlcnZpY2VVcGRhdGVSZXF1ZXN0EhsKBnRlbmFudBgBIAEoCUILukgIcgbAs66xAgESFgoEdXVpZBgCIAEoCUIIukgFcgOwAQESNAoLdXBkYXRlX21ldGEYAyABKAsyFy5maXRzLmFwaS52MS5VcGRhdGVNZXRhQga6SAPIAQESHwoKZmlyc3RfbmFtZRgEIAEoCUILukgIcgbAs66xAgESHgoJbGFzdF9uYW1lGAUgASgJQgu6SAhyBsCzrrECARIfCgpkZXBhcnRtZW50GAYgASgJQgu6SAhyBsCzrrECARINCgVwaG9uZRgHIAEoCRIWCgVlbWFpbBgIIAEoCUIHukgEcgJgASIeChxDb250YWN0U2VydmljZVVwZGF0ZVJlc3BvbnNlMuQCCg5Db250YWN0U2VydmljZRJsCgRMaXN0EiouZml0cy5hcGkubXZtLnYxLkNvbnRhY3RTZXJ2aWNlTGlzdFJlcXVlc3QaKy5maXRzLmFwaS5tdm0udjEuQ29udGFjdFNlcnZpY2VMaXN0UmVzcG9uc2UiC8LzGAMBAgPg8xgCEnEKBkNyZWF0ZRIsLmZpdHMuYXBpLm12bS52MS5Db250YWN0U2VydmljZUNyZWF0ZVJlcXVlc3QaLS5maXRzLmFwaS5tdm0udjEuQ29udGFjdFNlcnZpY2VDcmVhdGVSZXNwb25zZSIKwvMYAgEC4PMYARJxCgZVcGRhdGUSLC5maXRzLmFwaS5tdm0udjEuQ29udGFjdFNlcnZpY2VVcGRhdGVSZXF1ZXN0Gi0uZml0cy5hcGkubXZtLnYxLkNvbnRhY3RTZXJ2aWNlVXBkYXRlUmVzcG9uc2UiCsLzGAIBAuDzGAFCsQEKE2NvbS5maXRzLmFwaS5tdm0udjFCDENvbnRhY3RQcm90b1ABWi1naXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS9tdm0vdjE7bXZtdjGiAgNGQU2qAg9GaXRzLkFwaS5Ndm0uVjHKAg9GaXRzXEFwaVxNdm1cVjHiAhtGaXRzXEFwaVxNdm1cVjFcR1BCTWV0YWRhdGHqAhJGaXRzOjpBcGk6Ok12bTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
 
 /**
  * Contact is a contact person an MVM instance can be assigned to.
@@ -273,21 +273,10 @@ export const ContactServiceUpdateRequestSchema: GenMessage<ContactServiceUpdateR
 
 /**
  * Response for Update; an empty response means the change was accepted.
- * TODO: check whether update is really asynchronous. If it completes
- * synchronously, returning the updated Contact here is correct. If it is
- * asynchronous, this response should become a minimal ack instead, because
- * the returned entity would only be a snapshot at acceptance time and
- * clients must still poll List for the final state.
  *
  * @generated from message fits.api.mvm.v1.ContactServiceUpdateResponse
  */
 export type ContactServiceUpdateResponse = Message<"fits.api.mvm.v1.ContactServiceUpdateResponse"> & {
-  /**
-   * The updated Contact.
-   *
-   * @generated from field: fits.api.mvm.v1.Contact contact = 1;
-   */
-  contact?: Contact | undefined;
 };
 
 /**
@@ -296,49 +285,6 @@ export type ContactServiceUpdateResponse = Message<"fits.api.mvm.v1.ContactServi
  */
 export const ContactServiceUpdateResponseSchema: GenMessage<ContactServiceUpdateResponse> = /*@__PURE__*/
   messageDesc(file_fits_api_mvm_v1_contact, 6);
-
-/**
- * ContactServiceDeleteRequest is the request payload for a contact delete request.
- *
- * @generated from message fits.api.mvm.v1.ContactServiceDeleteRequest
- */
-export type ContactServiceDeleteRequest = Message<"fits.api.mvm.v1.ContactServiceDeleteRequest"> & {
-  /**
-   * Tenant the contact belongs to.
-   *
-   * @generated from field: string tenant = 1;
-   */
-  tenant: string;
-
-  /**
-   * UUID of the contact to delete.
-   *
-   * @generated from field: string uuid = 2;
-   */
-  uuid: string;
-};
-
-/**
- * Describes the message fits.api.mvm.v1.ContactServiceDeleteRequest.
- * Use `create(ContactServiceDeleteRequestSchema)` to create a new message.
- */
-export const ContactServiceDeleteRequestSchema: GenMessage<ContactServiceDeleteRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_contact, 7);
-
-/**
- * Response for Delete; an empty response means the deletion was accepted.
- *
- * @generated from message fits.api.mvm.v1.ContactServiceDeleteResponse
- */
-export type ContactServiceDeleteResponse = Message<"fits.api.mvm.v1.ContactServiceDeleteResponse"> & {
-};
-
-/**
- * Describes the message fits.api.mvm.v1.ContactServiceDeleteResponse.
- * Use `create(ContactServiceDeleteResponseSchema)` to create a new message.
- */
-export const ContactServiceDeleteResponseSchema: GenMessage<ContactServiceDeleteResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_contact, 8);
 
 /**
  * ContactService provides CRUD operations on the contact persons available for managed VM (MVM) instances, scoped per tenant.
@@ -375,16 +321,6 @@ export const ContactService: GenService<{
     methodKind: "unary";
     input: typeof ContactServiceUpdateRequestSchema;
     output: typeof ContactServiceUpdateResponseSchema;
-  },
-  /**
-   * Deletes a contact person.
-   *
-   * @generated from rpc fits.api.mvm.v1.ContactService.Delete
-   */
-  delete: {
-    methodKind: "unary";
-    input: typeof ContactServiceDeleteRequestSchema;
-    output: typeof ContactServiceDeleteResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_fits_api_mvm_v1_contact, 0);

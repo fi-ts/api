@@ -226,62 +226,15 @@ export type ContactServiceUpdateRequest = Message<"fits.api.mvm.v1.ContactServic
 export declare const ContactServiceUpdateRequestSchema: GenMessage<ContactServiceUpdateRequest>;
 /**
  * Response for Update; an empty response means the change was accepted.
- * TODO: check whether update is really asynchronous. If it completes
- * synchronously, returning the updated Contact here is correct. If it is
- * asynchronous, this response should become a minimal ack instead, because
- * the returned entity would only be a snapshot at acceptance time and
- * clients must still poll List for the final state.
  *
  * @generated from message fits.api.mvm.v1.ContactServiceUpdateResponse
  */
-export type ContactServiceUpdateResponse = Message<"fits.api.mvm.v1.ContactServiceUpdateResponse"> & {
-    /**
-     * The updated Contact.
-     *
-     * @generated from field: fits.api.mvm.v1.Contact contact = 1;
-     */
-    contact?: Contact | undefined;
-};
+export type ContactServiceUpdateResponse = Message<"fits.api.mvm.v1.ContactServiceUpdateResponse"> & {};
 /**
  * Describes the message fits.api.mvm.v1.ContactServiceUpdateResponse.
  * Use `create(ContactServiceUpdateResponseSchema)` to create a new message.
  */
 export declare const ContactServiceUpdateResponseSchema: GenMessage<ContactServiceUpdateResponse>;
-/**
- * ContactServiceDeleteRequest is the request payload for a contact delete request.
- *
- * @generated from message fits.api.mvm.v1.ContactServiceDeleteRequest
- */
-export type ContactServiceDeleteRequest = Message<"fits.api.mvm.v1.ContactServiceDeleteRequest"> & {
-    /**
-     * Tenant the contact belongs to.
-     *
-     * @generated from field: string tenant = 1;
-     */
-    tenant: string;
-    /**
-     * UUID of the contact to delete.
-     *
-     * @generated from field: string uuid = 2;
-     */
-    uuid: string;
-};
-/**
- * Describes the message fits.api.mvm.v1.ContactServiceDeleteRequest.
- * Use `create(ContactServiceDeleteRequestSchema)` to create a new message.
- */
-export declare const ContactServiceDeleteRequestSchema: GenMessage<ContactServiceDeleteRequest>;
-/**
- * Response for Delete; an empty response means the deletion was accepted.
- *
- * @generated from message fits.api.mvm.v1.ContactServiceDeleteResponse
- */
-export type ContactServiceDeleteResponse = Message<"fits.api.mvm.v1.ContactServiceDeleteResponse"> & {};
-/**
- * Describes the message fits.api.mvm.v1.ContactServiceDeleteResponse.
- * Use `create(ContactServiceDeleteResponseSchema)` to create a new message.
- */
-export declare const ContactServiceDeleteResponseSchema: GenMessage<ContactServiceDeleteResponse>;
 /**
  * ContactService provides CRUD operations on the contact persons available for managed VM (MVM) instances, scoped per tenant.
  *
@@ -317,15 +270,5 @@ export declare const ContactService: GenService<{
         methodKind: "unary";
         input: typeof ContactServiceUpdateRequestSchema;
         output: typeof ContactServiceUpdateResponseSchema;
-    };
-    /**
-     * Deletes a contact person.
-     *
-     * @generated from rpc fits.api.mvm.v1.ContactService.Delete
-     */
-    delete: {
-        methodKind: "unary";
-        input: typeof ContactServiceDeleteRequestSchema;
-        output: typeof ContactServiceDeleteResponseSchema;
     };
 }>;

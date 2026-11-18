@@ -42,22 +42,20 @@ class TenantServiceGetRequest(_message.Message):
     def __init__(self, tenant: _Optional[str] = ...) -> None: ...
 
 class TenantServiceUpdateRequest(_message.Message):
-    __slots__ = ("tenant", "update_meta", "name", "email", "description", "avatar_url", "labels")
+    __slots__ = ("tenant", "update_meta", "name", "email", "description", "avatar_url")
     TENANT_FIELD_NUMBER: _ClassVar[int]
     UPDATE_META_FIELD_NUMBER: _ClassVar[int]
     NAME_FIELD_NUMBER: _ClassVar[int]
     EMAIL_FIELD_NUMBER: _ClassVar[int]
     DESCRIPTION_FIELD_NUMBER: _ClassVar[int]
     AVATAR_URL_FIELD_NUMBER: _ClassVar[int]
-    LABELS_FIELD_NUMBER: _ClassVar[int]
     tenant: str
     update_meta: _common_pb2.UpdateMeta
     name: str
     email: str
     description: str
     avatar_url: str
-    labels: _common_pb2.UpdateLabels
-    def __init__(self, tenant: _Optional[str] = ..., update_meta: _Optional[_Union[_common_pb2.UpdateMeta, _Mapping]] = ..., name: _Optional[str] = ..., email: _Optional[str] = ..., description: _Optional[str] = ..., avatar_url: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.UpdateLabels, _Mapping]] = ...) -> None: ...
+    def __init__(self, tenant: _Optional[str] = ..., update_meta: _Optional[_Union[_common_pb2.UpdateMeta, _Mapping]] = ..., name: _Optional[str] = ..., email: _Optional[str] = ..., description: _Optional[str] = ..., avatar_url: _Optional[str] = ...) -> None: ...
 
 class TenantServiceGetResponse(_message.Message):
     __slots__ = ("tenant",)
