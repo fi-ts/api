@@ -46,3 +46,21 @@ func (x *MVMServiceValidateReinstallRequest) GetProjectUuid() string {
 	}
 	return x.GetReinstall().GetProjectUuid()
 }
+
+// GetProjectUuid returns the project of the wrapped update request so the
+// request satisfies the project-scope resolution used by authorization.
+func (x *MVMServiceValidateUpdateRequest) GetProjectUuid() string {
+	if x == nil {
+		return ""
+	}
+	return x.GetUpdate().GetProjectUuid()
+}
+
+// GetProjectUuid returns the project of the wrapped update-service-class
+// request so the request satisfies the project-scope resolution used by authorization.
+func (x *MVMServiceValidateUpdateServiceClassRequest) GetProjectUuid() string {
+	if x == nil {
+		return ""
+	}
+	return x.GetUpdateServiceClass().GetProjectUuid()
+}

@@ -47,6 +47,20 @@ func TestValidateRequestsExposeProjectUuid(t *testing.T) {
 			want: project,
 		},
 		{
+			name: "validate update forwards nested project",
+			req: &MVMServiceValidateUpdateRequest{
+				Update: &MVMServiceUpdateRequest{ProjectUuid: project},
+			},
+			want: project,
+		},
+		{
+			name: "validate update service class forwards nested project",
+			req: &MVMServiceValidateUpdateServiceClassRequest{
+				UpdateServiceClass: &MVMServiceUpdateServiceClassRequest{ProjectUuid: project},
+			},
+			want: project,
+		},
+		{
 			name: "validate create without nested request yields empty",
 			req:  &MVMServiceValidateCreateRequest{},
 			want: "",
@@ -64,10 +78,12 @@ func TestValidateRequestsExposeProjectUuid(t *testing.T) {
 
 func TestValidateRequestsNilReceiver(t *testing.T) {
 	var (
-		create     *MVMServiceValidateCreateRequest
-		addDisks   *MVMServiceValidateAddDisksRequest
-		updateDisk *MVMServiceValidateUpdateDiskRequest
-		reinstall  *MVMServiceValidateReinstallRequest
+		create             *MVMServiceValidateCreateRequest
+		addDisks           *MVMServiceValidateAddDisksRequest
+		updateDisk         *MVMServiceValidateUpdateDiskRequest
+		reinstall          *MVMServiceValidateReinstallRequest
+		update             *MVMServiceValidateUpdateRequest
+		updateServiceClass *MVMServiceValidateUpdateServiceClassRequest
 	)
 	// A nil receiver must not panic; it simply has no project.
 	for _, got := range []string{
@@ -75,6 +91,8 @@ func TestValidateRequestsNilReceiver(t *testing.T) {
 		addDisks.GetProjectUuid(),
 		updateDisk.GetProjectUuid(),
 		reinstall.GetProjectUuid(),
+		update.GetProjectUuid(),
+		updateServiceClass.GetProjectUuid(),
 	} {
 		if got != "" {
 			t.Errorf("GetProjectUuid() on nil receiver = %q, want empty", got)
