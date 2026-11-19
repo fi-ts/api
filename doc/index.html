@@ -373,14 +373,6 @@
                 </li>
               
                 <li>
-                  <a href="#fits.api.mvm.v1.ContactServiceDeleteRequest"><span class="badge">M</span>ContactServiceDeleteRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.mvm.v1.ContactServiceDeleteResponse"><span class="badge">M</span>ContactServiceDeleteResponse</a>
-                </li>
-              
-                <li>
                   <a href="#fits.api.mvm.v1.ContactServiceListRequest"><span class="badge">M</span>ContactServiceListRequest</a>
                 </li>
               
@@ -1993,44 +1985,6 @@ on-behalf services, never public ones.</p></td>
 
         
       
-        <h3 id="fits.api.mvm.v1.ContactServiceDeleteRequest">ContactServiceDeleteRequest</h3>
-        <p>ContactServiceDeleteRequest is the request payload for a contact delete request.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>tenant</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Tenant the contact belongs to. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>uuid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>UUID of the contact to delete. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="fits.api.mvm.v1.ContactServiceDeleteResponse">ContactServiceDeleteResponse</h3>
-        <p>Response for Delete; an empty response means the cancellation was accepted.</p>
-
-        
-
-        
-      
         <h3 id="fits.api.mvm.v1.ContactServiceListRequest">ContactServiceListRequest</h3>
         <p>ContactServiceListRequest is the request payload for a contact list request.</p>
 
@@ -2192,13 +2146,6 @@ on-behalf services, never public ones.</p></td>
                 <td><a href="#fits.api.mvm.v1.ContactServiceUpdateRequest">ContactServiceUpdateRequest</a></td>
                 <td><a href="#fits.api.mvm.v1.ContactServiceUpdateResponse">ContactServiceUpdateResponse</a></td>
                 <td><p>Updates an existing contact person.</p></td>
-              </tr>
-            
-              <tr>
-                <td>Delete</td>
-                <td><a href="#fits.api.mvm.v1.ContactServiceDeleteRequest">ContactServiceDeleteRequest</a></td>
-                <td><a href="#fits.api.mvm.v1.ContactServiceDeleteResponse">ContactServiceDeleteResponse</a></td>
-                <td><p>Deletes a contact person.</p></td>
               </tr>
             
           </tbody>
@@ -7108,13 +7055,6 @@ Asterisk (*) can be specified to match any subject. </p></td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
                   <td><p>AvatarUrl of the tenant </p></td>
-                </tr>
-              
-                <tr>
-                  <td>labels</td>
-                  <td><a href="#fits.api.v1.UpdateLabels">UpdateLabels</a></td>
-                  <td>optional</td>
-                  <td><p>Labels on the tenant </p></td>
                 </tr>
               
             </tbody>
