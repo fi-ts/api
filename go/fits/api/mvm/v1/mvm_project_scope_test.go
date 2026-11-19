@@ -47,6 +47,34 @@ func TestValidateRequestsExposeProjectUuid(t *testing.T) {
 			want: project,
 		},
 		{
+			name: "on behalf get forwards nested project",
+			req: &OnBehalfMVMServiceGetRequest{
+				Request: &MVMServiceGetRequest{ProjectUuid: project},
+			},
+			want: project,
+		},
+		{
+			name: "on behalf list forwards nested project",
+			req: &OnBehalfMVMServiceListRequest{
+				Request: &MVMServiceListRequest{ProjectUuid: project},
+			},
+			want: project,
+		},
+		{
+			name: "on behalf create forwards nested project",
+			req: &OnBehalfMVMServiceCreateRequest{
+				Request: &MVMServiceCreateRequest{ProjectUuid: project},
+			},
+			want: project,
+		},
+		{
+			name: "on behalf delete forwards nested project",
+			req: &OnBehalfMVMServiceDeleteRequest{
+				Request: &MVMServiceDeleteRequest{ProjectUuid: project},
+			},
+			want: project,
+		},
+		{
 			name: "validate create without nested request yields empty",
 			req:  &MVMServiceValidateCreateRequest{},
 			want: "",
@@ -64,10 +92,14 @@ func TestValidateRequestsExposeProjectUuid(t *testing.T) {
 
 func TestValidateRequestsNilReceiver(t *testing.T) {
 	var (
-		create     *MVMServiceValidateCreateRequest
-		addDisk    *MVMServiceValidateAddDiskRequest
-		updateDisk *MVMServiceValidateUpdateDiskRequest
-		addNIC     *MVMServiceValidateAddNetworkInterfaceRequest
+		create         *MVMServiceValidateCreateRequest
+		addDisk        *MVMServiceValidateAddDiskRequest
+		updateDisk     *MVMServiceValidateUpdateDiskRequest
+		addNIC         *MVMServiceValidateAddNetworkInterfaceRequest
+		onBehalfGet    *OnBehalfMVMServiceGetRequest
+		onBehalfList   *OnBehalfMVMServiceListRequest
+		onBehalfCreate *OnBehalfMVMServiceCreateRequest
+		onBehalfDelete *OnBehalfMVMServiceDeleteRequest
 	)
 	// A nil receiver must not panic; it simply has no project.
 	for _, got := range []string{
@@ -75,6 +107,10 @@ func TestValidateRequestsNilReceiver(t *testing.T) {
 		addDisk.GetProjectUuid(),
 		updateDisk.GetProjectUuid(),
 		addNIC.GetProjectUuid(),
+		onBehalfGet.GetProjectUuid(),
+		onBehalfList.GetProjectUuid(),
+		onBehalfCreate.GetProjectUuid(),
+		onBehalfDelete.GetProjectUuid(),
 	} {
 		if got != "" {
 			t.Errorf("GetProjectUuid() on nil receiver = %q, want empty", got)
