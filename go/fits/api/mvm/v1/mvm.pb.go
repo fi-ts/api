@@ -303,7 +303,7 @@ type LinuxDisk struct {
 	// Whether the disk grows automatically when space runs low.
 	AutoExtend *bool `protobuf:"varint,4,opt,name=auto_extend,json=autoExtend,proto3,oneof" json:"auto_extend,omitempty"`
 	// Mount point (e.g. "/data/app"). Fixed to "/appdata" for the system disk;
-	// free-form for data disks.
+	// any absolute path allowed by the upstream for data disks.
 	MountPoint *string `protobuf:"bytes,5,opt,name=mount_point,json=mountPoint,proto3,oneof" json:"mount_point,omitempty"`
 	// Kind of the disk; determines which operations are allowed on it.
 	// Provided by the client in create/add requests and populated by the
@@ -397,8 +397,8 @@ type WindowsDisk struct {
 	SizeGb uint64 `protobuf:"varint,3,opt,name=size_gb,json=sizeGb,proto3" json:"size_gb,omitempty"`
 	// Whether the disk grows automatically when space runs low.
 	AutoExtend *bool `protobuf:"varint,4,opt,name=auto_extend,json=autoExtend,proto3,oneof" json:"auto_extend,omitempty"`
-	// Drive letter (e.g. "G"). Fixed to "F" for the system disk; free-form
-	// for data disks.
+	// Drive letter (e.g. "G"). Fixed to "F" for the system disk; any letter
+	// allowed by the upstream for data disks.
 	DriveLetter *string `protobuf:"bytes,5,opt,name=drive_letter,json=driveLetter,proto3,oneof" json:"drive_letter,omitempty"`
 	// Kind of the disk; determines which operations are allowed on it.
 	// Provided by the client in create/add requests and populated by the
@@ -2113,7 +2113,7 @@ type MVMServiceUpdateServiceClassRequest struct {
 	ProjectUuid string `protobuf:"bytes,2,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
 	// Target service class; unset keeps the current value.
 	ServiceClass *ServiceClass `protobuf:"varint,3,opt,name=service_class,json=serviceClass,proto3,enum=fits.api.mvm.v1.ServiceClass,oneof" json:"service_class,omitempty"`
-	// Target availability level; unset keeps current value.
+	// Target availability level; unset keeps the current value.
 	Availability  *Availability `protobuf:"varint,4,opt,name=availability,proto3,enum=fits.api.mvm.v1.Availability,oneof" json:"availability,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -3978,7 +3978,7 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\tvlan_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bvlanUuid\"a\n" +
 	"\x06Status\x126\n" +
 	"\x05state\x18\x01 \x01(\x0e2\x16.fits.api.mvm.v1.StateB\b\xbaH\x05\x82\x01\x02\x10\x01R\x05state\x12\x1f\n" +
-	"\x04info\x18\x02 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\x04info\"\xd9\a\n" +
+	"\x04info\x18\x02 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\x04info\"\xdd\a\n" +
 	"\tManagedVM\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12%\n" +
 	"\x04meta\x18\x02 \x01(\v2\x11.fits.api.v1.MetaR\x04meta\x12\x1f\n" +
@@ -3993,9 +3993,11 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	" \x01(\rB\v\xbaH\b*\x06\xc0\x86\xbd\xb1\x02\x01R\x05ramGb\x12\x16\n" +
 	"\x06backup\x18\v \x01(\bR\x06backup\x12\x1c\n" +
 	"\tencrypted\x18\f \x01(\bR\tencrypted\x12/\n" +
-	"\x06status\x18\r \x01(\v2\x17.fits.api.mvm.v1.StatusR\x06status\x12K\n" +
-	"\favailability\x18\x0e \x01(\x0e2\x1d.fits.api.mvm.v1.AvailabilityB\b\xbaH\x05\x82\x01\x02\x10\x01R\favailability\x12L\n" +
-	"\rservice_class\x18\x0f \x01(\x0e2\x1d.fits.api.mvm.v1.ServiceClassB\b\xbaH\x05\x82\x01\x02\x10\x01R\fserviceClass\x12J\n" +
+	"\x06status\x18\r \x01(\v2\x17.fits.api.mvm.v1.StatusR\x06status\x12M\n" +
+	"\favailability\x18\x0e \x01(\x0e2\x1d.fits.api.mvm.v1.AvailabilityB\n" +
+	"\xbaH\a\x82\x01\x04\x10\x01 \x00R\favailability\x12N\n" +
+	"\rservice_class\x18\x0f \x01(\x0e2\x1d.fits.api.mvm.v1.ServiceClassB\n" +
+	"\xbaH\a\x82\x01\x04\x10\x01 \x00R\fserviceClass\x12J\n" +
 	"\x0fwindows_details\x18\x10 \x01(\v2\x1f.fits.api.mvm.v1.WindowsDetailsH\x00R\x0ewindowsDetails\x12D\n" +
 	"\rlinux_details\x18\x11 \x01(\v2\x1d.fits.api.mvm.v1.LinuxDetailsH\x00R\flinuxDetails\x12=\n" +
 	"\fip_addresses\x18\x12 \x03(\v2\x1a.fits.api.mvm.v1.IPAddressR\vipAddresses\x124\n" +
@@ -4020,7 +4022,7 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\x05disks\x18\x02 \x03(\v2\x1c.fits.api.mvm.v1.WindowsDiskB\x0e\xbaH\v\x92\x01\b\xb8\xe8Ʊ\x02\x01\b\x01R\x05disks\"\x87\x01\n" +
 	"\x1cMVMServiceCreateLinuxRequest\x12%\n" +
 	"\tldap_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bldapUuid\x12@\n" +
-	"\x05disks\x18\x02 \x03(\v2\x1a.fits.api.mvm.v1.LinuxDiskB\x0e\xbaH\v\x92\x01\b\xb8\xe8Ʊ\x02\x01\b\x01R\x05disks\"\xe6\x06\n" +
+	"\x05disks\x18\x02 \x03(\v2\x1a.fits.api.mvm.v1.LinuxDiskB\x0e\xbaH\v\x92\x01\b\xb8\xe8Ʊ\x02\x01\b\x01R\x05disks\"\xea\x06\n" +
 	"\x17MVMServiceCreateRequest\x12+\n" +
 	"\fproject_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12(\n" +
 	"\tname_code\x18\x02 \x01(\tB\v\xbaH\br\x06\xb8\xd9˱\x02\x01R\bnameCode\x12!\n" +
@@ -4033,9 +4035,11 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\x06labels\x18\t \x01(\v2\x13.fits.api.v1.LabelsR\x06labels\x12\x16\n" +
 	"\x06backup\x18\n" +
 	" \x01(\bR\x06backup\x12\x1c\n" +
-	"\tencrypted\x18\v \x01(\bR\tencrypted\x12K\n" +
-	"\favailability\x18\f \x01(\x0e2\x1d.fits.api.mvm.v1.AvailabilityB\b\xbaH\x05\x82\x01\x02\x10\x01R\favailability\x12L\n" +
-	"\rservice_class\x18\r \x01(\x0e2\x1d.fits.api.mvm.v1.ServiceClassB\b\xbaH\x05\x82\x01\x02\x10\x01R\fserviceClass\x12K\n" +
+	"\tencrypted\x18\v \x01(\bR\tencrypted\x12M\n" +
+	"\favailability\x18\f \x01(\x0e2\x1d.fits.api.mvm.v1.AvailabilityB\n" +
+	"\xbaH\a\x82\x01\x04\x10\x01 \x00R\favailability\x12N\n" +
+	"\rservice_class\x18\r \x01(\x0e2\x1d.fits.api.mvm.v1.ServiceClassB\n" +
+	"\xbaH\a\x82\x01\x04\x10\x01 \x00R\fserviceClass\x12K\n" +
 	"\awindows\x18\x0e \x01(\v2/.fits.api.mvm.v1.MVMServiceCreateWindowsRequestH\x00R\awindows\x12E\n" +
 	"\x05linux\x18\x0f \x01(\v2-.fits.api.mvm.v1.MVMServiceCreateLinuxRequestH\x00R\x05linux\x12W\n" +
 	"\x12initial_ip_address\x18\x10 \x01(\v2!.fits.api.mvm.v1.InitialIPAddressB\x06\xbaH\x03\xc8\x01\x01R\x10initialIpAddressB\x11\n" +
@@ -4064,12 +4068,14 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\x18MVMServiceUpdateResponse\"k\n" +
 	"\x1fMVMServiceValidateUpdateRequest\x12H\n" +
 	"\x06update\x18\x01 \x01(\v2(.fits.api.mvm.v1.MVMServiceUpdateRequestB\x06\xbaH\x03\xc8\x01\x01R\x06update\"\"\n" +
-	" MVMServiceValidateUpdateResponse\"\xb8\x02\n" +
+	" MVMServiceValidateUpdateResponse\"\xbc\x02\n" +
 	"#MVMServiceUpdateServiceClassRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
-	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12Q\n" +
-	"\rservice_class\x18\x03 \x01(\x0e2\x1d.fits.api.mvm.v1.ServiceClassB\b\xbaH\x05\x82\x01\x02\x10\x01H\x00R\fserviceClass\x88\x01\x01\x12P\n" +
-	"\favailability\x18\x04 \x01(\x0e2\x1d.fits.api.mvm.v1.AvailabilityB\b\xbaH\x05\x82\x01\x02\x10\x01H\x01R\favailability\x88\x01\x01B\x10\n" +
+	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12S\n" +
+	"\rservice_class\x18\x03 \x01(\x0e2\x1d.fits.api.mvm.v1.ServiceClassB\n" +
+	"\xbaH\a\x82\x01\x04\x10\x01 \x00H\x00R\fserviceClass\x88\x01\x01\x12R\n" +
+	"\favailability\x18\x04 \x01(\x0e2\x1d.fits.api.mvm.v1.AvailabilityB\n" +
+	"\xbaH\a\x82\x01\x04\x10\x01 \x00H\x01R\favailability\x88\x01\x01B\x10\n" +
 	"\x0e_service_classB\x0f\n" +
 	"\r_availability\"&\n" +
 	"$MVMServiceUpdateServiceClassResponse\"\x9d\x01\n" +

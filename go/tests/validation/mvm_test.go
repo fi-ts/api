@@ -20,6 +20,7 @@ const (
 	msgFqdn           = "must be a valid FQDN, e.g. host.example.com"
 	msgNameCode       = "must be a 4-character code consisting of digits and letters"
 	msgSnapshotName   = "must be within 1 and 128 alphanumeric characters"
+	msgNotUnspecified = "must not be in list [0]"
 )
 
 func validLinuxDisk() *mvmv1.LinuxDisk {
@@ -58,6 +59,8 @@ func validLinuxCreateRequest(modify ...func(*mvmv1.MVMServiceCreateRequest)) *mv
 		Cpu:              2,
 		RamGb:            8,
 		OrderReference:   "TICKET-1",
+		Availability:     mvmv1.Availability_AVAILABILITY_V1,
+		ServiceClass:     mvmv1.ServiceClass_SERVICE_CLASS_SZ1,
 		InitialIpAddress: &mvmv1.InitialIPAddress{VlanUuid: testUUID},
 		MvmType: &mvmv1.MVMServiceCreateRequest_Linux{
 			Linux: &mvmv1.MVMServiceCreateLinuxRequest{
@@ -199,6 +202,8 @@ func TestValidateManagedVM(t *testing.T) {
  - contact_uuid: value is empty, which is not a valid UUID
  - cpu: must be within 1 and 64 CPU cores
  - ram_gb: must be within 4 and 512 GiB
+ - availability: ` + msgNotUnspecified + `
+ - service_class: ` + msgNotUnspecified + `
  - order_reference: must be within 2 and 128 characters and not start or end with whitespace`,
 		},
 	}
@@ -556,6 +561,22 @@ func TestValidateMVMServiceCreateRequest(t *testing.T) {
 			}),
 			wantErr:          true,
 			wantErrorMessage: "validation error: initial_ip_address: value is required",
+		},
+		{
+			name: "unspecified availability",
+			msg: validLinuxCreateRequest(func(r *mvmv1.MVMServiceCreateRequest) {
+				r.Availability = mvmv1.Availability_AVAILABILITY_UNSPECIFIED
+			}),
+			wantErr:          true,
+			wantErrorMessage: "validation error: availability: " + msgNotUnspecified,
+		},
+		{
+			name: "unspecified service class",
+			msg: validLinuxCreateRequest(func(r *mvmv1.MVMServiceCreateRequest) {
+				r.ServiceClass = mvmv1.ServiceClass_SERVICE_CLASS_UNSPECIFIED
+			}),
+			wantErr:          true,
+			wantErrorMessage: "validation error: service_class: " + msgNotUnspecified,
 		},
 		{
 			name: "missing os type",

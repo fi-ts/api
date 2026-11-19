@@ -2855,7 +2855,7 @@ such addresses can be deleted via DeleteIPAddress. </p></td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
                   <td><p>Mount point (e.g. &#34;/data/app&#34;). Fixed to &#34;/appdata&#34; for the system disk;
-free-form for data disks. </p></td>
+any absolute path allowed by the upstream for data disks. </p></td>
                 </tr>
               
                 <tr>
@@ -3999,7 +3999,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>availability</td>
                   <td><a href="#fits.api.mvm.v1.Availability">Availability</a></td>
                   <td>optional</td>
-                  <td><p>Target availability level; unset keeps current value. </p></td>
+                  <td><p>Target availability level; unset keeps the current value. </p></td>
                 </tr>
               
             </tbody>
@@ -4533,8 +4533,8 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
                   <td>drive_letter</td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
-                  <td><p>Drive letter (e.g. &#34;G&#34;). Fixed to &#34;F&#34; for the system disk; free-form
-for data disks. </p></td>
+                  <td><p>Drive letter (e.g. &#34;G&#34;). Fixed to &#34;F&#34; for the system disk; any letter
+allowed by the upstream for data disks. </p></td>
                 </tr>
               
                 <tr>

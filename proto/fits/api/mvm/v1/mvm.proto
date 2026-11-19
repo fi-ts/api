@@ -240,7 +240,7 @@ message LinuxDisk {
   // Whether the disk grows automatically when space runs low.
   optional bool auto_extend = 4;
   // Mount point (e.g. "/data/app"). Fixed to "/appdata" for the system disk;
-  // free-form for data disks.
+  // any absolute path allowed by the upstream for data disks.
   optional string mount_point = 5 [(buf.validate.field).string.(fits.api.mvm.v1.is_mount_point) = true];
   // Kind of the disk; determines which operations are allowed on it.
   // Provided by the client in create/add requests and populated by the
@@ -259,8 +259,8 @@ message WindowsDisk {
   uint64 size_gb = 3 [(buf.validate.field).uint64.(fits.api.mvm.v1.is_disk_size) = true];
   // Whether the disk grows automatically when space runs low.
   optional bool auto_extend = 4;
-  // Drive letter (e.g. "G"). Fixed to "F" for the system disk; free-form
-  // for data disks.
+  // Drive letter (e.g. "G"). Fixed to "F" for the system disk; any letter
+  // allowed by the upstream for data disks.
   optional string drive_letter = 5 [(buf.validate.field).string.(fits.api.mvm.v1.is_drive_letter) = true];
   // Kind of the disk; determines which operations are allowed on it.
   // Provided by the client in create/add requests and populated by the
@@ -367,9 +367,15 @@ message ManagedVM {
   // Status of the MVM.
   Status status = 13;
   // Availability level.
-  Availability availability = 14 [(buf.validate.field).enum.defined_only = true];
+  Availability availability = 14 [(buf.validate.field).enum = {
+    defined_only: true
+    not_in: [0]
+  }];
   // Service class.
-  ServiceClass service_class = 15 [(buf.validate.field).enum.defined_only = true];
+  ServiceClass service_class = 15 [(buf.validate.field).enum = {
+    defined_only: true
+    not_in: [0]
+  }];
   // OS-specific configuration.
   oneof details {
     option (buf.validate.oneof).required = true;
@@ -470,9 +476,15 @@ message MVMServiceCreateRequest {
   // Whether the MVM should be encrypted.
   bool encrypted = 11;
   // Availability level.
-  Availability availability = 12 [(buf.validate.field).enum.defined_only = true];
+  Availability availability = 12 [(buf.validate.field).enum = {
+    defined_only: true
+    not_in: [0]
+  }];
   // Service class; only certain combinations with availability are valid.
-  ServiceClass service_class = 13 [(buf.validate.field).enum.defined_only = true];
+  ServiceClass service_class = 13 [(buf.validate.field).enum = {
+    defined_only: true
+    not_in: [0]
+  }];
   // OS type and its configuration.
   oneof mvm_type {
     option (buf.validate.oneof).required = true;
@@ -518,7 +530,8 @@ message MVMServiceUpdateRequest {
   optional uint32 cpu = 7 [(buf.validate.field).uint32.(fits.api.mvm.v1.is_cpu_count) = true];
   // RAM in GiB; unset keeps the current value.
   optional uint32 ram_gb = 8 [(buf.validate.field).uint32.(fits.api.mvm.v1.is_ram_size) = true];
-  // Will replace the deprecated MVMService.UpdateServiceClass endpoint.
+  // Reserved for service_class and availability, which will replace the
+  // deprecated MVMService.UpdateServiceClass endpoint.
   reserved 9;
   reserved "service_class";
   reserved 10;
@@ -546,9 +559,15 @@ message MVMServiceUpdateServiceClassRequest {
   // UUID of the project the MVM belongs to.
   string project_uuid = 2 [(buf.validate.field).string.uuid = true];
   // Target service class; unset keeps the current value.
-  optional ServiceClass service_class = 3 [(buf.validate.field).enum.defined_only = true];
-  // Target availability level; unset keeps current value.
-  optional Availability availability = 4 [(buf.validate.field).enum.defined_only = true];
+  optional ServiceClass service_class = 3 [(buf.validate.field).enum = {
+    defined_only: true
+    not_in: [0]
+  }];
+  // Target availability level; unset keeps the current value.
+  optional Availability availability = 4 [(buf.validate.field).enum = {
+    defined_only: true
+    not_in: [0]
+  }];
 }
 
 // Deprecated: response for a service class update.
@@ -685,6 +704,7 @@ message MVMServiceMoveIPAddressRequest {
   // UUID of the MVM to move the IP address to.
   string target_mvm_uuid = 5 [(buf.validate.field).string.uuid = true];
 }
+
 // Response for MoveIPAddress.
 message MVMServiceMoveIPAddressResponse {}
 
@@ -699,6 +719,7 @@ message MVMServiceDeleteIPAddressRequest {
   // Customer reference for this operation, e.g. a ticket ID.
   string order_reference = 4 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
 }
+
 // Response for DeleteIPAddress.
 message MVMServiceDeleteIPAddressResponse {}
 

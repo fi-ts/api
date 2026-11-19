@@ -38,7 +38,7 @@ export type LinuxDisk = Message<"fits.api.mvm.v1.LinuxDisk"> & {
     autoExtend?: boolean | undefined;
     /**
      * Mount point (e.g. "/data/app"). Fixed to "/appdata" for the system disk;
-     * free-form for data disks.
+     * any absolute path allowed by the upstream for data disks.
      *
      * @generated from field: optional string mount_point = 5;
      */
@@ -89,8 +89,8 @@ export type WindowsDisk = Message<"fits.api.mvm.v1.WindowsDisk"> & {
      */
     autoExtend?: boolean | undefined;
     /**
-     * Drive letter (e.g. "G"). Fixed to "F" for the system disk; free-form
-     * for data disks.
+     * Drive letter (e.g. "G"). Fixed to "F" for the system disk; any letter
+     * allowed by the upstream for data disks.
      *
      * @generated from field: optional string drive_letter = 5;
      */
@@ -901,7 +901,7 @@ export type MVMServiceUpdateServiceClassRequest = Message<"fits.api.mvm.v1.MVMSe
      */
     serviceClass?: ServiceClass | undefined;
     /**
-     * Target availability level; unset keeps current value.
+     * Target availability level; unset keeps the current value.
      *
      * @generated from field: optional fits.api.mvm.v1.Availability availability = 4;
      */
