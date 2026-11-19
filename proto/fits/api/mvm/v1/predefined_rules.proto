@@ -1,0 +1,81 @@
+syntax = "proto2";
+
+package fits.api.mvm.v1;
+
+import "buf/validate/validate.proto";
+
+// MVM-specific predefined rules.
+//
+// The numeric limits are the static bounds from the upstream validation.
+// They are intentionally loose; stricter OS-, disk type- or
+// combination-dependent rules are enforced upstream (see the Validate* RPCs).
+
+extend buf.validate.StringRules {
+  // IsNameCode validates if the given string is a 4-character code consisting of digits and letters.
+  optional bool is_name_code = 80108951 [(buf.validate.predefined).cel = {
+    id: "string.is_name_code"
+    message: "must be a 4-character code consisting of digits and letters"
+    expression: "this.matches('^[0-9A-Za-z]{4}$')"
+  }];
+  // IsFqdn validates if the given string is a valid fully qualified domain name (FQDN),
+  // e.g. host.example.com. Each label is alphanumeric/hyphen, the TLD is alphabetic
+  // (min 2 chars), and the total length is at most 253 characters.
+  optional bool is_fqdn = 80108952 [(buf.validate.predefined).cel = {
+    id: "string.is_fqdn"
+    message: "must be a valid FQDN, e.g. host.example.com"
+    expression: "this.size() <= 253 && this.matches('^[a-zA-Z0-9-]+([.][a-zA-Z0-9-]+)*[.][a-zA-Z]{2,}$')"
+  }];
+  // IsOrderNumber validates a user-supplied ticket/reference ID (order number):
+  // 2-128 characters, no leading/trailing whitespace.
+  optional bool is_order_number = 80108953 [(buf.validate.predefined).cel = {
+    id: "string.is_order_number"
+    message: "must be within 2 and 128 characters and not start or end with whitespace"
+    expression: "this.size() >= 2 && this.size() <= 128 && this.trim().size() == this.size()"
+  }];
+  // IsMountPoint validates a Linux mount point: an absolute path without
+  // whitespace, e.g. /data/app. Allowed paths are enforced upstream.
+  optional bool is_mount_point = 80108954 [(buf.validate.predefined).cel = {
+    id: "string.is_mount_point"
+    message: "must be an absolute path without whitespace, e.g. /data/app"
+    expression: "this.matches('^/[^ \\t\\r\\n]*$')"
+  }];
+  // IsDriveLetter validates a Windows drive letter: a single letter, e.g. G.
+  optional bool is_drive_letter = 80108955 [(buf.validate.predefined).cel = {
+    id: "string.is_drive_letter"
+    message: "must be a single drive letter, e.g. G"
+    expression: "this.matches('^[A-Za-z]$')"
+  }];
+}
+
+extend buf.validate.UInt32Rules {
+  // IsCpuCount validates the number of CPU cores of a MVM.
+  optional bool is_cpu_count = 80078951 [(buf.validate.predefined).cel = {
+    id: "uint32.is_cpu_count"
+    message: "must be within 1 and 64 CPU cores"
+    expression: "this >= 1u && this <= 64u"
+  }];
+  // IsRamSize validates the RAM size of a MVM in GiB.
+  optional bool is_ram_size = 80078952 [(buf.validate.predefined).cel = {
+    id: "uint32.is_ram_size"
+    message: "must be within 4 and 512 GiB"
+    expression: "this >= 4u && this <= 512u"
+  }];
+}
+
+extend buf.validate.UInt64Rules {
+  // IsDiskSize validates the size of a single MVM disk in GiB.
+  optional bool is_disk_size = 80088951 [(buf.validate.predefined).cel = {
+    id: "uint64.is_disk_size"
+    message: "must be within 1 and 8192 GiB"
+    expression: "this >= 1u && this <= 8192u"
+  }];
+}
+
+extend buf.validate.RepeatedRules {
+  // IsDiskCount validates the number of disks in a MVM request (at most 8).
+  optional bool is_disk_count = 80098951 [(buf.validate.predefined).cel = {
+    id: "repeated.is_disk_count"
+    message: "must contain at most 8 disks"
+    expression: "this.size() <= 8"
+  }];
+}

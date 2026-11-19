@@ -25,19 +25,19 @@ export type LinuxDisk = Message<"fits.api.mvm.v1.LinuxDisk"> & {
      */
     label: string;
     /**
+     * Size of the disk in GiB.
+     *
+     * @generated from field: uint64 size_gb = 3;
+     */
+    sizeGb: bigint;
+    /**
      * Whether the disk grows automatically when space runs low.
      *
-     * @generated from field: bool auto_extend = 3;
+     * @generated from field: optional bool auto_extend = 4;
      */
-    autoExtend: boolean;
+    autoExtend?: boolean | undefined;
     /**
-     * Size of the disk in GB; defaults to 50 when unset.
-     *
-     * @generated from field: optional uint64 size_gb = 4;
-     */
-    sizeGb?: bigint | undefined;
-    /**
-     * Mount point (e.g. "/data"). Fixed to "/appdata" for the system disk;
+     * Mount point (e.g. "/data/app"). Fixed to "/appdata" for the system disk;
      * free-form for data disks.
      *
      * @generated from field: optional string mount_point = 5;
@@ -77,19 +77,19 @@ export type WindowsDisk = Message<"fits.api.mvm.v1.WindowsDisk"> & {
      */
     label: string;
     /**
+     * Size of the disk in GiB.
+     *
+     * @generated from field: uint64 size_gb = 3;
+     */
+    sizeGb: bigint;
+    /**
      * Whether the disk grows automatically when space runs low.
      *
-     * @generated from field: bool auto_extend = 3;
+     * @generated from field: optional bool auto_extend = 4;
      */
-    autoExtend: boolean;
+    autoExtend?: boolean | undefined;
     /**
-     * Size of the disk in GB; defaults to 50 when unset.
-     *
-     * @generated from field: optional uint64 size_gb = 4;
-     */
-    sizeGb?: bigint | undefined;
-    /**
-     * Drive letter (e.g. "D"). Fixed to "F" for the system disk; free-form
+     * Drive letter (e.g. "G"). Fixed to "F" for the system disk; free-form
      * for data disks.
      *
      * @generated from field: optional string driveletter = 5;
@@ -122,7 +122,7 @@ export type Disk = Message<"fits.api.mvm.v1.Disk"> & {
      */
     disk: {
         /**
-         * Linux data disks.
+         * Linux disk.
          *
          * @generated from field: fits.api.mvm.v1.LinuxDisk linux = 4;
          */
@@ -130,7 +130,7 @@ export type Disk = Message<"fits.api.mvm.v1.Disk"> & {
         case: "linux";
     } | {
         /**
-         * Windows data disks.
+         * Windows disk.
          *
          * @generated from field: fits.api.mvm.v1.WindowsDisk windows = 5;
          */
@@ -226,7 +226,8 @@ export type IPAddress = Message<"fits.api.mvm.v1.IPAddress"> & {
     ipAddress: string;
     /**
      * The network interface this IP address is bound to.
-     * Unset for additional IP addresses that share an existing interface such addresses can be deleted via DeleteIPAddress.
+     * Unset for additional IP addresses that share an existing interface;
+     * such addresses can be deleted via DeleteIPAddress.
      *
      * @generated from field: optional fits.api.mvm.v1.NetworkInterface network_interface = 3;
      */
@@ -238,7 +239,7 @@ export type IPAddress = Message<"fits.api.mvm.v1.IPAddress"> & {
  */
 export declare const IPAddressSchema: GenMessage<IPAddress>;
 /**
- * A network interface of a MVM. IPv4 only; IPv6 is not yet supported.
+ * A network interface of a MVM.
  *
  * @generated from message fits.api.mvm.v1.NetworkInterface
  */
@@ -251,8 +252,6 @@ export type NetworkInterface = Message<"fits.api.mvm.v1.NetworkInterface"> & {
     vlanUuid: string;
     /**
      * MAC address of this interface.
-     *
-     * TODO: add validation
      *
      * @generated from field: string macaddress = 2;
      */
@@ -370,7 +369,7 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
      */
     cpu: number;
     /**
-     * RAM in GB.
+     * RAM in GiB.
      *
      * @generated from field: uint32 ram_gb = 10;
      */
@@ -467,7 +466,7 @@ export type Snapshot = Message<"fits.api.mvm.v1.Snapshot"> & {
      */
     uuid: string;
     /**
-     * Name of the snapshot.
+     * Name of the snapshot; alphanumeric only.
      *
      * @generated from field: string name = 2;
      */
@@ -649,7 +648,7 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
      */
     cpu: number;
     /**
-     * RAM in GB. Must be a power of 2.
+     * RAM in GiB.
      *
      * @generated from field: uint32 ram_gb = 7;
      */
@@ -698,7 +697,7 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
      */
     mvmtype: {
         /**
-         * Windows-specific settings (domain + disk).
+         * Windows-specific settings (domain + disks).
          *
          * @generated from field: fits.api.mvm.v1.MVMServiceCreateWindowsRequest windows = 14;
          */
@@ -706,7 +705,7 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
         case: "windows";
     } | {
         /**
-         * Linux-specific settings (LDAP + disk).
+         * Linux-specific settings (LDAP + disks).
          *
          * @generated from field: fits.api.mvm.v1.MVMServiceCreateLinuxRequest linux = 15;
          */
@@ -824,7 +823,7 @@ export type MVMServiceUpdateRequest = Message<"fits.api.mvm.v1.MVMServiceUpdateR
      */
     cpu?: number | undefined;
     /**
-     * RAM size in GB; unset keeps the current value.
+     * RAM size in GiB; unset keeps the current value.
      *
      * @generated from field: optional uint32 ram_gb = 8;
      */
@@ -1117,7 +1116,7 @@ export type MVMServiceUpdateDiskRequest = Message<"fits.api.mvm.v1.MVMServiceUpd
      */
     autoExtend?: boolean | undefined;
     /**
-     * New size of the disk in GB; unset keeps the current value.
+     * New size of the disk in GiB; unset keeps the current value.
      *
      * @generated from field: optional uint64 size_gb = 6;
      */

@@ -264,10 +264,6 @@
                   <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
                 </li>
               
-                <li>
-                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
-                </li>
-              
               
             </ul>
           </li>
@@ -475,6 +471,53 @@
                 <li>
                   <a href="#fits.api.mvm.v1.LocationService"><span class="badge">S</span>LocationService</a>
                 </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto">fits/api/mvm/v1/predefined_rules.proto</a>
+            <ul>
+              
+              
+              
+                <li>
+                  <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
               
             </ul>
           </li>
@@ -1318,14 +1361,6 @@
                 <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
                 <td>80048952</td>
                 <td><p>IsName returns true if name field satisfies our requirements</p></td>
-              </tr>
-            
-              <tr>
-                <td>is_name_code</td>
-                <td><a href="#bool">bool</a></td>
-                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
-                <td>80048964</td>
-                <td><p>IsNameCode validates if the given string is a 4-character code consisting of digits and letters.</p></td>
               </tr>
             
               <tr>
@@ -2527,6 +2562,106 @@ having a direct membership within the tenant.</p></td>
     
       
       <div class="file-heading">
+        <h2 id="fits/api/mvm/v1/predefined_rules.proto">fits/api/mvm/v1/predefined_rules.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+
+      
+
+      
+        <h3 id="fits/api/mvm/v1/predefined_rules.proto-extensions">File-level Extensions</h3>
+        <table class="extension-table">
+          <thead>
+            <tr><td>Extension</td><td>Type</td><td>Base</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>is_disk_count</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.RepeatedRules">.buf.validate.RepeatedRules</a></td>
+                <td>80098951</td>
+                <td><p>IsDiskCount validates the number of disks in a MVM request (at most 8).</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_drive_letter</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80108955</td>
+                <td><p>IsDriveLetter validates a Windows drive letter: a single letter, e.g. G.</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_fqdn</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80108952</td>
+                <td><p>IsFqdn validates if the given string is a valid fully qualified domain name (FQDN),
+e.g. host.example.com. Each label is alphanumeric/hyphen, the TLD is alphabetic
+(min 2 chars), and the total length is at most 253 characters.</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_mount_point</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80108954</td>
+                <td><p>IsMountPoint validates a Linux mount point: an absolute path without
+whitespace, e.g. /data/app. Allowed paths are enforced upstream.</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_name_code</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80108951</td>
+                <td><p>IsNameCode validates if the given string is a 4-character code consisting of digits and letters.</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_order_number</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80108953</td>
+                <td><p>IsOrderNumber validates a user-supplied ticket/reference ID (order number):
+2-128 characters, no leading/trailing whitespace.</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_cpu_count</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.UInt32Rules">.buf.validate.UInt32Rules</a></td>
+                <td>80078951</td>
+                <td><p>IsCpuCount validates the number of CPU cores of a MVM.</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_ram_size</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.UInt32Rules">.buf.validate.UInt32Rules</a></td>
+                <td>80078952</td>
+                <td><p>IsRamSize validates the RAM size of a MVM in GiB.</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_disk_size</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.UInt64Rules">.buf.validate.UInt64Rules</a></td>
+                <td>80088951</td>
+                <td><p>IsDiskSize validates the size of a single MVM disk in GiB.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+    
+      
+      <div class="file-heading">
         <h2 id="fits/api/mvm/v1/mvm.proto">fits/api/mvm/v1/mvm.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
@@ -2546,14 +2681,14 @@ having a direct membership within the tenant.</p></td>
                   <td>linux</td>
                   <td><a href="#fits.api.mvm.v1.LinuxDisk">LinuxDisk</a></td>
                   <td></td>
-                  <td><p>Linux data disks. </p></td>
+                  <td><p>Linux disk. </p></td>
                 </tr>
               
                 <tr>
                   <td>windows</td>
                   <td><a href="#fits.api.mvm.v1.WindowsDisk">WindowsDisk</a></td>
                   <td></td>
-                  <td><p>Windows data disks. </p></td>
+                  <td><p>Windows disk. </p></td>
                 </tr>
               
             </tbody>
@@ -2592,7 +2727,8 @@ having a direct membership within the tenant.</p></td>
                   <td><a href="#fits.api.mvm.v1.NetworkInterface">NetworkInterface</a></td>
                   <td>optional</td>
                   <td><p>The network interface this IP address is bound to.
-Unset for additional IP addresses that share an existing interface such addresses can be deleted via DeleteIPAddress. </p></td>
+Unset for additional IP addresses that share an existing interface;
+such addresses can be deleted via DeleteIPAddress. </p></td>
                 </tr>
               
             </tbody>
@@ -2689,24 +2825,24 @@ Unset for additional IP addresses that share an existing interface such addresse
                 </tr>
               
                 <tr>
-                  <td>auto_extend</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td>size_gb</td>
+                  <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p>Whether the disk grows automatically when space runs low. </p></td>
+                  <td><p>Size of the disk in GiB. </p></td>
                 </tr>
               
                 <tr>
-                  <td>size_gb</td>
-                  <td><a href="#uint64">uint64</a></td>
+                  <td>auto_extend</td>
+                  <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p>Size of the disk in GB; defaults to 50 when unset. </p></td>
+                  <td><p>Whether the disk grows automatically when space runs low. </p></td>
                 </tr>
               
                 <tr>
                   <td>mount_point</td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
-                  <td><p>Mount point (e.g. &#34;/data&#34;). Fixed to &#34;/appdata&#34; for the system disk;
+                  <td><p>Mount point (e.g. &#34;/data/app&#34;). Fixed to &#34;/appdata&#34; for the system disk;
 free-form for data disks. </p></td>
                 </tr>
               
@@ -3014,7 +3150,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>ram_gb</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>RAM in GB. Must be a power of 2. </p></td>
+                  <td><p>RAM in GiB. </p></td>
                 </tr>
               
                 <tr>
@@ -3064,14 +3200,14 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>windows</td>
                   <td><a href="#fits.api.mvm.v1.MVMServiceCreateWindowsRequest">MVMServiceCreateWindowsRequest</a></td>
                   <td></td>
-                  <td><p>Windows-specific settings (domain &#43; disk). </p></td>
+                  <td><p>Windows-specific settings (domain &#43; disks). </p></td>
                 </tr>
               
                 <tr>
                   <td>linux</td>
                   <td><a href="#fits.api.mvm.v1.MVMServiceCreateLinuxRequest">MVMServiceCreateLinuxRequest</a></td>
                   <td></td>
-                  <td><p>Linux-specific settings (LDAP &#43; disk). </p></td>
+                  <td><p>Linux-specific settings (LDAP &#43; disks). </p></td>
                 </tr>
               
                 <tr>
@@ -3719,7 +3855,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>size_gb</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td>optional</td>
-                  <td><p>New size of the disk in GB; unset keeps the current value. </p></td>
+                  <td><p>New size of the disk in GiB; unset keeps the current value. </p></td>
                 </tr>
               
             </tbody>
@@ -3799,7 +3935,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>ram_gb</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td>optional</td>
-                  <td><p>RAM size in GB; unset keeps the current value. </p></td>
+                  <td><p>RAM size in GiB; unset keeps the current value. </p></td>
                 </tr>
               
             </tbody>
@@ -4132,7 +4268,7 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
                   <td>ram_gb</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>RAM in GB. </p></td>
+                  <td><p>RAM in GiB. </p></td>
                 </tr>
               
                 <tr>
@@ -4213,7 +4349,7 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
         
       
         <h3 id="fits.api.mvm.v1.NetworkInterface">NetworkInterface</h3>
-        <p>A network interface of a MVM. IPv4 only; IPv6 is not yet supported.</p>
+        <p>A network interface of a MVM.</p>
 
         
           <table class="field-table">
@@ -4233,9 +4369,7 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
                   <td>macaddress</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>MAC address of this interface.
-
-TODO: add validation </p></td>
+                  <td><p>MAC address of this interface. </p></td>
                 </tr>
               
             </tbody>
@@ -4266,7 +4400,7 @@ TODO: add validation </p></td>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Name of the snapshot. </p></td>
+                  <td><p>Name of the snapshot; alphanumeric only. </p></td>
                 </tr>
               
             </tbody>
@@ -4370,24 +4504,24 @@ TODO: add validation </p></td>
                 </tr>
               
                 <tr>
-                  <td>auto_extend</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td>size_gb</td>
+                  <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p>Whether the disk grows automatically when space runs low. </p></td>
+                  <td><p>Size of the disk in GiB. </p></td>
                 </tr>
               
                 <tr>
-                  <td>size_gb</td>
-                  <td><a href="#uint64">uint64</a></td>
+                  <td>auto_extend</td>
+                  <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p>Size of the disk in GB; defaults to 50 when unset. </p></td>
+                  <td><p>Whether the disk grows automatically when space runs low. </p></td>
                 </tr>
               
                 <tr>
                   <td>driveletter</td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
-                  <td><p>Drive letter (e.g. &#34;D&#34;). Fixed to &#34;F&#34; for the system disk; free-form
+                  <td><p>Drive letter (e.g. &#34;G&#34;). Fixed to &#34;F&#34; for the system disk; free-form
 for data disks. </p></td>
                 </tr>
               

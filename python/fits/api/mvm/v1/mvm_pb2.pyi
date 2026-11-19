@@ -1,6 +1,7 @@
 from buf.validate import validate_pb2 as _validate_pb2
+from fits.api.mvm.v1 import predefined_rules_pb2 as _predefined_rules_pb2
 from fits.api.v1 import common_pb2 as _common_pb2
-from fits.api.v1 import predefined_rules_pb2 as _predefined_rules_pb2
+from fits.api.v1 import predefined_rules_pb2 as _predefined_rules_pb2_1
 from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
@@ -61,36 +62,36 @@ DISK_TYPE_SYSTEM: DiskType
 DISK_TYPE_DATA: DiskType
 
 class LinuxDisk(_message.Message):
-    __slots__ = ("uuid", "label", "auto_extend", "size_gb", "mount_point", "disk_type")
+    __slots__ = ("uuid", "label", "size_gb", "auto_extend", "mount_point", "disk_type")
     UUID_FIELD_NUMBER: _ClassVar[int]
     LABEL_FIELD_NUMBER: _ClassVar[int]
-    AUTO_EXTEND_FIELD_NUMBER: _ClassVar[int]
     SIZE_GB_FIELD_NUMBER: _ClassVar[int]
+    AUTO_EXTEND_FIELD_NUMBER: _ClassVar[int]
     MOUNT_POINT_FIELD_NUMBER: _ClassVar[int]
     DISK_TYPE_FIELD_NUMBER: _ClassVar[int]
     uuid: str
     label: str
-    auto_extend: bool
     size_gb: int
+    auto_extend: bool
     mount_point: str
     disk_type: DiskType
-    def __init__(self, uuid: _Optional[str] = ..., label: _Optional[str] = ..., auto_extend: _Optional[bool] = ..., size_gb: _Optional[int] = ..., mount_point: _Optional[str] = ..., disk_type: _Optional[_Union[DiskType, str]] = ...) -> None: ...
+    def __init__(self, uuid: _Optional[str] = ..., label: _Optional[str] = ..., size_gb: _Optional[int] = ..., auto_extend: _Optional[bool] = ..., mount_point: _Optional[str] = ..., disk_type: _Optional[_Union[DiskType, str]] = ...) -> None: ...
 
 class WindowsDisk(_message.Message):
-    __slots__ = ("uuid", "label", "auto_extend", "size_gb", "driveletter", "disk_type")
+    __slots__ = ("uuid", "label", "size_gb", "auto_extend", "driveletter", "disk_type")
     UUID_FIELD_NUMBER: _ClassVar[int]
     LABEL_FIELD_NUMBER: _ClassVar[int]
-    AUTO_EXTEND_FIELD_NUMBER: _ClassVar[int]
     SIZE_GB_FIELD_NUMBER: _ClassVar[int]
+    AUTO_EXTEND_FIELD_NUMBER: _ClassVar[int]
     DRIVELETTER_FIELD_NUMBER: _ClassVar[int]
     DISK_TYPE_FIELD_NUMBER: _ClassVar[int]
     uuid: str
     label: str
-    auto_extend: bool
     size_gb: int
+    auto_extend: bool
     driveletter: str
     disk_type: DiskType
-    def __init__(self, uuid: _Optional[str] = ..., label: _Optional[str] = ..., auto_extend: _Optional[bool] = ..., size_gb: _Optional[int] = ..., driveletter: _Optional[str] = ..., disk_type: _Optional[_Union[DiskType, str]] = ...) -> None: ...
+    def __init__(self, uuid: _Optional[str] = ..., label: _Optional[str] = ..., size_gb: _Optional[int] = ..., auto_extend: _Optional[bool] = ..., driveletter: _Optional[str] = ..., disk_type: _Optional[_Union[DiskType, str]] = ...) -> None: ...
 
 class Disk(_message.Message):
     __slots__ = ("linux", "windows")
