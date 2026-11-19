@@ -532,7 +532,15 @@
             <ul>
               
                 <li>
+                  <a href="#fits.api.mvm.v1.Backup"><span class="badge">M</span>Backup</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.mvm.v1.Disk"><span class="badge">M</span>Disk</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.Encryption"><span class="badge">M</span>Encryption</a>
                 </li>
               
                 <li>
@@ -2679,6 +2687,30 @@ whitespace, e.g. /data/app. Allowed paths are enforced upstream.</p></td>
       <p></p>
 
       
+        <h3 id="fits.api.mvm.v1.Backup">Backup</h3>
+        <p>Backup configuration of a MVM.</p><p>Modeled as a message so that backup options (e.g. retention or schedule)</p><p>can be added later without breaking the API.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>enabled</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether backup is enabled. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="fits.api.mvm.v1.Disk">Disk</h3>
         <p>Disk contains either a Windows or Linux disk.</p>
 
@@ -2701,6 +2733,30 @@ whitespace, e.g. /data/app. Allowed paths are enforced upstream.</p></td>
                   <td><a href="#fits.api.mvm.v1.WindowsDisk">WindowsDisk</a></td>
                   <td></td>
                   <td><p>Windows disk. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.Encryption">Encryption</h3>
+        <p>Encryption configuration of a MVM.</p><p>Modeled as a message so that encryption options (e.g. a key reference)</p><p>can be added later without breaking the API.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>enabled</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether the disks of the MVM are encrypted. </p></td>
                 </tr>
               
             </tbody>
@@ -3176,22 +3232,21 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>labels</td>
                   <td><a href="#fits.api.v1.Labels">fits.api.v1.Labels</a></td>
                   <td></td>
-                  <td><p>Optional key-value labels for accounting purposes.
-(e.g. contract number, transaction number, technical key, accounting key). </p></td>
+                  <td><p>Optional key-value labels for this MVM. </p></td>
                 </tr>
               
                 <tr>
                   <td>backup</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#fits.api.mvm.v1.Backup">Backup</a></td>
                   <td></td>
-                  <td><p>Whether backup is enabled. </p></td>
+                  <td><p>Backup configuration of the MVM. </p></td>
                 </tr>
               
                 <tr>
-                  <td>encrypted</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td>encryption</td>
+                  <td><a href="#fits.api.mvm.v1.Encryption">Encryption</a></td>
                   <td></td>
-                  <td><p>Whether the MVM should be encrypted. </p></td>
+                  <td><p>Encryption configuration of the MVM. </p></td>
                 </tr>
               
                 <tr>
@@ -3747,16 +3802,16 @@ one system disk plus any number of data disks (see DiskType). </p></td>
               
                 <tr>
                   <td>backup</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#fits.api.mvm.v1.Backup">Backup</a></td>
                   <td>optional</td>
-                  <td><p>Whether backup is enabled after the reinstall; unset keeps the current value. </p></td>
+                  <td><p>Backup configuration after the reinstall; unset keeps the current value. </p></td>
                 </tr>
               
                 <tr>
-                  <td>encrypted</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td>encryption</td>
+                  <td><a href="#fits.api.mvm.v1.Encryption">Encryption</a></td>
                   <td>optional</td>
-                  <td><p>Whether the MVM is encrypted after the reinstall; unset keeps the current value. </p></td>
+                  <td><p>Encryption configuration after the reinstall; unset keeps the current value. </p></td>
                 </tr>
               
             </tbody>
@@ -4285,16 +4340,16 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
               
                 <tr>
                   <td>backup</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#fits.api.mvm.v1.Backup">Backup</a></td>
                   <td></td>
-                  <td><p>Whether backup is enabled. </p></td>
+                  <td><p>Backup configuration of the MVM. </p></td>
                 </tr>
               
                 <tr>
-                  <td>encrypted</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td>encryption</td>
+                  <td><a href="#fits.api.mvm.v1.Encryption">Encryption</a></td>
                   <td></td>
-                  <td><p>Whether the MVM is encrypted. </p></td>
+                  <td><p>Encryption configuration of the MVM. </p></td>
                 </tr>
               
                 <tr>

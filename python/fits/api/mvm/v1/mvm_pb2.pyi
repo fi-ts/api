@@ -153,8 +153,20 @@ class Status(_message.Message):
     info: str
     def __init__(self, state: _Optional[_Union[State, str]] = ..., info: _Optional[str] = ...) -> None: ...
 
+class Backup(_message.Message):
+    __slots__ = ("enabled",)
+    ENABLED_FIELD_NUMBER: _ClassVar[int]
+    enabled: bool
+    def __init__(self, enabled: _Optional[bool] = ...) -> None: ...
+
+class Encryption(_message.Message):
+    __slots__ = ("enabled",)
+    ENABLED_FIELD_NUMBER: _ClassVar[int]
+    enabled: bool
+    def __init__(self, enabled: _Optional[bool] = ...) -> None: ...
+
 class ManagedVM(_message.Message):
-    __slots__ = ("uuid", "meta", "fqdn", "tenant", "project_uuid", "os_uuid", "location_uuid", "contact_uuid", "cpu", "ram_gb", "backup", "encrypted", "status", "availability", "service_class", "windows_details", "linux_details", "ip_addresses", "order_reference", "snapshots")
+    __slots__ = ("uuid", "meta", "fqdn", "tenant", "project_uuid", "os_uuid", "location_uuid", "contact_uuid", "cpu", "ram_gb", "backup", "encryption", "status", "availability", "service_class", "windows_details", "linux_details", "ip_addresses", "order_reference", "snapshots")
     UUID_FIELD_NUMBER: _ClassVar[int]
     META_FIELD_NUMBER: _ClassVar[int]
     FQDN_FIELD_NUMBER: _ClassVar[int]
@@ -166,7 +178,7 @@ class ManagedVM(_message.Message):
     CPU_FIELD_NUMBER: _ClassVar[int]
     RAM_GB_FIELD_NUMBER: _ClassVar[int]
     BACKUP_FIELD_NUMBER: _ClassVar[int]
-    ENCRYPTED_FIELD_NUMBER: _ClassVar[int]
+    ENCRYPTION_FIELD_NUMBER: _ClassVar[int]
     STATUS_FIELD_NUMBER: _ClassVar[int]
     AVAILABILITY_FIELD_NUMBER: _ClassVar[int]
     SERVICE_CLASS_FIELD_NUMBER: _ClassVar[int]
@@ -185,8 +197,8 @@ class ManagedVM(_message.Message):
     contact_uuid: str
     cpu: int
     ram_gb: int
-    backup: bool
-    encrypted: bool
+    backup: Backup
+    encryption: Encryption
     status: Status
     availability: Availability
     service_class: ServiceClass
@@ -195,7 +207,7 @@ class ManagedVM(_message.Message):
     ip_addresses: _containers.RepeatedCompositeFieldContainer[IPAddress]
     order_reference: str
     snapshots: _containers.RepeatedCompositeFieldContainer[Snapshot]
-    def __init__(self, uuid: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., fqdn: _Optional[str] = ..., tenant: _Optional[str] = ..., project_uuid: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram_gb: _Optional[int] = ..., backup: _Optional[bool] = ..., encrypted: _Optional[bool] = ..., status: _Optional[_Union[Status, _Mapping]] = ..., availability: _Optional[_Union[Availability, str]] = ..., service_class: _Optional[_Union[ServiceClass, str]] = ..., windows_details: _Optional[_Union[WindowsDetails, _Mapping]] = ..., linux_details: _Optional[_Union[LinuxDetails, _Mapping]] = ..., ip_addresses: _Optional[_Iterable[_Union[IPAddress, _Mapping]]] = ..., order_reference: _Optional[str] = ..., snapshots: _Optional[_Iterable[_Union[Snapshot, _Mapping]]] = ...) -> None: ...
+    def __init__(self, uuid: _Optional[str] = ..., meta: _Optional[_Union[_common_pb2.Meta, _Mapping]] = ..., fqdn: _Optional[str] = ..., tenant: _Optional[str] = ..., project_uuid: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram_gb: _Optional[int] = ..., backup: _Optional[_Union[Backup, _Mapping]] = ..., encryption: _Optional[_Union[Encryption, _Mapping]] = ..., status: _Optional[_Union[Status, _Mapping]] = ..., availability: _Optional[_Union[Availability, str]] = ..., service_class: _Optional[_Union[ServiceClass, str]] = ..., windows_details: _Optional[_Union[WindowsDetails, _Mapping]] = ..., linux_details: _Optional[_Union[LinuxDetails, _Mapping]] = ..., ip_addresses: _Optional[_Iterable[_Union[IPAddress, _Mapping]]] = ..., order_reference: _Optional[str] = ..., snapshots: _Optional[_Iterable[_Union[Snapshot, _Mapping]]] = ...) -> None: ...
 
 class Snapshot(_message.Message):
     __slots__ = ("uuid", "name")
@@ -248,7 +260,7 @@ class MVMServiceCreateLinuxRequest(_message.Message):
     def __init__(self, ldap_uuid: _Optional[str] = ..., disks: _Optional[_Iterable[_Union[LinuxDisk, _Mapping]]] = ...) -> None: ...
 
 class MVMServiceCreateRequest(_message.Message):
-    __slots__ = ("project_uuid", "name_code", "os_uuid", "location_uuid", "contact_uuid", "cpu", "ram_gb", "order_reference", "labels", "backup", "encrypted", "availability", "service_class", "windows", "linux", "initial_ip_address")
+    __slots__ = ("project_uuid", "name_code", "os_uuid", "location_uuid", "contact_uuid", "cpu", "ram_gb", "order_reference", "labels", "backup", "encryption", "availability", "service_class", "windows", "linux", "initial_ip_address")
     PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
     NAME_CODE_FIELD_NUMBER: _ClassVar[int]
     OS_UUID_FIELD_NUMBER: _ClassVar[int]
@@ -259,7 +271,7 @@ class MVMServiceCreateRequest(_message.Message):
     ORDER_REFERENCE_FIELD_NUMBER: _ClassVar[int]
     LABELS_FIELD_NUMBER: _ClassVar[int]
     BACKUP_FIELD_NUMBER: _ClassVar[int]
-    ENCRYPTED_FIELD_NUMBER: _ClassVar[int]
+    ENCRYPTION_FIELD_NUMBER: _ClassVar[int]
     AVAILABILITY_FIELD_NUMBER: _ClassVar[int]
     SERVICE_CLASS_FIELD_NUMBER: _ClassVar[int]
     WINDOWS_FIELD_NUMBER: _ClassVar[int]
@@ -274,14 +286,14 @@ class MVMServiceCreateRequest(_message.Message):
     ram_gb: int
     order_reference: str
     labels: _common_pb2.Labels
-    backup: bool
-    encrypted: bool
+    backup: Backup
+    encryption: Encryption
     availability: Availability
     service_class: ServiceClass
     windows: MVMServiceCreateWindowsRequest
     linux: MVMServiceCreateLinuxRequest
     initial_ip_address: InitialIPAddress
-    def __init__(self, project_uuid: _Optional[str] = ..., name_code: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram_gb: _Optional[int] = ..., order_reference: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.Labels, _Mapping]] = ..., backup: _Optional[bool] = ..., encrypted: _Optional[bool] = ..., availability: _Optional[_Union[Availability, str]] = ..., service_class: _Optional[_Union[ServiceClass, str]] = ..., windows: _Optional[_Union[MVMServiceCreateWindowsRequest, _Mapping]] = ..., linux: _Optional[_Union[MVMServiceCreateLinuxRequest, _Mapping]] = ..., initial_ip_address: _Optional[_Union[InitialIPAddress, _Mapping]] = ...) -> None: ...
+    def __init__(self, project_uuid: _Optional[str] = ..., name_code: _Optional[str] = ..., os_uuid: _Optional[str] = ..., location_uuid: _Optional[str] = ..., contact_uuid: _Optional[str] = ..., cpu: _Optional[int] = ..., ram_gb: _Optional[int] = ..., order_reference: _Optional[str] = ..., labels: _Optional[_Union[_common_pb2.Labels, _Mapping]] = ..., backup: _Optional[_Union[Backup, _Mapping]] = ..., encryption: _Optional[_Union[Encryption, _Mapping]] = ..., availability: _Optional[_Union[Availability, str]] = ..., service_class: _Optional[_Union[ServiceClass, str]] = ..., windows: _Optional[_Union[MVMServiceCreateWindowsRequest, _Mapping]] = ..., linux: _Optional[_Union[MVMServiceCreateLinuxRequest, _Mapping]] = ..., initial_ip_address: _Optional[_Union[InitialIPAddress, _Mapping]] = ...) -> None: ...
 
 class MVMServiceCreateResponse(_message.Message):
     __slots__ = ("uuid",)
@@ -512,20 +524,20 @@ class MVMServiceRestartResponse(_message.Message):
     def __init__(self) -> None: ...
 
 class MVMServiceReinstallRequest(_message.Message):
-    __slots__ = ("uuid", "project_uuid", "order_reference", "os_uuid", "backup", "encrypted")
+    __slots__ = ("uuid", "project_uuid", "order_reference", "os_uuid", "backup", "encryption")
     UUID_FIELD_NUMBER: _ClassVar[int]
     PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
     ORDER_REFERENCE_FIELD_NUMBER: _ClassVar[int]
     OS_UUID_FIELD_NUMBER: _ClassVar[int]
     BACKUP_FIELD_NUMBER: _ClassVar[int]
-    ENCRYPTED_FIELD_NUMBER: _ClassVar[int]
+    ENCRYPTION_FIELD_NUMBER: _ClassVar[int]
     uuid: str
     project_uuid: str
     order_reference: str
     os_uuid: str
-    backup: bool
-    encrypted: bool
-    def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_reference: _Optional[str] = ..., os_uuid: _Optional[str] = ..., backup: _Optional[bool] = ..., encrypted: _Optional[bool] = ...) -> None: ...
+    backup: Backup
+    encryption: Encryption
+    def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_reference: _Optional[str] = ..., os_uuid: _Optional[str] = ..., backup: _Optional[_Union[Backup, _Mapping]] = ..., encryption: _Optional[_Union[Encryption, _Mapping]] = ...) -> None: ...
 
 class MVMServiceReinstallResponse(_message.Message):
     __slots__ = ()

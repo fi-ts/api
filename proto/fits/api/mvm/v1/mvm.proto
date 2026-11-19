@@ -337,6 +337,22 @@ message Status {
   string info = 2 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
 }
 
+// Backup configuration of a MVM.
+// Modeled as a message so that backup options (e.g. retention or schedule)
+// can be added later without breaking the API.
+message Backup {
+  // Whether backup is enabled.
+  bool enabled = 1;
+}
+
+// Encryption configuration of a MVM.
+// Modeled as a message so that encryption options (e.g. a key reference)
+// can be added later without breaking the API.
+message Encryption {
+  // Whether the disks of the MVM are encrypted.
+  bool enabled = 1;
+}
+
 // ManagedVM is a managed VM instance as returned by the API.
 message ManagedVM {
   // UUID of this MVM.
@@ -360,10 +376,10 @@ message ManagedVM {
   uint32 cpu = 9 [(buf.validate.field).uint32.(fits.api.mvm.v1.is_cpu_count) = true];
   // RAM in GiB.
   uint32 ram_gb = 10 [(buf.validate.field).uint32.(fits.api.mvm.v1.is_ram_size) = true];
-  // Whether backup is enabled.
-  bool backup = 11;
-  // Whether the MVM is encrypted.
-  bool encrypted = 12;
+  // Backup configuration of the MVM.
+  Backup backup = 11;
+  // Encryption configuration of the MVM.
+  Encryption encryption = 12;
   // Status of the MVM.
   Status status = 13;
   // Availability level.
@@ -468,13 +484,12 @@ message MVMServiceCreateRequest {
   uint32 ram_gb = 7 [(buf.validate.field).uint32.(fits.api.mvm.v1.is_ram_size) = true];
   // Customer reference for this operation, e.g. a ticket ID.
   string order_reference = 8 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
-  // Optional key-value labels for accounting purposes.
-  // (e.g. contract number, transaction number, technical key, accounting key).
+  // Optional key-value labels for this MVM.
   fits.api.v1.Labels labels = 9;
-  // Whether backup is enabled.
-  bool backup = 10;
-  // Whether the MVM should be encrypted.
-  bool encrypted = 11;
+  // Backup configuration of the MVM.
+  Backup backup = 10 [(buf.validate.field).required = true];
+  // Encryption configuration of the MVM.
+  Encryption encryption = 11 [(buf.validate.field).required = true];
   // Availability level.
   Availability availability = 12 [(buf.validate.field).enum = {
     defined_only: true
@@ -747,10 +762,10 @@ message MVMServiceReinstallRequest {
   string order_reference = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
   // UUID of the operating system image to install.
   optional string os_uuid = 4 [(buf.validate.field).string.uuid = true];
-  // Whether backup is enabled after the reinstall; unset keeps the current value.
-  optional bool backup = 5;
-  // Whether the MVM is encrypted after the reinstall; unset keeps the current value.
-  optional bool encrypted = 6;
+  // Backup configuration after the reinstall; unset keeps the current value.
+  optional Backup backup = 5;
+  // Encryption configuration after the reinstall; unset keeps the current value.
+  optional Encryption encryption = 6;
 }
 
 // Response for Reinstall; an empty response means the reinstall was accepted.

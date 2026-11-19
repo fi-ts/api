@@ -308,6 +308,46 @@ export type Status = Message<"fits.api.mvm.v1.Status"> & {
  */
 export declare const StatusSchema: GenMessage<Status>;
 /**
+ * Backup configuration of a MVM.
+ * Modeled as a message so that backup options (e.g. retention or schedule)
+ * can be added later without breaking the API.
+ *
+ * @generated from message fits.api.mvm.v1.Backup
+ */
+export type Backup = Message<"fits.api.mvm.v1.Backup"> & {
+    /**
+     * Whether backup is enabled.
+     *
+     * @generated from field: bool enabled = 1;
+     */
+    enabled: boolean;
+};
+/**
+ * Describes the message fits.api.mvm.v1.Backup.
+ * Use `create(BackupSchema)` to create a new message.
+ */
+export declare const BackupSchema: GenMessage<Backup>;
+/**
+ * Encryption configuration of a MVM.
+ * Modeled as a message so that encryption options (e.g. a key reference)
+ * can be added later without breaking the API.
+ *
+ * @generated from message fits.api.mvm.v1.Encryption
+ */
+export type Encryption = Message<"fits.api.mvm.v1.Encryption"> & {
+    /**
+     * Whether the disks of the MVM are encrypted.
+     *
+     * @generated from field: bool enabled = 1;
+     */
+    enabled: boolean;
+};
+/**
+ * Describes the message fits.api.mvm.v1.Encryption.
+ * Use `create(EncryptionSchema)` to create a new message.
+ */
+export declare const EncryptionSchema: GenMessage<Encryption>;
+/**
  * ManagedVM is a managed VM instance as returned by the API.
  *
  * @generated from message fits.api.mvm.v1.ManagedVM
@@ -375,17 +415,17 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
      */
     ramGb: number;
     /**
-     * Whether backup is enabled.
+     * Backup configuration of the MVM.
      *
-     * @generated from field: bool backup = 11;
+     * @generated from field: fits.api.mvm.v1.Backup backup = 11;
      */
-    backup: boolean;
+    backup?: Backup | undefined;
     /**
-     * Whether the MVM is encrypted.
+     * Encryption configuration of the MVM.
      *
-     * @generated from field: bool encrypted = 12;
+     * @generated from field: fits.api.mvm.v1.Encryption encryption = 12;
      */
-    encrypted: boolean;
+    encryption?: Encryption | undefined;
     /**
      * Status of the MVM.
      *
@@ -660,24 +700,23 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
      */
     orderReference: string;
     /**
-     * Optional key-value labels for accounting purposes.
-     * (e.g. contract number, transaction number, technical key, accounting key).
+     * Optional key-value labels for this MVM.
      *
      * @generated from field: fits.api.v1.Labels labels = 9;
      */
     labels?: Labels | undefined;
     /**
-     * Whether backup is enabled.
+     * Backup configuration of the MVM.
      *
-     * @generated from field: bool backup = 10;
+     * @generated from field: fits.api.mvm.v1.Backup backup = 10;
      */
-    backup: boolean;
+    backup?: Backup | undefined;
     /**
-     * Whether the MVM should be encrypted.
+     * Encryption configuration of the MVM.
      *
-     * @generated from field: bool encrypted = 11;
+     * @generated from field: fits.api.mvm.v1.Encryption encryption = 11;
      */
-    encrypted: boolean;
+    encryption?: Encryption | undefined;
     /**
      * Availability level.
      *
@@ -1436,17 +1475,17 @@ export type MVMServiceReinstallRequest = Message<"fits.api.mvm.v1.MVMServiceRein
      */
     osUuid?: string | undefined;
     /**
-     * Whether backup is enabled after the reinstall; unset keeps the current value.
+     * Backup configuration after the reinstall; unset keeps the current value.
      *
-     * @generated from field: optional bool backup = 5;
+     * @generated from field: optional fits.api.mvm.v1.Backup backup = 5;
      */
-    backup?: boolean | undefined;
+    backup?: Backup | undefined;
     /**
-     * Whether the MVM is encrypted after the reinstall; unset keeps the current value.
+     * Encryption configuration after the reinstall; unset keeps the current value.
      *
-     * @generated from field: optional bool encrypted = 6;
+     * @generated from field: optional fits.api.mvm.v1.Encryption encryption = 6;
      */
-    encrypted?: boolean | undefined;
+    encryption?: Encryption | undefined;
 };
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceReinstallRequest.

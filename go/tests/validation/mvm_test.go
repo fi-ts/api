@@ -59,6 +59,8 @@ func validLinuxCreateRequest(modify ...func(*mvmv1.MVMServiceCreateRequest)) *mv
 		Cpu:              2,
 		RamGb:            8,
 		OrderReference:   "TICKET-1",
+		Backup:           &mvmv1.Backup{Enabled: true},
+		Encryption:       &mvmv1.Encryption{Enabled: false},
 		Availability:     mvmv1.Availability_AVAILABILITY_V1,
 		ServiceClass:     mvmv1.ServiceClass_SERVICE_CLASS_SZ1,
 		InitialIpAddress: &mvmv1.InitialIPAddress{VlanUuid: testUUID},
@@ -563,6 +565,22 @@ func TestValidateMVMServiceCreateRequest(t *testing.T) {
 			wantErrorMessage: "validation error: initial_ip_address: value is required",
 		},
 		{
+			name: "missing backup configuration",
+			msg: validLinuxCreateRequest(func(r *mvmv1.MVMServiceCreateRequest) {
+				r.Backup = nil
+			}),
+			wantErr:          true,
+			wantErrorMessage: "validation error: backup: value is required",
+		},
+		{
+			name: "missing encryption configuration",
+			msg: validLinuxCreateRequest(func(r *mvmv1.MVMServiceCreateRequest) {
+				r.Encryption = nil
+			}),
+			wantErr:          true,
+			wantErrorMessage: "validation error: encryption: value is required",
+		},
+		{
 			name: "unspecified availability",
 			msg: validLinuxCreateRequest(func(r *mvmv1.MVMServiceCreateRequest) {
 				r.Availability = mvmv1.Availability_AVAILABILITY_UNSPECIFIED
@@ -798,6 +816,47 @@ func TestValidateSnapshot(t *testing.T) {
 			msg:              &mvmv1.Snapshot{Uuid: testUUID, Name: "my snapshot"},
 			wantErr:          true,
 			wantErrorMessage: "validation error: name: " + msgSnapshotName,
+		},
+	}
+
+	validateProtos(t, tests)
+}
+
+func TestValidateMVMServiceReinstallRequest(t *testing.T) {
+	request := func(modify ...func(*mvmv1.MVMServiceReinstallRequest)) *mvmv1.MVMServiceReinstallRequest {
+		req := &mvmv1.MVMServiceReinstallRequest{
+			Uuid:           testUUID,
+			ProjectUuid:    testUUID,
+			OrderReference: "TICKET-1",
+		}
+		for _, m := range modify {
+			m(req)
+		}
+		return req
+	}
+
+	tests := prototests{
+		{
+			name:    "valid without changes keeps current configuration",
+			msg:     request(),
+			wantErr: false,
+		},
+		{
+			name: "valid with disabled backup and enabled encryption",
+			msg: request(func(r *mvmv1.MVMServiceReinstallRequest) {
+				r.OsUuid = proto.String(testUUID)
+				r.Backup = &mvmv1.Backup{Enabled: false}
+				r.Encryption = &mvmv1.Encryption{Enabled: true}
+			}),
+			wantErr: false,
+		},
+		{
+			name: "invalid os uuid",
+			msg: request(func(r *mvmv1.MVMServiceReinstallRequest) {
+				r.OsUuid = proto.String("not-a-uuid")
+			}),
+			wantErr:          true,
+			wantErrorMessage: "validation error: os_uuid: must be a valid UUID",
 		},
 	}
 
