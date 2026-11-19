@@ -997,13 +997,13 @@ export type MVMServiceDeleteResponse = Message<"fits.api.mvm.v1.MVMServiceDelete
  */
 export declare const MVMServiceDeleteResponseSchema: GenMessage<MVMServiceDeleteResponse>;
 /**
- * Request to order an additional data disk for a MVM.
+ * Request to order additional data disks for a MVM.
  *
- * @generated from message fits.api.mvm.v1.MVMServiceAddDiskRequest
+ * @generated from message fits.api.mvm.v1.MVMServiceAddDisksRequest
  */
-export type MVMServiceAddDiskRequest = Message<"fits.api.mvm.v1.MVMServiceAddDiskRequest"> & {
+export type MVMServiceAddDisksRequest = Message<"fits.api.mvm.v1.MVMServiceAddDisksRequest"> & {
     /**
-     * UUID of the MVM to attach the disk to.
+     * UUID of the MVM to attach the disks to.
      *
      * @generated from field: string uuid = 1;
      */
@@ -1028,57 +1028,57 @@ export type MVMServiceAddDiskRequest = Message<"fits.api.mvm.v1.MVMServiceAddDis
     disks: Disk[];
 };
 /**
- * Describes the message fits.api.mvm.v1.MVMServiceAddDiskRequest.
- * Use `create(MVMServiceAddDiskRequestSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceAddDisksRequest.
+ * Use `create(MVMServiceAddDisksRequestSchema)` to create a new message.
  */
-export declare const MVMServiceAddDiskRequestSchema: GenMessage<MVMServiceAddDiskRequest>;
+export declare const MVMServiceAddDisksRequestSchema: GenMessage<MVMServiceAddDisksRequest>;
 /**
- * Response for AddDisk.
+ * Response for AddDisks.
  *
- * @generated from message fits.api.mvm.v1.MVMServiceAddDiskResponse
+ * @generated from message fits.api.mvm.v1.MVMServiceAddDisksResponse
  */
-export type MVMServiceAddDiskResponse = Message<"fits.api.mvm.v1.MVMServiceAddDiskResponse"> & {
+export type MVMServiceAddDisksResponse = Message<"fits.api.mvm.v1.MVMServiceAddDisksResponse"> & {
     /**
-     * UUID of the created disk.
+     * UUIDs of the created disks; one per requested disk.
      *
-     * @generated from field: string uuid = 1;
+     * @generated from field: repeated string uuids = 1;
      */
-    uuid: string;
+    uuids: string[];
 };
 /**
- * Describes the message fits.api.mvm.v1.MVMServiceAddDiskResponse.
- * Use `create(MVMServiceAddDiskResponseSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceAddDisksResponse.
+ * Use `create(MVMServiceAddDisksResponseSchema)` to create a new message.
  */
-export declare const MVMServiceAddDiskResponseSchema: GenMessage<MVMServiceAddDiskResponse>;
+export declare const MVMServiceAddDisksResponseSchema: GenMessage<MVMServiceAddDisksResponse>;
 /**
- * Request to validate an AddDisk without ordering anything.
+ * Request to validate an AddDisks without ordering anything.
  *
- * @generated from message fits.api.mvm.v1.MVMServiceValidateAddDiskRequest
+ * @generated from message fits.api.mvm.v1.MVMServiceValidateAddDisksRequest
  */
-export type MVMServiceValidateAddDiskRequest = Message<"fits.api.mvm.v1.MVMServiceValidateAddDiskRequest"> & {
+export type MVMServiceValidateAddDisksRequest = Message<"fits.api.mvm.v1.MVMServiceValidateAddDisksRequest"> & {
     /**
-     * The add disk request to validate.
+     * The add disks request to validate.
      *
-     * @generated from field: fits.api.mvm.v1.MVMServiceAddDiskRequest add_disk = 1;
+     * @generated from field: fits.api.mvm.v1.MVMServiceAddDisksRequest add_disks = 1;
      */
-    addDisk?: MVMServiceAddDiskRequest | undefined;
+    addDisks?: MVMServiceAddDisksRequest | undefined;
 };
 /**
- * Describes the message fits.api.mvm.v1.MVMServiceValidateAddDiskRequest.
- * Use `create(MVMServiceValidateAddDiskRequestSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceValidateAddDisksRequest.
+ * Use `create(MVMServiceValidateAddDisksRequestSchema)` to create a new message.
  */
-export declare const MVMServiceValidateAddDiskRequestSchema: GenMessage<MVMServiceValidateAddDiskRequest>;
+export declare const MVMServiceValidateAddDisksRequestSchema: GenMessage<MVMServiceValidateAddDisksRequest>;
 /**
- * Response for ValidateAddDisk; violations are returned as an InvalidArgument error.
+ * Response for ValidateAddDisks; violations are returned as an InvalidArgument error.
  *
- * @generated from message fits.api.mvm.v1.MVMServiceValidateAddDiskResponse
+ * @generated from message fits.api.mvm.v1.MVMServiceValidateAddDisksResponse
  */
-export type MVMServiceValidateAddDiskResponse = Message<"fits.api.mvm.v1.MVMServiceValidateAddDiskResponse"> & {};
+export type MVMServiceValidateAddDisksResponse = Message<"fits.api.mvm.v1.MVMServiceValidateAddDisksResponse"> & {};
 /**
- * Describes the message fits.api.mvm.v1.MVMServiceValidateAddDiskResponse.
- * Use `create(MVMServiceValidateAddDiskResponseSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceValidateAddDisksResponse.
+ * Use `create(MVMServiceValidateAddDisksResponseSchema)` to create a new message.
  */
-export declare const MVMServiceValidateAddDiskResponseSchema: GenMessage<MVMServiceValidateAddDiskResponse>;
+export declare const MVMServiceValidateAddDisksResponseSchema: GenMessage<MVMServiceValidateAddDisksResponse>;
 /**
  * Request to change an existing disk; only size and auto-extend are
  * mutable (see DiskType for applicability per disk kind).
@@ -1782,7 +1782,7 @@ export declare const StateSchema: GenEnum<State>;
  *     deletable.
  *   - DATA: fully controllable (letter/mount point, size, auto-extend)
  *     and deletable; may be included at creation or added later via
- *     AddDisk.
+ *     AddDisks.
  *
  * Whether auto-extend is supported for OS and SYSTEM disks is not yet
  * known; only DATA disks are documented as supporting it.
@@ -1926,25 +1926,25 @@ export declare const MVMService: GenService<{
         output: typeof MVMServiceDeleteResponseSchema;
     };
     /**
-     * Orders an additional data disk for a MVM. System disks are ordered at
+     * Orders additional data disks for a MVM. System disks are ordered at
      * MVM creation and cannot be added later.
      *
-     * @generated from rpc fits.api.mvm.v1.MVMService.AddDisk
+     * @generated from rpc fits.api.mvm.v1.MVMService.AddDisks
      */
-    addDisk: {
+    addDisks: {
         methodKind: "unary";
-        input: typeof MVMServiceAddDiskRequestSchema;
-        output: typeof MVMServiceAddDiskResponseSchema;
+        input: typeof MVMServiceAddDisksRequestSchema;
+        output: typeof MVMServiceAddDisksResponseSchema;
     };
     /**
-     * Validates an AddDisk request without ordering anything.
+     * Validates an AddDisks request without ordering anything.
      *
-     * @generated from rpc fits.api.mvm.v1.MVMService.ValidateAddDisk
+     * @generated from rpc fits.api.mvm.v1.MVMService.ValidateAddDisks
      */
-    validateAddDisk: {
+    validateAddDisks: {
         methodKind: "unary";
-        input: typeof MVMServiceValidateAddDiskRequestSchema;
-        output: typeof MVMServiceValidateAddDiskResponseSchema;
+        input: typeof MVMServiceValidateAddDisksRequestSchema;
+        output: typeof MVMServiceValidateAddDisksResponseSchema;
     };
     /**
      * Changes the size or auto-extend behavior of an existing disk; see

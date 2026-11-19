@@ -45,10 +45,10 @@ class MVMService(Protocol):
     async def delete(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
-    async def add_disk(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDiskResponse:
+    async def add_disks(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDisksRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDisksResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
-    async def validate_add_disk(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse:
+    async def validate_add_disks(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDisksRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDisksResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
     async def update_disk(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateDiskResponse:
@@ -183,25 +183,25 @@ class MVMServiceASGIApplication(ConnectASGIApplication[MVMService]):
                     ),
                     function=svc.delete,
                 ),
-                "/fits.api.mvm.v1.MVMService/AddDisk": Endpoint.unary(
+                "/fits.api.mvm.v1.MVMService/AddDisks": Endpoint.unary(
                     method=MethodInfo(
-                        name="AddDisk",
+                        name="AddDisks",
                         service_name="fits.api.mvm.v1.MVMService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDiskRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDiskResponse,
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDisksRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDisksResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
-                    function=svc.add_disk,
+                    function=svc.add_disks,
                 ),
-                "/fits.api.mvm.v1.MVMService/ValidateAddDisk": Endpoint.unary(
+                "/fits.api.mvm.v1.MVMService/ValidateAddDisks": Endpoint.unary(
                     method=MethodInfo(
-                        name="ValidateAddDisk",
+                        name="ValidateAddDisks",
                         service_name="fits.api.mvm.v1.MVMService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse,
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDisksRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDisksResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
-                    function=svc.validate_add_disk,
+                    function=svc.validate_add_disks,
                 ),
                 "/fits.api.mvm.v1.MVMService/UpdateDisk": Endpoint.unary(
                     method=MethodInfo(
@@ -517,40 +517,40 @@ class MVMServiceClient(ConnectClient):
             timeout_ms=timeout_ms,
         )
 
-    async def add_disk(
+    async def add_disks(
         self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDiskRequest,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDisksRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDiskResponse:
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDisksResponse:
         return await self.execute_unary(
             request=request,
             method=MethodInfo(
-                name="AddDisk",
+                name="AddDisks",
                 service_name="fits.api.mvm.v1.MVMService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDiskRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDiskResponse,
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDisksRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDisksResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
             timeout_ms=timeout_ms,
         )
 
-    async def validate_add_disk(
+    async def validate_add_disks(
         self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDisksRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse:
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDisksResponse:
         return await self.execute_unary(
             request=request,
             method=MethodInfo(
-                name="ValidateAddDisk",
+                name="ValidateAddDisks",
                 service_name="fits.api.mvm.v1.MVMService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse,
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDisksRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDisksResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
@@ -820,9 +820,9 @@ class MVMServiceSync(Protocol):
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def delete(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceDeleteResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-    def add_disk(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDiskResponse:
+    def add_disks(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDisksRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDisksResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
-    def validate_add_disk(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse:
+    def validate_add_disks(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDisksRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDisksResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def update_disk(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateDiskRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceUpdateDiskResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
@@ -944,25 +944,25 @@ class MVMServiceWSGIApplication(ConnectWSGIApplication):
                     ),
                     function=service.delete,
                 ),
-                "/fits.api.mvm.v1.MVMService/AddDisk": EndpointSync.unary(
+                "/fits.api.mvm.v1.MVMService/AddDisks": EndpointSync.unary(
                     method=MethodInfo(
-                        name="AddDisk",
+                        name="AddDisks",
                         service_name="fits.api.mvm.v1.MVMService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDiskRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDiskResponse,
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDisksRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDisksResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
-                    function=service.add_disk,
+                    function=service.add_disks,
                 ),
-                "/fits.api.mvm.v1.MVMService/ValidateAddDisk": EndpointSync.unary(
+                "/fits.api.mvm.v1.MVMService/ValidateAddDisks": EndpointSync.unary(
                     method=MethodInfo(
-                        name="ValidateAddDisk",
+                        name="ValidateAddDisks",
                         service_name="fits.api.mvm.v1.MVMService",
-                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest,
-                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse,
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDisksRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDisksResponse,
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
-                    function=service.validate_add_disk,
+                    function=service.validate_add_disks,
                 ),
                 "/fits.api.mvm.v1.MVMService/UpdateDisk": EndpointSync.unary(
                     method=MethodInfo(
@@ -1278,40 +1278,40 @@ class MVMServiceClientSync(ConnectClientSync):
             timeout_ms=timeout_ms,
         )
 
-    def add_disk(
+    def add_disks(
         self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDiskRequest,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDisksRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDiskResponse:
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDisksResponse:
         return self.execute_unary(
             request=request,
             method=MethodInfo(
-                name="AddDisk",
+                name="AddDisks",
                 service_name="fits.api.mvm.v1.MVMService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDiskRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDiskResponse,
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDisksRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceAddDisksResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,
             timeout_ms=timeout_ms,
         )
 
-    def validate_add_disk(
+    def validate_add_disks(
         self,
-        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDisksRequest,
         *,
         headers: Headers | Mapping[str, str] | None = None,
         timeout_ms: int | None = None,
-    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse:
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDisksResponse:
         return self.execute_unary(
             request=request,
             method=MethodInfo(
-                name="ValidateAddDisk",
+                name="ValidateAddDisks",
                 service_name="fits.api.mvm.v1.MVMService",
-                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskRequest,
-                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDiskResponse,
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDisksRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__pb2.MVMServiceValidateAddDisksResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,

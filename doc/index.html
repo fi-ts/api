@@ -505,11 +505,11 @@
                 </li>
               
                 <li>
-                  <a href="#fits.api.mvm.v1.MVMServiceAddDiskRequest"><span class="badge">M</span>MVMServiceAddDiskRequest</a>
+                  <a href="#fits.api.mvm.v1.MVMServiceAddDisksRequest"><span class="badge">M</span>MVMServiceAddDisksRequest</a>
                 </li>
               
                 <li>
-                  <a href="#fits.api.mvm.v1.MVMServiceAddDiskResponse"><span class="badge">M</span>MVMServiceAddDiskResponse</a>
+                  <a href="#fits.api.mvm.v1.MVMServiceAddDisksResponse"><span class="badge">M</span>MVMServiceAddDisksResponse</a>
                 </li>
               
                 <li>
@@ -649,11 +649,11 @@
                 </li>
               
                 <li>
-                  <a href="#fits.api.mvm.v1.MVMServiceValidateAddDiskRequest"><span class="badge">M</span>MVMServiceValidateAddDiskRequest</a>
+                  <a href="#fits.api.mvm.v1.MVMServiceValidateAddDisksRequest"><span class="badge">M</span>MVMServiceValidateAddDisksRequest</a>
                 </li>
               
                 <li>
-                  <a href="#fits.api.mvm.v1.MVMServiceValidateAddDiskResponse"><span class="badge">M</span>MVMServiceValidateAddDiskResponse</a>
+                  <a href="#fits.api.mvm.v1.MVMServiceValidateAddDisksResponse"><span class="badge">M</span>MVMServiceValidateAddDisksResponse</a>
                 </li>
               
                 <li>
@@ -2726,8 +2726,8 @@ API in responses. </p></td>
 
         
       
-        <h3 id="fits.api.mvm.v1.MVMServiceAddDiskRequest">MVMServiceAddDiskRequest</h3>
-        <p>Request to order an additional data disk for a MVM.</p>
+        <h3 id="fits.api.mvm.v1.MVMServiceAddDisksRequest">MVMServiceAddDisksRequest</h3>
+        <p>Request to order additional data disks for a MVM.</p>
 
         
           <table class="field-table">
@@ -2740,7 +2740,7 @@ API in responses. </p></td>
                   <td>uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>UUID of the MVM to attach the disk to. </p></td>
+                  <td><p>UUID of the MVM to attach the disks to. </p></td>
                 </tr>
               
                 <tr>
@@ -2771,8 +2771,8 @@ API in responses. </p></td>
 
         
       
-        <h3 id="fits.api.mvm.v1.MVMServiceAddDiskResponse">MVMServiceAddDiskResponse</h3>
-        <p>Response for AddDisk.</p>
+        <h3 id="fits.api.mvm.v1.MVMServiceAddDisksResponse">MVMServiceAddDisksResponse</h3>
+        <p>Response for AddDisks.</p>
 
         
           <table class="field-table">
@@ -2782,10 +2782,10 @@ API in responses. </p></td>
             <tbody>
               
                 <tr>
-                  <td>uuid</td>
+                  <td>uuids</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>UUID of the created disk. </p></td>
+                  <td>repeated</td>
+                  <td><p>UUIDs of the created disks; one per requested disk. </p></td>
                 </tr>
               
             </tbody>
@@ -3868,8 +3868,8 @@ one system disk plus any number of data disks (see DiskType). </p></td>
 
         
       
-        <h3 id="fits.api.mvm.v1.MVMServiceValidateAddDiskRequest">MVMServiceValidateAddDiskRequest</h3>
-        <p>Request to validate an AddDisk without ordering anything.</p>
+        <h3 id="fits.api.mvm.v1.MVMServiceValidateAddDisksRequest">MVMServiceValidateAddDisksRequest</h3>
+        <p>Request to validate an AddDisks without ordering anything.</p>
 
         
           <table class="field-table">
@@ -3879,10 +3879,10 @@ one system disk plus any number of data disks (see DiskType). </p></td>
             <tbody>
               
                 <tr>
-                  <td>add_disk</td>
-                  <td><a href="#fits.api.mvm.v1.MVMServiceAddDiskRequest">MVMServiceAddDiskRequest</a></td>
+                  <td>add_disks</td>
+                  <td><a href="#fits.api.mvm.v1.MVMServiceAddDisksRequest">MVMServiceAddDisksRequest</a></td>
                   <td></td>
-                  <td><p>The add disk request to validate. </p></td>
+                  <td><p>The add disks request to validate. </p></td>
                 </tr>
               
             </tbody>
@@ -3892,8 +3892,8 @@ one system disk plus any number of data disks (see DiskType). </p></td>
 
         
       
-        <h3 id="fits.api.mvm.v1.MVMServiceValidateAddDiskResponse">MVMServiceValidateAddDiskResponse</h3>
-        <p>Response for ValidateAddDisk; violations are returned as an InvalidArgument error.</p>
+        <h3 id="fits.api.mvm.v1.MVMServiceValidateAddDisksResponse">MVMServiceValidateAddDisksResponse</h3>
+        <p>Response for ValidateAddDisks; violations are returned as an InvalidArgument error.</p>
 
         
 
@@ -4451,7 +4451,7 @@ API in responses. </p></td>
         </table>
       
         <h3 id="fits.api.mvm.v1.DiskType">DiskType</h3>
-        <p>DiskType classifies a MVM disk by its lifecycle rules.</p><p>The upstream (nulink) API returns every disk of a MVM, including the</p><p>backend-provisioned OS disk, so that oversized OS disks stay billable.</p><p>Lifecycle per kind:</p><p>- OS: provisioned by the backend and never part of create/add</p><p>requests; resizable via UpdateDisk, never deletable.</p><p>- SYSTEM: exactly one per MVM (drive letter F on Windows, mount point</p><p>/appdata on Linux), whose letter/mount point is fixed; must be</p><p>included in the create request; resizable via UpdateDisk, never</p><p>deletable.</p><p>- DATA: fully controllable (letter/mount point, size, auto-extend)</p><p>and deletable; may be included at creation or added later via</p><p>AddDisk.</p><p>Whether auto-extend is supported for OS and SYSTEM disks is not yet</p><p>known; only DATA disks are documented as supporting it.</p><p>These rules are enforced by the upstream (nulink) API at creation and</p><p>edit time (e.g. duplicate drive letters, deleting a system disk);</p><p>fco-api does not re-validate them locally and surfaces upstream</p><p>violations as InvalidArgument errors. Use the Validate* RPCs to</p><p>pre-check a request against the upstream rules.</p>
+        <p>DiskType classifies a MVM disk by its lifecycle rules.</p><p>The upstream (nulink) API returns every disk of a MVM, including the</p><p>backend-provisioned OS disk, so that oversized OS disks stay billable.</p><p>Lifecycle per kind:</p><p>- OS: provisioned by the backend and never part of create/add</p><p>requests; resizable via UpdateDisk, never deletable.</p><p>- SYSTEM: exactly one per MVM (drive letter F on Windows, mount point</p><p>/appdata on Linux), whose letter/mount point is fixed; must be</p><p>included in the create request; resizable via UpdateDisk, never</p><p>deletable.</p><p>- DATA: fully controllable (letter/mount point, size, auto-extend)</p><p>and deletable; may be included at creation or added later via</p><p>AddDisks.</p><p>Whether auto-extend is supported for OS and SYSTEM disks is not yet</p><p>known; only DATA disks are documented as supporting it.</p><p>These rules are enforced by the upstream (nulink) API at creation and</p><p>edit time (e.g. duplicate drive letters, deleting a system disk);</p><p>fco-api does not re-validate them locally and surfaces upstream</p><p>violations as InvalidArgument errors. Use the Validate* RPCs to</p><p>pre-check a request against the upstream rules.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -4647,18 +4647,18 @@ deletable.</p></td>
               </tr>
             
               <tr>
-                <td>AddDisk</td>
-                <td><a href="#fits.api.mvm.v1.MVMServiceAddDiskRequest">MVMServiceAddDiskRequest</a></td>
-                <td><a href="#fits.api.mvm.v1.MVMServiceAddDiskResponse">MVMServiceAddDiskResponse</a></td>
-                <td><p>Orders an additional data disk for a MVM. System disks are ordered at
+                <td>AddDisks</td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceAddDisksRequest">MVMServiceAddDisksRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceAddDisksResponse">MVMServiceAddDisksResponse</a></td>
+                <td><p>Orders additional data disks for a MVM. System disks are ordered at
 MVM creation and cannot be added later.</p></td>
               </tr>
             
               <tr>
-                <td>ValidateAddDisk</td>
-                <td><a href="#fits.api.mvm.v1.MVMServiceValidateAddDiskRequest">MVMServiceValidateAddDiskRequest</a></td>
-                <td><a href="#fits.api.mvm.v1.MVMServiceValidateAddDiskResponse">MVMServiceValidateAddDiskResponse</a></td>
-                <td><p>Validates an AddDisk request without ordering anything.</p></td>
+                <td>ValidateAddDisks</td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceValidateAddDisksRequest">MVMServiceValidateAddDisksRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.MVMServiceValidateAddDisksResponse">MVMServiceValidateAddDisksResponse</a></td>
+                <td><p>Validates an AddDisks request without ordering anything.</p></td>
               </tr>
             
               <tr>

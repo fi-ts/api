@@ -55,11 +55,11 @@ const (
 	MVMServiceValidateUpdateServiceClassProcedure = "/fits.api.mvm.v1.MVMService/ValidateUpdateServiceClass"
 	// MVMServiceDeleteProcedure is the fully-qualified name of the MVMService's Delete RPC.
 	MVMServiceDeleteProcedure = "/fits.api.mvm.v1.MVMService/Delete"
-	// MVMServiceAddDiskProcedure is the fully-qualified name of the MVMService's AddDisk RPC.
-	MVMServiceAddDiskProcedure = "/fits.api.mvm.v1.MVMService/AddDisk"
-	// MVMServiceValidateAddDiskProcedure is the fully-qualified name of the MVMService's
-	// ValidateAddDisk RPC.
-	MVMServiceValidateAddDiskProcedure = "/fits.api.mvm.v1.MVMService/ValidateAddDisk"
+	// MVMServiceAddDisksProcedure is the fully-qualified name of the MVMService's AddDisks RPC.
+	MVMServiceAddDisksProcedure = "/fits.api.mvm.v1.MVMService/AddDisks"
+	// MVMServiceValidateAddDisksProcedure is the fully-qualified name of the MVMService's
+	// ValidateAddDisks RPC.
+	MVMServiceValidateAddDisksProcedure = "/fits.api.mvm.v1.MVMService/ValidateAddDisks"
 	// MVMServiceUpdateDiskProcedure is the fully-qualified name of the MVMService's UpdateDisk RPC.
 	MVMServiceUpdateDiskProcedure = "/fits.api.mvm.v1.MVMService/UpdateDisk"
 	// MVMServiceValidateUpdateDiskProcedure is the fully-qualified name of the MVMService's
@@ -111,11 +111,11 @@ type MVMServiceClient interface {
 	ValidateUpdateServiceClass(context.Context, *v1.MVMServiceValidateUpdateServiceClassRequest) (*v1.MVMServiceValidateUpdateServiceClassResponse, error)
 	// Deletes a MVM.
 	Delete(context.Context, *v1.MVMServiceDeleteRequest) (*v1.MVMServiceDeleteResponse, error)
-	// Orders an additional data disk for a MVM. System disks are ordered at
+	// Orders additional data disks for a MVM. System disks are ordered at
 	// MVM creation and cannot be added later.
-	AddDisk(context.Context, *v1.MVMServiceAddDiskRequest) (*v1.MVMServiceAddDiskResponse, error)
-	// Validates an AddDisk request without ordering anything.
-	ValidateAddDisk(context.Context, *v1.MVMServiceValidateAddDiskRequest) (*v1.MVMServiceValidateAddDiskResponse, error)
+	AddDisks(context.Context, *v1.MVMServiceAddDisksRequest) (*v1.MVMServiceAddDisksResponse, error)
+	// Validates an AddDisks request without ordering anything.
+	ValidateAddDisks(context.Context, *v1.MVMServiceValidateAddDisksRequest) (*v1.MVMServiceValidateAddDisksResponse, error)
 	// Changes the size or auto-extend behavior of an existing disk; see
 	// DiskType for which operations apply per disk kind.
 	UpdateDisk(context.Context, *v1.MVMServiceUpdateDiskRequest) (*v1.MVMServiceUpdateDiskResponse, error)
@@ -208,16 +208,16 @@ func NewMVMServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...
 			connect.WithSchema(mVMServiceMethods.ByName("Delete")),
 			connect.WithClientOptions(opts...),
 		),
-		addDisk: connect.NewClient[v1.MVMServiceAddDiskRequest, v1.MVMServiceAddDiskResponse](
+		addDisks: connect.NewClient[v1.MVMServiceAddDisksRequest, v1.MVMServiceAddDisksResponse](
 			httpClient,
-			baseURL+MVMServiceAddDiskProcedure,
-			connect.WithSchema(mVMServiceMethods.ByName("AddDisk")),
+			baseURL+MVMServiceAddDisksProcedure,
+			connect.WithSchema(mVMServiceMethods.ByName("AddDisks")),
 			connect.WithClientOptions(opts...),
 		),
-		validateAddDisk: connect.NewClient[v1.MVMServiceValidateAddDiskRequest, v1.MVMServiceValidateAddDiskResponse](
+		validateAddDisks: connect.NewClient[v1.MVMServiceValidateAddDisksRequest, v1.MVMServiceValidateAddDisksResponse](
 			httpClient,
-			baseURL+MVMServiceValidateAddDiskProcedure,
-			connect.WithSchema(mVMServiceMethods.ByName("ValidateAddDisk")),
+			baseURL+MVMServiceValidateAddDisksProcedure,
+			connect.WithSchema(mVMServiceMethods.ByName("ValidateAddDisks")),
 			connect.WithClientOptions(opts...),
 		),
 		updateDisk: connect.NewClient[v1.MVMServiceUpdateDiskRequest, v1.MVMServiceUpdateDiskResponse](
@@ -306,8 +306,8 @@ type mVMServiceClient struct {
 	updateServiceClass         *connect.Client[v1.MVMServiceUpdateServiceClassRequest, v1.MVMServiceUpdateServiceClassResponse]
 	validateUpdateServiceClass *connect.Client[v1.MVMServiceValidateUpdateServiceClassRequest, v1.MVMServiceValidateUpdateServiceClassResponse]
 	delete                     *connect.Client[v1.MVMServiceDeleteRequest, v1.MVMServiceDeleteResponse]
-	addDisk                    *connect.Client[v1.MVMServiceAddDiskRequest, v1.MVMServiceAddDiskResponse]
-	validateAddDisk            *connect.Client[v1.MVMServiceValidateAddDiskRequest, v1.MVMServiceValidateAddDiskResponse]
+	addDisks                   *connect.Client[v1.MVMServiceAddDisksRequest, v1.MVMServiceAddDisksResponse]
+	validateAddDisks           *connect.Client[v1.MVMServiceValidateAddDisksRequest, v1.MVMServiceValidateAddDisksResponse]
 	updateDisk                 *connect.Client[v1.MVMServiceUpdateDiskRequest, v1.MVMServiceUpdateDiskResponse]
 	validateUpdateDisk         *connect.Client[v1.MVMServiceValidateUpdateDiskRequest, v1.MVMServiceValidateUpdateDiskResponse]
 	deleteDisk                 *connect.Client[v1.MVMServiceDeleteDiskRequest, v1.MVMServiceDeleteDiskResponse]
@@ -403,18 +403,18 @@ func (c *mVMServiceClient) Delete(ctx context.Context, req *v1.MVMServiceDeleteR
 	return nil, err
 }
 
-// AddDisk calls fits.api.mvm.v1.MVMService.AddDisk.
-func (c *mVMServiceClient) AddDisk(ctx context.Context, req *v1.MVMServiceAddDiskRequest) (*v1.MVMServiceAddDiskResponse, error) {
-	response, err := c.addDisk.CallUnary(ctx, connect.NewRequest(req))
+// AddDisks calls fits.api.mvm.v1.MVMService.AddDisks.
+func (c *mVMServiceClient) AddDisks(ctx context.Context, req *v1.MVMServiceAddDisksRequest) (*v1.MVMServiceAddDisksResponse, error) {
+	response, err := c.addDisks.CallUnary(ctx, connect.NewRequest(req))
 	if response != nil {
 		return response.Msg, err
 	}
 	return nil, err
 }
 
-// ValidateAddDisk calls fits.api.mvm.v1.MVMService.ValidateAddDisk.
-func (c *mVMServiceClient) ValidateAddDisk(ctx context.Context, req *v1.MVMServiceValidateAddDiskRequest) (*v1.MVMServiceValidateAddDiskResponse, error) {
-	response, err := c.validateAddDisk.CallUnary(ctx, connect.NewRequest(req))
+// ValidateAddDisks calls fits.api.mvm.v1.MVMService.ValidateAddDisks.
+func (c *mVMServiceClient) ValidateAddDisks(ctx context.Context, req *v1.MVMServiceValidateAddDisksRequest) (*v1.MVMServiceValidateAddDisksResponse, error) {
+	response, err := c.validateAddDisks.CallUnary(ctx, connect.NewRequest(req))
 	if response != nil {
 		return response.Msg, err
 	}
@@ -549,11 +549,11 @@ type MVMServiceHandler interface {
 	ValidateUpdateServiceClass(context.Context, *v1.MVMServiceValidateUpdateServiceClassRequest) (*v1.MVMServiceValidateUpdateServiceClassResponse, error)
 	// Deletes a MVM.
 	Delete(context.Context, *v1.MVMServiceDeleteRequest) (*v1.MVMServiceDeleteResponse, error)
-	// Orders an additional data disk for a MVM. System disks are ordered at
+	// Orders additional data disks for a MVM. System disks are ordered at
 	// MVM creation and cannot be added later.
-	AddDisk(context.Context, *v1.MVMServiceAddDiskRequest) (*v1.MVMServiceAddDiskResponse, error)
-	// Validates an AddDisk request without ordering anything.
-	ValidateAddDisk(context.Context, *v1.MVMServiceValidateAddDiskRequest) (*v1.MVMServiceValidateAddDiskResponse, error)
+	AddDisks(context.Context, *v1.MVMServiceAddDisksRequest) (*v1.MVMServiceAddDisksResponse, error)
+	// Validates an AddDisks request without ordering anything.
+	ValidateAddDisks(context.Context, *v1.MVMServiceValidateAddDisksRequest) (*v1.MVMServiceValidateAddDisksResponse, error)
 	// Changes the size or auto-extend behavior of an existing disk; see
 	// DiskType for which operations apply per disk kind.
 	UpdateDisk(context.Context, *v1.MVMServiceUpdateDiskRequest) (*v1.MVMServiceUpdateDiskResponse, error)
@@ -642,16 +642,16 @@ func NewMVMServiceHandler(svc MVMServiceHandler, opts ...connect.HandlerOption) 
 		connect.WithSchema(mVMServiceMethods.ByName("Delete")),
 		connect.WithHandlerOptions(opts...),
 	)
-	mVMServiceAddDiskHandler := connect.NewUnaryHandlerSimple(
-		MVMServiceAddDiskProcedure,
-		svc.AddDisk,
-		connect.WithSchema(mVMServiceMethods.ByName("AddDisk")),
+	mVMServiceAddDisksHandler := connect.NewUnaryHandlerSimple(
+		MVMServiceAddDisksProcedure,
+		svc.AddDisks,
+		connect.WithSchema(mVMServiceMethods.ByName("AddDisks")),
 		connect.WithHandlerOptions(opts...),
 	)
-	mVMServiceValidateAddDiskHandler := connect.NewUnaryHandlerSimple(
-		MVMServiceValidateAddDiskProcedure,
-		svc.ValidateAddDisk,
-		connect.WithSchema(mVMServiceMethods.ByName("ValidateAddDisk")),
+	mVMServiceValidateAddDisksHandler := connect.NewUnaryHandlerSimple(
+		MVMServiceValidateAddDisksProcedure,
+		svc.ValidateAddDisks,
+		connect.WithSchema(mVMServiceMethods.ByName("ValidateAddDisks")),
 		connect.WithHandlerOptions(opts...),
 	)
 	mVMServiceUpdateDiskHandler := connect.NewUnaryHandlerSimple(
@@ -746,10 +746,10 @@ func NewMVMServiceHandler(svc MVMServiceHandler, opts ...connect.HandlerOption) 
 			mVMServiceValidateUpdateServiceClassHandler.ServeHTTP(w, r)
 		case MVMServiceDeleteProcedure:
 			mVMServiceDeleteHandler.ServeHTTP(w, r)
-		case MVMServiceAddDiskProcedure:
-			mVMServiceAddDiskHandler.ServeHTTP(w, r)
-		case MVMServiceValidateAddDiskProcedure:
-			mVMServiceValidateAddDiskHandler.ServeHTTP(w, r)
+		case MVMServiceAddDisksProcedure:
+			mVMServiceAddDisksHandler.ServeHTTP(w, r)
+		case MVMServiceValidateAddDisksProcedure:
+			mVMServiceValidateAddDisksHandler.ServeHTTP(w, r)
 		case MVMServiceUpdateDiskProcedure:
 			mVMServiceUpdateDiskHandler.ServeHTTP(w, r)
 		case MVMServiceValidateUpdateDiskProcedure:
@@ -819,12 +819,12 @@ func (UnimplementedMVMServiceHandler) Delete(context.Context, *v1.MVMServiceDele
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.Delete is not implemented"))
 }
 
-func (UnimplementedMVMServiceHandler) AddDisk(context.Context, *v1.MVMServiceAddDiskRequest) (*v1.MVMServiceAddDiskResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.AddDisk is not implemented"))
+func (UnimplementedMVMServiceHandler) AddDisks(context.Context, *v1.MVMServiceAddDisksRequest) (*v1.MVMServiceAddDisksResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.AddDisks is not implemented"))
 }
 
-func (UnimplementedMVMServiceHandler) ValidateAddDisk(context.Context, *v1.MVMServiceValidateAddDiskRequest) (*v1.MVMServiceValidateAddDiskResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.ValidateAddDisk is not implemented"))
+func (UnimplementedMVMServiceHandler) ValidateAddDisks(context.Context, *v1.MVMServiceValidateAddDisksRequest) (*v1.MVMServiceValidateAddDisksResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.MVMService.ValidateAddDisks is not implemented"))
 }
 
 func (UnimplementedMVMServiceHandler) UpdateDisk(context.Context, *v1.MVMServiceUpdateDiskRequest) (*v1.MVMServiceUpdateDiskResponse, error) {

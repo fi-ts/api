@@ -63,15 +63,15 @@ service MVMService {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
-  // Orders an additional data disk for a MVM. System disks are ordered at
+  // Orders additional data disks for a MVM. System disks are ordered at
   // MVM creation and cannot be added later.
-  rpc AddDisk(MVMServiceAddDiskRequest) returns (MVMServiceAddDiskResponse) {
+  rpc AddDisks(MVMServiceAddDisksRequest) returns (MVMServiceAddDisksResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
-  // Validates an AddDisk request without ordering anything.
-  rpc ValidateAddDisk(MVMServiceValidateAddDiskRequest) returns (MVMServiceValidateAddDiskResponse) {
+  // Validates an AddDisks request without ordering anything.
+  rpc ValidateAddDisks(MVMServiceValidateAddDisksRequest) returns (MVMServiceValidateAddDisksResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
     option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
@@ -202,7 +202,7 @@ enum State {
 //     deletable.
 //   - DATA: fully controllable (letter/mount point, size, auto-extend)
 //     and deletable; may be included at creation or added later via
-//     AddDisk.
+//     AddDisks.
 //
 // Whether auto-extend is supported for OS and SYSTEM disks is not yet
 // known; only DATA disks are documented as supporting it.
@@ -573,9 +573,9 @@ message MVMServiceDeleteRequest {
 // Response for Delete; an empty response means the cancellation was accepted.
 message MVMServiceDeleteResponse {}
 
-// Request to order an additional data disk for a MVM.
-message MVMServiceAddDiskRequest {
-  // UUID of the MVM to attach the disk to.
+// Request to order additional data disks for a MVM.
+message MVMServiceAddDisksRequest {
+  // UUID of the MVM to attach the disks to.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
   // UUID of the project the MVM belongs to.
   string project_uuid = 2 [(buf.validate.field).string.uuid = true];
@@ -585,20 +585,23 @@ message MVMServiceAddDiskRequest {
   repeated Disk disks = 4;
 }
 
-// Response for AddDisk.
-message MVMServiceAddDiskResponse {
-  // UUID of the created disk.
-  string uuid = 1 [(buf.validate.field).string.uuid = true];
+// Response for AddDisks.
+message MVMServiceAddDisksResponse {
+  // UUIDs of the created disks; one per requested disk.
+  repeated string uuids = 1 [
+    (buf.validate.field).repeated.min_items = 1,
+    (buf.validate.field).repeated.items.string.uuid = true
+  ];
 }
 
-// Request to validate an AddDisk without ordering anything.
-message MVMServiceValidateAddDiskRequest {
-  // The add disk request to validate.
-  MVMServiceAddDiskRequest add_disk = 1 [(buf.validate.field).required = true];
+// Request to validate an AddDisks without ordering anything.
+message MVMServiceValidateAddDisksRequest {
+  // The add disks request to validate.
+  MVMServiceAddDisksRequest add_disks = 1 [(buf.validate.field).required = true];
 }
 
-// Response for ValidateAddDisk; violations are returned as an InvalidArgument error.
-message MVMServiceValidateAddDiskResponse {}
+// Response for ValidateAddDisks; violations are returned as an InvalidArgument error.
+message MVMServiceValidateAddDisksResponse {}
 
 // Request to change an existing disk; only size and auto-extend are
 // mutable (see DiskType for applicability per disk kind).

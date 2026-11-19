@@ -27,8 +27,8 @@ func TestValidateRequestsExposeProjectUuid(t *testing.T) {
 		},
 		{
 			name: "validate add disk forwards nested project",
-			req: &MVMServiceValidateAddDiskRequest{
-				AddDisk: &MVMServiceAddDiskRequest{ProjectUuid: project},
+			req: &MVMServiceValidateAddDisksRequest{
+				AddDisks: &MVMServiceAddDisksRequest{ProjectUuid: project},
 			},
 			want: project,
 		},
@@ -65,14 +65,14 @@ func TestValidateRequestsExposeProjectUuid(t *testing.T) {
 func TestValidateRequestsNilReceiver(t *testing.T) {
 	var (
 		create     *MVMServiceValidateCreateRequest
-		addDisk    *MVMServiceValidateAddDiskRequest
+		addDisks   *MVMServiceValidateAddDisksRequest
 		updateDisk *MVMServiceValidateUpdateDiskRequest
 		reinstall  *MVMServiceValidateReinstallRequest
 	)
 	// A nil receiver must not panic; it simply has no project.
 	for _, got := range []string{
 		create.GetProjectUuid(),
-		addDisk.GetProjectUuid(),
+		addDisks.GetProjectUuid(),
 		updateDisk.GetProjectUuid(),
 		reinstall.GetProjectUuid(),
 	} {

@@ -372,7 +372,7 @@ class MVMServiceDeleteResponse(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...
 
-class MVMServiceAddDiskRequest(_message.Message):
+class MVMServiceAddDisksRequest(_message.Message):
     __slots__ = ("uuid", "project_uuid", "order_number", "disks")
     UUID_FIELD_NUMBER: _ClassVar[int]
     PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
@@ -384,19 +384,19 @@ class MVMServiceAddDiskRequest(_message.Message):
     disks: _containers.RepeatedCompositeFieldContainer[Disk]
     def __init__(self, uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ..., disks: _Optional[_Iterable[_Union[Disk, _Mapping]]] = ...) -> None: ...
 
-class MVMServiceAddDiskResponse(_message.Message):
-    __slots__ = ("uuid",)
-    UUID_FIELD_NUMBER: _ClassVar[int]
-    uuid: str
-    def __init__(self, uuid: _Optional[str] = ...) -> None: ...
+class MVMServiceAddDisksResponse(_message.Message):
+    __slots__ = ("uuids",)
+    UUIDS_FIELD_NUMBER: _ClassVar[int]
+    uuids: _containers.RepeatedScalarFieldContainer[str]
+    def __init__(self, uuids: _Optional[_Iterable[str]] = ...) -> None: ...
 
-class MVMServiceValidateAddDiskRequest(_message.Message):
-    __slots__ = ("add_disk",)
-    ADD_DISK_FIELD_NUMBER: _ClassVar[int]
-    add_disk: MVMServiceAddDiskRequest
-    def __init__(self, add_disk: _Optional[_Union[MVMServiceAddDiskRequest, _Mapping]] = ...) -> None: ...
+class MVMServiceValidateAddDisksRequest(_message.Message):
+    __slots__ = ("add_disks",)
+    ADD_DISKS_FIELD_NUMBER: _ClassVar[int]
+    add_disks: MVMServiceAddDisksRequest
+    def __init__(self, add_disks: _Optional[_Union[MVMServiceAddDisksRequest, _Mapping]] = ...) -> None: ...
 
-class MVMServiceValidateAddDiskResponse(_message.Message):
+class MVMServiceValidateAddDisksResponse(_message.Message):
     __slots__ = ()
     def __init__(self) -> None: ...
 

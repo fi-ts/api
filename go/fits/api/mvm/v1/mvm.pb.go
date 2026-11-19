@@ -220,7 +220,7 @@ func (State) EnumDescriptor() ([]byte, []int) {
 //     deletable.
 //   - DATA: fully controllable (letter/mount point, size, auto-extend)
 //     and deletable; may be included at creation or added later via
-//     AddDisk.
+//     AddDisks.
 //
 // Whether auto-extend is supported for OS and SYSTEM disks is not yet
 // known; only DATA disks are documented as supporting it.
@@ -2399,10 +2399,10 @@ func (*MVMServiceDeleteResponse) Descriptor() ([]byte, []int) {
 	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{30}
 }
 
-// Request to order an additional data disk for a MVM.
-type MVMServiceAddDiskRequest struct {
+// Request to order additional data disks for a MVM.
+type MVMServiceAddDisksRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// UUID of the MVM to attach the disk to.
+	// UUID of the MVM to attach the disks to.
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	// UUID of the project the MVM belongs to.
 	ProjectUuid string `protobuf:"bytes,2,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
@@ -2414,20 +2414,20 @@ type MVMServiceAddDiskRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *MVMServiceAddDiskRequest) Reset() {
-	*x = MVMServiceAddDiskRequest{}
+func (x *MVMServiceAddDisksRequest) Reset() {
+	*x = MVMServiceAddDisksRequest{}
 	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *MVMServiceAddDiskRequest) String() string {
+func (x *MVMServiceAddDisksRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MVMServiceAddDiskRequest) ProtoMessage() {}
+func (*MVMServiceAddDisksRequest) ProtoMessage() {}
 
-func (x *MVMServiceAddDiskRequest) ProtoReflect() protoreflect.Message {
+func (x *MVMServiceAddDisksRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2439,62 +2439,62 @@ func (x *MVMServiceAddDiskRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MVMServiceAddDiskRequest.ProtoReflect.Descriptor instead.
-func (*MVMServiceAddDiskRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use MVMServiceAddDisksRequest.ProtoReflect.Descriptor instead.
+func (*MVMServiceAddDisksRequest) Descriptor() ([]byte, []int) {
 	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{31}
 }
 
-func (x *MVMServiceAddDiskRequest) GetUuid() string {
+func (x *MVMServiceAddDisksRequest) GetUuid() string {
 	if x != nil {
 		return x.Uuid
 	}
 	return ""
 }
 
-func (x *MVMServiceAddDiskRequest) GetProjectUuid() string {
+func (x *MVMServiceAddDisksRequest) GetProjectUuid() string {
 	if x != nil {
 		return x.ProjectUuid
 	}
 	return ""
 }
 
-func (x *MVMServiceAddDiskRequest) GetOrderNumber() string {
+func (x *MVMServiceAddDisksRequest) GetOrderNumber() string {
 	if x != nil {
 		return x.OrderNumber
 	}
 	return ""
 }
 
-func (x *MVMServiceAddDiskRequest) GetDisks() []*Disk {
+func (x *MVMServiceAddDisksRequest) GetDisks() []*Disk {
 	if x != nil {
 		return x.Disks
 	}
 	return nil
 }
 
-// Response for AddDisk.
-type MVMServiceAddDiskResponse struct {
+// Response for AddDisks.
+type MVMServiceAddDisksResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// UUID of the created disk.
-	Uuid          string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	// UUIDs of the created disks; one per requested disk.
+	Uuids         []string `protobuf:"bytes,1,rep,name=uuids,proto3" json:"uuids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *MVMServiceAddDiskResponse) Reset() {
-	*x = MVMServiceAddDiskResponse{}
+func (x *MVMServiceAddDisksResponse) Reset() {
+	*x = MVMServiceAddDisksResponse{}
 	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *MVMServiceAddDiskResponse) String() string {
+func (x *MVMServiceAddDisksResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MVMServiceAddDiskResponse) ProtoMessage() {}
+func (*MVMServiceAddDisksResponse) ProtoMessage() {}
 
-func (x *MVMServiceAddDiskResponse) ProtoReflect() protoreflect.Message {
+func (x *MVMServiceAddDisksResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2506,85 +2506,85 @@ func (x *MVMServiceAddDiskResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MVMServiceAddDiskResponse.ProtoReflect.Descriptor instead.
-func (*MVMServiceAddDiskResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use MVMServiceAddDisksResponse.ProtoReflect.Descriptor instead.
+func (*MVMServiceAddDisksResponse) Descriptor() ([]byte, []int) {
 	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{32}
 }
 
-func (x *MVMServiceAddDiskResponse) GetUuid() string {
+func (x *MVMServiceAddDisksResponse) GetUuids() []string {
 	if x != nil {
-		return x.Uuid
-	}
-	return ""
-}
-
-// Request to validate an AddDisk without ordering anything.
-type MVMServiceValidateAddDiskRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The add disk request to validate.
-	AddDisk       *MVMServiceAddDiskRequest `protobuf:"bytes,1,opt,name=add_disk,json=addDisk,proto3" json:"add_disk,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *MVMServiceValidateAddDiskRequest) Reset() {
-	*x = MVMServiceValidateAddDiskRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[33]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *MVMServiceValidateAddDiskRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MVMServiceValidateAddDiskRequest) ProtoMessage() {}
-
-func (x *MVMServiceValidateAddDiskRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[33]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MVMServiceValidateAddDiskRequest.ProtoReflect.Descriptor instead.
-func (*MVMServiceValidateAddDiskRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{33}
-}
-
-func (x *MVMServiceValidateAddDiskRequest) GetAddDisk() *MVMServiceAddDiskRequest {
-	if x != nil {
-		return x.AddDisk
+		return x.Uuids
 	}
 	return nil
 }
 
-// Response for ValidateAddDisk; violations are returned as an InvalidArgument error.
-type MVMServiceValidateAddDiskResponse struct {
+// Request to validate an AddDisks without ordering anything.
+type MVMServiceValidateAddDisksRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The add disks request to validate.
+	AddDisks      *MVMServiceAddDisksRequest `protobuf:"bytes,1,opt,name=add_disks,json=addDisks,proto3" json:"add_disks,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MVMServiceValidateAddDisksRequest) Reset() {
+	*x = MVMServiceValidateAddDisksRequest{}
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[33]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MVMServiceValidateAddDisksRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MVMServiceValidateAddDisksRequest) ProtoMessage() {}
+
+func (x *MVMServiceValidateAddDisksRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[33]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MVMServiceValidateAddDisksRequest.ProtoReflect.Descriptor instead.
+func (*MVMServiceValidateAddDisksRequest) Descriptor() ([]byte, []int) {
+	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *MVMServiceValidateAddDisksRequest) GetAddDisks() *MVMServiceAddDisksRequest {
+	if x != nil {
+		return x.AddDisks
+	}
+	return nil
+}
+
+// Response for ValidateAddDisks; violations are returned as an InvalidArgument error.
+type MVMServiceValidateAddDisksResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *MVMServiceValidateAddDiskResponse) Reset() {
-	*x = MVMServiceValidateAddDiskResponse{}
+func (x *MVMServiceValidateAddDisksResponse) Reset() {
+	*x = MVMServiceValidateAddDisksResponse{}
 	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *MVMServiceValidateAddDiskResponse) String() string {
+func (x *MVMServiceValidateAddDisksResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MVMServiceValidateAddDiskResponse) ProtoMessage() {}
+func (*MVMServiceValidateAddDisksResponse) ProtoMessage() {}
 
-func (x *MVMServiceValidateAddDiskResponse) ProtoReflect() protoreflect.Message {
+func (x *MVMServiceValidateAddDisksResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_fits_api_mvm_v1_mvm_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2596,8 +2596,8 @@ func (x *MVMServiceValidateAddDiskResponse) ProtoReflect() protoreflect.Message 
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MVMServiceValidateAddDiskResponse.ProtoReflect.Descriptor instead.
-func (*MVMServiceValidateAddDiskResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use MVMServiceValidateAddDisksResponse.ProtoReflect.Descriptor instead.
+func (*MVMServiceValidateAddDisksResponse) Descriptor() ([]byte, []int) {
 	return file_fits_api_mvm_v1_mvm_proto_rawDescGZIP(), []int{34}
 }
 
@@ -4080,17 +4080,17 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
 	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12!\n" +
 	"\forder_number\x18\x03 \x01(\tR\vorderNumber\"\x1a\n" +
-	"\x18MVMServiceDeleteResponse\"\xb5\x01\n" +
-	"\x18MVMServiceAddDiskRequest\x12\x1c\n" +
+	"\x18MVMServiceDeleteResponse\"\xb6\x01\n" +
+	"\x19MVMServiceAddDisksRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
 	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12!\n" +
 	"\forder_number\x18\x03 \x01(\tR\vorderNumber\x12+\n" +
-	"\x05disks\x18\x04 \x03(\v2\x15.fits.api.mvm.v1.DiskR\x05disks\"9\n" +
-	"\x19MVMServiceAddDiskResponse\x12\x1c\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"p\n" +
-	" MVMServiceValidateAddDiskRequest\x12L\n" +
-	"\badd_disk\x18\x01 \x01(\v2).fits.api.mvm.v1.MVMServiceAddDiskRequestB\x06\xbaH\x03\xc8\x01\x01R\aaddDisk\"#\n" +
-	"!MVMServiceValidateAddDiskResponse\"\x8a\x02\n" +
+	"\x05disks\x18\x04 \x03(\v2\x15.fits.api.mvm.v1.DiskR\x05disks\"C\n" +
+	"\x1aMVMServiceAddDisksResponse\x12%\n" +
+	"\x05uuids\x18\x01 \x03(\tB\x0f\xbaH\f\x92\x01\t\b\x01\"\x05r\x03\xb0\x01\x01R\x05uuids\"t\n" +
+	"!MVMServiceValidateAddDisksRequest\x12O\n" +
+	"\tadd_disks\x18\x01 \x01(\v2*.fits.api.mvm.v1.MVMServiceAddDisksRequestB\x06\xbaH\x03\xc8\x01\x01R\baddDisks\"$\n" +
+	"\"MVMServiceValidateAddDisksResponse\"\x8a\x02\n" +
 	"\x1bMVMServiceUpdateDiskRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12%\n" +
 	"\tdisk_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bdiskUuid\x12+\n" +
@@ -4196,7 +4196,7 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\fDISK_TYPE_OS\x10\x01\x1a\x06\x82\xb2\x19\x02os\x12 \n" +
 	"\x10DISK_TYPE_SYSTEM\x10\x02\x1a\n" +
 	"\x82\xb2\x19\x06system\x12\x1c\n" +
-	"\x0eDISK_TYPE_DATA\x10\x03\x1a\b\x82\xb2\x19\x04data2\x99\x16\n" +
+	"\x0eDISK_TYPE_DATA\x10\x03\x1a\b\x82\xb2\x19\x04data2\x9f\x16\n" +
 	"\n" +
 	"MVMService\x12i\n" +
 	"\x06Create\x12(.fits.api.mvm.v1.MVMServiceCreateRequest\x1a).fits.api.mvm.v1.MVMServiceCreateResponse\"\n" +
@@ -4213,10 +4213,10 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12\xa5\x01\n" +
 	"\x1aValidateUpdateServiceClass\x12<.fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassRequest\x1a=.fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassResponse\"\n" +
 	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x02\x12h\n" +
-	"\x06Delete\x12(.fits.api.mvm.v1.MVMServiceDeleteRequest\x1a).fits.api.mvm.v1.MVMServiceDeleteResponse\"\t\xca\xf3\x18\x01\x01\xe0\xf3\x18\x01\x12l\n" +
-	"\aAddDisk\x12).fits.api.mvm.v1.MVMServiceAddDiskRequest\x1a*.fits.api.mvm.v1.MVMServiceAddDiskResponse\"\n" +
-	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12\x84\x01\n" +
-	"\x0fValidateAddDisk\x121.fits.api.mvm.v1.MVMServiceValidateAddDiskRequest\x1a2.fits.api.mvm.v1.MVMServiceValidateAddDiskResponse\"\n" +
+	"\x06Delete\x12(.fits.api.mvm.v1.MVMServiceDeleteRequest\x1a).fits.api.mvm.v1.MVMServiceDeleteResponse\"\t\xca\xf3\x18\x01\x01\xe0\xf3\x18\x01\x12o\n" +
+	"\bAddDisks\x12*.fits.api.mvm.v1.MVMServiceAddDisksRequest\x1a+.fits.api.mvm.v1.MVMServiceAddDisksResponse\"\n" +
+	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12\x87\x01\n" +
+	"\x10ValidateAddDisks\x122.fits.api.mvm.v1.MVMServiceValidateAddDisksRequest\x1a3.fits.api.mvm.v1.MVMServiceValidateAddDisksResponse\"\n" +
 	"\xca\xf3\x18\x02\x01\x02\xe0\xf3\x18\x02\x12u\n" +
 	"\n" +
 	"UpdateDisk\x12,.fits.api.mvm.v1.MVMServiceUpdateDiskRequest\x1a-.fits.api.mvm.v1.MVMServiceUpdateDiskResponse\"\n" +
@@ -4291,10 +4291,10 @@ var file_fits_api_mvm_v1_mvm_proto_goTypes = []any{
 	(*MVMServiceValidateUpdateServiceClassResponse)(nil), // 32: fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassResponse
 	(*MVMServiceDeleteRequest)(nil),                      // 33: fits.api.mvm.v1.MVMServiceDeleteRequest
 	(*MVMServiceDeleteResponse)(nil),                     // 34: fits.api.mvm.v1.MVMServiceDeleteResponse
-	(*MVMServiceAddDiskRequest)(nil),                     // 35: fits.api.mvm.v1.MVMServiceAddDiskRequest
-	(*MVMServiceAddDiskResponse)(nil),                    // 36: fits.api.mvm.v1.MVMServiceAddDiskResponse
-	(*MVMServiceValidateAddDiskRequest)(nil),             // 37: fits.api.mvm.v1.MVMServiceValidateAddDiskRequest
-	(*MVMServiceValidateAddDiskResponse)(nil),            // 38: fits.api.mvm.v1.MVMServiceValidateAddDiskResponse
+	(*MVMServiceAddDisksRequest)(nil),                    // 35: fits.api.mvm.v1.MVMServiceAddDisksRequest
+	(*MVMServiceAddDisksResponse)(nil),                   // 36: fits.api.mvm.v1.MVMServiceAddDisksResponse
+	(*MVMServiceValidateAddDisksRequest)(nil),            // 37: fits.api.mvm.v1.MVMServiceValidateAddDisksRequest
+	(*MVMServiceValidateAddDisksResponse)(nil),           // 38: fits.api.mvm.v1.MVMServiceValidateAddDisksResponse
 	(*MVMServiceUpdateDiskRequest)(nil),                  // 39: fits.api.mvm.v1.MVMServiceUpdateDiskRequest
 	(*MVMServiceUpdateDiskResponse)(nil),                 // 40: fits.api.mvm.v1.MVMServiceUpdateDiskResponse
 	(*MVMServiceValidateUpdateDiskRequest)(nil),          // 41: fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest
@@ -4358,8 +4358,8 @@ var file_fits_api_mvm_v1_mvm_proto_depIdxs = []int32{
 	1,  // 30: fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest.service_class:type_name -> fits.api.mvm.v1.ServiceClass
 	0,  // 31: fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest.availability:type_name -> fits.api.mvm.v1.Availability
 	29, // 32: fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassRequest.update_service_class:type_name -> fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest
-	6,  // 33: fits.api.mvm.v1.MVMServiceAddDiskRequest.disks:type_name -> fits.api.mvm.v1.Disk
-	35, // 34: fits.api.mvm.v1.MVMServiceValidateAddDiskRequest.add_disk:type_name -> fits.api.mvm.v1.MVMServiceAddDiskRequest
+	6,  // 33: fits.api.mvm.v1.MVMServiceAddDisksRequest.disks:type_name -> fits.api.mvm.v1.Disk
+	35, // 34: fits.api.mvm.v1.MVMServiceValidateAddDisksRequest.add_disks:type_name -> fits.api.mvm.v1.MVMServiceAddDisksRequest
 	39, // 35: fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest.update_disk:type_name -> fits.api.mvm.v1.MVMServiceUpdateDiskRequest
 	53, // 36: fits.api.mvm.v1.MVMServiceValidateReinstallRequest.reinstall:type_name -> fits.api.mvm.v1.MVMServiceReinstallRequest
 	21, // 37: fits.api.mvm.v1.MVMService.Create:input_type -> fits.api.mvm.v1.MVMServiceCreateRequest
@@ -4371,8 +4371,8 @@ var file_fits_api_mvm_v1_mvm_proto_depIdxs = []int32{
 	29, // 43: fits.api.mvm.v1.MVMService.UpdateServiceClass:input_type -> fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest
 	31, // 44: fits.api.mvm.v1.MVMService.ValidateUpdateServiceClass:input_type -> fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassRequest
 	33, // 45: fits.api.mvm.v1.MVMService.Delete:input_type -> fits.api.mvm.v1.MVMServiceDeleteRequest
-	35, // 46: fits.api.mvm.v1.MVMService.AddDisk:input_type -> fits.api.mvm.v1.MVMServiceAddDiskRequest
-	37, // 47: fits.api.mvm.v1.MVMService.ValidateAddDisk:input_type -> fits.api.mvm.v1.MVMServiceValidateAddDiskRequest
+	35, // 46: fits.api.mvm.v1.MVMService.AddDisks:input_type -> fits.api.mvm.v1.MVMServiceAddDisksRequest
+	37, // 47: fits.api.mvm.v1.MVMService.ValidateAddDisks:input_type -> fits.api.mvm.v1.MVMServiceValidateAddDisksRequest
 	39, // 48: fits.api.mvm.v1.MVMService.UpdateDisk:input_type -> fits.api.mvm.v1.MVMServiceUpdateDiskRequest
 	41, // 49: fits.api.mvm.v1.MVMService.ValidateUpdateDisk:input_type -> fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest
 	43, // 50: fits.api.mvm.v1.MVMService.DeleteDisk:input_type -> fits.api.mvm.v1.MVMServiceDeleteDiskRequest
@@ -4394,8 +4394,8 @@ var file_fits_api_mvm_v1_mvm_proto_depIdxs = []int32{
 	30, // 66: fits.api.mvm.v1.MVMService.UpdateServiceClass:output_type -> fits.api.mvm.v1.MVMServiceUpdateServiceClassResponse
 	32, // 67: fits.api.mvm.v1.MVMService.ValidateUpdateServiceClass:output_type -> fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassResponse
 	34, // 68: fits.api.mvm.v1.MVMService.Delete:output_type -> fits.api.mvm.v1.MVMServiceDeleteResponse
-	36, // 69: fits.api.mvm.v1.MVMService.AddDisk:output_type -> fits.api.mvm.v1.MVMServiceAddDiskResponse
-	38, // 70: fits.api.mvm.v1.MVMService.ValidateAddDisk:output_type -> fits.api.mvm.v1.MVMServiceValidateAddDiskResponse
+	36, // 69: fits.api.mvm.v1.MVMService.AddDisks:output_type -> fits.api.mvm.v1.MVMServiceAddDisksResponse
+	38, // 70: fits.api.mvm.v1.MVMService.ValidateAddDisks:output_type -> fits.api.mvm.v1.MVMServiceValidateAddDisksResponse
 	40, // 71: fits.api.mvm.v1.MVMService.UpdateDisk:output_type -> fits.api.mvm.v1.MVMServiceUpdateDiskResponse
 	42, // 72: fits.api.mvm.v1.MVMService.ValidateUpdateDisk:output_type -> fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse
 	44, // 73: fits.api.mvm.v1.MVMService.DeleteDisk:output_type -> fits.api.mvm.v1.MVMServiceDeleteDiskResponse
