@@ -436,7 +436,7 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
      */
     ipAddresses: IPAddress[];
     /**
-     * Internal reference number provided by the user, e.g. a ticket ID.
+     * Customer reference provided by the user, e.g. a ticket ID.
      *
      * @generated from field: string order_number = 19;
      */
@@ -654,7 +654,7 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
      */
     ramGb: number;
     /**
-     * Customer reference for this operation provided by the user, e.g. a ticket ID.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
      * @generated from field: string order_number = 8;
      */
@@ -799,7 +799,7 @@ export type MVMServiceUpdateRequest = Message<"fits.api.mvm.v1.MVMServiceUpdateR
      */
     updateMeta?: UpdateMeta | undefined;
     /**
-     * Order reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
      * @generated from field: string order_number = 4;
      */
@@ -817,13 +817,13 @@ export type MVMServiceUpdateRequest = Message<"fits.api.mvm.v1.MVMServiceUpdateR
      */
     contactUuid?: string | undefined;
     /**
-     * Number of vCPUs; unset keeps the current value.
+     * Number of CPU cores; unset keeps the current value.
      *
      * @generated from field: optional uint32 cpu = 7;
      */
     cpu?: number | undefined;
     /**
-     * RAM size in GiB; unset keeps the current value.
+     * RAM in GiB; unset keeps the current value.
      *
      * @generated from field: optional uint32 ram_gb = 8;
      */
@@ -973,7 +973,7 @@ export type MVMServiceDeleteRequest = Message<"fits.api.mvm.v1.MVMServiceDeleteR
      */
     projectUuid: string;
     /**
-     * Customer reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
      * @generated from field: string order_number = 3;
      */
@@ -1014,7 +1014,7 @@ export type MVMServiceAddDisksRequest = Message<"fits.api.mvm.v1.MVMServiceAddDi
      */
     projectUuid: string;
     /**
-     * Customer reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
      * @generated from field: string order_number = 3;
      */
@@ -1104,23 +1104,23 @@ export type MVMServiceUpdateDiskRequest = Message<"fits.api.mvm.v1.MVMServiceUpd
      */
     projectUuid: string;
     /**
-     * Customer reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
      * @generated from field: string order_number = 4;
      */
     orderNumber: string;
     /**
-     * New auto-extend behavior; unset keeps the current value.
-     *
-     * @generated from field: optional bool auto_extend = 5;
-     */
-    autoExtend?: boolean | undefined;
-    /**
      * New size of the disk in GiB; unset keeps the current value.
      *
-     * @generated from field: optional uint64 size_gb = 6;
+     * @generated from field: optional uint64 size_gb = 5;
      */
     sizeGb?: bigint | undefined;
+    /**
+     * New auto-extend behavior; unset keeps the current value.
+     *
+     * @generated from field: optional bool auto_extend = 6;
+     */
+    autoExtend?: boolean | undefined;
 };
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceUpdateDiskRequest.
@@ -1193,7 +1193,7 @@ export type MVMServiceDeleteDiskRequest = Message<"fits.api.mvm.v1.MVMServiceDel
      */
     projectUuid: string;
     /**
-     * Customer reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
      * @generated from field: string order_number = 4;
      */
@@ -1234,7 +1234,7 @@ export type MVMServiceAddIPAddressRequest = Message<"fits.api.mvm.v1.MVMServiceA
      */
     projectUuid: string;
     /**
-     * Customer reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
      * @generated from field: string order_number = 3;
      */
@@ -1288,7 +1288,7 @@ export type MVMServiceMoveIPAddressRequest = Message<"fits.api.mvm.v1.MVMService
      */
     projectUuid: string;
     /**
-     * Customer reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
      * @generated from field: string order_number = 4;
      */
@@ -1341,7 +1341,7 @@ export type MVMServiceDeleteIPAddressRequest = Message<"fits.api.mvm.v1.MVMServi
      */
     projectUuid: string;
     /**
-     * Order reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
      * @generated from field: string order_number = 4;
      */
@@ -1382,7 +1382,7 @@ export type MVMServiceRestartRequest = Message<"fits.api.mvm.v1.MVMServiceRestar
      */
     projectUuid: string;
     /**
-     * Customer reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
      * @generated from field: string order_number = 3;
      */
@@ -1424,7 +1424,7 @@ export type MVMServiceReinstallRequest = Message<"fits.api.mvm.v1.MVMServiceRein
      */
     projectUuid: string;
     /**
-     * Customer reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
      * @generated from field: string order_number = 3;
      */
@@ -1513,7 +1513,7 @@ export type MVMServiceAddSnapshotRequest = Message<"fits.api.mvm.v1.MVMServiceAd
      */
     projectUuid: string;
     /**
-     * Customer reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
      * @generated from field: string order_number = 3;
      */
@@ -1573,7 +1573,7 @@ export type MVMServiceDeleteSnapshotRequest = Message<"fits.api.mvm.v1.MVMServic
      */
     projectUuid: string;
     /**
-     * Customer reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
      * @generated from field: string order_number = 4;
      */
@@ -1614,7 +1614,7 @@ export type MVMServiceMoveRequest = Message<"fits.api.mvm.v1.MVMServiceMoveReque
      */
     projectUuid: string;
     /**
-     * Customer reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
      * @generated from field: string order_number = 3;
      */

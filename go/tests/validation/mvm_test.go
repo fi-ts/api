@@ -9,16 +9,17 @@ import (
 )
 
 const (
-	msgCpuCount    = "must be within 1 and 64 CPU cores"
-	msgRamSize     = "must be within 4 and 512 GiB"
-	msgDiskSize    = "must be within 1 and 8192 GiB"
-	msgDiskCount   = "must contain at most 8 disks"
-	msgOrderNumber = "must be within 2 and 128 characters and not start or end with whitespace"
-	msgMacAddress  = "this string must be a valid mac address"
-	msgMountPoint  = "must be an absolute path without whitespace, e.g. /data/app"
-	msgDriveLetter = "must be a single drive letter, e.g. G"
-	msgFqdn        = "must be a valid FQDN, e.g. host.example.com"
-	msgNameCode    = "must be a 4-character code consisting of digits and letters"
+	msgCpuCount     = "must be within 1 and 64 CPU cores"
+	msgRamSize      = "must be within 4 and 512 GiB"
+	msgDiskSize     = "must be within 1 and 8192 GiB"
+	msgDiskCount    = "must contain at most 8 disks"
+	msgOrderNumber  = "must be within 2 and 128 characters and not start or end with whitespace"
+	msgMacAddress   = "this string must be a valid mac address"
+	msgMountPoint   = "must be an absolute path without whitespace, e.g. /data/app"
+	msgDriveLetter  = "must be a single drive letter, e.g. G"
+	msgFqdn         = "must be a valid FQDN, e.g. host.example.com"
+	msgNameCode     = "must be a 4-character code consisting of digits and letters"
+	msgSnapshotName = "must be within 1 and 128 alphanumeric characters"
 )
 
 func validLinuxDisk() *mvmv1.LinuxDisk {
@@ -49,14 +50,15 @@ func linuxDisks(n int) []*mvmv1.LinuxDisk {
 
 func validLinuxCreateRequest(modify ...func(*mvmv1.MVMServiceCreateRequest)) *mvmv1.MVMServiceCreateRequest {
 	req := &mvmv1.MVMServiceCreateRequest{
-		ProjectUuid:  testUUID,
-		NameCode:     "ab12",
-		OsUuid:       testUUID,
-		LocationUuid: testUUID,
-		ContactUuid:  testUUID,
-		Cpu:          2,
-		RamGb:        8,
-		OrderNumber:  "TICKET-1",
+		ProjectUuid:      testUUID,
+		NameCode:         "ab12",
+		OsUuid:           testUUID,
+		LocationUuid:     testUUID,
+		ContactUuid:      testUUID,
+		Cpu:              2,
+		RamGb:            8,
+		OrderNumber:      "TICKET-1",
+		InitialIpAddress: &mvmv1.InitialIPAddress{VlanUuid: testUUID},
 		MvmType: &mvmv1.MVMServiceCreateRequest_Linux{
 			Linux: &mvmv1.MVMServiceCreateLinuxRequest{
 				LdapUuid: testUUID,
@@ -91,7 +93,19 @@ func TestValidateIPAddress(t *testing.T) {
 			wantErr: true,
 			wantErrorMessage: `validation errors:
  - uuid: value is empty, which is not a valid UUID
- - ip_address: must be a valid IP address or hostname`,
+ - ip_address: value is empty, which is not a valid IPv4 address`,
+		},
+		{
+			name:             "hostname instead of ip address",
+			msg:              &mvmv1.IPAddress{Uuid: testUUID, IpAddress: "host.example.com"},
+			wantErr:          true,
+			wantErrorMessage: "validation error: ip_address: must be a valid IPv4 address",
+		},
+		{
+			name:             "ipv6 address",
+			msg:              &mvmv1.IPAddress{Uuid: testUUID, IpAddress: "2001:db8::1"},
+			wantErr:          true,
+			wantErrorMessage: "validation error: ip_address: must be a valid IPv4 address",
 		},
 		{
 			name: "valid",
@@ -183,6 +197,8 @@ func TestValidateManagedVM(t *testing.T) {
  - os_uuid: value is empty, which is not a valid UUID
  - location_uuid: value is empty, which is not a valid UUID
  - contact_uuid: value is empty, which is not a valid UUID
+ - cpu: must be within 1 and 64 CPU cores
+ - ram_gb: must be within 4 and 512 GiB
  - order_number: must be within 2 and 128 characters and not start or end with whitespace`,
 		},
 	}
@@ -534,6 +550,14 @@ func TestValidateMVMServiceCreateRequest(t *testing.T) {
 			wantErrorMessage: "validation error: linux.disks[0].size_gb: " + msgDiskSize,
 		},
 		{
+			name: "missing initial ip address",
+			msg: validLinuxCreateRequest(func(r *mvmv1.MVMServiceCreateRequest) {
+				r.InitialIpAddress = nil
+			}),
+			wantErr:          true,
+			wantErrorMessage: "validation error: initial_ip_address: value is required",
+		},
+		{
 			name: "missing os type",
 			msg: validLinuxCreateRequest(func(r *mvmv1.MVMServiceCreateRequest) {
 				r.MvmType = nil
@@ -734,7 +758,7 @@ func TestValidateMVMServiceAddSnapshotRequest(t *testing.T) {
 			name:             "name with special characters",
 			msg:              request("before-upgrade"),
 			wantErr:          true,
-			wantErrorMessage: "validation error: name: does not match regex pattern `^[a-zA-Z0-9]+$`",
+			wantErrorMessage: "validation error: name: " + msgSnapshotName,
 		},
 	}
 
@@ -752,7 +776,7 @@ func TestValidateSnapshot(t *testing.T) {
 			name:             "name with whitespace",
 			msg:              &mvmv1.Snapshot{Uuid: testUUID, Name: "my snapshot"},
 			wantErr:          true,
-			wantErrorMessage: "validation error: name: does not match regex pattern `^[a-zA-Z0-9]+$`",
+			wantErrorMessage: "validation error: name: " + msgSnapshotName,
 		},
 	}
 

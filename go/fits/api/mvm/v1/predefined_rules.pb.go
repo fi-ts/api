@@ -63,6 +63,14 @@ var file_fits_api_mvm_v1_predefined_rules_proto_extTypes = []protoimpl.Extension
 		Filename:      "fits/api/mvm/v1/predefined_rules.proto",
 	},
 	{
+		ExtendedType:  (*validate.StringRules)(nil),
+		ExtensionType: (*bool)(nil),
+		Field:         80108956,
+		Name:          "fits.api.mvm.v1.is_snapshot_name",
+		Tag:           "varint,80108956,opt,name=is_snapshot_name",
+		Filename:      "fits/api/mvm/v1/predefined_rules.proto",
+	},
+	{
 		ExtendedType:  (*validate.UInt32Rules)(nil),
 		ExtensionType: (*bool)(nil),
 		Field:         80078951,
@@ -122,6 +130,10 @@ var (
 	//
 	// optional bool is_drive_letter = 80108955;
 	E_IsDriveLetter = &file_fits_api_mvm_v1_predefined_rules_proto_extTypes[4]
+	// IsSnapshotName validates a snapshot name: 1-128 alphanumeric characters.
+	//
+	// optional bool is_snapshot_name = 80108956;
+	E_IsSnapshotName = &file_fits_api_mvm_v1_predefined_rules_proto_extTypes[5]
 )
 
 // Extension fields to validate.UInt32Rules.
@@ -129,11 +141,11 @@ var (
 	// IsCpuCount validates the number of CPU cores of a MVM.
 	//
 	// optional bool is_cpu_count = 80078951;
-	E_IsCpuCount = &file_fits_api_mvm_v1_predefined_rules_proto_extTypes[5]
+	E_IsCpuCount = &file_fits_api_mvm_v1_predefined_rules_proto_extTypes[6]
 	// IsRamSize validates the RAM size of a MVM in GiB.
 	//
 	// optional bool is_ram_size = 80078952;
-	E_IsRamSize = &file_fits_api_mvm_v1_predefined_rules_proto_extTypes[6]
+	E_IsRamSize = &file_fits_api_mvm_v1_predefined_rules_proto_extTypes[7]
 )
 
 // Extension fields to validate.UInt64Rules.
@@ -141,7 +153,7 @@ var (
 	// IsDiskSize validates the size of a single MVM disk in GiB.
 	//
 	// optional bool is_disk_size = 80088951;
-	E_IsDiskSize = &file_fits_api_mvm_v1_predefined_rules_proto_extTypes[7]
+	E_IsDiskSize = &file_fits_api_mvm_v1_predefined_rules_proto_extTypes[8]
 )
 
 // Extension fields to validate.RepeatedRules.
@@ -149,7 +161,7 @@ var (
 	// IsDiskCount validates the number of disks in a MVM request (at most 8).
 	//
 	// optional bool is_disk_count = 80098951;
-	E_IsDiskCount = &file_fits_api_mvm_v1_predefined_rules_proto_extTypes[8]
+	E_IsDiskCount = &file_fits_api_mvm_v1_predefined_rules_proto_extTypes[9]
 )
 
 var File_fits_api_mvm_v1_predefined_rules_proto protoreflect.FileDescriptor
@@ -172,7 +184,10 @@ const file_fits_api_mvm_v1_predefined_rules_proto_rawDesc = "" +
 	"\x15string.is_mount_point\x12;must be an absolute path without whitespace, e.g. /data/app\x1a\x1ethis.matches('^/[^ \\t\\r\\n]*$')R\fisMountPoint:\xa6\x01\n" +
 	"\x0fis_drive_letter\x12\x19.buf.validate.StringRules\x18\x9b\xbb\x99& \x01(\bB`\xc2H]\n" +
 	"[\n" +
-	"\x16string.is_drive_letter\x12%must be a single drive letter, e.g. G\x1a\x1athis.matches('^[A-Za-z]$')R\risDriveLetter:\x98\x01\n" +
+	"\x16string.is_drive_letter\x12%must be a single drive letter, e.g. G\x1a\x1athis.matches('^[A-Za-z]$')R\risDriveLetter:\xbe\x01\n" +
+	"\x10is_snapshot_name\x12\x19.buf.validate.StringRules\x18\x9c\xbb\x99& \x01(\bBv\xc2Hs\n" +
+	"q\n" +
+	"\x17string.is_snapshot_name\x120must be within 1 and 128 alphanumeric characters\x1a$this.matches('^[a-zA-Z0-9]{1,128}$')R\x0eisSnapshotName:\x98\x01\n" +
 	"\fis_cpu_count\x12\x19.buf.validate.UInt32Rules\x18\xe7З& \x01(\bBX\xc2HU\n" +
 	"S\n" +
 	"\x13uint32.is_cpu_count\x12!must be within 1 and 64 CPU cores\x1a\x19this >= 1u && this <= 64uR\n" +
@@ -196,20 +211,21 @@ var file_fits_api_mvm_v1_predefined_rules_proto_goTypes = []any{
 	(*validate.RepeatedRules)(nil), // 3: buf.validate.RepeatedRules
 }
 var file_fits_api_mvm_v1_predefined_rules_proto_depIdxs = []int32{
-	0, // 0: fits.api.mvm.v1.is_name_code:extendee -> buf.validate.StringRules
-	0, // 1: fits.api.mvm.v1.is_fqdn:extendee -> buf.validate.StringRules
-	0, // 2: fits.api.mvm.v1.is_order_number:extendee -> buf.validate.StringRules
-	0, // 3: fits.api.mvm.v1.is_mount_point:extendee -> buf.validate.StringRules
-	0, // 4: fits.api.mvm.v1.is_drive_letter:extendee -> buf.validate.StringRules
-	1, // 5: fits.api.mvm.v1.is_cpu_count:extendee -> buf.validate.UInt32Rules
-	1, // 6: fits.api.mvm.v1.is_ram_size:extendee -> buf.validate.UInt32Rules
-	2, // 7: fits.api.mvm.v1.is_disk_size:extendee -> buf.validate.UInt64Rules
-	3, // 8: fits.api.mvm.v1.is_disk_count:extendee -> buf.validate.RepeatedRules
-	9, // [9:9] is the sub-list for method output_type
-	9, // [9:9] is the sub-list for method input_type
-	9, // [9:9] is the sub-list for extension type_name
-	0, // [0:9] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0,  // 0: fits.api.mvm.v1.is_name_code:extendee -> buf.validate.StringRules
+	0,  // 1: fits.api.mvm.v1.is_fqdn:extendee -> buf.validate.StringRules
+	0,  // 2: fits.api.mvm.v1.is_order_number:extendee -> buf.validate.StringRules
+	0,  // 3: fits.api.mvm.v1.is_mount_point:extendee -> buf.validate.StringRules
+	0,  // 4: fits.api.mvm.v1.is_drive_letter:extendee -> buf.validate.StringRules
+	0,  // 5: fits.api.mvm.v1.is_snapshot_name:extendee -> buf.validate.StringRules
+	1,  // 6: fits.api.mvm.v1.is_cpu_count:extendee -> buf.validate.UInt32Rules
+	1,  // 7: fits.api.mvm.v1.is_ram_size:extendee -> buf.validate.UInt32Rules
+	2,  // 8: fits.api.mvm.v1.is_disk_size:extendee -> buf.validate.UInt64Rules
+	3,  // 9: fits.api.mvm.v1.is_disk_count:extendee -> buf.validate.RepeatedRules
+	10, // [10:10] is the sub-list for method output_type
+	10, // [10:10] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	0,  // [0:10] is the sub-list for extension extendee
+	0,  // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_mvm_v1_predefined_rules_proto_init() }
@@ -224,7 +240,7 @@ func file_fits_api_mvm_v1_predefined_rules_proto_init() {
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_fits_api_mvm_v1_predefined_rules_proto_rawDesc), len(file_fits_api_mvm_v1_predefined_rules_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   0,
-			NumExtensions: 9,
+			NumExtensions: 10,
 			NumServices:   0,
 		},
 		GoTypes:           file_fits_api_mvm_v1_predefined_rules_proto_goTypes,

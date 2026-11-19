@@ -13,6 +13,8 @@ IS_MOUNT_POINT_FIELD_NUMBER: _ClassVar[int]
 is_mount_point: _descriptor.FieldDescriptor
 IS_DRIVE_LETTER_FIELD_NUMBER: _ClassVar[int]
 is_drive_letter: _descriptor.FieldDescriptor
+IS_SNAPSHOT_NAME_FIELD_NUMBER: _ClassVar[int]
+is_snapshot_name: _descriptor.FieldDescriptor
 IS_CPU_COUNT_FIELD_NUMBER: _ClassVar[int]
 is_cpu_count: _descriptor.FieldDescriptor
 IS_RAM_SIZE_FIELD_NUMBER: _ClassVar[int]

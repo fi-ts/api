@@ -402,20 +402,20 @@ class MVMServiceValidateAddDisksResponse(_message.Message):
     def __init__(self) -> None: ...
 
 class MVMServiceUpdateDiskRequest(_message.Message):
-    __slots__ = ("uuid", "disk_uuid", "project_uuid", "order_number", "auto_extend", "size_gb")
+    __slots__ = ("uuid", "disk_uuid", "project_uuid", "order_number", "size_gb", "auto_extend")
     UUID_FIELD_NUMBER: _ClassVar[int]
     DISK_UUID_FIELD_NUMBER: _ClassVar[int]
     PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
     ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
-    AUTO_EXTEND_FIELD_NUMBER: _ClassVar[int]
     SIZE_GB_FIELD_NUMBER: _ClassVar[int]
+    AUTO_EXTEND_FIELD_NUMBER: _ClassVar[int]
     uuid: str
     disk_uuid: str
     project_uuid: str
     order_number: str
-    auto_extend: bool
     size_gb: int
-    def __init__(self, uuid: _Optional[str] = ..., disk_uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ..., auto_extend: _Optional[bool] = ..., size_gb: _Optional[int] = ...) -> None: ...
+    auto_extend: bool
+    def __init__(self, uuid: _Optional[str] = ..., disk_uuid: _Optional[str] = ..., project_uuid: _Optional[str] = ..., order_number: _Optional[str] = ..., size_gb: _Optional[int] = ..., auto_extend: _Optional[bool] = ...) -> None: ...
 
 class MVMServiceUpdateDiskResponse(_message.Message):
     __slots__ = ()

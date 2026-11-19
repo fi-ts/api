@@ -45,6 +45,12 @@ extend buf.validate.StringRules {
     message: "must be a single drive letter, e.g. G"
     expression: "this.matches('^[A-Za-z]$')"
   }];
+  // IsSnapshotName validates a snapshot name: 1-128 alphanumeric characters.
+  optional bool is_snapshot_name = 80108956 [(buf.validate.predefined).cel = {
+    id: "string.is_snapshot_name"
+    message: "must be within 1 and 128 alphanumeric characters"
+    expression: "this.matches('^[a-zA-Z0-9]{1,128}$')"
+  }];
 }
 
 extend buf.validate.UInt32Rules {

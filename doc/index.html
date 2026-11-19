@@ -518,6 +518,10 @@
                   <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
                 </li>
               
+                <li>
+                  <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
               
             </ul>
           </li>
@@ -2631,6 +2635,14 @@ whitespace, e.g. /data/app. Allowed paths are enforced upstream.</p></td>
               </tr>
             
               <tr>
+                <td>is_snapshot_name</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80108956</td>
+                <td><p>IsSnapshotName validates a snapshot name: 1-128 alphanumeric characters.</p></td>
+              </tr>
+            
+              <tr>
                 <td>is_cpu_count</td>
                 <td><a href="#bool">bool</a></td>
                 <td><a href="#buf.validate.UInt32Rules">.buf.validate.UInt32Rules</a></td>
@@ -2890,7 +2902,7 @@ API in responses. </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
                 <tr>
@@ -2959,7 +2971,7 @@ API in responses. </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
             </tbody>
@@ -3021,7 +3033,7 @@ API in responses. </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
                 <tr>
@@ -3157,7 +3169,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation provided by the user, e.g. a ticket ID. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
                 <tr>
@@ -3315,7 +3327,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
             </tbody>
@@ -3367,7 +3379,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Order reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
             </tbody>
@@ -3412,7 +3424,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
             </tbody>
@@ -3464,7 +3476,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
             </tbody>
@@ -3619,7 +3631,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
                 <tr>
@@ -3671,7 +3683,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
                 <tr>
@@ -3723,7 +3735,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
                 <tr>
@@ -3789,7 +3801,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
             </tbody>
@@ -3841,14 +3853,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>auto_extend</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td>optional</td>
-                  <td><p>New auto-extend behavior; unset keeps the current value. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
                 <tr>
@@ -3856,6 +3861,13 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td><a href="#uint64">uint64</a></td>
                   <td>optional</td>
                   <td><p>New size of the disk in GiB; unset keeps the current value. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>auto_extend</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>New auto-extend behavior; unset keeps the current value. </p></td>
                 </tr>
               
             </tbody>
@@ -3907,7 +3919,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Order reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
                 <tr>
@@ -3928,14 +3940,14 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>cpu</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td>optional</td>
-                  <td><p>Number of vCPUs; unset keeps the current value. </p></td>
+                  <td><p>Number of CPU cores; unset keeps the current value. </p></td>
                 </tr>
               
                 <tr>
                   <td>ram_gb</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td>optional</td>
-                  <td><p>RAM size in GiB; unset keeps the current value. </p></td>
+                  <td><p>RAM in GiB; unset keeps the current value. </p></td>
                 </tr>
               
             </tbody>
@@ -4331,7 +4343,7 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
                   <td>order_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Internal reference number provided by the user, e.g. a ticket ID. </p></td>
+                  <td><p>Customer reference provided by the user, e.g. a ticket ID. </p></td>
                 </tr>
               
                 <tr>
@@ -5061,7 +5073,7 @@ DiskType for which operations apply per disk kind.</p></td>
                   <td>vlan_id</td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
-                  <td><p>ID of this VLAN. The actual VLAN ID a network interface is attached to. </p></td>
+                  <td><p>ID of this VLAN (1-4094). The actual VLAN ID a network interface is attached to. </p></td>
                 </tr>
               
                 <tr>

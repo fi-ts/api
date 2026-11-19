@@ -39,6 +39,12 @@ export declare const is_mount_point: GenExtension<StringRules, boolean>;
  */
 export declare const is_drive_letter: GenExtension<StringRules, boolean>;
 /**
+ * IsSnapshotName validates a snapshot name: 1-128 alphanumeric characters.
+ *
+ * @generated from extension: optional bool is_snapshot_name = 80108956;
+ */
+export declare const is_snapshot_name: GenExtension<StringRules, boolean>;
+/**
  * IsCpuCount validates the number of CPU cores of a MVM.
  *
  * @generated from extension: optional bool is_cpu_count = 80078951;
