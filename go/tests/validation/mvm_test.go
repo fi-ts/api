@@ -9,17 +9,17 @@ import (
 )
 
 const (
-	msgCpuCount     = "must be within 1 and 64 CPU cores"
-	msgRamSize      = "must be within 4 and 512 GiB"
-	msgDiskSize     = "must be within 1 and 8192 GiB"
-	msgDiskCount    = "must contain at most 8 disks"
-	msgOrderNumber  = "must be within 2 and 128 characters and not start or end with whitespace"
-	msgMacAddress   = "this string must be a valid mac address"
-	msgMountPoint   = "must be an absolute path without whitespace, e.g. /data/app"
-	msgDriveLetter  = "must be a single drive letter, e.g. G"
-	msgFqdn         = "must be a valid FQDN, e.g. host.example.com"
-	msgNameCode     = "must be a 4-character code consisting of digits and letters"
-	msgSnapshotName = "must be within 1 and 128 alphanumeric characters"
+	msgCpuCount       = "must be within 1 and 64 CPU cores"
+	msgRamSize        = "must be within 4 and 512 GiB"
+	msgDiskSize       = "must be within 1 and 8192 GiB"
+	msgDiskCount      = "must contain at most 8 disks"
+	msgOrderReference = "must be within 2 and 128 characters and not start or end with whitespace"
+	msgMacAddress     = "this string must be a valid mac address"
+	msgMountPoint     = "must be an absolute path without whitespace, e.g. /data/app"
+	msgDriveLetter    = "must be a single drive letter, e.g. G"
+	msgFqdn           = "must be a valid FQDN, e.g. host.example.com"
+	msgNameCode       = "must be a 4-character code consisting of digits and letters"
+	msgSnapshotName   = "must be within 1 and 128 alphanumeric characters"
 )
 
 func validLinuxDisk() *mvmv1.LinuxDisk {
@@ -57,7 +57,7 @@ func validLinuxCreateRequest(modify ...func(*mvmv1.MVMServiceCreateRequest)) *mv
 		ContactUuid:      testUUID,
 		Cpu:              2,
 		RamGb:            8,
-		OrderNumber:      "TICKET-1",
+		OrderReference:   "TICKET-1",
 		InitialIpAddress: &mvmv1.InitialIPAddress{VlanUuid: testUUID},
 		MvmType: &mvmv1.MVMServiceCreateRequest_Linux{
 			Linux: &mvmv1.MVMServiceCreateLinuxRequest{
@@ -74,10 +74,10 @@ func validLinuxCreateRequest(modify ...func(*mvmv1.MVMServiceCreateRequest)) *mv
 
 func validUpdateRequest(modify ...func(*mvmv1.MVMServiceUpdateRequest)) *mvmv1.MVMServiceUpdateRequest {
 	req := &mvmv1.MVMServiceUpdateRequest{
-		Uuid:        testUUID,
-		ProjectUuid: testUUID,
-		UpdateMeta:  &v1.UpdateMeta{LockingStrategy: v1.OptimisticLockingStrategy_OPTIMISTIC_LOCKING_STRATEGY_SERVER},
-		OrderNumber: "TICKET-1",
+		Uuid:           testUUID,
+		ProjectUuid:    testUUID,
+		UpdateMeta:     &v1.UpdateMeta{LockingStrategy: v1.OptimisticLockingStrategy_OPTIMISTIC_LOCKING_STRATEGY_SERVER},
+		OrderReference: "TICKET-1",
 	}
 	for _, m := range modify {
 		m(req)
@@ -199,7 +199,7 @@ func TestValidateManagedVM(t *testing.T) {
  - contact_uuid: value is empty, which is not a valid UUID
  - cpu: must be within 1 and 64 CPU cores
  - ram_gb: must be within 4 and 512 GiB
- - order_number: must be within 2 and 128 characters and not start or end with whitespace`,
+ - order_reference: must be within 2 and 128 characters and not start or end with whitespace`,
 		},
 	}
 
@@ -507,16 +507,16 @@ func TestValidateMVMServiceCreateRequest(t *testing.T) {
 			wantErrorMessage: "validation error: name_code: " + msgNameCode,
 		},
 		{
-			name:             "missing order number",
-			msg:              validLinuxCreateRequest(func(r *mvmv1.MVMServiceCreateRequest) { r.OrderNumber = "" }),
+			name:             "missing order reference",
+			msg:              validLinuxCreateRequest(func(r *mvmv1.MVMServiceCreateRequest) { r.OrderReference = "" }),
 			wantErr:          true,
-			wantErrorMessage: "validation error: order_number: " + msgOrderNumber,
+			wantErrorMessage: "validation error: order_reference: " + msgOrderReference,
 		},
 		{
-			name:             "untrimmed order number",
-			msg:              validLinuxCreateRequest(func(r *mvmv1.MVMServiceCreateRequest) { r.OrderNumber = " TICKET-1 " }),
+			name:             "untrimmed order reference",
+			msg:              validLinuxCreateRequest(func(r *mvmv1.MVMServiceCreateRequest) { r.OrderReference = " TICKET-1 " }),
 			wantErr:          true,
-			wantErrorMessage: "validation error: order_number: " + msgOrderNumber,
+			wantErrorMessage: "validation error: order_reference: " + msgOrderReference,
 		},
 		{
 			name: "no disks",
@@ -598,10 +598,10 @@ func TestValidateMVMServiceUpdateRequest(t *testing.T) {
 			wantErrorMessage: "validation error: ram_gb: " + msgRamSize,
 		},
 		{
-			name:             "missing order number",
-			msg:              validUpdateRequest(func(r *mvmv1.MVMServiceUpdateRequest) { r.OrderNumber = "" }),
+			name:             "missing order reference",
+			msg:              validUpdateRequest(func(r *mvmv1.MVMServiceUpdateRequest) { r.OrderReference = "" }),
 			wantErr:          true,
-			wantErrorMessage: "validation error: order_number: " + msgOrderNumber,
+			wantErrorMessage: "validation error: order_reference: " + msgOrderReference,
 		},
 	}
 
@@ -618,10 +618,10 @@ func TestValidateMVMServiceAddDisksRequest(t *testing.T) {
 	}
 	request := func(d []*mvmv1.Disk) *mvmv1.MVMServiceAddDisksRequest {
 		return &mvmv1.MVMServiceAddDisksRequest{
-			Uuid:        testUUID,
-			ProjectUuid: testUUID,
-			OrderNumber: "TICKET-1",
-			Disks:       d,
+			Uuid:           testUUID,
+			ProjectUuid:    testUUID,
+			OrderReference: "TICKET-1",
+			Disks:          d,
 		}
 	}
 
@@ -667,11 +667,11 @@ func TestValidateMVMServiceAddDisksRequest(t *testing.T) {
 func TestValidateMVMServiceUpdateDiskRequest(t *testing.T) {
 	request := func(size *uint64) *mvmv1.MVMServiceUpdateDiskRequest {
 		return &mvmv1.MVMServiceUpdateDiskRequest{
-			Uuid:        testUUID,
-			DiskUuid:    testUUID,
-			ProjectUuid: testUUID,
-			OrderNumber: "TICKET-1",
-			SizeGb:      size,
+			Uuid:           testUUID,
+			DiskUuid:       testUUID,
+			ProjectUuid:    testUUID,
+			OrderReference: "TICKET-1",
+			SizeGb:         size,
 		}
 	}
 
@@ -712,24 +712,24 @@ func TestValidateMVMServiceDeleteRequest(t *testing.T) {
 			wantErrorMessage: `validation errors:
  - uuid: value is empty, which is not a valid UUID
  - project_uuid: value is empty, which is not a valid UUID
- - order_number: ` + msgOrderNumber,
+ - order_reference: ` + msgOrderReference,
 		},
 		{
-			name: "order number too short",
+			name: "order reference too short",
 			msg: &mvmv1.MVMServiceDeleteRequest{
-				Uuid:        testUUID,
-				ProjectUuid: testUUID,
-				OrderNumber: "x",
+				Uuid:           testUUID,
+				ProjectUuid:    testUUID,
+				OrderReference: "x",
 			},
 			wantErr:          true,
-			wantErrorMessage: "validation error: order_number: " + msgOrderNumber,
+			wantErrorMessage: "validation error: order_reference: " + msgOrderReference,
 		},
 		{
 			name: "valid",
 			msg: &mvmv1.MVMServiceDeleteRequest{
-				Uuid:        testUUID,
-				ProjectUuid: testUUID,
-				OrderNumber: "TICKET-1",
+				Uuid:           testUUID,
+				ProjectUuid:    testUUID,
+				OrderReference: "TICKET-1",
 			},
 			wantErr: false,
 		},
@@ -741,10 +741,10 @@ func TestValidateMVMServiceDeleteRequest(t *testing.T) {
 func TestValidateMVMServiceAddSnapshotRequest(t *testing.T) {
 	request := func(name string) *mvmv1.MVMServiceAddSnapshotRequest {
 		return &mvmv1.MVMServiceAddSnapshotRequest{
-			Uuid:        testUUID,
-			ProjectUuid: testUUID,
-			OrderNumber: "TICKET-1",
-			Name:        name,
+			Uuid:           testUUID,
+			ProjectUuid:    testUUID,
+			OrderReference: "TICKET-1",
+			Name:           name,
 		}
 	}
 

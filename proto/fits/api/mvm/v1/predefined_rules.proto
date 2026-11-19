@@ -25,10 +25,10 @@ extend buf.validate.StringRules {
     message: "must be a valid FQDN, e.g. host.example.com"
     expression: "this.size() <= 253 && this.matches('^[a-zA-Z0-9-]+([.][a-zA-Z0-9-]+)*[.][a-zA-Z]{2,}$')"
   }];
-  // IsOrderNumber validates a user-supplied ticket/reference ID (order number):
+  // IsOrderReference validates a user-supplied order reference, e.g. a ticket ID:
   // 2-128 characters, no leading/trailing whitespace.
-  optional bool is_order_number = 80108953 [(buf.validate.predefined).cel = {
-    id: "string.is_order_number"
+  optional bool is_order_reference = 80108953 [(buf.validate.predefined).cel = {
+    id: "string.is_order_reference"
     message: "must be within 2 and 128 characters and not start or end with whitespace"
     expression: "this.size() >= 2 && this.size() <= 128 && this.trim().size() == this.size()"
   }];

@@ -438,9 +438,9 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
     /**
      * Customer reference provided by the user, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 19;
+     * @generated from field: string order_reference = 19;
      */
-    orderNumber: string;
+    orderReference: string;
     /**
      * Snapshots of the MVM.
      *
@@ -656,9 +656,9 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
     /**
      * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 8;
+     * @generated from field: string order_reference = 8;
      */
-    orderNumber: string;
+    orderReference: string;
     /**
      * Optional key-value labels for accounting purposes.
      * (e.g. contract number, transaction number, technical key, accounting key).
@@ -801,9 +801,9 @@ export type MVMServiceUpdateRequest = Message<"fits.api.mvm.v1.MVMServiceUpdateR
     /**
      * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 4;
+     * @generated from field: string order_reference = 4;
      */
-    orderNumber: string;
+    orderReference: string;
     /**
      * The labels to update.
      *
@@ -975,9 +975,9 @@ export type MVMServiceDeleteRequest = Message<"fits.api.mvm.v1.MVMServiceDeleteR
     /**
      * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 3;
+     * @generated from field: string order_reference = 3;
      */
-    orderNumber: string;
+    orderReference: string;
 };
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceDeleteRequest.
@@ -1016,9 +1016,9 @@ export type MVMServiceAddDisksRequest = Message<"fits.api.mvm.v1.MVMServiceAddDi
     /**
      * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 3;
+     * @generated from field: string order_reference = 3;
      */
-    orderNumber: string;
+    orderReference: string;
     /**
      * Disks to add.
      *
@@ -1106,9 +1106,9 @@ export type MVMServiceUpdateDiskRequest = Message<"fits.api.mvm.v1.MVMServiceUpd
     /**
      * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 4;
+     * @generated from field: string order_reference = 4;
      */
-    orderNumber: string;
+    orderReference: string;
     /**
      * New size of the disk in GiB; unset keeps the current value.
      *
@@ -1195,9 +1195,9 @@ export type MVMServiceDeleteDiskRequest = Message<"fits.api.mvm.v1.MVMServiceDel
     /**
      * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 4;
+     * @generated from field: string order_reference = 4;
      */
-    orderNumber: string;
+    orderReference: string;
 };
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceDeleteDiskRequest.
@@ -1236,9 +1236,9 @@ export type MVMServiceAddIPAddressRequest = Message<"fits.api.mvm.v1.MVMServiceA
     /**
      * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 3;
+     * @generated from field: string order_reference = 3;
      */
-    orderNumber: string;
+    orderReference: string;
 };
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceAddIPAddressRequest.
@@ -1290,9 +1290,9 @@ export type MVMServiceMoveIPAddressRequest = Message<"fits.api.mvm.v1.MVMService
     /**
      * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 4;
+     * @generated from field: string order_reference = 4;
      */
-    orderNumber: string;
+    orderReference: string;
     /**
      * UUID of the MVM to move the IP address to.
      *
@@ -1343,9 +1343,9 @@ export type MVMServiceDeleteIPAddressRequest = Message<"fits.api.mvm.v1.MVMServi
     /**
      * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 4;
+     * @generated from field: string order_reference = 4;
      */
-    orderNumber: string;
+    orderReference: string;
 };
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceDeleteIPAddressRequest.
@@ -1384,9 +1384,9 @@ export type MVMServiceRestartRequest = Message<"fits.api.mvm.v1.MVMServiceRestar
     /**
      * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 3;
+     * @generated from field: string order_reference = 3;
      */
-    orderNumber: string;
+    orderReference: string;
 };
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceRestartRequest.
@@ -1426,9 +1426,9 @@ export type MVMServiceReinstallRequest = Message<"fits.api.mvm.v1.MVMServiceRein
     /**
      * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 3;
+     * @generated from field: string order_reference = 3;
      */
-    orderNumber: string;
+    orderReference: string;
     /**
      * UUID of the operating system image to install.
      *
@@ -1515,9 +1515,9 @@ export type MVMServiceAddSnapshotRequest = Message<"fits.api.mvm.v1.MVMServiceAd
     /**
      * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 3;
+     * @generated from field: string order_reference = 3;
      */
-    orderNumber: string;
+    orderReference: string;
     /**
      * Name of the snapshot; alphanumeric only.
      *
@@ -1575,9 +1575,9 @@ export type MVMServiceDeleteSnapshotRequest = Message<"fits.api.mvm.v1.MVMServic
     /**
      * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 4;
+     * @generated from field: string order_reference = 4;
      */
-    orderNumber: string;
+    orderReference: string;
 };
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceDeleteSnapshotRequest.
@@ -1616,9 +1616,9 @@ export type MVMServiceMoveRequest = Message<"fits.api.mvm.v1.MVMServiceMoveReque
     /**
      * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 3;
+     * @generated from field: string order_reference = 3;
      */
-    orderNumber: string;
+    orderReference: string;
     /**
      * If not provided, another datacenter within the same location will be chosen automatically.
      *

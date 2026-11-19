@@ -42,8 +42,8 @@ var file_fits_api_mvm_v1_predefined_rules_proto_extTypes = []protoimpl.Extension
 		ExtendedType:  (*validate.StringRules)(nil),
 		ExtensionType: (*bool)(nil),
 		Field:         80108953,
-		Name:          "fits.api.mvm.v1.is_order_number",
-		Tag:           "varint,80108953,opt,name=is_order_number",
+		Name:          "fits.api.mvm.v1.is_order_reference",
+		Tag:           "varint,80108953,opt,name=is_order_reference",
 		Filename:      "fits/api/mvm/v1/predefined_rules.proto",
 	},
 	{
@@ -116,11 +116,11 @@ var (
 	//
 	// optional bool is_fqdn = 80108952;
 	E_IsFqdn = &file_fits_api_mvm_v1_predefined_rules_proto_extTypes[1]
-	// IsOrderNumber validates a user-supplied ticket/reference ID (order number):
+	// IsOrderReference validates a user-supplied order reference, e.g. a ticket ID:
 	// 2-128 characters, no leading/trailing whitespace.
 	//
-	// optional bool is_order_number = 80108953;
-	E_IsOrderNumber = &file_fits_api_mvm_v1_predefined_rules_proto_extTypes[2]
+	// optional bool is_order_reference = 80108953;
+	E_IsOrderReference = &file_fits_api_mvm_v1_predefined_rules_proto_extTypes[2]
 	// IsMountPoint validates a Linux mount point: an absolute path without
 	// whitespace, e.g. /data/app. Allowed paths are enforced upstream.
 	//
@@ -175,10 +175,10 @@ const file_fits_api_mvm_v1_predefined_rules_proto_rawDesc = "" +
 	"isNameCode:\xd5\x01\n" +
 	"\ais_fqdn\x12\x19.buf.validate.StringRules\x18\x98\xbb\x99& \x01(\bB\x9d\x01\xc2H\x99\x01\n" +
 	"\x96\x01\n" +
-	"\x0estring.is_fqdn\x12+must be a valid FQDN, e.g. host.example.com\x1aWthis.size() <= 253 && this.matches('^[a-zA-Z0-9-]+([.][a-zA-Z0-9-]+)*[.][a-zA-Z]{2,}$')R\x06isFqdn:\xfd\x01\n" +
-	"\x0fis_order_number\x12\x19.buf.validate.StringRules\x18\x99\xbb\x99& \x01(\bB\xb6\x01\xc2H\xb2\x01\n" +
-	"\xaf\x01\n" +
-	"\x16string.is_order_number\x12Hmust be within 2 and 128 characters and not start or end with whitespace\x1aKthis.size() >= 2 && this.size() <= 128 && this.trim().size() == this.size()R\risOrderNumber:\xbd\x01\n" +
+	"\x0estring.is_fqdn\x12+must be a valid FQDN, e.g. host.example.com\x1aWthis.size() <= 253 && this.matches('^[a-zA-Z0-9-]+([.][a-zA-Z0-9-]+)*[.][a-zA-Z]{2,}$')R\x06isFqdn:\x86\x02\n" +
+	"\x12is_order_reference\x12\x19.buf.validate.StringRules\x18\x99\xbb\x99& \x01(\bB\xb9\x01\xc2H\xb5\x01\n" +
+	"\xb2\x01\n" +
+	"\x19string.is_order_reference\x12Hmust be within 2 and 128 characters and not start or end with whitespace\x1aKthis.size() >= 2 && this.size() <= 128 && this.trim().size() == this.size()R\x10isOrderReference:\xbd\x01\n" +
 	"\x0eis_mount_point\x12\x19.buf.validate.StringRules\x18\x9a\xbb\x99& \x01(\bBy\xc2Hv\n" +
 	"t\n" +
 	"\x15string.is_mount_point\x12;must be an absolute path without whitespace, e.g. /data/app\x1a\x1ethis.matches('^/[^ \\t\\r\\n]*$')R\fisMountPoint:\xa6\x01\n" +
@@ -213,7 +213,7 @@ var file_fits_api_mvm_v1_predefined_rules_proto_goTypes = []any{
 var file_fits_api_mvm_v1_predefined_rules_proto_depIdxs = []int32{
 	0,  // 0: fits.api.mvm.v1.is_name_code:extendee -> buf.validate.StringRules
 	0,  // 1: fits.api.mvm.v1.is_fqdn:extendee -> buf.validate.StringRules
-	0,  // 2: fits.api.mvm.v1.is_order_number:extendee -> buf.validate.StringRules
+	0,  // 2: fits.api.mvm.v1.is_order_reference:extendee -> buf.validate.StringRules
 	0,  // 3: fits.api.mvm.v1.is_mount_point:extendee -> buf.validate.StringRules
 	0,  // 4: fits.api.mvm.v1.is_drive_letter:extendee -> buf.validate.StringRules
 	0,  // 5: fits.api.mvm.v1.is_snapshot_name:extendee -> buf.validate.StringRules

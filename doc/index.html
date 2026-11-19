@@ -2626,11 +2626,11 @@ whitespace, e.g. /data/app. Allowed paths are enforced upstream.</p></td>
               </tr>
             
               <tr>
-                <td>is_order_number</td>
+                <td>is_order_reference</td>
                 <td><a href="#bool">bool</a></td>
                 <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
                 <td>80108953</td>
-                <td><p>IsOrderNumber validates a user-supplied ticket/reference ID (order number):
+                <td><p>IsOrderReference validates a user-supplied order reference, e.g. a ticket ID:
 2-128 characters, no leading/trailing whitespace.</p></td>
               </tr>
             
@@ -2899,7 +2899,7 @@ API in responses. </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
@@ -2968,7 +2968,7 @@ API in responses. </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
@@ -3030,7 +3030,7 @@ API in responses. </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
@@ -3166,7 +3166,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
@@ -3324,7 +3324,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
@@ -3376,7 +3376,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
@@ -3421,7 +3421,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
@@ -3473,7 +3473,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
@@ -3628,7 +3628,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
@@ -3680,7 +3680,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
@@ -3732,7 +3732,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
@@ -3798,7 +3798,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
@@ -3850,7 +3850,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
@@ -3916,7 +3916,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
@@ -4340,7 +4340,7 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Customer reference provided by the user, e.g. a ticket ID. </p></td>

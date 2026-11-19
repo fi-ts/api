@@ -381,7 +381,7 @@ message ManagedVM {
   // IP addresses attached to the MVM (IPv4 only).
   repeated IPAddress ip_addresses = 18;
   // Customer reference provided by the user, e.g. a ticket ID.
-  string order_number = 19 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_number) = true];
+  string order_reference = 19 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
   // Snapshots of the MVM.
   repeated Snapshot snapshots = 20;
 }
@@ -461,7 +461,7 @@ message MVMServiceCreateRequest {
   // RAM in GiB.
   uint32 ram_gb = 7 [(buf.validate.field).uint32.(fits.api.mvm.v1.is_ram_size) = true];
   // Customer reference for this operation, e.g. a ticket ID.
-  string order_number = 8 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_number) = true];
+  string order_reference = 8 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
   // Optional key-value labels for accounting purposes.
   // (e.g. contract number, transaction number, technical key, accounting key).
   fits.api.v1.Labels labels = 9;
@@ -509,7 +509,7 @@ message MVMServiceUpdateRequest {
   // Timestamp and strategy for this update.
   fits.api.v1.UpdateMeta update_meta = 3 [(buf.validate.field).required = true];
   // Customer reference for this operation, e.g. a ticket ID.
-  string order_number = 4 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_number) = true];
+  string order_reference = 4 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
   // The labels to update.
   optional fits.api.v1.UpdateLabels labels = 5;
   // UUID of the new contact; unset keeps the current value.
@@ -572,7 +572,7 @@ message MVMServiceDeleteRequest {
   // UUID of the project the MVM belongs to.
   string project_uuid = 2 [(buf.validate.field).string.uuid = true];
   // Customer reference for this operation, e.g. a ticket ID.
-  string order_number = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_number) = true];
+  string order_reference = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
 }
 
 // Response for Delete; an empty response means the cancellation was accepted.
@@ -585,7 +585,7 @@ message MVMServiceAddDisksRequest {
   // UUID of the project the MVM belongs to.
   string project_uuid = 2 [(buf.validate.field).string.uuid = true];
   // Customer reference for this operation, e.g. a ticket ID.
-  string order_number = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_number) = true];
+  string order_reference = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
   // Disks to add.
   repeated Disk disks = 4 [
     (buf.validate.field).repeated.min_items = 1,
@@ -621,7 +621,7 @@ message MVMServiceUpdateDiskRequest {
   // UUID of the project the MVM belongs to.
   string project_uuid = 3 [(buf.validate.field).string.uuid = true];
   // Customer reference for this operation, e.g. a ticket ID.
-  string order_number = 4 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_number) = true];
+  string order_reference = 4 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
   // New size of the disk in GiB; unset keeps the current value.
   optional uint64 size_gb = 5 [(buf.validate.field).uint64.(fits.api.mvm.v1.is_disk_size) = true];
   // New auto-extend behavior; unset keeps the current value.
@@ -650,7 +650,7 @@ message MVMServiceDeleteDiskRequest {
   // UUID of the project the MVM belongs to.
   string project_uuid = 3 [(buf.validate.field).string.uuid = true];
   // Customer reference for this operation, e.g. a ticket ID.
-  string order_number = 4 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_number) = true];
+  string order_reference = 4 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
 }
 
 // Response for DeleteDisk.
@@ -663,7 +663,7 @@ message MVMServiceAddIPAddressRequest {
   // UUID of the project the MVM belongs to.
   string project_uuid = 2 [(buf.validate.field).string.uuid = true];
   // Customer reference for this operation, e.g. a ticket ID.
-  string order_number = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_number) = true];
+  string order_reference = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
 }
 
 // Response for AddIPAddress.
@@ -681,7 +681,7 @@ message MVMServiceMoveIPAddressRequest {
   // UUID of the project the MVM belongs to.
   string project_uuid = 3 [(buf.validate.field).string.uuid = true];
   // Customer reference for this operation, e.g. a ticket ID.
-  string order_number = 4 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_number) = true];
+  string order_reference = 4 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
   // UUID of the MVM to move the IP address to.
   string target_mvm_uuid = 5 [(buf.validate.field).string.uuid = true];
 }
@@ -697,7 +697,7 @@ message MVMServiceDeleteIPAddressRequest {
   // UUID of the project the MVM belongs to.
   string project_uuid = 3 [(buf.validate.field).string.uuid = true];
   // Customer reference for this operation, e.g. a ticket ID.
-  string order_number = 4 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_number) = true];
+  string order_reference = 4 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
 }
 // Response for DeleteIPAddress.
 message MVMServiceDeleteIPAddressResponse {}
@@ -709,7 +709,7 @@ message MVMServiceRestartRequest {
   // UUID of the project the MVM belongs to.
   string project_uuid = 2 [(buf.validate.field).string.uuid = true];
   // Customer reference for this operation, e.g. a ticket ID.
-  string order_number = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_number) = true];
+  string order_reference = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
 }
 
 // Response for Restart; an empty response means the restart was accepted.
@@ -723,7 +723,7 @@ message MVMServiceReinstallRequest {
   // UUID of the project the MVM belongs to.
   string project_uuid = 2 [(buf.validate.field).string.uuid = true];
   // Customer reference for this operation, e.g. a ticket ID.
-  string order_number = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_number) = true];
+  string order_reference = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
   // UUID of the operating system image to install.
   optional string os_uuid = 4 [(buf.validate.field).string.uuid = true];
   // Whether backup is enabled after the reinstall; unset keeps the current value.
@@ -752,7 +752,7 @@ message MVMServiceAddSnapshotRequest {
   // UUID of the project the MVM belongs to.
   string project_uuid = 2 [(buf.validate.field).string.uuid = true];
   // Customer reference for this operation, e.g. a ticket ID.
-  string order_number = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_number) = true];
+  string order_reference = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
   // Name of the snapshot; alphanumeric only.
   string name = 4 [(buf.validate.field).string.(fits.api.mvm.v1.is_snapshot_name) = true];
 }
@@ -772,7 +772,7 @@ message MVMServiceDeleteSnapshotRequest {
   // UUID of the project the MVM belongs to.
   string project_uuid = 3 [(buf.validate.field).string.uuid = true];
   // Customer reference for this operation, e.g. a ticket ID.
-  string order_number = 4 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_number) = true];
+  string order_reference = 4 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
 }
 
 // Response for DeleteSnapshot; an empty response means the deletion was accepted.
@@ -785,7 +785,7 @@ message MVMServiceMoveRequest {
   // UUID of the project the MVM belongs to.
   string project_uuid = 2 [(buf.validate.field).string.uuid = true];
   // Customer reference for this operation, e.g. a ticket ID.
-  string order_number = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_number) = true];
+  string order_reference = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
   // If not provided, another datacenter within the same location will be chosen automatically.
   optional string location_uuid = 4 [(buf.validate.field).string.uuid = true];
 }

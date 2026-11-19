@@ -7,8 +7,8 @@ IS_NAME_CODE_FIELD_NUMBER: _ClassVar[int]
 is_name_code: _descriptor.FieldDescriptor
 IS_FQDN_FIELD_NUMBER: _ClassVar[int]
 is_fqdn: _descriptor.FieldDescriptor
-IS_ORDER_NUMBER_FIELD_NUMBER: _ClassVar[int]
-is_order_number: _descriptor.FieldDescriptor
+IS_ORDER_REFERENCE_FIELD_NUMBER: _ClassVar[int]
+is_order_reference: _descriptor.FieldDescriptor
 IS_MOUNT_POINT_FIELD_NUMBER: _ClassVar[int]
 is_mount_point: _descriptor.FieldDescriptor
 IS_DRIVE_LETTER_FIELD_NUMBER: _ClassVar[int]

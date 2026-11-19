@@ -964,7 +964,7 @@ type ManagedVM struct {
 	// IP addresses attached to the MVM (IPv4 only).
 	IpAddresses []*IPAddress `protobuf:"bytes,18,rep,name=ip_addresses,json=ipAddresses,proto3" json:"ip_addresses,omitempty"`
 	// Customer reference provided by the user, e.g. a ticket ID.
-	OrderNumber string `protobuf:"bytes,19,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
+	OrderReference string `protobuf:"bytes,19,opt,name=order_reference,json=orderReference,proto3" json:"order_reference,omitempty"`
 	// Snapshots of the MVM.
 	Snapshots     []*Snapshot `protobuf:"bytes,20,rep,name=snapshots,proto3" json:"snapshots,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -1138,9 +1138,9 @@ func (x *ManagedVM) GetIpAddresses() []*IPAddress {
 	return nil
 }
 
-func (x *ManagedVM) GetOrderNumber() string {
+func (x *ManagedVM) GetOrderReference() string {
 	if x != nil {
-		return x.OrderNumber
+		return x.OrderReference
 	}
 	return ""
 }
@@ -1548,7 +1548,7 @@ type MVMServiceCreateRequest struct {
 	// RAM in GiB.
 	RamGb uint32 `protobuf:"varint,7,opt,name=ram_gb,json=ramGb,proto3" json:"ram_gb,omitempty"`
 	// Customer reference for this operation, e.g. a ticket ID.
-	OrderNumber string `protobuf:"bytes,8,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
+	OrderReference string `protobuf:"bytes,8,opt,name=order_reference,json=orderReference,proto3" json:"order_reference,omitempty"`
 	// Optional key-value labels for accounting purposes.
 	// (e.g. contract number, transaction number, technical key, accounting key).
 	Labels *v1.Labels `protobuf:"bytes,9,opt,name=labels,proto3" json:"labels,omitempty"`
@@ -1652,9 +1652,9 @@ func (x *MVMServiceCreateRequest) GetRamGb() uint32 {
 	return 0
 }
 
-func (x *MVMServiceCreateRequest) GetOrderNumber() string {
+func (x *MVMServiceCreateRequest) GetOrderReference() string {
 	if x != nil {
-		return x.OrderNumber
+		return x.OrderReference
 	}
 	return ""
 }
@@ -1883,7 +1883,7 @@ type MVMServiceUpdateRequest struct {
 	// Timestamp and strategy for this update.
 	UpdateMeta *v1.UpdateMeta `protobuf:"bytes,3,opt,name=update_meta,json=updateMeta,proto3" json:"update_meta,omitempty"`
 	// Customer reference for this operation, e.g. a ticket ID.
-	OrderNumber string `protobuf:"bytes,4,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
+	OrderReference string `protobuf:"bytes,4,opt,name=order_reference,json=orderReference,proto3" json:"order_reference,omitempty"`
 	// The labels to update.
 	Labels *v1.UpdateLabels `protobuf:"bytes,5,opt,name=labels,proto3,oneof" json:"labels,omitempty"`
 	// UUID of the new contact; unset keeps the current value.
@@ -1947,9 +1947,9 @@ func (x *MVMServiceUpdateRequest) GetUpdateMeta() *v1.UpdateMeta {
 	return nil
 }
 
-func (x *MVMServiceUpdateRequest) GetOrderNumber() string {
+func (x *MVMServiceUpdateRequest) GetOrderReference() string {
 	if x != nil {
-		return x.OrderNumber
+		return x.OrderReference
 	}
 	return ""
 }
@@ -2307,9 +2307,9 @@ type MVMServiceDeleteRequest struct {
 	// UUID of the project the MVM belongs to.
 	ProjectUuid string `protobuf:"bytes,2,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
 	// Customer reference for this operation, e.g. a ticket ID.
-	OrderNumber   string `protobuf:"bytes,3,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	OrderReference string `protobuf:"bytes,3,opt,name=order_reference,json=orderReference,proto3" json:"order_reference,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *MVMServiceDeleteRequest) Reset() {
@@ -2356,9 +2356,9 @@ func (x *MVMServiceDeleteRequest) GetProjectUuid() string {
 	return ""
 }
 
-func (x *MVMServiceDeleteRequest) GetOrderNumber() string {
+func (x *MVMServiceDeleteRequest) GetOrderReference() string {
 	if x != nil {
-		return x.OrderNumber
+		return x.OrderReference
 	}
 	return ""
 }
@@ -2408,7 +2408,7 @@ type MVMServiceAddDisksRequest struct {
 	// UUID of the project the MVM belongs to.
 	ProjectUuid string `protobuf:"bytes,2,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
 	// Customer reference for this operation, e.g. a ticket ID.
-	OrderNumber string `protobuf:"bytes,3,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
+	OrderReference string `protobuf:"bytes,3,opt,name=order_reference,json=orderReference,proto3" json:"order_reference,omitempty"`
 	// Disks to add.
 	Disks         []*Disk `protobuf:"bytes,4,rep,name=disks,proto3" json:"disks,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -2459,9 +2459,9 @@ func (x *MVMServiceAddDisksRequest) GetProjectUuid() string {
 	return ""
 }
 
-func (x *MVMServiceAddDisksRequest) GetOrderNumber() string {
+func (x *MVMServiceAddDisksRequest) GetOrderReference() string {
 	if x != nil {
-		return x.OrderNumber
+		return x.OrderReference
 	}
 	return ""
 }
@@ -2613,7 +2613,7 @@ type MVMServiceUpdateDiskRequest struct {
 	// UUID of the project the MVM belongs to.
 	ProjectUuid string `protobuf:"bytes,3,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
 	// Customer reference for this operation, e.g. a ticket ID.
-	OrderNumber string `protobuf:"bytes,4,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
+	OrderReference string `protobuf:"bytes,4,opt,name=order_reference,json=orderReference,proto3" json:"order_reference,omitempty"`
 	// New size of the disk in GiB; unset keeps the current value.
 	SizeGb *uint64 `protobuf:"varint,5,opt,name=size_gb,json=sizeGb,proto3,oneof" json:"size_gb,omitempty"`
 	// New auto-extend behavior; unset keeps the current value.
@@ -2673,9 +2673,9 @@ func (x *MVMServiceUpdateDiskRequest) GetProjectUuid() string {
 	return ""
 }
 
-func (x *MVMServiceUpdateDiskRequest) GetOrderNumber() string {
+func (x *MVMServiceUpdateDiskRequest) GetOrderReference() string {
 	if x != nil {
-		return x.OrderNumber
+		return x.OrderReference
 	}
 	return ""
 }
@@ -2825,9 +2825,9 @@ type MVMServiceDeleteDiskRequest struct {
 	// UUID of the project the MVM belongs to.
 	ProjectUuid string `protobuf:"bytes,3,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
 	// Customer reference for this operation, e.g. a ticket ID.
-	OrderNumber   string `protobuf:"bytes,4,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	OrderReference string `protobuf:"bytes,4,opt,name=order_reference,json=orderReference,proto3" json:"order_reference,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *MVMServiceDeleteDiskRequest) Reset() {
@@ -2881,9 +2881,9 @@ func (x *MVMServiceDeleteDiskRequest) GetProjectUuid() string {
 	return ""
 }
 
-func (x *MVMServiceDeleteDiskRequest) GetOrderNumber() string {
+func (x *MVMServiceDeleteDiskRequest) GetOrderReference() string {
 	if x != nil {
-		return x.OrderNumber
+		return x.OrderReference
 	}
 	return ""
 }
@@ -2933,9 +2933,9 @@ type MVMServiceAddIPAddressRequest struct {
 	// UUID of the project the MVM belongs to.
 	ProjectUuid string `protobuf:"bytes,2,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
 	// Customer reference for this operation, e.g. a ticket ID.
-	OrderNumber   string `protobuf:"bytes,3,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	OrderReference string `protobuf:"bytes,3,opt,name=order_reference,json=orderReference,proto3" json:"order_reference,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *MVMServiceAddIPAddressRequest) Reset() {
@@ -2982,9 +2982,9 @@ func (x *MVMServiceAddIPAddressRequest) GetProjectUuid() string {
 	return ""
 }
 
-func (x *MVMServiceAddIPAddressRequest) GetOrderNumber() string {
+func (x *MVMServiceAddIPAddressRequest) GetOrderReference() string {
 	if x != nil {
-		return x.OrderNumber
+		return x.OrderReference
 	}
 	return ""
 }
@@ -3045,7 +3045,7 @@ type MVMServiceMoveIPAddressRequest struct {
 	// UUID of the project the MVM belongs to.
 	ProjectUuid string `protobuf:"bytes,3,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
 	// Customer reference for this operation, e.g. a ticket ID.
-	OrderNumber string `protobuf:"bytes,4,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
+	OrderReference string `protobuf:"bytes,4,opt,name=order_reference,json=orderReference,proto3" json:"order_reference,omitempty"`
 	// UUID of the MVM to move the IP address to.
 	TargetMvmUuid string `protobuf:"bytes,5,opt,name=target_mvm_uuid,json=targetMvmUuid,proto3" json:"target_mvm_uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -3103,9 +3103,9 @@ func (x *MVMServiceMoveIPAddressRequest) GetProjectUuid() string {
 	return ""
 }
 
-func (x *MVMServiceMoveIPAddressRequest) GetOrderNumber() string {
+func (x *MVMServiceMoveIPAddressRequest) GetOrderReference() string {
 	if x != nil {
-		return x.OrderNumber
+		return x.OrderReference
 	}
 	return ""
 }
@@ -3164,9 +3164,9 @@ type MVMServiceDeleteIPAddressRequest struct {
 	// UUID of the project the MVM belongs to.
 	ProjectUuid string `protobuf:"bytes,3,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
 	// Customer reference for this operation, e.g. a ticket ID.
-	OrderNumber   string `protobuf:"bytes,4,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	OrderReference string `protobuf:"bytes,4,opt,name=order_reference,json=orderReference,proto3" json:"order_reference,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *MVMServiceDeleteIPAddressRequest) Reset() {
@@ -3220,9 +3220,9 @@ func (x *MVMServiceDeleteIPAddressRequest) GetProjectUuid() string {
 	return ""
 }
 
-func (x *MVMServiceDeleteIPAddressRequest) GetOrderNumber() string {
+func (x *MVMServiceDeleteIPAddressRequest) GetOrderReference() string {
 	if x != nil {
-		return x.OrderNumber
+		return x.OrderReference
 	}
 	return ""
 }
@@ -3272,9 +3272,9 @@ type MVMServiceRestartRequest struct {
 	// UUID of the project the MVM belongs to.
 	ProjectUuid string `protobuf:"bytes,2,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
 	// Customer reference for this operation, e.g. a ticket ID.
-	OrderNumber   string `protobuf:"bytes,3,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	OrderReference string `protobuf:"bytes,3,opt,name=order_reference,json=orderReference,proto3" json:"order_reference,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *MVMServiceRestartRequest) Reset() {
@@ -3321,9 +3321,9 @@ func (x *MVMServiceRestartRequest) GetProjectUuid() string {
 	return ""
 }
 
-func (x *MVMServiceRestartRequest) GetOrderNumber() string {
+func (x *MVMServiceRestartRequest) GetOrderReference() string {
 	if x != nil {
-		return x.OrderNumber
+		return x.OrderReference
 	}
 	return ""
 }
@@ -3374,7 +3374,7 @@ type MVMServiceReinstallRequest struct {
 	// UUID of the project the MVM belongs to.
 	ProjectUuid string `protobuf:"bytes,2,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
 	// Customer reference for this operation, e.g. a ticket ID.
-	OrderNumber string `protobuf:"bytes,3,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
+	OrderReference string `protobuf:"bytes,3,opt,name=order_reference,json=orderReference,proto3" json:"order_reference,omitempty"`
 	// UUID of the operating system image to install.
 	OsUuid *string `protobuf:"bytes,4,opt,name=os_uuid,json=osUuid,proto3,oneof" json:"os_uuid,omitempty"`
 	// Whether backup is enabled after the reinstall; unset keeps the current value.
@@ -3429,9 +3429,9 @@ func (x *MVMServiceReinstallRequest) GetProjectUuid() string {
 	return ""
 }
 
-func (x *MVMServiceReinstallRequest) GetOrderNumber() string {
+func (x *MVMServiceReinstallRequest) GetOrderReference() string {
 	if x != nil {
-		return x.OrderNumber
+		return x.OrderReference
 	}
 	return ""
 }
@@ -3586,7 +3586,7 @@ type MVMServiceAddSnapshotRequest struct {
 	// UUID of the project the MVM belongs to.
 	ProjectUuid string `protobuf:"bytes,2,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
 	// Customer reference for this operation, e.g. a ticket ID.
-	OrderNumber string `protobuf:"bytes,3,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
+	OrderReference string `protobuf:"bytes,3,opt,name=order_reference,json=orderReference,proto3" json:"order_reference,omitempty"`
 	// Name of the snapshot; alphanumeric only.
 	Name          string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -3637,9 +3637,9 @@ func (x *MVMServiceAddSnapshotRequest) GetProjectUuid() string {
 	return ""
 }
 
-func (x *MVMServiceAddSnapshotRequest) GetOrderNumber() string {
+func (x *MVMServiceAddSnapshotRequest) GetOrderReference() string {
 	if x != nil {
-		return x.OrderNumber
+		return x.OrderReference
 	}
 	return ""
 }
@@ -3707,9 +3707,9 @@ type MVMServiceDeleteSnapshotRequest struct {
 	// UUID of the project the MVM belongs to.
 	ProjectUuid string `protobuf:"bytes,3,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
 	// Customer reference for this operation, e.g. a ticket ID.
-	OrderNumber   string `protobuf:"bytes,4,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	OrderReference string `protobuf:"bytes,4,opt,name=order_reference,json=orderReference,proto3" json:"order_reference,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *MVMServiceDeleteSnapshotRequest) Reset() {
@@ -3763,9 +3763,9 @@ func (x *MVMServiceDeleteSnapshotRequest) GetProjectUuid() string {
 	return ""
 }
 
-func (x *MVMServiceDeleteSnapshotRequest) GetOrderNumber() string {
+func (x *MVMServiceDeleteSnapshotRequest) GetOrderReference() string {
 	if x != nil {
-		return x.OrderNumber
+		return x.OrderReference
 	}
 	return ""
 }
@@ -3815,7 +3815,7 @@ type MVMServiceMoveRequest struct {
 	// UUID of the project the MVM belongs to.
 	ProjectUuid string `protobuf:"bytes,2,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
 	// Customer reference for this operation, e.g. a ticket ID.
-	OrderNumber string `protobuf:"bytes,3,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
+	OrderReference string `protobuf:"bytes,3,opt,name=order_reference,json=orderReference,proto3" json:"order_reference,omitempty"`
 	// If not provided, another datacenter within the same location will be chosen automatically.
 	LocationUuid  *string `protobuf:"bytes,4,opt,name=location_uuid,json=locationUuid,proto3,oneof" json:"location_uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -3866,9 +3866,9 @@ func (x *MVMServiceMoveRequest) GetProjectUuid() string {
 	return ""
 }
 
-func (x *MVMServiceMoveRequest) GetOrderNumber() string {
+func (x *MVMServiceMoveRequest) GetOrderReference() string {
 	if x != nil {
-		return x.OrderNumber
+		return x.OrderReference
 	}
 	return ""
 }
@@ -3978,7 +3978,7 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\tvlan_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bvlanUuid\"a\n" +
 	"\x06Status\x126\n" +
 	"\x05state\x18\x01 \x01(\x0e2\x16.fits.api.mvm.v1.StateB\b\xbaH\x05\x82\x01\x02\x10\x01R\x05state\x12\x1f\n" +
-	"\x04info\x18\x02 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\x04info\"\xd3\a\n" +
+	"\x04info\x18\x02 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\x04info\"\xd9\a\n" +
 	"\tManagedVM\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12%\n" +
 	"\x04meta\x18\x02 \x01(\v2\x11.fits.api.v1.MetaR\x04meta\x12\x1f\n" +
@@ -3998,8 +3998,8 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\rservice_class\x18\x0f \x01(\x0e2\x1d.fits.api.mvm.v1.ServiceClassB\b\xbaH\x05\x82\x01\x02\x10\x01R\fserviceClass\x12J\n" +
 	"\x0fwindows_details\x18\x10 \x01(\v2\x1f.fits.api.mvm.v1.WindowsDetailsH\x00R\x0ewindowsDetails\x12D\n" +
 	"\rlinux_details\x18\x11 \x01(\v2\x1d.fits.api.mvm.v1.LinuxDetailsH\x00R\flinuxDetails\x12=\n" +
-	"\fip_addresses\x18\x12 \x03(\v2\x1a.fits.api.mvm.v1.IPAddressR\vipAddresses\x12.\n" +
-	"\forder_number\x18\x13 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\vorderNumber\x127\n" +
+	"\fip_addresses\x18\x12 \x03(\v2\x1a.fits.api.mvm.v1.IPAddressR\vipAddresses\x124\n" +
+	"\x0forder_reference\x18\x13 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\x0eorderReference\x127\n" +
 	"\tsnapshots\x18\x14 \x03(\v2\x19.fits.api.mvm.v1.SnapshotR\tsnapshotsB\x10\n" +
 	"\adetails\x12\x05\xbaH\x02\b\x01\"I\n" +
 	"\bSnapshot\x12\x1c\n" +
@@ -4020,7 +4020,7 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\x05disks\x18\x02 \x03(\v2\x1c.fits.api.mvm.v1.WindowsDiskB\x0e\xbaH\v\x92\x01\b\xb8\xe8Ʊ\x02\x01\b\x01R\x05disks\"\x87\x01\n" +
 	"\x1cMVMServiceCreateLinuxRequest\x12%\n" +
 	"\tldap_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bldapUuid\x12@\n" +
-	"\x05disks\x18\x02 \x03(\v2\x1a.fits.api.mvm.v1.LinuxDiskB\x0e\xbaH\v\x92\x01\b\xb8\xe8Ʊ\x02\x01\b\x01R\x05disks\"\xe0\x06\n" +
+	"\x05disks\x18\x02 \x03(\v2\x1a.fits.api.mvm.v1.LinuxDiskB\x0e\xbaH\v\x92\x01\b\xb8\xe8Ʊ\x02\x01\b\x01R\x05disks\"\xe6\x06\n" +
 	"\x17MVMServiceCreateRequest\x12+\n" +
 	"\fproject_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12(\n" +
 	"\tname_code\x18\x02 \x01(\tB\v\xbaH\br\x06\xb8\xd9˱\x02\x01R\bnameCode\x12!\n" +
@@ -4028,8 +4028,8 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\rlocation_uuid\x18\x04 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\flocationUuid\x12+\n" +
 	"\fcontact_uuid\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vcontactUuid\x12\x1d\n" +
 	"\x03cpu\x18\x06 \x01(\rB\v\xbaH\b*\x06\xb8\x86\xbd\xb1\x02\x01R\x03cpu\x12\"\n" +
-	"\x06ram_gb\x18\a \x01(\rB\v\xbaH\b*\x06\xc0\x86\xbd\xb1\x02\x01R\x05ramGb\x12.\n" +
-	"\forder_number\x18\b \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\vorderNumber\x12+\n" +
+	"\x06ram_gb\x18\a \x01(\rB\v\xbaH\b*\x06\xc0\x86\xbd\xb1\x02\x01R\x05ramGb\x124\n" +
+	"\x0forder_reference\x18\b \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\x0eorderReference\x12+\n" +
 	"\x06labels\x18\t \x01(\v2\x13.fits.api.v1.LabelsR\x06labels\x12\x16\n" +
 	"\x06backup\x18\n" +
 	" \x01(\bR\x06backup\x12\x1c\n" +
@@ -4044,13 +4044,13 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"k\n" +
 	"\x1fMVMServiceValidateCreateRequest\x12H\n" +
 	"\x06create\x18\x01 \x01(\v2(.fits.api.mvm.v1.MVMServiceCreateRequestB\x06\xbaH\x03\xc8\x01\x01R\x06create\"\"\n" +
-	" MVMServiceValidateCreateResponse\"\xe5\x03\n" +
+	" MVMServiceValidateCreateResponse\"\xeb\x03\n" +
 	"\x17MVMServiceUpdateRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
 	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12@\n" +
 	"\vupdate_meta\x18\x03 \x01(\v2\x17.fits.api.v1.UpdateMetaB\x06\xbaH\x03\xc8\x01\x01R\n" +
-	"updateMeta\x12.\n" +
-	"\forder_number\x18\x04 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\vorderNumber\x126\n" +
+	"updateMeta\x124\n" +
+	"\x0forder_reference\x18\x04 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\x0eorderReference\x126\n" +
 	"\x06labels\x18\x05 \x01(\v2\x19.fits.api.v1.UpdateLabelsH\x00R\x06labels\x88\x01\x01\x120\n" +
 	"\fcontact_uuid\x18\x06 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x01R\vcontactUuid\x88\x01\x01\x12\"\n" +
 	"\x03cpu\x18\a \x01(\rB\v\xbaH\b*\x06\xb8\x86\xbd\xb1\x02\x01H\x02R\x03cpu\x88\x01\x01\x12'\n" +
@@ -4075,27 +4075,27 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"$MVMServiceUpdateServiceClassResponse\"\x9d\x01\n" +
 	"+MVMServiceValidateUpdateServiceClassRequest\x12n\n" +
 	"\x14update_service_class\x18\x01 \x01(\v24.fits.api.mvm.v1.MVMServiceUpdateServiceClassRequestB\x06\xbaH\x03\xc8\x01\x01R\x12updateServiceClass\".\n" +
-	",MVMServiceValidateUpdateServiceClassResponse\"\x94\x01\n" +
+	",MVMServiceValidateUpdateServiceClassResponse\"\x9a\x01\n" +
 	"\x17MVMServiceDeleteRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
-	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12.\n" +
-	"\forder_number\x18\x03 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\vorderNumber\"\x1a\n" +
-	"\x18MVMServiceDeleteResponse\"\xd3\x01\n" +
+	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x124\n" +
+	"\x0forder_reference\x18\x03 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\x0eorderReference\"\x1a\n" +
+	"\x18MVMServiceDeleteResponse\"\xd9\x01\n" +
 	"\x19MVMServiceAddDisksRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
-	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12.\n" +
-	"\forder_number\x18\x03 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\vorderNumber\x12;\n" +
+	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x124\n" +
+	"\x0forder_reference\x18\x03 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\x0eorderReference\x12;\n" +
 	"\x05disks\x18\x04 \x03(\v2\x15.fits.api.mvm.v1.DiskB\x0e\xbaH\v\x92\x01\b\xb8\xe8Ʊ\x02\x01\b\x01R\x05disks\"C\n" +
 	"\x1aMVMServiceAddDisksResponse\x12%\n" +
 	"\x05uuids\x18\x01 \x03(\tB\x0f\xbaH\f\x92\x01\t\b\x01\"\x05r\x03\xb0\x01\x01R\x05uuids\"t\n" +
 	"!MVMServiceValidateAddDisksRequest\x12O\n" +
 	"\tadd_disks\x18\x01 \x01(\v2*.fits.api.mvm.v1.MVMServiceAddDisksRequestB\x06\xbaH\x03\xc8\x01\x01R\baddDisks\"$\n" +
-	"\"MVMServiceValidateAddDisksResponse\"\xac\x02\n" +
+	"\"MVMServiceValidateAddDisksResponse\"\xb2\x02\n" +
 	"\x1bMVMServiceUpdateDiskRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12%\n" +
 	"\tdisk_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bdiskUuid\x12+\n" +
-	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12.\n" +
-	"\forder_number\x18\x04 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\vorderNumber\x12)\n" +
+	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x124\n" +
+	"\x0forder_reference\x18\x04 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\x0eorderReference\x12)\n" +
 	"\asize_gb\x18\x05 \x01(\x04B\v\xbaH\b2\x06\xb8\xf7\xc1\xb1\x02\x01H\x00R\x06sizeGb\x88\x01\x01\x12$\n" +
 	"\vauto_extend\x18\x06 \x01(\bH\x01R\n" +
 	"autoExtend\x88\x01\x01B\n" +
@@ -4106,41 +4106,41 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"#MVMServiceValidateUpdateDiskRequest\x12U\n" +
 	"\vupdate_disk\x18\x01 \x01(\v2,.fits.api.mvm.v1.MVMServiceUpdateDiskRequestB\x06\xbaH\x03\xc8\x01\x01R\n" +
 	"updateDisk\"&\n" +
-	"$MVMServiceValidateUpdateDiskResponse\"\xbf\x01\n" +
+	"$MVMServiceValidateUpdateDiskResponse\"\xc5\x01\n" +
 	"\x1bMVMServiceDeleteDiskRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12%\n" +
 	"\tdisk_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bdiskUuid\x12+\n" +
-	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12.\n" +
-	"\forder_number\x18\x04 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\vorderNumber\"\x1e\n" +
-	"\x1cMVMServiceDeleteDiskResponse\"\x9a\x01\n" +
+	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x124\n" +
+	"\x0forder_reference\x18\x04 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\x0eorderReference\"\x1e\n" +
+	"\x1cMVMServiceDeleteDiskResponse\"\xa0\x01\n" +
 	"\x1dMVMServiceAddIPAddressRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
-	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12.\n" +
-	"\forder_number\x18\x03 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\vorderNumber\">\n" +
+	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x124\n" +
+	"\x0forder_reference\x18\x03 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\x0eorderReference\">\n" +
 	"\x1eMVMServiceAddIPAddressResponse\x12\x1c\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"\xff\x01\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"\x85\x02\n" +
 	"\x1eMVMServiceMoveIPAddressRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x120\n" +
 	"\x0fip_address_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\ripAddressUuid\x12+\n" +
-	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12.\n" +
-	"\forder_number\x18\x04 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\vorderNumber\x120\n" +
+	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x124\n" +
+	"\x0forder_reference\x18\x04 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\x0eorderReference\x120\n" +
 	"\x0ftarget_mvm_uuid\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rtargetMvmUuid\"!\n" +
-	"\x1fMVMServiceMoveIPAddressResponse\"\xcf\x01\n" +
+	"\x1fMVMServiceMoveIPAddressResponse\"\xd5\x01\n" +
 	" MVMServiceDeleteIPAddressRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x120\n" +
 	"\x0fip_address_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\ripAddressUuid\x12+\n" +
-	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12.\n" +
-	"\forder_number\x18\x04 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\vorderNumber\"#\n" +
-	"!MVMServiceDeleteIPAddressResponse\"\x95\x01\n" +
+	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x124\n" +
+	"\x0forder_reference\x18\x04 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\x0eorderReference\"#\n" +
+	"!MVMServiceDeleteIPAddressResponse\"\x9b\x01\n" +
 	"\x18MVMServiceRestartRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
-	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12.\n" +
-	"\forder_number\x18\x03 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\vorderNumber\"\x1b\n" +
-	"\x19MVMServiceRestartResponse\"\xa4\x02\n" +
+	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x124\n" +
+	"\x0forder_reference\x18\x03 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\x0eorderReference\"\x1b\n" +
+	"\x19MVMServiceRestartResponse\"\xaa\x02\n" +
 	"\x1aMVMServiceReinstallRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
-	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12.\n" +
-	"\forder_number\x18\x03 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\vorderNumber\x12&\n" +
+	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x124\n" +
+	"\x0forder_reference\x18\x03 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\x0eorderReference\x12&\n" +
 	"\aos_uuid\x18\x04 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x06osUuid\x88\x01\x01\x12\x1b\n" +
 	"\x06backup\x18\x05 \x01(\bH\x01R\x06backup\x88\x01\x01\x12!\n" +
 	"\tencrypted\x18\x06 \x01(\bH\x02R\tencrypted\x88\x01\x01B\n" +
@@ -4152,24 +4152,24 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\x1bMVMServiceReinstallResponse\"w\n" +
 	"\"MVMServiceValidateReinstallRequest\x12Q\n" +
 	"\treinstall\x18\x01 \x01(\v2+.fits.api.mvm.v1.MVMServiceReinstallRequestB\x06\xbaH\x03\xc8\x01\x01R\treinstall\"%\n" +
-	"#MVMServiceValidateReinstallResponse\"\xba\x01\n" +
+	"#MVMServiceValidateReinstallResponse\"\xc0\x01\n" +
 	"\x1cMVMServiceAddSnapshotRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
-	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12.\n" +
-	"\forder_number\x18\x03 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\vorderNumber\x12\x1f\n" +
+	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x124\n" +
+	"\x0forder_reference\x18\x03 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\x0eorderReference\x12\x1f\n" +
 	"\x04name\x18\x04 \x01(\tB\v\xbaH\br\x06\xe0\xd9˱\x02\x01R\x04name\"=\n" +
 	"\x1dMVMServiceAddSnapshotResponse\x12\x1c\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"\xcb\x01\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"\xd1\x01\n" +
 	"\x1fMVMServiceDeleteSnapshotRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12-\n" +
 	"\rsnapshot_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\fsnapshotUuid\x12+\n" +
-	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12.\n" +
-	"\forder_number\x18\x04 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\vorderNumber\"\"\n" +
-	" MVMServiceDeleteSnapshotResponse\"\xd8\x01\n" +
+	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x124\n" +
+	"\x0forder_reference\x18\x04 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\x0eorderReference\"\"\n" +
+	" MVMServiceDeleteSnapshotResponse\"\xde\x01\n" +
 	"\x15MVMServiceMoveRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
-	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12.\n" +
-	"\forder_number\x18\x03 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\vorderNumber\x122\n" +
+	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x124\n" +
+	"\x0forder_reference\x18\x03 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\x0eorderReference\x122\n" +
 	"\rlocation_uuid\x18\x04 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\flocationUuid\x88\x01\x01B\x10\n" +
 	"\x0e_location_uuid\"\x18\n" +
 	"\x16MVMServiceMoveResponse*\xa6\x01\n" +

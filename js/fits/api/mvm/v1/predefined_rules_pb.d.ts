@@ -19,12 +19,12 @@ export declare const is_name_code: GenExtension<StringRules, boolean>;
  */
 export declare const is_fqdn: GenExtension<StringRules, boolean>;
 /**
- * IsOrderNumber validates a user-supplied ticket/reference ID (order number):
+ * IsOrderReference validates a user-supplied order reference, e.g. a ticket ID:
  * 2-128 characters, no leading/trailing whitespace.
  *
- * @generated from extension: optional bool is_order_number = 80108953;
+ * @generated from extension: optional bool is_order_reference = 80108953;
  */
-export declare const is_order_number: GenExtension<StringRules, boolean>;
+export declare const is_order_reference: GenExtension<StringRules, boolean>;
 /**
  * IsMountPoint validates a Linux mount point: an absolute path without
  * whitespace, e.g. /data/app. Allowed paths are enforced upstream.
