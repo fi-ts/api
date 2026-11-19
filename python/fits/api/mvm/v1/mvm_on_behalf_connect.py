@@ -21,6 +21,9 @@ class OnBehalfMVMService(Protocol):
     async def create(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceCreateResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
+    async def delete(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceDeleteRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceDeleteResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
 
 class OnBehalfMVMServiceASGIApplication(ConnectASGIApplication[OnBehalfMVMService]):
     def __init__(self, service: OnBehalfMVMService | AsyncGenerator[OnBehalfMVMService], *, interceptors: Iterable[Interceptor]=(), read_max_bytes: int | None = None, compressions: Iterable[Compression] | None = None, codecs: Iterable[Codec] | None = None) -> None:
@@ -36,6 +39,16 @@ class OnBehalfMVMServiceASGIApplication(ConnectASGIApplication[OnBehalfMVMServic
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=svc.create,
+                ),
+                "/fits.api.mvm.v1.OnBehalfMVMService/Delete": Endpoint.unary(
+                    method=MethodInfo(
+                        name="Delete",
+                        service_name="fits.api.mvm.v1.OnBehalfMVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceDeleteRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceDeleteResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.delete,
                 ),
             },
             interceptors=interceptors,
@@ -71,12 +84,34 @@ class OnBehalfMVMServiceClient(ConnectClient):
             timeout_ms=timeout_ms,
         )
 
+    async def delete(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceDeleteRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceDeleteResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="Delete",
+                service_name="fits.api.mvm.v1.OnBehalfMVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceDeleteRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceDeleteResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
 
 
 
 
 class OnBehalfMVMServiceSync(Protocol):
     def create(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceCreateResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def delete(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceDeleteRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceDeleteResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
 
@@ -93,6 +128,16 @@ class OnBehalfMVMServiceWSGIApplication(ConnectWSGIApplication):
                         idempotency_level=IdempotencyLevel.UNKNOWN,
                     ),
                     function=service.create,
+                ),
+                "/fits.api.mvm.v1.OnBehalfMVMService/Delete": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="Delete",
+                        service_name="fits.api.mvm.v1.OnBehalfMVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceDeleteRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceDeleteResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.delete,
                 ),
             },
             interceptors=interceptors,
@@ -122,6 +167,26 @@ class OnBehalfMVMServiceClientSync(ConnectClientSync):
                 service_name="fits.api.mvm.v1.OnBehalfMVMService",
                 input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceCreateRequest,
                 output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceCreateResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def delete(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceDeleteRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceDeleteResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="Delete",
+                service_name="fits.api.mvm.v1.OnBehalfMVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceDeleteRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceDeleteResponse,
                 idempotency_level=IdempotencyLevel.UNKNOWN,
             ),
             headers=headers,

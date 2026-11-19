@@ -252,9 +252,10 @@ const file_fits_api_mvm_v1_mvm_on_behalf_proto_rawDesc = "" +
 	"\x0eexecution_date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\rexecutionDate\x88\x01\x01B\x11\n" +
 	"\x0f_execution_date\"i\n" +
 	" OnBehalfMVMServiceDeleteResponse\x12E\n" +
-	"\bresponse\x18\x01 \x01(\v2).fits.api.mvm.v1.MVMServiceDeleteResponseR\bresponse2\x93\x01\n" +
+	"\bresponse\x18\x01 \x01(\v2).fits.api.mvm.v1.MVMServiceDeleteResponseR\bresponse2\x92\x02\n" +
 	"\x12OnBehalfMVMService\x12}\n" +
-	"\x06Create\x120.fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest\x1a1.fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse\"\x0e\xca\xf3\x18\x02\x01\x02\xd0\xf3\x18\x02\xe0\xf3\x18\x01B\xb5\x01\n" +
+	"\x06Create\x120.fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest\x1a1.fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse\"\x0e\xca\xf3\x18\x02\x01\x02\xd0\xf3\x18\x02\xe0\xf3\x18\x01\x12}\n" +
+	"\x06Delete\x120.fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest\x1a1.fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse\"\x0e\xca\xf3\x18\x02\x01\x02\xd0\xf3\x18\x02\xe0\xf3\x18\x01B\xb5\x01\n" +
 	"\x13com.fits.api.mvm.v1B\x10MvmOnBehalfProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03FAM\xaa\x02\x0fFits.Api.Mvm.V1\xca\x02\x0fFits\\Api\\Mvm\\V1\xe2\x02\x1bFits\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12Fits::Api::Mvm::V1b\x06proto3"
 
 var (
@@ -289,9 +290,11 @@ var file_fits_api_mvm_v1_mvm_on_behalf_proto_depIdxs = []int32{
 	5, // 4: fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest.execution_date:type_name -> google.protobuf.Timestamp
 	8, // 5: fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse.response:type_name -> fits.api.mvm.v1.MVMServiceDeleteResponse
 	0, // 6: fits.api.mvm.v1.OnBehalfMVMService.Create:input_type -> fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest
-	1, // 7: fits.api.mvm.v1.OnBehalfMVMService.Create:output_type -> fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse
-	7, // [7:8] is the sub-list for method output_type
-	6, // [6:7] is the sub-list for method input_type
+	2, // 7: fits.api.mvm.v1.OnBehalfMVMService.Delete:input_type -> fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest
+	1, // 8: fits.api.mvm.v1.OnBehalfMVMService.Create:output_type -> fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse
+	3, // 9: fits.api.mvm.v1.OnBehalfMVMService.Delete:output_type -> fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse
+	8, // [8:10] is the sub-list for method output_type
+	6, // [6:8] is the sub-list for method input_type
 	6, // [6:6] is the sub-list for extension type_name
 	6, // [6:6] is the sub-list for extension extendee
 	0, // [0:6] is the sub-list for field type_name

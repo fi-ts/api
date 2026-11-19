@@ -36,12 +36,17 @@ const (
 	// OnBehalfMVMServiceCreateProcedure is the fully-qualified name of the OnBehalfMVMService's Create
 	// RPC.
 	OnBehalfMVMServiceCreateProcedure = "/fits.api.mvm.v1.OnBehalfMVMService/Create"
+	// OnBehalfMVMServiceDeleteProcedure is the fully-qualified name of the OnBehalfMVMService's Delete
+	// RPC.
+	OnBehalfMVMServiceDeleteProcedure = "/fits.api.mvm.v1.OnBehalfMVMService/Delete"
 )
 
 // OnBehalfMVMServiceClient is a client for the fits.api.mvm.v1.OnBehalfMVMService service.
 type OnBehalfMVMServiceClient interface {
 	// Create makes a new MVM and lets the operator set its billing fields.
 	Create(context.Context, *v1.OnBehalfMVMServiceCreateRequest) (*v1.OnBehalfMVMServiceCreateResponse, error)
+	// Delete removes an MVM on behalf of a customer tenant.
+	Delete(context.Context, *v1.OnBehalfMVMServiceDeleteRequest) (*v1.OnBehalfMVMServiceDeleteResponse, error)
 }
 
 // NewOnBehalfMVMServiceClient constructs a client for the fits.api.mvm.v1.OnBehalfMVMService
@@ -61,12 +66,19 @@ func NewOnBehalfMVMServiceClient(httpClient connect.HTTPClient, baseURL string, 
 			connect.WithSchema(onBehalfMVMServiceMethods.ByName("Create")),
 			connect.WithClientOptions(opts...),
 		),
+		delete: connect.NewClient[v1.OnBehalfMVMServiceDeleteRequest, v1.OnBehalfMVMServiceDeleteResponse](
+			httpClient,
+			baseURL+OnBehalfMVMServiceDeleteProcedure,
+			connect.WithSchema(onBehalfMVMServiceMethods.ByName("Delete")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // onBehalfMVMServiceClient implements OnBehalfMVMServiceClient.
 type onBehalfMVMServiceClient struct {
 	create *connect.Client[v1.OnBehalfMVMServiceCreateRequest, v1.OnBehalfMVMServiceCreateResponse]
+	delete *connect.Client[v1.OnBehalfMVMServiceDeleteRequest, v1.OnBehalfMVMServiceDeleteResponse]
 }
 
 // Create calls fits.api.mvm.v1.OnBehalfMVMService.Create.
@@ -78,10 +90,21 @@ func (c *onBehalfMVMServiceClient) Create(ctx context.Context, req *v1.OnBehalfM
 	return nil, err
 }
 
+// Delete calls fits.api.mvm.v1.OnBehalfMVMService.Delete.
+func (c *onBehalfMVMServiceClient) Delete(ctx context.Context, req *v1.OnBehalfMVMServiceDeleteRequest) (*v1.OnBehalfMVMServiceDeleteResponse, error) {
+	response, err := c.delete.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
 // OnBehalfMVMServiceHandler is an implementation of the fits.api.mvm.v1.OnBehalfMVMService service.
 type OnBehalfMVMServiceHandler interface {
 	// Create makes a new MVM and lets the operator set its billing fields.
 	Create(context.Context, *v1.OnBehalfMVMServiceCreateRequest) (*v1.OnBehalfMVMServiceCreateResponse, error)
+	// Delete removes an MVM on behalf of a customer tenant.
+	Delete(context.Context, *v1.OnBehalfMVMServiceDeleteRequest) (*v1.OnBehalfMVMServiceDeleteResponse, error)
 }
 
 // NewOnBehalfMVMServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -97,10 +120,18 @@ func NewOnBehalfMVMServiceHandler(svc OnBehalfMVMServiceHandler, opts ...connect
 		connect.WithSchema(onBehalfMVMServiceMethods.ByName("Create")),
 		connect.WithHandlerOptions(opts...),
 	)
+	onBehalfMVMServiceDeleteHandler := connect.NewUnaryHandlerSimple(
+		OnBehalfMVMServiceDeleteProcedure,
+		svc.Delete,
+		connect.WithSchema(onBehalfMVMServiceMethods.ByName("Delete")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/fits.api.mvm.v1.OnBehalfMVMService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case OnBehalfMVMServiceCreateProcedure:
 			onBehalfMVMServiceCreateHandler.ServeHTTP(w, r)
+		case OnBehalfMVMServiceDeleteProcedure:
+			onBehalfMVMServiceDeleteHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -112,4 +143,8 @@ type UnimplementedOnBehalfMVMServiceHandler struct{}
 
 func (UnimplementedOnBehalfMVMServiceHandler) Create(context.Context, *v1.OnBehalfMVMServiceCreateRequest) (*v1.OnBehalfMVMServiceCreateResponse, error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.OnBehalfMVMService.Create is not implemented"))
+}
+
+func (UnimplementedOnBehalfMVMServiceHandler) Delete(context.Context, *v1.OnBehalfMVMServiceDeleteRequest) (*v1.OnBehalfMVMServiceDeleteResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.OnBehalfMVMService.Delete is not implemented"))
 }

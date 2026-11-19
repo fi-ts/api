@@ -113,4 +113,14 @@ export declare const OnBehalfMVMService: GenService<{
         input: typeof OnBehalfMVMServiceCreateRequestSchema;
         output: typeof OnBehalfMVMServiceCreateResponseSchema;
     };
+    /**
+     * Delete removes an MVM on behalf of a customer tenant.
+     *
+     * @generated from rpc fits.api.mvm.v1.OnBehalfMVMService.Delete
+     */
+    delete: {
+        methodKind: "unary";
+        input: typeof OnBehalfMVMServiceDeleteRequestSchema;
+        output: typeof OnBehalfMVMServiceDeleteResponseSchema;
+    };
 }>;
