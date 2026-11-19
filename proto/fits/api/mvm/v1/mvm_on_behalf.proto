@@ -8,7 +8,25 @@ import "google/protobuf/timestamp.proto";
 
 // OnBehalfMVMService offers MVM operations on behalf of a customer tenant.
 service OnBehalfMVMService {
-  // Create makes a new MVM and lets the operator set its billing fields.
+  // Get returns an MVM with additional fields.
+  rpc Get(OnBehalfMVMServiceGetRequest) returns (OnBehalfMVMServiceGetResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_VIEWER;
+    option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
+    option (fits.api.v1.role_context) = ROLE_CONTEXT_ON_BEHALF;
+  }
+
+  // List returns all MVMs with additional fields.
+  rpc List(OnBehalfMVMServiceListRequest) returns (OnBehalfMVMServiceListResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_VIEWER;
+    option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
+    option (fits.api.v1.role_context) = ROLE_CONTEXT_ON_BEHALF;
+  }
+
+  // Create makes a new MVM and lets the operator set additional fields.
   rpc Create(OnBehalfMVMServiceCreateRequest) returns (OnBehalfMVMServiceCreateResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
@@ -23,6 +41,40 @@ service OnBehalfMVMService {
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
     option (fits.api.v1.role_context) = ROLE_CONTEXT_ON_BEHALF;
   }
+}
+
+// An MVM with additional fields beyond the public ManagedVM.
+message OnBehalfMVM {
+  // The public MVM.
+  ManagedVM mvm = 1;
+  // Determines if the MVM is billable.
+  bool billable = 2;
+  // The start date when the MVM will be billable.
+  optional google.protobuf.Timestamp billable_from = 3;
+}
+
+// Request to get an MVM on behalf of a customer tenant.
+message OnBehalfMVMServiceGetRequest {
+  // The public get request.
+  MVMServiceGetRequest request = 1;
+}
+
+// Response for an on-behalf MVM get.
+message OnBehalfMVMServiceGetResponse {
+  // The MVM with additional fields.
+  OnBehalfMVM mvm = 1;
+}
+
+// Request to list MVMs on behalf of a customer tenant.
+message OnBehalfMVMServiceListRequest {
+  // The public list request.
+  MVMServiceListRequest request = 1;
+}
+
+// Response for an on-behalf MVM list.
+message OnBehalfMVMServiceListResponse {
+  // The MVMs with additional fields.
+  repeated OnBehalfMVM mvms = 1;
 }
 
 // Request to create an MVM on behalf of a customer tenant.

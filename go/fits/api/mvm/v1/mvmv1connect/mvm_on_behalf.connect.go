@@ -33,6 +33,10 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
+	// OnBehalfMVMServiceGetProcedure is the fully-qualified name of the OnBehalfMVMService's Get RPC.
+	OnBehalfMVMServiceGetProcedure = "/fits.api.mvm.v1.OnBehalfMVMService/Get"
+	// OnBehalfMVMServiceListProcedure is the fully-qualified name of the OnBehalfMVMService's List RPC.
+	OnBehalfMVMServiceListProcedure = "/fits.api.mvm.v1.OnBehalfMVMService/List"
 	// OnBehalfMVMServiceCreateProcedure is the fully-qualified name of the OnBehalfMVMService's Create
 	// RPC.
 	OnBehalfMVMServiceCreateProcedure = "/fits.api.mvm.v1.OnBehalfMVMService/Create"
@@ -43,7 +47,11 @@ const (
 
 // OnBehalfMVMServiceClient is a client for the fits.api.mvm.v1.OnBehalfMVMService service.
 type OnBehalfMVMServiceClient interface {
-	// Create makes a new MVM and lets the operator set its billing fields.
+	// Get returns an MVM with additional fields.
+	Get(context.Context, *v1.OnBehalfMVMServiceGetRequest) (*v1.OnBehalfMVMServiceGetResponse, error)
+	// List returns all MVMs with additional fields.
+	List(context.Context, *v1.OnBehalfMVMServiceListRequest) (*v1.OnBehalfMVMServiceListResponse, error)
+	// Create makes a new MVM and lets the operator set additional fields.
 	Create(context.Context, *v1.OnBehalfMVMServiceCreateRequest) (*v1.OnBehalfMVMServiceCreateResponse, error)
 	// Delete removes an MVM on behalf of a customer tenant.
 	Delete(context.Context, *v1.OnBehalfMVMServiceDeleteRequest) (*v1.OnBehalfMVMServiceDeleteResponse, error)
@@ -60,6 +68,18 @@ func NewOnBehalfMVMServiceClient(httpClient connect.HTTPClient, baseURL string, 
 	baseURL = strings.TrimRight(baseURL, "/")
 	onBehalfMVMServiceMethods := v1.File_fits_api_mvm_v1_mvm_on_behalf_proto.Services().ByName("OnBehalfMVMService").Methods()
 	return &onBehalfMVMServiceClient{
+		get: connect.NewClient[v1.OnBehalfMVMServiceGetRequest, v1.OnBehalfMVMServiceGetResponse](
+			httpClient,
+			baseURL+OnBehalfMVMServiceGetProcedure,
+			connect.WithSchema(onBehalfMVMServiceMethods.ByName("Get")),
+			connect.WithClientOptions(opts...),
+		),
+		list: connect.NewClient[v1.OnBehalfMVMServiceListRequest, v1.OnBehalfMVMServiceListResponse](
+			httpClient,
+			baseURL+OnBehalfMVMServiceListProcedure,
+			connect.WithSchema(onBehalfMVMServiceMethods.ByName("List")),
+			connect.WithClientOptions(opts...),
+		),
 		create: connect.NewClient[v1.OnBehalfMVMServiceCreateRequest, v1.OnBehalfMVMServiceCreateResponse](
 			httpClient,
 			baseURL+OnBehalfMVMServiceCreateProcedure,
@@ -77,8 +97,28 @@ func NewOnBehalfMVMServiceClient(httpClient connect.HTTPClient, baseURL string, 
 
 // onBehalfMVMServiceClient implements OnBehalfMVMServiceClient.
 type onBehalfMVMServiceClient struct {
+	get    *connect.Client[v1.OnBehalfMVMServiceGetRequest, v1.OnBehalfMVMServiceGetResponse]
+	list   *connect.Client[v1.OnBehalfMVMServiceListRequest, v1.OnBehalfMVMServiceListResponse]
 	create *connect.Client[v1.OnBehalfMVMServiceCreateRequest, v1.OnBehalfMVMServiceCreateResponse]
 	delete *connect.Client[v1.OnBehalfMVMServiceDeleteRequest, v1.OnBehalfMVMServiceDeleteResponse]
+}
+
+// Get calls fits.api.mvm.v1.OnBehalfMVMService.Get.
+func (c *onBehalfMVMServiceClient) Get(ctx context.Context, req *v1.OnBehalfMVMServiceGetRequest) (*v1.OnBehalfMVMServiceGetResponse, error) {
+	response, err := c.get.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
+// List calls fits.api.mvm.v1.OnBehalfMVMService.List.
+func (c *onBehalfMVMServiceClient) List(ctx context.Context, req *v1.OnBehalfMVMServiceListRequest) (*v1.OnBehalfMVMServiceListResponse, error) {
+	response, err := c.list.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
 }
 
 // Create calls fits.api.mvm.v1.OnBehalfMVMService.Create.
@@ -101,7 +141,11 @@ func (c *onBehalfMVMServiceClient) Delete(ctx context.Context, req *v1.OnBehalfM
 
 // OnBehalfMVMServiceHandler is an implementation of the fits.api.mvm.v1.OnBehalfMVMService service.
 type OnBehalfMVMServiceHandler interface {
-	// Create makes a new MVM and lets the operator set its billing fields.
+	// Get returns an MVM with additional fields.
+	Get(context.Context, *v1.OnBehalfMVMServiceGetRequest) (*v1.OnBehalfMVMServiceGetResponse, error)
+	// List returns all MVMs with additional fields.
+	List(context.Context, *v1.OnBehalfMVMServiceListRequest) (*v1.OnBehalfMVMServiceListResponse, error)
+	// Create makes a new MVM and lets the operator set additional fields.
 	Create(context.Context, *v1.OnBehalfMVMServiceCreateRequest) (*v1.OnBehalfMVMServiceCreateResponse, error)
 	// Delete removes an MVM on behalf of a customer tenant.
 	Delete(context.Context, *v1.OnBehalfMVMServiceDeleteRequest) (*v1.OnBehalfMVMServiceDeleteResponse, error)
@@ -114,6 +158,18 @@ type OnBehalfMVMServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewOnBehalfMVMServiceHandler(svc OnBehalfMVMServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
 	onBehalfMVMServiceMethods := v1.File_fits_api_mvm_v1_mvm_on_behalf_proto.Services().ByName("OnBehalfMVMService").Methods()
+	onBehalfMVMServiceGetHandler := connect.NewUnaryHandlerSimple(
+		OnBehalfMVMServiceGetProcedure,
+		svc.Get,
+		connect.WithSchema(onBehalfMVMServiceMethods.ByName("Get")),
+		connect.WithHandlerOptions(opts...),
+	)
+	onBehalfMVMServiceListHandler := connect.NewUnaryHandlerSimple(
+		OnBehalfMVMServiceListProcedure,
+		svc.List,
+		connect.WithSchema(onBehalfMVMServiceMethods.ByName("List")),
+		connect.WithHandlerOptions(opts...),
+	)
 	onBehalfMVMServiceCreateHandler := connect.NewUnaryHandlerSimple(
 		OnBehalfMVMServiceCreateProcedure,
 		svc.Create,
@@ -128,6 +184,10 @@ func NewOnBehalfMVMServiceHandler(svc OnBehalfMVMServiceHandler, opts ...connect
 	)
 	return "/fits.api.mvm.v1.OnBehalfMVMService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
+		case OnBehalfMVMServiceGetProcedure:
+			onBehalfMVMServiceGetHandler.ServeHTTP(w, r)
+		case OnBehalfMVMServiceListProcedure:
+			onBehalfMVMServiceListHandler.ServeHTTP(w, r)
 		case OnBehalfMVMServiceCreateProcedure:
 			onBehalfMVMServiceCreateHandler.ServeHTTP(w, r)
 		case OnBehalfMVMServiceDeleteProcedure:
@@ -140,6 +200,14 @@ func NewOnBehalfMVMServiceHandler(svc OnBehalfMVMServiceHandler, opts ...connect
 
 // UnimplementedOnBehalfMVMServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedOnBehalfMVMServiceHandler struct{}
+
+func (UnimplementedOnBehalfMVMServiceHandler) Get(context.Context, *v1.OnBehalfMVMServiceGetRequest) (*v1.OnBehalfMVMServiceGetResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.OnBehalfMVMService.Get is not implemented"))
+}
+
+func (UnimplementedOnBehalfMVMServiceHandler) List(context.Context, *v1.OnBehalfMVMServiceListRequest) (*v1.OnBehalfMVMServiceListResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.OnBehalfMVMService.List is not implemented"))
+}
 
 func (UnimplementedOnBehalfMVMServiceHandler) Create(context.Context, *v1.OnBehalfMVMServiceCreateRequest) (*v1.OnBehalfMVMServiceCreateResponse, error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.OnBehalfMVMService.Create is not implemented"))

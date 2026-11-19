@@ -23,6 +23,254 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// An MVM with additional fields beyond the public ManagedVM.
+type OnBehalfMVM struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The public MVM.
+	Mvm *ManagedVM `protobuf:"bytes,1,opt,name=mvm,proto3" json:"mvm,omitempty"`
+	// Determines if the MVM is billable.
+	Billable bool `protobuf:"varint,2,opt,name=billable,proto3" json:"billable,omitempty"`
+	// The start date when the MVM will be billable.
+	BillableFrom  *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=billable_from,json=billableFrom,proto3,oneof" json:"billable_from,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OnBehalfMVM) Reset() {
+	*x = OnBehalfMVM{}
+	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OnBehalfMVM) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OnBehalfMVM) ProtoMessage() {}
+
+func (x *OnBehalfMVM) ProtoReflect() protoreflect.Message {
+	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OnBehalfMVM.ProtoReflect.Descriptor instead.
+func (*OnBehalfMVM) Descriptor() ([]byte, []int) {
+	return file_fits_api_mvm_v1_mvm_on_behalf_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *OnBehalfMVM) GetMvm() *ManagedVM {
+	if x != nil {
+		return x.Mvm
+	}
+	return nil
+}
+
+func (x *OnBehalfMVM) GetBillable() bool {
+	if x != nil {
+		return x.Billable
+	}
+	return false
+}
+
+func (x *OnBehalfMVM) GetBillableFrom() *timestamppb.Timestamp {
+	if x != nil {
+		return x.BillableFrom
+	}
+	return nil
+}
+
+// Request to get an MVM on behalf of a customer tenant.
+type OnBehalfMVMServiceGetRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The public get request.
+	Request       *MVMServiceGetRequest `protobuf:"bytes,1,opt,name=request,proto3" json:"request,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OnBehalfMVMServiceGetRequest) Reset() {
+	*x = OnBehalfMVMServiceGetRequest{}
+	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OnBehalfMVMServiceGetRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OnBehalfMVMServiceGetRequest) ProtoMessage() {}
+
+func (x *OnBehalfMVMServiceGetRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OnBehalfMVMServiceGetRequest.ProtoReflect.Descriptor instead.
+func (*OnBehalfMVMServiceGetRequest) Descriptor() ([]byte, []int) {
+	return file_fits_api_mvm_v1_mvm_on_behalf_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *OnBehalfMVMServiceGetRequest) GetRequest() *MVMServiceGetRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
+// Response for an on-behalf MVM get.
+type OnBehalfMVMServiceGetResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The MVM with additional fields.
+	Mvm           *OnBehalfMVM `protobuf:"bytes,1,opt,name=mvm,proto3" json:"mvm,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OnBehalfMVMServiceGetResponse) Reset() {
+	*x = OnBehalfMVMServiceGetResponse{}
+	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OnBehalfMVMServiceGetResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OnBehalfMVMServiceGetResponse) ProtoMessage() {}
+
+func (x *OnBehalfMVMServiceGetResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OnBehalfMVMServiceGetResponse.ProtoReflect.Descriptor instead.
+func (*OnBehalfMVMServiceGetResponse) Descriptor() ([]byte, []int) {
+	return file_fits_api_mvm_v1_mvm_on_behalf_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *OnBehalfMVMServiceGetResponse) GetMvm() *OnBehalfMVM {
+	if x != nil {
+		return x.Mvm
+	}
+	return nil
+}
+
+// Request to list MVMs on behalf of a customer tenant.
+type OnBehalfMVMServiceListRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The public list request.
+	Request       *MVMServiceListRequest `protobuf:"bytes,1,opt,name=request,proto3" json:"request,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OnBehalfMVMServiceListRequest) Reset() {
+	*x = OnBehalfMVMServiceListRequest{}
+	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OnBehalfMVMServiceListRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OnBehalfMVMServiceListRequest) ProtoMessage() {}
+
+func (x *OnBehalfMVMServiceListRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OnBehalfMVMServiceListRequest.ProtoReflect.Descriptor instead.
+func (*OnBehalfMVMServiceListRequest) Descriptor() ([]byte, []int) {
+	return file_fits_api_mvm_v1_mvm_on_behalf_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *OnBehalfMVMServiceListRequest) GetRequest() *MVMServiceListRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
+// Response for an on-behalf MVM list.
+type OnBehalfMVMServiceListResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The MVMs with additional fields.
+	Mvms          []*OnBehalfMVM `protobuf:"bytes,1,rep,name=mvms,proto3" json:"mvms,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OnBehalfMVMServiceListResponse) Reset() {
+	*x = OnBehalfMVMServiceListResponse{}
+	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OnBehalfMVMServiceListResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OnBehalfMVMServiceListResponse) ProtoMessage() {}
+
+func (x *OnBehalfMVMServiceListResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OnBehalfMVMServiceListResponse.ProtoReflect.Descriptor instead.
+func (*OnBehalfMVMServiceListResponse) Descriptor() ([]byte, []int) {
+	return file_fits_api_mvm_v1_mvm_on_behalf_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *OnBehalfMVMServiceListResponse) GetMvms() []*OnBehalfMVM {
+	if x != nil {
+		return x.Mvms
+	}
+	return nil
+}
+
 // Request to create an MVM on behalf of a customer tenant.
 type OnBehalfMVMServiceCreateRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -38,7 +286,7 @@ type OnBehalfMVMServiceCreateRequest struct {
 
 func (x *OnBehalfMVMServiceCreateRequest) Reset() {
 	*x = OnBehalfMVMServiceCreateRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[0]
+	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -50,7 +298,7 @@ func (x *OnBehalfMVMServiceCreateRequest) String() string {
 func (*OnBehalfMVMServiceCreateRequest) ProtoMessage() {}
 
 func (x *OnBehalfMVMServiceCreateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[0]
+	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -63,7 +311,7 @@ func (x *OnBehalfMVMServiceCreateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OnBehalfMVMServiceCreateRequest.ProtoReflect.Descriptor instead.
 func (*OnBehalfMVMServiceCreateRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_on_behalf_proto_rawDescGZIP(), []int{0}
+	return file_fits_api_mvm_v1_mvm_on_behalf_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *OnBehalfMVMServiceCreateRequest) GetRequest() *MVMServiceCreateRequest {
@@ -98,7 +346,7 @@ type OnBehalfMVMServiceCreateResponse struct {
 
 func (x *OnBehalfMVMServiceCreateResponse) Reset() {
 	*x = OnBehalfMVMServiceCreateResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[1]
+	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -110,7 +358,7 @@ func (x *OnBehalfMVMServiceCreateResponse) String() string {
 func (*OnBehalfMVMServiceCreateResponse) ProtoMessage() {}
 
 func (x *OnBehalfMVMServiceCreateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[1]
+	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123,7 +371,7 @@ func (x *OnBehalfMVMServiceCreateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OnBehalfMVMServiceCreateResponse.ProtoReflect.Descriptor instead.
 func (*OnBehalfMVMServiceCreateResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_on_behalf_proto_rawDescGZIP(), []int{1}
+	return file_fits_api_mvm_v1_mvm_on_behalf_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *OnBehalfMVMServiceCreateResponse) GetResponse() *MVMServiceCreateResponse {
@@ -147,7 +395,7 @@ type OnBehalfMVMServiceDeleteRequest struct {
 
 func (x *OnBehalfMVMServiceDeleteRequest) Reset() {
 	*x = OnBehalfMVMServiceDeleteRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[2]
+	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -159,7 +407,7 @@ func (x *OnBehalfMVMServiceDeleteRequest) String() string {
 func (*OnBehalfMVMServiceDeleteRequest) ProtoMessage() {}
 
 func (x *OnBehalfMVMServiceDeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[2]
+	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -172,7 +420,7 @@ func (x *OnBehalfMVMServiceDeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OnBehalfMVMServiceDeleteRequest.ProtoReflect.Descriptor instead.
 func (*OnBehalfMVMServiceDeleteRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_on_behalf_proto_rawDescGZIP(), []int{2}
+	return file_fits_api_mvm_v1_mvm_on_behalf_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *OnBehalfMVMServiceDeleteRequest) GetRequest() *MVMServiceDeleteRequest {
@@ -200,7 +448,7 @@ type OnBehalfMVMServiceDeleteResponse struct {
 
 func (x *OnBehalfMVMServiceDeleteResponse) Reset() {
 	*x = OnBehalfMVMServiceDeleteResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[3]
+	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -212,7 +460,7 @@ func (x *OnBehalfMVMServiceDeleteResponse) String() string {
 func (*OnBehalfMVMServiceDeleteResponse) ProtoMessage() {}
 
 func (x *OnBehalfMVMServiceDeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[3]
+	mi := &file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -225,7 +473,7 @@ func (x *OnBehalfMVMServiceDeleteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OnBehalfMVMServiceDeleteResponse.ProtoReflect.Descriptor instead.
 func (*OnBehalfMVMServiceDeleteResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_on_behalf_proto_rawDescGZIP(), []int{3}
+	return file_fits_api_mvm_v1_mvm_on_behalf_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *OnBehalfMVMServiceDeleteResponse) GetResponse() *MVMServiceDeleteResponse {
@@ -239,7 +487,20 @@ var File_fits_api_mvm_v1_mvm_on_behalf_proto protoreflect.FileDescriptor
 
 const file_fits_api_mvm_v1_mvm_on_behalf_proto_rawDesc = "" +
 	"\n" +
-	"#fits/api/mvm/v1/mvm_on_behalf.proto\x12\x0ffits.api.mvm.v1\x1a\x19fits/api/mvm/v1/mvm.proto\x1a\x18fits/api/v1/common.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd9\x01\n" +
+	"#fits/api/mvm/v1/mvm_on_behalf.proto\x12\x0ffits.api.mvm.v1\x1a\x19fits/api/mvm/v1/mvm.proto\x1a\x18fits/api/v1/common.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xaf\x01\n" +
+	"\vOnBehalfMVM\x12,\n" +
+	"\x03mvm\x18\x01 \x01(\v2\x1a.fits.api.mvm.v1.ManagedVMR\x03mvm\x12\x1a\n" +
+	"\bbillable\x18\x02 \x01(\bR\bbillable\x12D\n" +
+	"\rbillable_from\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\fbillableFrom\x88\x01\x01B\x10\n" +
+	"\x0e_billable_from\"_\n" +
+	"\x1cOnBehalfMVMServiceGetRequest\x12?\n" +
+	"\arequest\x18\x01 \x01(\v2%.fits.api.mvm.v1.MVMServiceGetRequestR\arequest\"O\n" +
+	"\x1dOnBehalfMVMServiceGetResponse\x12.\n" +
+	"\x03mvm\x18\x01 \x01(\v2\x1c.fits.api.mvm.v1.OnBehalfMVMR\x03mvm\"a\n" +
+	"\x1dOnBehalfMVMServiceListRequest\x12@\n" +
+	"\arequest\x18\x01 \x01(\v2&.fits.api.mvm.v1.MVMServiceListRequestR\arequest\"R\n" +
+	"\x1eOnBehalfMVMServiceListResponse\x120\n" +
+	"\x04mvms\x18\x01 \x03(\v2\x1c.fits.api.mvm.v1.OnBehalfMVMR\x04mvms\"\xd9\x01\n" +
 	"\x1fOnBehalfMVMServiceCreateRequest\x12B\n" +
 	"\arequest\x18\x01 \x01(\v2(.fits.api.mvm.v1.MVMServiceCreateRequestR\arequest\x12\x1a\n" +
 	"\bbillable\x18\x02 \x01(\bR\bbillable\x12D\n" +
@@ -252,8 +513,10 @@ const file_fits_api_mvm_v1_mvm_on_behalf_proto_rawDesc = "" +
 	"\x0eexecution_date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\rexecutionDate\x88\x01\x01B\x11\n" +
 	"\x0f_execution_date\"i\n" +
 	" OnBehalfMVMServiceDeleteResponse\x12E\n" +
-	"\bresponse\x18\x01 \x01(\v2).fits.api.mvm.v1.MVMServiceDeleteResponseR\bresponse2\x92\x02\n" +
-	"\x12OnBehalfMVMService\x12}\n" +
+	"\bresponse\x18\x01 \x01(\v2).fits.api.mvm.v1.MVMServiceDeleteResponseR\bresponse2\x83\x04\n" +
+	"\x12OnBehalfMVMService\x12u\n" +
+	"\x03Get\x12-.fits.api.mvm.v1.OnBehalfMVMServiceGetRequest\x1a..fits.api.mvm.v1.OnBehalfMVMServiceGetResponse\"\x0f\xca\xf3\x18\x03\x01\x02\x03\xd0\xf3\x18\x02\xe0\xf3\x18\x02\x12x\n" +
+	"\x04List\x12..fits.api.mvm.v1.OnBehalfMVMServiceListRequest\x1a/.fits.api.mvm.v1.OnBehalfMVMServiceListResponse\"\x0f\xca\xf3\x18\x03\x01\x02\x03\xd0\xf3\x18\x02\xe0\xf3\x18\x02\x12}\n" +
 	"\x06Create\x120.fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest\x1a1.fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse\"\x0e\xca\xf3\x18\x02\x01\x02\xd0\xf3\x18\x02\xe0\xf3\x18\x01\x12}\n" +
 	"\x06Delete\x120.fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest\x1a1.fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse\"\x0e\xca\xf3\x18\x02\x01\x02\xd0\xf3\x18\x02\xe0\xf3\x18\x01B\xb5\x01\n" +
 	"\x13com.fits.api.mvm.v1B\x10MvmOnBehalfProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03FAM\xaa\x02\x0fFits.Api.Mvm.V1\xca\x02\x0fFits\\Api\\Mvm\\V1\xe2\x02\x1bFits\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12Fits::Api::Mvm::V1b\x06proto3"
@@ -270,34 +533,52 @@ func file_fits_api_mvm_v1_mvm_on_behalf_proto_rawDescGZIP() []byte {
 	return file_fits_api_mvm_v1_mvm_on_behalf_proto_rawDescData
 }
 
-var file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_fits_api_mvm_v1_mvm_on_behalf_proto_goTypes = []any{
-	(*OnBehalfMVMServiceCreateRequest)(nil),  // 0: fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest
-	(*OnBehalfMVMServiceCreateResponse)(nil), // 1: fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse
-	(*OnBehalfMVMServiceDeleteRequest)(nil),  // 2: fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest
-	(*OnBehalfMVMServiceDeleteResponse)(nil), // 3: fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse
-	(*MVMServiceCreateRequest)(nil),          // 4: fits.api.mvm.v1.MVMServiceCreateRequest
-	(*timestamppb.Timestamp)(nil),            // 5: google.protobuf.Timestamp
-	(*MVMServiceCreateResponse)(nil),         // 6: fits.api.mvm.v1.MVMServiceCreateResponse
-	(*MVMServiceDeleteRequest)(nil),          // 7: fits.api.mvm.v1.MVMServiceDeleteRequest
-	(*MVMServiceDeleteResponse)(nil),         // 8: fits.api.mvm.v1.MVMServiceDeleteResponse
+	(*OnBehalfMVM)(nil),                      // 0: fits.api.mvm.v1.OnBehalfMVM
+	(*OnBehalfMVMServiceGetRequest)(nil),     // 1: fits.api.mvm.v1.OnBehalfMVMServiceGetRequest
+	(*OnBehalfMVMServiceGetResponse)(nil),    // 2: fits.api.mvm.v1.OnBehalfMVMServiceGetResponse
+	(*OnBehalfMVMServiceListRequest)(nil),    // 3: fits.api.mvm.v1.OnBehalfMVMServiceListRequest
+	(*OnBehalfMVMServiceListResponse)(nil),   // 4: fits.api.mvm.v1.OnBehalfMVMServiceListResponse
+	(*OnBehalfMVMServiceCreateRequest)(nil),  // 5: fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest
+	(*OnBehalfMVMServiceCreateResponse)(nil), // 6: fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse
+	(*OnBehalfMVMServiceDeleteRequest)(nil),  // 7: fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest
+	(*OnBehalfMVMServiceDeleteResponse)(nil), // 8: fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse
+	(*ManagedVM)(nil),                        // 9: fits.api.mvm.v1.ManagedVM
+	(*timestamppb.Timestamp)(nil),            // 10: google.protobuf.Timestamp
+	(*MVMServiceGetRequest)(nil),             // 11: fits.api.mvm.v1.MVMServiceGetRequest
+	(*MVMServiceListRequest)(nil),            // 12: fits.api.mvm.v1.MVMServiceListRequest
+	(*MVMServiceCreateRequest)(nil),          // 13: fits.api.mvm.v1.MVMServiceCreateRequest
+	(*MVMServiceCreateResponse)(nil),         // 14: fits.api.mvm.v1.MVMServiceCreateResponse
+	(*MVMServiceDeleteRequest)(nil),          // 15: fits.api.mvm.v1.MVMServiceDeleteRequest
+	(*MVMServiceDeleteResponse)(nil),         // 16: fits.api.mvm.v1.MVMServiceDeleteResponse
 }
 var file_fits_api_mvm_v1_mvm_on_behalf_proto_depIdxs = []int32{
-	4, // 0: fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest.request:type_name -> fits.api.mvm.v1.MVMServiceCreateRequest
-	5, // 1: fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest.billable_from:type_name -> google.protobuf.Timestamp
-	6, // 2: fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse.response:type_name -> fits.api.mvm.v1.MVMServiceCreateResponse
-	7, // 3: fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest.request:type_name -> fits.api.mvm.v1.MVMServiceDeleteRequest
-	5, // 4: fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest.execution_date:type_name -> google.protobuf.Timestamp
-	8, // 5: fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse.response:type_name -> fits.api.mvm.v1.MVMServiceDeleteResponse
-	0, // 6: fits.api.mvm.v1.OnBehalfMVMService.Create:input_type -> fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest
-	2, // 7: fits.api.mvm.v1.OnBehalfMVMService.Delete:input_type -> fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest
-	1, // 8: fits.api.mvm.v1.OnBehalfMVMService.Create:output_type -> fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse
-	3, // 9: fits.api.mvm.v1.OnBehalfMVMService.Delete:output_type -> fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse
-	8, // [8:10] is the sub-list for method output_type
-	6, // [6:8] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	9,  // 0: fits.api.mvm.v1.OnBehalfMVM.mvm:type_name -> fits.api.mvm.v1.ManagedVM
+	10, // 1: fits.api.mvm.v1.OnBehalfMVM.billable_from:type_name -> google.protobuf.Timestamp
+	11, // 2: fits.api.mvm.v1.OnBehalfMVMServiceGetRequest.request:type_name -> fits.api.mvm.v1.MVMServiceGetRequest
+	0,  // 3: fits.api.mvm.v1.OnBehalfMVMServiceGetResponse.mvm:type_name -> fits.api.mvm.v1.OnBehalfMVM
+	12, // 4: fits.api.mvm.v1.OnBehalfMVMServiceListRequest.request:type_name -> fits.api.mvm.v1.MVMServiceListRequest
+	0,  // 5: fits.api.mvm.v1.OnBehalfMVMServiceListResponse.mvms:type_name -> fits.api.mvm.v1.OnBehalfMVM
+	13, // 6: fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest.request:type_name -> fits.api.mvm.v1.MVMServiceCreateRequest
+	10, // 7: fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest.billable_from:type_name -> google.protobuf.Timestamp
+	14, // 8: fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse.response:type_name -> fits.api.mvm.v1.MVMServiceCreateResponse
+	15, // 9: fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest.request:type_name -> fits.api.mvm.v1.MVMServiceDeleteRequest
+	10, // 10: fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest.execution_date:type_name -> google.protobuf.Timestamp
+	16, // 11: fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse.response:type_name -> fits.api.mvm.v1.MVMServiceDeleteResponse
+	1,  // 12: fits.api.mvm.v1.OnBehalfMVMService.Get:input_type -> fits.api.mvm.v1.OnBehalfMVMServiceGetRequest
+	3,  // 13: fits.api.mvm.v1.OnBehalfMVMService.List:input_type -> fits.api.mvm.v1.OnBehalfMVMServiceListRequest
+	5,  // 14: fits.api.mvm.v1.OnBehalfMVMService.Create:input_type -> fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest
+	7,  // 15: fits.api.mvm.v1.OnBehalfMVMService.Delete:input_type -> fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest
+	2,  // 16: fits.api.mvm.v1.OnBehalfMVMService.Get:output_type -> fits.api.mvm.v1.OnBehalfMVMServiceGetResponse
+	4,  // 17: fits.api.mvm.v1.OnBehalfMVMService.List:output_type -> fits.api.mvm.v1.OnBehalfMVMServiceListResponse
+	6,  // 18: fits.api.mvm.v1.OnBehalfMVMService.Create:output_type -> fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse
+	8,  // 19: fits.api.mvm.v1.OnBehalfMVMService.Delete:output_type -> fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse
+	16, // [16:20] is the sub-list for method output_type
+	12, // [12:16] is the sub-list for method input_type
+	12, // [12:12] is the sub-list for extension type_name
+	12, // [12:12] is the sub-list for extension extendee
+	0,  // [0:12] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_mvm_v1_mvm_on_behalf_proto_init() }
@@ -307,14 +588,15 @@ func file_fits_api_mvm_v1_mvm_on_behalf_proto_init() {
 	}
 	file_fits_api_mvm_v1_mvm_proto_init()
 	file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[0].OneofWrappers = []any{}
-	file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[2].OneofWrappers = []any{}
+	file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[5].OneofWrappers = []any{}
+	file_fits_api_mvm_v1_mvm_on_behalf_proto_msgTypes[7].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_fits_api_mvm_v1_mvm_on_behalf_proto_rawDesc), len(file_fits_api_mvm_v1_mvm_on_behalf_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

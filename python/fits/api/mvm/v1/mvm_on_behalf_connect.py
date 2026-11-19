@@ -18,6 +18,12 @@ import fits.api.mvm.v1.mvm_on_behalf_pb2 as fits_dot_api_dot_mvm_dot_v1_dot_mvm_
 
 
 class OnBehalfMVMService(Protocol):
+    async def get(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceGetRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceGetResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
+    async def list(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceListRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceListResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+
     async def create(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceCreateResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
 
@@ -30,6 +36,26 @@ class OnBehalfMVMServiceASGIApplication(ConnectASGIApplication[OnBehalfMVMServic
         super().__init__(
             service=service,
             endpoints=lambda svc: {
+                "/fits.api.mvm.v1.OnBehalfMVMService/Get": Endpoint.unary(
+                    method=MethodInfo(
+                        name="Get",
+                        service_name="fits.api.mvm.v1.OnBehalfMVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceGetRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceGetResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.get,
+                ),
+                "/fits.api.mvm.v1.OnBehalfMVMService/List": Endpoint.unary(
+                    method=MethodInfo(
+                        name="List",
+                        service_name="fits.api.mvm.v1.OnBehalfMVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceListRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceListResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=svc.list,
+                ),
                 "/fits.api.mvm.v1.OnBehalfMVMService/Create": Endpoint.unary(
                     method=MethodInfo(
                         name="Create",
@@ -64,6 +90,46 @@ class OnBehalfMVMServiceASGIApplication(ConnectASGIApplication[OnBehalfMVMServic
 
 
 class OnBehalfMVMServiceClient(ConnectClient):
+    async def get(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceGetRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceGetResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="Get",
+                service_name="fits.api.mvm.v1.OnBehalfMVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceGetRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceGetResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    async def list(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceListRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceListResponse:
+        return await self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="List",
+                service_name="fits.api.mvm.v1.OnBehalfMVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceListRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceListResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
     async def create(
         self,
         request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceCreateRequest,
@@ -109,6 +175,10 @@ class OnBehalfMVMServiceClient(ConnectClient):
 
 
 class OnBehalfMVMServiceSync(Protocol):
+    def get(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceGetRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceGetResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
+    def list(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceListRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceListResponse:
+        raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def create(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceCreateRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceCreateResponse:
         raise ConnectError(Code.UNIMPLEMENTED, "Not implemented")
     def delete(self, request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceDeleteRequest, ctx: RequestContext) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceDeleteResponse:
@@ -119,6 +189,26 @@ class OnBehalfMVMServiceWSGIApplication(ConnectWSGIApplication):
     def __init__(self, service: OnBehalfMVMServiceSync, interceptors: Iterable[InterceptorSync]=(), read_max_bytes: int | None = None, compressions: Iterable[Compression] | None = None, codecs: Iterable[Codec] | None = None) -> None:
         super().__init__(
             endpoints={
+                "/fits.api.mvm.v1.OnBehalfMVMService/Get": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="Get",
+                        service_name="fits.api.mvm.v1.OnBehalfMVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceGetRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceGetResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.get,
+                ),
+                "/fits.api.mvm.v1.OnBehalfMVMService/List": EndpointSync.unary(
+                    method=MethodInfo(
+                        name="List",
+                        service_name="fits.api.mvm.v1.OnBehalfMVMService",
+                        input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceListRequest,
+                        output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceListResponse,
+                        idempotency_level=IdempotencyLevel.UNKNOWN,
+                    ),
+                    function=service.list,
+                ),
                 "/fits.api.mvm.v1.OnBehalfMVMService/Create": EndpointSync.unary(
                     method=MethodInfo(
                         name="Create",
@@ -153,6 +243,46 @@ class OnBehalfMVMServiceWSGIApplication(ConnectWSGIApplication):
 
 
 class OnBehalfMVMServiceClientSync(ConnectClientSync):
+    def get(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceGetRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceGetResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="Get",
+                service_name="fits.api.mvm.v1.OnBehalfMVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceGetRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceGetResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
+    def list(
+        self,
+        request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceListRequest,
+        *,
+        headers: Headers | Mapping[str, str] | None = None,
+        timeout_ms: int | None = None,
+    ) -> fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceListResponse:
+        return self.execute_unary(
+            request=request,
+            method=MethodInfo(
+                name="List",
+                service_name="fits.api.mvm.v1.OnBehalfMVMService",
+                input=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceListRequest,
+                output=fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceListResponse,
+                idempotency_level=IdempotencyLevel.UNKNOWN,
+            ),
+            headers=headers,
+            timeout_ms=timeout_ms,
+        )
+
     def create(
         self,
         request: fits_dot_api_dot_mvm_dot_v1_dot_mvm__on__behalf__pb2.OnBehalfMVMServiceCreateRequest,

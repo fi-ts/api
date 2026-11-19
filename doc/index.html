@@ -680,6 +680,10 @@
             <ul>
               
                 <li>
+                  <a href="#fits.api.mvm.v1.OnBehalfMVM"><span class="badge">M</span>OnBehalfMVM</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest"><span class="badge">M</span>OnBehalfMVMServiceCreateRequest</a>
                 </li>
               
@@ -693,6 +697,22 @@
               
                 <li>
                   <a href="#fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse"><span class="badge">M</span>OnBehalfMVMServiceDeleteResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.OnBehalfMVMServiceGetRequest"><span class="badge">M</span>OnBehalfMVMServiceGetRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.OnBehalfMVMServiceGetResponse"><span class="badge">M</span>OnBehalfMVMServiceGetResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.OnBehalfMVMServiceListRequest"><span class="badge">M</span>OnBehalfMVMServiceListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.OnBehalfMVMServiceListResponse"><span class="badge">M</span>OnBehalfMVMServiceListResponse</a>
                 </li>
               
               
@@ -4156,6 +4176,44 @@ form pre-checks; the create endpoint validates again before executing.</p></td>
       <p></p>
 
       
+        <h3 id="fits.api.mvm.v1.OnBehalfMVM">OnBehalfMVM</h3>
+        <p>An MVM with additional fields beyond the public ManagedVM.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>mvm</td>
+                  <td><a href="#fits.api.mvm.v1.ManagedVM">ManagedVM</a></td>
+                  <td></td>
+                  <td><p>The public MVM. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>billable</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Determines if the MVM is billable. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>billable_from</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p>The start date when the MVM will be billable. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest">OnBehalfMVMServiceCreateRequest</h3>
         <p>Request to create an MVM on behalf of a customer tenant.</p>
 
@@ -4274,6 +4332,102 @@ If unset, the MVM is deleted immediately. </p></td>
 
         
       
+        <h3 id="fits.api.mvm.v1.OnBehalfMVMServiceGetRequest">OnBehalfMVMServiceGetRequest</h3>
+        <p>Request to get an MVM on behalf of a customer tenant.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#fits.api.mvm.v1.MVMServiceGetRequest">MVMServiceGetRequest</a></td>
+                  <td></td>
+                  <td><p>The public get request. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.OnBehalfMVMServiceGetResponse">OnBehalfMVMServiceGetResponse</h3>
+        <p>Response for an on-behalf MVM get.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>mvm</td>
+                  <td><a href="#fits.api.mvm.v1.OnBehalfMVM">OnBehalfMVM</a></td>
+                  <td></td>
+                  <td><p>The MVM with additional fields. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.OnBehalfMVMServiceListRequest">OnBehalfMVMServiceListRequest</h3>
+        <p>Request to list MVMs on behalf of a customer tenant.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#fits.api.mvm.v1.MVMServiceListRequest">MVMServiceListRequest</a></td>
+                  <td></td>
+                  <td><p>The public list request. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.OnBehalfMVMServiceListResponse">OnBehalfMVMServiceListResponse</h3>
+        <p>Response for an on-behalf MVM list.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>mvms</td>
+                  <td><a href="#fits.api.mvm.v1.OnBehalfMVM">OnBehalfMVM</a></td>
+                  <td>repeated</td>
+                  <td><p>The MVMs with additional fields. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
 
       
 
@@ -4289,10 +4443,24 @@ If unset, the MVM is deleted immediately. </p></td>
           <tbody>
             
               <tr>
+                <td>Get</td>
+                <td><a href="#fits.api.mvm.v1.OnBehalfMVMServiceGetRequest">OnBehalfMVMServiceGetRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.OnBehalfMVMServiceGetResponse">OnBehalfMVMServiceGetResponse</a></td>
+                <td><p>Get returns an MVM with additional fields.</p></td>
+              </tr>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#fits.api.mvm.v1.OnBehalfMVMServiceListRequest">OnBehalfMVMServiceListRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.OnBehalfMVMServiceListResponse">OnBehalfMVMServiceListResponse</a></td>
+                <td><p>List returns all MVMs with additional fields.</p></td>
+              </tr>
+            
+              <tr>
                 <td>Create</td>
                 <td><a href="#fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest">OnBehalfMVMServiceCreateRequest</a></td>
                 <td><a href="#fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse">OnBehalfMVMServiceCreateResponse</a></td>
-                <td><p>Create makes a new MVM and lets the operator set its billing fields.</p></td>
+                <td><p>Create makes a new MVM and lets the operator set additional fields.</p></td>
               </tr>
             
               <tr>
