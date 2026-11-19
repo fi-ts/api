@@ -76,8 +76,6 @@ message TenantServiceUpdateRequest {
   optional string description = 5 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
   // AvatarUrl of the tenant
   optional string avatar_url = 6;
-  // Labels on the tenant
-  optional UpdateLabels labels = 7;
 }
 
 // TenantServiceGetResponse is the response payload of the tenant get request

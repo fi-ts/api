@@ -1,5 +1,5 @@
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import type { Labels, Meta, UpdateLabels, UpdateMeta } from "./common_pb.js";
+import type { Labels, Meta, UpdateMeta } from "./common_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file fits/api/v1/tenant.proto.
@@ -143,12 +143,6 @@ export type TenantServiceUpdateRequest = Message<"fits.api.v1.TenantServiceUpdat
      * @generated from field: optional string avatar_url = 6;
      */
     avatarUrl?: string | undefined;
-    /**
-     * Labels on the tenant
-     *
-     * @generated from field: optional fits.api.v1.UpdateLabels labels = 7;
-     */
-    labels?: UpdateLabels | undefined;
 };
 /**
  * Describes the message fits.api.v1.TenantServiceUpdateRequest.
