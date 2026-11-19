@@ -26,8 +26,8 @@ var file_fits_api_v1_predefined_rules_proto_extTypes = []protoimpl.ExtensionInfo
 		ExtendedType:  (*validate.StringRules)(nil),
 		ExtensionType: (*bool)(nil),
 		Field:         80048951,
-		Name:          "fits.api.v1.macaddress",
-		Tag:           "varint,80048951,opt,name=macaddress",
+		Name:          "fits.api.v1.mac_address",
+		Tag:           "varint,80048951,opt,name=mac_address",
 		Filename:      "fits/api/v1/predefined_rules.proto",
 	},
 	{
@@ -194,10 +194,10 @@ var file_fits_api_v1_predefined_rules_proto_extTypes = []protoimpl.ExtensionInfo
 
 // Extension fields to validate.StringRules.
 var (
-	// Macaddress returns true if the given string is a valid macadress
+	// MacAddress returns true if the given string is a valid mac address
 	//
-	// optional bool macaddress = 80048951;
-	E_Macaddress = &file_fits_api_v1_predefined_rules_proto_extTypes[0]
+	// optional bool mac_address = 80048951;
+	E_MacAddress = &file_fits_api_v1_predefined_rules_proto_extTypes[0]
 	// IsName returns true if name field satisfies our requirements
 	//
 	// optional bool is_name = 80048952;
@@ -292,12 +292,11 @@ var File_fits_api_v1_predefined_rules_proto protoreflect.FileDescriptor
 
 const file_fits_api_v1_predefined_rules_proto_rawDesc = "" +
 	"\n" +
-	"\"fits/api/v1/predefined_rules.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto:\xb8\x01\n" +
-	"\n" +
-	"macaddress\x12\x19.buf.validate.StringRules\x18\xb7\xe6\x95& \x01(\bBz\xc2Hw\n" +
-	"u\n" +
-	"\x11string.macaddress\x12&this string must be a valid macaddress\x1a8this.matches('^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$')R\n" +
-	"macaddress:\x99\x01\n" +
+	"\"fits/api/v1/predefined_rules.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto:\xbb\x01\n" +
+	"\vmac_address\x12\x19.buf.validate.StringRules\x18\xb7\xe6\x95& \x01(\bB|\xc2Hy\n" +
+	"w\n" +
+	"\x12string.mac_address\x12'this string must be a valid mac address\x1a8this.matches('^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$')R\n" +
+	"macAddress:\x99\x01\n" +
 	"\ais_name\x12\x19.buf.validate.StringRules\x18\xb8\xe6\x95& \x01(\bBb\xc2H_\n" +
 	"]\n" +
 	"\x0estring.is_name\x12#must be within 2 and 128 characters\x1a&this.size() >= 2 && this.size() <= 128R\x06isName:\x9a\x01\n" +
@@ -369,7 +368,7 @@ var file_fits_api_v1_predefined_rules_proto_goTypes = []any{
 	(*validate.MapRules)(nil),      // 2: buf.validate.MapRules
 }
 var file_fits_api_v1_predefined_rules_proto_depIdxs = []int32{
-	0,  // 0: fits.api.v1.macaddress:extendee -> buf.validate.StringRules
+	0,  // 0: fits.api.v1.mac_address:extendee -> buf.validate.StringRules
 	0,  // 1: fits.api.v1.is_name:extendee -> buf.validate.StringRules
 	0,  // 2: fits.api.v1.is_description:extendee -> buf.validate.StringRules
 	0,  // 3: fits.api.v1.is_partition:extendee -> buf.validate.StringRules

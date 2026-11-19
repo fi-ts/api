@@ -399,7 +399,7 @@ type WindowsDisk struct {
 	AutoExtend *bool `protobuf:"varint,4,opt,name=auto_extend,json=autoExtend,proto3,oneof" json:"auto_extend,omitempty"`
 	// Drive letter (e.g. "G"). Fixed to "F" for the system disk; free-form
 	// for data disks.
-	Driveletter *string `protobuf:"bytes,5,opt,name=driveletter,proto3,oneof" json:"driveletter,omitempty"`
+	DriveLetter *string `protobuf:"bytes,5,opt,name=drive_letter,json=driveLetter,proto3,oneof" json:"drive_letter,omitempty"`
 	// Kind of the disk; determines which operations are allowed on it.
 	// Provided by the client in create/add requests and populated by the
 	// API in responses.
@@ -466,9 +466,9 @@ func (x *WindowsDisk) GetAutoExtend() bool {
 	return false
 }
 
-func (x *WindowsDisk) GetDriveletter() string {
-	if x != nil && x.Driveletter != nil {
-		return *x.Driveletter
+func (x *WindowsDisk) GetDriveLetter() string {
+	if x != nil && x.DriveLetter != nil {
+		return *x.DriveLetter
 	}
 	return ""
 }
@@ -767,7 +767,7 @@ type NetworkInterface struct {
 	// UUID of the VLAN.
 	VlanUuid string `protobuf:"bytes,1,opt,name=vlan_uuid,json=vlanUuid,proto3" json:"vlan_uuid,omitempty"`
 	// MAC address of this interface.
-	Macaddress    string `protobuf:"bytes,2,opt,name=macaddress,proto3" json:"macaddress,omitempty"`
+	MacAddress    string `protobuf:"bytes,2,opt,name=mac_address,json=macAddress,proto3" json:"mac_address,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -809,9 +809,9 @@ func (x *NetworkInterface) GetVlanUuid() string {
 	return ""
 }
 
-func (x *NetworkInterface) GetMacaddress() string {
+func (x *NetworkInterface) GetMacAddress() string {
 	if x != nil {
-		return x.Macaddress
+		return x.MacAddress
 	}
 	return ""
 }
@@ -1562,11 +1562,11 @@ type MVMServiceCreateRequest struct {
 	ServiceClass ServiceClass `protobuf:"varint,13,opt,name=service_class,json=serviceClass,proto3,enum=fits.api.mvm.v1.ServiceClass" json:"service_class,omitempty"`
 	// OS type and its configuration.
 	//
-	// Types that are valid to be assigned to Mvmtype:
+	// Types that are valid to be assigned to MvmType:
 	//
 	//	*MVMServiceCreateRequest_Windows
 	//	*MVMServiceCreateRequest_Linux
-	Mvmtype isMVMServiceCreateRequest_Mvmtype `protobuf_oneof:"mvmtype"`
+	MvmType isMVMServiceCreateRequest_MvmType `protobuf_oneof:"mvm_type"`
 	// Provides the target VLAN for the initial IP address.
 	InitialIpAddress *InitialIPAddress `protobuf:"bytes,16,opt,name=initial_ip_address,json=initialIpAddress,proto3" json:"initial_ip_address,omitempty"`
 	unknownFields    protoimpl.UnknownFields
@@ -1694,16 +1694,16 @@ func (x *MVMServiceCreateRequest) GetServiceClass() ServiceClass {
 	return ServiceClass_SERVICE_CLASS_UNSPECIFIED
 }
 
-func (x *MVMServiceCreateRequest) GetMvmtype() isMVMServiceCreateRequest_Mvmtype {
+func (x *MVMServiceCreateRequest) GetMvmType() isMVMServiceCreateRequest_MvmType {
 	if x != nil {
-		return x.Mvmtype
+		return x.MvmType
 	}
 	return nil
 }
 
 func (x *MVMServiceCreateRequest) GetWindows() *MVMServiceCreateWindowsRequest {
 	if x != nil {
-		if x, ok := x.Mvmtype.(*MVMServiceCreateRequest_Windows); ok {
+		if x, ok := x.MvmType.(*MVMServiceCreateRequest_Windows); ok {
 			return x.Windows
 		}
 	}
@@ -1712,7 +1712,7 @@ func (x *MVMServiceCreateRequest) GetWindows() *MVMServiceCreateWindowsRequest {
 
 func (x *MVMServiceCreateRequest) GetLinux() *MVMServiceCreateLinuxRequest {
 	if x != nil {
-		if x, ok := x.Mvmtype.(*MVMServiceCreateRequest_Linux); ok {
+		if x, ok := x.MvmType.(*MVMServiceCreateRequest_Linux); ok {
 			return x.Linux
 		}
 	}
@@ -1726,8 +1726,8 @@ func (x *MVMServiceCreateRequest) GetInitialIpAddress() *InitialIPAddress {
 	return nil
 }
 
-type isMVMServiceCreateRequest_Mvmtype interface {
-	isMVMServiceCreateRequest_Mvmtype()
+type isMVMServiceCreateRequest_MvmType interface {
+	isMVMServiceCreateRequest_MvmType()
 }
 
 type MVMServiceCreateRequest_Windows struct {
@@ -1740,9 +1740,9 @@ type MVMServiceCreateRequest_Linux struct {
 	Linux *MVMServiceCreateLinuxRequest `protobuf:"bytes,15,opt,name=linux,proto3,oneof"`
 }
 
-func (*MVMServiceCreateRequest_Windows) isMVMServiceCreateRequest_Mvmtype() {}
+func (*MVMServiceCreateRequest_Windows) isMVMServiceCreateRequest_MvmType() {}
 
-func (*MVMServiceCreateRequest_Linux) isMVMServiceCreateRequest_Mvmtype() {}
+func (*MVMServiceCreateRequest_Linux) isMVMServiceCreateRequest_MvmType() {}
 
 // Response for MVM create requests.
 type MVMServiceCreateResponse struct {
@@ -3936,18 +3936,18 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\f_auto_extendB\x0e\n" +
 	"\f_mount_pointB\f\n" +
 	"\n" +
-	"_disk_type\"\xd1\x02\n" +
+	"_disk_type\"\xd3\x02\n" +
 	"\vWindowsDisk\x12!\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x04uuid\x88\x01\x01\x12!\n" +
 	"\x05label\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x05label\x12$\n" +
 	"\asize_gb\x18\x03 \x01(\x04B\v\xbaH\b2\x06\xb8\xf7\xc1\xb1\x02\x01R\x06sizeGb\x12$\n" +
 	"\vauto_extend\x18\x04 \x01(\bH\x01R\n" +
-	"autoExtend\x88\x01\x01\x122\n" +
-	"\vdriveletter\x18\x05 \x01(\tB\v\xbaH\br\x06\xd8\xd9˱\x02\x01H\x02R\vdriveletter\x88\x01\x01\x12E\n" +
+	"autoExtend\x88\x01\x01\x123\n" +
+	"\fdrive_letter\x18\x05 \x01(\tB\v\xbaH\br\x06\xd8\xd9˱\x02\x01H\x02R\vdriveLetter\x88\x01\x01\x12E\n" +
 	"\tdisk_type\x18\x06 \x01(\x0e2\x19.fits.api.mvm.v1.DiskTypeB\b\xbaH\x05\x82\x01\x02\x10\x01H\x03R\bdiskType\x88\x01\x01B\a\n" +
 	"\x05_uuidB\x0e\n" +
-	"\f_auto_extendB\x0e\n" +
-	"\f_driveletterB\f\n" +
+	"\f_auto_extendB\x0f\n" +
+	"\r_drive_letterB\f\n" +
 	"\n" +
 	"_disk_type\"\x83\x01\n" +
 	"\x04Disk\x122\n" +
@@ -3969,12 +3969,11 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\n" +
 	"ip_address\x18\x02 \x01(\tB\v\xbaH\br\x06賮\xb1\x02\x01R\tipAddress\x12S\n" +
 	"\x11network_interface\x18\x03 \x01(\v2!.fits.api.mvm.v1.NetworkInterfaceH\x00R\x10networkInterface\x88\x01\x01B\x14\n" +
-	"\x12_network_interface\"f\n" +
+	"\x12_network_interface\"g\n" +
 	"\x10NetworkInterface\x12%\n" +
-	"\tvlan_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bvlanUuid\x12+\n" +
-	"\n" +
-	"macaddress\x18\x02 \x01(\tB\v\xbaH\br\x06\xb8\xb3\xae\xb1\x02\x01R\n" +
-	"macaddress\"9\n" +
+	"\tvlan_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bvlanUuid\x12,\n" +
+	"\vmac_address\x18\x02 \x01(\tB\v\xbaH\br\x06\xb8\xb3\xae\xb1\x02\x01R\n" +
+	"macAddress\"9\n" +
 	"\x10InitialIPAddress\x12%\n" +
 	"\tvlan_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bvlanUuid\"a\n" +
 	"\x06Status\x126\n" +
@@ -4021,7 +4020,7 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\x05disks\x18\x02 \x03(\v2\x1c.fits.api.mvm.v1.WindowsDiskB\x0e\xbaH\v\x92\x01\b\xb8\xe8Ʊ\x02\x01\b\x01R\x05disks\"\x87\x01\n" +
 	"\x1cMVMServiceCreateLinuxRequest\x12%\n" +
 	"\tldap_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bldapUuid\x12@\n" +
-	"\x05disks\x18\x02 \x03(\v2\x1a.fits.api.mvm.v1.LinuxDiskB\x0e\xbaH\v\x92\x01\b\xb8\xe8Ʊ\x02\x01\b\x01R\x05disks\"\xd7\x06\n" +
+	"\x05disks\x18\x02 \x03(\v2\x1a.fits.api.mvm.v1.LinuxDiskB\x0e\xbaH\v\x92\x01\b\xb8\xe8Ʊ\x02\x01\b\x01R\x05disks\"\xd8\x06\n" +
 	"\x17MVMServiceCreateRequest\x12+\n" +
 	"\fproject_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12(\n" +
 	"\tname_code\x18\x02 \x01(\tB\v\xbaH\br\x06\xb8\xd9˱\x02\x01R\bnameCode\x12!\n" +
@@ -4039,8 +4038,8 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\rservice_class\x18\r \x01(\x0e2\x1d.fits.api.mvm.v1.ServiceClassB\b\xbaH\x05\x82\x01\x02\x10\x01R\fserviceClass\x12K\n" +
 	"\awindows\x18\x0e \x01(\v2/.fits.api.mvm.v1.MVMServiceCreateWindowsRequestH\x00R\awindows\x12E\n" +
 	"\x05linux\x18\x0f \x01(\v2-.fits.api.mvm.v1.MVMServiceCreateLinuxRequestH\x00R\x05linux\x12O\n" +
-	"\x12initial_ip_address\x18\x10 \x01(\v2!.fits.api.mvm.v1.InitialIPAddressR\x10initialIpAddressB\x10\n" +
-	"\amvmtype\x12\x05\xbaH\x02\b\x01\"8\n" +
+	"\x12initial_ip_address\x18\x10 \x01(\v2!.fits.api.mvm.v1.InitialIPAddressR\x10initialIpAddressB\x11\n" +
+	"\bmvm_type\x12\x05\xbaH\x02\b\x01\"8\n" +
 	"\x18MVMServiceCreateResponse\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"k\n" +
 	"\x1fMVMServiceValidateCreateRequest\x12H\n" +

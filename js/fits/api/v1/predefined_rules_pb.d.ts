@@ -5,11 +5,11 @@ import type { MapRules, RepeatedRules, StringRules } from "../../../buf/validate
  */
 export declare const file_fits_api_v1_predefined_rules: GenFile;
 /**
- * Macaddress returns true if the given string is a valid macadress
+ * MacAddress returns true if the given string is a valid mac address
  *
- * @generated from extension: optional bool macaddress = 80048951;
+ * @generated from extension: optional bool mac_address = 80048951;
  */
-export declare const macaddress: GenExtension<StringRules, boolean>;
+export declare const mac_address: GenExtension<StringRules, boolean>;
 /**
  * IsName returns true if name field satisfies our requirements
  *

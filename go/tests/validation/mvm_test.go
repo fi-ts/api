@@ -14,6 +14,7 @@ const (
 	msgDiskSize    = "must be within 1 and 8192 GiB"
 	msgDiskCount   = "must contain at most 8 disks"
 	msgOrderNumber = "must be within 2 and 128 characters and not start or end with whitespace"
+	msgMacAddress  = "this string must be a valid mac address"
 	msgMountPoint  = "must be an absolute path without whitespace, e.g. /data/app"
 	msgDriveLetter = "must be a single drive letter, e.g. G"
 	msgFqdn        = "must be a valid FQDN, e.g. host.example.com"
@@ -33,7 +34,7 @@ func validWindowsDisk() *mvmv1.WindowsDisk {
 	return &mvmv1.WindowsDisk{
 		Label:       "system",
 		SizeGb:      50,
-		Driveletter: proto.String("F"),
+		DriveLetter: proto.String("F"),
 		DiskType:    mvmv1.DiskType_DISK_TYPE_SYSTEM.Enum(),
 	}
 }
@@ -56,7 +57,7 @@ func validLinuxCreateRequest(modify ...func(*mvmv1.MVMServiceCreateRequest)) *mv
 		Cpu:          2,
 		RamGb:        8,
 		OrderNumber:  "TICKET-1",
-		Mvmtype: &mvmv1.MVMServiceCreateRequest_Linux{
+		MvmType: &mvmv1.MVMServiceCreateRequest_Linux{
 			Linux: &mvmv1.MVMServiceCreateLinuxRequest{
 				LdapUuid: testUUID,
 				Disks:    []*mvmv1.LinuxDisk{validLinuxDisk()},
@@ -107,7 +108,7 @@ func TestValidateIPAddress(t *testing.T) {
 				IpAddress: "10.0.0.1",
 				NetworkInterface: &mvmv1.NetworkInterface{
 					VlanUuid:   testUUID,
-					Macaddress: "AA:BB:CC:DD:EE:01",
+					MacAddress: "AA:BB:CC:DD:EE:01",
 				},
 			},
 			wantErr: false,
@@ -125,22 +126,22 @@ func TestValidateNetworkInterface(t *testing.T) {
 			wantErr: true,
 			wantErrorMessage: `validation errors:
  - vlan_uuid: value is empty, which is not a valid UUID
- - macaddress: this string must be a valid macaddress`,
+ - mac_address: ` + msgMacAddress,
 		},
 		{
 			name: "invalid mac address",
 			msg: &mvmv1.NetworkInterface{
 				VlanUuid:   testUUID,
-				Macaddress: "AA:BB:CC:DD:EE",
+				MacAddress: "AA:BB:CC:DD:EE",
 			},
 			wantErr:          true,
-			wantErrorMessage: `validation error: macaddress: this string must be a valid macaddress`,
+			wantErrorMessage: "validation error: mac_address: " + msgMacAddress,
 		},
 		{
 			name: "valid",
 			msg: &mvmv1.NetworkInterface{
 				VlanUuid:   testUUID,
-				Macaddress: "AA:BB:CC:DD:EE:01",
+				MacAddress: "AA:BB:CC:DD:EE:01",
 			},
 			wantErr: false,
 		},
@@ -339,31 +340,31 @@ func TestValidateWindowsDisk(t *testing.T) {
 		},
 		{
 			name:    "valid lowercase drive letter",
-			msg:     withDisk(func(d *mvmv1.WindowsDisk) { d.Driveletter = proto.String("g") }),
+			msg:     withDisk(func(d *mvmv1.WindowsDisk) { d.DriveLetter = proto.String("g") }),
 			wantErr: false,
 		},
 		{
 			name:    "valid os disk drive letter",
-			msg:     withDisk(func(d *mvmv1.WindowsDisk) { d.Driveletter = proto.String("C") }),
+			msg:     withDisk(func(d *mvmv1.WindowsDisk) { d.DriveLetter = proto.String("C") }),
 			wantErr: false,
 		},
 		{
 			name:             "two drive letters",
-			msg:              withDisk(func(d *mvmv1.WindowsDisk) { d.Driveletter = proto.String("FG") }),
+			msg:              withDisk(func(d *mvmv1.WindowsDisk) { d.DriveLetter = proto.String("FG") }),
 			wantErr:          true,
-			wantErrorMessage: "validation error: driveletter: " + msgDriveLetter,
+			wantErrorMessage: "validation error: drive_letter: " + msgDriveLetter,
 		},
 		{
 			name:             "drive letter with colon",
-			msg:              withDisk(func(d *mvmv1.WindowsDisk) { d.Driveletter = proto.String("F:") }),
+			msg:              withDisk(func(d *mvmv1.WindowsDisk) { d.DriveLetter = proto.String("F:") }),
 			wantErr:          true,
-			wantErrorMessage: "validation error: driveletter: " + msgDriveLetter,
+			wantErrorMessage: "validation error: drive_letter: " + msgDriveLetter,
 		},
 		{
 			name:             "digit as drive letter",
-			msg:              withDisk(func(d *mvmv1.WindowsDisk) { d.Driveletter = proto.String("1") }),
+			msg:              withDisk(func(d *mvmv1.WindowsDisk) { d.DriveLetter = proto.String("1") }),
 			wantErr:          true,
-			wantErrorMessage: "validation error: driveletter: " + msgDriveLetter,
+			wantErrorMessage: "validation error: drive_letter: " + msgDriveLetter,
 		},
 		{
 			name:             "disk too large",
@@ -413,11 +414,11 @@ func TestValidateMVMServiceCreateWindowsRequest(t *testing.T) {
 				Disks: []*mvmv1.WindowsDisk{{
 					Label:       "system",
 					SizeGb:      50,
-					Driveletter: proto.String("FG"),
+					DriveLetter: proto.String("FG"),
 				}},
 			},
 			wantErr:          true,
-			wantErrorMessage: "validation error: disks[0].driveletter: " + msgDriveLetter,
+			wantErrorMessage: "validation error: disks[0].drive_letter: " + msgDriveLetter,
 		},
 		{
 			name: "valid",
@@ -442,7 +443,7 @@ func TestValidateMVMServiceCreateRequest(t *testing.T) {
 		{
 			name: "valid windows",
 			msg: validLinuxCreateRequest(func(r *mvmv1.MVMServiceCreateRequest) {
-				r.Mvmtype = &mvmv1.MVMServiceCreateRequest_Windows{
+				r.MvmType = &mvmv1.MVMServiceCreateRequest_Windows{
 					Windows: &mvmv1.MVMServiceCreateWindowsRequest{
 						DomainUuid: testUUID,
 						Disks:      []*mvmv1.WindowsDisk{validWindowsDisk()},
@@ -535,10 +536,10 @@ func TestValidateMVMServiceCreateRequest(t *testing.T) {
 		{
 			name: "missing os type",
 			msg: validLinuxCreateRequest(func(r *mvmv1.MVMServiceCreateRequest) {
-				r.Mvmtype = nil
+				r.MvmType = nil
 			}),
 			wantErr:          true,
-			wantErrorMessage: "validation error: mvmtype: exactly one field is required in oneof",
+			wantErrorMessage: "validation error: mvm_type: exactly one field is required in oneof",
 		},
 	}
 

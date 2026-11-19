@@ -78,20 +78,20 @@ class LinuxDisk(_message.Message):
     def __init__(self, uuid: _Optional[str] = ..., label: _Optional[str] = ..., size_gb: _Optional[int] = ..., auto_extend: _Optional[bool] = ..., mount_point: _Optional[str] = ..., disk_type: _Optional[_Union[DiskType, str]] = ...) -> None: ...
 
 class WindowsDisk(_message.Message):
-    __slots__ = ("uuid", "label", "size_gb", "auto_extend", "driveletter", "disk_type")
+    __slots__ = ("uuid", "label", "size_gb", "auto_extend", "drive_letter", "disk_type")
     UUID_FIELD_NUMBER: _ClassVar[int]
     LABEL_FIELD_NUMBER: _ClassVar[int]
     SIZE_GB_FIELD_NUMBER: _ClassVar[int]
     AUTO_EXTEND_FIELD_NUMBER: _ClassVar[int]
-    DRIVELETTER_FIELD_NUMBER: _ClassVar[int]
+    DRIVE_LETTER_FIELD_NUMBER: _ClassVar[int]
     DISK_TYPE_FIELD_NUMBER: _ClassVar[int]
     uuid: str
     label: str
     size_gb: int
     auto_extend: bool
-    driveletter: str
+    drive_letter: str
     disk_type: DiskType
-    def __init__(self, uuid: _Optional[str] = ..., label: _Optional[str] = ..., size_gb: _Optional[int] = ..., auto_extend: _Optional[bool] = ..., driveletter: _Optional[str] = ..., disk_type: _Optional[_Union[DiskType, str]] = ...) -> None: ...
+    def __init__(self, uuid: _Optional[str] = ..., label: _Optional[str] = ..., size_gb: _Optional[int] = ..., auto_extend: _Optional[bool] = ..., drive_letter: _Optional[str] = ..., disk_type: _Optional[_Union[DiskType, str]] = ...) -> None: ...
 
 class Disk(_message.Message):
     __slots__ = ("linux", "windows")
@@ -132,12 +132,12 @@ class IPAddress(_message.Message):
     def __init__(self, uuid: _Optional[str] = ..., ip_address: _Optional[str] = ..., network_interface: _Optional[_Union[NetworkInterface, _Mapping]] = ...) -> None: ...
 
 class NetworkInterface(_message.Message):
-    __slots__ = ("vlan_uuid", "macaddress")
+    __slots__ = ("vlan_uuid", "mac_address")
     VLAN_UUID_FIELD_NUMBER: _ClassVar[int]
-    MACADDRESS_FIELD_NUMBER: _ClassVar[int]
+    MAC_ADDRESS_FIELD_NUMBER: _ClassVar[int]
     vlan_uuid: str
-    macaddress: str
-    def __init__(self, vlan_uuid: _Optional[str] = ..., macaddress: _Optional[str] = ...) -> None: ...
+    mac_address: str
+    def __init__(self, vlan_uuid: _Optional[str] = ..., mac_address: _Optional[str] = ...) -> None: ...
 
 class InitialIPAddress(_message.Message):
     __slots__ = ("vlan_uuid",)

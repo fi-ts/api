@@ -3,8 +3,8 @@ from google.protobuf import descriptor as _descriptor
 from typing import ClassVar as _ClassVar
 
 DESCRIPTOR: _descriptor.FileDescriptor
-MACADDRESS_FIELD_NUMBER: _ClassVar[int]
-macaddress: _descriptor.FieldDescriptor
+MAC_ADDRESS_FIELD_NUMBER: _ClassVar[int]
+mac_address: _descriptor.FieldDescriptor
 IS_NAME_FIELD_NUMBER: _ClassVar[int]
 is_name: _descriptor.FieldDescriptor
 IS_DESCRIPTION_FIELD_NUMBER: _ClassVar[int]

@@ -92,9 +92,9 @@ export type WindowsDisk = Message<"fits.api.mvm.v1.WindowsDisk"> & {
      * Drive letter (e.g. "G"). Fixed to "F" for the system disk; free-form
      * for data disks.
      *
-     * @generated from field: optional string driveletter = 5;
+     * @generated from field: optional string drive_letter = 5;
      */
-    driveletter?: string | undefined;
+    driveLetter?: string | undefined;
     /**
      * Kind of the disk; determines which operations are allowed on it.
      * Provided by the client in create/add requests and populated by the
@@ -253,9 +253,9 @@ export type NetworkInterface = Message<"fits.api.mvm.v1.NetworkInterface"> & {
     /**
      * MAC address of this interface.
      *
-     * @generated from field: string macaddress = 2;
+     * @generated from field: string mac_address = 2;
      */
-    macaddress: string;
+    macAddress: string;
 };
 /**
  * Describes the message fits.api.mvm.v1.NetworkInterface.
@@ -693,9 +693,9 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
     /**
      * OS type and its configuration.
      *
-     * @generated from oneof fits.api.mvm.v1.MVMServiceCreateRequest.mvmtype
+     * @generated from oneof fits.api.mvm.v1.MVMServiceCreateRequest.mvm_type
      */
-    mvmtype: {
+    mvmType: {
         /**
          * Windows-specific settings (domain + disks).
          *

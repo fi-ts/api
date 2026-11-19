@@ -261,7 +261,7 @@ message WindowsDisk {
   optional bool auto_extend = 4;
   // Drive letter (e.g. "G"). Fixed to "F" for the system disk; free-form
   // for data disks.
-  optional string driveletter = 5 [(buf.validate.field).string.(fits.api.mvm.v1.is_drive_letter) = true];
+  optional string drive_letter = 5 [(buf.validate.field).string.(fits.api.mvm.v1.is_drive_letter) = true];
   // Kind of the disk; determines which operations are allowed on it.
   // Provided by the client in create/add requests and populated by the
   // API in responses.
@@ -317,7 +317,7 @@ message NetworkInterface {
   // UUID of the VLAN.
   string vlan_uuid = 1 [(buf.validate.field).string.uuid = true];
   // MAC address of this interface.
-  string macaddress = 2 [(buf.validate.field).string.(fits.api.v1.macaddress) = true];
+  string mac_address = 2 [(buf.validate.field).string.(fits.api.v1.mac_address) = true];
 }
 
 // The InitialIPAddress needs to be provided at creation of a MVM.
@@ -478,7 +478,7 @@ message MVMServiceCreateRequest {
   // Service class; only certain combinations with availability are valid.
   ServiceClass service_class = 13 [(buf.validate.field).enum.defined_only = true];
   // OS type and its configuration.
-  oneof mvmtype {
+  oneof mvm_type {
     option (buf.validate.oneof).required = true;
     // Windows-specific settings (domain + disks).
     MVMServiceCreateWindowsRequest windows = 14;
