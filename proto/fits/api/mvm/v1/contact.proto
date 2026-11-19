@@ -76,9 +76,6 @@ message ContactServiceCreateRequest {
 }
 
 // Response for contact create requests.
-// TODO: check whether create is really asynchronous; if it completes
-// synchronously, this response should return the created Contact instead
-// of just its UUID.
 message ContactServiceCreateResponse {
   // UUID of the created contact.
   string uuid = 1 [(buf.validate.field).string.uuid = true];

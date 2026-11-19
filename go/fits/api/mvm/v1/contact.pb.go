@@ -307,9 +307,6 @@ func (x *ContactServiceCreateRequest) GetEmail() string {
 }
 
 // Response for contact create requests.
-// TODO: check whether create is really asynchronous; if it completes
-// synchronously, this response should return the created Contact instead
-// of just its UUID.
 type ContactServiceCreateResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// UUID of the created contact.

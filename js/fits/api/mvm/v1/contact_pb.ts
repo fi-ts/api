@@ -179,9 +179,6 @@ export const ContactServiceCreateRequestSchema: GenMessage<ContactServiceCreateR
 
 /**
  * Response for contact create requests.
- * TODO: check whether create is really asynchronous; if it completes
- * synchronously, this response should return the created Contact instead
- * of just its UUID.
  *
  * @generated from message fits.api.mvm.v1.ContactServiceCreateResponse
  */
