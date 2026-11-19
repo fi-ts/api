@@ -301,7 +301,7 @@ type LinuxDisk struct {
 	// Whether the disk grows automatically when space runs low.
 	AutoExtend bool `protobuf:"varint,3,opt,name=auto_extend,json=autoExtend,proto3" json:"auto_extend,omitempty"`
 	// Size of the disk in GB; defaults to 50 when unset.
-	Size *uint64 `protobuf:"varint,4,opt,name=size,proto3,oneof" json:"size,omitempty"`
+	SizeGb *uint64 `protobuf:"varint,4,opt,name=size_gb,json=sizeGb,proto3,oneof" json:"size_gb,omitempty"`
 	// Mount point (e.g. "/data"). Fixed to "/appdata" for the system disk;
 	// free-form for data disks.
 	MountPoint *string `protobuf:"bytes,5,opt,name=mount_point,json=mountPoint,proto3,oneof" json:"mount_point,omitempty"`
@@ -364,9 +364,9 @@ func (x *LinuxDisk) GetAutoExtend() bool {
 	return false
 }
 
-func (x *LinuxDisk) GetSize() uint64 {
-	if x != nil && x.Size != nil {
-		return *x.Size
+func (x *LinuxDisk) GetSizeGb() uint64 {
+	if x != nil && x.SizeGb != nil {
+		return *x.SizeGb
 	}
 	return 0
 }
@@ -396,7 +396,7 @@ type WindowsDisk struct {
 	// Whether the disk grows automatically when space runs low.
 	AutoExtend bool `protobuf:"varint,3,opt,name=auto_extend,json=autoExtend,proto3" json:"auto_extend,omitempty"`
 	// Size of the disk in GB; defaults to 50 when unset.
-	Size *uint64 `protobuf:"varint,4,opt,name=size,proto3,oneof" json:"size,omitempty"`
+	SizeGb *uint64 `protobuf:"varint,4,opt,name=size_gb,json=sizeGb,proto3,oneof" json:"size_gb,omitempty"`
 	// Drive letter (e.g. "D"). Fixed to "F" for the system disk; free-form
 	// for data disks.
 	Driveletter *string `protobuf:"bytes,5,opt,name=driveletter,proto3,oneof" json:"driveletter,omitempty"`
@@ -459,9 +459,9 @@ func (x *WindowsDisk) GetAutoExtend() bool {
 	return false
 }
 
-func (x *WindowsDisk) GetSize() uint64 {
-	if x != nil && x.Size != nil {
-		return *x.Size
+func (x *WindowsDisk) GetSizeGb() uint64 {
+	if x != nil && x.SizeGb != nil {
+		return *x.SizeGb
 	}
 	return 0
 }
@@ -942,7 +942,7 @@ type ManagedVM struct {
 	// Number of CPU cores.
 	Cpu uint32 `protobuf:"varint,9,opt,name=cpu,proto3" json:"cpu,omitempty"`
 	// RAM in GB.
-	Ram uint32 `protobuf:"varint,10,opt,name=ram,proto3" json:"ram,omitempty"`
+	RamGb uint32 `protobuf:"varint,10,opt,name=ram_gb,json=ramGb,proto3" json:"ram_gb,omitempty"`
 	// Whether backup is enabled.
 	Backup bool `protobuf:"varint,11,opt,name=backup,proto3" json:"backup,omitempty"`
 	// Whether the MVM is encrypted.
@@ -1063,9 +1063,9 @@ func (x *ManagedVM) GetCpu() uint32 {
 	return 0
 }
 
-func (x *ManagedVM) GetRam() uint32 {
+func (x *ManagedVM) GetRamGb() uint32 {
 	if x != nil {
-		return x.Ram
+		return x.RamGb
 	}
 	return 0
 }
@@ -1545,7 +1545,7 @@ type MVMServiceCreateRequest struct {
 	// Number of CPU cores.
 	Cpu uint32 `protobuf:"varint,6,opt,name=cpu,proto3" json:"cpu,omitempty"`
 	// RAM in GB. Must be a power of 2.
-	Ram uint32 `protobuf:"varint,7,opt,name=ram,proto3" json:"ram,omitempty"`
+	RamGb uint32 `protobuf:"varint,7,opt,name=ram_gb,json=ramGb,proto3" json:"ram_gb,omitempty"`
 	// Customer reference for this operation provided by the user, e.g. a ticket ID.
 	OrderNumber string `protobuf:"bytes,8,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
 	// Optional key-value labels for accounting purposes.
@@ -1644,9 +1644,9 @@ func (x *MVMServiceCreateRequest) GetCpu() uint32 {
 	return 0
 }
 
-func (x *MVMServiceCreateRequest) GetRam() uint32 {
+func (x *MVMServiceCreateRequest) GetRamGb() uint32 {
 	if x != nil {
-		return x.Ram
+		return x.RamGb
 	}
 	return 0
 }
@@ -2616,7 +2616,7 @@ type MVMServiceUpdateDiskRequest struct {
 	// New auto-extend behavior; unset keeps the current value.
 	AutoExtend *bool `protobuf:"varint,5,opt,name=auto_extend,json=autoExtend,proto3,oneof" json:"auto_extend,omitempty"`
 	// New size of the disk in GB; unset keeps the current value.
-	Size          *uint64 `protobuf:"varint,6,opt,name=size,proto3,oneof" json:"size,omitempty"`
+	SizeGb        *uint64 `protobuf:"varint,6,opt,name=size_gb,json=sizeGb,proto3,oneof" json:"size_gb,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2686,9 +2686,9 @@ func (x *MVMServiceUpdateDiskRequest) GetAutoExtend() bool {
 	return false
 }
 
-func (x *MVMServiceUpdateDiskRequest) GetSize() uint64 {
-	if x != nil && x.Size != nil {
-		return *x.Size
+func (x *MVMServiceUpdateDiskRequest) GetSizeGb() uint64 {
+	if x != nil && x.SizeGb != nil {
+		return *x.SizeGb
 	}
 	return 0
 }
@@ -3921,31 +3921,33 @@ var File_fits_api_mvm_v1_mvm_proto protoreflect.FileDescriptor
 
 const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\n" +
-	"\x19fits/api/mvm/v1/mvm.proto\x12\x0ffits.api.mvm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\x9b\x02\n" +
+	"\x19fits/api/mvm/v1/mvm.proto\x12\x0ffits.api.mvm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xa3\x02\n" +
 	"\tLinuxDisk\x12!\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x04uuid\x88\x01\x01\x12\x14\n" +
 	"\x05label\x18\x02 \x01(\tR\x05label\x12\x1f\n" +
 	"\vauto_extend\x18\x03 \x01(\bR\n" +
-	"autoExtend\x12\x17\n" +
-	"\x04size\x18\x04 \x01(\x04H\x01R\x04size\x88\x01\x01\x12$\n" +
+	"autoExtend\x12\x1c\n" +
+	"\asize_gb\x18\x04 \x01(\x04H\x01R\x06sizeGb\x88\x01\x01\x12$\n" +
 	"\vmount_point\x18\x05 \x01(\tH\x02R\n" +
 	"mountPoint\x88\x01\x01\x12E\n" +
 	"\tdisk_type\x18\x06 \x01(\x0e2\x19.fits.api.mvm.v1.DiskTypeB\b\xbaH\x05\x82\x01\x02\x10\x01H\x03R\bdiskType\x88\x01\x01B\a\n" +
-	"\x05_uuidB\a\n" +
-	"\x05_sizeB\x0e\n" +
+	"\x05_uuidB\n" +
+	"\n" +
+	"\b_size_gbB\x0e\n" +
 	"\f_mount_pointB\f\n" +
 	"\n" +
-	"_disk_type\"\x9e\x02\n" +
+	"_disk_type\"\xa6\x02\n" +
 	"\vWindowsDisk\x12!\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x04uuid\x88\x01\x01\x12\x14\n" +
 	"\x05label\x18\x02 \x01(\tR\x05label\x12\x1f\n" +
 	"\vauto_extend\x18\x03 \x01(\bR\n" +
-	"autoExtend\x12\x17\n" +
-	"\x04size\x18\x04 \x01(\x04H\x01R\x04size\x88\x01\x01\x12%\n" +
+	"autoExtend\x12\x1c\n" +
+	"\asize_gb\x18\x04 \x01(\x04H\x01R\x06sizeGb\x88\x01\x01\x12%\n" +
 	"\vdriveletter\x18\x05 \x01(\tH\x02R\vdriveletter\x88\x01\x01\x12E\n" +
 	"\tdisk_type\x18\x06 \x01(\x0e2\x19.fits.api.mvm.v1.DiskTypeB\b\xbaH\x05\x82\x01\x02\x10\x01H\x03R\bdiskType\x88\x01\x01B\a\n" +
-	"\x05_uuidB\a\n" +
-	"\x05_sizeB\x0e\n" +
+	"\x05_uuidB\n" +
+	"\n" +
+	"\b_size_gbB\x0e\n" +
 	"\f_driveletterB\f\n" +
 	"\n" +
 	"_disk_type\"\x83\x01\n" +
@@ -3978,7 +3980,7 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\tvlan_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bvlanUuid\"a\n" +
 	"\x06Status\x126\n" +
 	"\x05state\x18\x01 \x01(\x0e2\x16.fits.api.mvm.v1.StateB\b\xbaH\x05\x82\x01\x02\x10\x01R\x05state\x12\x1f\n" +
-	"\x04info\x18\x02 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\x04info\"\xa7\a\n" +
+	"\x04info\x18\x02 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\x04info\"\xac\a\n" +
 	"\tManagedVM\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12%\n" +
 	"\x04meta\x18\x02 \x01(\v2\x11.fits.api.v1.MetaR\x04meta\x12\x1f\n" +
@@ -3988,9 +3990,9 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\aos_uuid\x18\x06 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06osUuid\x12-\n" +
 	"\rlocation_uuid\x18\a \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\flocationUuid\x12+\n" +
 	"\fcontact_uuid\x18\b \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vcontactUuid\x12\x10\n" +
-	"\x03cpu\x18\t \x01(\rR\x03cpu\x12\x10\n" +
-	"\x03ram\x18\n" +
-	" \x01(\rR\x03ram\x12\x16\n" +
+	"\x03cpu\x18\t \x01(\rR\x03cpu\x12\x15\n" +
+	"\x06ram_gb\x18\n" +
+	" \x01(\rR\x05ramGb\x12\x16\n" +
 	"\x06backup\x18\v \x01(\bR\x06backup\x12\x1c\n" +
 	"\tencrypted\x18\f \x01(\bR\tencrypted\x12/\n" +
 	"\x06status\x18\r \x01(\v2\x17.fits.api.mvm.v1.StatusR\x06status\x12K\n" +
@@ -4020,15 +4022,15 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\x05disks\x18\x02 \x03(\v2\x1c.fits.api.mvm.v1.WindowsDiskB\b\xbaH\x05\x92\x01\x02\b\x01R\x05disks\"\x81\x01\n" +
 	"\x1cMVMServiceCreateLinuxRequest\x12%\n" +
 	"\tldap_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bldapUuid\x12:\n" +
-	"\x05disks\x18\x02 \x03(\v2\x1a.fits.api.mvm.v1.LinuxDiskB\b\xbaH\x05\x92\x01\x02\b\x01R\x05disks\"\xab\x06\n" +
+	"\x05disks\x18\x02 \x03(\v2\x1a.fits.api.mvm.v1.LinuxDiskB\b\xbaH\x05\x92\x01\x02\b\x01R\x05disks\"\xb0\x06\n" +
 	"\x17MVMServiceCreateRequest\x12+\n" +
 	"\fproject_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12(\n" +
 	"\tname_code\x18\x02 \x01(\tB\v\xbaH\br\x06\xa0\xb4\xae\xb1\x02\x01R\bnameCode\x12!\n" +
 	"\aos_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06osUuid\x12-\n" +
 	"\rlocation_uuid\x18\x04 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\flocationUuid\x12+\n" +
 	"\fcontact_uuid\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vcontactUuid\x12\x10\n" +
-	"\x03cpu\x18\x06 \x01(\rR\x03cpu\x12\x10\n" +
-	"\x03ram\x18\a \x01(\rR\x03ram\x12!\n" +
+	"\x03cpu\x18\x06 \x01(\rR\x03cpu\x12\x15\n" +
+	"\x06ram_gb\x18\a \x01(\rR\x05ramGb\x12!\n" +
 	"\forder_number\x18\b \x01(\tR\vorderNumber\x12+\n" +
 	"\x06labels\x18\t \x01(\v2\x13.fits.api.v1.LabelsR\x06labels\x12\x16\n" +
 	"\x06backup\x18\n" +
@@ -4090,17 +4092,18 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\x05uuids\x18\x01 \x03(\tB\x0f\xbaH\f\x92\x01\t\b\x01\"\x05r\x03\xb0\x01\x01R\x05uuids\"t\n" +
 	"!MVMServiceValidateAddDisksRequest\x12O\n" +
 	"\tadd_disks\x18\x01 \x01(\v2*.fits.api.mvm.v1.MVMServiceAddDisksRequestB\x06\xbaH\x03\xc8\x01\x01R\baddDisks\"$\n" +
-	"\"MVMServiceValidateAddDisksResponse\"\x8a\x02\n" +
+	"\"MVMServiceValidateAddDisksResponse\"\x92\x02\n" +
 	"\x1bMVMServiceUpdateDiskRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12%\n" +
 	"\tdisk_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bdiskUuid\x12+\n" +
 	"\fproject_uuid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x12!\n" +
 	"\forder_number\x18\x04 \x01(\tR\vorderNumber\x12$\n" +
 	"\vauto_extend\x18\x05 \x01(\bH\x00R\n" +
-	"autoExtend\x88\x01\x01\x12\x17\n" +
-	"\x04size\x18\x06 \x01(\x04H\x01R\x04size\x88\x01\x01B\x0e\n" +
-	"\f_auto_extendB\a\n" +
-	"\x05_size\"\x1e\n" +
+	"autoExtend\x88\x01\x01\x12\x1c\n" +
+	"\asize_gb\x18\x06 \x01(\x04H\x01R\x06sizeGb\x88\x01\x01B\x0e\n" +
+	"\f_auto_extendB\n" +
+	"\n" +
+	"\b_size_gb\"\x1e\n" +
 	"\x1cMVMServiceUpdateDiskResponse\"|\n" +
 	"#MVMServiceValidateUpdateDiskRequest\x12U\n" +
 	"\vupdate_disk\x18\x01 \x01(\v2,.fits.api.mvm.v1.MVMServiceUpdateDiskRequestB\x06\xbaH\x03\xc8\x01\x01R\n" +
