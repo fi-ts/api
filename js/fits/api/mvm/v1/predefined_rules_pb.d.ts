@@ -12,8 +12,9 @@ export declare const file_fits_api_mvm_v1_predefined_rules: GenFile;
 export declare const is_name_code: GenExtension<StringRules, boolean>;
 /**
  * IsFqdn validates if the given string is a valid fully qualified domain name (FQDN),
- * e.g. host.example.com. Each label is alphanumeric/hyphen, the TLD is alphabetic
- * (min 2 chars), and the total length is at most 253 characters.
+ * e.g. host.example.com. Each label is alphanumeric/hyphen, must start and end with an
+ * alphanumeric character and is at most 63 characters long. The TLD is alphabetic
+ * (2-63 chars), and the total length is at most 253 characters.
  *
  * @generated from extension: optional bool is_fqdn = 80108952;
  */

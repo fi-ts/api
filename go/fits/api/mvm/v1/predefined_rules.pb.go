@@ -111,8 +111,9 @@ var (
 	// optional bool is_name_code = 80108951;
 	E_IsNameCode = &file_fits_api_mvm_v1_predefined_rules_proto_extTypes[0]
 	// IsFqdn validates if the given string is a valid fully qualified domain name (FQDN),
-	// e.g. host.example.com. Each label is alphanumeric/hyphen, the TLD is alphabetic
-	// (min 2 chars), and the total length is at most 253 characters.
+	// e.g. host.example.com. Each label is alphanumeric/hyphen, must start and end with an
+	// alphanumeric character and is at most 63 characters long. The TLD is alphabetic
+	// (2-63 chars), and the total length is at most 253 characters.
 	//
 	// optional bool is_fqdn = 80108952;
 	E_IsFqdn = &file_fits_api_mvm_v1_predefined_rules_proto_extTypes[1]
@@ -172,10 +173,10 @@ const file_fits_api_mvm_v1_predefined_rules_proto_rawDesc = "" +
 	"\fis_name_code\x12\x19.buf.validate.StringRules\x18\x97\xbb\x99& \x01(\bBy\xc2Hv\n" +
 	"t\n" +
 	"\x13string.is_name_code\x12;must be a 4-character code consisting of digits and letters\x1a this.matches('^[0-9A-Za-z]{4}$')R\n" +
-	"isNameCode:\xd5\x01\n" +
-	"\ais_fqdn\x12\x19.buf.validate.StringRules\x18\x98\xbb\x99& \x01(\bB\x9d\x01\xc2H\x99\x01\n" +
-	"\x96\x01\n" +
-	"\x0estring.is_fqdn\x12+must be a valid FQDN, e.g. host.example.com\x1aWthis.size() <= 253 && this.matches('^[a-zA-Z0-9-]+([.][a-zA-Z0-9-]+)*[.][a-zA-Z]{2,}$')R\x06isFqdn:\x86\x02\n" +
+	"isNameCode:\xe5\x01\n" +
+	"\ais_fqdn\x12\x19.buf.validate.StringRules\x18\x98\xbb\x99& \x01(\bB\xad\x01\xc2H\xa9\x01\n" +
+	"\xa6\x01\n" +
+	"\x0estring.is_fqdn\x12+must be a valid FQDN, e.g. host.example.com\x1agthis.size() <= 253 && this.matches('^([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?[.])+[a-zA-Z]{2,63}$')R\x06isFqdn:\x86\x02\n" +
 	"\x12is_order_reference\x12\x19.buf.validate.StringRules\x18\x99\xbb\x99& \x01(\bB\xb9\x01\xc2H\xb5\x01\n" +
 	"\xb2\x01\n" +
 	"\x19string.is_order_reference\x12Hmust be within 2 and 128 characters and not start or end with whitespace\x1aKthis.size() >= 2 && this.size() <= 128 && this.trim().size() == this.size()R\x10isOrderReference:\xbd\x01\n" +

@@ -18,12 +18,13 @@ extend buf.validate.StringRules {
     expression: "this.matches('^[0-9A-Za-z]{4}$')"
   }];
   // IsFqdn validates if the given string is a valid fully qualified domain name (FQDN),
-  // e.g. host.example.com. Each label is alphanumeric/hyphen, the TLD is alphabetic
-  // (min 2 chars), and the total length is at most 253 characters.
+  // e.g. host.example.com. Each label is alphanumeric/hyphen, must start and end with an
+  // alphanumeric character and is at most 63 characters long. The TLD is alphabetic
+  // (2-63 chars), and the total length is at most 253 characters.
   optional bool is_fqdn = 80108952 [(buf.validate.predefined).cel = {
     id: "string.is_fqdn"
     message: "must be a valid FQDN, e.g. host.example.com"
-    expression: "this.size() <= 253 && this.matches('^[a-zA-Z0-9-]+([.][a-zA-Z0-9-]+)*[.][a-zA-Z]{2,}$')"
+    expression: "this.size() <= 253 && this.matches('^([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?[.])+[a-zA-Z]{2,63}$')"
   }];
   // IsOrderReference validates a user-supplied order reference, e.g. a ticket ID:
   // 2-128 characters, no leading/trailing whitespace.

@@ -2639,8 +2639,9 @@ having a direct membership within the tenant.</p></td>
                 <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
                 <td>80108952</td>
                 <td><p>IsFqdn validates if the given string is a valid fully qualified domain name (FQDN),
-e.g. host.example.com. Each label is alphanumeric/hyphen, the TLD is alphabetic
-(min 2 chars), and the total length is at most 253 characters.</p></td>
+e.g. host.example.com. Each label is alphanumeric/hyphen, must start and end with an
+alphanumeric character and is at most 63 characters long. The TLD is alphabetic
+(2-63 chars), and the total length is at most 253 characters.</p></td>
               </tr>
             
               <tr>
