@@ -32,7 +32,6 @@ func GetServicePermissions() *ServicePermissions {
 			Tenant: Tenant{
 				v1.TenantRole_TENANT_ROLE_ADMIN: map[string]struct{}{
 					"/fits.api.mvm.v1.ContactService/Create": {},
-					"/fits.api.mvm.v1.ContactService/Delete": {},
 					"/fits.api.mvm.v1.ContactService/List":   {},
 					"/fits.api.mvm.v1.ContactService/Update": {},
 					"/fits.api.mvm.v1.DomainService/List":    {},
@@ -45,7 +44,6 @@ func GetServicePermissions() *ServicePermissions {
 				},
 				v1.TenantRole_TENANT_ROLE_EDITOR: map[string]struct{}{
 					"/fits.api.mvm.v1.ContactService/Create": {},
-					"/fits.api.mvm.v1.ContactService/Delete": {},
 					"/fits.api.mvm.v1.ContactService/List":   {},
 					"/fits.api.mvm.v1.ContactService/Update": {},
 					"/fits.api.mvm.v1.DomainService/List":    {},
@@ -132,7 +130,6 @@ func GetServicePermissions() *ServicePermissions {
 		},
 		Methods: map[string]struct{}{
 			"/fits.api.mvm.v1.ContactService/Create":                         {},
-			"/fits.api.mvm.v1.ContactService/Delete":                         {},
 			"/fits.api.mvm.v1.ContactService/List":                           {},
 			"/fits.api.mvm.v1.ContactService/Update":                         {},
 			"/fits.api.mvm.v1.DomainService/List":                            {},
@@ -199,7 +196,6 @@ func GetServicePermissions() *ServicePermissions {
 			Operator: map[string]bool{},
 			Tenant: map[string]bool{
 				"/fits.api.mvm.v1.ContactService/Create": true,
-				"/fits.api.mvm.v1.ContactService/Delete": true,
 				"/fits.api.mvm.v1.ContactService/List":   true,
 				"/fits.api.mvm.v1.ContactService/Update": true,
 				"/fits.api.mvm.v1.DomainService/List":    true,
@@ -240,7 +236,6 @@ func GetServicePermissions() *ServicePermissions {
 		},
 		Auditable: map[string]bool{
 			"/fits.api.mvm.v1.ContactService/Create":                  true,
-			"/fits.api.mvm.v1.ContactService/Delete":                  true,
 			"/fits.api.mvm.v1.ContactService/List":                    false,
 			"/fits.api.mvm.v1.ContactService/Update":                  true,
 			"/fits.api.mvm.v1.DomainService/List":                     false,
