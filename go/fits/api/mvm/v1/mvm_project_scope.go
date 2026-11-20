@@ -22,11 +22,11 @@ func (x *MVMServiceValidateCreateRequest) GetProjectUuid() string {
 
 // GetProjectUuid returns the project of the wrapped add-disk request so the
 // request satisfies the project-scope resolution used by authorization.
-func (x *MVMServiceValidateAddDiskRequest) GetProjectUuid() string {
+func (x *MVMServiceValidateAddDisksRequest) GetProjectUuid() string {
 	if x == nil {
 		return ""
 	}
-	return x.GetAddDisk().GetProjectUuid()
+	return x.GetAddDisks().GetProjectUuid()
 }
 
 // GetProjectUuid returns the project of the wrapped update-disk request so the
@@ -38,12 +38,29 @@ func (x *MVMServiceValidateUpdateDiskRequest) GetProjectUuid() string {
 	return x.GetUpdateDisk().GetProjectUuid()
 }
 
-// GetProjectUuid returns the project of the wrapped add-network-interface
-// request so the request satisfies the project-scope resolution used by
-// authorization.
-func (x *MVMServiceValidateAddNetworkInterfaceRequest) GetProjectUuid() string {
+// GetProjectUuid returns the project of the wrapped reinstall request so the
+// request satisfies the project-scope resolution used by authorization.
+func (x *MVMServiceValidateReinstallRequest) GetProjectUuid() string {
 	if x == nil {
 		return ""
 	}
-	return x.GetAddNetworkInterface().GetProjectUuid()
+	return x.GetReinstall().GetProjectUuid()
+}
+
+// GetProjectUuid returns the project of the wrapped update request so the
+// request satisfies the project-scope resolution used by authorization.
+func (x *MVMServiceValidateUpdateRequest) GetProjectUuid() string {
+	if x == nil {
+		return ""
+	}
+	return x.GetUpdate().GetProjectUuid()
+}
+
+// GetProjectUuid returns the project of the wrapped update-service-class
+// request so the request satisfies the project-scope resolution used by authorization.
+func (x *MVMServiceValidateUpdateServiceClassRequest) GetProjectUuid() string {
+	if x == nil {
+		return ""
+	}
+	return x.GetUpdateServiceClass().GetProjectUuid()
 }

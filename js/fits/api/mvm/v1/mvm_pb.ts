@@ -5,7 +5,8 @@
 import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../../../buf/validate/validate_pb.js";
-import type { Labels, Meta } from "../../v1/common_pb.js";
+import { file_fits_api_mvm_v1_predefined_rules } from "./predefined_rules_pb.js";
+import type { Labels, Meta, UpdateLabels, UpdateMeta } from "../../v1/common_pb.js";
 import { file_fits_api_v1_common } from "../../v1/common_pb.js";
 import { file_fits_api_v1_predefined_rules } from "../../v1/predefined_rules_pb.js";
 import type { Message } from "@bufbuild/protobuf";
@@ -14,7 +15,164 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/mvm/v1/mvm.proto.
  */
 export const file_fits_api_mvm_v1_mvm: GenFile = /*@__PURE__*/
-  fileDesc("ChlmaXRzL2FwaS9tdm0vdjEvbXZtLnByb3RvEg9maXRzLmFwaS5tdm0udjEidgoMTGludXhEZXRhaWxzEikKBWRpc2tzGAEgAygLMhouZml0cy5hcGkubXZtLnYxLkxpbnV4RGlzaxIbCglsZGFwX3V1aWQYAiABKAlCCLpIBXIDsAEBEh4KCWxkYXBfZnFkbhgDIAEoCUILukgIcgbAs66xAgEifgoOV2luZG93c0RldGFpbHMSKwoFZGlza3MYASADKAsyHC5maXRzLmFwaS5tdm0udjEuV2luZG93c0Rpc2sSHQoLZG9tYWluX3V1aWQYAiABKAlCCLpIBXIDsAEBEiAKC2RvbWFpbl9mcWRuGAMgASgJQgu6SAhyBsCzrrECASJ7ChBOZXR3b3JrSW50ZXJmYWNlEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEhsKCXZsYW5fdXVpZBgCIAEoCUIIukgFcgOwAQESHgoJaXBhZGRyZXNzGAMgASgJQgu6SAhyBuizrrECARISCgptYWNhZGRyZXNzGAQgASgJIjYKF0luaXRpYWxOZXR3b3JrSW50ZXJmYWNlEhsKCXZsYW5fdXVpZBgBIAEoCUIIukgFcgOwAQEiVAoGU3RhdHVzEi8KBXN0YXRlGAEgASgOMhYuZml0cy5hcGkubXZtLnYxLlN0YXRlQgi6SAWCAQIQARIZCgRpbmZvGAIgASgJQgu6SAhyBsizrrECASKvBQoJTWFuYWdlZFZNEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEh8KBG1ldGEYAiABKAsyES5maXRzLmFwaS52MS5NZXRhEhkKBGZxZG4YAyABKAlCC7pICHIGwLOusQIBEhsKBnRlbmFudBgEIAEoCUILukgIcgbAs66xAgESHgoMcHJvamVjdF91dWlkGAUgASgJQgi6SAVyA7ABARIZCgdvc191dWlkGAYgASgJQgi6SAVyA7ABARIfCg1sb2NhdGlvbl91dWlkGAcgASgJQgi6SAVyA7ABARIeCgxjb250YWN0X3V1aWQYCCABKAlCCLpIBXIDsAEBEgsKA2NwdRgJIAEoDRILCgNyYW0YCiABKA0SDgoGYmFja3VwGAsgASgIEhEKCWVuY3J5cHRlZBgMIAEoCBInCgZzdGF0dXMYDSABKAsyFy5maXRzLmFwaS5tdm0udjEuU3RhdHVzEj0KDGF2YWlsYWJpbGl0eRgOIAEoDjIdLmZpdHMuYXBpLm12bS52MS5BdmFpbGFiaWxpdHlCCLpIBYIBAhABEj0KDHNlcnZpY2VjbGFzcxgPIAEoDjIdLmZpdHMuYXBpLm12bS52MS5TZXJ2aWNlQ2xhc3NCCLpIBYIBAhABEjoKD3dpbmRvd3NfZGV0YWlscxgQIAEoCzIfLmZpdHMuYXBpLm12bS52MS5XaW5kb3dzRGV0YWlsc0gAEjYKDWxpbnV4X2RldGFpbHMYESABKAsyHS5maXRzLmFwaS5tdm0udjEuTGludXhEZXRhaWxzSAASNQoKaW50ZXJmYWNlcxgSIAMoCzIhLmZpdHMuYXBpLm12bS52MS5OZXR3b3JrSW50ZXJmYWNlEhQKDG9yZGVyX251bWJlchgTIAEoCUIQCgdkZXRhaWxzEgW6SAIIASJOChRNVk1TZXJ2aWNlR2V0UmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIeCgxwcm9qZWN0X3V1aWQYAiABKAlCCLpIBXIDsAEBIkAKFU1WTVNlcnZpY2VHZXRSZXNwb25zZRInCgNtdm0YASABKAsyGi5maXRzLmFwaS5tdm0udjEuTWFuYWdlZFZNInYKHk1WTVNlcnZpY2VDcmVhdGVXaW5kb3dzUmVxdWVzdBIdCgtkb21haW5fdXVpZBgBIAEoCUIIukgFcgOwAQESNQoFZGlza3MYAiADKAsyHC5maXRzLmFwaS5tdm0udjEuV2luZG93c0Rpc2tCCLpIBZIBAggBInAKHE1WTVNlcnZpY2VDcmVhdGVMaW51eFJlcXVlc3QSGwoJbGRhcF91dWlkGAEgASgJQgi6SAVyA7ABARIzCgVkaXNrcxgCIAMoCzIaLmZpdHMuYXBpLm12bS52MS5MaW51eERpc2tCCLpIBZIBAggBIo4FChdNVk1TZXJ2aWNlQ3JlYXRlUmVxdWVzdBIeCgxwcm9qZWN0X3V1aWQYASABKAlCCLpIBXIDsAEBEh4KCW5hbWVfY29kZRgCIAEoCUILukgIcgagtK6xAgESGQoHb3NfdXVpZBgDIAEoCUIIukgFcgOwAQESHwoNbG9jYXRpb25fdXVpZBgEIAEoCUIIukgFcgOwAQESHgoMY29udGFjdF91dWlkGAUgASgJQgi6SAVyA7ABARILCgNjcHUYBiABKA0SCwoDcmFtGAcgASgNEhQKDG9yZGVyX251bWJlchgIIAEoCRIjCgZsYWJlbHMYCSABKAsyEy5maXRzLmFwaS52MS5MYWJlbHMSDgoGYmFja3VwGAogASgIEhEKCWVuY3J5cHRlZBgLIAEoCBI9CgxhdmFpbGFiaWxpdHkYDCABKA4yHS5maXRzLmFwaS5tdm0udjEuQXZhaWxhYmlsaXR5Qgi6SAWCAQIQARI9CgxzZXJ2aWNlY2xhc3MYDSABKA4yHS5maXRzLmFwaS5tdm0udjEuU2VydmljZUNsYXNzQgi6SAWCAQIQARJCCgd3aW5kb3dzGA4gASgLMi8uZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VDcmVhdGVXaW5kb3dzUmVxdWVzdEgAEj4KBWxpbnV4GA8gASgLMi0uZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VDcmVhdGVMaW51eFJlcXVlc3RIABJLChlpbml0aWFsX25ldHdvcmtfaW50ZXJmYWNlGBAgASgLMiguZml0cy5hcGkubXZtLnYxLkluaXRpYWxOZXR3b3JrSW50ZXJmYWNlQhAKB212bXR5cGUSBbpIAggBIuYBCglMaW51eERpc2sSGwoEdXVpZBgBIAEoCUIIukgFcgOwAQFIAIgBARINCgVsYWJlbBgCIAEoCRITCgthdXRvX2V4dGVuZBgDIAEoCBIRCgRzaXplGAQgASgESAGIAQESGAoLbW91bnRfcG9pbnQYBSABKAlIAogBARI7CglkaXNrX3R5cGUYBiABKA4yGS5maXRzLmFwaS5tdm0udjEuRGlza1R5cGVCCLpIBYIBAhABSAOIAQFCBwoFX3V1aWRCBwoFX3NpemVCDgoMX21vdW50X3BvaW50QgwKCl9kaXNrX3R5cGUi6AEKC1dpbmRvd3NEaXNrEhsKBHV1aWQYASABKAlCCLpIBXIDsAEBSACIAQESDQoFbGFiZWwYAiABKAkSEwoLYXV0b19leHRlbmQYAyABKAgSEQoEc2l6ZRgEIAEoBEgBiAEBEhgKC2RyaXZlbGV0dGVyGAUgASgJSAKIAQESOwoJZGlza190eXBlGAYgASgOMhkuZml0cy5hcGkubXZtLnYxLkRpc2tUeXBlQgi6SAWCAQIQAUgDiAEBQgcKBV91dWlkQgcKBV9zaXplQg4KDF9kcml2ZWxldHRlckIMCgpfZGlza190eXBlIjIKGE1WTVNlcnZpY2VDcmVhdGVSZXNwb25zZRIWCgR1dWlkGAEgASgJQgi6SAVyA7ABASI3ChVNVk1TZXJ2aWNlTGlzdFJlcXVlc3QSHgoMcHJvamVjdF91dWlkGAEgASgJQgi6SAVyA7ABASJCChZNVk1TZXJ2aWNlTGlzdFJlc3BvbnNlEigKBG12bXMYASADKAsyGi5maXRzLmFwaS5tdm0udjEuTWFuYWdlZFZNImcKF01WTVNlcnZpY2VEZWxldGVSZXF1ZXN0Eh4KDHByb2plY3RfdXVpZBgBIAEoCUIIukgFcgOwAQESFgoEdXVpZBgCIAEoCUIIukgFcgOwAQESFAoMb3JkZXJfbnVtYmVyGAMgASgJIhoKGE1WTVNlcnZpY2VEZWxldGVSZXNwb25zZSJjCh9NVk1TZXJ2aWNlVmFsaWRhdGVDcmVhdGVSZXF1ZXN0EkAKBmNyZWF0ZRgBIAEoCzIoLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlQ3JlYXRlUmVxdWVzdEIGukgDyAEBIiIKIE1WTVNlcnZpY2VWYWxpZGF0ZUNyZWF0ZVJlc3BvbnNlImcKIE1WTVNlcnZpY2VWYWxpZGF0ZUFkZERpc2tSZXF1ZXN0EkMKCGFkZF9kaXNrGAEgASgLMikuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VBZGREaXNrUmVxdWVzdEIGukgDyAEBIiMKIU1WTVNlcnZpY2VWYWxpZGF0ZUFkZERpc2tSZXNwb25zZSJwCiNNVk1TZXJ2aWNlVmFsaWRhdGVVcGRhdGVEaXNrUmVxdWVzdBJJCgt1cGRhdGVfZGlzaxgBIAEoCzIsLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlVXBkYXRlRGlza1JlcXVlc3RCBrpIA8gBASImCiRNVk1TZXJ2aWNlVmFsaWRhdGVVcGRhdGVEaXNrUmVzcG9uc2UiMwoZTVZNU2VydmljZUFkZERpc2tSZXNwb25zZRIWCgR1dWlkGAEgASgJQgi6SAVyA7ABASIeChxNVk1TZXJ2aWNlVXBkYXRlRGlza1Jlc3BvbnNlIh4KHE1WTVNlcnZpY2VEZWxldGVEaXNrUmVzcG9uc2UicwoERGlzaxIrCgVsaW51eBgEIAEoCzIaLmZpdHMuYXBpLm12bS52MS5MaW51eERpc2tIABIvCgd3aW5kb3dzGAUgASgLMhwuZml0cy5hcGkubXZtLnYxLldpbmRvd3NEaXNrSABCDQoEZGlzaxIFukgCCAEijgEKGE1WTVNlcnZpY2VBZGREaXNrUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIeCgxwcm9qZWN0X3V1aWQYAiABKAlCCLpIBXIDsAEBEhQKDG9yZGVyX251bWJlchgDIAEoCRIkCgVkaXNrcxgEIAMoCzIVLmZpdHMuYXBpLm12bS52MS5EaXNrIs4BChtNVk1TZXJ2aWNlVXBkYXRlRGlza1JlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESGwoJZGlza191dWlkGAIgASgJQgi6SAVyA7ABARIeCgxwcm9qZWN0X3V1aWQYAyABKAlCCLpIBXIDsAEBEhQKDG9yZGVyX251bWJlchgEIAEoCRIYCgthdXRvX2V4dGVuZBgFIAEoCEgAiAEBEhEKBHNpemUYBiABKARIAYgBAUIOCgxfYXV0b19leHRlbmRCBwoFX3NpemUiiAEKG01WTVNlcnZpY2VEZWxldGVEaXNrUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIbCglkaXNrX3V1aWQYAiABKAlCCLpIBXIDsAEBEh4KDHByb2plY3RfdXVpZBgDIAEoCUIIukgFcgOwAQESFAoMb3JkZXJfbnVtYmVyGAQgASgJIj8KJU1WTVNlcnZpY2VBZGROZXR3b3JrSW50ZXJmYWNlUmVzcG9uc2USFgoEdXVpZBgBIAEoCUIIukgFcgOwAQEiKAomTVZNU2VydmljZU1vdmVOZXR3b3JrSW50ZXJmYWNlUmVzcG9uc2UiKgooTVZNU2VydmljZURlbGV0ZU5ldHdvcmtJbnRlcmZhY2VSZXNwb25zZSJ0CiRNVk1TZXJ2aWNlQWRkTmV0d29ya0ludGVyZmFjZVJlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESHgoMcHJvamVjdF91dWlkGAIgASgJQgi6SAVyA7ABARIUCgxvcmRlcl9udW1iZXIYAyABKAkiugEKJU1WTVNlcnZpY2VNb3ZlTmV0d29ya0ludGVyZmFjZVJlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESIAoOaW50ZXJmYWNlX3V1aWQYAiABKAlCCLpIBXIDsAEBEh4KDHByb2plY3RfdXVpZBgDIAEoCUIIukgFcgOwAQESFAoMb3JkZXJfbnVtYmVyGAQgASgJEiEKD3RhcmdldF9tdm1fdXVpZBgFIAEoCUIIukgFcgOwAQEimQEKJ01WTVNlcnZpY2VEZWxldGVOZXR3b3JrSW50ZXJmYWNlUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIgCg5pbnRlcmZhY2VfdXVpZBgCIAEoCUIIukgFcgOwAQESHgoMcHJvamVjdF91dWlkGAMgASgJQgi6SAVyA7ABARIUCgxvcmRlcl9udW1iZXIYBCABKAkijAEKLE1WTVNlcnZpY2VWYWxpZGF0ZUFkZE5ldHdvcmtJbnRlcmZhY2VSZXF1ZXN0ElwKFWFkZF9uZXR3b3JrX2ludGVyZmFjZRgBIAEoCzI1LmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlQWRkTmV0d29ya0ludGVyZmFjZVJlcXVlc3RCBrpIA8gBASIvCi1NVk1TZXJ2aWNlVmFsaWRhdGVBZGROZXR3b3JrSW50ZXJmYWNlUmVzcG9uc2UqpgEKDEF2YWlsYWJpbGl0eRIiChhBVkFJTEFCSUxJVFlfVU5TUEVDSUZJRUQQABoEgrIZABIbCg9BVkFJTEFCSUxJVFlfVjAQARoGgrIZAnYwEhsKD0FWQUlMQUJJTElUWV9WMRACGgaCshkCdjESGwoPQVZBSUxBQklMSVRZX1YyEAMaBoKyGQJ2MhIbCg9BVkFJTEFCSUxJVFlfVjMQBBoGgrIZAnYzKpMBCgxTZXJ2aWNlQ2xhc3MSIwoZU0VSVklDRV9DTEFTU19VTlNQRUNJRklFRBAAGgSCshkAEh4KEVNFUlZJQ0VfQ0xBU1NfU1oxEAEaB4KyGQNzejESHgoRU0VSVklDRV9DTEFTU19TWjIQAhoHgrIZA3N6MhIeChFTRVJWSUNFX0NMQVNTX1NaMxADGgeCshkDc3ozKsIBCgVTdGF0ZRIbChFTVEFURV9VTlNQRUNJRklFRBAAGgSCshkAEiAKDlNUQVRFX0NSRUFUSU5HEAEaDIKyGQhjcmVhdGluZxIcCgxTVEFURV9BQ1RJVkUQAhoKgrIZBmFjdGl2ZRIgCg5TVEFURV9VUERBVElORxADGgyCshkIdXBkYXRpbmcSHgoNU1RBVEVfREVMRVRFRBAEGguCshkHZGVsZXRlZBIaCgtTVEFURV9FUlJPUhAFGgmCshkFZXJyb3IqhQEKCERpc2tUeXBlEh8KFURJU0tfVFlQRV9VTlNQRUNJRklFRBAAGgSCshkAEhgKDERJU0tfVFlQRV9PUxABGgaCshkCb3MSIAoQRElTS19UWVBFX1NZU1RFTRACGgqCshkGc3lzdGVtEhwKDkRJU0tfVFlQRV9EQVRBEAMaCIKyGQRkYXRhMpIOCgpNVk1TZXJ2aWNlEmEKA0dldBIlLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlR2V0UmVxdWVzdBomLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlR2V0UmVzcG9uc2UiC8rzGAMBAgPg8xgCEmkKBkNyZWF0ZRIoLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlQ3JlYXRlUmVxdWVzdBopLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlQ3JlYXRlUmVzcG9uc2UiCsrzGAIBAuDzGAESZAoETGlzdBImLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlTGlzdFJlcXVlc3QaJy5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZUxpc3RSZXNwb25zZSILyvMYAwECA+DzGAISaQoGRGVsZXRlEiguZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VEZWxldGVSZXF1ZXN0GikuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VEZWxldGVSZXNwb25zZSIKyvMYAgEC4PMYARJsCgdBZGREaXNrEikuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VBZGREaXNrUmVxdWVzdBoqLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlQWRkRGlza1Jlc3BvbnNlIgrK8xgCAQLg8xgBEnUKClVwZGF0ZURpc2sSLC5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVVwZGF0ZURpc2tSZXF1ZXN0Gi0uZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VVcGRhdGVEaXNrUmVzcG9uc2UiCsrzGAIBAuDzGAESdQoKRGVsZXRlRGlzaxIsLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlRGVsZXRlRGlza1JlcXVlc3QaLS5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZURlbGV0ZURpc2tSZXNwb25zZSIKyvMYAgEC4PMYARKQAQoTQWRkTmV0d29ya0ludGVyZmFjZRI1LmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlQWRkTmV0d29ya0ludGVyZmFjZVJlcXVlc3QaNi5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZUFkZE5ldHdvcmtJbnRlcmZhY2VSZXNwb25zZSIKyvMYAgEC4PMYARKTAQoUTW92ZU5ldHdvcmtJbnRlcmZhY2USNi5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZU1vdmVOZXR3b3JrSW50ZXJmYWNlUmVxdWVzdBo3LmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlTW92ZU5ldHdvcmtJbnRlcmZhY2VSZXNwb25zZSIKyvMYAgEC4PMYARKZAQoWRGVsZXRlTmV0d29ya0ludGVyZmFjZRI4LmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlRGVsZXRlTmV0d29ya0ludGVyZmFjZVJlcXVlc3QaOS5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZURlbGV0ZU5ldHdvcmtJbnRlcmZhY2VSZXNwb25zZSIKyvMYAgEC4PMYARKBAQoOVmFsaWRhdGVDcmVhdGUSMC5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVZhbGlkYXRlQ3JlYXRlUmVxdWVzdBoxLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlVmFsaWRhdGVDcmVhdGVSZXNwb25zZSIKyvMYAgEC4PMYAhKEAQoPVmFsaWRhdGVBZGREaXNrEjEuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VWYWxpZGF0ZUFkZERpc2tSZXF1ZXN0GjIuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VWYWxpZGF0ZUFkZERpc2tSZXNwb25zZSIKyvMYAgEC4PMYAhKNAQoSVmFsaWRhdGVVcGRhdGVEaXNrEjQuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VWYWxpZGF0ZVVwZGF0ZURpc2tSZXF1ZXN0GjUuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VWYWxpZGF0ZVVwZGF0ZURpc2tSZXNwb25zZSIKyvMYAgEC4PMYAhKoAQobVmFsaWRhdGVBZGROZXR3b3JrSW50ZXJmYWNlEj0uZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VWYWxpZGF0ZUFkZE5ldHdvcmtJbnRlcmZhY2VSZXF1ZXN0Gj4uZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VWYWxpZGF0ZUFkZE5ldHdvcmtJbnRlcmZhY2VSZXNwb25zZSIKyvMYAgEC4PMYAkKtAQoTY29tLmZpdHMuYXBpLm12bS52MUIITXZtUHJvdG9QAVotZ2l0aHViLmNvbS9maS10cy9hcGkvZ28vZml0cy9hcGkvbXZtL3YxO212bXYxogIDRkFNqgIPRml0cy5BcGkuTXZtLlYxygIPRml0c1xBcGlcTXZtXFYx4gIbRml0c1xBcGlcTXZtXFYxXEdQQk1ldGFkYXRh6gISRml0czo6QXBpOjpNdm06OlYxYgZwcm90bzM", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
+  fileDesc("ChlmaXRzL2FwaS9tdm0vdjEvbXZtLnByb3RvEg9maXRzLmFwaS5tdm0udjEilgIKCUxpbnV4RGlzaxIbCgR1dWlkGAEgASgJQgi6SAVyA7ABAUgAiAEBEhkKBG5hbWUYAiABKAlCC7pICHIGwLOusQIBEhwKB3NpemVfZ2IYAyABKARCC7pICDIGuPfBsQIBEhgKC2F1dG9fZXh0ZW5kGAQgASgISAGIAQESJQoLbW91bnRfcG9pbnQYBSABKAlCC7pICHIG0NnLsQIBSAKIAQESOwoJZGlza190eXBlGAYgASgOMhkuZml0cy5hcGkubXZtLnYxLkRpc2tUeXBlQgi6SAWCAQIQAUgDiAEBQgcKBV91dWlkQg4KDF9hdXRvX2V4dGVuZEIOCgxfbW91bnRfcG9pbnRCDAoKX2Rpc2tfdHlwZSKaAgoLV2luZG93c0Rpc2sSGwoEdXVpZBgBIAEoCUIIukgFcgOwAQFIAIgBARIZCgRuYW1lGAIgASgJQgu6SAhyBsCzrrECARIcCgdzaXplX2diGAMgASgEQgu6SAgyBrj3wbECARIYCgthdXRvX2V4dGVuZBgEIAEoCEgBiAEBEiYKDGRyaXZlX2xldHRlchgFIAEoCUILukgIcgbY2cuxAgFIAogBARI7CglkaXNrX3R5cGUYBiABKA4yGS5maXRzLmFwaS5tdm0udjEuRGlza1R5cGVCCLpIBYIBAhABSAOIAQFCBwoFX3V1aWRCDgoMX2F1dG9fZXh0ZW5kQg8KDV9kcml2ZV9sZXR0ZXJCDAoKX2Rpc2tfdHlwZSJzCgREaXNrEisKBWxpbnV4GAQgASgLMhouZml0cy5hcGkubXZtLnYxLkxpbnV4RGlza0gAEi8KB3dpbmRvd3MYBSABKAsyHC5maXRzLmFwaS5tdm0udjEuV2luZG93c0Rpc2tIAEINCgRkaXNrEgW6SAIIASJ2CgxMaW51eERldGFpbHMSKQoFZGlza3MYASADKAsyGi5maXRzLmFwaS5tdm0udjEuTGludXhEaXNrEhsKCWxkYXBfdXVpZBgCIAEoCUIIukgFcgOwAQESHgoJbGRhcF9mcWRuGAMgASgJQgu6SAhyBsDZy7ECASJ+Cg5XaW5kb3dzRGV0YWlscxIrCgVkaXNrcxgBIAMoCzIcLmZpdHMuYXBpLm12bS52MS5XaW5kb3dzRGlzaxIdCgtkb21haW5fdXVpZBgCIAEoCUIIukgFcgOwAQESIAoLZG9tYWluX2ZxZG4YAyABKAlCC7pICHIGwNnLsQIBIpkBCglJUEFkZHJlc3MSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESGwoKaXBfYWRkcmVzcxgCIAEoCUIHukgEcgJ4ARJBChFuZXR3b3JrX2ludGVyZmFjZRgDIAEoCzIhLmZpdHMuYXBpLm12bS52MS5OZXR3b3JrSW50ZXJmYWNlSACIAQFCFAoSX25ldHdvcmtfaW50ZXJmYWNlIlEKEE5ldHdvcmtJbnRlcmZhY2USGwoJdmxhbl91dWlkGAEgASgJQgi6SAVyA7ABARIgCgttYWNfYWRkcmVzcxgCIAEoCUILukgIcga4s66xAgEiLwoQSW5pdGlhbElQQWRkcmVzcxIbCgl2bGFuX3V1aWQYASABKAlCCLpIBXIDsAEBIlQKBlN0YXR1cxIvCgVzdGF0ZRgBIAEoDjIWLmZpdHMuYXBpLm12bS52MS5TdGF0ZUIIukgFggECEAESGQoEaW5mbxgCIAEoCUILukgIcgbIs66xAgEiGQoGQmFja3VwEg8KB2VuYWJsZWQYASABKAgiHQoKRW5jcnlwdGlvbhIPCgdlbmFibGVkGAEgASgIIsEGCglNYW5hZ2VkVk0SFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESHwoEbWV0YRgCIAEoCzIRLmZpdHMuYXBpLnYxLk1ldGESGQoEZnFkbhgDIAEoCUILukgIcgbA2cuxAgESGwoGdGVuYW50GAQgASgJQgu6SAhyBsCzrrECARIeCgxwcm9qZWN0X3V1aWQYBSABKAlCCLpIBXIDsAEBEhkKB29zX3V1aWQYBiABKAlCCLpIBXIDsAEBEh8KDWxvY2F0aW9uX3V1aWQYByABKAlCCLpIBXIDsAEBEh4KDGNvbnRhY3RfdXVpZBgIIAEoCUIIukgFcgOwAQESGAoDY3B1GAkgASgNQgu6SAgqBriGvbECARIbCgZyYW1fZ2IYCiABKA1CC7pICCoGwIa9sQIBEicKBmJhY2t1cBgLIAEoCzIXLmZpdHMuYXBpLm12bS52MS5CYWNrdXASLwoKZW5jcnlwdGlvbhgMIAEoCzIbLmZpdHMuYXBpLm12bS52MS5FbmNyeXB0aW9uEicKBnN0YXR1cxgNIAEoCzIXLmZpdHMuYXBpLm12bS52MS5TdGF0dXMSPwoMYXZhaWxhYmlsaXR5GA4gASgOMh0uZml0cy5hcGkubXZtLnYxLkF2YWlsYWJpbGl0eUIKukgHggEEEAEgABJACg1zZXJ2aWNlX2NsYXNzGA8gASgOMh0uZml0cy5hcGkubXZtLnYxLlNlcnZpY2VDbGFzc0IKukgHggEEEAEgABI6Cg93aW5kb3dzX2RldGFpbHMYECABKAsyHy5maXRzLmFwaS5tdm0udjEuV2luZG93c0RldGFpbHNIABI2Cg1saW51eF9kZXRhaWxzGBEgASgLMh0uZml0cy5hcGkubXZtLnYxLkxpbnV4RGV0YWlsc0gAEjAKDGlwX2FkZHJlc3NlcxgSIAMoCzIaLmZpdHMuYXBpLm12bS52MS5JUEFkZHJlc3MSJAoPb3JkZXJfcmVmZXJlbmNlGBMgASgJQgu6SAhyBsjZy7ECARIsCglzbmFwc2hvdHMYFCADKAsyGS5maXRzLmFwaS5tdm0udjEuU25hcHNob3RCEAoHZGV0YWlscxIFukgCCAEiPQoIU25hcHNob3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESGQoEbmFtZRgCIAEoCUILukgIcgbg2cuxAgEiTgoUTVZNU2VydmljZUdldFJlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESHgoMcHJvamVjdF91dWlkGAIgASgJQgi6SAVyA7ABASJAChVNVk1TZXJ2aWNlR2V0UmVzcG9uc2USJwoDbXZtGAEgASgLMhouZml0cy5hcGkubXZtLnYxLk1hbmFnZWRWTSI3ChVNVk1TZXJ2aWNlTGlzdFJlcXVlc3QSHgoMcHJvamVjdF91dWlkGAEgASgJQgi6SAVyA7ABASJCChZNVk1TZXJ2aWNlTGlzdFJlc3BvbnNlEigKBG12bXMYASADKAsyGi5maXRzLmFwaS5tdm0udjEuTWFuYWdlZFZNInwKHk1WTVNlcnZpY2VDcmVhdGVXaW5kb3dzUmVxdWVzdBIdCgtkb21haW5fdXVpZBgBIAEoCUIIukgFcgOwAQESOwoFZGlza3MYAiADKAsyHC5maXRzLmFwaS5tdm0udjEuV2luZG93c0Rpc2tCDrpIC5IBCLjoxrECAQgBInYKHE1WTVNlcnZpY2VDcmVhdGVMaW51eFJlcXVlc3QSGwoJbGRhcF91dWlkGAEgASgJQgi6SAVyA7ABARI5CgVkaXNrcxgCIAMoCzIaLmZpdHMuYXBpLm12bS52MS5MaW51eERpc2tCDrpIC5IBCLjoxrECAQgBIoIGChdNVk1TZXJ2aWNlQ3JlYXRlUmVxdWVzdBIeCgxwcm9qZWN0X3V1aWQYASABKAlCCLpIBXIDsAEBEh4KCW5hbWVfY29kZRgCIAEoCUILukgIcga42cuxAgESGQoHb3NfdXVpZBgDIAEoCUIIukgFcgOwAQESHwoNbG9jYXRpb25fdXVpZBgEIAEoCUIIukgFcgOwAQESHgoMY29udGFjdF91dWlkGAUgASgJQgi6SAVyA7ABARIYCgNjcHUYBiABKA1CC7pICCoGuIa9sQIBEhsKBnJhbV9nYhgHIAEoDUILukgIKgbAhr2xAgESJAoPb3JkZXJfcmVmZXJlbmNlGAggASgJQgu6SAhyBsjZy7ECARIjCgZsYWJlbHMYCSABKAsyEy5maXRzLmFwaS52MS5MYWJlbHMSLwoGYmFja3VwGAogASgLMhcuZml0cy5hcGkubXZtLnYxLkJhY2t1cEIGukgDyAEBEjcKCmVuY3J5cHRpb24YCyABKAsyGy5maXRzLmFwaS5tdm0udjEuRW5jcnlwdGlvbkIGukgDyAEBEj8KDGF2YWlsYWJpbGl0eRgMIAEoDjIdLmZpdHMuYXBpLm12bS52MS5BdmFpbGFiaWxpdHlCCrpIB4IBBBABIAASQAoNc2VydmljZV9jbGFzcxgNIAEoDjIdLmZpdHMuYXBpLm12bS52MS5TZXJ2aWNlQ2xhc3NCCrpIB4IBBBABIAASQgoHd2luZG93cxgOIAEoCzIvLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlQ3JlYXRlV2luZG93c1JlcXVlc3RIABI+CgVsaW51eBgPIAEoCzItLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlQ3JlYXRlTGludXhSZXF1ZXN0SAASRQoSaW5pdGlhbF9pcF9hZGRyZXNzGBAgASgLMiEuZml0cy5hcGkubXZtLnYxLkluaXRpYWxJUEFkZHJlc3NCBrpIA8gBAUIRCghtdm1fdHlwZRIFukgCCAEiMgoYTVZNU2VydmljZUNyZWF0ZVJlc3BvbnNlEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBImMKH01WTVNlcnZpY2VWYWxpZGF0ZUNyZWF0ZVJlcXVlc3QSQAoGY3JlYXRlGAEgASgLMiguZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VDcmVhdGVSZXF1ZXN0Qga6SAPIAQEiIgogTVZNU2VydmljZVZhbGlkYXRlQ3JlYXRlUmVzcG9uc2UimwMKF01WTVNlcnZpY2VVcGRhdGVSZXF1ZXN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEh4KDHByb2plY3RfdXVpZBgCIAEoCUIIukgFcgOwAQESNAoLdXBkYXRlX21ldGEYAyABKAsyFy5maXRzLmFwaS52MS5VcGRhdGVNZXRhQga6SAPIAQESJAoPb3JkZXJfcmVmZXJlbmNlGAQgASgJQgu6SAhyBsjZy7ECARIuCgZsYWJlbHMYBSABKAsyGS5maXRzLmFwaS52MS5VcGRhdGVMYWJlbHNIAIgBARIjCgxjb250YWN0X3V1aWQYBiABKAlCCLpIBXIDsAEBSAGIAQESHQoDY3B1GAcgASgNQgu6SAgqBriGvbECAUgCiAEBEiAKBnJhbV9nYhgIIAEoDUILukgIKgbAhr2xAgFIA4gBAUIJCgdfbGFiZWxzQg8KDV9jb250YWN0X3V1aWRCBgoEX2NwdUIJCgdfcmFtX2diSgQICRAKSgQIChALUg1zZXJ2aWNlX2NsYXNzUgxhdmFpbGFiaWxpdHkiGgoYTVZNU2VydmljZVVwZGF0ZVJlc3BvbnNlImMKH01WTVNlcnZpY2VWYWxpZGF0ZVVwZGF0ZVJlcXVlc3QSQAoGdXBkYXRlGAEgASgLMiguZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VVcGRhdGVSZXF1ZXN0Qga6SAPIAQEiIgogTVZNU2VydmljZVZhbGlkYXRlVXBkYXRlUmVzcG9uc2UijQIKI01WTVNlcnZpY2VVcGRhdGVTZXJ2aWNlQ2xhc3NSZXF1ZXN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEh4KDHByb2plY3RfdXVpZBgCIAEoCUIIukgFcgOwAQESRQoNc2VydmljZV9jbGFzcxgDIAEoDjIdLmZpdHMuYXBpLm12bS52MS5TZXJ2aWNlQ2xhc3NCCrpIB4IBBBABIABIAIgBARJECgxhdmFpbGFiaWxpdHkYBCABKA4yHS5maXRzLmFwaS5tdm0udjEuQXZhaWxhYmlsaXR5Qgq6SAeCAQQQASAASAGIAQFCEAoOX3NlcnZpY2VfY2xhc3NCDwoNX2F2YWlsYWJpbGl0eSImCiRNVk1TZXJ2aWNlVXBkYXRlU2VydmljZUNsYXNzUmVzcG9uc2UiiQEKK01WTVNlcnZpY2VWYWxpZGF0ZVVwZGF0ZVNlcnZpY2VDbGFzc1JlcXVlc3QSWgoUdXBkYXRlX3NlcnZpY2VfY2xhc3MYASABKAsyNC5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVVwZGF0ZVNlcnZpY2VDbGFzc1JlcXVlc3RCBrpIA8gBASIuCixNVk1TZXJ2aWNlVmFsaWRhdGVVcGRhdGVTZXJ2aWNlQ2xhc3NSZXNwb25zZSJ3ChdNVk1TZXJ2aWNlRGVsZXRlUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIeCgxwcm9qZWN0X3V1aWQYAiABKAlCCLpIBXIDsAEBEiQKD29yZGVyX3JlZmVyZW5jZRgDIAEoCUILukgIcgbI2cuxAgEiGgoYTVZNU2VydmljZURlbGV0ZVJlc3BvbnNlIrUBChlNVk1TZXJ2aWNlQWRkRGlza3NSZXF1ZXN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEh4KDHByb2plY3RfdXVpZBgCIAEoCUIIukgFcgOwAQESJAoPb3JkZXJfcmVmZXJlbmNlGAMgASgJQgu6SAhyBsjZy7ECARI6CgVkaXNrcxgEIAMoCzIVLmZpdHMuYXBpLm12bS52MS5EaXNrQhS6SBGSAQ646MaxAgHA6MaxAgEIASI8ChpNVk1TZXJ2aWNlQWRkRGlza3NSZXNwb25zZRIeCgV1dWlkcxgBIAMoCUIPukgMkgEJCAEiBXIDsAEBImoKIU1WTVNlcnZpY2VWYWxpZGF0ZUFkZERpc2tzUmVxdWVzdBJFCglhZGRfZGlza3MYASABKAsyKi5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZUFkZERpc2tzUmVxdWVzdEIGukgDyAEBIiQKIk1WTVNlcnZpY2VWYWxpZGF0ZUFkZERpc2tzUmVzcG9uc2Ui8QEKG01WTVNlcnZpY2VVcGRhdGVEaXNrUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIbCglkaXNrX3V1aWQYAiABKAlCCLpIBXIDsAEBEh4KDHByb2plY3RfdXVpZBgDIAEoCUIIukgFcgOwAQESJAoPb3JkZXJfcmVmZXJlbmNlGAQgASgJQgu6SAhyBsjZy7ECARIhCgdzaXplX2diGAUgASgEQgu6SAgyBrj3wbECAUgAiAEBEhgKC2F1dG9fZXh0ZW5kGAYgASgISAGIAQFCCgoIX3NpemVfZ2JCDgoMX2F1dG9fZXh0ZW5kIh4KHE1WTVNlcnZpY2VVcGRhdGVEaXNrUmVzcG9uc2UicAojTVZNU2VydmljZVZhbGlkYXRlVXBkYXRlRGlza1JlcXVlc3QSSQoLdXBkYXRlX2Rpc2sYASABKAsyLC5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVVwZGF0ZURpc2tSZXF1ZXN0Qga6SAPIAQEiJgokTVZNU2VydmljZVZhbGlkYXRlVXBkYXRlRGlza1Jlc3BvbnNlIpgBChtNVk1TZXJ2aWNlRGVsZXRlRGlza1JlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESGwoJZGlza191dWlkGAIgASgJQgi6SAVyA7ABARIeCgxwcm9qZWN0X3V1aWQYAyABKAlCCLpIBXIDsAEBEiQKD29yZGVyX3JlZmVyZW5jZRgEIAEoCUILukgIcgbI2cuxAgEiHgocTVZNU2VydmljZURlbGV0ZURpc2tSZXNwb25zZSJ9Ch1NVk1TZXJ2aWNlQWRkSVBBZGRyZXNzUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIeCgxwcm9qZWN0X3V1aWQYAiABKAlCCLpIBXIDsAEBEiQKD29yZGVyX3JlZmVyZW5jZRgDIAEoCUILukgIcgbI2cuxAgEiOAoeTVZNU2VydmljZUFkZElQQWRkcmVzc1Jlc3BvbnNlEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBIsQBCh5NVk1TZXJ2aWNlTW92ZUlQQWRkcmVzc1JlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESIQoPaXBfYWRkcmVzc191dWlkGAIgASgJQgi6SAVyA7ABARIeCgxwcm9qZWN0X3V1aWQYAyABKAlCCLpIBXIDsAEBEiQKD29yZGVyX3JlZmVyZW5jZRgEIAEoCUILukgIcgbI2cuxAgESIQoPdGFyZ2V0X212bV91dWlkGAUgASgJQgi6SAVyA7ABASIhCh9NVk1TZXJ2aWNlTW92ZUlQQWRkcmVzc1Jlc3BvbnNlIqMBCiBNVk1TZXJ2aWNlRGVsZXRlSVBBZGRyZXNzUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIhCg9pcF9hZGRyZXNzX3V1aWQYAiABKAlCCLpIBXIDsAEBEh4KDHByb2plY3RfdXVpZBgDIAEoCUIIukgFcgOwAQESJAoPb3JkZXJfcmVmZXJlbmNlGAQgASgJQgu6SAhyBsjZy7ECASIjCiFNVk1TZXJ2aWNlRGVsZXRlSVBBZGRyZXNzUmVzcG9uc2UieAoYTVZNU2VydmljZVJlc3RhcnRSZXF1ZXN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEh4KDHByb2plY3RfdXVpZBgCIAEoCUIIukgFcgOwAQESJAoPb3JkZXJfcmVmZXJlbmNlGAMgASgJQgu6SAhyBsjZy7ECASIbChlNVk1TZXJ2aWNlUmVzdGFydFJlc3BvbnNlIqQCChpNVk1TZXJ2aWNlUmVpbnN0YWxsUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIeCgxwcm9qZWN0X3V1aWQYAiABKAlCCLpIBXIDsAEBEiQKD29yZGVyX3JlZmVyZW5jZRgDIAEoCUILukgIcgbI2cuxAgESHgoHb3NfdXVpZBgEIAEoCUIIukgFcgOwAQFIAIgBARIsCgZiYWNrdXAYBSABKAsyFy5maXRzLmFwaS5tdm0udjEuQmFja3VwSAGIAQESNAoKZW5jcnlwdGlvbhgGIAEoCzIbLmZpdHMuYXBpLm12bS52MS5FbmNyeXB0aW9uSAKIAQFCCgoIX29zX3V1aWRCCQoHX2JhY2t1cEINCgtfZW5jcnlwdGlvbiIdChtNVk1TZXJ2aWNlUmVpbnN0YWxsUmVzcG9uc2UibAoiTVZNU2VydmljZVZhbGlkYXRlUmVpbnN0YWxsUmVxdWVzdBJGCglyZWluc3RhbGwYASABKAsyKy5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVJlaW5zdGFsbFJlcXVlc3RCBrpIA8gBASIlCiNNVk1TZXJ2aWNlVmFsaWRhdGVSZWluc3RhbGxSZXNwb25zZSKXAQocTVZNU2VydmljZUFkZFNuYXBzaG90UmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABARIeCgxwcm9qZWN0X3V1aWQYAiABKAlCCLpIBXIDsAEBEiQKD29yZGVyX3JlZmVyZW5jZRgDIAEoCUILukgIcgbI2cuxAgESGQoEbmFtZRgEIAEoCUILukgIcgbg2cuxAgEiNwodTVZNU2VydmljZUFkZFNuYXBzaG90UmVzcG9uc2USFgoEdXVpZBgBIAEoCUIIukgFcgOwAQEioAEKH01WTVNlcnZpY2VEZWxldGVTbmFwc2hvdFJlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESHwoNc25hcHNob3RfdXVpZBgCIAEoCUIIukgFcgOwAQESHgoMcHJvamVjdF91dWlkGAMgASgJQgi6SAVyA7ABARIkCg9vcmRlcl9yZWZlcmVuY2UYBCABKAlCC7pICHIGyNnLsQIBIiIKIE1WTVNlcnZpY2VEZWxldGVTbmFwc2hvdFJlc3BvbnNlIq0BChVNVk1TZXJ2aWNlTW92ZVJlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQESHgoMcHJvamVjdF91dWlkGAIgASgJQgi6SAVyA7ABARIkCg9vcmRlcl9yZWZlcmVuY2UYAyABKAlCC7pICHIGyNnLsQIBEiQKDWxvY2F0aW9uX3V1aWQYBCABKAlCCLpIBXIDsAEBSACIAQFCEAoOX2xvY2F0aW9uX3V1aWQiGAoWTVZNU2VydmljZU1vdmVSZXNwb25zZSqmAQoMQXZhaWxhYmlsaXR5EiIKGEFWQUlMQUJJTElUWV9VTlNQRUNJRklFRBAAGgSCshkAEhsKD0FWQUlMQUJJTElUWV9WMBABGgaCshkCdjASGwoPQVZBSUxBQklMSVRZX1YxEAIaBoKyGQJ2MRIbCg9BVkFJTEFCSUxJVFlfVjIQAxoGgrIZAnYyEhsKD0FWQUlMQUJJTElUWV9WMxAEGgaCshkCdjMqkwEKDFNlcnZpY2VDbGFzcxIjChlTRVJWSUNFX0NMQVNTX1VOU1BFQ0lGSUVEEAAaBIKyGQASHgoRU0VSVklDRV9DTEFTU19TWjEQARoHgrIZA3N6MRIeChFTRVJWSUNFX0NMQVNTX1NaMhACGgeCshkDc3oyEh4KEVNFUlZJQ0VfQ0xBU1NfU1ozEAMaB4KyGQNzejMqwgEKBVN0YXRlEhsKEVNUQVRFX1VOU1BFQ0lGSUVEEAAaBIKyGQASIAoOU1RBVEVfQ1JFQVRJTkcQARoMgrIZCGNyZWF0aW5nEhwKDFNUQVRFX0FDVElWRRACGgqCshkGYWN0aXZlEiAKDlNUQVRFX1VQREFUSU5HEAMaDIKyGQh1cGRhdGluZxIeCg1TVEFURV9ERUxFVEVEEAQaC4KyGQdkZWxldGVkEhoKC1NUQVRFX0VSUk9SEAUaCYKyGQVlcnJvciqFAQoIRGlza1R5cGUSHwoVRElTS19UWVBFX1VOU1BFQ0lGSUVEEAAaBIKyGQASGAoMRElTS19UWVBFX09TEAEaBoKyGQJvcxIgChBESVNLX1RZUEVfU1lTVEVNEAIaCoKyGQZzeXN0ZW0SHAoORElTS19UWVBFX0RBVEEQAxoIgrIZBGRhdGEynxYKCk1WTVNlcnZpY2USaQoGQ3JlYXRlEiguZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VDcmVhdGVSZXF1ZXN0GikuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VDcmVhdGVSZXNwb25zZSIKyvMYAgEC4PMYARKBAQoOVmFsaWRhdGVDcmVhdGUSMC5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVZhbGlkYXRlQ3JlYXRlUmVxdWVzdBoxLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlVmFsaWRhdGVDcmVhdGVSZXNwb25zZSIKyvMYAgEC4PMYAhJhCgNHZXQSJS5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZUdldFJlcXVlc3QaJi5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZUdldFJlc3BvbnNlIgvK8xgDAQID4PMYAhJkCgRMaXN0EiYuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VMaXN0UmVxdWVzdBonLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlTGlzdFJlc3BvbnNlIgvK8xgDAQID4PMYAhJpCgZVcGRhdGUSKC5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVVwZGF0ZVJlcXVlc3QaKS5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVVwZGF0ZVJlc3BvbnNlIgrK8xgCAQLg8xgBEoEBCg5WYWxpZGF0ZVVwZGF0ZRIwLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlVmFsaWRhdGVVcGRhdGVSZXF1ZXN0GjEuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VWYWxpZGF0ZVVwZGF0ZVJlc3BvbnNlIgrK8xgCAQLg8xgCEo0BChJVcGRhdGVTZXJ2aWNlQ2xhc3MSNC5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVVwZGF0ZVNlcnZpY2VDbGFzc1JlcXVlc3QaNS5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVVwZGF0ZVNlcnZpY2VDbGFzc1Jlc3BvbnNlIgrK8xgCAQLg8xgBEqUBChpWYWxpZGF0ZVVwZGF0ZVNlcnZpY2VDbGFzcxI8LmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlVmFsaWRhdGVVcGRhdGVTZXJ2aWNlQ2xhc3NSZXF1ZXN0Gj0uZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VWYWxpZGF0ZVVwZGF0ZVNlcnZpY2VDbGFzc1Jlc3BvbnNlIgrK8xgCAQLg8xgCEmgKBkRlbGV0ZRIoLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlRGVsZXRlUmVxdWVzdBopLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlRGVsZXRlUmVzcG9uc2UiCcrzGAEB4PMYARJvCghBZGREaXNrcxIqLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlQWRkRGlza3NSZXF1ZXN0GisuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VBZGREaXNrc1Jlc3BvbnNlIgrK8xgCAQLg8xgBEocBChBWYWxpZGF0ZUFkZERpc2tzEjIuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VWYWxpZGF0ZUFkZERpc2tzUmVxdWVzdBozLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlVmFsaWRhdGVBZGREaXNrc1Jlc3BvbnNlIgrK8xgCAQLg8xgCEnUKClVwZGF0ZURpc2sSLC5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVVwZGF0ZURpc2tSZXF1ZXN0Gi0uZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VVcGRhdGVEaXNrUmVzcG9uc2UiCsrzGAIBAuDzGAESjQEKElZhbGlkYXRlVXBkYXRlRGlzaxI0LmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlVmFsaWRhdGVVcGRhdGVEaXNrUmVxdWVzdBo1LmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlVmFsaWRhdGVVcGRhdGVEaXNrUmVzcG9uc2UiCsrzGAIBAuDzGAISdAoKRGVsZXRlRGlzaxIsLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlRGVsZXRlRGlza1JlcXVlc3QaLS5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZURlbGV0ZURpc2tSZXNwb25zZSIJyvMYAQHg8xgBEnsKDEFkZElQQWRkcmVzcxIuLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlQWRkSVBBZGRyZXNzUmVxdWVzdBovLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlQWRkSVBBZGRyZXNzUmVzcG9uc2UiCsrzGAIBAuDzGAESfgoNTW92ZUlQQWRkcmVzcxIvLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlTW92ZUlQQWRkcmVzc1JlcXVlc3QaMC5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZU1vdmVJUEFkZHJlc3NSZXNwb25zZSIKyvMYAgEC4PMYARKDAQoPRGVsZXRlSVBBZGRyZXNzEjEuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VEZWxldGVJUEFkZHJlc3NSZXF1ZXN0GjIuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VEZWxldGVJUEFkZHJlc3NSZXNwb25zZSIJyvMYAQHg8xgBEmwKB1Jlc3RhcnQSKS5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZVJlc3RhcnRSZXF1ZXN0GiouZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VSZXN0YXJ0UmVzcG9uc2UiCsrzGAIBAuDzGAEScQoJUmVpbnN0YWxsEisuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VSZWluc3RhbGxSZXF1ZXN0GiwuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VSZWluc3RhbGxSZXNwb25zZSIJyvMYAQHg8xgBEokBChFWYWxpZGF0ZVJlaW5zdGFsbBIzLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlVmFsaWRhdGVSZWluc3RhbGxSZXF1ZXN0GjQuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VWYWxpZGF0ZVJlaW5zdGFsbFJlc3BvbnNlIgnK8xgBAeDzGAISeAoLQWRkU25hcHNob3QSLS5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZUFkZFNuYXBzaG90UmVxdWVzdBouLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlQWRkU25hcHNob3RSZXNwb25zZSIKyvMYAgEC4PMYARKAAQoORGVsZXRlU25hcHNob3QSMC5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZURlbGV0ZVNuYXBzaG90UmVxdWVzdBoxLmZpdHMuYXBpLm12bS52MS5NVk1TZXJ2aWNlRGVsZXRlU25hcHNob3RSZXNwb25zZSIJyvMYAQHg8xgBEmMKBE1vdmUSJi5maXRzLmFwaS5tdm0udjEuTVZNU2VydmljZU1vdmVSZXF1ZXN0GicuZml0cy5hcGkubXZtLnYxLk1WTVNlcnZpY2VNb3ZlUmVzcG9uc2UiCsrzGAIBAuDzGAFCrQEKE2NvbS5maXRzLmFwaS5tdm0udjFCCE12bVByb3RvUAFaLWdpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL212bS92MTttdm12MaICA0ZBTaoCD0ZpdHMuQXBpLk12bS5WMcoCD0ZpdHNcQXBpXE12bVxWMeICG0ZpdHNcQXBpXE12bVxWMVxHUEJNZXRhZGF0YeoCEkZpdHM6OkFwaTo6TXZtOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_mvm_v1_predefined_rules, file_fits_api_v1_common, file_fits_api_v1_predefined_rules]);
+
+/**
+ * Disk configuration for a Linux MVM. See DiskType for the kinds of disks
+ * (os, system, data) and their lifecycle rules.
+ *
+ * @generated from message fits.api.mvm.v1.LinuxDisk
+ */
+export type LinuxDisk = Message<"fits.api.mvm.v1.LinuxDisk"> & {
+  /**
+   * UUID of the disk; set for existing disks, unset for new ones.
+   *
+   * @generated from field: optional string uuid = 1;
+   */
+  uuid?: string | undefined;
+
+  /**
+   * Name of the disk.
+   *
+   * @generated from field: string name = 2;
+   */
+  name: string;
+
+  /**
+   * Size of the disk in GiB.
+   *
+   * @generated from field: uint64 size_gb = 3;
+   */
+  sizeGb: bigint;
+
+  /**
+   * Whether the disk grows automatically when space runs low.
+   *
+   * @generated from field: optional bool auto_extend = 4;
+   */
+  autoExtend?: boolean | undefined;
+
+  /**
+   * Mount point (e.g. "/data/app"). Fixed to "/appdata" for the system disk;
+   * any absolute path allowed by the upstream for data disks.
+   *
+   * @generated from field: optional string mount_point = 5;
+   */
+  mountPoint?: string | undefined;
+
+  /**
+   * Kind of the disk; determines which operations are allowed on it.
+   * Provided by the client in create/add requests and populated by the
+   * API in responses.
+   *
+   * @generated from field: optional fits.api.mvm.v1.DiskType disk_type = 6;
+   */
+  diskType?: DiskType | undefined;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.LinuxDisk.
+ * Use `create(LinuxDiskSchema)` to create a new message.
+ */
+export const LinuxDiskSchema: GenMessage<LinuxDisk> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 0);
+
+/**
+ * Disk configuration for a Windows MVM. See DiskType for the kinds of
+ * disks (os, system, data) and their lifecycle rules.
+ *
+ * @generated from message fits.api.mvm.v1.WindowsDisk
+ */
+export type WindowsDisk = Message<"fits.api.mvm.v1.WindowsDisk"> & {
+  /**
+   * UUID of the disk; set for existing disks, unset for new ones.
+   *
+   * @generated from field: optional string uuid = 1;
+   */
+  uuid?: string | undefined;
+
+  /**
+   * Name of the disk.
+   *
+   * @generated from field: string name = 2;
+   */
+  name: string;
+
+  /**
+   * Size of the disk in GiB.
+   *
+   * @generated from field: uint64 size_gb = 3;
+   */
+  sizeGb: bigint;
+
+  /**
+   * Whether the disk grows automatically when space runs low.
+   *
+   * @generated from field: optional bool auto_extend = 4;
+   */
+  autoExtend?: boolean | undefined;
+
+  /**
+   * Drive letter (e.g. "G"). Fixed to "F" for the system disk; any letter
+   * allowed by the upstream for data disks.
+   *
+   * @generated from field: optional string drive_letter = 5;
+   */
+  driveLetter?: string | undefined;
+
+  /**
+   * Kind of the disk; determines which operations are allowed on it.
+   * Provided by the client in create/add requests and populated by the
+   * API in responses.
+   *
+   * @generated from field: optional fits.api.mvm.v1.DiskType disk_type = 6;
+   */
+  diskType?: DiskType | undefined;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.WindowsDisk.
+ * Use `create(WindowsDiskSchema)` to create a new message.
+ */
+export const WindowsDiskSchema: GenMessage<WindowsDisk> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 1);
+
+/**
+ * Disk contains either a Windows or Linux disk.
+ *
+ * @generated from message fits.api.mvm.v1.Disk
+ */
+export type Disk = Message<"fits.api.mvm.v1.Disk"> & {
+  /**
+   * OS-specific disk specification; must match the MVM's OS type.
+   *
+   * @generated from oneof fits.api.mvm.v1.Disk.disk
+   */
+  disk: {
+    /**
+     * Linux disk.
+     *
+     * @generated from field: fits.api.mvm.v1.LinuxDisk linux = 4;
+     */
+    value: LinuxDisk;
+    case: "linux";
+  } | {
+    /**
+     * Windows disk.
+     *
+     * @generated from field: fits.api.mvm.v1.WindowsDisk windows = 5;
+     */
+    value: WindowsDisk;
+    case: "windows";
+  } | { case: undefined; value?: undefined };
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.Disk.
+ * Use `create(DiskSchema)` to create a new message.
+ */
+export const DiskSchema: GenMessage<Disk> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 2);
 
 /**
  * Linux-specific MVM details.
@@ -49,7 +207,7 @@ export type LinuxDetails = Message<"fits.api.mvm.v1.LinuxDetails"> & {
  * Use `create(LinuxDetailsSchema)` to create a new message.
  */
 export const LinuxDetailsSchema: GenMessage<LinuxDetails> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 0);
+  messageDesc(file_fits_api_mvm_v1_mvm, 3);
 
 /**
  * Windows-specific MVM details.
@@ -84,43 +242,64 @@ export type WindowsDetails = Message<"fits.api.mvm.v1.WindowsDetails"> & {
  * Use `create(WindowsDetailsSchema)` to create a new message.
  */
 export const WindowsDetailsSchema: GenMessage<WindowsDetails> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 1);
+  messageDesc(file_fits_api_mvm_v1_mvm, 4);
 
 /**
- * A network interface of a MVM. IPv4 only; IPv6 is not yet supported.
+ * An IPv4 address of a MVM. IPv4 only; IPv6 is not yet supported.
  *
- * @generated from message fits.api.mvm.v1.NetworkInterface
+ * @generated from message fits.api.mvm.v1.IPAddress
  */
-export type NetworkInterface = Message<"fits.api.mvm.v1.NetworkInterface"> & {
+export type IPAddress = Message<"fits.api.mvm.v1.IPAddress"> & {
   /**
-   * UUID of this interface.
+   * UUID of this IP address.
    *
    * @generated from field: string uuid = 1;
    */
   uuid: string;
 
   /**
+   * The IPv4 address.
+   *
+   * @generated from field: string ip_address = 2;
+   */
+  ipAddress: string;
+
+  /**
+   * The network interface this IP address is bound to.
+   * Unset for additional IP addresses that share an existing interface;
+   * such addresses can be deleted via DeleteIPAddress.
+   *
+   * @generated from field: optional fits.api.mvm.v1.NetworkInterface network_interface = 3;
+   */
+  networkInterface?: NetworkInterface | undefined;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.IPAddress.
+ * Use `create(IPAddressSchema)` to create a new message.
+ */
+export const IPAddressSchema: GenMessage<IPAddress> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 5);
+
+/**
+ * A network interface of a MVM.
+ *
+ * @generated from message fits.api.mvm.v1.NetworkInterface
+ */
+export type NetworkInterface = Message<"fits.api.mvm.v1.NetworkInterface"> & {
+  /**
    * UUID of the VLAN.
    *
-   * @generated from field: string vlan_uuid = 2;
+   * @generated from field: string vlan_uuid = 1;
    */
   vlanUuid: string;
 
   /**
-   * IPv4 address assigned to this interface.
-   *
-   * @generated from field: string ipaddress = 3;
-   */
-  ipaddress: string;
-
-  /**
    * MAC address of this interface.
    *
-   * TODO: add validation
-   *
-   * @generated from field: string macaddress = 4;
+   * @generated from field: string mac_address = 2;
    */
-  macaddress: string;
+  macAddress: string;
 };
 
 /**
@@ -128,16 +307,17 @@ export type NetworkInterface = Message<"fits.api.mvm.v1.NetworkInterface"> & {
  * Use `create(NetworkInterfaceSchema)` to create a new message.
  */
 export const NetworkInterfaceSchema: GenMessage<NetworkInterface> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 2);
+  messageDesc(file_fits_api_mvm_v1_mvm, 6);
 
 /**
- * The InitialNetworkInterface needs to be provided at creation of a MVM.
- * It provides the UUID of the target VLAN for the MVM's first network interface.
- * The created MVM comes with a NetworkInterface connected to this VLAN.
+ * The InitialIPAddress needs to be provided at creation of a MVM.
+ * It provides the UUID of the target VLAN for the MVM's first IP address.
+ * The created MVM comes with an IPAddress on a network interface connected
+ * to this VLAN.
  *
- * @generated from message fits.api.mvm.v1.InitialNetworkInterface
+ * @generated from message fits.api.mvm.v1.InitialIPAddress
  */
-export type InitialNetworkInterface = Message<"fits.api.mvm.v1.InitialNetworkInterface"> & {
+export type InitialIPAddress = Message<"fits.api.mvm.v1.InitialIPAddress"> & {
   /**
    * UUID of the VLAN.
    *
@@ -147,11 +327,11 @@ export type InitialNetworkInterface = Message<"fits.api.mvm.v1.InitialNetworkInt
 };
 
 /**
- * Describes the message fits.api.mvm.v1.InitialNetworkInterface.
- * Use `create(InitialNetworkInterfaceSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.InitialIPAddress.
+ * Use `create(InitialIPAddressSchema)` to create a new message.
  */
-export const InitialNetworkInterfaceSchema: GenMessage<InitialNetworkInterface> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 3);
+export const InitialIPAddressSchema: GenMessage<InitialIPAddress> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 7);
 
 /**
  * The status of the MVM.
@@ -179,7 +359,53 @@ export type Status = Message<"fits.api.mvm.v1.Status"> & {
  * Use `create(StatusSchema)` to create a new message.
  */
 export const StatusSchema: GenMessage<Status> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 4);
+  messageDesc(file_fits_api_mvm_v1_mvm, 8);
+
+/**
+ * Backup configuration of a MVM.
+ * Modeled as a message so that backup options (e.g. retention or schedule)
+ * can be added later without breaking the API.
+ *
+ * @generated from message fits.api.mvm.v1.Backup
+ */
+export type Backup = Message<"fits.api.mvm.v1.Backup"> & {
+  /**
+   * Whether backup is enabled.
+   *
+   * @generated from field: bool enabled = 1;
+   */
+  enabled: boolean;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.Backup.
+ * Use `create(BackupSchema)` to create a new message.
+ */
+export const BackupSchema: GenMessage<Backup> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 9);
+
+/**
+ * Encryption configuration of a MVM.
+ * Modeled as a message so that encryption options (e.g. a key reference)
+ * can be added later without breaking the API.
+ *
+ * @generated from message fits.api.mvm.v1.Encryption
+ */
+export type Encryption = Message<"fits.api.mvm.v1.Encryption"> & {
+  /**
+   * Whether the disks of the MVM are encrypted.
+   *
+   * @generated from field: bool enabled = 1;
+   */
+  enabled: boolean;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.Encryption.
+ * Use `create(EncryptionSchema)` to create a new message.
+ */
+export const EncryptionSchema: GenMessage<Encryption> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 10);
 
 /**
  * ManagedVM is a managed VM instance as returned by the API.
@@ -196,7 +422,6 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
 
   /**
    * Metadata for this MVM.
-   * TODO: dates are available in the nulink db but not passed through yet.
    *
    * @generated from field: fits.api.v1.Meta meta = 2;
    */
@@ -252,25 +477,25 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
   cpu: number;
 
   /**
-   * RAM in GB.
+   * RAM in GiB.
    *
-   * @generated from field: uint32 ram = 10;
+   * @generated from field: uint32 ram_gb = 10;
    */
-  ram: number;
+  ramGb: number;
 
   /**
-   * Whether backup is enabled.
+   * Backup configuration of the MVM.
    *
-   * @generated from field: bool backup = 11;
+   * @generated from field: fits.api.mvm.v1.Backup backup = 11;
    */
-  backup: boolean;
+  backup?: Backup | undefined;
 
   /**
-   * Whether the MVM is encrypted.
+   * Encryption configuration of the MVM.
    *
-   * @generated from field: bool encrypted = 12;
+   * @generated from field: fits.api.mvm.v1.Encryption encryption = 12;
    */
-  encrypted: boolean;
+  encryption?: Encryption | undefined;
 
   /**
    * Status of the MVM.
@@ -289,9 +514,9 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
   /**
    * Service class.
    *
-   * @generated from field: fits.api.mvm.v1.ServiceClass serviceclass = 15;
+   * @generated from field: fits.api.mvm.v1.ServiceClass service_class = 15;
    */
-  serviceclass: ServiceClass;
+  serviceClass: ServiceClass;
 
   /**
    * OS-specific configuration.
@@ -317,18 +542,25 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
   } | { case: undefined; value?: undefined };
 
   /**
-   * Network interfaces attached to the MVM (IPv4 only).
+   * IP addresses attached to the MVM (IPv4 only).
    *
-   * @generated from field: repeated fits.api.mvm.v1.NetworkInterface interfaces = 18;
+   * @generated from field: repeated fits.api.mvm.v1.IPAddress ip_addresses = 18;
    */
-  interfaces: NetworkInterface[];
+  ipAddresses: IPAddress[];
 
   /**
-   * Internal reference number provided by the user, e.g. a ticket ID.
+   * Customer reference provided by the user, e.g. a ticket ID.
    *
-   * @generated from field: string order_number = 19;
+   * @generated from field: string order_reference = 19;
    */
-  orderNumber: string;
+  orderReference: string;
+
+  /**
+   * Snapshots of the MVM.
+   *
+   * @generated from field: repeated fits.api.mvm.v1.Snapshot snapshots = 20;
+   */
+  snapshots: Snapshot[];
 };
 
 /**
@@ -336,7 +568,35 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
  * Use `create(ManagedVMSchema)` to create a new message.
  */
 export const ManagedVMSchema: GenMessage<ManagedVM> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 5);
+  messageDesc(file_fits_api_mvm_v1_mvm, 11);
+
+/**
+ * A snapshot of a MVM.
+ *
+ * @generated from message fits.api.mvm.v1.Snapshot
+ */
+export type Snapshot = Message<"fits.api.mvm.v1.Snapshot"> & {
+  /**
+   * UUID of this snapshot.
+   *
+   * @generated from field: string uuid = 1;
+   */
+  uuid: string;
+
+  /**
+   * Name of the snapshot; alphanumeric only.
+   *
+   * @generated from field: string name = 2;
+   */
+  name: string;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.Snapshot.
+ * Use `create(SnapshotSchema)` to create a new message.
+ */
+export const SnapshotSchema: GenMessage<Snapshot> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 12);
 
 /**
  * Request to get a MVM by UUID.
@@ -364,7 +624,7 @@ export type MVMServiceGetRequest = Message<"fits.api.mvm.v1.MVMServiceGetRequest
  * Use `create(MVMServiceGetRequestSchema)` to create a new message.
  */
 export const MVMServiceGetRequestSchema: GenMessage<MVMServiceGetRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 6);
+  messageDesc(file_fits_api_mvm_v1_mvm, 13);
 
 /**
  * Response containing the requested MVM.
@@ -385,7 +645,49 @@ export type MVMServiceGetResponse = Message<"fits.api.mvm.v1.MVMServiceGetRespon
  * Use `create(MVMServiceGetResponseSchema)` to create a new message.
  */
 export const MVMServiceGetResponseSchema: GenMessage<MVMServiceGetResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 7);
+  messageDesc(file_fits_api_mvm_v1_mvm, 14);
+
+/**
+ * Request to list MVMs.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceListRequest
+ */
+export type MVMServiceListRequest = Message<"fits.api.mvm.v1.MVMServiceListRequest"> & {
+  /**
+   * UUID of the project to list MVMs for.
+   *
+   * @generated from field: string project_uuid = 1;
+   */
+  projectUuid: string;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceListRequest.
+ * Use `create(MVMServiceListRequestSchema)` to create a new message.
+ */
+export const MVMServiceListRequestSchema: GenMessage<MVMServiceListRequest> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 15);
+
+/**
+ * Response containing the list of MVMs.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceListResponse
+ */
+export type MVMServiceListResponse = Message<"fits.api.mvm.v1.MVMServiceListResponse"> & {
+  /**
+   * The MVM instances.
+   *
+   * @generated from field: repeated fits.api.mvm.v1.ManagedVM mvms = 1;
+   */
+  mvms: ManagedVM[];
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceListResponse.
+ * Use `create(MVMServiceListResponseSchema)` to create a new message.
+ */
+export const MVMServiceListResponseSchema: GenMessage<MVMServiceListResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 16);
 
 /**
  * Windows-specific create request parts.
@@ -414,7 +716,7 @@ export type MVMServiceCreateWindowsRequest = Message<"fits.api.mvm.v1.MVMService
  * Use `create(MVMServiceCreateWindowsRequestSchema)` to create a new message.
  */
 export const MVMServiceCreateWindowsRequestSchema: GenMessage<MVMServiceCreateWindowsRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 8);
+  messageDesc(file_fits_api_mvm_v1_mvm, 17);
 
 /**
  * Linux-specific create request parts.
@@ -443,7 +745,7 @@ export type MVMServiceCreateLinuxRequest = Message<"fits.api.mvm.v1.MVMServiceCr
  * Use `create(MVMServiceCreateLinuxRequestSchema)` to create a new message.
  */
 export const MVMServiceCreateLinuxRequestSchema: GenMessage<MVMServiceCreateLinuxRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 9);
+  messageDesc(file_fits_api_mvm_v1_mvm, 18);
 
 /**
  * Request to create a new MVM instance.
@@ -494,40 +796,39 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
   cpu: number;
 
   /**
-   * RAM in GB. Must be a power of 2.
+   * RAM in GiB.
    *
-   * @generated from field: uint32 ram = 7;
+   * @generated from field: uint32 ram_gb = 7;
    */
-  ram: number;
+  ramGb: number;
 
   /**
-   * Customer reference for this operation provided by the user, e.g. a ticket ID.
+   * Customer reference for this operation, e.g. a ticket ID.
    *
-   * @generated from field: string order_number = 8;
+   * @generated from field: string order_reference = 8;
    */
-  orderNumber: string;
+  orderReference: string;
 
   /**
-   * Optional key-value labels for accounting purposes.
-   * (e.g. contract number, transaction number, technical key, accounting key).
+   * Optional key-value labels for this MVM.
    *
    * @generated from field: fits.api.v1.Labels labels = 9;
    */
   labels?: Labels | undefined;
 
   /**
-   * Whether backup is enabled.
+   * Backup configuration of the MVM.
    *
-   * @generated from field: bool backup = 10;
+   * @generated from field: fits.api.mvm.v1.Backup backup = 10;
    */
-  backup: boolean;
+  backup?: Backup | undefined;
 
   /**
-   * Whether the MVM should be encrypted.
+   * Encryption configuration of the MVM.
    *
-   * @generated from field: bool encrypted = 11;
+   * @generated from field: fits.api.mvm.v1.Encryption encryption = 11;
    */
-  encrypted: boolean;
+  encryption?: Encryption | undefined;
 
   /**
    * Availability level.
@@ -539,18 +840,18 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
   /**
    * Service class; only certain combinations with availability are valid.
    *
-   * @generated from field: fits.api.mvm.v1.ServiceClass serviceclass = 13;
+   * @generated from field: fits.api.mvm.v1.ServiceClass service_class = 13;
    */
-  serviceclass: ServiceClass;
+  serviceClass: ServiceClass;
 
   /**
    * OS type and its configuration.
    *
-   * @generated from oneof fits.api.mvm.v1.MVMServiceCreateRequest.mvmtype
+   * @generated from oneof fits.api.mvm.v1.MVMServiceCreateRequest.mvm_type
    */
-  mvmtype: {
+  mvmType: {
     /**
-     * Windows-specific settings (domain + disk).
+     * Windows-specific settings (domain + disks).
      *
      * @generated from field: fits.api.mvm.v1.MVMServiceCreateWindowsRequest windows = 14;
      */
@@ -558,7 +859,7 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
     case: "windows";
   } | {
     /**
-     * Linux-specific settings (LDAP + disk).
+     * Linux-specific settings (LDAP + disks).
      *
      * @generated from field: fits.api.mvm.v1.MVMServiceCreateLinuxRequest linux = 15;
      */
@@ -567,11 +868,11 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
   } | { case: undefined; value?: undefined };
 
   /**
-   * Provides the target VLAN for the initial network interface.
+   * Provides the target VLAN for the initial IP address.
    *
-   * @generated from field: fits.api.mvm.v1.InitialNetworkInterface initial_network_interface = 16;
+   * @generated from field: fits.api.mvm.v1.InitialIPAddress initial_ip_address = 16;
    */
-  initialNetworkInterface?: InitialNetworkInterface | undefined;
+  initialIpAddress?: InitialIPAddress | undefined;
 };
 
 /**
@@ -579,127 +880,7 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
  * Use `create(MVMServiceCreateRequestSchema)` to create a new message.
  */
 export const MVMServiceCreateRequestSchema: GenMessage<MVMServiceCreateRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 10);
-
-/**
- * Disk configuration for a Linux MVM. See DiskType for the kinds of disks
- * (os, system, data) and their lifecycle rules.
- *
- * @generated from message fits.api.mvm.v1.LinuxDisk
- */
-export type LinuxDisk = Message<"fits.api.mvm.v1.LinuxDisk"> & {
-  /**
-   * UUID of the disk; set for existing disks, unset for new ones.
-   *
-   * @generated from field: optional string uuid = 1;
-   */
-  uuid?: string | undefined;
-
-  /**
-   * Label (name) of the disk.
-   *
-   * @generated from field: string label = 2;
-   */
-  label: string;
-
-  /**
-   * Whether the disk grows automatically when space runs low.
-   *
-   * @generated from field: bool auto_extend = 3;
-   */
-  autoExtend: boolean;
-
-  /**
-   * Size of the disk in GB; defaults to 50 when unset.
-   *
-   * @generated from field: optional uint64 size = 4;
-   */
-  size?: bigint | undefined;
-
-  /**
-   * Mount point (e.g. "/data"). Fixed to "/appdata" for the system disk;
-   * free-form for data disks.
-   *
-   * @generated from field: optional string mount_point = 5;
-   */
-  mountPoint?: string | undefined;
-
-  /**
-   * Kind of the disk; determines which operations are allowed on it.
-   * Provided by the client in create/add requests and populated by the
-   * API in responses.
-   *
-   * @generated from field: optional fits.api.mvm.v1.DiskType disk_type = 6;
-   */
-  diskType?: DiskType | undefined;
-};
-
-/**
- * Describes the message fits.api.mvm.v1.LinuxDisk.
- * Use `create(LinuxDiskSchema)` to create a new message.
- */
-export const LinuxDiskSchema: GenMessage<LinuxDisk> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 11);
-
-/**
- * Disk configuration for a Windows MVM. See DiskType for the kinds of
- * disks (os, system, data) and their lifecycle rules.
- *
- * @generated from message fits.api.mvm.v1.WindowsDisk
- */
-export type WindowsDisk = Message<"fits.api.mvm.v1.WindowsDisk"> & {
-  /**
-   * UUID of the disk; set for existing disks, unset for new ones.
-   *
-   * @generated from field: optional string uuid = 1;
-   */
-  uuid?: string | undefined;
-
-  /**
-   * Label (name) of the disk.
-   *
-   * @generated from field: string label = 2;
-   */
-  label: string;
-
-  /**
-   * Whether the disk grows automatically when space runs low.
-   *
-   * @generated from field: bool auto_extend = 3;
-   */
-  autoExtend: boolean;
-
-  /**
-   * Size of the disk in GB; defaults to 50 when unset.
-   *
-   * @generated from field: optional uint64 size = 4;
-   */
-  size?: bigint | undefined;
-
-  /**
-   * Drive letter (e.g. "D"). Fixed to "F" for the system disk; free-form
-   * for data disks.
-   *
-   * @generated from field: optional string driveletter = 5;
-   */
-  driveletter?: string | undefined;
-
-  /**
-   * Kind of the disk; determines which operations are allowed on it.
-   * Provided by the client in create/add requests and populated by the
-   * API in responses.
-   *
-   * @generated from field: optional fits.api.mvm.v1.DiskType disk_type = 6;
-   */
-  diskType?: DiskType | undefined;
-};
-
-/**
- * Describes the message fits.api.mvm.v1.WindowsDisk.
- * Use `create(WindowsDiskSchema)` to create a new message.
- */
-export const WindowsDiskSchema: GenMessage<WindowsDisk> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 12);
+  messageDesc(file_fits_api_mvm_v1_mvm, 19);
 
 /**
  * Response for MVM create requests.
@@ -720,99 +901,7 @@ export type MVMServiceCreateResponse = Message<"fits.api.mvm.v1.MVMServiceCreate
  * Use `create(MVMServiceCreateResponseSchema)` to create a new message.
  */
 export const MVMServiceCreateResponseSchema: GenMessage<MVMServiceCreateResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 13);
-
-/**
- * Request to list MVMs.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceListRequest
- */
-export type MVMServiceListRequest = Message<"fits.api.mvm.v1.MVMServiceListRequest"> & {
-  /**
-   * UUID of the project to list MVMs for.
-   *
-   * @generated from field: string project_uuid = 1;
-   */
-  projectUuid: string;
-};
-
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceListRequest.
- * Use `create(MVMServiceListRequestSchema)` to create a new message.
- */
-export const MVMServiceListRequestSchema: GenMessage<MVMServiceListRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 14);
-
-/**
- * Response containing the list of MVMs.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceListResponse
- */
-export type MVMServiceListResponse = Message<"fits.api.mvm.v1.MVMServiceListResponse"> & {
-  /**
-   * The MVM instances.
-   *
-   * @generated from field: repeated fits.api.mvm.v1.ManagedVM mvms = 1;
-   */
-  mvms: ManagedVM[];
-};
-
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceListResponse.
- * Use `create(MVMServiceListResponseSchema)` to create a new message.
- */
-export const MVMServiceListResponseSchema: GenMessage<MVMServiceListResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 15);
-
-/**
- * Request to cancel a MVM instance.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceDeleteRequest
- */
-export type MVMServiceDeleteRequest = Message<"fits.api.mvm.v1.MVMServiceDeleteRequest"> & {
-  /**
-   * UUID of the project the MVM belongs to.
-   *
-   * @generated from field: string project_uuid = 1;
-   */
-  projectUuid: string;
-
-  /**
-   * UUID of the MVM to delete.
-   *
-   * @generated from field: string uuid = 2;
-   */
-  uuid: string;
-
-  /**
-   * Customer reference for this operation.
-   *
-   * @generated from field: string order_number = 3;
-   */
-  orderNumber: string;
-};
-
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceDeleteRequest.
- * Use `create(MVMServiceDeleteRequestSchema)` to create a new message.
- */
-export const MVMServiceDeleteRequestSchema: GenMessage<MVMServiceDeleteRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 16);
-
-/**
- * Response for Delete; an empty response means the cancellation was accepted.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceDeleteResponse
- */
-export type MVMServiceDeleteResponse = Message<"fits.api.mvm.v1.MVMServiceDeleteResponse"> & {
-};
-
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceDeleteResponse.
- * Use `create(MVMServiceDeleteResponseSchema)` to create a new message.
- */
-export const MVMServiceDeleteResponseSchema: GenMessage<MVMServiceDeleteResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 17);
+  messageDesc(file_fits_api_mvm_v1_mvm, 20);
 
 /**
  * Request to validate a MVM create without creating anything.
@@ -833,7 +922,7 @@ export type MVMServiceValidateCreateRequest = Message<"fits.api.mvm.v1.MVMServic
  * Use `create(MVMServiceValidateCreateRequestSchema)` to create a new message.
  */
 export const MVMServiceValidateCreateRequestSchema: GenMessage<MVMServiceValidateCreateRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 18);
+  messageDesc(file_fits_api_mvm_v1_mvm, 21);
 
 /**
  * Response for ValidateCreate; violations are returned as an InvalidArgument error.
@@ -848,176 +937,139 @@ export type MVMServiceValidateCreateResponse = Message<"fits.api.mvm.v1.MVMServi
  * Use `create(MVMServiceValidateCreateResponseSchema)` to create a new message.
  */
 export const MVMServiceValidateCreateResponseSchema: GenMessage<MVMServiceValidateCreateResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 19);
-
-/**
- * Request to validate an AddDisk without ordering anything.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceValidateAddDiskRequest
- */
-export type MVMServiceValidateAddDiskRequest = Message<"fits.api.mvm.v1.MVMServiceValidateAddDiskRequest"> & {
-  /**
-   * The add disk request to validate.
-   *
-   * @generated from field: fits.api.mvm.v1.MVMServiceAddDiskRequest add_disk = 1;
-   */
-  addDisk?: MVMServiceAddDiskRequest | undefined;
-};
-
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceValidateAddDiskRequest.
- * Use `create(MVMServiceValidateAddDiskRequestSchema)` to create a new message.
- */
-export const MVMServiceValidateAddDiskRequestSchema: GenMessage<MVMServiceValidateAddDiskRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 20);
-
-/**
- * Response for ValidateAddDisk; violations are returned as an InvalidArgument error.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceValidateAddDiskResponse
- */
-export type MVMServiceValidateAddDiskResponse = Message<"fits.api.mvm.v1.MVMServiceValidateAddDiskResponse"> & {
-};
-
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceValidateAddDiskResponse.
- * Use `create(MVMServiceValidateAddDiskResponseSchema)` to create a new message.
- */
-export const MVMServiceValidateAddDiskResponseSchema: GenMessage<MVMServiceValidateAddDiskResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 21);
-
-/**
- * Request to validate an UpdateDisk without changing anything.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest
- */
-export type MVMServiceValidateUpdateDiskRequest = Message<"fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest"> & {
-  /**
-   * The update disk request to validate.
-   *
-   * @generated from field: fits.api.mvm.v1.MVMServiceUpdateDiskRequest update_disk = 1;
-   */
-  updateDisk?: MVMServiceUpdateDiskRequest | undefined;
-};
-
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest.
- * Use `create(MVMServiceValidateUpdateDiskRequestSchema)` to create a new message.
- */
-export const MVMServiceValidateUpdateDiskRequestSchema: GenMessage<MVMServiceValidateUpdateDiskRequest> = /*@__PURE__*/
   messageDesc(file_fits_api_mvm_v1_mvm, 22);
 
 /**
- * Response for ValidateUpdateDisk; violations are returned as an InvalidArgument error.
+ * Request to trigger the update of an existing MVM.
  *
- * @generated from message fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse
+ * @generated from message fits.api.mvm.v1.MVMServiceUpdateRequest
  */
-export type MVMServiceValidateUpdateDiskResponse = Message<"fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse"> & {
-};
-
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse.
- * Use `create(MVMServiceValidateUpdateDiskResponseSchema)` to create a new message.
- */
-export const MVMServiceValidateUpdateDiskResponseSchema: GenMessage<MVMServiceValidateUpdateDiskResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 23);
-
-/**
- * Response for AddDisk.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceAddDiskResponse
- */
-export type MVMServiceAddDiskResponse = Message<"fits.api.mvm.v1.MVMServiceAddDiskResponse"> & {
+export type MVMServiceUpdateRequest = Message<"fits.api.mvm.v1.MVMServiceUpdateRequest"> & {
   /**
-   * UUID of the created disk.
+   * UUID of the MVM to update.
    *
    * @generated from field: string uuid = 1;
    */
   uuid: string;
+
+  /**
+   * UUID of the project this MVM belongs to.
+   *
+   * @generated from field: string project_uuid = 2;
+   */
+  projectUuid: string;
+
+  /**
+   * Timestamp and strategy for this update.
+   *
+   * @generated from field: fits.api.v1.UpdateMeta update_meta = 3;
+   */
+  updateMeta?: UpdateMeta | undefined;
+
+  /**
+   * Customer reference for this operation, e.g. a ticket ID.
+   *
+   * @generated from field: string order_reference = 4;
+   */
+  orderReference: string;
+
+  /**
+   * The labels to update.
+   *
+   * @generated from field: optional fits.api.v1.UpdateLabels labels = 5;
+   */
+  labels?: UpdateLabels | undefined;
+
+  /**
+   * UUID of the new contact; unset keeps the current value.
+   *
+   * @generated from field: optional string contact_uuid = 6;
+   */
+  contactUuid?: string | undefined;
+
+  /**
+   * Number of CPU cores; unset keeps the current value.
+   *
+   * @generated from field: optional uint32 cpu = 7;
+   */
+  cpu?: number | undefined;
+
+  /**
+   * RAM in GiB; unset keeps the current value.
+   *
+   * @generated from field: optional uint32 ram_gb = 8;
+   */
+  ramGb?: number | undefined;
 };
 
 /**
- * Describes the message fits.api.mvm.v1.MVMServiceAddDiskResponse.
- * Use `create(MVMServiceAddDiskResponseSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceUpdateRequest.
+ * Use `create(MVMServiceUpdateRequestSchema)` to create a new message.
  */
-export const MVMServiceAddDiskResponseSchema: GenMessage<MVMServiceAddDiskResponse> = /*@__PURE__*/
+export const MVMServiceUpdateRequestSchema: GenMessage<MVMServiceUpdateRequest> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 23);
+
+/**
+ * Response for Update; an empty response means the update was accepted.
+ * The update is applied asynchronously; poll Get until the state settles.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceUpdateResponse
+ */
+export type MVMServiceUpdateResponse = Message<"fits.api.mvm.v1.MVMServiceUpdateResponse"> & {
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceUpdateResponse.
+ * Use `create(MVMServiceUpdateResponseSchema)` to create a new message.
+ */
+export const MVMServiceUpdateResponseSchema: GenMessage<MVMServiceUpdateResponse> = /*@__PURE__*/
   messageDesc(file_fits_api_mvm_v1_mvm, 24);
 
 /**
- * Response for UpdateDisk.
+ * Request to validate a MVM update without updating anything.
  *
- * @generated from message fits.api.mvm.v1.MVMServiceUpdateDiskResponse
+ * @generated from message fits.api.mvm.v1.MVMServiceValidateUpdateRequest
  */
-export type MVMServiceUpdateDiskResponse = Message<"fits.api.mvm.v1.MVMServiceUpdateDiskResponse"> & {
+export type MVMServiceValidateUpdateRequest = Message<"fits.api.mvm.v1.MVMServiceValidateUpdateRequest"> & {
+  /**
+   * The update request to validate.
+   *
+   * @generated from field: fits.api.mvm.v1.MVMServiceUpdateRequest update = 1;
+   */
+  update?: MVMServiceUpdateRequest | undefined;
 };
 
 /**
- * Describes the message fits.api.mvm.v1.MVMServiceUpdateDiskResponse.
- * Use `create(MVMServiceUpdateDiskResponseSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceValidateUpdateRequest.
+ * Use `create(MVMServiceValidateUpdateRequestSchema)` to create a new message.
  */
-export const MVMServiceUpdateDiskResponseSchema: GenMessage<MVMServiceUpdateDiskResponse> = /*@__PURE__*/
+export const MVMServiceValidateUpdateRequestSchema: GenMessage<MVMServiceValidateUpdateRequest> = /*@__PURE__*/
   messageDesc(file_fits_api_mvm_v1_mvm, 25);
 
 /**
- * Response for DeleteDisk.
+ * Response for ValidateUpdate; violations are returned as an InvalidArgument error.
  *
- * @generated from message fits.api.mvm.v1.MVMServiceDeleteDiskResponse
+ * @generated from message fits.api.mvm.v1.MVMServiceValidateUpdateResponse
  */
-export type MVMServiceDeleteDiskResponse = Message<"fits.api.mvm.v1.MVMServiceDeleteDiskResponse"> & {
+export type MVMServiceValidateUpdateResponse = Message<"fits.api.mvm.v1.MVMServiceValidateUpdateResponse"> & {
 };
 
 /**
- * Describes the message fits.api.mvm.v1.MVMServiceDeleteDiskResponse.
- * Use `create(MVMServiceDeleteDiskResponseSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceValidateUpdateResponse.
+ * Use `create(MVMServiceValidateUpdateResponseSchema)` to create a new message.
  */
-export const MVMServiceDeleteDiskResponseSchema: GenMessage<MVMServiceDeleteDiskResponse> = /*@__PURE__*/
+export const MVMServiceValidateUpdateResponseSchema: GenMessage<MVMServiceValidateUpdateResponse> = /*@__PURE__*/
   messageDesc(file_fits_api_mvm_v1_mvm, 26);
 
 /**
- * Disk contains either a Windows or Linux disk.
+ * Deprecated: request for a service class update.
+ * Will be optional fields of the MVMServiceUpdateRequest.
  *
- * @generated from message fits.api.mvm.v1.Disk
+ * @generated from message fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest
  */
-export type Disk = Message<"fits.api.mvm.v1.Disk"> & {
+export type MVMServiceUpdateServiceClassRequest = Message<"fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest"> & {
   /**
-   * OS-specific disk specification; must match the MVM's OS type.
-   *
-   * @generated from oneof fits.api.mvm.v1.Disk.disk
-   */
-  disk: {
-    /**
-     * Linux data disks.
-     *
-     * @generated from field: fits.api.mvm.v1.LinuxDisk linux = 4;
-     */
-    value: LinuxDisk;
-    case: "linux";
-  } | {
-    /**
-     * Windows data disks.
-     *
-     * @generated from field: fits.api.mvm.v1.WindowsDisk windows = 5;
-     */
-    value: WindowsDisk;
-    case: "windows";
-  } | { case: undefined; value?: undefined };
-};
-
-/**
- * Describes the message fits.api.mvm.v1.Disk.
- * Use `create(DiskSchema)` to create a new message.
- */
-export const DiskSchema: GenMessage<Disk> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 27);
-
-/**
- * Request to order an additional data disk for a MVM.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceAddDiskRequest
- */
-export type MVMServiceAddDiskRequest = Message<"fits.api.mvm.v1.MVMServiceAddDiskRequest"> & {
-  /**
-   * UUID of the MVM to attach the disk to.
+   * UUID of the MVM to update service class for.
    *
    * @generated from field: string uuid = 1;
    */
@@ -1031,14 +1083,160 @@ export type MVMServiceAddDiskRequest = Message<"fits.api.mvm.v1.MVMServiceAddDis
   projectUuid: string;
 
   /**
-   * Customer reference for this operation.
+   * Target service class; unset keeps the current value.
    *
-   * @generated from field: string order_number = 3;
+   * @generated from field: optional fits.api.mvm.v1.ServiceClass service_class = 3;
    */
-  orderNumber: string;
+  serviceClass?: ServiceClass | undefined;
 
   /**
-   * Disks to add.
+   * Target availability level; unset keeps the current value.
+   *
+   * @generated from field: optional fits.api.mvm.v1.Availability availability = 4;
+   */
+  availability?: Availability | undefined;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest.
+ * Use `create(MVMServiceUpdateServiceClassRequestSchema)` to create a new message.
+ */
+export const MVMServiceUpdateServiceClassRequestSchema: GenMessage<MVMServiceUpdateServiceClassRequest> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 27);
+
+/**
+ * Deprecated: response for a service class update.
+ * An empty response means the update was accepted.
+ * The update is applied asynchronously; poll Get until the state settles.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceUpdateServiceClassResponse
+ */
+export type MVMServiceUpdateServiceClassResponse = Message<"fits.api.mvm.v1.MVMServiceUpdateServiceClassResponse"> & {
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceUpdateServiceClassResponse.
+ * Use `create(MVMServiceUpdateServiceClassResponseSchema)` to create a new message.
+ */
+export const MVMServiceUpdateServiceClassResponseSchema: GenMessage<MVMServiceUpdateServiceClassResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 28);
+
+/**
+ * Deprecated: Request to validate a MVM service class update without updating anything.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassRequest
+ */
+export type MVMServiceValidateUpdateServiceClassRequest = Message<"fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassRequest"> & {
+  /**
+   * The UpdateServiceClass request to validate.
+   *
+   * @generated from field: fits.api.mvm.v1.MVMServiceUpdateServiceClassRequest update_service_class = 1;
+   */
+  updateServiceClass?: MVMServiceUpdateServiceClassRequest | undefined;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassRequest.
+ * Use `create(MVMServiceValidateUpdateServiceClassRequestSchema)` to create a new message.
+ */
+export const MVMServiceValidateUpdateServiceClassRequestSchema: GenMessage<MVMServiceValidateUpdateServiceClassRequest> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 29);
+
+/**
+ * Deprecated: Response for ValidateUpdateServiceClass; violations are returned as an InvalidArgument error.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassResponse
+ */
+export type MVMServiceValidateUpdateServiceClassResponse = Message<"fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassResponse"> & {
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceValidateUpdateServiceClassResponse.
+ * Use `create(MVMServiceValidateUpdateServiceClassResponseSchema)` to create a new message.
+ */
+export const MVMServiceValidateUpdateServiceClassResponseSchema: GenMessage<MVMServiceValidateUpdateServiceClassResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 30);
+
+/**
+ * Request to cancel a MVM instance.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceDeleteRequest
+ */
+export type MVMServiceDeleteRequest = Message<"fits.api.mvm.v1.MVMServiceDeleteRequest"> & {
+  /**
+   * UUID of the MVM to delete.
+   *
+   * @generated from field: string uuid = 1;
+   */
+  uuid: string;
+
+  /**
+   * UUID of the project the MVM belongs to.
+   *
+   * @generated from field: string project_uuid = 2;
+   */
+  projectUuid: string;
+
+  /**
+   * Customer reference for this operation, e.g. a ticket ID.
+   *
+   * @generated from field: string order_reference = 3;
+   */
+  orderReference: string;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceDeleteRequest.
+ * Use `create(MVMServiceDeleteRequestSchema)` to create a new message.
+ */
+export const MVMServiceDeleteRequestSchema: GenMessage<MVMServiceDeleteRequest> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 31);
+
+/**
+ * Response for Delete; an empty response means the cancellation was accepted.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceDeleteResponse
+ */
+export type MVMServiceDeleteResponse = Message<"fits.api.mvm.v1.MVMServiceDeleteResponse"> & {
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceDeleteResponse.
+ * Use `create(MVMServiceDeleteResponseSchema)` to create a new message.
+ */
+export const MVMServiceDeleteResponseSchema: GenMessage<MVMServiceDeleteResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 32);
+
+/**
+ * Request to order additional data disks for a MVM.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceAddDisksRequest
+ */
+export type MVMServiceAddDisksRequest = Message<"fits.api.mvm.v1.MVMServiceAddDisksRequest"> & {
+  /**
+   * UUID of the MVM to attach the disks to.
+   *
+   * @generated from field: string uuid = 1;
+   */
+  uuid: string;
+
+  /**
+   * UUID of the project the MVM belongs to.
+   *
+   * @generated from field: string project_uuid = 2;
+   */
+  projectUuid: string;
+
+  /**
+   * Customer reference for this operation, e.g. a ticket ID.
+   *
+   * @generated from field: string order_reference = 3;
+   */
+  orderReference: string;
+
+  /**
+   * Disks to add. Windows data disks must use a drive letter from F to Z,
+   * except R (the responses are validated less strictly, see is_drive_letter).
    *
    * @generated from field: repeated fits.api.mvm.v1.Disk disks = 4;
    */
@@ -1046,11 +1244,68 @@ export type MVMServiceAddDiskRequest = Message<"fits.api.mvm.v1.MVMServiceAddDis
 };
 
 /**
- * Describes the message fits.api.mvm.v1.MVMServiceAddDiskRequest.
- * Use `create(MVMServiceAddDiskRequestSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceAddDisksRequest.
+ * Use `create(MVMServiceAddDisksRequestSchema)` to create a new message.
  */
-export const MVMServiceAddDiskRequestSchema: GenMessage<MVMServiceAddDiskRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 28);
+export const MVMServiceAddDisksRequestSchema: GenMessage<MVMServiceAddDisksRequest> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 33);
+
+/**
+ * Response for AddDisks.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceAddDisksResponse
+ */
+export type MVMServiceAddDisksResponse = Message<"fits.api.mvm.v1.MVMServiceAddDisksResponse"> & {
+  /**
+   * UUIDs of the created disks; one per requested disk.
+   *
+   * @generated from field: repeated string uuids = 1;
+   */
+  uuids: string[];
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceAddDisksResponse.
+ * Use `create(MVMServiceAddDisksResponseSchema)` to create a new message.
+ */
+export const MVMServiceAddDisksResponseSchema: GenMessage<MVMServiceAddDisksResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 34);
+
+/**
+ * Request to validate an AddDisks without ordering anything.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceValidateAddDisksRequest
+ */
+export type MVMServiceValidateAddDisksRequest = Message<"fits.api.mvm.v1.MVMServiceValidateAddDisksRequest"> & {
+  /**
+   * The add disks request to validate.
+   *
+   * @generated from field: fits.api.mvm.v1.MVMServiceAddDisksRequest add_disks = 1;
+   */
+  addDisks?: MVMServiceAddDisksRequest | undefined;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceValidateAddDisksRequest.
+ * Use `create(MVMServiceValidateAddDisksRequestSchema)` to create a new message.
+ */
+export const MVMServiceValidateAddDisksRequestSchema: GenMessage<MVMServiceValidateAddDisksRequest> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 35);
+
+/**
+ * Response for ValidateAddDisks; violations are returned as an InvalidArgument error.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceValidateAddDisksResponse
+ */
+export type MVMServiceValidateAddDisksResponse = Message<"fits.api.mvm.v1.MVMServiceValidateAddDisksResponse"> & {
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceValidateAddDisksResponse.
+ * Use `create(MVMServiceValidateAddDisksResponseSchema)` to create a new message.
+ */
+export const MVMServiceValidateAddDisksResponseSchema: GenMessage<MVMServiceValidateAddDisksResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 36);
 
 /**
  * Request to change an existing disk; only size and auto-extend are
@@ -1081,25 +1336,25 @@ export type MVMServiceUpdateDiskRequest = Message<"fits.api.mvm.v1.MVMServiceUpd
   projectUuid: string;
 
   /**
-   * Customer reference for this operation.
+   * Customer reference for this operation, e.g. a ticket ID.
    *
-   * @generated from field: string order_number = 4;
+   * @generated from field: string order_reference = 4;
    */
-  orderNumber: string;
+  orderReference: string;
+
+  /**
+   * New size of the disk in GiB; unset keeps the current value.
+   *
+   * @generated from field: optional uint64 size_gb = 5;
+   */
+  sizeGb?: bigint | undefined;
 
   /**
    * New auto-extend behavior; unset keeps the current value.
    *
-   * @generated from field: optional bool auto_extend = 5;
+   * @generated from field: optional bool auto_extend = 6;
    */
   autoExtend?: boolean | undefined;
-
-  /**
-   * New size of the disk in GB; unset keeps the current value.
-   *
-   * @generated from field: optional uint64 size = 6;
-   */
-  size?: bigint | undefined;
 };
 
 /**
@@ -1107,7 +1362,58 @@ export type MVMServiceUpdateDiskRequest = Message<"fits.api.mvm.v1.MVMServiceUpd
  * Use `create(MVMServiceUpdateDiskRequestSchema)` to create a new message.
  */
 export const MVMServiceUpdateDiskRequestSchema: GenMessage<MVMServiceUpdateDiskRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 29);
+  messageDesc(file_fits_api_mvm_v1_mvm, 37);
+
+/**
+ * Response for UpdateDisk.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceUpdateDiskResponse
+ */
+export type MVMServiceUpdateDiskResponse = Message<"fits.api.mvm.v1.MVMServiceUpdateDiskResponse"> & {
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceUpdateDiskResponse.
+ * Use `create(MVMServiceUpdateDiskResponseSchema)` to create a new message.
+ */
+export const MVMServiceUpdateDiskResponseSchema: GenMessage<MVMServiceUpdateDiskResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 38);
+
+/**
+ * Request to validate an UpdateDisk without changing anything.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest
+ */
+export type MVMServiceValidateUpdateDiskRequest = Message<"fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest"> & {
+  /**
+   * The update disk request to validate.
+   *
+   * @generated from field: fits.api.mvm.v1.MVMServiceUpdateDiskRequest update_disk = 1;
+   */
+  updateDisk?: MVMServiceUpdateDiskRequest | undefined;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceValidateUpdateDiskRequest.
+ * Use `create(MVMServiceValidateUpdateDiskRequestSchema)` to create a new message.
+ */
+export const MVMServiceValidateUpdateDiskRequestSchema: GenMessage<MVMServiceValidateUpdateDiskRequest> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 39);
+
+/**
+ * Response for ValidateUpdateDisk; violations are returned as an InvalidArgument error.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse
+ */
+export type MVMServiceValidateUpdateDiskResponse = Message<"fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse"> & {
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceValidateUpdateDiskResponse.
+ * Use `create(MVMServiceValidateUpdateDiskResponseSchema)` to create a new message.
+ */
+export const MVMServiceValidateUpdateDiskResponseSchema: GenMessage<MVMServiceValidateUpdateDiskResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 40);
 
 /**
  * Request to cancel a data disk; OS and system disks are rejected by the
@@ -1138,11 +1444,11 @@ export type MVMServiceDeleteDiskRequest = Message<"fits.api.mvm.v1.MVMServiceDel
   projectUuid: string;
 
   /**
-   * Customer reference for this operation.
+   * Customer reference for this operation, e.g. a ticket ID.
    *
-   * @generated from field: string order_number = 4;
+   * @generated from field: string order_reference = 4;
    */
-  orderNumber: string;
+  orderReference: string;
 };
 
 /**
@@ -1150,69 +1456,31 @@ export type MVMServiceDeleteDiskRequest = Message<"fits.api.mvm.v1.MVMServiceDel
  * Use `create(MVMServiceDeleteDiskRequestSchema)` to create a new message.
  */
 export const MVMServiceDeleteDiskRequestSchema: GenMessage<MVMServiceDeleteDiskRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 30);
+  messageDesc(file_fits_api_mvm_v1_mvm, 41);
 
 /**
- * Response for AddNetworkInterface.
+ * Response for DeleteDisk.
  *
- * @generated from message fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse
+ * @generated from message fits.api.mvm.v1.MVMServiceDeleteDiskResponse
  */
-export type MVMServiceAddNetworkInterfaceResponse = Message<"fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse"> & {
+export type MVMServiceDeleteDiskResponse = Message<"fits.api.mvm.v1.MVMServiceDeleteDiskResponse"> & {
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceDeleteDiskResponse.
+ * Use `create(MVMServiceDeleteDiskResponseSchema)` to create a new message.
+ */
+export const MVMServiceDeleteDiskResponseSchema: GenMessage<MVMServiceDeleteDiskResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 42);
+
+/**
+ * Request to order an additional IP address for a MVM.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceAddIPAddressRequest
+ */
+export type MVMServiceAddIPAddressRequest = Message<"fits.api.mvm.v1.MVMServiceAddIPAddressRequest"> & {
   /**
-   * UUID of the created network interface.
-   *
-   * @generated from field: string uuid = 1;
-   */
-  uuid: string;
-};
-
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceAddNetworkInterfaceResponse.
- * Use `create(MVMServiceAddNetworkInterfaceResponseSchema)` to create a new message.
- */
-export const MVMServiceAddNetworkInterfaceResponseSchema: GenMessage<MVMServiceAddNetworkInterfaceResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 31);
-
-/**
- * Response for MoveNetworkInterface.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceResponse
- */
-export type MVMServiceMoveNetworkInterfaceResponse = Message<"fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceResponse"> & {
-};
-
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceResponse.
- * Use `create(MVMServiceMoveNetworkInterfaceResponseSchema)` to create a new message.
- */
-export const MVMServiceMoveNetworkInterfaceResponseSchema: GenMessage<MVMServiceMoveNetworkInterfaceResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 32);
-
-/**
- * Response for DeleteNetworkInterface.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceResponse
- */
-export type MVMServiceDeleteNetworkInterfaceResponse = Message<"fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceResponse"> & {
-};
-
-/**
- * Describes the message fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceResponse.
- * Use `create(MVMServiceDeleteNetworkInterfaceResponseSchema)` to create a new message.
- */
-export const MVMServiceDeleteNetworkInterfaceResponseSchema: GenMessage<MVMServiceDeleteNetworkInterfaceResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 33);
-
-/**
- * Request to order an additional network interface for a MVM.
- * Nulink treats interface and IP as a 1:1 relation; move and delete
- * operate on the interface_uuid.
- *
- * @generated from message fits.api.mvm.v1.MVMServiceAddNetworkInterfaceRequest
- */
-export type MVMServiceAddNetworkInterfaceRequest = Message<"fits.api.mvm.v1.MVMServiceAddNetworkInterfaceRequest"> & {
-  /**
-   * UUID of the MVM to attach the interface to.
+   * UUID of the MVM to attach the IP address to.
    *
    * @generated from field: string uuid = 1;
    */
@@ -1226,39 +1494,60 @@ export type MVMServiceAddNetworkInterfaceRequest = Message<"fits.api.mvm.v1.MVMS
   projectUuid: string;
 
   /**
-   * Customer reference for this operation.
+   * Customer reference for this operation, e.g. a ticket ID.
    *
-   * @generated from field: string order_number = 3;
+   * @generated from field: string order_reference = 3;
    */
-  orderNumber: string;
+  orderReference: string;
 };
 
 /**
- * Describes the message fits.api.mvm.v1.MVMServiceAddNetworkInterfaceRequest.
- * Use `create(MVMServiceAddNetworkInterfaceRequestSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceAddIPAddressRequest.
+ * Use `create(MVMServiceAddIPAddressRequestSchema)` to create a new message.
  */
-export const MVMServiceAddNetworkInterfaceRequestSchema: GenMessage<MVMServiceAddNetworkInterfaceRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 34);
+export const MVMServiceAddIPAddressRequestSchema: GenMessage<MVMServiceAddIPAddressRequest> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 43);
 
 /**
- * Request to move a network interface from one MVM to another.
+ * Response for AddIPAddress.
  *
- * @generated from message fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceRequest
+ * @generated from message fits.api.mvm.v1.MVMServiceAddIPAddressResponse
  */
-export type MVMServiceMoveNetworkInterfaceRequest = Message<"fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceRequest"> & {
+export type MVMServiceAddIPAddressResponse = Message<"fits.api.mvm.v1.MVMServiceAddIPAddressResponse"> & {
   /**
-   * UUID of the MVM the interface currently belongs to.
+   * UUID of the created IP address.
+   *
+   * @generated from field: string uuid = 1;
+   */
+  uuid: string;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceAddIPAddressResponse.
+ * Use `create(MVMServiceAddIPAddressResponseSchema)` to create a new message.
+ */
+export const MVMServiceAddIPAddressResponseSchema: GenMessage<MVMServiceAddIPAddressResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 44);
+
+/**
+ * Request to move an IP address from one MVM to another.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceMoveIPAddressRequest
+ */
+export type MVMServiceMoveIPAddressRequest = Message<"fits.api.mvm.v1.MVMServiceMoveIPAddressRequest"> & {
+  /**
+   * UUID of the MVM the IP address currently belongs to.
    *
    * @generated from field: string uuid = 1;
    */
   uuid: string;
 
   /**
-   * UUID of the network interface holding the IP.
+   * UUID of the IP address to move.
    *
-   * @generated from field: string interface_uuid = 2;
+   * @generated from field: string ip_address_uuid = 2;
    */
-  interfaceUuid: string;
+  ipAddressUuid: string;
 
   /**
    * UUID of the project the MVM belongs to.
@@ -1268,14 +1557,14 @@ export type MVMServiceMoveNetworkInterfaceRequest = Message<"fits.api.mvm.v1.MVM
   projectUuid: string;
 
   /**
-   * Customer reference for this operation.
+   * Customer reference for this operation, e.g. a ticket ID.
    *
-   * @generated from field: string order_number = 4;
+   * @generated from field: string order_reference = 4;
    */
-  orderNumber: string;
+  orderReference: string;
 
   /**
-   * UUID of the MVM to move the interface to.
+   * UUID of the MVM to move the IP address to.
    *
    * @generated from field: string target_mvm_uuid = 5;
    */
@@ -1283,31 +1572,46 @@ export type MVMServiceMoveNetworkInterfaceRequest = Message<"fits.api.mvm.v1.MVM
 };
 
 /**
- * Describes the message fits.api.mvm.v1.MVMServiceMoveNetworkInterfaceRequest.
- * Use `create(MVMServiceMoveNetworkInterfaceRequestSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceMoveIPAddressRequest.
+ * Use `create(MVMServiceMoveIPAddressRequestSchema)` to create a new message.
  */
-export const MVMServiceMoveNetworkInterfaceRequestSchema: GenMessage<MVMServiceMoveNetworkInterfaceRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 35);
+export const MVMServiceMoveIPAddressRequestSchema: GenMessage<MVMServiceMoveIPAddressRequest> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 45);
 
 /**
- * Request to delete a network interface from a MVM.
+ * Response for MoveIPAddress.
  *
- * @generated from message fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceRequest
+ * @generated from message fits.api.mvm.v1.MVMServiceMoveIPAddressResponse
  */
-export type MVMServiceDeleteNetworkInterfaceRequest = Message<"fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceRequest"> & {
+export type MVMServiceMoveIPAddressResponse = Message<"fits.api.mvm.v1.MVMServiceMoveIPAddressResponse"> & {
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceMoveIPAddressResponse.
+ * Use `create(MVMServiceMoveIPAddressResponseSchema)` to create a new message.
+ */
+export const MVMServiceMoveIPAddressResponseSchema: GenMessage<MVMServiceMoveIPAddressResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 46);
+
+/**
+ * Request to delete an IP address from a MVM.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceDeleteIPAddressRequest
+ */
+export type MVMServiceDeleteIPAddressRequest = Message<"fits.api.mvm.v1.MVMServiceDeleteIPAddressRequest"> & {
   /**
-   * UUID of the MVM the interface belongs to.
+   * UUID of the MVM the IP address belongs to.
    *
    * @generated from field: string uuid = 1;
    */
   uuid: string;
 
   /**
-   * UUID of the network interface holding the IP.
+   * UUID of the IP address to delete.
    *
-   * @generated from field: string interface_uuid = 2;
+   * @generated from field: string ip_address_uuid = 2;
    */
-  interfaceUuid: string;
+  ipAddressUuid: string;
 
   /**
    * UUID of the project the MVM belongs to.
@@ -1317,55 +1621,371 @@ export type MVMServiceDeleteNetworkInterfaceRequest = Message<"fits.api.mvm.v1.M
   projectUuid: string;
 
   /**
-   * Order reference for this operation.
+   * Customer reference for this operation, e.g. a ticket ID.
    *
-   * @generated from field: string order_number = 4;
+   * @generated from field: string order_reference = 4;
    */
-  orderNumber: string;
+  orderReference: string;
 };
 
 /**
- * Describes the message fits.api.mvm.v1.MVMServiceDeleteNetworkInterfaceRequest.
- * Use `create(MVMServiceDeleteNetworkInterfaceRequestSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceDeleteIPAddressRequest.
+ * Use `create(MVMServiceDeleteIPAddressRequestSchema)` to create a new message.
  */
-export const MVMServiceDeleteNetworkInterfaceRequestSchema: GenMessage<MVMServiceDeleteNetworkInterfaceRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 36);
+export const MVMServiceDeleteIPAddressRequestSchema: GenMessage<MVMServiceDeleteIPAddressRequest> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 47);
 
 /**
- * Request to validate an AddNetworkInterface without ordering anything.
+ * Response for DeleteIPAddress.
  *
- * @generated from message fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceRequest
+ * @generated from message fits.api.mvm.v1.MVMServiceDeleteIPAddressResponse
  */
-export type MVMServiceValidateAddNetworkInterfaceRequest = Message<"fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceRequest"> & {
+export type MVMServiceDeleteIPAddressResponse = Message<"fits.api.mvm.v1.MVMServiceDeleteIPAddressResponse"> & {
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceDeleteIPAddressResponse.
+ * Use `create(MVMServiceDeleteIPAddressResponseSchema)` to create a new message.
+ */
+export const MVMServiceDeleteIPAddressResponseSchema: GenMessage<MVMServiceDeleteIPAddressResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 48);
+
+/**
+ * Request to restart a MVM.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceRestartRequest
+ */
+export type MVMServiceRestartRequest = Message<"fits.api.mvm.v1.MVMServiceRestartRequest"> & {
   /**
-   * The add network interface request to validate.
+   * UUID of the MVM to restart.
    *
-   * @generated from field: fits.api.mvm.v1.MVMServiceAddNetworkInterfaceRequest add_network_interface = 1;
+   * @generated from field: string uuid = 1;
    */
-  addNetworkInterface?: MVMServiceAddNetworkInterfaceRequest | undefined;
+  uuid: string;
+
+  /**
+   * UUID of the project the MVM belongs to.
+   *
+   * @generated from field: string project_uuid = 2;
+   */
+  projectUuid: string;
+
+  /**
+   * Customer reference for this operation, e.g. a ticket ID.
+   *
+   * @generated from field: string order_reference = 3;
+   */
+  orderReference: string;
 };
 
 /**
- * Describes the message fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceRequest.
- * Use `create(MVMServiceValidateAddNetworkInterfaceRequestSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceRestartRequest.
+ * Use `create(MVMServiceRestartRequestSchema)` to create a new message.
  */
-export const MVMServiceValidateAddNetworkInterfaceRequestSchema: GenMessage<MVMServiceValidateAddNetworkInterfaceRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 37);
+export const MVMServiceRestartRequestSchema: GenMessage<MVMServiceRestartRequest> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 49);
 
 /**
- * Response for ValidateAddNetworkInterface; violations are returned as an InvalidArgument error.
+ * Response for Restart; an empty response means the restart was accepted.
+ * The restart is applied asynchronously; poll Get until the state settles.
  *
- * @generated from message fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceResponse
+ * @generated from message fits.api.mvm.v1.MVMServiceRestartResponse
  */
-export type MVMServiceValidateAddNetworkInterfaceResponse = Message<"fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceResponse"> & {
+export type MVMServiceRestartResponse = Message<"fits.api.mvm.v1.MVMServiceRestartResponse"> & {
 };
 
 /**
- * Describes the message fits.api.mvm.v1.MVMServiceValidateAddNetworkInterfaceResponse.
- * Use `create(MVMServiceValidateAddNetworkInterfaceResponseSchema)` to create a new message.
+ * Describes the message fits.api.mvm.v1.MVMServiceRestartResponse.
+ * Use `create(MVMServiceRestartResponseSchema)` to create a new message.
  */
-export const MVMServiceValidateAddNetworkInterfaceResponseSchema: GenMessage<MVMServiceValidateAddNetworkInterfaceResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_mvm_v1_mvm, 38);
+export const MVMServiceRestartResponseSchema: GenMessage<MVMServiceRestartResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 50);
+
+/**
+ * Request to reinstall the operating system of a MVM.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceReinstallRequest
+ */
+export type MVMServiceReinstallRequest = Message<"fits.api.mvm.v1.MVMServiceReinstallRequest"> & {
+  /**
+   * UUID of the MVM to reinstall.
+   *
+   * @generated from field: string uuid = 1;
+   */
+  uuid: string;
+
+  /**
+   * UUID of the project the MVM belongs to.
+   *
+   * @generated from field: string project_uuid = 2;
+   */
+  projectUuid: string;
+
+  /**
+   * Customer reference for this operation, e.g. a ticket ID.
+   *
+   * @generated from field: string order_reference = 3;
+   */
+  orderReference: string;
+
+  /**
+   * UUID of the operating system image to install.
+   *
+   * @generated from field: optional string os_uuid = 4;
+   */
+  osUuid?: string | undefined;
+
+  /**
+   * Backup configuration after the reinstall; unset keeps the current value.
+   *
+   * @generated from field: optional fits.api.mvm.v1.Backup backup = 5;
+   */
+  backup?: Backup | undefined;
+
+  /**
+   * Encryption configuration after the reinstall; unset keeps the current value.
+   *
+   * @generated from field: optional fits.api.mvm.v1.Encryption encryption = 6;
+   */
+  encryption?: Encryption | undefined;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceReinstallRequest.
+ * Use `create(MVMServiceReinstallRequestSchema)` to create a new message.
+ */
+export const MVMServiceReinstallRequestSchema: GenMessage<MVMServiceReinstallRequest> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 51);
+
+/**
+ * Response for Reinstall; an empty response means the reinstall was accepted.
+ * The reinstall is applied asynchronously; poll Get until the state settles.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceReinstallResponse
+ */
+export type MVMServiceReinstallResponse = Message<"fits.api.mvm.v1.MVMServiceReinstallResponse"> & {
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceReinstallResponse.
+ * Use `create(MVMServiceReinstallResponseSchema)` to create a new message.
+ */
+export const MVMServiceReinstallResponseSchema: GenMessage<MVMServiceReinstallResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 52);
+
+/**
+ * Request to validate a Reinstall without reinstalling anything.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceValidateReinstallRequest
+ */
+export type MVMServiceValidateReinstallRequest = Message<"fits.api.mvm.v1.MVMServiceValidateReinstallRequest"> & {
+  /**
+   * The reinstall request to validate.
+   *
+   * @generated from field: fits.api.mvm.v1.MVMServiceReinstallRequest reinstall = 1;
+   */
+  reinstall?: MVMServiceReinstallRequest | undefined;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceValidateReinstallRequest.
+ * Use `create(MVMServiceValidateReinstallRequestSchema)` to create a new message.
+ */
+export const MVMServiceValidateReinstallRequestSchema: GenMessage<MVMServiceValidateReinstallRequest> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 53);
+
+/**
+ * Response for ValidateReinstall; violations are returned as an InvalidArgument error.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceValidateReinstallResponse
+ */
+export type MVMServiceValidateReinstallResponse = Message<"fits.api.mvm.v1.MVMServiceValidateReinstallResponse"> & {
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceValidateReinstallResponse.
+ * Use `create(MVMServiceValidateReinstallResponseSchema)` to create a new message.
+ */
+export const MVMServiceValidateReinstallResponseSchema: GenMessage<MVMServiceValidateReinstallResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 54);
+
+/**
+ * Request to create a snapshot of a MVM.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceAddSnapshotRequest
+ */
+export type MVMServiceAddSnapshotRequest = Message<"fits.api.mvm.v1.MVMServiceAddSnapshotRequest"> & {
+  /**
+   * UUID of the MVM to create the snapshot for.
+   *
+   * @generated from field: string uuid = 1;
+   */
+  uuid: string;
+
+  /**
+   * UUID of the project the MVM belongs to.
+   *
+   * @generated from field: string project_uuid = 2;
+   */
+  projectUuid: string;
+
+  /**
+   * Customer reference for this operation, e.g. a ticket ID.
+   *
+   * @generated from field: string order_reference = 3;
+   */
+  orderReference: string;
+
+  /**
+   * Name of the snapshot; alphanumeric only.
+   *
+   * @generated from field: string name = 4;
+   */
+  name: string;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceAddSnapshotRequest.
+ * Use `create(MVMServiceAddSnapshotRequestSchema)` to create a new message.
+ */
+export const MVMServiceAddSnapshotRequestSchema: GenMessage<MVMServiceAddSnapshotRequest> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 55);
+
+/**
+ * Response for AddSnapshot.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceAddSnapshotResponse
+ */
+export type MVMServiceAddSnapshotResponse = Message<"fits.api.mvm.v1.MVMServiceAddSnapshotResponse"> & {
+  /**
+   * UUID of the created snapshot.
+   *
+   * @generated from field: string uuid = 1;
+   */
+  uuid: string;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceAddSnapshotResponse.
+ * Use `create(MVMServiceAddSnapshotResponseSchema)` to create a new message.
+ */
+export const MVMServiceAddSnapshotResponseSchema: GenMessage<MVMServiceAddSnapshotResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 56);
+
+/**
+ * Request to delete a snapshot of a MVM.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceDeleteSnapshotRequest
+ */
+export type MVMServiceDeleteSnapshotRequest = Message<"fits.api.mvm.v1.MVMServiceDeleteSnapshotRequest"> & {
+  /**
+   * UUID of the MVM the snapshot belongs to.
+   *
+   * @generated from field: string uuid = 1;
+   */
+  uuid: string;
+
+  /**
+   * UUID of the snapshot to delete.
+   *
+   * @generated from field: string snapshot_uuid = 2;
+   */
+  snapshotUuid: string;
+
+  /**
+   * UUID of the project the MVM belongs to.
+   *
+   * @generated from field: string project_uuid = 3;
+   */
+  projectUuid: string;
+
+  /**
+   * Customer reference for this operation, e.g. a ticket ID.
+   *
+   * @generated from field: string order_reference = 4;
+   */
+  orderReference: string;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceDeleteSnapshotRequest.
+ * Use `create(MVMServiceDeleteSnapshotRequestSchema)` to create a new message.
+ */
+export const MVMServiceDeleteSnapshotRequestSchema: GenMessage<MVMServiceDeleteSnapshotRequest> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 57);
+
+/**
+ * Response for DeleteSnapshot; an empty response means the deletion was accepted.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceDeleteSnapshotResponse
+ */
+export type MVMServiceDeleteSnapshotResponse = Message<"fits.api.mvm.v1.MVMServiceDeleteSnapshotResponse"> & {
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceDeleteSnapshotResponse.
+ * Use `create(MVMServiceDeleteSnapshotResponseSchema)` to create a new message.
+ */
+export const MVMServiceDeleteSnapshotResponseSchema: GenMessage<MVMServiceDeleteSnapshotResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 58);
+
+/**
+ * Request to move a MVM from one datacenter to another.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceMoveRequest
+ */
+export type MVMServiceMoveRequest = Message<"fits.api.mvm.v1.MVMServiceMoveRequest"> & {
+  /**
+   * UUID of the MVM to move.
+   *
+   * @generated from field: string uuid = 1;
+   */
+  uuid: string;
+
+  /**
+   * UUID of the project the MVM belongs to.
+   *
+   * @generated from field: string project_uuid = 2;
+   */
+  projectUuid: string;
+
+  /**
+   * Customer reference for this operation, e.g. a ticket ID.
+   *
+   * @generated from field: string order_reference = 3;
+   */
+  orderReference: string;
+
+  /**
+   * If not provided, another datacenter within the same location will be chosen automatically.
+   *
+   * @generated from field: optional string location_uuid = 4;
+   */
+  locationUuid?: string | undefined;
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceMoveRequest.
+ * Use `create(MVMServiceMoveRequestSchema)` to create a new message.
+ */
+export const MVMServiceMoveRequestSchema: GenMessage<MVMServiceMoveRequest> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 59);
+
+/**
+ * Response for Move; an empty response means the move was accepted.
+ * The move is applied asynchronously; poll Get until the state settles.
+ *
+ * @generated from message fits.api.mvm.v1.MVMServiceMoveResponse
+ */
+export type MVMServiceMoveResponse = Message<"fits.api.mvm.v1.MVMServiceMoveResponse"> & {
+};
+
+/**
+ * Describes the message fits.api.mvm.v1.MVMServiceMoveResponse.
+ * Use `create(MVMServiceMoveResponseSchema)` to create a new message.
+ */
+export const MVMServiceMoveResponseSchema: GenMessage<MVMServiceMoveResponse> = /*@__PURE__*/
+  messageDesc(file_fits_api_mvm_v1_mvm, 60);
 
 /**
  * Availability specifies the availability level of a MVM; higher value = higher availability.
@@ -1526,7 +2146,7 @@ export const StateSchema: GenEnum<State> = /*@__PURE__*/
  *     deletable.
  *   - DATA: fully controllable (letter/mount point, size, auto-extend)
  *     and deletable; may be included at creation or added later via
- *     AddDisk.
+ *     AddDisks.
  *
  * Whether auto-extend is supported for OS and SYSTEM disks is not yet
  * known; only DATA disks are documented as supporting it.
@@ -1586,16 +2206,6 @@ export const DiskTypeSchema: GenEnum<DiskType> = /*@__PURE__*/
  */
 export const MVMService: GenService<{
   /**
-   * Returns the MVM with the specified UUID.
-   *
-   * @generated from rpc fits.api.mvm.v1.MVMService.Get
-   */
-  get: {
-    methodKind: "unary";
-    input: typeof MVMServiceGetRequestSchema;
-    output: typeof MVMServiceGetResponseSchema;
-  },
-  /**
    * Creates a new MVM.
    *
    * @generated from rpc fits.api.mvm.v1.MVMService.Create
@@ -1604,6 +2214,26 @@ export const MVMService: GenService<{
     methodKind: "unary";
     input: typeof MVMServiceCreateRequestSchema;
     output: typeof MVMServiceCreateResponseSchema;
+  },
+  /**
+   * Validates a MVM create request without creating anything (dry-run).
+   *
+   * @generated from rpc fits.api.mvm.v1.MVMService.ValidateCreate
+   */
+  validateCreate: {
+    methodKind: "unary";
+    input: typeof MVMServiceValidateCreateRequestSchema;
+    output: typeof MVMServiceValidateCreateResponseSchema;
+  },
+  /**
+   * Returns the MVM with the specified UUID.
+   *
+   * @generated from rpc fits.api.mvm.v1.MVMService.Get
+   */
+  get: {
+    methodKind: "unary";
+    input: typeof MVMServiceGetRequestSchema;
+    output: typeof MVMServiceGetResponseSchema;
   },
   /**
    * Returns the list of all MVMs.
@@ -1616,6 +2246,46 @@ export const MVMService: GenService<{
     output: typeof MVMServiceListResponseSchema;
   },
   /**
+   * Updates a MVM.
+   *
+   * @generated from rpc fits.api.mvm.v1.MVMService.Update
+   */
+  update: {
+    methodKind: "unary";
+    input: typeof MVMServiceUpdateRequestSchema;
+    output: typeof MVMServiceUpdateResponseSchema;
+  },
+  /**
+   * Validates an Update request without changing anything.
+   *
+   * @generated from rpc fits.api.mvm.v1.MVMService.ValidateUpdate
+   */
+  validateUpdate: {
+    methodKind: "unary";
+    input: typeof MVMServiceValidateUpdateRequestSchema;
+    output: typeof MVMServiceValidateUpdateResponseSchema;
+  },
+  /**
+   * Deprecated: Updates the service class of a MVM.
+   *
+   * @generated from rpc fits.api.mvm.v1.MVMService.UpdateServiceClass
+   */
+  updateServiceClass: {
+    methodKind: "unary";
+    input: typeof MVMServiceUpdateServiceClassRequestSchema;
+    output: typeof MVMServiceUpdateServiceClassResponseSchema;
+  },
+  /**
+   * Deprecated: Validates an UpdateServiceClass request without changing anything.
+   *
+   * @generated from rpc fits.api.mvm.v1.MVMService.ValidateUpdateServiceClass
+   */
+  validateUpdateServiceClass: {
+    methodKind: "unary";
+    input: typeof MVMServiceValidateUpdateServiceClassRequestSchema;
+    output: typeof MVMServiceValidateUpdateServiceClassResponseSchema;
+  },
+  /**
    * Deletes a MVM.
    *
    * @generated from rpc fits.api.mvm.v1.MVMService.Delete
@@ -1626,15 +2296,25 @@ export const MVMService: GenService<{
     output: typeof MVMServiceDeleteResponseSchema;
   },
   /**
-   * Orders an additional data disk for a MVM. System disks are ordered at
+   * Orders additional data disks for a MVM. System disks are ordered at
    * MVM creation and cannot be added later.
    *
-   * @generated from rpc fits.api.mvm.v1.MVMService.AddDisk
+   * @generated from rpc fits.api.mvm.v1.MVMService.AddDisks
    */
-  addDisk: {
+  addDisks: {
     methodKind: "unary";
-    input: typeof MVMServiceAddDiskRequestSchema;
-    output: typeof MVMServiceAddDiskResponseSchema;
+    input: typeof MVMServiceAddDisksRequestSchema;
+    output: typeof MVMServiceAddDisksResponseSchema;
+  },
+  /**
+   * Validates an AddDisks request without ordering anything.
+   *
+   * @generated from rpc fits.api.mvm.v1.MVMService.ValidateAddDisks
+   */
+  validateAddDisks: {
+    methodKind: "unary";
+    input: typeof MVMServiceValidateAddDisksRequestSchema;
+    output: typeof MVMServiceValidateAddDisksResponseSchema;
   },
   /**
    * Changes the size or auto-extend behavior of an existing disk; see
@@ -1648,67 +2328,6 @@ export const MVMService: GenService<{
     output: typeof MVMServiceUpdateDiskResponseSchema;
   },
   /**
-   * Cancels a data disk. OS and system disks cannot be deleted.
-   *
-   * @generated from rpc fits.api.mvm.v1.MVMService.DeleteDisk
-   */
-  deleteDisk: {
-    methodKind: "unary";
-    input: typeof MVMServiceDeleteDiskRequestSchema;
-    output: typeof MVMServiceDeleteDiskResponseSchema;
-  },
-  /**
-   * Orders an additional network interface for a MVM.
-   *
-   * @generated from rpc fits.api.mvm.v1.MVMService.AddNetworkInterface
-   */
-  addNetworkInterface: {
-    methodKind: "unary";
-    input: typeof MVMServiceAddNetworkInterfaceRequestSchema;
-    output: typeof MVMServiceAddNetworkInterfaceResponseSchema;
-  },
-  /**
-   * Moves a network interface from one MVM to another.
-   *
-   * @generated from rpc fits.api.mvm.v1.MVMService.MoveNetworkInterface
-   */
-  moveNetworkInterface: {
-    methodKind: "unary";
-    input: typeof MVMServiceMoveNetworkInterfaceRequestSchema;
-    output: typeof MVMServiceMoveNetworkInterfaceResponseSchema;
-  },
-  /**
-   * Deletes a network interface from a MVM.
-   *
-   * @generated from rpc fits.api.mvm.v1.MVMService.DeleteNetworkInterface
-   */
-  deleteNetworkInterface: {
-    methodKind: "unary";
-    input: typeof MVMServiceDeleteNetworkInterfaceRequestSchema;
-    output: typeof MVMServiceDeleteNetworkInterfaceResponseSchema;
-  },
-  /**
-   * Validates a MVM create request without creating anything. Intended for
-   * form pre-checks; the create endpoint validates again before executing.
-   *
-   * @generated from rpc fits.api.mvm.v1.MVMService.ValidateCreate
-   */
-  validateCreate: {
-    methodKind: "unary";
-    input: typeof MVMServiceValidateCreateRequestSchema;
-    output: typeof MVMServiceValidateCreateResponseSchema;
-  },
-  /**
-   * Validates an AddDisk request without ordering anything.
-   *
-   * @generated from rpc fits.api.mvm.v1.MVMService.ValidateAddDisk
-   */
-  validateAddDisk: {
-    methodKind: "unary";
-    input: typeof MVMServiceValidateAddDiskRequestSchema;
-    output: typeof MVMServiceValidateAddDiskResponseSchema;
-  },
-  /**
    * Validates an UpdateDisk request without changing anything.
    *
    * @generated from rpc fits.api.mvm.v1.MVMService.ValidateUpdateDisk
@@ -1719,14 +2338,104 @@ export const MVMService: GenService<{
     output: typeof MVMServiceValidateUpdateDiskResponseSchema;
   },
   /**
-   * Validates an AddNetworkInterface request without ordering anything.
+   * Cancels a data disk. OS and system disks cannot be deleted.
    *
-   * @generated from rpc fits.api.mvm.v1.MVMService.ValidateAddNetworkInterface
+   * @generated from rpc fits.api.mvm.v1.MVMService.DeleteDisk
    */
-  validateAddNetworkInterface: {
+  deleteDisk: {
     methodKind: "unary";
-    input: typeof MVMServiceValidateAddNetworkInterfaceRequestSchema;
-    output: typeof MVMServiceValidateAddNetworkInterfaceResponseSchema;
+    input: typeof MVMServiceDeleteDiskRequestSchema;
+    output: typeof MVMServiceDeleteDiskResponseSchema;
+  },
+  /**
+   * Orders an additional IP address for a MVM.
+   *
+   * @generated from rpc fits.api.mvm.v1.MVMService.AddIPAddress
+   */
+  addIPAddress: {
+    methodKind: "unary";
+    input: typeof MVMServiceAddIPAddressRequestSchema;
+    output: typeof MVMServiceAddIPAddressResponseSchema;
+  },
+  /**
+   * Moves an IP address from one MVM to another.
+   *
+   * @generated from rpc fits.api.mvm.v1.MVMService.MoveIPAddress
+   */
+  moveIPAddress: {
+    methodKind: "unary";
+    input: typeof MVMServiceMoveIPAddressRequestSchema;
+    output: typeof MVMServiceMoveIPAddressResponseSchema;
+  },
+  /**
+   * Deletes an IP address from a MVM.
+   *
+   * @generated from rpc fits.api.mvm.v1.MVMService.DeleteIPAddress
+   */
+  deleteIPAddress: {
+    methodKind: "unary";
+    input: typeof MVMServiceDeleteIPAddressRequestSchema;
+    output: typeof MVMServiceDeleteIPAddressResponseSchema;
+  },
+  /**
+   * Restarts a MVM.
+   *
+   * @generated from rpc fits.api.mvm.v1.MVMService.Restart
+   */
+  restart: {
+    methodKind: "unary";
+    input: typeof MVMServiceRestartRequestSchema;
+    output: typeof MVMServiceRestartResponseSchema;
+  },
+  /**
+   * Reinstalls the operating system of a MVM.
+   *
+   * @generated from rpc fits.api.mvm.v1.MVMService.Reinstall
+   */
+  reinstall: {
+    methodKind: "unary";
+    input: typeof MVMServiceReinstallRequestSchema;
+    output: typeof MVMServiceReinstallResponseSchema;
+  },
+  /**
+   * Validates a Reinstall request without reinstalling anything.
+   *
+   * @generated from rpc fits.api.mvm.v1.MVMService.ValidateReinstall
+   */
+  validateReinstall: {
+    methodKind: "unary";
+    input: typeof MVMServiceValidateReinstallRequestSchema;
+    output: typeof MVMServiceValidateReinstallResponseSchema;
+  },
+  /**
+   * Creates a snapshot of a MVM.
+   *
+   * @generated from rpc fits.api.mvm.v1.MVMService.AddSnapshot
+   */
+  addSnapshot: {
+    methodKind: "unary";
+    input: typeof MVMServiceAddSnapshotRequestSchema;
+    output: typeof MVMServiceAddSnapshotResponseSchema;
+  },
+  /**
+   * Deletes a snapshot of a MVM.
+   *
+   * @generated from rpc fits.api.mvm.v1.MVMService.DeleteSnapshot
+   */
+  deleteSnapshot: {
+    methodKind: "unary";
+    input: typeof MVMServiceDeleteSnapshotRequestSchema;
+    output: typeof MVMServiceDeleteSnapshotResponseSchema;
+  },
+  /**
+   * Moves a MVM from one datacenter to another.
+   *
+   * @generated from rpc fits.api.mvm.v1.MVMService.Move
+   */
+  move: {
+    methodKind: "unary";
+    input: typeof MVMServiceMoveRequestSchema;
+    output: typeof MVMServiceMoveResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_fits_api_mvm_v1_mvm, 0);

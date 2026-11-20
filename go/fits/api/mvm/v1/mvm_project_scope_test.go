@@ -27,8 +27,8 @@ func TestValidateRequestsExposeProjectUuid(t *testing.T) {
 		},
 		{
 			name: "validate add disk forwards nested project",
-			req: &MVMServiceValidateAddDiskRequest{
-				AddDisk: &MVMServiceAddDiskRequest{ProjectUuid: project},
+			req: &MVMServiceValidateAddDisksRequest{
+				AddDisks: &MVMServiceAddDisksRequest{ProjectUuid: project},
 			},
 			want: project,
 		},
@@ -40,9 +40,23 @@ func TestValidateRequestsExposeProjectUuid(t *testing.T) {
 			want: project,
 		},
 		{
-			name: "validate add network interface forwards nested project",
-			req: &MVMServiceValidateAddNetworkInterfaceRequest{
-				AddNetworkInterface: &MVMServiceAddNetworkInterfaceRequest{ProjectUuid: project},
+			name: "validate reinstall forwards nested project",
+			req: &MVMServiceValidateReinstallRequest{
+				Reinstall: &MVMServiceReinstallRequest{ProjectUuid: project},
+			},
+			want: project,
+		},
+		{
+			name: "validate update forwards nested project",
+			req: &MVMServiceValidateUpdateRequest{
+				Update: &MVMServiceUpdateRequest{ProjectUuid: project},
+			},
+			want: project,
+		},
+		{
+			name: "validate update service class forwards nested project",
+			req: &MVMServiceValidateUpdateServiceClassRequest{
+				UpdateServiceClass: &MVMServiceUpdateServiceClassRequest{ProjectUuid: project},
 			},
 			want: project,
 		},
@@ -64,17 +78,21 @@ func TestValidateRequestsExposeProjectUuid(t *testing.T) {
 
 func TestValidateRequestsNilReceiver(t *testing.T) {
 	var (
-		create     *MVMServiceValidateCreateRequest
-		addDisk    *MVMServiceValidateAddDiskRequest
-		updateDisk *MVMServiceValidateUpdateDiskRequest
-		addNIC     *MVMServiceValidateAddNetworkInterfaceRequest
+		create             *MVMServiceValidateCreateRequest
+		addDisks           *MVMServiceValidateAddDisksRequest
+		updateDisk         *MVMServiceValidateUpdateDiskRequest
+		reinstall          *MVMServiceValidateReinstallRequest
+		update             *MVMServiceValidateUpdateRequest
+		updateServiceClass *MVMServiceValidateUpdateServiceClassRequest
 	)
 	// A nil receiver must not panic; it simply has no project.
 	for _, got := range []string{
 		create.GetProjectUuid(),
-		addDisk.GetProjectUuid(),
+		addDisks.GetProjectUuid(),
 		updateDisk.GetProjectUuid(),
-		addNIC.GetProjectUuid(),
+		reinstall.GetProjectUuid(),
+		update.GetProjectUuid(),
+		updateServiceClass.GetProjectUuid(),
 	} {
 		if got != "" {
 			t.Errorf("GetProjectUuid() on nil receiver = %q, want empty", got)

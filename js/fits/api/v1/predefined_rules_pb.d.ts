@@ -5,11 +5,11 @@ import type { MapRules, RepeatedRules, StringRules } from "../../../buf/validate
  */
 export declare const file_fits_api_v1_predefined_rules: GenFile;
 /**
- * Macaddress returns true if the given string is a valid macadress
+ * MacAddress returns true if the given string is a valid mac address
  *
- * @generated from extension: optional bool macaddress = 80048951;
+ * @generated from extension: optional bool mac_address = 80048951;
  */
-export declare const macaddress: GenExtension<StringRules, boolean>;
+export declare const mac_address: GenExtension<StringRules, boolean>;
 /**
  * IsName returns true if name field satisfies our requirements
  *
@@ -64,12 +64,6 @@ export declare const is_ipv4_cidr: GenExtension<StringRules, boolean>;
  * @generated from extension: optional bool is_phone = 80048961;
  */
 export declare const is_phone: GenExtension<StringRules, boolean>;
-/**
- * IsNameCode validates if the given string is a 4-character code consisting of digits and letters.
- *
- * @generated from extension: optional bool is_name_code = 80048964;
- */
-export declare const is_name_code: GenExtension<StringRules, boolean>;
 /**
  * IsTenantSubjectPermission returns true if name field satisfies our requirements.
  *

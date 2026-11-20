@@ -1,4 +1,5 @@
 from buf.validate import validate_pb2 as _validate_pb2
+from fits.api.mvm.v1 import stage_pb2 as _stage_pb2
 from fits.api.v1 import common_pb2 as _common_pb2
 from fits.api.v1 import predefined_rules_pb2 as _predefined_rules_pb2
 from google.protobuf.internal import containers as _containers
@@ -10,13 +11,14 @@ from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class VLAN(_message.Message):
-    __slots__ = ("uuid", "vlan_id", "subnet_title", "subnet_cidr", "location_uuid", "tenant", "domain_uuid")
+    __slots__ = ("uuid", "vlan_id", "subnet_title", "subnet_cidr", "location_uuid", "tenant", "stage", "domain_uuid")
     UUID_FIELD_NUMBER: _ClassVar[int]
     VLAN_ID_FIELD_NUMBER: _ClassVar[int]
     SUBNET_TITLE_FIELD_NUMBER: _ClassVar[int]
     SUBNET_CIDR_FIELD_NUMBER: _ClassVar[int]
     LOCATION_UUID_FIELD_NUMBER: _ClassVar[int]
     TENANT_FIELD_NUMBER: _ClassVar[int]
+    STAGE_FIELD_NUMBER: _ClassVar[int]
     DOMAIN_UUID_FIELD_NUMBER: _ClassVar[int]
     uuid: str
     vlan_id: int
@@ -24,14 +26,17 @@ class VLAN(_message.Message):
     subnet_cidr: str
     location_uuid: str
     tenant: str
+    stage: _stage_pb2.Stage
     domain_uuid: str
-    def __init__(self, uuid: _Optional[str] = ..., vlan_id: _Optional[int] = ..., subnet_title: _Optional[str] = ..., subnet_cidr: _Optional[str] = ..., location_uuid: _Optional[str] = ..., tenant: _Optional[str] = ..., domain_uuid: _Optional[str] = ...) -> None: ...
+    def __init__(self, uuid: _Optional[str] = ..., vlan_id: _Optional[int] = ..., subnet_title: _Optional[str] = ..., subnet_cidr: _Optional[str] = ..., location_uuid: _Optional[str] = ..., tenant: _Optional[str] = ..., stage: _Optional[_Union[_stage_pb2.Stage, _Mapping]] = ..., domain_uuid: _Optional[str] = ...) -> None: ...
 
 class VLANQuery(_message.Message):
-    __slots__ = ("domain_uuid",)
+    __slots__ = ("domain_uuid", "stage_uuid")
     DOMAIN_UUID_FIELD_NUMBER: _ClassVar[int]
+    STAGE_UUID_FIELD_NUMBER: _ClassVar[int]
     domain_uuid: str
-    def __init__(self, domain_uuid: _Optional[str] = ...) -> None: ...
+    stage_uuid: str
+    def __init__(self, domain_uuid: _Optional[str] = ..., stage_uuid: _Optional[str] = ...) -> None: ...
 
 class VLANServiceListRequest(_message.Message):
     __slots__ = ("tenant", "location_uuid", "query")
