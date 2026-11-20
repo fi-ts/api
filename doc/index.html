@@ -303,15 +303,15 @@
                 </li>
               
                 <li>
-                  <a href="#fits.api.v1.OperatorRole"><span class="badge">E</span>OperatorRole</a>
-                </li>
-              
-                <li>
                   <a href="#fits.api.v1.OptimisticLockingStrategy"><span class="badge">E</span>OptimisticLockingStrategy</a>
                 </li>
               
                 <li>
                   <a href="#fits.api.v1.ProjectRole"><span class="badge">E</span>ProjectRole</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.RoleContext"><span class="badge">E</span>RoleContext</a>
                 </li>
               
                 <li>
@@ -807,6 +807,57 @@
         
           
           <li>
+            <a href="#fits%2fapi%2fmvm%2fv1%2fmvm_on_behalf.proto">fits/api/mvm/v1/mvm_on_behalf.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.OnBehalfMVM"><span class="badge">M</span>OnBehalfMVM</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest"><span class="badge">M</span>OnBehalfMVMServiceCreateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse"><span class="badge">M</span>OnBehalfMVMServiceCreateResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest"><span class="badge">M</span>OnBehalfMVMServiceDeleteRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse"><span class="badge">M</span>OnBehalfMVMServiceDeleteResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.OnBehalfMVMServiceGetRequest"><span class="badge">M</span>OnBehalfMVMServiceGetRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.OnBehalfMVMServiceGetResponse"><span class="badge">M</span>OnBehalfMVMServiceGetResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.OnBehalfMVMServiceListRequest"><span class="badge">M</span>OnBehalfMVMServiceListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.OnBehalfMVMServiceListResponse"><span class="badge">M</span>OnBehalfMVMServiceListResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.OnBehalfMVMService"><span class="badge">S</span>OnBehalfMVMService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#fits%2fapi%2fmvm%2fv1%2fos.proto">fits/api/mvm/v1/os.proto</a>
             <ul>
               
@@ -1035,10 +1086,6 @@
               
                 <li>
                   <a href="#fits.api.v1.MethodPermission"><span class="badge">M</span>MethodPermission</a>
-                </li>
-              
-                <li>
-                  <a href="#fits.api.v1.OperatorPermissions"><span class="badge">M</span>OperatorPermissions</a>
                 </li>
               
                 <li>
@@ -1710,35 +1757,6 @@ must be part of the update request to ensure optimistic locking </p></td>
           </tbody>
         </table>
       
-        <h3 id="fits.api.v1.OperatorRole">OperatorRole</h3>
-        <p>OperatorRole specifies what role a logged in user needs to call this operator service</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>OPERATOR_ROLE_UNSPECIFIED</td>
-                <td>0</td>
-                <td><p>OPERATOR_ROLE_UNSPECIFIED is not specified</p></td>
-              </tr>
-            
-              <tr>
-                <td>OPERATOR_ROLE_EDITOR</td>
-                <td>1</td>
-                <td><p>OPERATOR_ROLE_EDITOR the logged in user needs at least editor role to call this method</p></td>
-              </tr>
-            
-              <tr>
-                <td>OPERATOR_ROLE_VIEWER</td>
-                <td>2</td>
-                <td><p>OPERATOR_ROLE_VIEWER the logged in user needs at least viewer role to call this method</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
         <h3 id="fits.api.v1.OptimisticLockingStrategy">OptimisticLockingStrategy</h3>
         <p>OptimisticLockingStrategy defines how optimistic locking should be handled.</p><p>It defaults to client side, which requires the UpdatedAt timestamp to be provided</p>
         <table class="enum-table">
@@ -1799,6 +1817,35 @@ and fetches the most recent entity before updating with the given values with th
                 <td>PROJECT_ROLE_VIEWER</td>
                 <td>3</td>
                 <td><p>PROJECT_ROLE_VIEWER the logged in user needs at least viewer role to call this method</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="fits.api.v1.RoleContext">RoleContext</h3>
+        <p>RoleContext declares in which context a method's roles apply. It belongs only</p><p>on provider or on-behalf services, never on public ones. It is not a</p><p>visibility setting or feature flag.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>ROLE_CONTEXT_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>ROLE_CONTEXT_UNSPECIFIED is the default and accepts any context.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ROLE_CONTEXT_PROVIDER</td>
+                <td>1</td>
+                <td><p>ROLE_CONTEXT_PROVIDER needs the caller to be in the provider tenant.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ROLE_CONTEXT_ON_BEHALF</td>
+                <td>2</td>
+                <td><p>ROLE_CONTEXT_ON_BEHALF lets a provider user act for another tenant.</p></td>
               </tr>
             
           </tbody>
@@ -1902,19 +1949,20 @@ having a direct membership within the tenant.</p></td>
               </tr>
             
               <tr>
-                <td>operator_roles</td>
-                <td><a href="#fits.api.v1.OperatorRole">OperatorRole</a></td>
-                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
-                <td>51002</td>
-                <td><p>OperatorRoles are used to define which operator role a logged in user must provide to call this method</p></td>
-              </tr>
-            
-              <tr>
                 <td>project_roles</td>
                 <td><a href="#fits.api.v1.ProjectRole">ProjectRole</a></td>
                 <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
                 <td>51001</td>
                 <td><p>ProjectRoles are used to define which project role a logged in user must provide to call this method</p></td>
+              </tr>
+            
+              <tr>
+                <td>role_context</td>
+                <td><a href="#fits.api.v1.RoleContext">RoleContext</a></td>
+                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
+                <td>51002</td>
+                <td><p>RoleContext sets the context the roles above apply in. Only for provider or
+on-behalf services, never public ones.</p></td>
               </tr>
             
               <tr>
@@ -5000,6 +5048,312 @@ DiskType for which operations apply per disk kind.</p></td>
     
       
       <div class="file-heading">
+        <h2 id="fits/api/mvm/v1/mvm_on_behalf.proto">fits/api/mvm/v1/mvm_on_behalf.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.mvm.v1.OnBehalfMVM">OnBehalfMVM</h3>
+        <p>An MVM with additional fields beyond the public ManagedVM.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>mvm</td>
+                  <td><a href="#fits.api.mvm.v1.ManagedVM">ManagedVM</a></td>
+                  <td></td>
+                  <td><p>The public MVM. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>billable</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Determines if the MVM is billable. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>billable_from</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p>The start date when the MVM will be billable. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest">OnBehalfMVMServiceCreateRequest</h3>
+        <p>Request to create an MVM on behalf of a customer tenant.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#fits.api.mvm.v1.MVMServiceCreateRequest">MVMServiceCreateRequest</a></td>
+                  <td></td>
+                  <td><p>The public create request. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>billable</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Determines if the MVM is billable. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>billable_from</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p>The start date when the MVM will be billable. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse">OnBehalfMVMServiceCreateResponse</h3>
+        <p>Response for an on-behalf MVM create.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>response</td>
+                  <td><a href="#fits.api.mvm.v1.MVMServiceCreateResponse">MVMServiceCreateResponse</a></td>
+                  <td></td>
+                  <td><p>The public create response. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest">OnBehalfMVMServiceDeleteRequest</h3>
+        <p>Request to delete an MVM on behalf of a customer tenant.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#fits.api.mvm.v1.MVMServiceDeleteRequest">MVMServiceDeleteRequest</a></td>
+                  <td></td>
+                  <td><p>The public delete request. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>execution_date</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p>The future date when the MVM will be deleted.
+If unset, the MVM is deleted immediately. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse">OnBehalfMVMServiceDeleteResponse</h3>
+        <p>Response for an on-behalf MVM delete.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>response</td>
+                  <td><a href="#fits.api.mvm.v1.MVMServiceDeleteResponse">MVMServiceDeleteResponse</a></td>
+                  <td></td>
+                  <td><p>The public delete response. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.OnBehalfMVMServiceGetRequest">OnBehalfMVMServiceGetRequest</h3>
+        <p>Request to get an MVM on behalf of a customer tenant.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#fits.api.mvm.v1.MVMServiceGetRequest">MVMServiceGetRequest</a></td>
+                  <td></td>
+                  <td><p>The public get request. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.OnBehalfMVMServiceGetResponse">OnBehalfMVMServiceGetResponse</h3>
+        <p>Response for an on-behalf MVM get.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>mvm</td>
+                  <td><a href="#fits.api.mvm.v1.OnBehalfMVM">OnBehalfMVM</a></td>
+                  <td></td>
+                  <td><p>The MVM with additional fields. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.OnBehalfMVMServiceListRequest">OnBehalfMVMServiceListRequest</h3>
+        <p>Request to list MVMs on behalf of a customer tenant.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#fits.api.mvm.v1.MVMServiceListRequest">MVMServiceListRequest</a></td>
+                  <td></td>
+                  <td><p>The public list request. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.OnBehalfMVMServiceListResponse">OnBehalfMVMServiceListResponse</h3>
+        <p>Response for an on-behalf MVM list.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>mvms</td>
+                  <td><a href="#fits.api.mvm.v1.OnBehalfMVM">OnBehalfMVM</a></td>
+                  <td>repeated</td>
+                  <td><p>The MVMs with additional fields. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="fits.api.mvm.v1.OnBehalfMVMService">OnBehalfMVMService</h3>
+        <p>OnBehalfMVMService offers MVM operations on behalf of a customer tenant.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Get</td>
+                <td><a href="#fits.api.mvm.v1.OnBehalfMVMServiceGetRequest">OnBehalfMVMServiceGetRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.OnBehalfMVMServiceGetResponse">OnBehalfMVMServiceGetResponse</a></td>
+                <td><p>Get returns an MVM with additional fields.</p></td>
+              </tr>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#fits.api.mvm.v1.OnBehalfMVMServiceListRequest">OnBehalfMVMServiceListRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.OnBehalfMVMServiceListResponse">OnBehalfMVMServiceListResponse</a></td>
+                <td><p>List returns all MVMs with additional fields.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Create</td>
+                <td><a href="#fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest">OnBehalfMVMServiceCreateRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse">OnBehalfMVMServiceCreateResponse</a></td>
+                <td><p>Create makes a new MVM and lets the operator set additional fields.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Delete</td>
+                <td><a href="#fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest">OnBehalfMVMServiceDeleteRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse">OnBehalfMVMServiceDeleteResponse</a></td>
+                <td><p>Delete removes an MVM on behalf of a customer tenant.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
         <h2 id="fits/api/mvm/v1/os.proto">fits/api/mvm/v1/os.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
@@ -5995,7 +6349,7 @@ Downgrades are not possible. </p></td>
               <tr>
                 <td>OPERATION_ERROR</td>
                 <td>5</td>
-                <td><p>OPERATION_ERROR: there is an error.</p></td>
+                <td><p>OPERATION_ERROR: the VM is in error state.</p></td>
               </tr>
             
           </tbody>
@@ -6372,30 +6726,6 @@ otherwise either a projectid or a tenant login should be specified </p></td>
 
         
       
-        <h3 id="fits.api.v1.OperatorPermissions">OperatorPermissions</h3>
-        <p>OperatorPermissions carries operator method permissions.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>methods</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>Methods which should be accessible. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="fits.api.v1.PermissionsByVisibility">PermissionsByVisibility</h3>
         <p>PermissionsByVisibility contains method permissions by visibility.</p>
 
@@ -6432,13 +6762,6 @@ otherwise either a projectid or a tenant login should be specified </p></td>
                   <td><a href="#fits.api.v1.TenantPermissions">TenantPermissions</a></td>
                   <td></td>
                   <td><p>TenantPermissions carries tenant method permissions. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>operator</td>
-                  <td><a href="#fits.api.v1.OperatorPermissions">OperatorPermissions</a></td>
-                  <td></td>
-                  <td><p>OperatorPermissions carries operator method permissions. </p></td>
                 </tr>
               
             </tbody>
@@ -6638,13 +6961,6 @@ Asterisk (*) can be specified to match any subject. </p></td>
                   <td><a href="#fits.api.v1.Token.TenantRolesEntry">Token.TenantRolesEntry</a></td>
                   <td>repeated</td>
                   <td><p>TenantRoles associates a tenant id with the corresponding role of the token owner. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>operator_role</td>
-                  <td><a href="#fits.api.v1.OperatorRole">OperatorRole</a></td>
-                  <td>optional</td>
-                  <td><p>OperatorRole defines the operator role of the token owner </p></td>
                 </tr>
               
                 <tr>
@@ -7004,13 +7320,6 @@ Asterisk (*) can be specified to match any subject. </p></td>
                   <td><a href="#fits.api.v1.MethodServiceTokenScopedListResponse.TenantRolesEntry">MethodServiceTokenScopedListResponse.TenantRolesEntry</a></td>
                   <td>repeated</td>
                   <td><p>TenantRoles associates a tenant ID with the corresponding role of the token owner </p></td>
-                </tr>
-              
-                <tr>
-                  <td>operator_role</td>
-                  <td><a href="#fits.api.v1.OperatorRole">OperatorRole</a></td>
-                  <td>optional</td>
-                  <td><p>OperatorRole defines the operator role of the token owner </p></td>
                 </tr>
               
             </tbody>

@@ -14,6 +14,7 @@ func GetServices() []string {
 		"fits.api.mvm.v1.LocationService",
 		"fits.api.mvm.v1.MVMService",
 		"fits.api.mvm.v1.OSService",
+		"fits.api.mvm.v1.OnBehalfMVMService",
 		"fits.api.mvm.v1.StageService",
 		"fits.api.mvm.v1.VLANService",
 		"fits.api.pcvm.v1.PublicCloudVMService",
@@ -29,7 +30,6 @@ func GetServices() []string {
 func GetServicePermissions() *ServicePermissions {
 	return &ServicePermissions{
 		Roles: Roles{
-			Operator: Operator{},
 			Tenant: Tenant{
 				v1.TenantRole_TENANT_ROLE_ADMIN: map[string]struct{}{
 					"/fits.api.mvm.v1.ContactService/Create": {},
@@ -92,6 +92,10 @@ func GetServicePermissions() *ServicePermissions {
 					"/fits.api.mvm.v1.MVMService/ValidateUpdate":             {},
 					"/fits.api.mvm.v1.MVMService/ValidateUpdateDisk":         {},
 					"/fits.api.mvm.v1.MVMService/ValidateUpdateServiceClass": {},
+					"/fits.api.mvm.v1.OnBehalfMVMService/Create":             {},
+					"/fits.api.mvm.v1.OnBehalfMVMService/Delete":             {},
+					"/fits.api.mvm.v1.OnBehalfMVMService/Get":                {},
+					"/fits.api.mvm.v1.OnBehalfMVMService/List":               {},
 					"/fits.api.pcvm.v1.PublicCloudVMService/Create":          {},
 					"/fits.api.pcvm.v1.PublicCloudVMService/Delete":          {},
 					"/fits.api.pcvm.v1.PublicCloudVMService/Get":             {},
@@ -121,6 +125,10 @@ func GetServicePermissions() *ServicePermissions {
 					"/fits.api.mvm.v1.MVMService/ValidateUpdate":             {},
 					"/fits.api.mvm.v1.MVMService/ValidateUpdateDisk":         {},
 					"/fits.api.mvm.v1.MVMService/ValidateUpdateServiceClass": {},
+					"/fits.api.mvm.v1.OnBehalfMVMService/Create":             {},
+					"/fits.api.mvm.v1.OnBehalfMVMService/Delete":             {},
+					"/fits.api.mvm.v1.OnBehalfMVMService/Get":                {},
+					"/fits.api.mvm.v1.OnBehalfMVMService/List":               {},
 					"/fits.api.pcvm.v1.PublicCloudVMService/Create":          {},
 					"/fits.api.pcvm.v1.PublicCloudVMService/Delete":          {},
 					"/fits.api.pcvm.v1.PublicCloudVMService/Get":             {},
@@ -134,6 +142,8 @@ func GetServicePermissions() *ServicePermissions {
 				v1.ProjectRole_PROJECT_ROLE_VIEWER: map[string]struct{}{
 					"/fits.api.mvm.v1.MVMService/Get":             {},
 					"/fits.api.mvm.v1.MVMService/List":            {},
+					"/fits.api.mvm.v1.OnBehalfMVMService/Get":     {},
+					"/fits.api.mvm.v1.OnBehalfMVMService/List":    {},
 					"/fits.api.pcvm.v1.PublicCloudVMService/Get":  {},
 					"/fits.api.pcvm.v1.PublicCloudVMService/List": {},
 					"/fits.api.v1.ProjectService/Get":             {},
@@ -171,6 +181,10 @@ func GetServicePermissions() *ServicePermissions {
 			"/fits.api.mvm.v1.MVMService/ValidateUpdateDisk":                 {},
 			"/fits.api.mvm.v1.MVMService/ValidateUpdateServiceClass":         {},
 			"/fits.api.mvm.v1.OSService/List":                                {},
+			"/fits.api.mvm.v1.OnBehalfMVMService/Create":                     {},
+			"/fits.api.mvm.v1.OnBehalfMVMService/Delete":                     {},
+			"/fits.api.mvm.v1.OnBehalfMVMService/Get":                        {},
+			"/fits.api.mvm.v1.OnBehalfMVMService/List":                       {},
 			"/fits.api.mvm.v1.StageService/List":                             {},
 			"/fits.api.mvm.v1.VLANService/List":                              {},
 			"/fits.api.pcvm.v1.PublicCloudVMService/Create":                  {},
@@ -216,7 +230,6 @@ func GetServicePermissions() *ServicePermissions {
 				"/fits.api.v1.TokenService/List":             true,
 				"/fits.api.v1.TokenService/Revoke":           true,
 			},
-			Operator: map[string]bool{},
 			Tenant: map[string]bool{
 				"/fits.api.mvm.v1.ContactService/Create": true,
 				"/fits.api.mvm.v1.ContactService/List":   true,
@@ -253,6 +266,10 @@ func GetServicePermissions() *ServicePermissions {
 				"/fits.api.mvm.v1.MVMService/ValidateUpdate":             true,
 				"/fits.api.mvm.v1.MVMService/ValidateUpdateDisk":         true,
 				"/fits.api.mvm.v1.MVMService/ValidateUpdateServiceClass": true,
+				"/fits.api.mvm.v1.OnBehalfMVMService/Create":             true,
+				"/fits.api.mvm.v1.OnBehalfMVMService/Delete":             true,
+				"/fits.api.mvm.v1.OnBehalfMVMService/Get":                true,
+				"/fits.api.mvm.v1.OnBehalfMVMService/List":               true,
 				"/fits.api.pcvm.v1.PublicCloudVMService/Create":          true,
 				"/fits.api.pcvm.v1.PublicCloudVMService/Delete":          true,
 				"/fits.api.pcvm.v1.PublicCloudVMService/Get":             true,
@@ -296,6 +313,10 @@ func GetServicePermissions() *ServicePermissions {
 			"/fits.api.mvm.v1.MVMService/ValidateUpdateDisk":         false,
 			"/fits.api.mvm.v1.MVMService/ValidateUpdateServiceClass": false,
 			"/fits.api.mvm.v1.OSService/List":                        false,
+			"/fits.api.mvm.v1.OnBehalfMVMService/Create":             true,
+			"/fits.api.mvm.v1.OnBehalfMVMService/Delete":             true,
+			"/fits.api.mvm.v1.OnBehalfMVMService/Get":                true,
+			"/fits.api.mvm.v1.OnBehalfMVMService/List":               true,
 			"/fits.api.mvm.v1.StageService/List":                     false,
 			"/fits.api.mvm.v1.VLANService/List":                      false,
 			"/fits.api.pcvm.v1.PublicCloudVMService/Create":          true,
@@ -331,11 +352,6 @@ func IsPublicScope(req connect.AnyRequest) bool {
 
 func IsSelfScope(req connect.AnyRequest) bool {
 	_, ok := GetServicePermissions().Visibility.Self[req.Spec().Procedure]
-	return ok
-}
-
-func IsOperatorScope(req connect.AnyRequest) bool {
-	_, ok := GetServicePermissions().Visibility.Operator[req.Spec().Procedure]
 	return ok
 }
 

@@ -18,7 +18,6 @@ import (
 type (
 	tenant     struct{}
 	project    struct{}
-	operator   struct{}
 	visibility struct{}
 )
 
@@ -36,14 +35,6 @@ func (project) Get(methodOpts []*descriptorpb.UninterpretedOption) (scopes []str
 		v1.ProjectRole_PROJECT_ROLE_ADMIN.String(),
 		v1.ProjectRole_PROJECT_ROLE_EDITOR.String(),
 		v1.ProjectRole_PROJECT_ROLE_VIEWER.String(),
-	})
-	return
-}
-
-func (operator) Get(methodOpts []*descriptorpb.UninterpretedOption) (scopes []string) {
-	scopes = getScopes(methodOpts, []string{
-		v1.OperatorRole_OPERATOR_ROLE_EDITOR.String(),
-		v1.OperatorRole_OPERATOR_ROLE_VIEWER.String(),
 	})
 	return
 }
@@ -127,6 +118,18 @@ func Test_FieldNumbering(t *testing.T) {
 				lastNumber int32
 			)
 
+			// reserved collects all field numbers marked `reserved` on this
+			// message. A gap in the field numbering is allowed only if every
+			// skipped number is reserved (e.g. a field removed for wire
+			// compatibility must not be renumbered or reused).
+			reserved := map[int32]bool{}
+			for _, rr := range mt.GetReservedRange() {
+				// Reserved ranges are [start, end) with end exclusive.
+				for n := rr.GetStart(); n < rr.GetEnd(); n++ {
+					reserved[n] = true
+				}
+			}
+
 			for _, field := range mt.GetField() {
 				if field.Number != nil {
 					if firstField {
@@ -136,8 +139,14 @@ func Test_FieldNumbering(t *testing.T) {
 						// }
 						firstField = false
 					} else {
-						if lastNumber+1 != *field.Number {
-							errs = append(errs, fmt.Errorf("%s %s %s %d != %d", filename, *mt.Name, *field.Name, lastNumber+1, *field.Number))
+						// Advance the expected number over any reserved slots so
+						// that a reserved gap does not count as a violation.
+						expected := lastNumber + 1
+						for reserved[expected] {
+							expected++
+						}
+						if expected != *field.Number {
+							errs = append(errs, fmt.Errorf("%s %s %s %d != %d", filename, *mt.Name, *field.Name, expected, *field.Number))
 						}
 					}
 					lastNumber = *field.Number
@@ -175,17 +184,15 @@ func validateProto(root string) error {
 	var (
 		tr v1.TenantRole
 		pr v1.ProjectRole
-		ar v1.OperatorRole
 		vr v1.Visibility
 
 		trs = fmt.Sprintf("%T", tr)
 		prs = fmt.Sprintf("%T", pr)
-		ars = fmt.Sprintf("%T", ar)
 		vrs = fmt.Sprintf("%T", vr)
 
 		// add all *rs from above here
 		scopeKeys = []string{
-			trs, prs, ars, vrs,
+			trs, prs, vrs,
 		}
 	)
 	slices.Sort(scopeKeys)
@@ -194,12 +201,27 @@ func validateProto(root string) error {
 		return err
 	}
 
-	var errs []error
+	// Parse every proto once up front so that cross-file type references (e.g. a
+	// provider request that wraps a message imported from another file) can be
+	// resolved. messagesByFQN is keyed by the fully qualified message name with a
+	// leading dot, matching the TypeName format emitted for imported messages.
+	var fds []*descriptorpb.FileDescriptorProto
+	messagesByFQN := map[string][]*descriptorpb.FieldDescriptorProto{}
 	for _, filename := range files {
 		fd, err := protoparser.Parse(filename)
 		if err != nil {
 			return err
 		}
+		fds = append(fds, fd)
+		pkg := fd.GetPackage()
+		for _, mt := range fd.GetMessageType() {
+			messagesByFQN["."+pkg+"."+mt.GetName()] = mt.GetField()
+		}
+	}
+
+	var errs []error
+	for _, fd := range fds {
+		pkg := fd.GetPackage()
 		for _, serviceDesc := range fd.GetService() {
 			for _, method := range serviceDesc.GetMethod() {
 				var (
@@ -209,7 +231,6 @@ func validateProto(root string) error {
 					scopes      = map[string][]string{
 						trs: tenant{}.Get(methodOpts),
 						prs: project{}.Get(methodOpts),
-						ars: operator{}.Get(methodOpts),
 						vrs: visibility{}.Get(methodOpts),
 					}
 					allScopeNames = func() (names []string) {
@@ -234,28 +255,32 @@ func validateProto(root string) error {
 				slices.Sort(allScopeNames)
 
 				// inputFields collects the fields of the request payload
-				// including the fields of nested messages defined in this file,
-				// so wrapped requests (e.g. Validate* carrying the real request)
+				// including the fields of nested messages, following references
+				// across files. This way wrapped requests (e.g. Validate* or
+				// provider requests carrying the real request from another file)
 				// are checked as well.
 				inputFields := func() (fields []*descriptorpb.FieldDescriptorProto) {
-					byName := map[string][]*descriptorpb.FieldDescriptorProto{}
-					for _, mt := range fd.GetMessageType() {
-						byName[mt.GetName()] = mt.GetField()
+					// fqn normalizes a type reference to a fully qualified name
+					// with a leading dot: references to same-package messages are
+					// emitted unqualified, imported ones already carry the dot.
+					fqn := func(name string) string {
+						if strings.HasPrefix(name, ".") {
+							return name
+						}
+						return "." + pkg + "." + name
 					}
 					visited := map[string]bool{}
 					var walk func(name string)
 					walk = func(name string) {
-						if visited[name] {
+						key := fqn(name)
+						if visited[key] {
 							return
 						}
-						visited[name] = true
-						for _, f := range byName[name] {
+						visited[key] = true
+						for _, f := range messagesByFQN[key] {
 							fields = append(fields, f)
 							if tn := f.GetTypeName(); tn != "" {
-								// Same-file messages are referenced by their plain
-								// name, imported ones by a fully qualified name
-								// with a leading dot; only local messages matter here.
-								walk(strings.TrimPrefix(tn, "."))
+								walk(tn)
 							}
 						}
 					}
@@ -328,6 +353,63 @@ func validateProto(root string) error {
 
 				if methodScope == "" {
 					errs = append(errs, fmt.Errorf("api service method: %q has no scope defined. one scope needs to be defined though. use one of the following scopes: %s", methodName, allScopeNames))
+				}
+			}
+		}
+	}
+	return errors.Join(errs...)
+}
+
+// Test_RoleContext enforces that the (fits.api.v1.role_context) method option
+// only appears in files whose name is suffixed with the matching context, i.e.
+// ROLE_CONTEXT_PROVIDER in *_provider.proto and ROLE_CONTEXT_ON_BEHALF in
+// *_on_behalf.proto. Public files must not carry the option at all.
+//
+// This keeps the option from being misused as a general visibility setting or
+// feature flag: it can only live in a dedicated provider or on-behalf file.
+func Test_RoleContext(t *testing.T) {
+	err := validateRoleContext("../../proto")
+	require.NoError(t, err)
+}
+
+// roleContextFileSuffix maps each role context to the file-name suffix that is
+// allowed to declare it.
+var roleContextFileSuffix = map[string]string{
+	v1.RoleContext_ROLE_CONTEXT_PROVIDER.String():  "_provider.proto",
+	v1.RoleContext_ROLE_CONTEXT_ON_BEHALF.String(): "_on_behalf.proto",
+}
+
+func validateRoleContext(root string) error {
+	// roleContextValues are the non-UNSPECIFIED role context identifiers. The
+	// UNSPECIFIED value carries no enforcement meaning and is treated as absent.
+	roleContextValues := []string{
+		v1.RoleContext_ROLE_CONTEXT_PROVIDER.String(),
+		v1.RoleContext_ROLE_CONTEXT_ON_BEHALF.String(),
+	}
+
+	files, err := getProtos(root)
+	if err != nil {
+		return err
+	}
+
+	var errs []error
+	for _, filename := range files {
+		fd, err := protoparser.Parse(filename)
+		if err != nil {
+			return err
+		}
+		base := filepath.Base(filename)
+		for _, serviceDesc := range fd.GetService() {
+			for _, method := range serviceDesc.GetMethod() {
+				for _, context := range getScopes(method.GetOptions().GetUninterpretedOption(), roleContextValues) {
+					wantSuffix := roleContextFileSuffix[context]
+					if strings.HasSuffix(base, wantSuffix) {
+						continue
+					}
+					methodName := fmt.Sprintf("/%s.%s/%s", fd.GetPackage(), serviceDesc.GetName(), method.GetName())
+					errs = append(errs, fmt.Errorf("api service method: %q in %q declares %s but may only be set in a %q file. "+
+						"move the method to the matching role context file or remove the option",
+						methodName, base, context, wantSuffix))
 				}
 			}
 		}
