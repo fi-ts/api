@@ -422,7 +422,6 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
 
   /**
    * Metadata for this MVM.
-   * TODO: dates are available in the nulink db but not passed through yet.
    *
    * @generated from field: fits.api.v1.Meta meta = 2;
    */
