@@ -8,139 +8,139 @@ import (
 )
 
 func TestValidateTokenServiceGetRequest(t *testing.T) {
-	tests := prototests{
+	tests := Prototests{
 		{
-			name:             "empty",
-			msg:              &v1.TokenServiceGetRequest{},
-			wantErr:          true,
-			wantErrorMessage: `validation error: uuid: value is empty, which is not a valid UUID`,
+			Name:             "empty",
+			Msg:              &v1.TokenServiceGetRequest{},
+			WantErr:          true,
+			WantErrorMessage: `validation error: uuid: value is empty, which is not a valid UUID`,
 		},
 		{
-			name:    "valid",
-			msg:     &v1.TokenServiceGetRequest{Uuid: testUUID},
-			wantErr: false,
+			Name:    "valid",
+			Msg:     &v1.TokenServiceGetRequest{Uuid: TestUUID},
+			WantErr: false,
 		},
 	}
 
-	validateProtos(t, tests)
+	ValidateProtos(t, tests)
 }
 
 func TestValidateTokenServiceRevokeRequest(t *testing.T) {
-	tests := prototests{
+	tests := Prototests{
 		{
-			name:             "empty",
-			msg:              &v1.TokenServiceRevokeRequest{},
-			wantErr:          true,
-			wantErrorMessage: `validation error: uuid: value is empty, which is not a valid UUID`,
+			Name:             "empty",
+			Msg:              &v1.TokenServiceRevokeRequest{},
+			WantErr:          true,
+			WantErrorMessage: `validation error: uuid: value is empty, which is not a valid UUID`,
 		},
 		{
-			name:    "valid",
-			msg:     &v1.TokenServiceRevokeRequest{Uuid: testUUID},
-			wantErr: false,
+			Name:    "valid",
+			Msg:     &v1.TokenServiceRevokeRequest{Uuid: TestUUID},
+			WantErr: false,
 		},
 	}
 
-	validateProtos(t, tests)
+	ValidateProtos(t, tests)
 }
 
 func TestValidateToken(t *testing.T) {
-	tests := prototests{
+	tests := Prototests{
 		{
-			name: "user token with permissions",
-			msg: &v1.Token{
+			Name: "user token with permissions",
+			Msg: &v1.Token{
 				TokenType:   v1.TokenType_TOKEN_TYPE_USER,
 				Permissions: []*v1.PermissionsByVisibility{{}},
 			},
-			wantErr: true,
-			wantErrorMessage: `validation errors:
+			WantErr: true,
+			WantErrorMessage: `validation errors:
  - token type user must not have permissions
  - uuid: value is empty, which is not a valid UUID
  - user: must be at least 2 characters`,
 		},
 		{
-			name: "valid user token",
-			msg: &v1.Token{
-				Uuid:      testUUID,
+			Name: "valid user token",
+			Msg: &v1.Token{
+				Uuid:      TestUUID,
 				User:      "user",
 				TokenType: v1.TokenType_TOKEN_TYPE_USER,
 			},
-			wantErr: false,
+			WantErr: false,
 		},
 		{
-			name: "valid api token with permissions",
-			msg: &v1.Token{
-				Uuid:        testUUID,
+			Name: "valid api token with permissions",
+			Msg: &v1.Token{
+				Uuid:        TestUUID,
 				User:        "user",
 				TokenType:   v1.TokenType_TOKEN_TYPE_API,
 				Permissions: []*v1.PermissionsByVisibility{{}},
 			},
-			wantErr: false,
+			WantErr: false,
 		},
 	}
 
-	validateProtos(t, tests)
+	ValidateProtos(t, tests)
 }
 
 func TestValidateProjectPermissions(t *testing.T) {
-	tests := prototests{
+	tests := Prototests{
 		{
-			name:             "invalid project",
-			msg:              &v1.ProjectPermissions{Project: "not-uuid"},
-			wantErr:          true,
-			wantErrorMessage: `validation error: project: must be '*' or a uuid`,
+			Name:             "invalid project",
+			Msg:              &v1.ProjectPermissions{Project: "not-uuid"},
+			WantErr:          true,
+			WantErrorMessage: `validation error: project: must be '*' or a uuid`,
 		},
 		{
-			name:    "wildcard",
-			msg:     &v1.ProjectPermissions{Project: "*"},
-			wantErr: false,
+			Name:    "wildcard",
+			Msg:     &v1.ProjectPermissions{Project: "*"},
+			WantErr: false,
 		},
 		{
-			name:    "uuid",
-			msg:     &v1.ProjectPermissions{Project: testUUID},
-			wantErr: false,
+			Name:    "uuid",
+			Msg:     &v1.ProjectPermissions{Project: TestUUID},
+			WantErr: false,
 		},
 	}
 
-	validateProtos(t, tests)
+	ValidateProtos(t, tests)
 }
 
 func TestValidateTenantPermissions(t *testing.T) {
-	tests := prototests{
+	tests := Prototests{
 		{
-			name:             "invalid login",
-			msg:              &v1.TenantPermissions{Login: "a"},
-			wantErr:          true,
-			wantErrorMessage: `validation error: login: must be '*' or within 2 and 128 characters`,
+			Name:             "invalid login",
+			Msg:              &v1.TenantPermissions{Login: "a"},
+			WantErr:          true,
+			WantErrorMessage: `validation error: login: must be '*' or within 2 and 128 characters`,
 		},
 		{
-			name:    "wildcard",
-			msg:     &v1.TenantPermissions{Login: "*"},
-			wantErr: false,
+			Name:    "wildcard",
+			Msg:     &v1.TenantPermissions{Login: "*"},
+			WantErr: false,
 		},
 		{
-			name:    "login",
-			msg:     &v1.TenantPermissions{Login: "tenant"},
-			wantErr: false,
+			Name:    "login",
+			Msg:     &v1.TenantPermissions{Login: "tenant"},
+			WantErr: false,
 		},
 	}
 
-	validateProtos(t, tests)
+	ValidateProtos(t, tests)
 }
 
 func TestValidateMethodPermission(t *testing.T) {
-	tests := prototests{
+	tests := Prototests{
 		{
-			name:             "subject too long",
-			msg:              &v1.MethodPermission{Subject: strings.Repeat("x", 257)},
-			wantErr:          true,
-			wantErrorMessage: `validation error: subject: must be at most 256 characters`,
+			Name:             "subject too long",
+			Msg:              &v1.MethodPermission{Subject: strings.Repeat("x", 257)},
+			WantErr:          true,
+			WantErrorMessage: `validation error: subject: must be at most 256 characters`,
 		},
 		{
-			name:    "valid",
-			msg:     &v1.MethodPermission{Subject: "project", Methods: []string{"List"}},
-			wantErr: false,
+			Name:    "valid",
+			Msg:     &v1.MethodPermission{Subject: "project", Methods: []string{"List"}},
+			WantErr: false,
 		},
 	}
 
-	validateProtos(t, tests)
+	ValidateProtos(t, tests)
 }

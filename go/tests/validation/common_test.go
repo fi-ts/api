@@ -8,54 +8,54 @@ import (
 )
 
 func TestValidateLabels(t *testing.T) {
-	tests := prototests{
+	tests := Prototests{
 		{
-			name:             "empty key",
-			msg:              &v1.Labels{Labels: map[string]string{"": "value"}},
-			wantErr:          true,
-			wantErrorMessage: `validation error: labels[""]: must be at least 1 characters`,
+			Name:             "empty key",
+			Msg:              &v1.Labels{Labels: map[string]string{"": "value"}},
+			WantErr:          true,
+			WantErrorMessage: `validation error: labels[""]: must be at least 1 characters`,
 		},
 		{
-			name:             "value too long",
-			msg:              &v1.Labels{Labels: map[string]string{"key": strings.Repeat("x", 257)}},
-			wantErr:          true,
-			wantErrorMessage: `validation error: labels["key"]: must be at most 256 characters`,
+			Name:             "value too long",
+			Msg:              &v1.Labels{Labels: map[string]string{"key": strings.Repeat("x", 257)}},
+			WantErr:          true,
+			WantErrorMessage: `validation error: labels["key"]: must be at most 256 characters`,
 		},
 		{
-			name:             "untrimmed key and value",
-			msg:              &v1.Labels{Labels: map[string]string{" key ": " value "}},
-			wantErr:          true,
-			wantErrorMessage: `validation error: labels: keys and values must not start or end with whitespace`,
+			Name:             "untrimmed key and value",
+			Msg:              &v1.Labels{Labels: map[string]string{" key ": " value "}},
+			WantErr:          true,
+			WantErrorMessage: `validation error: labels: keys and values must not start or end with whitespace`,
 		},
 		{
-			name:    "valid",
-			msg:     &v1.Labels{Labels: map[string]string{"key": "value"}},
-			wantErr: false,
+			Name:    "valid",
+			Msg:     &v1.Labels{Labels: map[string]string{"key": "value"}},
+			WantErr: false,
 		},
 	}
 
-	validateProtos(t, tests)
+	ValidateProtos(t, tests)
 }
 
 func TestValidateUpdateMeta(t *testing.T) {
-	tests := prototests{
+	tests := Prototests{
 		{
-			name:             "undefined locking strategy",
-			msg:              &v1.UpdateMeta{LockingStrategy: v1.OptimisticLockingStrategy(99)},
-			wantErr:          true,
-			wantErrorMessage: `validation error: locking_strategy: value must be one of the defined enum values`,
+			Name:             "undefined locking strategy",
+			Msg:              &v1.UpdateMeta{LockingStrategy: v1.OptimisticLockingStrategy(99)},
+			WantErr:          true,
+			WantErrorMessage: `validation error: locking_strategy: value must be one of the defined enum values`,
 		},
 		{
-			name:    "client locking strategy",
-			msg:     &v1.UpdateMeta{LockingStrategy: v1.OptimisticLockingStrategy_OPTIMISTIC_LOCKING_STRATEGY_CLIENT},
-			wantErr: false,
+			Name:    "client locking strategy",
+			Msg:     &v1.UpdateMeta{LockingStrategy: v1.OptimisticLockingStrategy_OPTIMISTIC_LOCKING_STRATEGY_CLIENT},
+			WantErr: false,
 		},
 		{
-			name:    "server locking strategy",
-			msg:     &v1.UpdateMeta{LockingStrategy: v1.OptimisticLockingStrategy_OPTIMISTIC_LOCKING_STRATEGY_SERVER},
-			wantErr: false,
+			Name:    "server locking strategy",
+			Msg:     &v1.UpdateMeta{LockingStrategy: v1.OptimisticLockingStrategy_OPTIMISTIC_LOCKING_STRATEGY_SERVER},
+			WantErr: false,
 		},
 	}
 
-	validateProtos(t, tests)
+	ValidateProtos(t, tests)
 }
