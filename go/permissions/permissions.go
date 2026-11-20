@@ -13,7 +13,7 @@ type (
 		Visibility Visibility `json:"visibility"`
 		Auditable  Auditable  `json:"auditable,omitempty"`
 		Services   []string   `json:"services,omitempty"`
-		Resources  Resources  `json:"products,omitempty"`
+		Resources  Resources  `json:"resources,omitempty"`
 	}
 
 	Methods map[string]struct{}
