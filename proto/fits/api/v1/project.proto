@@ -52,8 +52,6 @@ message Project {
   string description = 4 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
   // Tenant this project belongs to
   string tenant = 5;
-  // AvatarUrl of the Project
-  optional string avatar_url = 6;
 }
 
 // ProjectServiceListRequest is the request payload to list all projects
@@ -94,10 +92,8 @@ message ProjectServiceCreateRequest {
   string name = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // Description of this project
   string description = 3 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
-  // Avatar URL of the project
-  optional string avatar_url = 4;
   // Labels on the project
-  Labels labels = 5;
+  Labels labels = 4;
 }
 
 // ProjectServiceCreateResponse is the response payload of creation of a project
@@ -128,10 +124,8 @@ message ProjectServiceUpdateRequest {
   optional string name = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // Description of this project
   optional string description = 4 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
-  // Avatar URL of the project
-  optional string avatar_url = 5;
   // Labels on this project
-  optional UpdateLabels labels = 6;
+  optional UpdateLabels labels = 5;
 }
 
 // ProjectServiceUpdateResponse is the response payload to update a project
