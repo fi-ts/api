@@ -3,11 +3,24 @@ syntax = "proto3";
 package fits.api.mvm.v1;
 
 import "buf/validate/validate.proto";
+import "fits/api/mvm/v1/predefined_rules.proto";
 import "fits/api/v1/common.proto";
 import "fits/api/v1/predefined_rules.proto";
 
 // MVMService provides managed VM (MVM) operations.
 service MVMService {
+  // Creates a new MVM.
+  rpc Create(MVMServiceCreateRequest) returns (MVMServiceCreateResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
+  }
+  // Validates a MVM create request without creating anything (dry-run).
+  rpc ValidateCreate(MVMServiceValidateCreateRequest) returns (MVMServiceValidateCreateResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
+  }
   // Returns the MVM with the specified UUID.
   rpc Get(MVMServiceGetRequest) returns (MVMServiceGetResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
@@ -15,13 +28,6 @@ service MVMService {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_VIEWER;
     option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
   }
-  // Creates a new MVM.
-  rpc Create(MVMServiceCreateRequest) returns (MVMServiceCreateResponse) {
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
-    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
-  }
-
   // Returns the list of all MVMs.
   rpc List(MVMServiceListRequest) returns (MVMServiceListResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
@@ -29,18 +35,47 @@ service MVMService {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_VIEWER;
     option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
   }
-  // Deletes a MVM.
-  rpc Delete(MVMServiceDeleteRequest) returns (MVMServiceDeleteResponse) {
+  // Updates a MVM.
+  rpc Update(MVMServiceUpdateRequest) returns (MVMServiceUpdateResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
-  // Orders an additional data disk for a MVM. System disks are ordered at
-  // MVM creation and cannot be added later.
-  rpc AddDisk(MVMServiceAddDiskRequest) returns (MVMServiceAddDiskResponse) {
+  // Validates an Update request without changing anything.
+  rpc ValidateUpdate(MVMServiceValidateUpdateRequest) returns (MVMServiceValidateUpdateResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
+  }
+  // Deprecated: Updates the service class of a MVM.
+  rpc UpdateServiceClass(MVMServiceUpdateServiceClassRequest) returns (MVMServiceUpdateServiceClassResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
+  }
+  // Deprecated: Validates an UpdateServiceClass request without changing anything.
+  rpc ValidateUpdateServiceClass(MVMServiceValidateUpdateServiceClassRequest) returns (MVMServiceValidateUpdateServiceClassResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
+  }
+  // Deletes a MVM.
+  rpc Delete(MVMServiceDeleteRequest) returns (MVMServiceDeleteResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
+    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
+  }
+  // Orders additional data disks for a MVM. System disks are ordered at
+  // MVM creation and cannot be added later.
+  rpc AddDisks(MVMServiceAddDisksRequest) returns (MVMServiceAddDisksResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
+  }
+  // Validates an AddDisks request without ordering anything.
+  rpc ValidateAddDisks(MVMServiceValidateAddDisksRequest) returns (MVMServiceValidateAddDisksResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
   }
   // Changes the size or auto-extend behavior of an existing disk; see
   // DiskType for which operations apply per disk kind.
@@ -49,54 +84,66 @@ service MVMService {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
-  // Cancels a data disk. OS and system disks cannot be deleted.
-  rpc DeleteDisk(MVMServiceDeleteDiskRequest) returns (MVMServiceDeleteDiskResponse) {
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
-    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
-  }
-  // Orders an additional network interface for a MVM.
-  rpc AddNetworkInterface(MVMServiceAddNetworkInterfaceRequest) returns (MVMServiceAddNetworkInterfaceResponse) {
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
-    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
-  }
-  // Moves a network interface from one MVM to another.
-  rpc MoveNetworkInterface(MVMServiceMoveNetworkInterfaceRequest) returns (MVMServiceMoveNetworkInterfaceResponse) {
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
-    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
-  }
-  // Deletes a network interface from a MVM.
-  rpc DeleteNetworkInterface(MVMServiceDeleteNetworkInterfaceRequest) returns (MVMServiceDeleteNetworkInterfaceResponse) {
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
-    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
-  }
-  // Validates a MVM create request without creating anything. Intended for
-  // form pre-checks; the create endpoint validates again before executing.
-  rpc ValidateCreate(MVMServiceValidateCreateRequest) returns (MVMServiceValidateCreateResponse) {
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
-    option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
-  }
-  // Validates an AddDisk request without ordering anything.
-  rpc ValidateAddDisk(MVMServiceValidateAddDiskRequest) returns (MVMServiceValidateAddDiskResponse) {
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
-    option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
-  }
   // Validates an UpdateDisk request without changing anything.
   rpc ValidateUpdateDisk(MVMServiceValidateUpdateDiskRequest) returns (MVMServiceValidateUpdateDiskResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
     option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
   }
-  // Validates an AddNetworkInterface request without ordering anything.
-  rpc ValidateAddNetworkInterface(MVMServiceValidateAddNetworkInterfaceRequest) returns (MVMServiceValidateAddNetworkInterfaceResponse) {
+  // Cancels a data disk. OS and system disks cannot be deleted.
+  rpc DeleteDisk(MVMServiceDeleteDiskRequest) returns (MVMServiceDeleteDiskResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
+    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
+  }
+  // Orders an additional IP address for a MVM.
+  rpc AddIPAddress(MVMServiceAddIPAddressRequest) returns (MVMServiceAddIPAddressResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
+  }
+  // Moves an IP address from one MVM to another.
+  rpc MoveIPAddress(MVMServiceMoveIPAddressRequest) returns (MVMServiceMoveIPAddressResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
+  }
+  // Deletes an IP address from a MVM.
+  rpc DeleteIPAddress(MVMServiceDeleteIPAddressRequest) returns (MVMServiceDeleteIPAddressResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
+    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
+  }
+  // Restarts a MVM.
+  rpc Restart(MVMServiceRestartRequest) returns (MVMServiceRestartResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
+  }
+  // Reinstalls the operating system of a MVM.
+  rpc Reinstall(MVMServiceReinstallRequest) returns (MVMServiceReinstallResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
+    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
+  }
+  // Validates a Reinstall request without reinstalling anything.
+  rpc ValidateReinstall(MVMServiceValidateReinstallRequest) returns (MVMServiceValidateReinstallResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.auditing) = AUDITING_EXCLUDED;
+  }
+  // Creates a snapshot of a MVM.
+  rpc AddSnapshot(MVMServiceAddSnapshotRequest) returns (MVMServiceAddSnapshotResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
+  }
+  // Deletes a snapshot of a MVM.
+  rpc DeleteSnapshot(MVMServiceDeleteSnapshotRequest) returns (MVMServiceDeleteSnapshotResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
+    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
+  }
+  // Moves a MVM from one datacenter to another.
+  rpc Move(MVMServiceMoveRequest) returns (MVMServiceMoveResponse) {
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
+    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
+    option (fits.api.v1.auditing) = AUDITING_INCLUDED;
   }
 }
 
@@ -156,7 +203,7 @@ enum State {
 //     deletable.
 //   - DATA: fully controllable (letter/mount point, size, auto-extend)
 //     and deletable; may be included at creation or added later via
-//     AddDisk.
+//     AddDisks.
 //
 // Whether auto-extend is supported for OS and SYSTEM disks is not yet
 // known; only DATA disks are documented as supporting it.
@@ -181,6 +228,58 @@ enum DiskType {
   DISK_TYPE_DATA = 3 [(fits.api.v1.enum_string_value) = "data"];
 }
 
+// Disk configuration for a Linux MVM. See DiskType for the kinds of disks
+// (os, system, data) and their lifecycle rules.
+message LinuxDisk {
+  // UUID of the disk; set for existing disks, unset for new ones.
+  optional string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // Name of the disk.
+  string name = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Size of the disk in GiB.
+  uint64 size_gb = 3 [(buf.validate.field).uint64.(fits.api.mvm.v1.is_disk_size) = true];
+  // Whether the disk grows automatically when space runs low.
+  optional bool auto_extend = 4;
+  // Mount point (e.g. "/data/app"). Fixed to "/appdata" for the system disk;
+  // any absolute path allowed by the upstream for data disks.
+  optional string mount_point = 5 [(buf.validate.field).string.(fits.api.mvm.v1.is_mount_point) = true];
+  // Kind of the disk; determines which operations are allowed on it.
+  // Provided by the client in create/add requests and populated by the
+  // API in responses.
+  optional DiskType disk_type = 6 [(buf.validate.field).enum.defined_only = true];
+}
+
+// Disk configuration for a Windows MVM. See DiskType for the kinds of
+// disks (os, system, data) and their lifecycle rules.
+message WindowsDisk {
+  // UUID of the disk; set for existing disks, unset for new ones.
+  optional string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // Name of the disk.
+  string name = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Size of the disk in GiB.
+  uint64 size_gb = 3 [(buf.validate.field).uint64.(fits.api.mvm.v1.is_disk_size) = true];
+  // Whether the disk grows automatically when space runs low.
+  optional bool auto_extend = 4;
+  // Drive letter (e.g. "G"). Fixed to "F" for the system disk; any letter
+  // allowed by the upstream for data disks.
+  optional string drive_letter = 5 [(buf.validate.field).string.(fits.api.mvm.v1.is_drive_letter) = true];
+  // Kind of the disk; determines which operations are allowed on it.
+  // Provided by the client in create/add requests and populated by the
+  // API in responses.
+  optional DiskType disk_type = 6 [(buf.validate.field).enum.defined_only = true];
+}
+
+// Disk contains either a Windows or Linux disk.
+message Disk {
+  // OS-specific disk specification; must match the MVM's OS type.
+  oneof disk {
+    option (buf.validate.oneof).required = true;
+    // Linux disk.
+    LinuxDisk linux = 4;
+    // Windows disk.
+    WindowsDisk windows = 5;
+  }
+}
+
 // Linux-specific MVM details.
 message LinuxDetails {
   // Disks configured on the Linux MVM.
@@ -188,7 +287,7 @@ message LinuxDetails {
   // UUID of the LDAP directory the MVM is integrated with.
   string ldap_uuid = 2 [(buf.validate.field).string.uuid = true];
   // Linux-specific FQDN, derived from the name at creation or generated by the backend.
-  string ldap_fqdn = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  string ldap_fqdn = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_fqdn) = true];
 }
 
 // Windows-specific MVM details.
@@ -198,25 +297,34 @@ message WindowsDetails {
   // UUID of the Windows domain the MVM has joined.
   string domain_uuid = 2 [(buf.validate.field).string.uuid = true];
   // Windows-specific FQDN, derived from the name at creation or generated by the backend.
-  string domain_fqdn = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  string domain_fqdn = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_fqdn) = true];
 }
 
-// A network interface of a MVM. IPv4 only; IPv6 is not yet supported.
-message NetworkInterface {
-  // UUID of this interface.
+// An IPv4 address of a MVM. IPv4 only; IPv6 is not yet supported.
+message IPAddress {
+  // UUID of this IP address.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
-  // UUID of the VLAN.
-  string vlan_uuid = 2 [(buf.validate.field).string.uuid = true];
-  // IPv4 address assigned to this interface.
-  string ipaddress = 3 [(buf.validate.field).string.(fits.api.v1.is_ip_or_hostname) = true];
-  // MAC address of this interface.
-  string macaddress = 4; // TODO: add validation
+  // The IPv4 address.
+  string ip_address = 2 [(buf.validate.field).string.ipv4 = true];
+  // The network interface this IP address is bound to.
+  // Unset for additional IP addresses that share an existing interface;
+  // such addresses can be deleted via DeleteIPAddress.
+  optional NetworkInterface network_interface = 3;
 }
 
-// The InitialNetworkInterface needs to be provided at creation of a MVM.
-// It provides the UUID of the target VLAN for the MVM's first network interface.
-// The created MVM comes with a NetworkInterface connected to this VLAN.
-message InitialNetworkInterface {
+// A network interface of a MVM.
+message NetworkInterface {
+  // UUID of the VLAN.
+  string vlan_uuid = 1 [(buf.validate.field).string.uuid = true];
+  // MAC address of this interface.
+  string mac_address = 2 [(buf.validate.field).string.(fits.api.v1.mac_address) = true];
+}
+
+// The InitialIPAddress needs to be provided at creation of a MVM.
+// It provides the UUID of the target VLAN for the MVM's first IP address.
+// The created MVM comes with an IPAddress on a network interface connected
+// to this VLAN.
+message InitialIPAddress {
   // UUID of the VLAN.
   string vlan_uuid = 1 [(buf.validate.field).string.uuid = true];
 }
@@ -229,15 +337,30 @@ message Status {
   string info = 2 [(buf.validate.field).string.(fits.api.v1.is_description) = true];
 }
 
+// Backup configuration of a MVM.
+// Modeled as a message so that backup options (e.g. retention or schedule)
+// can be added later without breaking the API.
+message Backup {
+  // Whether backup is enabled.
+  bool enabled = 1;
+}
+
+// Encryption configuration of a MVM.
+// Modeled as a message so that encryption options (e.g. a key reference)
+// can be added later without breaking the API.
+message Encryption {
+  // Whether the disks of the MVM are encrypted.
+  bool enabled = 1;
+}
+
 // ManagedVM is a managed VM instance as returned by the API.
 message ManagedVM {
   // UUID of this MVM.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
   // Metadata for this MVM.
-  // TODO: dates are available in the nulink db but not passed through yet.
   fits.api.v1.Meta meta = 2;
   // FQDN of the MVM, derived from the name at creation or generated by the backend.
-  string fqdn = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  string fqdn = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_fqdn) = true];
   // Tenant this MVM belongs to.
   string tenant = 4 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // UUID of the project this MVM belongs to.
@@ -249,19 +372,25 @@ message ManagedVM {
   // UUID of the contact person responsible for this MVM.
   string contact_uuid = 8 [(buf.validate.field).string.uuid = true];
   // Number of CPU cores.
-  uint32 cpu = 9;
-  // RAM in GB.
-  uint32 ram = 10;
-  // Whether backup is enabled.
-  bool backup = 11;
-  // Whether the MVM is encrypted.
-  bool encrypted = 12;
+  uint32 cpu = 9 [(buf.validate.field).uint32.(fits.api.mvm.v1.is_cpu_count) = true];
+  // RAM in GiB.
+  uint32 ram_gb = 10 [(buf.validate.field).uint32.(fits.api.mvm.v1.is_ram_size) = true];
+  // Backup configuration of the MVM.
+  Backup backup = 11;
+  // Encryption configuration of the MVM.
+  Encryption encryption = 12;
   // Status of the MVM.
   Status status = 13;
   // Availability level.
-  Availability availability = 14 [(buf.validate.field).enum.defined_only = true];
+  Availability availability = 14 [(buf.validate.field).enum = {
+    defined_only: true
+    not_in: [0]
+  }];
   // Service class.
-  ServiceClass serviceclass = 15 [(buf.validate.field).enum.defined_only = true];
+  ServiceClass service_class = 15 [(buf.validate.field).enum = {
+    defined_only: true
+    not_in: [0]
+  }];
   // OS-specific configuration.
   oneof details {
     option (buf.validate.oneof).required = true;
@@ -270,10 +399,20 @@ message ManagedVM {
     // Linux-specific settings (LDAP + disks).
     LinuxDetails linux_details = 17;
   }
-  // Network interfaces attached to the MVM (IPv4 only).
-  repeated NetworkInterface interfaces = 18;
-  // Internal reference number provided by the user, e.g. a ticket ID.
-  string order_number = 19;
+  // IP addresses attached to the MVM (IPv4 only).
+  repeated IPAddress ip_addresses = 18;
+  // Customer reference provided by the user, e.g. a ticket ID.
+  string order_reference = 19 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
+  // Snapshots of the MVM.
+  repeated Snapshot snapshots = 20;
+}
+
+// A snapshot of a MVM.
+message Snapshot {
+  // UUID of this snapshot.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // Name of the snapshot; alphanumeric only.
+  string name = 2 [(buf.validate.field).string.(fits.api.mvm.v1.is_snapshot_name) = true];
 }
 
 // Request to get a MVM by UUID.
@@ -289,110 +428,6 @@ message MVMServiceGetResponse {
   // The MVM.
   ManagedVM mvm = 1;
 }
-// Windows-specific create request parts.
-message MVMServiceCreateWindowsRequest {
-  // UUID of the Windows domain the MVM should join.
-  string domain_uuid = 1 [(buf.validate.field).string.uuid = true];
-  // Disks for the Windows MVM, excluding the OS disk; must contain exactly
-  // one system disk plus any number of data disks (see DiskType).
-  repeated WindowsDisk disks = 2 [(buf.validate.field).repeated.min_items = 1];
-}
-
-// Linux-specific create request parts.
-message MVMServiceCreateLinuxRequest {
-  // UUID of the LDAP directory the MVM should integrate with.
-  string ldap_uuid = 1 [(buf.validate.field).string.uuid = true];
-  // Disks for the Linux MVM, excluding the OS disk; must contain exactly
-  // one system disk plus any number of data disks (see DiskType).
-  repeated LinuxDisk disks = 2 [(buf.validate.field).repeated.min_items = 1];
-}
-
-// Request to create a new MVM instance.
-message MVMServiceCreateRequest {
-  // UUID of the project this MVM belongs to.
-  string project_uuid = 1 [(buf.validate.field).string.uuid = true];
-  // Required 4-character code (digits and letters); the FQDN is derived from it.
-  string name_code = 2 [(buf.validate.field).string.(fits.api.v1.is_name_code) = true];
-  // UUID of the operating system image to install.
-  string os_uuid = 3 [(buf.validate.field).string.uuid = true];
-  // UUID of the datacenter location; the MVM is scheduled into one data center within it.
-  string location_uuid = 4 [(buf.validate.field).string.uuid = true];
-  // UUID of the contact person responsible for this MVM.
-  string contact_uuid = 5 [(buf.validate.field).string.uuid = true];
-  // Number of CPU cores.
-  uint32 cpu = 6;
-  // RAM in GB. Must be a power of 2.
-  uint32 ram = 7;
-  // Customer reference for this operation provided by the user, e.g. a ticket ID.
-  string order_number = 8;
-  // Optional key-value labels for accounting purposes.
-  // (e.g. contract number, transaction number, technical key, accounting key).
-  fits.api.v1.Labels labels = 9;
-  // Whether backup is enabled.
-  bool backup = 10;
-  // Whether the MVM should be encrypted.
-  bool encrypted = 11;
-  // Availability level.
-  Availability availability = 12 [(buf.validate.field).enum.defined_only = true];
-  // Service class; only certain combinations with availability are valid.
-  ServiceClass serviceclass = 13 [(buf.validate.field).enum.defined_only = true];
-  // OS type and its configuration.
-  oneof mvmtype {
-    option (buf.validate.oneof).required = true;
-    // Windows-specific settings (domain + disk).
-    MVMServiceCreateWindowsRequest windows = 14;
-    // Linux-specific settings (LDAP + disk).
-    MVMServiceCreateLinuxRequest linux = 15;
-  }
-  // Provides the target VLAN for the initial network interface.
-  InitialNetworkInterface initial_network_interface = 16;
-}
-
-// Disk configuration for a Linux MVM. See DiskType for the kinds of disks
-// (os, system, data) and their lifecycle rules.
-message LinuxDisk {
-  // UUID of the disk; set for existing disks, unset for new ones.
-  optional string uuid = 1 [(buf.validate.field).string.uuid = true];
-  // Label (name) of the disk.
-  string label = 2;
-  // Whether the disk grows automatically when space runs low.
-  bool auto_extend = 3;
-  // Size of the disk in GB; defaults to 50 when unset.
-  optional uint64 size = 4;
-  // Mount point (e.g. "/data"). Fixed to "/appdata" for the system disk;
-  // free-form for data disks.
-  optional string mount_point = 5;
-  // Kind of the disk; determines which operations are allowed on it.
-  // Provided by the client in create/add requests and populated by the
-  // API in responses.
-  optional DiskType disk_type = 6 [(buf.validate.field).enum.defined_only = true];
-}
-
-// Disk configuration for a Windows MVM. See DiskType for the kinds of
-// disks (os, system, data) and their lifecycle rules.
-message WindowsDisk {
-  // UUID of the disk; set for existing disks, unset for new ones.
-  optional string uuid = 1 [(buf.validate.field).string.uuid = true];
-  // Label (name) of the disk.
-  string label = 2;
-  // Whether the disk grows automatically when space runs low.
-  bool auto_extend = 3;
-  // Size of the disk in GB; defaults to 50 when unset.
-  optional uint64 size = 4;
-  // Drive letter (e.g. "D"). Fixed to "F" for the system disk; free-form
-  // for data disks.
-  optional string driveletter = 5;
-  // Kind of the disk; determines which operations are allowed on it.
-  // Provided by the client in create/add requests and populated by the
-  // API in responses.
-  optional DiskType disk_type = 6 [(buf.validate.field).enum.defined_only = true];
-}
-
-// Response for MVM create requests.
-message MVMServiceCreateResponse {
-  // UUID of the created MVM.
-  string uuid = 1 [(buf.validate.field).string.uuid = true];
-}
 
 // Request to list MVMs.
 message MVMServiceListRequest {
@@ -406,22 +441,81 @@ message MVMServiceListResponse {
   repeated ManagedVM mvms = 1;
 }
 
-// Request to cancel a MVM instance.
-message MVMServiceDeleteRequest {
-  // UUID of the project the MVM belongs to.
-  string project_uuid = 1 [(buf.validate.field).string.uuid = true];
-  // UUID of the MVM to delete.
-  string uuid = 2 [(buf.validate.field).string.uuid = true];
-  // Customer reference for this operation.
-  string order_number = 3;
+// Windows-specific create request parts.
+message MVMServiceCreateWindowsRequest {
+  // UUID of the Windows domain the MVM should join.
+  string domain_uuid = 1 [(buf.validate.field).string.uuid = true];
+  // Disks for the Windows MVM, excluding the OS disk; must contain exactly
+  // one system disk plus any number of data disks (see DiskType).
+  repeated WindowsDisk disks = 2 [
+    (buf.validate.field).repeated.min_items = 1,
+    (buf.validate.field).repeated.(fits.api.mvm.v1.is_disk_count) = true
+  ];
 }
 
-// Response for Delete; an empty response means the cancellation was accepted.
-message MVMServiceDeleteResponse {}
+// Linux-specific create request parts.
+message MVMServiceCreateLinuxRequest {
+  // UUID of the LDAP directory the MVM should integrate with.
+  string ldap_uuid = 1 [(buf.validate.field).string.uuid = true];
+  // Disks for the Linux MVM, excluding the OS disk; must contain exactly
+  // one system disk plus any number of data disks (see DiskType).
+  repeated LinuxDisk disks = 2 [
+    (buf.validate.field).repeated.min_items = 1,
+    (buf.validate.field).repeated.(fits.api.mvm.v1.is_disk_count) = true
+  ];
+}
 
-// Validation messages.
-// The Validate* RPCs dry-run the upstream business rules without executing the
-// operation; the mutation endpoints validate again before executing.
+// Request to create a new MVM instance.
+message MVMServiceCreateRequest {
+  // UUID of the project this MVM belongs to.
+  string project_uuid = 1 [(buf.validate.field).string.uuid = true];
+  // Required 4-character code (digits and letters); the FQDN is derived from it.
+  string name_code = 2 [(buf.validate.field).string.(fits.api.mvm.v1.is_name_code) = true];
+  // UUID of the operating system image to install.
+  string os_uuid = 3 [(buf.validate.field).string.uuid = true];
+  // UUID of the datacenter location; the MVM is scheduled into one data center within it.
+  string location_uuid = 4 [(buf.validate.field).string.uuid = true];
+  // UUID of the contact person responsible for this MVM.
+  string contact_uuid = 5 [(buf.validate.field).string.uuid = true];
+  // Number of CPU cores.
+  uint32 cpu = 6 [(buf.validate.field).uint32.(fits.api.mvm.v1.is_cpu_count) = true];
+  // RAM in GiB.
+  uint32 ram_gb = 7 [(buf.validate.field).uint32.(fits.api.mvm.v1.is_ram_size) = true];
+  // Customer reference for this operation, e.g. a ticket ID.
+  string order_reference = 8 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
+  // Optional key-value labels for this MVM.
+  fits.api.v1.Labels labels = 9;
+  // Backup configuration of the MVM.
+  Backup backup = 10 [(buf.validate.field).required = true];
+  // Encryption configuration of the MVM.
+  Encryption encryption = 11 [(buf.validate.field).required = true];
+  // Availability level.
+  Availability availability = 12 [(buf.validate.field).enum = {
+    defined_only: true
+    not_in: [0]
+  }];
+  // Service class; only certain combinations with availability are valid.
+  ServiceClass service_class = 13 [(buf.validate.field).enum = {
+    defined_only: true
+    not_in: [0]
+  }];
+  // OS type and its configuration.
+  oneof mvm_type {
+    option (buf.validate.oneof).required = true;
+    // Windows-specific settings (domain + disks).
+    MVMServiceCreateWindowsRequest windows = 14;
+    // Linux-specific settings (LDAP + disks).
+    MVMServiceCreateLinuxRequest linux = 15;
+  }
+  // Provides the target VLAN for the initial IP address.
+  InitialIPAddress initial_ip_address = 16 [(buf.validate.field).required = true];
+}
+
+// Response for MVM create requests.
+message MVMServiceCreateResponse {
+  // UUID of the created MVM.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+}
 
 // Request to validate a MVM create without creating anything.
 message MVMServiceValidateCreateRequest {
@@ -432,57 +526,125 @@ message MVMServiceValidateCreateRequest {
 // Response for ValidateCreate; violations are returned as an InvalidArgument error.
 message MVMServiceValidateCreateResponse {}
 
-// Request to validate an AddDisk without ordering anything.
-message MVMServiceValidateAddDiskRequest {
-  // The add disk request to validate.
-  MVMServiceAddDiskRequest add_disk = 1 [(buf.validate.field).required = true];
-}
-
-// Response for ValidateAddDisk; violations are returned as an InvalidArgument error.
-message MVMServiceValidateAddDiskResponse {}
-
-// Request to validate an UpdateDisk without changing anything.
-message MVMServiceValidateUpdateDiskRequest {
-  // The update disk request to validate.
-  MVMServiceUpdateDiskRequest update_disk = 1 [(buf.validate.field).required = true];
-}
-
-// Response for ValidateUpdateDisk; violations are returned as an InvalidArgument error.
-message MVMServiceValidateUpdateDiskResponse {}
-
-// Disk lifecycle messages.
-// A successful response means the operation was accepted; the affected disks
-// can be inspected via Get.
-
-// Response for AddDisk.
-message MVMServiceAddDiskResponse {
-  // UUID of the created disk.
+// Request to trigger the update of an existing MVM.
+message MVMServiceUpdateRequest {
+  // UUID of the MVM to update.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // UUID of the project this MVM belongs to.
+  string project_uuid = 2 [(buf.validate.field).string.uuid = true];
+  // Timestamp and strategy for this update.
+  fits.api.v1.UpdateMeta update_meta = 3 [(buf.validate.field).required = true];
+  // Customer reference for this operation, e.g. a ticket ID.
+  string order_reference = 4 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
+  // The labels to update.
+  optional fits.api.v1.UpdateLabels labels = 5;
+  // UUID of the new contact; unset keeps the current value.
+  optional string contact_uuid = 6 [(buf.validate.field).string.uuid = true];
+  // Number of CPU cores; unset keeps the current value.
+  optional uint32 cpu = 7 [(buf.validate.field).uint32.(fits.api.mvm.v1.is_cpu_count) = true];
+  // RAM in GiB; unset keeps the current value.
+  optional uint32 ram_gb = 8 [(buf.validate.field).uint32.(fits.api.mvm.v1.is_ram_size) = true];
+  // Reserved for service_class and availability, which will replace the
+  // deprecated MVMService.UpdateServiceClass endpoint.
+  reserved 9;
+  reserved "service_class";
+  reserved 10;
+  reserved "availability";
 }
 
-// Response for UpdateDisk.
-message MVMServiceUpdateDiskResponse {}
+// Response for Update; an empty response means the update was accepted.
+// The update is applied asynchronously; poll Get until the state settles.
+message MVMServiceUpdateResponse {}
 
-// Response for DeleteDisk.
-message MVMServiceDeleteDiskResponse {}
+// Request to validate a MVM update without updating anything.
+message MVMServiceValidateUpdateRequest {
+  // The update request to validate.
+  MVMServiceUpdateRequest update = 1 [(buf.validate.field).required = true];
+}
 
-// Request to order an additional data disk for a MVM.
-message MVMServiceAddDiskRequest {
-  // UUID of the MVM to attach the disk to.
+// Response for ValidateUpdate; violations are returned as an InvalidArgument error.
+message MVMServiceValidateUpdateResponse {}
+
+// Deprecated: request for a service class update.
+// Will be optional fields of the MVMServiceUpdateRequest.
+message MVMServiceUpdateServiceClassRequest {
+  // UUID of the MVM to update service class for.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
   // UUID of the project the MVM belongs to.
   string project_uuid = 2 [(buf.validate.field).string.uuid = true];
-  // Customer reference for this operation.
-  string order_number = 3;
-  // OS-specific disk specification; must match the MVM's OS type.
-  oneof disk {
-    option (buf.validate.oneof).required = true;
-    // Linux data disk.
-    LinuxDisk linux = 4;
-    // Windows data disk.
-    WindowsDisk windows = 5;
-  }
+  // Target service class; unset keeps the current value.
+  optional ServiceClass service_class = 3 [(buf.validate.field).enum = {
+    defined_only: true
+    not_in: [0]
+  }];
+  // Target availability level; unset keeps the current value.
+  optional Availability availability = 4 [(buf.validate.field).enum = {
+    defined_only: true
+    not_in: [0]
+  }];
 }
+
+// Deprecated: response for a service class update.
+// An empty response means the update was accepted.
+// The update is applied asynchronously; poll Get until the state settles.
+message MVMServiceUpdateServiceClassResponse {}
+
+// Deprecated: Request to validate a MVM service class update without updating anything.
+message MVMServiceValidateUpdateServiceClassRequest {
+  // The UpdateServiceClass request to validate.
+  MVMServiceUpdateServiceClassRequest update_service_class = 1 [(buf.validate.field).required = true];
+}
+
+// Deprecated: Response for ValidateUpdateServiceClass; violations are returned as an InvalidArgument error.
+message MVMServiceValidateUpdateServiceClassResponse {}
+
+// Request to cancel a MVM instance.
+message MVMServiceDeleteRequest {
+  // UUID of the MVM to delete.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // UUID of the project the MVM belongs to.
+  string project_uuid = 2 [(buf.validate.field).string.uuid = true];
+  // Customer reference for this operation, e.g. a ticket ID.
+  string order_reference = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
+}
+
+// Response for Delete; an empty response means the cancellation was accepted.
+message MVMServiceDeleteResponse {}
+
+// Request to order additional data disks for a MVM.
+message MVMServiceAddDisksRequest {
+  // UUID of the MVM to attach the disks to.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // UUID of the project the MVM belongs to.
+  string project_uuid = 2 [(buf.validate.field).string.uuid = true];
+  // Customer reference for this operation, e.g. a ticket ID.
+  string order_reference = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
+  // Disks to add. Windows data disks must use a drive letter from F to Z,
+  // except R (the responses are validated less strictly, see is_drive_letter).
+  repeated Disk disks = 4 [
+    (buf.validate.field).repeated.min_items = 1,
+    (buf.validate.field).repeated.(fits.api.mvm.v1.is_disk_count) = true,
+    (buf.validate.field).repeated.(fits.api.mvm.v1.is_data_drive_letters) = true
+  ];
+}
+
+// Response for AddDisks.
+message MVMServiceAddDisksResponse {
+  // UUIDs of the created disks; one per requested disk.
+  repeated string uuids = 1 [
+    (buf.validate.field).repeated.min_items = 1,
+    (buf.validate.field).repeated.items.string.uuid = true
+  ];
+}
+
+// Request to validate an AddDisks without ordering anything.
+message MVMServiceValidateAddDisksRequest {
+  // The add disks request to validate.
+  MVMServiceAddDisksRequest add_disks = 1 [(buf.validate.field).required = true];
+}
+
+// Response for ValidateAddDisks; violations are returned as an InvalidArgument error.
+message MVMServiceValidateAddDisksResponse {}
 
 // Request to change an existing disk; only size and auto-extend are
 // mutable (see DiskType for applicability per disk kind).
@@ -493,13 +655,25 @@ message MVMServiceUpdateDiskRequest {
   string disk_uuid = 2 [(buf.validate.field).string.uuid = true];
   // UUID of the project the MVM belongs to.
   string project_uuid = 3 [(buf.validate.field).string.uuid = true];
-  // Customer reference for this operation.
-  string order_number = 4;
+  // Customer reference for this operation, e.g. a ticket ID.
+  string order_reference = 4 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
+  // New size of the disk in GiB; unset keeps the current value.
+  optional uint64 size_gb = 5 [(buf.validate.field).uint64.(fits.api.mvm.v1.is_disk_size) = true];
   // New auto-extend behavior; unset keeps the current value.
-  optional bool auto_extend = 5;
-  // New size of the disk in GB; unset keeps the current value.
-  optional uint64 size = 6;
+  optional bool auto_extend = 6;
 }
+
+// Response for UpdateDisk.
+message MVMServiceUpdateDiskResponse {}
+
+// Request to validate an UpdateDisk without changing anything.
+message MVMServiceValidateUpdateDiskRequest {
+  // The update disk request to validate.
+  MVMServiceUpdateDiskRequest update_disk = 1 [(buf.validate.field).required = true];
+}
+
+// Response for ValidateUpdateDisk; violations are returned as an InvalidArgument error.
+message MVMServiceValidateUpdateDiskResponse {}
 
 // Request to cancel a data disk; OS and system disks are rejected by the
 // upstream.
@@ -510,69 +684,149 @@ message MVMServiceDeleteDiskRequest {
   string disk_uuid = 2 [(buf.validate.field).string.uuid = true];
   // UUID of the project the MVM belongs to.
   string project_uuid = 3 [(buf.validate.field).string.uuid = true];
-  // Customer reference for this operation.
-  string order_number = 4;
+  // Customer reference for this operation, e.g. a ticket ID.
+  string order_reference = 4 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
 }
 
-// Network interface lifecycle messages.
-// A successful response means the operation was accepted; the affected
-// interfaces can be inspected via Get.
+// Response for DeleteDisk.
+message MVMServiceDeleteDiskResponse {}
 
-// Response for AddNetworkInterface.
-message MVMServiceAddNetworkInterfaceResponse {
-  // UUID of the created network interface.
-  string uuid = 1 [(buf.validate.field).string.uuid = true];
-}
-
-// Response for MoveNetworkInterface.
-message MVMServiceMoveNetworkInterfaceResponse {}
-
-// Response for DeleteNetworkInterface.
-message MVMServiceDeleteNetworkInterfaceResponse {}
-
-// Request to order an additional network interface for a MVM.
-// Nulink treats interface and IP as a 1:1 relation; move and delete
-// operate on the interface_uuid.
-message MVMServiceAddNetworkInterfaceRequest {
-  // UUID of the MVM to attach the interface to.
+// Request to order an additional IP address for a MVM.
+message MVMServiceAddIPAddressRequest {
+  // UUID of the MVM to attach the IP address to.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
   // UUID of the project the MVM belongs to.
   string project_uuid = 2 [(buf.validate.field).string.uuid = true];
-  // Customer reference for this operation.
-  string order_number = 3;
+  // Customer reference for this operation, e.g. a ticket ID.
+  string order_reference = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
 }
 
-// Request to move a network interface from one MVM to another.
-message MVMServiceMoveNetworkInterfaceRequest {
-  // UUID of the MVM the interface currently belongs to.
+// Response for AddIPAddress.
+message MVMServiceAddIPAddressResponse {
+  // UUID of the created IP address.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
-  // UUID of the network interface holding the IP.
-  string interface_uuid = 2 [(buf.validate.field).string.uuid = true];
+}
+
+// Request to move an IP address from one MVM to another.
+message MVMServiceMoveIPAddressRequest {
+  // UUID of the MVM the IP address currently belongs to.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // UUID of the IP address to move.
+  string ip_address_uuid = 2 [(buf.validate.field).string.uuid = true];
   // UUID of the project the MVM belongs to.
   string project_uuid = 3 [(buf.validate.field).string.uuid = true];
-  // Customer reference for this operation.
-  string order_number = 4;
-  // UUID of the MVM to move the interface to.
+  // Customer reference for this operation, e.g. a ticket ID.
+  string order_reference = 4 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
+  // UUID of the MVM to move the IP address to.
   string target_mvm_uuid = 5 [(buf.validate.field).string.uuid = true];
 }
 
-// Request to delete a network interface from a MVM.
-message MVMServiceDeleteNetworkInterfaceRequest {
-  // UUID of the MVM the interface belongs to.
+// Response for MoveIPAddress.
+message MVMServiceMoveIPAddressResponse {}
+
+// Request to delete an IP address from a MVM.
+message MVMServiceDeleteIPAddressRequest {
+  // UUID of the MVM the IP address belongs to.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
-  // UUID of the network interface holding the IP.
-  string interface_uuid = 2 [(buf.validate.field).string.uuid = true];
+  // UUID of the IP address to delete.
+  string ip_address_uuid = 2 [(buf.validate.field).string.uuid = true];
   // UUID of the project the MVM belongs to.
   string project_uuid = 3 [(buf.validate.field).string.uuid = true];
-  // Order reference for this operation.
-  string order_number = 4;
+  // Customer reference for this operation, e.g. a ticket ID.
+  string order_reference = 4 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
 }
 
-// Request to validate an AddNetworkInterface without ordering anything.
-message MVMServiceValidateAddNetworkInterfaceRequest {
-  // The add network interface request to validate.
-  MVMServiceAddNetworkInterfaceRequest add_network_interface = 1 [(buf.validate.field).required = true];
+// Response for DeleteIPAddress.
+message MVMServiceDeleteIPAddressResponse {}
+
+// Request to restart a MVM.
+message MVMServiceRestartRequest {
+  // UUID of the MVM to restart.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // UUID of the project the MVM belongs to.
+  string project_uuid = 2 [(buf.validate.field).string.uuid = true];
+  // Customer reference for this operation, e.g. a ticket ID.
+  string order_reference = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
 }
 
-// Response for ValidateAddNetworkInterface; violations are returned as an InvalidArgument error.
-message MVMServiceValidateAddNetworkInterfaceResponse {}
+// Response for Restart; an empty response means the restart was accepted.
+// The restart is applied asynchronously; poll Get until the state settles.
+message MVMServiceRestartResponse {}
+
+// Request to reinstall the operating system of a MVM.
+message MVMServiceReinstallRequest {
+  // UUID of the MVM to reinstall.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // UUID of the project the MVM belongs to.
+  string project_uuid = 2 [(buf.validate.field).string.uuid = true];
+  // Customer reference for this operation, e.g. a ticket ID.
+  string order_reference = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
+  // UUID of the operating system image to install.
+  optional string os_uuid = 4 [(buf.validate.field).string.uuid = true];
+  // Backup configuration after the reinstall; unset keeps the current value.
+  optional Backup backup = 5;
+  // Encryption configuration after the reinstall; unset keeps the current value.
+  optional Encryption encryption = 6;
+}
+
+// Response for Reinstall; an empty response means the reinstall was accepted.
+// The reinstall is applied asynchronously; poll Get until the state settles.
+message MVMServiceReinstallResponse {}
+
+// Request to validate a Reinstall without reinstalling anything.
+message MVMServiceValidateReinstallRequest {
+  // The reinstall request to validate.
+  MVMServiceReinstallRequest reinstall = 1 [(buf.validate.field).required = true];
+}
+
+// Response for ValidateReinstall; violations are returned as an InvalidArgument error.
+message MVMServiceValidateReinstallResponse {}
+
+// Request to create a snapshot of a MVM.
+message MVMServiceAddSnapshotRequest {
+  // UUID of the MVM to create the snapshot for.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // UUID of the project the MVM belongs to.
+  string project_uuid = 2 [(buf.validate.field).string.uuid = true];
+  // Customer reference for this operation, e.g. a ticket ID.
+  string order_reference = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
+  // Name of the snapshot; alphanumeric only.
+  string name = 4 [(buf.validate.field).string.(fits.api.mvm.v1.is_snapshot_name) = true];
+}
+
+// Response for AddSnapshot.
+message MVMServiceAddSnapshotResponse {
+  // UUID of the created snapshot.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+}
+
+// Request to delete a snapshot of a MVM.
+message MVMServiceDeleteSnapshotRequest {
+  // UUID of the MVM the snapshot belongs to.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // UUID of the snapshot to delete.
+  string snapshot_uuid = 2 [(buf.validate.field).string.uuid = true];
+  // UUID of the project the MVM belongs to.
+  string project_uuid = 3 [(buf.validate.field).string.uuid = true];
+  // Customer reference for this operation, e.g. a ticket ID.
+  string order_reference = 4 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
+}
+
+// Response for DeleteSnapshot; an empty response means the deletion was accepted.
+message MVMServiceDeleteSnapshotResponse {}
+
+// Request to move a MVM from one datacenter to another.
+message MVMServiceMoveRequest {
+  // UUID of the MVM to move.
+  string uuid = 1 [(buf.validate.field).string.uuid = true];
+  // UUID of the project the MVM belongs to.
+  string project_uuid = 2 [(buf.validate.field).string.uuid = true];
+  // Customer reference for this operation, e.g. a ticket ID.
+  string order_reference = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
+  // If not provided, another datacenter within the same location will be chosen automatically.
+  optional string location_uuid = 4 [(buf.validate.field).string.uuid = true];
+}
+
+// Response for Move; an empty response means the move was accepted.
+// The move is applied asynchronously; poll Get until the state settles.
+message MVMServiceMoveResponse {}
