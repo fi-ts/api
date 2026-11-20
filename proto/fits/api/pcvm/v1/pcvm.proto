@@ -99,7 +99,7 @@ enum State {
   STATE_UNSPECIFIED = 0 [(fits.api.v1.enum_string_value) = ""];
   // STATE_HEALTHY: the VM is healthy.
   STATE_HEALTHY = 1 [(fits.api.v1.enum_string_value) = "healthy"];
-  // STATE_HEALTHY: there are some health warnings for this VM.
+  // STATE_WARNING: there are some health warnings for this VM.
   STATE_WARNING = 2 [(fits.api.v1.enum_string_value) = "warning"];
   // STATE_ERROR: the VM is unhealthy.
   STATE_ERROR = 3 [(fits.api.v1.enum_string_value) = "error"];
