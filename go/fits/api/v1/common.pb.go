@@ -251,7 +251,7 @@ func (Resource) EnumDescriptor() ([]byte, []int) {
 	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{3}
 }
 
-// ResourceRole specifies what role a logged in user needs to call this product scoped service.
+// ResourceRole specifies what role a logged in user needs to call this resource scoped service.
 // Resource roles are independent of project roles.
 type ResourceRole int32
 
@@ -985,15 +985,15 @@ var File_fits_api_v1_common_proto protoreflect.FileDescriptor
 
 const file_fits_api_v1_common_proto_rawDesc = "" +
 	"\n" +
-	"\x18fits/api/v1/common.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a google/protobuf/descriptor.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9d\x02\n" +
+	"\x18fits/api/v1/common.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a google/protobuf/descriptor.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa4\x02\n" +
 	"\x16ResourceRoleAssignment\x12;\n" +
 	"\bresource\x18\x01 \x01(\x0e2\x15.fits.api.v1.ResourceB\b\xbaH\x05\x82\x01\x02\x10\x01R\bresource\x12)\n" +
 	"\vresource_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\n" +
 	"resourceId\x127\n" +
 	"\x04role\x18\x03 \x01(\x0e2\x19.fits.api.v1.ResourceRoleB\b\xbaH\x05\x82\x01\x02\x10\x01R\x04role\x120\n" +
 	"\fproject_uuid\x18\x04 \x01(\tB\v\xbaH\br\x06\x98\xb4\xae\xb1\x02\x01H\x00R\vprojectUuid\x12'\n" +
-	"\tnamespace\x18\x05 \x01(\tB\a\xbaH\x04r\x02\x18-H\x00R\tnamespaceB\a\n" +
-	"\x05scope\"O\n" +
+	"\tnamespace\x18\x05 \x01(\tB\a\xbaH\x04r\x02\x18-H\x00R\tnamespaceB\x0e\n" +
+	"\x05scope\x12\x05\xbaH\x02\b\x01\"O\n" +
 	"\x06Paging\x12\x17\n" +
 	"\x04page\x18\x01 \x01(\x04H\x00R\x04page\x88\x01\x01\x12\x19\n" +
 	"\x05count\x18\x02 \x01(\x04H\x01R\x05count\x88\x01\x01B\a\n" +

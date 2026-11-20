@@ -122,7 +122,7 @@ type Token struct {
 	FirstName string `protobuf:"bytes,15,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
 	// LastName is the family name of the user the token was issued for.
 	LastName string `protobuf:"bytes,16,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
-	// ResourceRoles lists the product roles of the token owner
+	// ResourceRoles lists the resource roles of the token owner
 	ResourceRoles []*ResourceRoleAssignment `protobuf:"bytes,17,rep,name=resource_roles,json=resourceRoles,proto3" json:"resource_roles,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
