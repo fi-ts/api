@@ -620,10 +620,12 @@ message MVMServiceAddDisksRequest {
   string project_uuid = 2 [(buf.validate.field).string.uuid = true];
   // Customer reference for this operation, e.g. a ticket ID.
   string order_reference = 3 [(buf.validate.field).string.(fits.api.mvm.v1.is_order_reference) = true];
-  // Disks to add.
+  // Disks to add. Windows data disks must use a drive letter from F to Z,
+  // except R (the responses are validated less strictly, see is_drive_letter).
   repeated Disk disks = 4 [
     (buf.validate.field).repeated.min_items = 1,
-    (buf.validate.field).repeated.(fits.api.mvm.v1.is_disk_count) = true
+    (buf.validate.field).repeated.(fits.api.mvm.v1.is_disk_count) = true,
+    (buf.validate.field).repeated.(fits.api.mvm.v1.is_data_drive_letters) = true
   ];
 }
 

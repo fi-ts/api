@@ -1059,7 +1059,8 @@ export type MVMServiceAddDisksRequest = Message<"fits.api.mvm.v1.MVMServiceAddDi
      */
     orderReference: string;
     /**
-     * Disks to add.
+     * Disks to add. Windows data disks must use a drive letter from F to Z,
+     * except R (the responses are validated less strictly, see is_drive_letter).
      *
      * @generated from field: repeated fits.api.mvm.v1.Disk disks = 4;
      */

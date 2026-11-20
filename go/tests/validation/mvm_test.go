@@ -16,7 +16,8 @@ const (
 	msgOrderReference = "must be within 2 and 128 characters and not start or end with whitespace"
 	msgMacAddress     = "this string must be a valid mac address"
 	msgMountPoint     = "must be an absolute path without whitespace, e.g. /data/app"
-	msgDriveLetter    = "must be a single drive letter, e.g. G"
+	msgDriveLetter    = "must be a single uppercase drive letter, e.g. G"
+	msgAddDriveLetter = "drive letter of a Windows data disk must be within F and Z, except R"
 	msgFqdn           = "must be a valid FQDN, e.g. host.example.com"
 	msgNameCode       = "must be a 4-character code consisting of digits and letters"
 	msgSnapshotName   = "must be within 1 and 128 alphanumeric characters"
@@ -362,8 +363,14 @@ func TestValidateWindowsDisk(t *testing.T) {
 			wantErr: false,
 		},
 		{
-			name:    "valid lowercase drive letter",
-			msg:     withDisk(func(d *mvmv1.WindowsDisk) { d.DriveLetter = proto.String("g") }),
+			name:             "lowercase drive letter",
+			msg:              withDisk(func(d *mvmv1.WindowsDisk) { d.DriveLetter = proto.String("g") }),
+			wantErr:          true,
+			wantErrorMessage: "validation error: drive_letter: " + msgDriveLetter,
+		},
+		{
+			name:    "reserved drive letter is valid in responses",
+			msg:     withDisk(func(d *mvmv1.WindowsDisk) { d.DriveLetter = proto.String("R") }),
 			wantErr: false,
 		},
 		{
@@ -655,6 +662,15 @@ func TestValidateMVMServiceAddDisksRequest(t *testing.T) {
 		}
 		return d
 	}
+	windowsDisk := func(letter string) []*mvmv1.Disk {
+		d := validWindowsDisk()
+		d.DiskType = mvmv1.DiskType_DISK_TYPE_DATA.Enum()
+		d.DriveLetter = nil
+		if letter != "" {
+			d.DriveLetter = proto.String(letter)
+		}
+		return []*mvmv1.Disk{{Disk: &mvmv1.Disk_Windows{Windows: d}}}
+	}
 	request := func(d []*mvmv1.Disk) *mvmv1.MVMServiceAddDisksRequest {
 		return &mvmv1.MVMServiceAddDisksRequest{
 			Uuid:           testUUID,
@@ -697,6 +713,36 @@ func TestValidateMVMServiceAddDisksRequest(t *testing.T) {
 			}}}}),
 			wantErr:          true,
 			wantErrorMessage: "validation error: disks[0].linux.mount_point: " + msgMountPoint,
+		},
+		{
+			name:    "valid windows drive letter",
+			msg:     request(windowsDisk("G")),
+			wantErr: false,
+		},
+		{
+			name:    "windows disk without drive letter",
+			msg:     request(windowsDisk("")),
+			wantErr: false,
+		},
+		{
+			name:             "windows drive letter before F",
+			msg:              request(windowsDisk("E")),
+			wantErr:          true,
+			wantErrorMessage: "validation error: disks: " + msgAddDriveLetter,
+		},
+		{
+			name:             "windows drive letter R",
+			msg:              request(windowsDisk("R")),
+			wantErr:          true,
+			wantErrorMessage: "validation error: disks: " + msgAddDriveLetter,
+		},
+		{
+			name:    "windows lowercase drive letter",
+			msg:     request(windowsDisk("g")),
+			wantErr: true,
+			wantErrorMessage: `validation errors:
+ - disks: ` + msgAddDriveLetter + `
+ - disks[0].windows.drive_letter: ` + msgDriveLetter,
 		},
 	}
 

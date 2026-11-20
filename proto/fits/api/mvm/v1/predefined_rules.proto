@@ -40,11 +40,14 @@ extend buf.validate.StringRules {
     message: "must be an absolute path without whitespace, e.g. /data/app"
     expression: "this.matches('^/[^ \\t\\r\\n]*$')"
   }];
-  // IsDriveLetter validates a Windows drive letter: a single letter, e.g. G.
+  // IsDriveLetter validates a Windows drive letter: a single uppercase letter, e.g. G.
+  // This is intentionally loose, as it also validates what the API returns (e.g. C for
+  // OS disks). The stricter rule for data disks (F-Z except R) is enforced on requests
+  // only, see MVMServiceAddDisksRequest.
   optional bool is_drive_letter = 80108955 [(buf.validate.predefined).cel = {
     id: "string.is_drive_letter"
-    message: "must be a single drive letter, e.g. G"
-    expression: "this.matches('^[A-Za-z]$')"
+    message: "must be a single uppercase drive letter, e.g. G"
+    expression: "this.matches('^[A-Z]$')"
   }];
   // IsSnapshotName validates a snapshot name: 1-128 alphanumeric characters.
   optional bool is_snapshot_name = 80108956 [(buf.validate.predefined).cel = {
@@ -84,5 +87,14 @@ extend buf.validate.RepeatedRules {
     id: "repeated.is_disk_count"
     message: "must contain at most 8 disks"
     expression: "this.size() <= 8"
+  }];
+  // IsDataDriveLetters validates the drive letters of the Windows disks in a request
+  // to add disks: if set, they must be within F and Z, except R. Linux disks and
+  // disks without a drive letter are ignored. This is stricter than is_drive_letter,
+  // which also validates responses.
+  optional bool is_data_drive_letters = 80098952 [(buf.validate.predefined).cel = {
+    id: "repeated.is_data_drive_letters"
+    message: "drive letter of a Windows data disk must be within F and Z, except R"
+    expression: "this.all(d, !has(d.windows) || !has(d.windows.drive_letter) || d.windows.drive_letter.matches('^[F-QS-Z]$'))"
   }];
 }

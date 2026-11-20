@@ -23,3 +23,5 @@ IS_DISK_SIZE_FIELD_NUMBER: _ClassVar[int]
 is_disk_size: _descriptor.FieldDescriptor
 IS_DISK_COUNT_FIELD_NUMBER: _ClassVar[int]
 is_disk_count: _descriptor.FieldDescriptor
+IS_DATA_DRIVE_LETTERS_FIELD_NUMBER: _ClassVar[int]
+is_data_drive_letters: _descriptor.FieldDescriptor

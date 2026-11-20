@@ -102,6 +102,14 @@ var file_fits_api_mvm_v1_predefined_rules_proto_extTypes = []protoimpl.Extension
 		Tag:           "varint,80098951,opt,name=is_disk_count",
 		Filename:      "fits/api/mvm/v1/predefined_rules.proto",
 	},
+	{
+		ExtendedType:  (*validate.RepeatedRules)(nil),
+		ExtensionType: (*bool)(nil),
+		Field:         80098952,
+		Name:          "fits.api.mvm.v1.is_data_drive_letters",
+		Tag:           "varint,80098952,opt,name=is_data_drive_letters",
+		Filename:      "fits/api/mvm/v1/predefined_rules.proto",
+	},
 }
 
 // Extension fields to validate.StringRules.
@@ -127,7 +135,10 @@ var (
 	//
 	// optional bool is_mount_point = 80108954;
 	E_IsMountPoint = &file_fits_api_mvm_v1_predefined_rules_proto_extTypes[3]
-	// IsDriveLetter validates a Windows drive letter: a single letter, e.g. G.
+	// IsDriveLetter validates a Windows drive letter: a single uppercase letter, e.g. G.
+	// This is intentionally loose, as it also validates what the API returns (e.g. C for
+	// OS disks). The stricter rule for data disks (F-Z except R) is enforced on requests
+	// only, see MVMServiceAddDisksRequest.
 	//
 	// optional bool is_drive_letter = 80108955;
 	E_IsDriveLetter = &file_fits_api_mvm_v1_predefined_rules_proto_extTypes[4]
@@ -163,6 +174,13 @@ var (
 	//
 	// optional bool is_disk_count = 80098951;
 	E_IsDiskCount = &file_fits_api_mvm_v1_predefined_rules_proto_extTypes[9]
+	// IsDataDriveLetters validates the drive letters of the Windows disks in a request
+	// to add disks: if set, they must be within F and Z, except R. Linux disks and
+	// disks without a drive letter are ignored. This is stricter than is_drive_letter,
+	// which also validates responses.
+	//
+	// optional bool is_data_drive_letters = 80098952;
+	E_IsDataDriveLetters = &file_fits_api_mvm_v1_predefined_rules_proto_extTypes[10]
 )
 
 var File_fits_api_mvm_v1_predefined_rules_proto protoreflect.FileDescriptor
@@ -182,10 +200,10 @@ const file_fits_api_mvm_v1_predefined_rules_proto_rawDesc = "" +
 	"\x19string.is_order_reference\x12Hmust be within 2 and 128 characters and not start or end with whitespace\x1aKthis.size() >= 2 && this.size() <= 128 && this.trim().size() == this.size()R\x10isOrderReference:\xbd\x01\n" +
 	"\x0eis_mount_point\x12\x19.buf.validate.StringRules\x18\x9a\xbb\x99& \x01(\bBy\xc2Hv\n" +
 	"t\n" +
-	"\x15string.is_mount_point\x12;must be an absolute path without whitespace, e.g. /data/app\x1a\x1ethis.matches('^/[^ \\t\\r\\n]*$')R\fisMountPoint:\xa6\x01\n" +
-	"\x0fis_drive_letter\x12\x19.buf.validate.StringRules\x18\x9b\xbb\x99& \x01(\bB`\xc2H]\n" +
-	"[\n" +
-	"\x16string.is_drive_letter\x12%must be a single drive letter, e.g. G\x1a\x1athis.matches('^[A-Za-z]$')R\risDriveLetter:\xbe\x01\n" +
+	"\x15string.is_mount_point\x12;must be an absolute path without whitespace, e.g. /data/app\x1a\x1ethis.matches('^/[^ \\t\\r\\n]*$')R\fisMountPoint:\xad\x01\n" +
+	"\x0fis_drive_letter\x12\x19.buf.validate.StringRules\x18\x9b\xbb\x99& \x01(\bBg\xc2Hd\n" +
+	"b\n" +
+	"\x16string.is_drive_letter\x12/must be a single uppercase drive letter, e.g. G\x1a\x17this.matches('^[A-Z]$')R\risDriveLetter:\xbe\x01\n" +
 	"\x10is_snapshot_name\x12\x19.buf.validate.StringRules\x18\x9c\xbb\x99& \x01(\bBv\xc2Hs\n" +
 	"q\n" +
 	"\x17string.is_snapshot_name\x120must be within 1 and 128 alphanumeric characters\x1a$this.matches('^[a-zA-Z0-9]{1,128}$')R\x0eisSnapshotName:\x98\x01\n" +
@@ -202,7 +220,10 @@ const file_fits_api_mvm_v1_predefined_rules_proto_rawDesc = "" +
 	"isDiskSize:\x91\x01\n" +
 	"\ris_disk_count\x12\x1b.buf.validate.RepeatedRules\x18\x87\xed\x98& \x01(\bBM\xc2HJ\n" +
 	"H\n" +
-	"\x16repeated.is_disk_count\x12\x1cmust contain at most 8 disks\x1a\x10this.size() <= 8R\visDiskCountB\xb9\x01\n" +
+	"\x16repeated.is_disk_count\x12\x1cmust contain at most 8 disks\x1a\x10this.size() <= 8R\visDiskCount:\xaf\x02\n" +
+	"\x15is_data_drive_letters\x12\x1b.buf.validate.RepeatedRules\x18\x88\xed\x98& \x01(\bB\xdb\x01\xc2H\xd7\x01\n" +
+	"\xd4\x01\n" +
+	"\x1erepeated.is_data_drive_letters\x12Ddrive letter of a Windows data disk must be within F and Z, except R\x1althis.all(d, !has(d.windows) || !has(d.windows.drive_letter) || d.windows.drive_letter.matches('^[F-QS-Z]$'))R\x12isDataDriveLettersB\xb9\x01\n" +
 	"\x13com.fits.api.mvm.v1B\x14PredefinedRulesProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03FAM\xaa\x02\x0fFits.Api.Mvm.V1\xca\x02\x0fFits\\Api\\Mvm\\V1\xe2\x02\x1bFits\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12Fits::Api::Mvm::V1"
 
 var file_fits_api_mvm_v1_predefined_rules_proto_goTypes = []any{
@@ -222,10 +243,11 @@ var file_fits_api_mvm_v1_predefined_rules_proto_depIdxs = []int32{
 	1,  // 7: fits.api.mvm.v1.is_ram_size:extendee -> buf.validate.UInt32Rules
 	2,  // 8: fits.api.mvm.v1.is_disk_size:extendee -> buf.validate.UInt64Rules
 	3,  // 9: fits.api.mvm.v1.is_disk_count:extendee -> buf.validate.RepeatedRules
-	10, // [10:10] is the sub-list for method output_type
-	10, // [10:10] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	0,  // [0:10] is the sub-list for extension extendee
+	3,  // 10: fits.api.mvm.v1.is_data_drive_letters:extendee -> buf.validate.RepeatedRules
+	11, // [11:11] is the sub-list for method output_type
+	11, // [11:11] is the sub-list for method input_type
+	11, // [11:11] is the sub-list for extension type_name
+	0,  // [0:11] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
 }
 
@@ -241,7 +263,7 @@ func file_fits_api_mvm_v1_predefined_rules_proto_init() {
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_fits_api_mvm_v1_predefined_rules_proto_rawDesc), len(file_fits_api_mvm_v1_predefined_rules_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   0,
-			NumExtensions: 10,
+			NumExtensions: 11,
 			NumServices:   0,
 		},
 		GoTypes:           file_fits_api_mvm_v1_predefined_rules_proto_goTypes,

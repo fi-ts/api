@@ -2504,7 +2504,8 @@ type MVMServiceAddDisksRequest struct {
 	ProjectUuid string `protobuf:"bytes,2,opt,name=project_uuid,json=projectUuid,proto3" json:"project_uuid,omitempty"`
 	// Customer reference for this operation, e.g. a ticket ID.
 	OrderReference string `protobuf:"bytes,3,opt,name=order_reference,json=orderReference,proto3" json:"order_reference,omitempty"`
-	// Disks to add.
+	// Disks to add. Windows data disks must use a drive letter from F to Z,
+	// except R (the responses are validated less strictly, see is_drive_letter).
 	Disks         []*Disk `protobuf:"bytes,4,rep,name=disks,proto3" json:"disks,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -4190,12 +4191,12 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
 	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x124\n" +
 	"\x0forder_reference\x18\x03 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\x0eorderReference\"\x1a\n" +
-	"\x18MVMServiceDeleteResponse\"\xd9\x01\n" +
+	"\x18MVMServiceDeleteResponse\"\xdf\x01\n" +
 	"\x19MVMServiceAddDisksRequest\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12+\n" +
 	"\fproject_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vprojectUuid\x124\n" +
-	"\x0forder_reference\x18\x03 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\x0eorderReference\x12;\n" +
-	"\x05disks\x18\x04 \x03(\v2\x15.fits.api.mvm.v1.DiskB\x0e\xbaH\v\x92\x01\b\xb8\xe8Ʊ\x02\x01\b\x01R\x05disks\"C\n" +
+	"\x0forder_reference\x18\x03 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\x0eorderReference\x12A\n" +
+	"\x05disks\x18\x04 \x03(\v2\x15.fits.api.mvm.v1.DiskB\x14\xbaH\x11\x92\x01\x0e\xb8\xe8Ʊ\x02\x01\xc0\xe8Ʊ\x02\x01\b\x01R\x05disks\"C\n" +
 	"\x1aMVMServiceAddDisksResponse\x12%\n" +
 	"\x05uuids\x18\x01 \x03(\tB\x0f\xbaH\f\x92\x01\t\b\x01\"\x05r\x03\xb0\x01\x01R\x05uuids\"t\n" +
 	"!MVMServiceValidateAddDisksRequest\x12O\n" +

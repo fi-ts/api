@@ -522,6 +522,10 @@
                   <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
                 </li>
               
+                <li>
+                  <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
               
             </ul>
           </li>
@@ -2618,6 +2622,17 @@ having a direct membership within the tenant.</p></td>
           <tbody>
             
               <tr>
+                <td>is_data_drive_letters</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.RepeatedRules">.buf.validate.RepeatedRules</a></td>
+                <td>80098952</td>
+                <td><p>IsDataDriveLetters validates the drive letters of the Windows disks in a request
+to add disks: if set, they must be within F and Z, except R. Linux disks and
+disks without a drive letter are ignored. This is stricter than is_drive_letter,
+which also validates responses.</p></td>
+              </tr>
+            
+              <tr>
                 <td>is_disk_count</td>
                 <td><a href="#bool">bool</a></td>
                 <td><a href="#buf.validate.RepeatedRules">.buf.validate.RepeatedRules</a></td>
@@ -2630,7 +2645,10 @@ having a direct membership within the tenant.</p></td>
                 <td><a href="#bool">bool</a></td>
                 <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
                 <td>80108955</td>
-                <td><p>IsDriveLetter validates a Windows drive letter: a single letter, e.g. G.</p></td>
+                <td><p>IsDriveLetter validates a Windows drive letter: a single uppercase letter, e.g. G.
+This is intentionally loose, as it also validates what the API returns (e.g. C for
+OS disks). The stricter rule for data disks (F-Z except R) is enforced on requests
+only, see MVMServiceAddDisksRequest.</p></td>
               </tr>
             
               <tr>
@@ -2993,7 +3011,8 @@ API in responses. </p></td>
                   <td>disks</td>
                   <td><a href="#fits.api.mvm.v1.Disk">Disk</a></td>
                   <td>repeated</td>
-                  <td><p>Disks to add. </p></td>
+                  <td><p>Disks to add. Windows data disks must use a drive letter from F to Z,
+except R (the responses are validated less strictly, see is_drive_letter). </p></td>
                 </tr>
               
             </tbody>

@@ -34,7 +34,10 @@ export declare const is_order_reference: GenExtension<StringRules, boolean>;
  */
 export declare const is_mount_point: GenExtension<StringRules, boolean>;
 /**
- * IsDriveLetter validates a Windows drive letter: a single letter, e.g. G.
+ * IsDriveLetter validates a Windows drive letter: a single uppercase letter, e.g. G.
+ * This is intentionally loose, as it also validates what the API returns (e.g. C for
+ * OS disks). The stricter rule for data disks (F-Z except R) is enforced on requests
+ * only, see MVMServiceAddDisksRequest.
  *
  * @generated from extension: optional bool is_drive_letter = 80108955;
  */
@@ -69,3 +72,12 @@ export declare const is_disk_size: GenExtension<UInt64Rules, boolean>;
  * @generated from extension: optional bool is_disk_count = 80098951;
  */
 export declare const is_disk_count: GenExtension<RepeatedRules, boolean>;
+/**
+ * IsDataDriveLetters validates the drive letters of the Windows disks in a request
+ * to add disks: if set, they must be within F and Z, except R. Linux disks and
+ * disks without a drive letter are ignored. This is stricter than is_drive_letter,
+ * which also validates responses.
+ *
+ * @generated from extension: optional bool is_data_drive_letters = 80098952;
+ */
+export declare const is_data_drive_letters: GenExtension<RepeatedRules, boolean>;
