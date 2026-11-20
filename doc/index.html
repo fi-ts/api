@@ -834,6 +834,33 @@
         
           
           <li>
+            <a href="#fits%2fapi%2fmvm%2fv1%2fstage.proto">fits/api/mvm/v1/stage.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.Stage"><span class="badge">M</span>Stage</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.StageServiceListRequest"><span class="badge">M</span>StageServiceListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.StageServiceListResponse"><span class="badge">M</span>StageServiceListResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.StageService"><span class="badge">S</span>StageService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#fits%2fapi%2fmvm%2fv1%2fvlan.proto">fits/api/mvm/v1/vlan.proto</a>
             <ul>
               
@@ -5102,6 +5129,101 @@ DiskType for which operations apply per disk kind.</p></td>
     
       
       <div class="file-heading">
+        <h2 id="fits/api/mvm/v1/stage.proto">fits/api/mvm/v1/stage.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="fits.api.mvm.v1.Stage">Stage</h3>
+        <p>Stages a MVM can belong to.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of this Stage. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Title of the Stage. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.StageServiceListRequest">StageServiceListRequest</h3>
+        <p>StageServiceListRequest is the request payload for a stage list request.</p>
+
+        
+
+        
+      
+        <h3 id="fits.api.mvm.v1.StageServiceListResponse">StageServiceListResponse</h3>
+        <p>StageServiceListResponse is the response payload for a stage list request.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>stages</td>
+                  <td><a href="#fits.api.mvm.v1.Stage">Stage</a></td>
+                  <td>repeated</td>
+                  <td><p>The available stages. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="fits.api.mvm.v1.StageService">StageService</h3>
+        <p>StageService lists available stages.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#fits.api.mvm.v1.StageServiceListRequest">StageServiceListRequest</a></td>
+                <td><a href="#fits.api.mvm.v1.StageServiceListResponse">StageServiceListResponse</a></td>
+                <td><p>Returns a list of all available stages.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
         <h2 id="fits/api/mvm/v1/vlan.proto">fits/api/mvm/v1/vlan.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
@@ -5135,7 +5257,7 @@ DiskType for which operations apply per disk kind.</p></td>
                   <td>subnet_title</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Title of the subnet this VLAN belongs to, including the stage type, e.g. &#34;pod01-vlan2001 (Production)&#34;. </p></td>
+                  <td><p>Title of the subnet this VLAN belongs to. </p></td>
                 </tr>
               
                 <tr>
@@ -5157,6 +5279,13 @@ DiskType for which operations apply per disk kind.</p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Tenant this VLAN belongs to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>stage</td>
+                  <td><a href="#fits.api.mvm.v1.Stage">Stage</a></td>
+                  <td></td>
+                  <td><p>Stage the VLAN belongs to. </p></td>
                 </tr>
               
                 <tr>
@@ -5188,6 +5317,13 @@ DiskType for which operations apply per disk kind.</p></td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
                   <td><p>Filter the listed VLANs by the Windows domain they are associated with. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>stage_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Filter the listed VLANs by Stage. </p></td>
                 </tr>
               
             </tbody>
@@ -5840,7 +5976,7 @@ Downgrades are not possible. </p></td>
               <tr>
                 <td>OPERATION_ERROR</td>
                 <td>5</td>
-                <td><p>OPERATION_ERROR: the</p></td>
+                <td><p>OPERATION_ERROR: there is an error.</p></td>
               </tr>
             
           </tbody>
@@ -5904,7 +6040,7 @@ Downgrades are not possible. </p></td>
               <tr>
                 <td>STATE_WARNING</td>
                 <td>2</td>
-                <td><p>STATE_HEALTHY: there are some health warnings for this VM.</p></td>
+                <td><p>STATE_WARNING: there are some health warnings for this VM.</p></td>
               </tr>
             
               <tr>
