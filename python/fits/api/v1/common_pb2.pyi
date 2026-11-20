@@ -34,6 +34,19 @@ class OperatorRole(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     OPERATOR_ROLE_EDITOR: _ClassVar[OperatorRole]
     OPERATOR_ROLE_VIEWER: _ClassVar[OperatorRole]
 
+class Resource(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+    __slots__ = ()
+    RESOURCE_UNSPECIFIED: _ClassVar[Resource]
+    RESOURCE_MANAGED_VM: _ClassVar[Resource]
+    RESOURCE_PUBLIC_CLOUD_VM: _ClassVar[Resource]
+
+class ResourceRole(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+    __slots__ = ()
+    RESOURCE_ROLE_UNSPECIFIED: _ClassVar[ResourceRole]
+    RESOURCE_ROLE_ADMIN: _ClassVar[ResourceRole]
+    RESOURCE_ROLE_EDITOR: _ClassVar[ResourceRole]
+    RESOURCE_ROLE_VIEWER: _ClassVar[ResourceRole]
+
 class Visibility(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
     VISIBILITY_UNSPECIFIED: _ClassVar[Visibility]
@@ -63,6 +76,13 @@ PROJECT_ROLE_VIEWER: ProjectRole
 OPERATOR_ROLE_UNSPECIFIED: OperatorRole
 OPERATOR_ROLE_EDITOR: OperatorRole
 OPERATOR_ROLE_VIEWER: OperatorRole
+RESOURCE_UNSPECIFIED: Resource
+RESOURCE_MANAGED_VM: Resource
+RESOURCE_PUBLIC_CLOUD_VM: Resource
+RESOURCE_ROLE_UNSPECIFIED: ResourceRole
+RESOURCE_ROLE_ADMIN: ResourceRole
+RESOURCE_ROLE_EDITOR: ResourceRole
+RESOURCE_ROLE_VIEWER: ResourceRole
 VISIBILITY_UNSPECIFIED: Visibility
 VISIBILITY_PUBLIC: Visibility
 VISIBILITY_SELF: Visibility
@@ -82,8 +102,26 @@ VISIBILITY_FIELD_NUMBER: _ClassVar[int]
 visibility: _descriptor.FieldDescriptor
 AUDITING_FIELD_NUMBER: _ClassVar[int]
 auditing: _descriptor.FieldDescriptor
+RESOURCE_ROLES_FIELD_NUMBER: _ClassVar[int]
+resource_roles: _descriptor.FieldDescriptor
+RESOURCE_FIELD_NUMBER: _ClassVar[int]
+resource: _descriptor.FieldDescriptor
 ENUM_STRING_VALUE_FIELD_NUMBER: _ClassVar[int]
 enum_string_value: _descriptor.FieldDescriptor
+
+class ResourceRoleAssignment(_message.Message):
+    __slots__ = ("resource", "resource_id", "role", "project_uuid", "namespace")
+    RESOURCE_FIELD_NUMBER: _ClassVar[int]
+    RESOURCE_ID_FIELD_NUMBER: _ClassVar[int]
+    ROLE_FIELD_NUMBER: _ClassVar[int]
+    PROJECT_UUID_FIELD_NUMBER: _ClassVar[int]
+    NAMESPACE_FIELD_NUMBER: _ClassVar[int]
+    resource: Resource
+    resource_id: str
+    role: ResourceRole
+    project_uuid: str
+    namespace: str
+    def __init__(self, resource: _Optional[_Union[Resource, str]] = ..., resource_id: _Optional[str] = ..., role: _Optional[_Union[ResourceRole, str]] = ..., project_uuid: _Optional[str] = ..., namespace: _Optional[str] = ...) -> None: ...
 
 class Paging(_message.Message):
     __slots__ = ("page", "count")

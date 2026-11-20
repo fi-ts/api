@@ -14,7 +14,66 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/v1/common.proto.
  */
 export const file_fits_api_v1_common: GenFile = /*@__PURE__*/
-  fileDesc("ChhmaXRzL2FwaS92MS9jb21tb24ucHJvdG8SC2ZpdHMuYXBpLnYxIkIKBlBhZ2luZxIRCgRwYWdlGAEgASgESACIAQESEgoFY291bnQYAiABKARIAYgBAUIHCgVfcGFnZUIICgZfY291bnQiiAEKBkxhYmVscxJPCgZsYWJlbHMYASADKAsyHy5maXRzLmFwaS52MS5MYWJlbHMuTGFiZWxzRW50cnlCHrpIG5oBGLiVuLECASIHcgUQARiAAioHcgUQABiAAhotCgtMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIq8BCgRNZXRhEigKBmxhYmVscxgBIAEoCzITLmZpdHMuYXBpLnYxLkxhYmVsc0gAiAEBEi4KCmNyZWF0ZWRfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhIKCmdlbmVyYXRpb24YBCABKARCCQoHX2xhYmVscyJDCgxVcGRhdGVMYWJlbHMSIwoGdXBkYXRlGAEgASgLMhMuZml0cy5hcGkudjEuTGFiZWxzEg4KBnJlbW92ZRgCIAMoCSKIAQoKVXBkYXRlTWV0YRIuCgp1cGRhdGVkX2F0GAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBJKChBsb2NraW5nX3N0cmF0ZWd5GAIgASgOMiYuZml0cy5hcGkudjEuT3B0aW1pc3RpY0xvY2tpbmdTdHJhdGVneUIIukgFggECEAEqhwEKClRlbmFudFJvbGUSGwoXVEVOQU5UX1JPTEVfVU5TUEVDSUZJRUQQABIVChFURU5BTlRfUk9MRV9BRE1JThABEhYKElRFTkFOVF9ST0xFX0VESVRPUhACEhYKElRFTkFOVF9ST0xFX1ZJRVdFUhADEhUKEVRFTkFOVF9ST0xFX0dVRVNUEAQqdQoLUHJvamVjdFJvbGUSHAoYUFJPSkVDVF9ST0xFX1VOU1BFQ0lGSUVEEAASFgoSUFJPSkVDVF9ST0xFX0FETUlOEAESFwoTUFJPSkVDVF9ST0xFX0VESVRPUhACEhcKE1BST0pFQ1RfUk9MRV9WSUVXRVIQAyphCgxPcGVyYXRvclJvbGUSHQoZT1BFUkFUT1JfUk9MRV9VTlNQRUNJRklFRBAAEhgKFE9QRVJBVE9SX1JPTEVfRURJVE9SEAESGAoUT1BFUkFUT1JfUk9MRV9WSUVXRVIQAipUCgpWaXNpYmlsaXR5EhoKFlZJU0lCSUxJVFlfVU5TUEVDSUZJRUQQABIVChFWSVNJQklMSVRZX1BVQkxJQxABEhMKD1ZJU0lCSUxJVFlfU0VMRhACKlIKCEF1ZGl0aW5nEhgKFEFVRElUSU5HX1VOU1BFQ0lGSUVEEAASFQoRQVVESVRJTkdfSU5DTFVERUQQARIVChFBVURJVElOR19FWENMVURFRBACKpgBChlPcHRpbWlzdGljTG9ja2luZ1N0cmF0ZWd5EisKJ09QVElNSVNUSUNfTE9DS0lOR19TVFJBVEVHWV9VTlNQRUNJRklFRBAAEiYKIk9QVElNSVNUSUNfTE9DS0lOR19TVFJBVEVHWV9DTElFTlQQARImCiJPUFRJTUlTVElDX0xPQ0tJTkdfU1RSQVRFR1lfU0VSVkVSEAI6XAoMdGVuYW50X3JvbGVzEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYuI4DIAMoDjIXLmZpdHMuYXBpLnYxLlRlbmFudFJvbGVSC3RlbmFudFJvbGVzOl8KDXByb2plY3Rfcm9sZXMSHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxi5jgMgAygOMhguZml0cy5hcGkudjEuUHJvamVjdFJvbGVSDHByb2plY3RSb2xlczpiCg5vcGVyYXRvcl9yb2xlcxIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGLqOAyADKA4yGS5maXRzLmFwaS52MS5PcGVyYXRvclJvbGVSDW9wZXJhdG9yUm9sZXM6WQoKdmlzaWJpbGl0eRIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGLuOAyABKA4yFy5maXRzLmFwaS52MS5WaXNpYmlsaXR5Ugp2aXNpYmlsaXR5OlMKCGF1ZGl0aW5nEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYvI4DIAEoDjIVLmZpdHMuYXBpLnYxLkF1ZGl0aW5nUghhdWRpdGluZzpPChFlbnVtX3N0cmluZ192YWx1ZRIhLmdvb2dsZS5wcm90b2J1Zi5FbnVtVmFsdWVPcHRpb25zGKCWAyABKAlSD2VudW1TdHJpbmdWYWx1ZUKXAQoPY29tLmZpdHMuYXBpLnYxQgtDb21tb25Qcm90b1ABWilnaXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS92MTthcGl2MaICA0ZBWKoCC0ZpdHMuQXBpLlYxygILRml0c1xBcGlcVjHiAhdGaXRzXEFwaVxWMVxHUEJNZXRhZGF0YeoCDUZpdHM6OkFwaTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_predefined_rules, file_google_protobuf_descriptor, file_google_protobuf_timestamp]);
+  fileDesc("ChhmaXRzL2FwaS92MS9jb21tb24ucHJvdG8SC2ZpdHMuYXBpLnYxIvABChZSZXNvdXJjZVJvbGVBc3NpZ25tZW50EjEKCHJlc291cmNlGAEgASgOMhUuZml0cy5hcGkudjEuUmVzb3VyY2VCCLpIBYIBAhABEh0KC3Jlc291cmNlX2lkGAIgASgJQgi6SAVyAxiAAhIxCgRyb2xlGAMgASgOMhkuZml0cy5hcGkudjEuUmVzb3VyY2VSb2xlQgi6SAWCAQIQARIjCgxwcm9qZWN0X3V1aWQYBCABKAlCC7pICHIGmLSusQIBSAASHAoJbmFtZXNwYWNlGAUgASgJQge6SARyAhgtSABCDgoFc2NvcGUSBbpIAggBIkIKBlBhZ2luZxIRCgRwYWdlGAEgASgESACIAQESEgoFY291bnQYAiABKARIAYgBAUIHCgVfcGFnZUIICgZfY291bnQiiAEKBkxhYmVscxJPCgZsYWJlbHMYASADKAsyHy5maXRzLmFwaS52MS5MYWJlbHMuTGFiZWxzRW50cnlCHrpIG5oBGLiVuLECASIHcgUQARiAAioHcgUQABiAAhotCgtMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIq8BCgRNZXRhEigKBmxhYmVscxgBIAEoCzITLmZpdHMuYXBpLnYxLkxhYmVsc0gAiAEBEi4KCmNyZWF0ZWRfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhIKCmdlbmVyYXRpb24YBCABKARCCQoHX2xhYmVscyJDCgxVcGRhdGVMYWJlbHMSIwoGdXBkYXRlGAEgASgLMhMuZml0cy5hcGkudjEuTGFiZWxzEg4KBnJlbW92ZRgCIAMoCSKIAQoKVXBkYXRlTWV0YRIuCgp1cGRhdGVkX2F0GAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBJKChBsb2NraW5nX3N0cmF0ZWd5GAIgASgOMiYuZml0cy5hcGkudjEuT3B0aW1pc3RpY0xvY2tpbmdTdHJhdGVneUIIukgFggECEAEqhwEKClRlbmFudFJvbGUSGwoXVEVOQU5UX1JPTEVfVU5TUEVDSUZJRUQQABIVChFURU5BTlRfUk9MRV9BRE1JThABEhYKElRFTkFOVF9ST0xFX0VESVRPUhACEhYKElRFTkFOVF9ST0xFX1ZJRVdFUhADEhUKEVRFTkFOVF9ST0xFX0dVRVNUEAQqdQoLUHJvamVjdFJvbGUSHAoYUFJPSkVDVF9ST0xFX1VOU1BFQ0lGSUVEEAASFgoSUFJPSkVDVF9ST0xFX0FETUlOEAESFwoTUFJPSkVDVF9ST0xFX0VESVRPUhACEhcKE1BST0pFQ1RfUk9MRV9WSUVXRVIQAyphCgxPcGVyYXRvclJvbGUSHQoZT1BFUkFUT1JfUk9MRV9VTlNQRUNJRklFRBAAEhgKFE9QRVJBVE9SX1JPTEVfRURJVE9SEAESGAoUT1BFUkFUT1JfUk9MRV9WSUVXRVIQAipbCghSZXNvdXJjZRIYChRSRVNPVVJDRV9VTlNQRUNJRklFRBAAEhcKE1JFU09VUkNFX01BTkFHRURfVk0QARIcChhSRVNPVVJDRV9QVUJMSUNfQ0xPVURfVk0QAip6CgxSZXNvdXJjZVJvbGUSHQoZUkVTT1VSQ0VfUk9MRV9VTlNQRUNJRklFRBAAEhcKE1JFU09VUkNFX1JPTEVfQURNSU4QARIYChRSRVNPVVJDRV9ST0xFX0VESVRPUhACEhgKFFJFU09VUkNFX1JPTEVfVklFV0VSEAMqVAoKVmlzaWJpbGl0eRIaChZWSVNJQklMSVRZX1VOU1BFQ0lGSUVEEAASFQoRVklTSUJJTElUWV9QVUJMSUMQARITCg9WSVNJQklMSVRZX1NFTEYQAipSCghBdWRpdGluZxIYChRBVURJVElOR19VTlNQRUNJRklFRBAAEhUKEUFVRElUSU5HX0lOQ0xVREVEEAESFQoRQVVESVRJTkdfRVhDTFVERUQQAiqYAQoZT3B0aW1pc3RpY0xvY2tpbmdTdHJhdGVneRIrCidPUFRJTUlTVElDX0xPQ0tJTkdfU1RSQVRFR1lfVU5TUEVDSUZJRUQQABImCiJPUFRJTUlTVElDX0xPQ0tJTkdfU1RSQVRFR1lfQ0xJRU5UEAESJgoiT1BUSU1JU1RJQ19MT0NLSU5HX1NUUkFURUdZX1NFUlZFUhACOlwKDHRlbmFudF9yb2xlcxIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGLiOAyADKA4yFy5maXRzLmFwaS52MS5UZW5hbnRSb2xlUgt0ZW5hbnRSb2xlczpfCg1wcm9qZWN0X3JvbGVzEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYuY4DIAMoDjIYLmZpdHMuYXBpLnYxLlByb2plY3RSb2xlUgxwcm9qZWN0Um9sZXM6YgoOb3BlcmF0b3Jfcm9sZXMSHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxi6jgMgAygOMhkuZml0cy5hcGkudjEuT3BlcmF0b3JSb2xlUg1vcGVyYXRvclJvbGVzOlkKCnZpc2liaWxpdHkSHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxi7jgMgASgOMhcuZml0cy5hcGkudjEuVmlzaWJpbGl0eVIKdmlzaWJpbGl0eTpTCghhdWRpdGluZxIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGLyOAyABKA4yFS5maXRzLmFwaS52MS5BdWRpdGluZ1IIYXVkaXRpbmc6YgoOcmVzb3VyY2Vfcm9sZXMSHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxi9jgMgAygOMhkuZml0cy5hcGkudjEuUmVzb3VyY2VSb2xlUg1yZXNvdXJjZVJvbGVzOlMKCHJlc291cmNlEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYvo4DIAEoDjIVLmZpdHMuYXBpLnYxLlJlc291cmNlUghyZXNvdXJjZTpPChFlbnVtX3N0cmluZ192YWx1ZRIhLmdvb2dsZS5wcm90b2J1Zi5FbnVtVmFsdWVPcHRpb25zGKCWAyABKAlSD2VudW1TdHJpbmdWYWx1ZUKXAQoPY29tLmZpdHMuYXBpLnYxQgtDb21tb25Qcm90b1ABWilnaXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS92MTthcGl2MaICA0ZBWKoCC0ZpdHMuQXBpLlYxygILRml0c1xBcGlcVjHiAhdGaXRzXEFwaVxWMVxHUEJNZXRhZGF0YeoCDUZpdHM6OkFwaTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_predefined_rules, file_google_protobuf_descriptor, file_google_protobuf_timestamp]);
+
+/**
+ * ResourceRoleAssignment grants a resource role on one resource instance.
+ *
+ * @generated from message fits.api.v1.ResourceRoleAssignment
+ */
+export type ResourceRoleAssignment = Message<"fits.api.v1.ResourceRoleAssignment"> & {
+  /**
+   * Resource the role applies to.
+   *
+   * @generated from field: fits.api.v1.Resource resource = 1;
+   */
+  resource: Resource;
+
+  /**
+   * ID of the resource instance. Actual format differs by resource type.
+   *
+   * @generated from field: string resource_id = 2;
+   */
+  resourceId: string;
+
+  /**
+   * Role granted on the resource.
+   *
+   * @generated from field: fits.api.v1.ResourceRole role = 3;
+   */
+  role: ResourceRole;
+
+  /**
+   * Scope of the resource role.
+   *
+   * @generated from oneof fits.api.v1.ResourceRoleAssignment.scope
+   */
+  scope: {
+    /**
+     * UUID of the project the resource belongs to.
+     * Some resource types might not be scoped by projects.
+     *
+     * @generated from field: string project_uuid = 4;
+     */
+    value: string;
+    case: "projectUuid";
+  } | {
+    /**
+     * Namespace is used when the resource has a different scope than a project.
+     *
+     * @generated from field: string namespace = 5;
+     */
+    value: string;
+    case: "namespace";
+  } | { case: undefined; value?: undefined };
+};
+
+/**
+ * Describes the message fits.api.v1.ResourceRoleAssignment.
+ * Use `create(ResourceRoleAssignmentSchema)` to create a new message.
+ */
+export const ResourceRoleAssignmentSchema: GenMessage<ResourceRoleAssignment> = /*@__PURE__*/
+  messageDesc(file_fits_api_v1_common, 0);
 
 /**
  * Paging defines paging for methods with a lot of results
@@ -43,7 +102,7 @@ export type Paging = Message<"fits.api.v1.Paging"> & {
  * Use `create(PagingSchema)` to create a new message.
  */
 export const PagingSchema: GenMessage<Paging> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_common, 0);
+  messageDesc(file_fits_api_v1_common, 1);
 
 /**
  * Labels define additional information to a entity
@@ -64,7 +123,7 @@ export type Labels = Message<"fits.api.v1.Labels"> & {
  * Use `create(LabelsSchema)` to create a new message.
  */
 export const LabelsSchema: GenMessage<Labels> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_common, 1);
+  messageDesc(file_fits_api_v1_common, 2);
 
 /**
  * Meta of a message
@@ -107,7 +166,7 @@ export type Meta = Message<"fits.api.v1.Meta"> & {
  * Use `create(MetaSchema)` to create a new message.
  */
 export const MetaSchema: GenMessage<Meta> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_common, 2);
+  messageDesc(file_fits_api_v1_common, 3);
 
 /**
  * UpdateLabels is a message to update labels
@@ -135,7 +194,7 @@ export type UpdateLabels = Message<"fits.api.v1.UpdateLabels"> & {
  * Use `create(UpdateLabelsSchema)` to create a new message.
  */
 export const UpdateLabelsSchema: GenMessage<UpdateLabels> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_common, 3);
+  messageDesc(file_fits_api_v1_common, 4);
 
 /**
  * UpdateMeta must be provided with every UpdateRequest to define how optimistic locking should be handled
@@ -164,7 +223,7 @@ export type UpdateMeta = Message<"fits.api.v1.UpdateMeta"> & {
  * Use `create(UpdateMetaSchema)` to create a new message.
  */
 export const UpdateMetaSchema: GenMessage<UpdateMeta> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_common, 4);
+  messageDesc(file_fits_api_v1_common, 5);
 
 /**
  * TenantRole specifies what role a logged in user needs to call this tenant scoped service
@@ -292,6 +351,83 @@ export const OperatorRoleSchema: GenEnum<OperatorRole> = /*@__PURE__*/
   enumDesc(file_fits_api_v1_common, 2);
 
 /**
+ * Resource identifies the resource type a resource scoped method acts on.
+ * The resource instance id is carried by the request as `uuid`, or `id` when it is not a uuid.
+ *
+ * @generated from enum fits.api.v1.Resource
+ */
+export enum Resource {
+  /**
+   * RESOURCE_UNSPECIFIED is not specified
+   *
+   * @generated from enum value: RESOURCE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * RESOURCE_MANAGED_VM identifies a ManagedVM (fits.api.mvm.v1.ManagedVM)
+   *
+   * @generated from enum value: RESOURCE_MANAGED_VM = 1;
+   */
+  MANAGED_VM = 1,
+
+  /**
+   * RESOURCE_PUBLIC_CLOUD_VM identifies a VM (fits.api.pcvm.v1.PublicCloudVM)
+   *
+   * @generated from enum value: RESOURCE_PUBLIC_CLOUD_VM = 2;
+   */
+  PUBLIC_CLOUD_VM = 2,
+}
+
+/**
+ * Describes the enum fits.api.v1.Resource.
+ */
+export const ResourceSchema: GenEnum<Resource> = /*@__PURE__*/
+  enumDesc(file_fits_api_v1_common, 3);
+
+/**
+ * ResourceRole specifies what role a logged in user needs to call this resource scoped service.
+ * Resource roles are independent of project roles.
+ *
+ * @generated from enum fits.api.v1.ResourceRole
+ */
+export enum ResourceRole {
+  /**
+   * RESOURCE_ROLE_UNSPECIFIED is not specified
+   *
+   * @generated from enum value: RESOURCE_ROLE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * RESOURCE_ROLE_ADMIN the logged in user needs at least admin role to call this method
+   *
+   * @generated from enum value: RESOURCE_ROLE_ADMIN = 1;
+   */
+  ADMIN = 1,
+
+  /**
+   * RESOURCE_ROLE_EDITOR the logged in user needs at least editor role to call this method
+   *
+   * @generated from enum value: RESOURCE_ROLE_EDITOR = 2;
+   */
+  EDITOR = 2,
+
+  /**
+   * RESOURCE_ROLE_VIEWER the logged in user needs at least viewer role to call this method
+   *
+   * @generated from enum value: RESOURCE_ROLE_VIEWER = 3;
+   */
+  VIEWER = 3,
+}
+
+/**
+ * Describes the enum fits.api.v1.ResourceRole.
+ */
+export const ResourceRoleSchema: GenEnum<ResourceRole> = /*@__PURE__*/
+  enumDesc(file_fits_api_v1_common, 4);
+
+/**
  * Visibility of a method
  *
  * @generated from enum fits.api.v1.Visibility
@@ -323,7 +459,7 @@ export enum Visibility {
  * Describes the enum fits.api.v1.Visibility.
  */
 export const VisibilitySchema: GenEnum<Visibility> = /*@__PURE__*/
-  enumDesc(file_fits_api_v1_common, 3);
+  enumDesc(file_fits_api_v1_common, 5);
 
 /**
  * Auditing option specified per service method
@@ -359,7 +495,7 @@ export enum Auditing {
  * Describes the enum fits.api.v1.Auditing.
  */
 export const AuditingSchema: GenEnum<Auditing> = /*@__PURE__*/
-  enumDesc(file_fits_api_v1_common, 4);
+  enumDesc(file_fits_api_v1_common, 6);
 
 /**
  * OptimisticLockingStrategy defines how optimistic locking should be handled.
@@ -395,7 +531,7 @@ export enum OptimisticLockingStrategy {
  * Describes the enum fits.api.v1.OptimisticLockingStrategy.
  */
 export const OptimisticLockingStrategySchema: GenEnum<OptimisticLockingStrategy> = /*@__PURE__*/
-  enumDesc(file_fits_api_v1_common, 5);
+  enumDesc(file_fits_api_v1_common, 7);
 
 /**
  * TenantRoles are used to define which tenant role a logged in user must provide to call this method
@@ -438,10 +574,26 @@ export const auditing: GenExtension<MethodOptions, Auditing> = /*@__PURE__*/
   extDesc(file_fits_api_v1_common, 4);
 
 /**
+ * ResourceRoles are used to define which resource role a logged in user must provide to call this method
+ *
+ * @generated from extension: repeated fits.api.v1.ResourceRole resource_roles = 51005;
+ */
+export const resource_roles: GenExtension<MethodOptions, ResourceRole[]> = /*@__PURE__*/
+  extDesc(file_fits_api_v1_common, 5);
+
+/**
+ * Resource defines the resource a resource scoped method acts on. Required whenever resource_roles is set.
+ *
+ * @generated from extension: fits.api.v1.Resource resource = 51006;
+ */
+export const resource: GenExtension<MethodOptions, Resource> = /*@__PURE__*/
+  extDesc(file_fits_api_v1_common, 6);
+
+/**
  * StringValue which can be set to a enum
  *
  * @generated from extension: string enum_string_value = 52000;
  */
 export const enum_string_value: GenExtension<EnumValueOptions, string> = /*@__PURE__*/
-  extDesc(file_fits_api_v1_common, 5);
+  extDesc(file_fits_api_v1_common, 7);
 
