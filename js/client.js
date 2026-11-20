@@ -17,6 +17,7 @@ import { LocationService as Apimvmv1LocationService } from "./fits/api/mvm/v1/lo
 import { MVMService as Apimvmv1MVMService } from "./fits/api/mvm/v1/mvm_pb";
 import { OnBehalfMVMService as Apimvmv1OnBehalfMVMService } from "./fits/api/mvm/v1/mvm_on_behalf_pb";
 import { OSService as Apimvmv1OSService } from "./fits/api/mvm/v1/os_pb";
+import { StageService as Apimvmv1StageService } from "./fits/api/mvm/v1/stage_pb";
 import { VLANService as Apimvmv1VLANService } from "./fits/api/mvm/v1/vlan_pb";
 import { PublicCloudVMService as Apipcvmv1PublicCloudVMService } from "./fits/api/pcvm/v1/pcvm_pb";
 import { HealthService as Apiv1HealthService } from "./fits/api/v1/health_pb";
@@ -117,6 +118,12 @@ class Apimvmv1Impl {
             this._os = createClient(Apimvmv1OSService, this.transport);
         }
         return this._os;
+    }
+    stage() {
+        if (!this._stage) {
+            this._stage = createClient(Apimvmv1StageService, this.transport);
+        }
+        return this._stage;
     }
     vlan() {
         if (!this._vlan) {

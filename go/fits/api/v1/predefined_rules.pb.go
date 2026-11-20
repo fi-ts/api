@@ -26,8 +26,8 @@ var file_fits_api_v1_predefined_rules_proto_extTypes = []protoimpl.ExtensionInfo
 		ExtendedType:  (*validate.StringRules)(nil),
 		ExtensionType: (*bool)(nil),
 		Field:         80048951,
-		Name:          "fits.api.v1.macaddress",
-		Tag:           "varint,80048951,opt,name=macaddress",
+		Name:          "fits.api.v1.mac_address",
+		Tag:           "varint,80048951,opt,name=mac_address",
 		Filename:      "fits/api/v1/predefined_rules.proto",
 	},
 	{
@@ -100,14 +100,6 @@ var file_fits_api_v1_predefined_rules_proto_extTypes = []protoimpl.ExtensionInfo
 		Field:         80048961,
 		Name:          "fits.api.v1.is_phone",
 		Tag:           "varint,80048961,opt,name=is_phone",
-		Filename:      "fits/api/v1/predefined_rules.proto",
-	},
-	{
-		ExtendedType:  (*validate.StringRules)(nil),
-		ExtensionType: (*bool)(nil),
-		Field:         80048964,
-		Name:          "fits.api.v1.is_name_code",
-		Tag:           "varint,80048964,opt,name=is_name_code",
 		Filename:      "fits/api/v1/predefined_rules.proto",
 	},
 	{
@@ -202,10 +194,10 @@ var file_fits_api_v1_predefined_rules_proto_extTypes = []protoimpl.ExtensionInfo
 
 // Extension fields to validate.StringRules.
 var (
-	// Macaddress returns true if the given string is a valid macadress
+	// MacAddress returns true if the given string is a valid mac address
 	//
-	// optional bool macaddress = 80048951;
-	E_Macaddress = &file_fits_api_v1_predefined_rules_proto_extTypes[0]
+	// optional bool mac_address = 80048951;
+	E_MacAddress = &file_fits_api_v1_predefined_rules_proto_extTypes[0]
 	// IsName returns true if name field satisfies our requirements
 	//
 	// optional bool is_name = 80048952;
@@ -242,18 +234,14 @@ var (
 	//
 	// optional bool is_phone = 80048961;
 	E_IsPhone = &file_fits_api_v1_predefined_rules_proto_extTypes[9]
-	// IsNameCode validates if the given string is a 4-character code consisting of digits and letters.
-	//
-	// optional bool is_name_code = 80048964;
-	E_IsNameCode = &file_fits_api_v1_predefined_rules_proto_extTypes[10]
 	// IsTenantSubjectPermission returns true if name field satisfies our requirements.
 	//
 	// optional bool is_tenant_subject_permission = 80048962;
-	E_IsTenantSubjectPermission = &file_fits_api_v1_predefined_rules_proto_extTypes[11]
+	E_IsTenantSubjectPermission = &file_fits_api_v1_predefined_rules_proto_extTypes[10]
 	// IsProjectSubjectPermission returns true if name field satisfies our requirements.
 	//
 	// optional bool is_project_subject_permission = 80048963;
-	E_IsProjectSubjectPermission = &file_fits_api_v1_predefined_rules_proto_extTypes[12]
+	E_IsProjectSubjectPermission = &file_fits_api_v1_predefined_rules_proto_extTypes[11]
 )
 
 // Extension fields to validate.RepeatedRules.
@@ -261,23 +249,23 @@ var (
 	// Prefixes validates if a slice of prefixes in string form are valid
 	//
 	// optional bool prefixes = 80058951;
-	E_Prefixes = &file_fits_api_v1_predefined_rules_proto_extTypes[13]
+	E_Prefixes = &file_fits_api_v1_predefined_rules_proto_extTypes[12]
 	// Ips validates if a slice of ips in string form are valid
 	//
 	// optional bool ips = 80058952;
-	E_Ips = &file_fits_api_v1_predefined_rules_proto_extTypes[14]
+	E_Ips = &file_fits_api_v1_predefined_rules_proto_extTypes[13]
 	// AreHostAndPort validates if a slice of strings are all in the form of <ip | host>:<port>
 	//
 	// optional bool are_host_and_port = 80058953;
-	E_AreHostAndPort = &file_fits_api_v1_predefined_rules_proto_extTypes[15]
+	E_AreHostAndPort = &file_fits_api_v1_predefined_rules_proto_extTypes[14]
 	// All Trimmed enforces all strings to be trimmed, e.g. no whitespaces at the begin and end
 	//
 	// optional bool all_trimmed = 80058954;
-	E_AllTrimmed = &file_fits_api_v1_predefined_rules_proto_extTypes[16]
+	E_AllTrimmed = &file_fits_api_v1_predefined_rules_proto_extTypes[15]
 	// Are Names returns true if all strings given are names
 	//
 	// optional bool are_names = 80058955;
-	E_AreNames = &file_fits_api_v1_predefined_rules_proto_extTypes[17]
+	E_AreNames = &file_fits_api_v1_predefined_rules_proto_extTypes[16]
 )
 
 // Extension fields to validate.MapRules.
@@ -285,31 +273,30 @@ var (
 	// Keys and Values trimmed enforces all map keys and values to be trimmed, e.g. no whitespaces at the begin and end
 	//
 	// optional bool keys_and_values_trimmed = 80068951;
-	E_KeysAndValuesTrimmed = &file_fits_api_v1_predefined_rules_proto_extTypes[18]
+	E_KeysAndValuesTrimmed = &file_fits_api_v1_predefined_rules_proto_extTypes[17]
 	// Keys trimmed enforces all map keys and values to be trimmed, e.g. no whitespaces at the begin and end
 	//
 	// optional bool keys_trimmed = 80068952;
-	E_KeysTrimmed = &file_fits_api_v1_predefined_rules_proto_extTypes[19]
+	E_KeysTrimmed = &file_fits_api_v1_predefined_rules_proto_extTypes[18]
 	// ProjectRolesKeysValid ensures that project roles keys met our requirements.
 	//
 	// optional bool project_roles_keys_valid = 80068953;
-	E_ProjectRolesKeysValid = &file_fits_api_v1_predefined_rules_proto_extTypes[20]
+	E_ProjectRolesKeysValid = &file_fits_api_v1_predefined_rules_proto_extTypes[19]
 	// TenantRolesKeysValid ensures that tenant roles keys met our requirements.
 	//
 	// optional bool tenant_roles_keys_valid = 80068954;
-	E_TenantRolesKeysValid = &file_fits_api_v1_predefined_rules_proto_extTypes[21]
+	E_TenantRolesKeysValid = &file_fits_api_v1_predefined_rules_proto_extTypes[20]
 )
 
 var File_fits_api_v1_predefined_rules_proto protoreflect.FileDescriptor
 
 const file_fits_api_v1_predefined_rules_proto_rawDesc = "" +
 	"\n" +
-	"\"fits/api/v1/predefined_rules.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto:\xb8\x01\n" +
-	"\n" +
-	"macaddress\x12\x19.buf.validate.StringRules\x18\xb7\xe6\x95& \x01(\bBz\xc2Hw\n" +
-	"u\n" +
-	"\x11string.macaddress\x12&this string must be a valid macaddress\x1a8this.matches('^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$')R\n" +
-	"macaddress:\x99\x01\n" +
+	"\"fits/api/v1/predefined_rules.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto:\xbb\x01\n" +
+	"\vmac_address\x12\x19.buf.validate.StringRules\x18\xb7\xe6\x95& \x01(\bB|\xc2Hy\n" +
+	"w\n" +
+	"\x12string.mac_address\x12'this string must be a valid mac address\x1a8this.matches('^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$')R\n" +
+	"macAddress:\x99\x01\n" +
 	"\ais_name\x12\x19.buf.validate.StringRules\x18\xb8\xe6\x95& \x01(\bBb\xc2H_\n" +
 	"]\n" +
 	"\x0estring.is_name\x12#must be within 2 and 128 characters\x1a&this.size() >= 2 && this.size() <= 128R\x06isName:\x9a\x01\n" +
@@ -338,11 +325,7 @@ const file_fits_api_v1_predefined_rules_proto_rawDesc = "" +
 	"isIpv4Cidr:\xba\x01\n" +
 	"\bis_phone\x12\x19.buf.validate.StringRules\x18\xc1\xe6\x95& \x01(\bB\x80\x01\xc2H}\n" +
 	"{\n" +
-	"\x0fstring.is_phone\x12Amust be a valid phone number in E.164 format, e.g. +4915123456789\x1a%this.matches('^[+][1-9][0-9]{1,14}$')R\aisPhone:\xb9\x01\n" +
-	"\fis_name_code\x12\x19.buf.validate.StringRules\x18\xc4\xe6\x95& \x01(\bBy\xc2Hv\n" +
-	"t\n" +
-	"\x13string.is_name_code\x12;must be a 4-character code consisting of digits and letters\x1a this.matches('^[0-9A-Za-z]{4}$')R\n" +
-	"isNameCode:\xef\x01\n" +
+	"\x0fstring.is_phone\x12Amust be a valid phone number in E.164 format, e.g. +4915123456789\x1a%this.matches('^[+][1-9][0-9]{1,14}$')R\aisPhone:\xef\x01\n" +
 	"\x1cis_tenant_subject_permission\x12\x19.buf.validate.StringRules\x18\xc2\xe6\x95& \x01(\bB\x8f\x01\xc2H\x8b\x01\n" +
 	"\x88\x01\n" +
 	"#string.is_tenant_subject_permission\x12*must be '*' or within 2 and 128 characters\x1a5this == '*' || this.size() >= 2 && this.size() <= 128R\x19isTenantSubjectPermission:\x94\x02\n" +
@@ -385,7 +368,7 @@ var file_fits_api_v1_predefined_rules_proto_goTypes = []any{
 	(*validate.MapRules)(nil),      // 2: buf.validate.MapRules
 }
 var file_fits_api_v1_predefined_rules_proto_depIdxs = []int32{
-	0,  // 0: fits.api.v1.macaddress:extendee -> buf.validate.StringRules
+	0,  // 0: fits.api.v1.mac_address:extendee -> buf.validate.StringRules
 	0,  // 1: fits.api.v1.is_name:extendee -> buf.validate.StringRules
 	0,  // 2: fits.api.v1.is_description:extendee -> buf.validate.StringRules
 	0,  // 3: fits.api.v1.is_partition:extendee -> buf.validate.StringRules
@@ -395,22 +378,21 @@ var file_fits_api_v1_predefined_rules_proto_depIdxs = []int32{
 	0,  // 7: fits.api.v1.trimmed:extendee -> buf.validate.StringRules
 	0,  // 8: fits.api.v1.is_ipv4_cidr:extendee -> buf.validate.StringRules
 	0,  // 9: fits.api.v1.is_phone:extendee -> buf.validate.StringRules
-	0,  // 10: fits.api.v1.is_name_code:extendee -> buf.validate.StringRules
-	0,  // 11: fits.api.v1.is_tenant_subject_permission:extendee -> buf.validate.StringRules
-	0,  // 12: fits.api.v1.is_project_subject_permission:extendee -> buf.validate.StringRules
-	1,  // 13: fits.api.v1.prefixes:extendee -> buf.validate.RepeatedRules
-	1,  // 14: fits.api.v1.ips:extendee -> buf.validate.RepeatedRules
-	1,  // 15: fits.api.v1.are_host_and_port:extendee -> buf.validate.RepeatedRules
-	1,  // 16: fits.api.v1.all_trimmed:extendee -> buf.validate.RepeatedRules
-	1,  // 17: fits.api.v1.are_names:extendee -> buf.validate.RepeatedRules
-	2,  // 18: fits.api.v1.keys_and_values_trimmed:extendee -> buf.validate.MapRules
-	2,  // 19: fits.api.v1.keys_trimmed:extendee -> buf.validate.MapRules
-	2,  // 20: fits.api.v1.project_roles_keys_valid:extendee -> buf.validate.MapRules
-	2,  // 21: fits.api.v1.tenant_roles_keys_valid:extendee -> buf.validate.MapRules
-	22, // [22:22] is the sub-list for method output_type
-	22, // [22:22] is the sub-list for method input_type
-	22, // [22:22] is the sub-list for extension type_name
-	0,  // [0:22] is the sub-list for extension extendee
+	0,  // 10: fits.api.v1.is_tenant_subject_permission:extendee -> buf.validate.StringRules
+	0,  // 11: fits.api.v1.is_project_subject_permission:extendee -> buf.validate.StringRules
+	1,  // 12: fits.api.v1.prefixes:extendee -> buf.validate.RepeatedRules
+	1,  // 13: fits.api.v1.ips:extendee -> buf.validate.RepeatedRules
+	1,  // 14: fits.api.v1.are_host_and_port:extendee -> buf.validate.RepeatedRules
+	1,  // 15: fits.api.v1.all_trimmed:extendee -> buf.validate.RepeatedRules
+	1,  // 16: fits.api.v1.are_names:extendee -> buf.validate.RepeatedRules
+	2,  // 17: fits.api.v1.keys_and_values_trimmed:extendee -> buf.validate.MapRules
+	2,  // 18: fits.api.v1.keys_trimmed:extendee -> buf.validate.MapRules
+	2,  // 19: fits.api.v1.project_roles_keys_valid:extendee -> buf.validate.MapRules
+	2,  // 20: fits.api.v1.tenant_roles_keys_valid:extendee -> buf.validate.MapRules
+	21, // [21:21] is the sub-list for method output_type
+	21, // [21:21] is the sub-list for method input_type
+	21, // [21:21] is the sub-list for extension type_name
+	0,  // [0:21] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
 }
 
@@ -426,7 +408,7 @@ func file_fits_api_v1_predefined_rules_proto_init() {
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_fits_api_v1_predefined_rules_proto_rawDesc), len(file_fits_api_v1_predefined_rules_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   0,
-			NumExtensions: 22,
+			NumExtensions: 21,
 			NumServices:   0,
 		},
 		GoTypes:           file_fits_api_v1_predefined_rules_proto_goTypes,
