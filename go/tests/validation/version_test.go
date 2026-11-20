@@ -8,24 +8,24 @@ import (
 )
 
 func TestValidateVersion(t *testing.T) {
-	tests := prototests{
+	tests := Prototests{
 		{
-			name:             "version too long",
-			msg:              &v1.Version{Version: strings.Repeat("x", 257)},
-			wantErr:          true,
-			wantErrorMessage: `validation error: version: must be shorter than 256 characters`,
+			Name:             "version too long",
+			Msg:              &v1.Version{Version: strings.Repeat("x", 257)},
+			WantErr:          true,
+			WantErrorMessage: `validation error: version: must be shorter than 256 characters`,
 		},
 		{
-			name: "valid",
-			msg: &v1.Version{
+			Name: "valid",
+			Msg: &v1.Version{
 				Version:   "1.0.0",
 				Revision:  "abc123",
 				GitSha1:   "deadbeef",
 				BuildDate: "2026-01-01T00:00:00Z",
 			},
-			wantErr: false,
+			WantErr: false,
 		},
 	}
 
-	validateProtos(t, tests)
+	ValidateProtos(t, tests)
 }
