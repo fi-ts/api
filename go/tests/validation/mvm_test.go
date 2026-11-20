@@ -26,7 +26,7 @@ const (
 
 func validLinuxDisk() *mvmv1.LinuxDisk {
 	return &mvmv1.LinuxDisk{
-		Label:      "appdata",
+		Name:       "appdata",
 		SizeGb:     50,
 		MountPoint: proto.String("/appdata"),
 		DiskType:   mvmv1.DiskType_DISK_TYPE_SYSTEM.Enum(),
@@ -35,7 +35,7 @@ func validLinuxDisk() *mvmv1.LinuxDisk {
 
 func validWindowsDisk() *mvmv1.WindowsDisk {
 	return &mvmv1.WindowsDisk{
-		Label:       "system",
+		Name:        "system",
 		SizeGb:      50,
 		DriveLetter: proto.String("F"),
 		DiskType:    mvmv1.DiskType_DISK_TYPE_SYSTEM.Enum(),
@@ -269,7 +269,7 @@ func TestValidateLinuxDisk(t *testing.T) {
 			msg:     &mvmv1.LinuxDisk{},
 			wantErr: true,
 			wantErrorMessage: `validation errors:
- - label: must be within 2 and 128 characters
+ - name: must be within 2 and 128 characters
  - size_gb: ` + msgDiskSize,
 		},
 		{
@@ -354,7 +354,7 @@ func TestValidateWindowsDisk(t *testing.T) {
 			msg:     &mvmv1.WindowsDisk{},
 			wantErr: true,
 			wantErrorMessage: `validation errors:
- - label: must be within 2 and 128 characters
+ - name: must be within 2 and 128 characters
  - size_gb: ` + msgDiskSize,
 		},
 		{
@@ -442,7 +442,7 @@ func TestValidateMVMServiceCreateWindowsRequest(t *testing.T) {
 			msg: &mvmv1.MVMServiceCreateWindowsRequest{
 				DomainUuid: testUUID,
 				Disks: []*mvmv1.WindowsDisk{{
-					Label:       "system",
+					Name:        "system",
 					SizeGb:      50,
 					DriveLetter: proto.String("FG"),
 				}},
@@ -707,7 +707,7 @@ func TestValidateMVMServiceAddDisksRequest(t *testing.T) {
 		{
 			name: "invalid disk",
 			msg: request([]*mvmv1.Disk{{Disk: &mvmv1.Disk_Linux{Linux: &mvmv1.LinuxDisk{
-				Label:      "data",
+				Name:       "data",
 				SizeGb:     10,
 				MountPoint: proto.String("data"),
 			}}}}),

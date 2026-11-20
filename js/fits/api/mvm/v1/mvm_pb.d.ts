@@ -19,11 +19,11 @@ export type LinuxDisk = Message<"fits.api.mvm.v1.LinuxDisk"> & {
      */
     uuid?: string | undefined;
     /**
-     * Label (name) of the disk.
+     * Name of the disk.
      *
-     * @generated from field: string label = 2;
+     * @generated from field: string name = 2;
      */
-    label: string;
+    name: string;
     /**
      * Size of the disk in GiB.
      *
@@ -71,11 +71,11 @@ export type WindowsDisk = Message<"fits.api.mvm.v1.WindowsDisk"> & {
      */
     uuid?: string | undefined;
     /**
-     * Label (name) of the disk.
+     * Name of the disk.
      *
-     * @generated from field: string label = 2;
+     * @generated from field: string name = 2;
      */
-    label: string;
+    name: string;
     /**
      * Size of the disk in GiB.
      *

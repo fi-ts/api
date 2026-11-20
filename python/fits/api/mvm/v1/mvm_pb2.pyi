@@ -62,36 +62,36 @@ DISK_TYPE_SYSTEM: DiskType
 DISK_TYPE_DATA: DiskType
 
 class LinuxDisk(_message.Message):
-    __slots__ = ("uuid", "label", "size_gb", "auto_extend", "mount_point", "disk_type")
+    __slots__ = ("uuid", "name", "size_gb", "auto_extend", "mount_point", "disk_type")
     UUID_FIELD_NUMBER: _ClassVar[int]
-    LABEL_FIELD_NUMBER: _ClassVar[int]
+    NAME_FIELD_NUMBER: _ClassVar[int]
     SIZE_GB_FIELD_NUMBER: _ClassVar[int]
     AUTO_EXTEND_FIELD_NUMBER: _ClassVar[int]
     MOUNT_POINT_FIELD_NUMBER: _ClassVar[int]
     DISK_TYPE_FIELD_NUMBER: _ClassVar[int]
     uuid: str
-    label: str
+    name: str
     size_gb: int
     auto_extend: bool
     mount_point: str
     disk_type: DiskType
-    def __init__(self, uuid: _Optional[str] = ..., label: _Optional[str] = ..., size_gb: _Optional[int] = ..., auto_extend: _Optional[bool] = ..., mount_point: _Optional[str] = ..., disk_type: _Optional[_Union[DiskType, str]] = ...) -> None: ...
+    def __init__(self, uuid: _Optional[str] = ..., name: _Optional[str] = ..., size_gb: _Optional[int] = ..., auto_extend: _Optional[bool] = ..., mount_point: _Optional[str] = ..., disk_type: _Optional[_Union[DiskType, str]] = ...) -> None: ...
 
 class WindowsDisk(_message.Message):
-    __slots__ = ("uuid", "label", "size_gb", "auto_extend", "drive_letter", "disk_type")
+    __slots__ = ("uuid", "name", "size_gb", "auto_extend", "drive_letter", "disk_type")
     UUID_FIELD_NUMBER: _ClassVar[int]
-    LABEL_FIELD_NUMBER: _ClassVar[int]
+    NAME_FIELD_NUMBER: _ClassVar[int]
     SIZE_GB_FIELD_NUMBER: _ClassVar[int]
     AUTO_EXTEND_FIELD_NUMBER: _ClassVar[int]
     DRIVE_LETTER_FIELD_NUMBER: _ClassVar[int]
     DISK_TYPE_FIELD_NUMBER: _ClassVar[int]
     uuid: str
-    label: str
+    name: str
     size_gb: int
     auto_extend: bool
     drive_letter: str
     disk_type: DiskType
-    def __init__(self, uuid: _Optional[str] = ..., label: _Optional[str] = ..., size_gb: _Optional[int] = ..., auto_extend: _Optional[bool] = ..., drive_letter: _Optional[str] = ..., disk_type: _Optional[_Union[DiskType, str]] = ...) -> None: ...
+    def __init__(self, uuid: _Optional[str] = ..., name: _Optional[str] = ..., size_gb: _Optional[int] = ..., auto_extend: _Optional[bool] = ..., drive_letter: _Optional[str] = ..., disk_type: _Optional[_Union[DiskType, str]] = ...) -> None: ...
 
 class Disk(_message.Message):
     __slots__ = ("linux", "windows")

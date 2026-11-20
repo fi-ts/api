@@ -233,8 +233,8 @@ enum DiskType {
 message LinuxDisk {
   // UUID of the disk; set for existing disks, unset for new ones.
   optional string uuid = 1 [(buf.validate.field).string.uuid = true];
-  // Label (name) of the disk.
-  string label = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Name of the disk.
+  string name = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // Size of the disk in GiB.
   uint64 size_gb = 3 [(buf.validate.field).uint64.(fits.api.mvm.v1.is_disk_size) = true];
   // Whether the disk grows automatically when space runs low.
@@ -253,8 +253,8 @@ message LinuxDisk {
 message WindowsDisk {
   // UUID of the disk; set for existing disks, unset for new ones.
   optional string uuid = 1 [(buf.validate.field).string.uuid = true];
-  // Label (name) of the disk.
-  string label = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
+  // Name of the disk.
+  string name = 2 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // Size of the disk in GiB.
   uint64 size_gb = 3 [(buf.validate.field).uint64.(fits.api.mvm.v1.is_disk_size) = true];
   // Whether the disk grows automatically when space runs low.

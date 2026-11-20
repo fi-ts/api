@@ -296,8 +296,8 @@ type LinuxDisk struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// UUID of the disk; set for existing disks, unset for new ones.
 	Uuid *string `protobuf:"bytes,1,opt,name=uuid,proto3,oneof" json:"uuid,omitempty"`
-	// Label (name) of the disk.
-	Label string `protobuf:"bytes,2,opt,name=label,proto3" json:"label,omitempty"`
+	// Name of the disk.
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// Size of the disk in GiB.
 	SizeGb uint64 `protobuf:"varint,3,opt,name=size_gb,json=sizeGb,proto3" json:"size_gb,omitempty"`
 	// Whether the disk grows automatically when space runs low.
@@ -350,9 +350,9 @@ func (x *LinuxDisk) GetUuid() string {
 	return ""
 }
 
-func (x *LinuxDisk) GetLabel() string {
+func (x *LinuxDisk) GetName() string {
 	if x != nil {
-		return x.Label
+		return x.Name
 	}
 	return ""
 }
@@ -391,8 +391,8 @@ type WindowsDisk struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// UUID of the disk; set for existing disks, unset for new ones.
 	Uuid *string `protobuf:"bytes,1,opt,name=uuid,proto3,oneof" json:"uuid,omitempty"`
-	// Label (name) of the disk.
-	Label string `protobuf:"bytes,2,opt,name=label,proto3" json:"label,omitempty"`
+	// Name of the disk.
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// Size of the disk in GiB.
 	SizeGb uint64 `protobuf:"varint,3,opt,name=size_gb,json=sizeGb,proto3" json:"size_gb,omitempty"`
 	// Whether the disk grows automatically when space runs low.
@@ -445,9 +445,9 @@ func (x *WindowsDisk) GetUuid() string {
 	return ""
 }
 
-func (x *WindowsDisk) GetLabel() string {
+func (x *WindowsDisk) GetName() string {
 	if x != nil {
-		return x.Label
+		return x.Name
 	}
 	return ""
 }
@@ -4018,10 +4018,10 @@ var File_fits_api_mvm_v1_mvm_proto protoreflect.FileDescriptor
 
 const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\n" +
-	"\x19fits/api/mvm/v1/mvm.proto\x12\x0ffits.api.mvm.v1\x1a\x1bbuf/validate/validate.proto\x1a&fits/api/mvm/v1/predefined_rules.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xce\x02\n" +
+	"\x19fits/api/mvm/v1/mvm.proto\x12\x0ffits.api.mvm.v1\x1a\x1bbuf/validate/validate.proto\x1a&fits/api/mvm/v1/predefined_rules.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xcc\x02\n" +
 	"\tLinuxDisk\x12!\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x04uuid\x88\x01\x01\x12!\n" +
-	"\x05label\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x05label\x12$\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x04uuid\x88\x01\x01\x12\x1f\n" +
+	"\x04name\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x04name\x12$\n" +
 	"\asize_gb\x18\x03 \x01(\x04B\v\xbaH\b2\x06\xb8\xf7\xc1\xb1\x02\x01R\x06sizeGb\x12$\n" +
 	"\vauto_extend\x18\x04 \x01(\bH\x01R\n" +
 	"autoExtend\x88\x01\x01\x121\n" +
@@ -4032,10 +4032,10 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\f_auto_extendB\x0e\n" +
 	"\f_mount_pointB\f\n" +
 	"\n" +
-	"_disk_type\"\xd3\x02\n" +
+	"_disk_type\"\xd1\x02\n" +
 	"\vWindowsDisk\x12!\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x04uuid\x88\x01\x01\x12!\n" +
-	"\x05label\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x05label\x12$\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x04uuid\x88\x01\x01\x12\x1f\n" +
+	"\x04name\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x04name\x12$\n" +
 	"\asize_gb\x18\x03 \x01(\x04B\v\xbaH\b2\x06\xb8\xf7\xc1\xb1\x02\x01R\x06sizeGb\x12$\n" +
 	"\vauto_extend\x18\x04 \x01(\bH\x01R\n" +
 	"autoExtend\x88\x01\x01\x123\n" +
