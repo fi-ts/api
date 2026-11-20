@@ -19,26 +19,26 @@ export type LinuxDisk = Message<"fits.api.mvm.v1.LinuxDisk"> & {
      */
     uuid?: string | undefined;
     /**
-     * Label (name) of the disk.
+     * Name of the disk.
      *
-     * @generated from field: string label = 2;
+     * @generated from field: string name = 2;
      */
-    label: string;
+    name: string;
+    /**
+     * Size of the disk in GiB.
+     *
+     * @generated from field: uint64 size_gb = 3;
+     */
+    sizeGb: bigint;
     /**
      * Whether the disk grows automatically when space runs low.
      *
-     * @generated from field: bool auto_extend = 3;
+     * @generated from field: optional bool auto_extend = 4;
      */
-    autoExtend: boolean;
+    autoExtend?: boolean | undefined;
     /**
-     * Size of the disk in GB; defaults to 50 when unset.
-     *
-     * @generated from field: optional uint64 size = 4;
-     */
-    size?: bigint | undefined;
-    /**
-     * Mount point (e.g. "/data"). Fixed to "/appdata" for the system disk;
-     * free-form for data disks.
+     * Mount point (e.g. "/data/app"). Fixed to "/appdata" for the system disk;
+     * any absolute path allowed by the upstream for data disks.
      *
      * @generated from field: optional string mount_point = 5;
      */
@@ -71,30 +71,30 @@ export type WindowsDisk = Message<"fits.api.mvm.v1.WindowsDisk"> & {
      */
     uuid?: string | undefined;
     /**
-     * Label (name) of the disk.
+     * Name of the disk.
      *
-     * @generated from field: string label = 2;
+     * @generated from field: string name = 2;
      */
-    label: string;
+    name: string;
+    /**
+     * Size of the disk in GiB.
+     *
+     * @generated from field: uint64 size_gb = 3;
+     */
+    sizeGb: bigint;
     /**
      * Whether the disk grows automatically when space runs low.
      *
-     * @generated from field: bool auto_extend = 3;
+     * @generated from field: optional bool auto_extend = 4;
      */
-    autoExtend: boolean;
+    autoExtend?: boolean | undefined;
     /**
-     * Size of the disk in GB; defaults to 50 when unset.
+     * Drive letter (e.g. "G"). Fixed to "F" for the system disk; any letter
+     * allowed by the upstream for data disks.
      *
-     * @generated from field: optional uint64 size = 4;
+     * @generated from field: optional string drive_letter = 5;
      */
-    size?: bigint | undefined;
-    /**
-     * Drive letter (e.g. "D"). Fixed to "F" for the system disk; free-form
-     * for data disks.
-     *
-     * @generated from field: optional string driveletter = 5;
-     */
-    driveletter?: string | undefined;
+    driveLetter?: string | undefined;
     /**
      * Kind of the disk; determines which operations are allowed on it.
      * Provided by the client in create/add requests and populated by the
@@ -122,7 +122,7 @@ export type Disk = Message<"fits.api.mvm.v1.Disk"> & {
      */
     disk: {
         /**
-         * Linux data disks.
+         * Linux disk.
          *
          * @generated from field: fits.api.mvm.v1.LinuxDisk linux = 4;
          */
@@ -130,7 +130,7 @@ export type Disk = Message<"fits.api.mvm.v1.Disk"> & {
         case: "linux";
     } | {
         /**
-         * Windows data disks.
+         * Windows disk.
          *
          * @generated from field: fits.api.mvm.v1.WindowsDisk windows = 5;
          */
@@ -226,7 +226,8 @@ export type IPAddress = Message<"fits.api.mvm.v1.IPAddress"> & {
     ipAddress: string;
     /**
      * The network interface this IP address is bound to.
-     * Unset for additional IP addresses that share an existing interface such addresses can be deleted via DeleteIPAddress.
+     * Unset for additional IP addresses that share an existing interface;
+     * such addresses can be deleted via DeleteIPAddress.
      *
      * @generated from field: optional fits.api.mvm.v1.NetworkInterface network_interface = 3;
      */
@@ -238,7 +239,7 @@ export type IPAddress = Message<"fits.api.mvm.v1.IPAddress"> & {
  */
 export declare const IPAddressSchema: GenMessage<IPAddress>;
 /**
- * A network interface of a MVM. IPv4 only; IPv6 is not yet supported.
+ * A network interface of a MVM.
  *
  * @generated from message fits.api.mvm.v1.NetworkInterface
  */
@@ -252,11 +253,9 @@ export type NetworkInterface = Message<"fits.api.mvm.v1.NetworkInterface"> & {
     /**
      * MAC address of this interface.
      *
-     * TODO: add validation
-     *
-     * @generated from field: string macaddress = 2;
+     * @generated from field: string mac_address = 2;
      */
-    macaddress: string;
+    macAddress: string;
 };
 /**
  * Describes the message fits.api.mvm.v1.NetworkInterface.
@@ -309,6 +308,46 @@ export type Status = Message<"fits.api.mvm.v1.Status"> & {
  */
 export declare const StatusSchema: GenMessage<Status>;
 /**
+ * Backup configuration of a MVM.
+ * Modeled as a message so that backup options (e.g. retention or schedule)
+ * can be added later without breaking the API.
+ *
+ * @generated from message fits.api.mvm.v1.Backup
+ */
+export type Backup = Message<"fits.api.mvm.v1.Backup"> & {
+    /**
+     * Whether backup is enabled.
+     *
+     * @generated from field: bool enabled = 1;
+     */
+    enabled: boolean;
+};
+/**
+ * Describes the message fits.api.mvm.v1.Backup.
+ * Use `create(BackupSchema)` to create a new message.
+ */
+export declare const BackupSchema: GenMessage<Backup>;
+/**
+ * Encryption configuration of a MVM.
+ * Modeled as a message so that encryption options (e.g. a key reference)
+ * can be added later without breaking the API.
+ *
+ * @generated from message fits.api.mvm.v1.Encryption
+ */
+export type Encryption = Message<"fits.api.mvm.v1.Encryption"> & {
+    /**
+     * Whether the disks of the MVM are encrypted.
+     *
+     * @generated from field: bool enabled = 1;
+     */
+    enabled: boolean;
+};
+/**
+ * Describes the message fits.api.mvm.v1.Encryption.
+ * Use `create(EncryptionSchema)` to create a new message.
+ */
+export declare const EncryptionSchema: GenMessage<Encryption>;
+/**
  * ManagedVM is a managed VM instance as returned by the API.
  *
  * @generated from message fits.api.mvm.v1.ManagedVM
@@ -322,7 +361,6 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
     uuid: string;
     /**
      * Metadata for this MVM.
-     * TODO: dates are available in the nulink db but not passed through yet.
      *
      * @generated from field: fits.api.v1.Meta meta = 2;
      */
@@ -370,23 +408,23 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
      */
     cpu: number;
     /**
-     * RAM in GB.
+     * RAM in GiB.
      *
-     * @generated from field: uint32 ram = 10;
+     * @generated from field: uint32 ram_gb = 10;
      */
-    ram: number;
+    ramGb: number;
     /**
-     * Whether backup is enabled.
+     * Backup configuration of the MVM.
      *
-     * @generated from field: bool backup = 11;
+     * @generated from field: fits.api.mvm.v1.Backup backup = 11;
      */
-    backup: boolean;
+    backup?: Backup | undefined;
     /**
-     * Whether the MVM is encrypted.
+     * Encryption configuration of the MVM.
      *
-     * @generated from field: bool encrypted = 12;
+     * @generated from field: fits.api.mvm.v1.Encryption encryption = 12;
      */
-    encrypted: boolean;
+    encryption?: Encryption | undefined;
     /**
      * Status of the MVM.
      *
@@ -437,11 +475,11 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
      */
     ipAddresses: IPAddress[];
     /**
-     * Internal reference number provided by the user, e.g. a ticket ID.
+     * Customer reference provided by the user, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 19;
+     * @generated from field: string order_reference = 19;
      */
-    orderNumber: string;
+    orderReference: string;
     /**
      * Snapshots of the MVM.
      *
@@ -467,7 +505,7 @@ export type Snapshot = Message<"fits.api.mvm.v1.Snapshot"> & {
      */
     uuid: string;
     /**
-     * Name of the snapshot.
+     * Name of the snapshot; alphanumeric only.
      *
      * @generated from field: string name = 2;
      */
@@ -649,36 +687,35 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
      */
     cpu: number;
     /**
-     * RAM in GB. Must be a power of 2.
+     * RAM in GiB.
      *
-     * @generated from field: uint32 ram = 7;
+     * @generated from field: uint32 ram_gb = 7;
      */
-    ram: number;
+    ramGb: number;
     /**
-     * Customer reference for this operation provided by the user, e.g. a ticket ID.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 8;
+     * @generated from field: string order_reference = 8;
      */
-    orderNumber: string;
+    orderReference: string;
     /**
-     * Optional key-value labels for accounting purposes.
-     * (e.g. contract number, transaction number, technical key, accounting key).
+     * Optional key-value labels for this MVM.
      *
      * @generated from field: fits.api.v1.Labels labels = 9;
      */
     labels?: Labels | undefined;
     /**
-     * Whether backup is enabled.
+     * Backup configuration of the MVM.
      *
-     * @generated from field: bool backup = 10;
+     * @generated from field: fits.api.mvm.v1.Backup backup = 10;
      */
-    backup: boolean;
+    backup?: Backup | undefined;
     /**
-     * Whether the MVM should be encrypted.
+     * Encryption configuration of the MVM.
      *
-     * @generated from field: bool encrypted = 11;
+     * @generated from field: fits.api.mvm.v1.Encryption encryption = 11;
      */
-    encrypted: boolean;
+    encryption?: Encryption | undefined;
     /**
      * Availability level.
      *
@@ -694,11 +731,11 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
     /**
      * OS type and its configuration.
      *
-     * @generated from oneof fits.api.mvm.v1.MVMServiceCreateRequest.mvmtype
+     * @generated from oneof fits.api.mvm.v1.MVMServiceCreateRequest.mvm_type
      */
-    mvmtype: {
+    mvmType: {
         /**
-         * Windows-specific settings (domain + disk).
+         * Windows-specific settings (domain + disks).
          *
          * @generated from field: fits.api.mvm.v1.MVMServiceCreateWindowsRequest windows = 14;
          */
@@ -706,7 +743,7 @@ export type MVMServiceCreateRequest = Message<"fits.api.mvm.v1.MVMServiceCreateR
         case: "windows";
     } | {
         /**
-         * Linux-specific settings (LDAP + disk).
+         * Linux-specific settings (LDAP + disks).
          *
          * @generated from field: fits.api.mvm.v1.MVMServiceCreateLinuxRequest linux = 15;
          */
@@ -800,11 +837,11 @@ export type MVMServiceUpdateRequest = Message<"fits.api.mvm.v1.MVMServiceUpdateR
      */
     updateMeta?: UpdateMeta | undefined;
     /**
-     * Order reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 4;
+     * @generated from field: string order_reference = 4;
      */
-    orderNumber: string;
+    orderReference: string;
     /**
      * The labels to update.
      *
@@ -818,13 +855,13 @@ export type MVMServiceUpdateRequest = Message<"fits.api.mvm.v1.MVMServiceUpdateR
      */
     contactUuid?: string | undefined;
     /**
-     * Number of vCPUs; unset keeps the current value.
+     * Number of CPU cores; unset keeps the current value.
      *
      * @generated from field: optional uint32 cpu = 7;
      */
     cpu?: number | undefined;
     /**
-     * RAM size in GB; unset keeps the current value.
+     * RAM in GiB; unset keeps the current value.
      *
      * @generated from field: optional uint32 ram_gb = 8;
      */
@@ -902,7 +939,7 @@ export type MVMServiceUpdateServiceClassRequest = Message<"fits.api.mvm.v1.MVMSe
      */
     serviceClass?: ServiceClass | undefined;
     /**
-     * Target availability level; unset keeps current value.
+     * Target availability level; unset keeps the current value.
      *
      * @generated from field: optional fits.api.mvm.v1.Availability availability = 4;
      */
@@ -974,11 +1011,11 @@ export type MVMServiceDeleteRequest = Message<"fits.api.mvm.v1.MVMServiceDeleteR
      */
     projectUuid: string;
     /**
-     * Customer reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 3;
+     * @generated from field: string order_reference = 3;
      */
-    orderNumber: string;
+    orderReference: string;
 };
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceDeleteRequest.
@@ -1015,13 +1052,14 @@ export type MVMServiceAddDisksRequest = Message<"fits.api.mvm.v1.MVMServiceAddDi
      */
     projectUuid: string;
     /**
-     * Customer reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 3;
+     * @generated from field: string order_reference = 3;
      */
-    orderNumber: string;
+    orderReference: string;
     /**
-     * Disks to add.
+     * Disks to add. Windows data disks must use a drive letter from F to Z,
+     * except R (the responses are validated less strictly, see is_drive_letter).
      *
      * @generated from field: repeated fits.api.mvm.v1.Disk disks = 4;
      */
@@ -1105,23 +1143,23 @@ export type MVMServiceUpdateDiskRequest = Message<"fits.api.mvm.v1.MVMServiceUpd
      */
     projectUuid: string;
     /**
-     * Customer reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 4;
+     * @generated from field: string order_reference = 4;
      */
-    orderNumber: string;
+    orderReference: string;
+    /**
+     * New size of the disk in GiB; unset keeps the current value.
+     *
+     * @generated from field: optional uint64 size_gb = 5;
+     */
+    sizeGb?: bigint | undefined;
     /**
      * New auto-extend behavior; unset keeps the current value.
      *
-     * @generated from field: optional bool auto_extend = 5;
+     * @generated from field: optional bool auto_extend = 6;
      */
     autoExtend?: boolean | undefined;
-    /**
-     * New size of the disk in GB; unset keeps the current value.
-     *
-     * @generated from field: optional uint64 size = 6;
-     */
-    size?: bigint | undefined;
 };
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceUpdateDiskRequest.
@@ -1194,11 +1232,11 @@ export type MVMServiceDeleteDiskRequest = Message<"fits.api.mvm.v1.MVMServiceDel
      */
     projectUuid: string;
     /**
-     * Customer reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 4;
+     * @generated from field: string order_reference = 4;
      */
-    orderNumber: string;
+    orderReference: string;
 };
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceDeleteDiskRequest.
@@ -1235,11 +1273,11 @@ export type MVMServiceAddIPAddressRequest = Message<"fits.api.mvm.v1.MVMServiceA
      */
     projectUuid: string;
     /**
-     * Customer reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 3;
+     * @generated from field: string order_reference = 3;
      */
-    orderNumber: string;
+    orderReference: string;
 };
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceAddIPAddressRequest.
@@ -1289,11 +1327,11 @@ export type MVMServiceMoveIPAddressRequest = Message<"fits.api.mvm.v1.MVMService
      */
     projectUuid: string;
     /**
-     * Customer reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 4;
+     * @generated from field: string order_reference = 4;
      */
-    orderNumber: string;
+    orderReference: string;
     /**
      * UUID of the MVM to move the IP address to.
      *
@@ -1342,11 +1380,11 @@ export type MVMServiceDeleteIPAddressRequest = Message<"fits.api.mvm.v1.MVMServi
      */
     projectUuid: string;
     /**
-     * Order reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 4;
+     * @generated from field: string order_reference = 4;
      */
-    orderNumber: string;
+    orderReference: string;
 };
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceDeleteIPAddressRequest.
@@ -1383,11 +1421,11 @@ export type MVMServiceRestartRequest = Message<"fits.api.mvm.v1.MVMServiceRestar
      */
     projectUuid: string;
     /**
-     * Customer reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 3;
+     * @generated from field: string order_reference = 3;
      */
-    orderNumber: string;
+    orderReference: string;
 };
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceRestartRequest.
@@ -1425,11 +1463,11 @@ export type MVMServiceReinstallRequest = Message<"fits.api.mvm.v1.MVMServiceRein
      */
     projectUuid: string;
     /**
-     * Customer reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 3;
+     * @generated from field: string order_reference = 3;
      */
-    orderNumber: string;
+    orderReference: string;
     /**
      * UUID of the operating system image to install.
      *
@@ -1437,17 +1475,17 @@ export type MVMServiceReinstallRequest = Message<"fits.api.mvm.v1.MVMServiceRein
      */
     osUuid?: string | undefined;
     /**
-     * Whether backup is enabled after the reinstall; unset keeps the current value.
+     * Backup configuration after the reinstall; unset keeps the current value.
      *
-     * @generated from field: optional bool backup = 5;
+     * @generated from field: optional fits.api.mvm.v1.Backup backup = 5;
      */
-    backup?: boolean | undefined;
+    backup?: Backup | undefined;
     /**
-     * Whether the MVM is encrypted after the reinstall; unset keeps the current value.
+     * Encryption configuration after the reinstall; unset keeps the current value.
      *
-     * @generated from field: optional bool encrypted = 6;
+     * @generated from field: optional fits.api.mvm.v1.Encryption encryption = 6;
      */
-    encrypted?: boolean | undefined;
+    encryption?: Encryption | undefined;
 };
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceReinstallRequest.
@@ -1514,11 +1552,11 @@ export type MVMServiceAddSnapshotRequest = Message<"fits.api.mvm.v1.MVMServiceAd
      */
     projectUuid: string;
     /**
-     * Customer reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 3;
+     * @generated from field: string order_reference = 3;
      */
-    orderNumber: string;
+    orderReference: string;
     /**
      * Name of the snapshot; alphanumeric only.
      *
@@ -1574,11 +1612,11 @@ export type MVMServiceDeleteSnapshotRequest = Message<"fits.api.mvm.v1.MVMServic
      */
     projectUuid: string;
     /**
-     * Customer reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 4;
+     * @generated from field: string order_reference = 4;
      */
-    orderNumber: string;
+    orderReference: string;
 };
 /**
  * Describes the message fits.api.mvm.v1.MVMServiceDeleteSnapshotRequest.
@@ -1615,11 +1653,11 @@ export type MVMServiceMoveRequest = Message<"fits.api.mvm.v1.MVMServiceMoveReque
      */
     projectUuid: string;
     /**
-     * Customer reference for this operation.
+     * Customer reference for this operation, e.g. a ticket ID.
      *
-     * @generated from field: string order_number = 3;
+     * @generated from field: string order_reference = 3;
      */
-    orderNumber: string;
+    orderReference: string;
     /**
      * If not provided, another datacenter within the same location will be chosen automatically.
      *

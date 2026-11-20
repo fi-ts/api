@@ -1,0 +1,83 @@
+import type { GenExtension, GenFile } from "@bufbuild/protobuf/codegenv2";
+import type { RepeatedRules, StringRules, UInt32Rules, UInt64Rules } from "../../../../buf/validate/validate_pb.js";
+/**
+ * Describes the file fits/api/mvm/v1/predefined_rules.proto.
+ */
+export declare const file_fits_api_mvm_v1_predefined_rules: GenFile;
+/**
+ * IsNameCode validates if the given string is a 4-character code consisting of digits and letters.
+ *
+ * @generated from extension: optional bool is_name_code = 80108951;
+ */
+export declare const is_name_code: GenExtension<StringRules, boolean>;
+/**
+ * IsFqdn validates if the given string is a valid fully qualified domain name (FQDN),
+ * e.g. host.example.com. Each label is alphanumeric/hyphen, must start and end with an
+ * alphanumeric character and is at most 63 characters long. The TLD is alphabetic
+ * (2-63 chars), and the total length is at most 253 characters.
+ *
+ * @generated from extension: optional bool is_fqdn = 80108952;
+ */
+export declare const is_fqdn: GenExtension<StringRules, boolean>;
+/**
+ * IsOrderReference validates a user-supplied order reference, e.g. a ticket ID:
+ * 2-128 characters, no leading/trailing whitespace.
+ *
+ * @generated from extension: optional bool is_order_reference = 80108953;
+ */
+export declare const is_order_reference: GenExtension<StringRules, boolean>;
+/**
+ * IsMountPoint validates a Linux mount point: an absolute path without
+ * whitespace, e.g. /data/app. Allowed paths are enforced upstream.
+ *
+ * @generated from extension: optional bool is_mount_point = 80108954;
+ */
+export declare const is_mount_point: GenExtension<StringRules, boolean>;
+/**
+ * IsDriveLetter validates a Windows drive letter: a single uppercase letter, e.g. G.
+ * This is intentionally loose, as it also validates what the API returns (e.g. C for
+ * OS disks). The stricter rule for data disks (F-Z except R) is enforced on requests
+ * only, see MVMServiceAddDisksRequest.
+ *
+ * @generated from extension: optional bool is_drive_letter = 80108955;
+ */
+export declare const is_drive_letter: GenExtension<StringRules, boolean>;
+/**
+ * IsSnapshotName validates a snapshot name: 1-128 alphanumeric characters.
+ *
+ * @generated from extension: optional bool is_snapshot_name = 80108956;
+ */
+export declare const is_snapshot_name: GenExtension<StringRules, boolean>;
+/**
+ * IsCpuCount validates the number of CPU cores of a MVM.
+ *
+ * @generated from extension: optional bool is_cpu_count = 80078951;
+ */
+export declare const is_cpu_count: GenExtension<UInt32Rules, boolean>;
+/**
+ * IsRamSize validates the RAM size of a MVM in GiB.
+ *
+ * @generated from extension: optional bool is_ram_size = 80078952;
+ */
+export declare const is_ram_size: GenExtension<UInt32Rules, boolean>;
+/**
+ * IsDiskSize validates the size of a single MVM disk in GiB.
+ *
+ * @generated from extension: optional bool is_disk_size = 80088951;
+ */
+export declare const is_disk_size: GenExtension<UInt64Rules, boolean>;
+/**
+ * IsDiskCount validates the number of disks in a MVM request (at most 8).
+ *
+ * @generated from extension: optional bool is_disk_count = 80098951;
+ */
+export declare const is_disk_count: GenExtension<RepeatedRules, boolean>;
+/**
+ * IsDataDriveLetters validates the drive letters of the Windows disks in a request
+ * to add disks: if set, they must be within F and Z, except R. Linux disks and
+ * disks without a drive letter are ignored. This is stricter than is_drive_letter,
+ * which also validates responses.
+ *
+ * @generated from extension: optional bool is_data_drive_letters = 80098952;
+ */
+export declare const is_data_drive_letters: GenExtension<RepeatedRules, boolean>;

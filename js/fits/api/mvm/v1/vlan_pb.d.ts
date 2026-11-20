@@ -18,7 +18,7 @@ export type VLAN = Message<"fits.api.mvm.v1.VLAN"> & {
      */
     uuid: string;
     /**
-     * ID of this VLAN. The actual VLAN ID a network interface is attached to.
+     * ID of this VLAN (1-4094). The actual VLAN ID a network interface is attached to.
      *
      * @generated from field: int32 vlan_id = 2;
      */

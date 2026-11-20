@@ -264,10 +264,6 @@
                   <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
                 </li>
               
-                <li>
-                  <a href="#fits%2fapi%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
-                </li>
-              
               
             </ul>
           </li>
@@ -481,11 +477,74 @@
         
           
           <li>
+            <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto">fits/api/mvm/v1/predefined_rules.proto</a>
+            <ul>
+              
+              
+              
+                <li>
+                  <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fmvm%2fv1%2fpredefined_rules.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#fits%2fapi%2fmvm%2fv1%2fmvm.proto">fits/api/mvm/v1/mvm.proto</a>
             <ul>
               
                 <li>
+                  <a href="#fits.api.mvm.v1.Backup"><span class="badge">M</span>Backup</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.mvm.v1.Disk"><span class="badge">M</span>Disk</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.mvm.v1.Encryption"><span class="badge">M</span>Encryption</a>
                 </li>
               
                 <li>
@@ -1348,14 +1407,6 @@
               </tr>
             
               <tr>
-                <td>is_name_code</td>
-                <td><a href="#bool">bool</a></td>
-                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
-                <td>80048964</td>
-                <td><p>IsNameCode validates if the given string is a 4-character code consisting of digits and letters.</p></td>
-              </tr>
-            
-              <tr>
                 <td>is_partition</td>
                 <td><a href="#bool">bool</a></td>
                 <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
@@ -1404,11 +1455,11 @@
               </tr>
             
               <tr>
-                <td>macaddress</td>
+                <td>mac_address</td>
                 <td><a href="#bool">bool</a></td>
                 <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
                 <td>80048951</td>
-                <td><p>Macaddress returns true if the given string is a valid macadress</p></td>
+                <td><p>MacAddress returns true if the given string is a valid mac address</p></td>
               </tr>
             
               <tr>
@@ -2554,10 +2605,157 @@ having a direct membership within the tenant.</p></td>
     
       
       <div class="file-heading">
+        <h2 id="fits/api/mvm/v1/predefined_rules.proto">fits/api/mvm/v1/predefined_rules.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+
+      
+
+      
+        <h3 id="fits/api/mvm/v1/predefined_rules.proto-extensions">File-level Extensions</h3>
+        <table class="extension-table">
+          <thead>
+            <tr><td>Extension</td><td>Type</td><td>Base</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>is_data_drive_letters</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.RepeatedRules">.buf.validate.RepeatedRules</a></td>
+                <td>80098952</td>
+                <td><p>IsDataDriveLetters validates the drive letters of the Windows disks in a request
+to add disks: if set, they must be within F and Z, except R. Linux disks and
+disks without a drive letter are ignored. This is stricter than is_drive_letter,
+which also validates responses.</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_disk_count</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.RepeatedRules">.buf.validate.RepeatedRules</a></td>
+                <td>80098951</td>
+                <td><p>IsDiskCount validates the number of disks in a MVM request (at most 8).</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_drive_letter</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80108955</td>
+                <td><p>IsDriveLetter validates a Windows drive letter: a single uppercase letter, e.g. G.
+This is intentionally loose, as it also validates what the API returns (e.g. C for
+OS disks). The stricter rule for data disks (F-Z except R) is enforced on requests
+only, see MVMServiceAddDisksRequest.</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_fqdn</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80108952</td>
+                <td><p>IsFqdn validates if the given string is a valid fully qualified domain name (FQDN),
+e.g. host.example.com. Each label is alphanumeric/hyphen, must start and end with an
+alphanumeric character and is at most 63 characters long. The TLD is alphabetic
+(2-63 chars), and the total length is at most 253 characters.</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_mount_point</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80108954</td>
+                <td><p>IsMountPoint validates a Linux mount point: an absolute path without
+whitespace, e.g. /data/app. Allowed paths are enforced upstream.</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_name_code</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80108951</td>
+                <td><p>IsNameCode validates if the given string is a 4-character code consisting of digits and letters.</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_order_reference</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80108953</td>
+                <td><p>IsOrderReference validates a user-supplied order reference, e.g. a ticket ID:
+2-128 characters, no leading/trailing whitespace.</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_snapshot_name</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.StringRules">.buf.validate.StringRules</a></td>
+                <td>80108956</td>
+                <td><p>IsSnapshotName validates a snapshot name: 1-128 alphanumeric characters.</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_cpu_count</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.UInt32Rules">.buf.validate.UInt32Rules</a></td>
+                <td>80078951</td>
+                <td><p>IsCpuCount validates the number of CPU cores of a MVM.</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_ram_size</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.UInt32Rules">.buf.validate.UInt32Rules</a></td>
+                <td>80078952</td>
+                <td><p>IsRamSize validates the RAM size of a MVM in GiB.</p></td>
+              </tr>
+            
+              <tr>
+                <td>is_disk_size</td>
+                <td><a href="#bool">bool</a></td>
+                <td><a href="#buf.validate.UInt64Rules">.buf.validate.UInt64Rules</a></td>
+                <td>80088951</td>
+                <td><p>IsDiskSize validates the size of a single MVM disk in GiB.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+    
+      
+      <div class="file-heading">
         <h2 id="fits/api/mvm/v1/mvm.proto">fits/api/mvm/v1/mvm.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
+      
+        <h3 id="fits.api.mvm.v1.Backup">Backup</h3>
+        <p>Backup configuration of a MVM.</p><p>Modeled as a message so that backup options (e.g. retention or schedule)</p><p>can be added later without breaking the API.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>enabled</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether backup is enabled. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
       
         <h3 id="fits.api.mvm.v1.Disk">Disk</h3>
         <p>Disk contains either a Windows or Linux disk.</p>
@@ -2573,14 +2771,38 @@ having a direct membership within the tenant.</p></td>
                   <td>linux</td>
                   <td><a href="#fits.api.mvm.v1.LinuxDisk">LinuxDisk</a></td>
                   <td></td>
-                  <td><p>Linux data disks. </p></td>
+                  <td><p>Linux disk. </p></td>
                 </tr>
               
                 <tr>
                   <td>windows</td>
                   <td><a href="#fits.api.mvm.v1.WindowsDisk">WindowsDisk</a></td>
                   <td></td>
-                  <td><p>Windows data disks. </p></td>
+                  <td><p>Windows disk. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="fits.api.mvm.v1.Encryption">Encryption</h3>
+        <p>Encryption configuration of a MVM.</p><p>Modeled as a message so that encryption options (e.g. a key reference)</p><p>can be added later without breaking the API.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>enabled</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether the disks of the MVM are encrypted. </p></td>
                 </tr>
               
             </tbody>
@@ -2619,7 +2841,8 @@ having a direct membership within the tenant.</p></td>
                   <td><a href="#fits.api.mvm.v1.NetworkInterface">NetworkInterface</a></td>
                   <td>optional</td>
                   <td><p>The network interface this IP address is bound to.
-Unset for additional IP addresses that share an existing interface such addresses can be deleted via DeleteIPAddress. </p></td>
+Unset for additional IP addresses that share an existing interface;
+such addresses can be deleted via DeleteIPAddress. </p></td>
                 </tr>
               
             </tbody>
@@ -2709,32 +2932,32 @@ Unset for additional IP addresses that share an existing interface such addresse
                 </tr>
               
                 <tr>
-                  <td>label</td>
+                  <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Label (name) of the disk. </p></td>
+                  <td><p>Name of the disk. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>size_gb</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>Size of the disk in GiB. </p></td>
                 </tr>
               
                 <tr>
                   <td>auto_extend</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Whether the disk grows automatically when space runs low. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>size</td>
-                  <td><a href="#uint64">uint64</a></td>
                   <td>optional</td>
-                  <td><p>Size of the disk in GB; defaults to 50 when unset. </p></td>
+                  <td><p>Whether the disk grows automatically when space runs low. </p></td>
                 </tr>
               
                 <tr>
                   <td>mount_point</td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
-                  <td><p>Mount point (e.g. &#34;/data&#34;). Fixed to &#34;/appdata&#34; for the system disk;
-free-form for data disks. </p></td>
+                  <td><p>Mount point (e.g. &#34;/data/app&#34;). Fixed to &#34;/appdata&#34; for the system disk;
+any absolute path allowed by the upstream for data disks. </p></td>
                 </tr>
               
                 <tr>
@@ -2778,17 +3001,18 @@ API in responses. </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
                 <tr>
                   <td>disks</td>
                   <td><a href="#fits.api.mvm.v1.Disk">Disk</a></td>
                   <td>repeated</td>
-                  <td><p>Disks to add. </p></td>
+                  <td><p>Disks to add. Windows data disks must use a drive letter from F to Z,
+except R (the responses are validated less strictly, see is_drive_letter). </p></td>
                 </tr>
               
             </tbody>
@@ -2847,10 +3071,10 @@ API in responses. </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
             </tbody>
@@ -2909,10 +3133,10 @@ API in responses. </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
                 <tr>
@@ -3038,39 +3262,38 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>ram</td>
+                  <td>ram_gb</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>RAM in GB. Must be a power of 2. </p></td>
+                  <td><p>RAM in GiB. </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation provided by the user, e.g. a ticket ID. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
                 <tr>
                   <td>labels</td>
                   <td><a href="#fits.api.v1.Labels">fits.api.v1.Labels</a></td>
                   <td></td>
-                  <td><p>Optional key-value labels for accounting purposes.
-(e.g. contract number, transaction number, technical key, accounting key). </p></td>
+                  <td><p>Optional key-value labels for this MVM. </p></td>
                 </tr>
               
                 <tr>
                   <td>backup</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#fits.api.mvm.v1.Backup">Backup</a></td>
                   <td></td>
-                  <td><p>Whether backup is enabled. </p></td>
+                  <td><p>Backup configuration of the MVM. </p></td>
                 </tr>
               
                 <tr>
-                  <td>encrypted</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td>encryption</td>
+                  <td><a href="#fits.api.mvm.v1.Encryption">Encryption</a></td>
                   <td></td>
-                  <td><p>Whether the MVM should be encrypted. </p></td>
+                  <td><p>Encryption configuration of the MVM. </p></td>
                 </tr>
               
                 <tr>
@@ -3091,14 +3314,14 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>windows</td>
                   <td><a href="#fits.api.mvm.v1.MVMServiceCreateWindowsRequest">MVMServiceCreateWindowsRequest</a></td>
                   <td></td>
-                  <td><p>Windows-specific settings (domain &#43; disk). </p></td>
+                  <td><p>Windows-specific settings (domain &#43; disks). </p></td>
                 </tr>
               
                 <tr>
                   <td>linux</td>
                   <td><a href="#fits.api.mvm.v1.MVMServiceCreateLinuxRequest">MVMServiceCreateLinuxRequest</a></td>
                   <td></td>
-                  <td><p>Linux-specific settings (LDAP &#43; disk). </p></td>
+                  <td><p>Linux-specific settings (LDAP &#43; disks). </p></td>
                 </tr>
               
                 <tr>
@@ -3203,10 +3426,10 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
             </tbody>
@@ -3255,10 +3478,10 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Order reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
             </tbody>
@@ -3300,10 +3523,10 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
             </tbody>
@@ -3352,10 +3575,10 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
             </tbody>
@@ -3507,10 +3730,10 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
                 <tr>
@@ -3559,10 +3782,10 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
                 <tr>
@@ -3611,10 +3834,10 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
                 <tr>
@@ -3626,16 +3849,16 @@ one system disk plus any number of data disks (see DiskType). </p></td>
               
                 <tr>
                   <td>backup</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#fits.api.mvm.v1.Backup">Backup</a></td>
                   <td>optional</td>
-                  <td><p>Whether backup is enabled after the reinstall; unset keeps the current value. </p></td>
+                  <td><p>Backup configuration after the reinstall; unset keeps the current value. </p></td>
                 </tr>
               
                 <tr>
-                  <td>encrypted</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td>encryption</td>
+                  <td><a href="#fits.api.mvm.v1.Encryption">Encryption</a></td>
                   <td>optional</td>
-                  <td><p>Whether the MVM is encrypted after the reinstall; unset keeps the current value. </p></td>
+                  <td><p>Encryption configuration after the reinstall; unset keeps the current value. </p></td>
                 </tr>
               
             </tbody>
@@ -3677,10 +3900,10 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
             </tbody>
@@ -3729,10 +3952,17 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Customer reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>size_gb</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td>optional</td>
+                  <td><p>New size of the disk in GiB; unset keeps the current value. </p></td>
                 </tr>
               
                 <tr>
@@ -3740,13 +3970,6 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
                   <td><p>New auto-extend behavior; unset keeps the current value. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>size</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td>optional</td>
-                  <td><p>New size of the disk in GB; unset keeps the current value. </p></td>
                 </tr>
               
             </tbody>
@@ -3795,10 +4018,10 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Order reference for this operation. </p></td>
+                  <td><p>Customer reference for this operation, e.g. a ticket ID. </p></td>
                 </tr>
               
                 <tr>
@@ -3819,14 +4042,14 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>cpu</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td>optional</td>
-                  <td><p>Number of vCPUs; unset keeps the current value. </p></td>
+                  <td><p>Number of CPU cores; unset keeps the current value. </p></td>
                 </tr>
               
                 <tr>
                   <td>ram_gb</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td>optional</td>
-                  <td><p>RAM size in GB; unset keeps the current value. </p></td>
+                  <td><p>RAM in GiB; unset keeps the current value. </p></td>
                 </tr>
               
             </tbody>
@@ -3878,7 +4101,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>availability</td>
                   <td><a href="#fits.api.mvm.v1.Availability">Availability</a></td>
                   <td>optional</td>
-                  <td><p>Target availability level; unset keeps current value. </p></td>
+                  <td><p>Target availability level; unset keeps the current value. </p></td>
                 </tr>
               
             </tbody>
@@ -4102,8 +4325,7 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>meta</td>
                   <td><a href="#fits.api.v1.Meta">fits.api.v1.Meta</a></td>
                   <td></td>
-                  <td><p>Metadata for this MVM.
-TODO: dates are available in the nulink db but not passed through yet. </p></td>
+                  <td><p>Metadata for this MVM. </p></td>
                 </tr>
               
                 <tr>
@@ -4156,24 +4378,24 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
                 </tr>
               
                 <tr>
-                  <td>ram</td>
+                  <td>ram_gb</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>RAM in GB. </p></td>
+                  <td><p>RAM in GiB. </p></td>
                 </tr>
               
                 <tr>
                   <td>backup</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#fits.api.mvm.v1.Backup">Backup</a></td>
                   <td></td>
-                  <td><p>Whether backup is enabled. </p></td>
+                  <td><p>Backup configuration of the MVM. </p></td>
                 </tr>
               
                 <tr>
-                  <td>encrypted</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td>encryption</td>
+                  <td><a href="#fits.api.mvm.v1.Encryption">Encryption</a></td>
                   <td></td>
-                  <td><p>Whether the MVM is encrypted. </p></td>
+                  <td><p>Encryption configuration of the MVM. </p></td>
                 </tr>
               
                 <tr>
@@ -4219,10 +4441,10 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
                 </tr>
               
                 <tr>
-                  <td>order_number</td>
+                  <td>order_reference</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Internal reference number provided by the user, e.g. a ticket ID. </p></td>
+                  <td><p>Customer reference provided by the user, e.g. a ticket ID. </p></td>
                 </tr>
               
                 <tr>
@@ -4240,7 +4462,7 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
         
       
         <h3 id="fits.api.mvm.v1.NetworkInterface">NetworkInterface</h3>
-        <p>A network interface of a MVM. IPv4 only; IPv6 is not yet supported.</p>
+        <p>A network interface of a MVM.</p>
 
         
           <table class="field-table">
@@ -4257,12 +4479,10 @@ TODO: dates are available in the nulink db but not passed through yet. </p></td>
                 </tr>
               
                 <tr>
-                  <td>macaddress</td>
+                  <td>mac_address</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>MAC address of this interface.
-
-TODO: add validation </p></td>
+                  <td><p>MAC address of this interface. </p></td>
                 </tr>
               
             </tbody>
@@ -4293,7 +4513,7 @@ TODO: add validation </p></td>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Name of the snapshot. </p></td>
+                  <td><p>Name of the snapshot; alphanumeric only. </p></td>
                 </tr>
               
             </tbody>
@@ -4390,32 +4610,32 @@ TODO: add validation </p></td>
                 </tr>
               
                 <tr>
-                  <td>label</td>
+                  <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Label (name) of the disk. </p></td>
+                  <td><p>Name of the disk. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>size_gb</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>Size of the disk in GiB. </p></td>
                 </tr>
               
                 <tr>
                   <td>auto_extend</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Whether the disk grows automatically when space runs low. </p></td>
                 </tr>
               
                 <tr>
-                  <td>size</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td>optional</td>
-                  <td><p>Size of the disk in GB; defaults to 50 when unset. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>driveletter</td>
+                  <td>drive_letter</td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
-                  <td><p>Drive letter (e.g. &#34;D&#34;). Fixed to &#34;F&#34; for the system disk; free-form
-for data disks. </p></td>
+                  <td><p>Drive letter (e.g. &#34;G&#34;). Fixed to &#34;F&#34; for the system disk; any letter
+allowed by the upstream for data disks. </p></td>
                 </tr>
               
                 <tr>
@@ -5049,7 +5269,7 @@ DiskType for which operations apply per disk kind.</p></td>
                   <td>vlan_id</td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
-                  <td><p>ID of this VLAN. The actual VLAN ID a network interface is attached to. </p></td>
+                  <td><p>ID of this VLAN (1-4094). The actual VLAN ID a network interface is attached to. </p></td>
                 </tr>
               
                 <tr>

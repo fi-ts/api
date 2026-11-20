@@ -22,8 +22,11 @@ service VLANService {
 message VLAN {
   // UUID of this VLAN.
   string uuid = 1 [(buf.validate.field).string.uuid = true];
-  // ID of this VLAN. The actual VLAN ID a network interface is attached to.
-  int32 vlan_id = 2;
+  // ID of this VLAN (1-4094). The actual VLAN ID a network interface is attached to.
+  int32 vlan_id = 2 [(buf.validate.field).int32 = {
+    gte: 1
+    lte: 4094
+  }];
   // Title of the subnet this VLAN belongs to.
   string subnet_title = 3 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // CIDR of the subnet this VLAN belongs to.

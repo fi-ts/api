@@ -28,7 +28,7 @@ type VLAN struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// UUID of this VLAN.
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	// ID of this VLAN. The actual VLAN ID a network interface is attached to.
+	// ID of this VLAN (1-4094). The actual VLAN ID a network interface is attached to.
 	VlanId int32 `protobuf:"varint,2,opt,name=vlan_id,json=vlanId,proto3" json:"vlan_id,omitempty"`
 	// Title of the subnet this VLAN belongs to.
 	SubnetTitle string `protobuf:"bytes,3,opt,name=subnet_title,json=subnetTitle,proto3" json:"subnet_title,omitempty"`
@@ -301,10 +301,11 @@ var File_fits_api_mvm_v1_vlan_proto protoreflect.FileDescriptor
 
 const file_fits_api_mvm_v1_vlan_proto_rawDesc = "" +
 	"\n" +
-	"\x1afits/api/mvm/v1/vlan.proto\x12\x0ffits.api.mvm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1bfits/api/mvm/v1/stage.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xdd\x02\n" +
+	"\x1afits/api/mvm/v1/vlan.proto\x12\x0ffits.api.mvm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1bfits/api/mvm/v1/stage.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xe9\x02\n" +
 	"\x04VLAN\x12\x1c\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x17\n" +
-	"\avlan_id\x18\x02 \x01(\x05R\x06vlanId\x12.\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12#\n" +
+	"\avlan_id\x18\x02 \x01(\x05B\n" +
+	"\xbaH\a\x1a\x05\x18\xfe\x1f(\x01R\x06vlanId\x12.\n" +
 	"\fsubnet_title\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\vsubnetTitle\x12,\n" +
 	"\vsubnet_cidr\x18\x04 \x01(\tB\v\xbaH\br\x06\x80\xb4\xae\xb1\x02\x01R\n" +
 	"subnetCidr\x12-\n" +
