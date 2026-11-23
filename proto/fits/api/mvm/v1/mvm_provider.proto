@@ -7,8 +7,8 @@ import "fits/api/v1/common.proto";
 import "fits/api/v1/predefined_rules.proto";
 import "google/protobuf/timestamp.proto";
 
-// CsvExportService offers MVM operations in the provider context.
-service CsvExportService {
+// ProviderMVMService offers MVM operations in the provider context.
+service ProviderMVMService {
   // Create makes a new MVM and lets the operator set its billing fields.
   rpc CsvExport(CsvExportRequest) returns (stream CsvExportResponse) {
     option (fits.api.v1.tenant_roles) = TENANT_ROLE_ADMIN;

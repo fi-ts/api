@@ -15,7 +15,7 @@ import { LocationService as Apimvmv1LocationService } from "./fits/api/mvm/v1/lo
 
 import { MVMService as Apimvmv1MVMService } from "./fits/api/mvm/v1/mvm_pb";
 
-import { CsvExportService as Apimvmv1CsvExportService } from "./fits/api/mvm/v1/mvm_export_pb";
+import { ProviderMVMService as Apimvmv1ProviderMVMService } from "./fits/api/mvm/v1/mvm_provider_pb";
 
 import { OSService as Apimvmv1OSService } from "./fits/api/mvm/v1/os_pb";
 
@@ -70,7 +70,7 @@ export interface Apimvmv1 {
 
   mvm(): ConnectClient<typeof Apimvmv1MVMService>;
 
-  csvExport(): ConnectClient<typeof Apimvmv1CsvExportService>;
+  providerMVM(): ConnectClient<typeof Apimvmv1ProviderMVMService>;
 
   os(): ConnectClient<typeof Apimvmv1OSService>;
 
@@ -188,7 +188,7 @@ class Apimvmv1Impl implements Apimvmv1 {
 
   private _mvm?: ConnectClient<typeof Apimvmv1MVMService>;
 
-  private _csvExport?: ConnectClient<typeof Apimvmv1CsvExportService>;
+  private _providerMVM?: ConnectClient<typeof Apimvmv1ProviderMVMService>;
 
   private _os?: ConnectClient<typeof Apimvmv1OSService>;
 
@@ -235,11 +235,11 @@ class Apimvmv1Impl implements Apimvmv1 {
     return this._mvm;
   }
 
-  csvExport(): ConnectClient<typeof Apimvmv1CsvExportService> {
-    if (!this._csvExport) {
-      this._csvExport = createClient(Apimvmv1CsvExportService, this.transport);
+  providerMVM(): ConnectClient<typeof Apimvmv1ProviderMVMService> {
+    if (!this._providerMVM) {
+      this._providerMVM = createClient(Apimvmv1ProviderMVMService, this.transport);
     }
-    return this._csvExport;
+    return this._providerMVM;
   }
 
   os(): ConnectClient<typeof Apimvmv1OSService> {

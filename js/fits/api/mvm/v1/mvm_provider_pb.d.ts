@@ -2,9 +2,9 @@ import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegen
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 /**
- * Describes the file fits/api/mvm/v1/mvm_export.proto.
+ * Describes the file fits/api/mvm/v1/mvm_provider.proto.
  */
-export declare const file_fits_api_mvm_v1_mvm_export: GenFile;
+export declare const file_fits_api_mvm_v1_mvm_provider: GenFile;
 /**
  * TODO: remove together with TodoRemoveDummy.
  *
@@ -83,15 +83,15 @@ export type CsvExportResponse = Message<"fits.api.mvm.v1.CsvExportResponse"> & {
  */
 export declare const CsvExportResponseSchema: GenMessage<CsvExportResponse>;
 /**
- * CsvExportService offers MVM operations in the provider context.
+ * ProviderMVMService offers MVM operations in the provider context.
  *
- * @generated from service fits.api.mvm.v1.CsvExportService
+ * @generated from service fits.api.mvm.v1.ProviderMVMService
  */
-export declare const CsvExportService: GenService<{
+export declare const ProviderMVMService: GenService<{
     /**
      * Create makes a new MVM and lets the operator set its billing fields.
      *
-     * @generated from rpc fits.api.mvm.v1.CsvExportService.CsvExport
+     * @generated from rpc fits.api.mvm.v1.ProviderMVMService.CsvExport
      */
     csvExport: {
         methodKind: "server_streaming";
@@ -105,7 +105,7 @@ export declare const CsvExportService: GenService<{
      * that does not compile. This unary method only exists to make the generated code compile.
      * It will be removed once CsvExport moves to a different service.
      *
-     * @generated from rpc fits.api.mvm.v1.CsvExportService.TodoRemoveDummy
+     * @generated from rpc fits.api.mvm.v1.ProviderMVMService.TodoRemoveDummy
      */
     todoRemoveDummy: {
         methodKind: "unary";

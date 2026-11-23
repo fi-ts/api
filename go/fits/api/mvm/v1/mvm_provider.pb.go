@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.12
 // 	protoc        (unknown)
-// source: fits/api/mvm/v1/mvm_export.proto
+// source: fits/api/mvm/v1/mvm_provider.proto
 
 package mvmv1
 
@@ -35,7 +35,7 @@ type TodoRemoveDummyRequest struct {
 
 func (x *TodoRemoveDummyRequest) Reset() {
 	*x = TodoRemoveDummyRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_export_proto_msgTypes[0]
+	mi := &file_fits_api_mvm_v1_mvm_provider_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -47,7 +47,7 @@ func (x *TodoRemoveDummyRequest) String() string {
 func (*TodoRemoveDummyRequest) ProtoMessage() {}
 
 func (x *TodoRemoveDummyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_export_proto_msgTypes[0]
+	mi := &file_fits_api_mvm_v1_mvm_provider_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -60,7 +60,7 @@ func (x *TodoRemoveDummyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TodoRemoveDummyRequest.ProtoReflect.Descriptor instead.
 func (*TodoRemoveDummyRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_export_proto_rawDescGZIP(), []int{0}
+	return file_fits_api_mvm_v1_mvm_provider_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *TodoRemoveDummyRequest) GetTenant() string {
@@ -79,7 +79,7 @@ type TodoRemoveDummyResponse struct {
 
 func (x *TodoRemoveDummyResponse) Reset() {
 	*x = TodoRemoveDummyResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_export_proto_msgTypes[1]
+	mi := &file_fits_api_mvm_v1_mvm_provider_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -91,7 +91,7 @@ func (x *TodoRemoveDummyResponse) String() string {
 func (*TodoRemoveDummyResponse) ProtoMessage() {}
 
 func (x *TodoRemoveDummyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_export_proto_msgTypes[1]
+	mi := &file_fits_api_mvm_v1_mvm_provider_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -104,7 +104,7 @@ func (x *TodoRemoveDummyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TodoRemoveDummyResponse.ProtoReflect.Descriptor instead.
 func (*TodoRemoveDummyResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_export_proto_rawDescGZIP(), []int{1}
+	return file_fits_api_mvm_v1_mvm_provider_proto_rawDescGZIP(), []int{1}
 }
 
 // Request to export MVM accounting information as a CSV file.
@@ -122,7 +122,7 @@ type CsvExportRequest struct {
 
 func (x *CsvExportRequest) Reset() {
 	*x = CsvExportRequest{}
-	mi := &file_fits_api_mvm_v1_mvm_export_proto_msgTypes[2]
+	mi := &file_fits_api_mvm_v1_mvm_provider_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -134,7 +134,7 @@ func (x *CsvExportRequest) String() string {
 func (*CsvExportRequest) ProtoMessage() {}
 
 func (x *CsvExportRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_export_proto_msgTypes[2]
+	mi := &file_fits_api_mvm_v1_mvm_provider_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -147,7 +147,7 @@ func (x *CsvExportRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CsvExportRequest.ProtoReflect.Descriptor instead.
 func (*CsvExportRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_export_proto_rawDescGZIP(), []int{2}
+	return file_fits_api_mvm_v1_mvm_provider_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *CsvExportRequest) GetTenant() string {
@@ -182,7 +182,7 @@ type CsvExportResponse struct {
 
 func (x *CsvExportResponse) Reset() {
 	*x = CsvExportResponse{}
-	mi := &file_fits_api_mvm_v1_mvm_export_proto_msgTypes[3]
+	mi := &file_fits_api_mvm_v1_mvm_provider_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -194,7 +194,7 @@ func (x *CsvExportResponse) String() string {
 func (*CsvExportResponse) ProtoMessage() {}
 
 func (x *CsvExportResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_mvm_export_proto_msgTypes[3]
+	mi := &file_fits_api_mvm_v1_mvm_provider_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -207,7 +207,7 @@ func (x *CsvExportResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CsvExportResponse.ProtoReflect.Descriptor instead.
 func (*CsvExportResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_mvm_export_proto_rawDescGZIP(), []int{3}
+	return file_fits_api_mvm_v1_mvm_provider_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *CsvExportResponse) GetChunk() string {
@@ -217,11 +217,11 @@ func (x *CsvExportResponse) GetChunk() string {
 	return ""
 }
 
-var File_fits_api_mvm_v1_mvm_export_proto protoreflect.FileDescriptor
+var File_fits_api_mvm_v1_mvm_provider_proto protoreflect.FileDescriptor
 
-const file_fits_api_mvm_v1_mvm_export_proto_rawDesc = "" +
+const file_fits_api_mvm_v1_mvm_provider_proto_rawDesc = "" +
 	"\n" +
-	" fits/api/mvm/v1/mvm_export.proto\x12\x0ffits.api.mvm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"=\n" +
+	"\"fits/api/mvm/v1/mvm_provider.proto\x12\x0ffits.api.mvm.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"=\n" +
 	"\x16TodoRemoveDummyRequest\x12#\n" +
 	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\"\x19\n" +
 	"\x17TodoRemoveDummyResponse\"\x93\x01\n" +
@@ -230,39 +230,39 @@ const file_fits_api_mvm_v1_mvm_export_proto_rawDesc = "" +
 	"\x04from\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x04from\x12*\n" +
 	"\x02to\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\")\n" +
 	"\x11CsvExportResponse\x12\x14\n" +
-	"\x05chunk\x18\x01 \x01(\tR\x05chunk2\xe4\x01\n" +
-	"\x10CsvExportService\x12_\n" +
+	"\x05chunk\x18\x01 \x01(\tR\x05chunk2\xe6\x01\n" +
+	"\x12ProviderMVMService\x12_\n" +
 	"\tCsvExport\x12!.fits.api.mvm.v1.CsvExportRequest\x1a\".fits.api.mvm.v1.CsvExportResponse\"\t\xc2\xf3\x18\x01\x01\xe0\xf3\x18\x010\x01\x12o\n" +
-	"\x0fTodoRemoveDummy\x12'.fits.api.mvm.v1.TodoRemoveDummyRequest\x1a(.fits.api.mvm.v1.TodoRemoveDummyResponse\"\t\xc2\xf3\x18\x01\x01\xe0\xf3\x18\x02B\xb3\x01\n" +
-	"\x13com.fits.api.mvm.v1B\x0eMvmExportProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03FAM\xaa\x02\x0fFits.Api.Mvm.V1\xca\x02\x0fFits\\Api\\Mvm\\V1\xe2\x02\x1bFits\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12Fits::Api::Mvm::V1b\x06proto3"
+	"\x0fTodoRemoveDummy\x12'.fits.api.mvm.v1.TodoRemoveDummyRequest\x1a(.fits.api.mvm.v1.TodoRemoveDummyResponse\"\t\xc2\xf3\x18\x01\x01\xe0\xf3\x18\x02B\xb5\x01\n" +
+	"\x13com.fits.api.mvm.v1B\x10MvmProviderProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03FAM\xaa\x02\x0fFits.Api.Mvm.V1\xca\x02\x0fFits\\Api\\Mvm\\V1\xe2\x02\x1bFits\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12Fits::Api::Mvm::V1b\x06proto3"
 
 var (
-	file_fits_api_mvm_v1_mvm_export_proto_rawDescOnce sync.Once
-	file_fits_api_mvm_v1_mvm_export_proto_rawDescData []byte
+	file_fits_api_mvm_v1_mvm_provider_proto_rawDescOnce sync.Once
+	file_fits_api_mvm_v1_mvm_provider_proto_rawDescData []byte
 )
 
-func file_fits_api_mvm_v1_mvm_export_proto_rawDescGZIP() []byte {
-	file_fits_api_mvm_v1_mvm_export_proto_rawDescOnce.Do(func() {
-		file_fits_api_mvm_v1_mvm_export_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_fits_api_mvm_v1_mvm_export_proto_rawDesc), len(file_fits_api_mvm_v1_mvm_export_proto_rawDesc)))
+func file_fits_api_mvm_v1_mvm_provider_proto_rawDescGZIP() []byte {
+	file_fits_api_mvm_v1_mvm_provider_proto_rawDescOnce.Do(func() {
+		file_fits_api_mvm_v1_mvm_provider_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_fits_api_mvm_v1_mvm_provider_proto_rawDesc), len(file_fits_api_mvm_v1_mvm_provider_proto_rawDesc)))
 	})
-	return file_fits_api_mvm_v1_mvm_export_proto_rawDescData
+	return file_fits_api_mvm_v1_mvm_provider_proto_rawDescData
 }
 
-var file_fits_api_mvm_v1_mvm_export_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
-var file_fits_api_mvm_v1_mvm_export_proto_goTypes = []any{
+var file_fits_api_mvm_v1_mvm_provider_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_fits_api_mvm_v1_mvm_provider_proto_goTypes = []any{
 	(*TodoRemoveDummyRequest)(nil),  // 0: fits.api.mvm.v1.TodoRemoveDummyRequest
 	(*TodoRemoveDummyResponse)(nil), // 1: fits.api.mvm.v1.TodoRemoveDummyResponse
 	(*CsvExportRequest)(nil),        // 2: fits.api.mvm.v1.CsvExportRequest
 	(*CsvExportResponse)(nil),       // 3: fits.api.mvm.v1.CsvExportResponse
 	(*timestamppb.Timestamp)(nil),   // 4: google.protobuf.Timestamp
 }
-var file_fits_api_mvm_v1_mvm_export_proto_depIdxs = []int32{
+var file_fits_api_mvm_v1_mvm_provider_proto_depIdxs = []int32{
 	4, // 0: fits.api.mvm.v1.CsvExportRequest.from:type_name -> google.protobuf.Timestamp
 	4, // 1: fits.api.mvm.v1.CsvExportRequest.to:type_name -> google.protobuf.Timestamp
-	2, // 2: fits.api.mvm.v1.CsvExportService.CsvExport:input_type -> fits.api.mvm.v1.CsvExportRequest
-	0, // 3: fits.api.mvm.v1.CsvExportService.TodoRemoveDummy:input_type -> fits.api.mvm.v1.TodoRemoveDummyRequest
-	3, // 4: fits.api.mvm.v1.CsvExportService.CsvExport:output_type -> fits.api.mvm.v1.CsvExportResponse
-	1, // 5: fits.api.mvm.v1.CsvExportService.TodoRemoveDummy:output_type -> fits.api.mvm.v1.TodoRemoveDummyResponse
+	2, // 2: fits.api.mvm.v1.ProviderMVMService.CsvExport:input_type -> fits.api.mvm.v1.CsvExportRequest
+	0, // 3: fits.api.mvm.v1.ProviderMVMService.TodoRemoveDummy:input_type -> fits.api.mvm.v1.TodoRemoveDummyRequest
+	3, // 4: fits.api.mvm.v1.ProviderMVMService.CsvExport:output_type -> fits.api.mvm.v1.CsvExportResponse
+	1, // 5: fits.api.mvm.v1.ProviderMVMService.TodoRemoveDummy:output_type -> fits.api.mvm.v1.TodoRemoveDummyResponse
 	4, // [4:6] is the sub-list for method output_type
 	2, // [2:4] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
@@ -270,26 +270,26 @@ var file_fits_api_mvm_v1_mvm_export_proto_depIdxs = []int32{
 	0, // [0:2] is the sub-list for field type_name
 }
 
-func init() { file_fits_api_mvm_v1_mvm_export_proto_init() }
-func file_fits_api_mvm_v1_mvm_export_proto_init() {
-	if File_fits_api_mvm_v1_mvm_export_proto != nil {
+func init() { file_fits_api_mvm_v1_mvm_provider_proto_init() }
+func file_fits_api_mvm_v1_mvm_provider_proto_init() {
+	if File_fits_api_mvm_v1_mvm_provider_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_fits_api_mvm_v1_mvm_export_proto_rawDesc), len(file_fits_api_mvm_v1_mvm_export_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_fits_api_mvm_v1_mvm_provider_proto_rawDesc), len(file_fits_api_mvm_v1_mvm_provider_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_fits_api_mvm_v1_mvm_export_proto_goTypes,
-		DependencyIndexes: file_fits_api_mvm_v1_mvm_export_proto_depIdxs,
-		MessageInfos:      file_fits_api_mvm_v1_mvm_export_proto_msgTypes,
+		GoTypes:           file_fits_api_mvm_v1_mvm_provider_proto_goTypes,
+		DependencyIndexes: file_fits_api_mvm_v1_mvm_provider_proto_depIdxs,
+		MessageInfos:      file_fits_api_mvm_v1_mvm_provider_proto_msgTypes,
 	}.Build()
-	File_fits_api_mvm_v1_mvm_export_proto = out.File
-	file_fits_api_mvm_v1_mvm_export_proto_goTypes = nil
-	file_fits_api_mvm_v1_mvm_export_proto_depIdxs = nil
+	File_fits_api_mvm_v1_mvm_provider_proto = out.File
+	file_fits_api_mvm_v1_mvm_provider_proto_goTypes = nil
+	file_fits_api_mvm_v1_mvm_provider_proto_depIdxs = nil
 }

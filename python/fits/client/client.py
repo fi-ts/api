@@ -7,7 +7,7 @@ import fits.api.mvm.v1.domain_connect as fits_api_mvm_v1_domain_connect
 import fits.api.mvm.v1.ldap_connect as fits_api_mvm_v1_ldap_connect
 import fits.api.mvm.v1.location_connect as fits_api_mvm_v1_location_connect
 import fits.api.mvm.v1.mvm_connect as fits_api_mvm_v1_mvm_connect
-import fits.api.mvm.v1.mvm_export_connect as fits_api_mvm_v1_mvm_export_connect
+import fits.api.mvm.v1.mvm_provider_connect as fits_api_mvm_v1_mvm_provider_connect
 import fits.api.mvm.v1.os_connect as fits_api_mvm_v1_os_connect
 import fits.api.mvm.v1.vlan_connect as fits_api_mvm_v1_vlan_connect
 
@@ -69,8 +69,8 @@ class Client:
         def mvm(self):
             return fits_api_mvm_v1_mvm_connect.MVMServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
-        def mvm_export(self):
-            return fits_api_mvm_v1_mvm_export_connect.CsvExportServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
+        def mvm_provider(self):
+            return fits_api_mvm_v1_mvm_provider_connect.ProviderMVMServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
 
         def os(self):
             return fits_api_mvm_v1_os_connect.OSServiceClientSync(address=self._baseurl, http_client=self._client, interceptors=self._interceptors)
