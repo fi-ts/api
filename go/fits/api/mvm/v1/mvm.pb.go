@@ -703,9 +703,7 @@ type IPAddress struct {
 	// The IPv4 address.
 	IpAddress string `protobuf:"bytes,2,opt,name=ip_address,json=ipAddress,proto3" json:"ip_address,omitempty"`
 	// The network interface this IP address is bound to.
-	// Unset for additional IP addresses that share an existing interface;
-	// such addresses can be deleted via DeleteIPAddress.
-	NetworkInterface *NetworkInterface `protobuf:"bytes,3,opt,name=network_interface,json=networkInterface,proto3,oneof" json:"network_interface,omitempty"`
+	NetworkInterface *NetworkInterface `protobuf:"bytes,3,opt,name=network_interface,json=networkInterface,proto3" json:"network_interface,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -767,7 +765,9 @@ type NetworkInterface struct {
 	// UUID of the VLAN.
 	VlanUuid string `protobuf:"bytes,1,opt,name=vlan_uuid,json=vlanUuid,proto3" json:"vlan_uuid,omitempty"`
 	// MAC address of this interface.
-	MacAddress    string `protobuf:"bytes,2,opt,name=mac_address,json=macAddress,proto3" json:"mac_address,omitempty"`
+	// Unset for additional IP addresses that share an existing interface; only such addresses can
+	// be moved via MoveIPAddress or deleted via DeleteIPAddress.
+	MacAddress    *string `protobuf:"bytes,2,opt,name=mac_address,json=macAddress,proto3,oneof" json:"mac_address,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -810,8 +810,8 @@ func (x *NetworkInterface) GetVlanUuid() string {
 }
 
 func (x *NetworkInterface) GetMacAddress() string {
-	if x != nil {
-		return x.MacAddress
+	if x != nil && x.MacAddress != nil {
+		return *x.MacAddress
 	}
 	return ""
 }
@@ -1057,6 +1057,8 @@ type ManagedVM struct {
 	//	*ManagedVM_LinuxDetails
 	Details isManagedVM_Details `protobuf_oneof:"details"`
 	// IP addresses attached to the MVM (IPv4 only).
+	// At least one of them is bound to a network interface with its own MAC
+	// address; additional IP addresses share an existing interface.
 	IpAddresses []*IPAddress `protobuf:"bytes,18,rep,name=ip_addresses,json=ipAddresses,proto3" json:"ip_addresses,omitempty"`
 	// Customer reference provided by the user, e.g. a ticket ID.
 	OrderReference string `protobuf:"bytes,19,opt,name=order_reference,json=orderReference,proto3" json:"order_reference,omitempty"`
@@ -4058,17 +4060,17 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\vdomain_uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\n" +
 	"domainUuid\x12,\n" +
 	"\vdomain_fqdn\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xd9˱\x02\x01R\n" +
-	"domainFqdn\"\xbc\x01\n" +
+	"domainFqdn\"\xa9\x01\n" +
 	"\tIPAddress\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12&\n" +
 	"\n" +
-	"ip_address\x18\x02 \x01(\tB\a\xbaH\x04r\x02x\x01R\tipAddress\x12S\n" +
-	"\x11network_interface\x18\x03 \x01(\v2!.fits.api.mvm.v1.NetworkInterfaceH\x00R\x10networkInterface\x88\x01\x01B\x14\n" +
-	"\x12_network_interface\"g\n" +
+	"ip_address\x18\x02 \x01(\tB\a\xbaH\x04r\x02x\x01R\tipAddress\x12V\n" +
+	"\x11network_interface\x18\x03 \x01(\v2!.fits.api.mvm.v1.NetworkInterfaceB\x06\xbaH\x03\xc8\x01\x01R\x10networkInterface\"|\n" +
 	"\x10NetworkInterface\x12%\n" +
-	"\tvlan_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bvlanUuid\x12,\n" +
-	"\vmac_address\x18\x02 \x01(\tB\v\xbaH\br\x06\xb8\xb3\xae\xb1\x02\x01R\n" +
-	"macAddress\"9\n" +
+	"\tvlan_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bvlanUuid\x121\n" +
+	"\vmac_address\x18\x02 \x01(\tB\v\xbaH\br\x06\xb8\xb3\xae\xb1\x02\x01H\x00R\n" +
+	"macAddress\x88\x01\x01B\x0e\n" +
+	"\f_mac_address\"9\n" +
 	"\x10InitialIPAddress\x12%\n" +
 	"\tvlan_uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bvlanUuid\"a\n" +
 	"\x06Status\x126\n" +
@@ -4078,7 +4080,7 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\aenabled\x18\x01 \x01(\bR\aenabled\"&\n" +
 	"\n" +
 	"Encryption\x12\x18\n" +
-	"\aenabled\x18\x01 \x01(\bR\aenabled\"\x95\b\n" +
+	"\aenabled\x18\x01 \x01(\bR\aenabled\"\xb2\t\n" +
 	"\tManagedVM\x12\x1c\n" +
 	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12%\n" +
 	"\x04meta\x18\x02 \x01(\v2\x11.fits.api.v1.MetaR\x04meta\x12\x1f\n" +
@@ -4101,8 +4103,9 @@ const file_fits_api_mvm_v1_mvm_proto_rawDesc = "" +
 	"\rservice_class\x18\x0f \x01(\x0e2\x1d.fits.api.mvm.v1.ServiceClassB\n" +
 	"\xbaH\a\x82\x01\x04\x10\x01 \x00R\fserviceClass\x12J\n" +
 	"\x0fwindows_details\x18\x10 \x01(\v2\x1f.fits.api.mvm.v1.WindowsDetailsH\x00R\x0ewindowsDetails\x12D\n" +
-	"\rlinux_details\x18\x11 \x01(\v2\x1d.fits.api.mvm.v1.LinuxDetailsH\x00R\flinuxDetails\x12=\n" +
-	"\fip_addresses\x18\x12 \x03(\v2\x1a.fits.api.mvm.v1.IPAddressR\vipAddresses\x124\n" +
+	"\rlinux_details\x18\x11 \x01(\v2\x1d.fits.api.mvm.v1.LinuxDetailsH\x00R\flinuxDetails\x12\xd9\x01\n" +
+	"\fip_addresses\x18\x12 \x03(\v2\x1a.fits.api.mvm.v1.IPAddressB\x99\x01\xbaH\x95\x01\xba\x01\x91\x01\n" +
+	"\x1eip_addresses.network_interface\x127must contain at least one IP address with a MAC address\x1a6this.exists(ip, has(ip.network_interface.mac_address))R\vipAddresses\x124\n" +
 	"\x0forder_reference\x18\x13 \x01(\tB\v\xbaH\br\x06\xc8\xd9˱\x02\x01R\x0eorderReference\x127\n" +
 	"\tsnapshots\x18\x14 \x03(\v2\x19.fits.api.mvm.v1.SnapshotR\tsnapshotsB\x10\n" +
 	"\adetails\x12\x05\xbaH\x02\b\x01\"I\n" +
@@ -4547,7 +4550,7 @@ func file_fits_api_mvm_v1_mvm_proto_init() {
 		(*Disk_Linux)(nil),
 		(*Disk_Windows)(nil),
 	}
-	file_fits_api_mvm_v1_mvm_proto_msgTypes[5].OneofWrappers = []any{}
+	file_fits_api_mvm_v1_mvm_proto_msgTypes[6].OneofWrappers = []any{}
 	file_fits_api_mvm_v1_mvm_proto_msgTypes[11].OneofWrappers = []any{
 		(*ManagedVM_WindowsDetails)(nil),
 		(*ManagedVM_LinuxDetails)(nil),

@@ -226,10 +226,8 @@ export type IPAddress = Message<"fits.api.mvm.v1.IPAddress"> & {
     ipAddress: string;
     /**
      * The network interface this IP address is bound to.
-     * Unset for additional IP addresses that share an existing interface;
-     * such addresses can be deleted via DeleteIPAddress.
      *
-     * @generated from field: optional fits.api.mvm.v1.NetworkInterface network_interface = 3;
+     * @generated from field: fits.api.mvm.v1.NetworkInterface network_interface = 3;
      */
     networkInterface?: NetworkInterface | undefined;
 };
@@ -252,10 +250,12 @@ export type NetworkInterface = Message<"fits.api.mvm.v1.NetworkInterface"> & {
     vlanUuid: string;
     /**
      * MAC address of this interface.
+     * Unset for additional IP addresses that share an existing interface; only such addresses can
+     * be moved via MoveIPAddress or deleted via DeleteIPAddress.
      *
-     * @generated from field: string mac_address = 2;
+     * @generated from field: optional string mac_address = 2;
      */
-    macAddress: string;
+    macAddress?: string | undefined;
 };
 /**
  * Describes the message fits.api.mvm.v1.NetworkInterface.
@@ -470,6 +470,8 @@ export type ManagedVM = Message<"fits.api.mvm.v1.ManagedVM"> & {
     };
     /**
      * IP addresses attached to the MVM (IPv4 only).
+     * At least one of them is bound to a network interface with its own MAC
+     * address; additional IP addresses share an existing interface.
      *
      * @generated from field: repeated fits.api.mvm.v1.IPAddress ip_addresses = 18;
      */
@@ -2027,6 +2029,7 @@ export declare const MVMService: GenService<{
     };
     /**
      * Moves an IP address from one MVM to another.
+     * Only additional IP addresses (without a MAC address) can be moved.
      *
      * @generated from rpc fits.api.mvm.v1.MVMService.MoveIPAddress
      */
@@ -2037,6 +2040,7 @@ export declare const MVMService: GenService<{
     };
     /**
      * Deletes an IP address from a MVM.
+     * Only additional IP addresses (without a MAC address) can be deleted.
      *
      * @generated from rpc fits.api.mvm.v1.MVMService.DeleteIPAddress
      */
