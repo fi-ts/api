@@ -126,8 +126,10 @@ type MVMServiceClient interface {
 	// Orders an additional IP address for a MVM.
 	AddIPAddress(context.Context, *v1.MVMServiceAddIPAddressRequest) (*v1.MVMServiceAddIPAddressResponse, error)
 	// Moves an IP address from one MVM to another.
+	// Only additional IP addresses (without a MAC address) can be moved.
 	MoveIPAddress(context.Context, *v1.MVMServiceMoveIPAddressRequest) (*v1.MVMServiceMoveIPAddressResponse, error)
 	// Deletes an IP address from a MVM.
+	// Only additional IP addresses (without a MAC address) can be deleted.
 	DeleteIPAddress(context.Context, *v1.MVMServiceDeleteIPAddressRequest) (*v1.MVMServiceDeleteIPAddressResponse, error)
 	// Restarts a MVM.
 	Restart(context.Context, *v1.MVMServiceRestartRequest) (*v1.MVMServiceRestartResponse, error)
@@ -564,8 +566,10 @@ type MVMServiceHandler interface {
 	// Orders an additional IP address for a MVM.
 	AddIPAddress(context.Context, *v1.MVMServiceAddIPAddressRequest) (*v1.MVMServiceAddIPAddressResponse, error)
 	// Moves an IP address from one MVM to another.
+	// Only additional IP addresses (without a MAC address) can be moved.
 	MoveIPAddress(context.Context, *v1.MVMServiceMoveIPAddressRequest) (*v1.MVMServiceMoveIPAddressResponse, error)
 	// Deletes an IP address from a MVM.
+	// Only additional IP addresses (without a MAC address) can be deleted.
 	DeleteIPAddress(context.Context, *v1.MVMServiceDeleteIPAddressRequest) (*v1.MVMServiceDeleteIPAddressResponse, error)
 	// Restarts a MVM.
 	Restart(context.Context, *v1.MVMServiceRestartRequest) (*v1.MVMServiceRestartResponse, error)

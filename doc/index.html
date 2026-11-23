@@ -2839,10 +2839,8 @@ whitespace, e.g. /data/app. Allowed paths are enforced upstream.</p></td>
                 <tr>
                   <td>network_interface</td>
                   <td><a href="#fits.api.mvm.v1.NetworkInterface">NetworkInterface</a></td>
-                  <td>optional</td>
-                  <td><p>The network interface this IP address is bound to.
-Unset for additional IP addresses that share an existing interface;
-such addresses can be deleted via DeleteIPAddress. </p></td>
+                  <td></td>
+                  <td><p>The network interface this IP address is bound to. </p></td>
                 </tr>
               
             </tbody>
@@ -4437,7 +4435,9 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                   <td>ip_addresses</td>
                   <td><a href="#fits.api.mvm.v1.IPAddress">IPAddress</a></td>
                   <td>repeated</td>
-                  <td><p>IP addresses attached to the MVM (IPv4 only). </p></td>
+                  <td><p>IP addresses attached to the MVM (IPv4 only).
+At least one of them is bound to a network interface with its own MAC
+address; additional IP addresses share an existing interface. </p></td>
                 </tr>
               
                 <tr>
@@ -4481,8 +4481,10 @@ one system disk plus any number of data disks (see DiskType). </p></td>
                 <tr>
                   <td>mac_address</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>MAC address of this interface. </p></td>
+                  <td>optional</td>
+                  <td><p>MAC address of this interface.
+Unset for additional IP addresses that share an existing interface; only such addresses can
+be moved via MoveIPAddress or deleted via DeleteIPAddress. </p></td>
                 </tr>
               
             </tbody>
@@ -4941,14 +4943,16 @@ DiskType for which operations apply per disk kind.</p></td>
                 <td>MoveIPAddress</td>
                 <td><a href="#fits.api.mvm.v1.MVMServiceMoveIPAddressRequest">MVMServiceMoveIPAddressRequest</a></td>
                 <td><a href="#fits.api.mvm.v1.MVMServiceMoveIPAddressResponse">MVMServiceMoveIPAddressResponse</a></td>
-                <td><p>Moves an IP address from one MVM to another.</p></td>
+                <td><p>Moves an IP address from one MVM to another.
+Only additional IP addresses (without a MAC address) can be moved.</p></td>
               </tr>
             
               <tr>
                 <td>DeleteIPAddress</td>
                 <td><a href="#fits.api.mvm.v1.MVMServiceDeleteIPAddressRequest">MVMServiceDeleteIPAddressRequest</a></td>
                 <td><a href="#fits.api.mvm.v1.MVMServiceDeleteIPAddressResponse">MVMServiceDeleteIPAddressResponse</a></td>
-                <td><p>Deletes an IP address from a MVM.</p></td>
+                <td><p>Deletes an IP address from a MVM.
+Only additional IP addresses (without a MAC address) can be deleted.</p></td>
               </tr>
             
               <tr>
