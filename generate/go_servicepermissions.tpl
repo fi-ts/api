@@ -171,7 +171,7 @@ func GetProjectFromRequest(req connect.AnyRequest) (string, bool) {
 	return "", false
 }
 
-// GetResourceFromRequest returns the product instance id from a product scoped request.
+// GetResourceFromRequest returns the resource instance id from a resource scoped request.
 func GetResourceFromRequest(req connect.AnyRequest) (string, bool) {
 	if !IsResourceScope(req) {
 		return "", false

@@ -56,7 +56,7 @@ enum Resource {
   RESOURCE_PUBLIC_CLOUD_VM = 2;
 }
 
-// ResourceRole specifies what role a logged in user needs to call this resource scoped service.
+// ResourceRole defines the role required of a logged-in user to invoke this resource-scoped service.
 // Resource roles are independent of project roles.
 enum ResourceRole {
   // RESOURCE_ROLE_UNSPECIFIED is not specified
@@ -109,7 +109,7 @@ extend google.protobuf.MethodOptions {
   Resource resource = 51006;
 }
 
-// ResourceRoleAssignment grants a resource role on one resource instance.
+// ResourceRoleAssignment grants a resource role on a single resource instance.
 message ResourceRoleAssignment {
   // Resource the role applies to.
   Resource resource = 1 [(buf.validate.field).enum.defined_only = true];
@@ -120,8 +120,7 @@ message ResourceRoleAssignment {
   // Scope of the resource role.
   oneof scope {
     option (buf.validate.oneof).required = true;
-    // UUID of the project the resource belongs to.
-    // Some resource types might not be scoped by projects.
+    // UUID of the project this resource belongs to. May be empty for resource types that are not scoped to a project.
     string project_uuid = 4 [(buf.validate.field).string.(fits.api.v1.is_project_subject_permission) = true];
     // Namespace is used when the resource has a different scope than a project.
     string namespace = 5 [(buf.validate.field).string = {max_len: 45}];
