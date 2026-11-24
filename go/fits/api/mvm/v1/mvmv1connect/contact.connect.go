@@ -39,8 +39,6 @@ const (
 	ContactServiceCreateProcedure = "/fits.api.mvm.v1.ContactService/Create"
 	// ContactServiceUpdateProcedure is the fully-qualified name of the ContactService's Update RPC.
 	ContactServiceUpdateProcedure = "/fits.api.mvm.v1.ContactService/Update"
-	// ContactServiceDeleteProcedure is the fully-qualified name of the ContactService's Delete RPC.
-	ContactServiceDeleteProcedure = "/fits.api.mvm.v1.ContactService/Delete"
 )
 
 // ContactServiceClient is a client for the fits.api.mvm.v1.ContactService service.
@@ -51,8 +49,6 @@ type ContactServiceClient interface {
 	Create(context.Context, *v1.ContactServiceCreateRequest) (*v1.ContactServiceCreateResponse, error)
 	// Updates an existing contact person.
 	Update(context.Context, *v1.ContactServiceUpdateRequest) (*v1.ContactServiceUpdateResponse, error)
-	// Deletes a contact person.
-	Delete(context.Context, *v1.ContactServiceDeleteRequest) (*v1.ContactServiceDeleteResponse, error)
 }
 
 // NewContactServiceClient constructs a client for the fits.api.mvm.v1.ContactService service. By
@@ -84,12 +80,6 @@ func NewContactServiceClient(httpClient connect.HTTPClient, baseURL string, opts
 			connect.WithSchema(contactServiceMethods.ByName("Update")),
 			connect.WithClientOptions(opts...),
 		),
-		delete: connect.NewClient[v1.ContactServiceDeleteRequest, v1.ContactServiceDeleteResponse](
-			httpClient,
-			baseURL+ContactServiceDeleteProcedure,
-			connect.WithSchema(contactServiceMethods.ByName("Delete")),
-			connect.WithClientOptions(opts...),
-		),
 	}
 }
 
@@ -98,7 +88,6 @@ type contactServiceClient struct {
 	list   *connect.Client[v1.ContactServiceListRequest, v1.ContactServiceListResponse]
 	create *connect.Client[v1.ContactServiceCreateRequest, v1.ContactServiceCreateResponse]
 	update *connect.Client[v1.ContactServiceUpdateRequest, v1.ContactServiceUpdateResponse]
-	delete *connect.Client[v1.ContactServiceDeleteRequest, v1.ContactServiceDeleteResponse]
 }
 
 // List calls fits.api.mvm.v1.ContactService.List.
@@ -128,15 +117,6 @@ func (c *contactServiceClient) Update(ctx context.Context, req *v1.ContactServic
 	return nil, err
 }
 
-// Delete calls fits.api.mvm.v1.ContactService.Delete.
-func (c *contactServiceClient) Delete(ctx context.Context, req *v1.ContactServiceDeleteRequest) (*v1.ContactServiceDeleteResponse, error) {
-	response, err := c.delete.CallUnary(ctx, connect.NewRequest(req))
-	if response != nil {
-		return response.Msg, err
-	}
-	return nil, err
-}
-
 // ContactServiceHandler is an implementation of the fits.api.mvm.v1.ContactService service.
 type ContactServiceHandler interface {
 	// Returns a list of all contact persons available for a tenant.
@@ -145,8 +125,6 @@ type ContactServiceHandler interface {
 	Create(context.Context, *v1.ContactServiceCreateRequest) (*v1.ContactServiceCreateResponse, error)
 	// Updates an existing contact person.
 	Update(context.Context, *v1.ContactServiceUpdateRequest) (*v1.ContactServiceUpdateResponse, error)
-	// Deletes a contact person.
-	Delete(context.Context, *v1.ContactServiceDeleteRequest) (*v1.ContactServiceDeleteResponse, error)
 }
 
 // NewContactServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -174,12 +152,6 @@ func NewContactServiceHandler(svc ContactServiceHandler, opts ...connect.Handler
 		connect.WithSchema(contactServiceMethods.ByName("Update")),
 		connect.WithHandlerOptions(opts...),
 	)
-	contactServiceDeleteHandler := connect.NewUnaryHandlerSimple(
-		ContactServiceDeleteProcedure,
-		svc.Delete,
-		connect.WithSchema(contactServiceMethods.ByName("Delete")),
-		connect.WithHandlerOptions(opts...),
-	)
 	return "/fits.api.mvm.v1.ContactService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case ContactServiceListProcedure:
@@ -188,8 +160,6 @@ func NewContactServiceHandler(svc ContactServiceHandler, opts ...connect.Handler
 			contactServiceCreateHandler.ServeHTTP(w, r)
 		case ContactServiceUpdateProcedure:
 			contactServiceUpdateHandler.ServeHTTP(w, r)
-		case ContactServiceDeleteProcedure:
-			contactServiceDeleteHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -209,8 +179,4 @@ func (UnimplementedContactServiceHandler) Create(context.Context, *v1.ContactSer
 
 func (UnimplementedContactServiceHandler) Update(context.Context, *v1.ContactServiceUpdateRequest) (*v1.ContactServiceUpdateResponse, error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.ContactService.Update is not implemented"))
-}
-
-func (UnimplementedContactServiceHandler) Delete(context.Context, *v1.ContactServiceDeleteRequest) (*v1.ContactServiceDeleteResponse, error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("fits.api.mvm.v1.ContactService.Delete is not implemented"))
 }

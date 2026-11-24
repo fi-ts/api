@@ -237,9 +237,7 @@ type TenantServiceUpdateRequest struct {
 	// Description of this tenant
 	Description *string `protobuf:"bytes,5,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	// AvatarUrl of the tenant
-	AvatarUrl *string `protobuf:"bytes,6,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty"`
-	// Labels on the tenant
-	Labels        *UpdateLabels `protobuf:"bytes,7,opt,name=labels,proto3,oneof" json:"labels,omitempty"`
+	AvatarUrl     *string `protobuf:"bytes,6,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -314,13 +312,6 @@ func (x *TenantServiceUpdateRequest) GetAvatarUrl() string {
 		return *x.AvatarUrl
 	}
 	return ""
-}
-
-func (x *TenantServiceUpdateRequest) GetLabels() *UpdateLabels {
-	if x != nil {
-		return x.Labels
-	}
-	return nil
 }
 
 // TenantServiceGetResponse is the response payload of the tenant get request
@@ -482,7 +473,7 @@ const file_fits_api_v1_tenant_proto_rawDesc = "" +
 	"\x05_nameB\t\n" +
 	"\a_labels\"1\n" +
 	"\x17TenantServiceGetRequest\x12\x16\n" +
-	"\x06tenant\x18\x01 \x01(\tR\x06tenant\"\x8d\x03\n" +
+	"\x06tenant\x18\x01 \x01(\tR\x06tenant\"\xca\x02\n" +
 	"\x1aTenantServiceUpdateRequest\x12\x16\n" +
 	"\x06tenant\x18\x01 \x01(\tR\x06tenant\x12@\n" +
 	"\vupdate_meta\x18\x02 \x01(\v2\x17.fits.api.v1.UpdateMetaB\x06\xbaH\x03\xc8\x01\x01R\n" +
@@ -491,13 +482,11 @@ const file_fits_api_v1_tenant_proto_rawDesc = "" +
 	"\x05email\x18\x04 \x01(\tB\a\xbaH\x04r\x02`\x01H\x01R\x05email\x88\x01\x01\x122\n" +
 	"\vdescription\x18\x05 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01H\x02R\vdescription\x88\x01\x01\x12\"\n" +
 	"\n" +
-	"avatar_url\x18\x06 \x01(\tH\x03R\tavatarUrl\x88\x01\x01\x126\n" +
-	"\x06labels\x18\a \x01(\v2\x19.fits.api.v1.UpdateLabelsH\x04R\x06labels\x88\x01\x01B\a\n" +
+	"avatar_url\x18\x06 \x01(\tH\x03R\tavatarUrl\x88\x01\x01B\a\n" +
 	"\x05_nameB\b\n" +
 	"\x06_emailB\x0e\n" +
 	"\f_descriptionB\r\n" +
-	"\v_avatar_urlB\t\n" +
-	"\a_labels\"G\n" +
+	"\v_avatar_url\"G\n" +
 	"\x18TenantServiceGetResponse\x12+\n" +
 	"\x06tenant\x18\x01 \x01(\v2\x13.fits.api.v1.TenantR\x06tenant\"J\n" +
 	"\x19TenantServiceListResponse\x12-\n" +
@@ -535,27 +524,25 @@ var file_fits_api_v1_tenant_proto_goTypes = []any{
 	(*Meta)(nil),                        // 7: fits.api.v1.Meta
 	(*Labels)(nil),                      // 8: fits.api.v1.Labels
 	(*UpdateMeta)(nil),                  // 9: fits.api.v1.UpdateMeta
-	(*UpdateLabels)(nil),                // 10: fits.api.v1.UpdateLabels
 }
 var file_fits_api_v1_tenant_proto_depIdxs = []int32{
-	7,  // 0: fits.api.v1.Tenant.meta:type_name -> fits.api.v1.Meta
-	8,  // 1: fits.api.v1.TenantServiceListRequest.labels:type_name -> fits.api.v1.Labels
-	9,  // 2: fits.api.v1.TenantServiceUpdateRequest.update_meta:type_name -> fits.api.v1.UpdateMeta
-	10, // 3: fits.api.v1.TenantServiceUpdateRequest.labels:type_name -> fits.api.v1.UpdateLabels
-	0,  // 4: fits.api.v1.TenantServiceGetResponse.tenant:type_name -> fits.api.v1.Tenant
-	0,  // 5: fits.api.v1.TenantServiceListResponse.tenants:type_name -> fits.api.v1.Tenant
-	0,  // 6: fits.api.v1.TenantServiceUpdateResponse.tenant:type_name -> fits.api.v1.Tenant
-	1,  // 7: fits.api.v1.TenantService.List:input_type -> fits.api.v1.TenantServiceListRequest
-	2,  // 8: fits.api.v1.TenantService.Get:input_type -> fits.api.v1.TenantServiceGetRequest
-	3,  // 9: fits.api.v1.TenantService.Update:input_type -> fits.api.v1.TenantServiceUpdateRequest
-	5,  // 10: fits.api.v1.TenantService.List:output_type -> fits.api.v1.TenantServiceListResponse
-	4,  // 11: fits.api.v1.TenantService.Get:output_type -> fits.api.v1.TenantServiceGetResponse
-	6,  // 12: fits.api.v1.TenantService.Update:output_type -> fits.api.v1.TenantServiceUpdateResponse
-	10, // [10:13] is the sub-list for method output_type
-	7,  // [7:10] is the sub-list for method input_type
-	7,  // [7:7] is the sub-list for extension type_name
-	7,  // [7:7] is the sub-list for extension extendee
-	0,  // [0:7] is the sub-list for field type_name
+	7, // 0: fits.api.v1.Tenant.meta:type_name -> fits.api.v1.Meta
+	8, // 1: fits.api.v1.TenantServiceListRequest.labels:type_name -> fits.api.v1.Labels
+	9, // 2: fits.api.v1.TenantServiceUpdateRequest.update_meta:type_name -> fits.api.v1.UpdateMeta
+	0, // 3: fits.api.v1.TenantServiceGetResponse.tenant:type_name -> fits.api.v1.Tenant
+	0, // 4: fits.api.v1.TenantServiceListResponse.tenants:type_name -> fits.api.v1.Tenant
+	0, // 5: fits.api.v1.TenantServiceUpdateResponse.tenant:type_name -> fits.api.v1.Tenant
+	1, // 6: fits.api.v1.TenantService.List:input_type -> fits.api.v1.TenantServiceListRequest
+	2, // 7: fits.api.v1.TenantService.Get:input_type -> fits.api.v1.TenantServiceGetRequest
+	3, // 8: fits.api.v1.TenantService.Update:input_type -> fits.api.v1.TenantServiceUpdateRequest
+	5, // 9: fits.api.v1.TenantService.List:output_type -> fits.api.v1.TenantServiceListResponse
+	4, // 10: fits.api.v1.TenantService.Get:output_type -> fits.api.v1.TenantServiceGetResponse
+	6, // 11: fits.api.v1.TenantService.Update:output_type -> fits.api.v1.TenantServiceUpdateResponse
+	9, // [9:12] is the sub-list for method output_type
+	6, // [6:9] is the sub-list for method input_type
+	6, // [6:6] is the sub-list for extension type_name
+	6, // [6:6] is the sub-list for extension extendee
+	0, // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_fits_api_v1_tenant_proto_init() }

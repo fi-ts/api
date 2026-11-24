@@ -498,98 +498,6 @@ func (*ContactServiceUpdateResponse) Descriptor() ([]byte, []int) {
 	return file_fits_api_mvm_v1_contact_proto_rawDescGZIP(), []int{6}
 }
 
-// ContactServiceDeleteRequest is the request payload for a contact delete request.
-type ContactServiceDeleteRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Tenant the contact belongs to.
-	Tenant string `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"`
-	// UUID of the contact to delete.
-	Uuid          string `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ContactServiceDeleteRequest) Reset() {
-	*x = ContactServiceDeleteRequest{}
-	mi := &file_fits_api_mvm_v1_contact_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ContactServiceDeleteRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ContactServiceDeleteRequest) ProtoMessage() {}
-
-func (x *ContactServiceDeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_contact_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ContactServiceDeleteRequest.ProtoReflect.Descriptor instead.
-func (*ContactServiceDeleteRequest) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_contact_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *ContactServiceDeleteRequest) GetTenant() string {
-	if x != nil {
-		return x.Tenant
-	}
-	return ""
-}
-
-func (x *ContactServiceDeleteRequest) GetUuid() string {
-	if x != nil {
-		return x.Uuid
-	}
-	return ""
-}
-
-// Response for Delete; an empty response means the cancellation was accepted.
-type ContactServiceDeleteResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ContactServiceDeleteResponse) Reset() {
-	*x = ContactServiceDeleteResponse{}
-	mi := &file_fits_api_mvm_v1_contact_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ContactServiceDeleteResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ContactServiceDeleteResponse) ProtoMessage() {}
-
-func (x *ContactServiceDeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_fits_api_mvm_v1_contact_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ContactServiceDeleteResponse.ProtoReflect.Descriptor instead.
-func (*ContactServiceDeleteResponse) Descriptor() ([]byte, []int) {
-	return file_fits_api_mvm_v1_contact_proto_rawDescGZIP(), []int{8}
-}
-
 var File_fits_api_mvm_v1_contact_proto protoreflect.FileDescriptor
 
 const file_fits_api_mvm_v1_contact_proto_rawDesc = "" +
@@ -609,7 +517,7 @@ const file_fits_api_mvm_v1_contact_proto_rawDesc = "" +
 	"\x19ContactServiceListRequest\x12#\n" +
 	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\"R\n" +
 	"\x1aContactServiceListResponse\x124\n" +
-	"\bcontacts\x18\x01 \x03(\v2\x18.fits.api.mvm.v1.ContactR\bcontacts\"\xfa\x01\n" +
+	"\bcontacts\x18\x01 \x03(\v2\x18.fits.api.mvm.v1.ContactR\bcontacts\"\x87\x02\n" +
 	"\x1bContactServiceCreateRequest\x12#\n" +
 	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12*\n" +
 	"\n" +
@@ -617,11 +525,11 @@ const file_fits_api_mvm_v1_contact_proto_rawDesc = "" +
 	"\tlast_name\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\blastName\x12+\n" +
 	"\n" +
 	"department\x18\x04 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\n" +
-	"department\x12\x14\n" +
-	"\x05phone\x18\x05 \x01(\tR\x05phone\x12\x1d\n" +
+	"department\x12!\n" +
+	"\x05phone\x18\x05 \x01(\tB\v\xbaH\br\x06\x88\xb4\xae\xb1\x02\x01R\x05phone\x12\x1d\n" +
 	"\x05email\x18\x06 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\"<\n" +
 	"\x1cContactServiceCreateResponse\x12\x1c\n" +
-	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"\xda\x02\n" +
+	"\x04uuid\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"\xe7\x02\n" +
 	"\x1bContactServiceUpdateRequest\x12#\n" +
 	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12\x1c\n" +
 	"\x04uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12@\n" +
@@ -632,21 +540,15 @@ const file_fits_api_mvm_v1_contact_proto_rawDesc = "" +
 	"\tlast_name\x18\x05 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\blastName\x12+\n" +
 	"\n" +
 	"department\x18\x06 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\n" +
-	"department\x12\x14\n" +
-	"\x05phone\x18\a \x01(\tR\x05phone\x12\x1d\n" +
+	"department\x12!\n" +
+	"\x05phone\x18\a \x01(\tB\v\xbaH\br\x06\x88\xb4\xae\xb1\x02\x01R\x05phone\x12\x1d\n" +
 	"\x05email\x18\b \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\"\x1e\n" +
-	"\x1cContactServiceUpdateResponse\"`\n" +
-	"\x1bContactServiceDeleteRequest\x12#\n" +
-	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12\x1c\n" +
-	"\x04uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"\x1e\n" +
-	"\x1cContactServiceDeleteResponse2\xd7\x03\n" +
+	"\x1cContactServiceUpdateResponse2\xe4\x02\n" +
 	"\x0eContactService\x12l\n" +
 	"\x04List\x12*.fits.api.mvm.v1.ContactServiceListRequest\x1a+.fits.api.mvm.v1.ContactServiceListResponse\"\v\xc2\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x12q\n" +
 	"\x06Create\x12,.fits.api.mvm.v1.ContactServiceCreateRequest\x1a-.fits.api.mvm.v1.ContactServiceCreateResponse\"\n" +
 	"\xc2\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12q\n" +
 	"\x06Update\x12,.fits.api.mvm.v1.ContactServiceUpdateRequest\x1a-.fits.api.mvm.v1.ContactServiceUpdateResponse\"\n" +
-	"\xc2\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12q\n" +
-	"\x06Delete\x12,.fits.api.mvm.v1.ContactServiceDeleteRequest\x1a-.fits.api.mvm.v1.ContactServiceDeleteResponse\"\n" +
 	"\xc2\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01B\xb1\x01\n" +
 	"\x13com.fits.api.mvm.v1B\fContactProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03FAM\xaa\x02\x0fFits.Api.Mvm.V1\xca\x02\x0fFits\\Api\\Mvm\\V1\xe2\x02\x1bFits\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12Fits::Api::Mvm::V1b\x06proto3"
 
@@ -662,7 +564,7 @@ func file_fits_api_mvm_v1_contact_proto_rawDescGZIP() []byte {
 	return file_fits_api_mvm_v1_contact_proto_rawDescData
 }
 
-var file_fits_api_mvm_v1_contact_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_fits_api_mvm_v1_contact_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_fits_api_mvm_v1_contact_proto_goTypes = []any{
 	(*Contact)(nil),                      // 0: fits.api.mvm.v1.Contact
 	(*ContactServiceListRequest)(nil),    // 1: fits.api.mvm.v1.ContactServiceListRequest
@@ -671,23 +573,19 @@ var file_fits_api_mvm_v1_contact_proto_goTypes = []any{
 	(*ContactServiceCreateResponse)(nil), // 4: fits.api.mvm.v1.ContactServiceCreateResponse
 	(*ContactServiceUpdateRequest)(nil),  // 5: fits.api.mvm.v1.ContactServiceUpdateRequest
 	(*ContactServiceUpdateResponse)(nil), // 6: fits.api.mvm.v1.ContactServiceUpdateResponse
-	(*ContactServiceDeleteRequest)(nil),  // 7: fits.api.mvm.v1.ContactServiceDeleteRequest
-	(*ContactServiceDeleteResponse)(nil), // 8: fits.api.mvm.v1.ContactServiceDeleteResponse
-	(*v1.UpdateMeta)(nil),                // 9: fits.api.v1.UpdateMeta
+	(*v1.UpdateMeta)(nil),                // 7: fits.api.v1.UpdateMeta
 }
 var file_fits_api_mvm_v1_contact_proto_depIdxs = []int32{
 	0, // 0: fits.api.mvm.v1.ContactServiceListResponse.contacts:type_name -> fits.api.mvm.v1.Contact
-	9, // 1: fits.api.mvm.v1.ContactServiceUpdateRequest.update_meta:type_name -> fits.api.v1.UpdateMeta
+	7, // 1: fits.api.mvm.v1.ContactServiceUpdateRequest.update_meta:type_name -> fits.api.v1.UpdateMeta
 	1, // 2: fits.api.mvm.v1.ContactService.List:input_type -> fits.api.mvm.v1.ContactServiceListRequest
 	3, // 3: fits.api.mvm.v1.ContactService.Create:input_type -> fits.api.mvm.v1.ContactServiceCreateRequest
 	5, // 4: fits.api.mvm.v1.ContactService.Update:input_type -> fits.api.mvm.v1.ContactServiceUpdateRequest
-	7, // 5: fits.api.mvm.v1.ContactService.Delete:input_type -> fits.api.mvm.v1.ContactServiceDeleteRequest
-	2, // 6: fits.api.mvm.v1.ContactService.List:output_type -> fits.api.mvm.v1.ContactServiceListResponse
-	4, // 7: fits.api.mvm.v1.ContactService.Create:output_type -> fits.api.mvm.v1.ContactServiceCreateResponse
-	6, // 8: fits.api.mvm.v1.ContactService.Update:output_type -> fits.api.mvm.v1.ContactServiceUpdateResponse
-	8, // 9: fits.api.mvm.v1.ContactService.Delete:output_type -> fits.api.mvm.v1.ContactServiceDeleteResponse
-	6, // [6:10] is the sub-list for method output_type
-	2, // [2:6] is the sub-list for method input_type
+	2, // 5: fits.api.mvm.v1.ContactService.List:output_type -> fits.api.mvm.v1.ContactServiceListResponse
+	4, // 6: fits.api.mvm.v1.ContactService.Create:output_type -> fits.api.mvm.v1.ContactServiceCreateResponse
+	6, // 7: fits.api.mvm.v1.ContactService.Update:output_type -> fits.api.mvm.v1.ContactServiceUpdateResponse
+	5, // [5:8] is the sub-list for method output_type
+	2, // [2:5] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
 	2, // [2:2] is the sub-list for extension extendee
 	0, // [0:2] is the sub-list for field type_name
@@ -704,7 +602,7 @@ func file_fits_api_mvm_v1_contact_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_fits_api_mvm_v1_contact_proto_rawDesc), len(file_fits_api_mvm_v1_contact_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
