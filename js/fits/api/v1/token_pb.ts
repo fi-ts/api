@@ -148,7 +148,7 @@ export type Token = Message<"fits.api.v1.Token"> & {
   lastName: string;
 
   /**
-   * ResourceRoles lists the resource roles of the token owner
+   * ResourceRoles lists each resource instance together with its assigned roles.
    *
    * @generated from field: repeated fits.api.v1.ResourceRoleAssignment resource_roles = 17;
    */
