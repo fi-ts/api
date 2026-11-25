@@ -290,6 +290,10 @@
                 </li>
               
                 <li>
+                  <a href="#fits.api.v1.ResourceRoleAssignment"><span class="badge">M</span>ResourceRoleAssignment</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.v1.UpdateLabels"><span class="badge">M</span>UpdateLabels</a>
                 </li>
               
@@ -315,6 +319,14 @@
                 </li>
               
                 <li>
+                  <a href="#fits.api.v1.ResourceRole"><span class="badge">E</span>ResourceRole</a>
+                </li>
+              
+                <li>
+                  <a href="#fits.api.v1.ResourceType"><span class="badge">E</span>ResourceType</a>
+                </li>
+              
+                <li>
                   <a href="#fits.api.v1.TenantRole"><span class="badge">E</span>TenantRole</a>
                 </li>
               
@@ -322,6 +334,14 @@
                   <a href="#fits.api.v1.Visibility"><span class="badge">E</span>Visibility</a>
                 </li>
               
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fcommon.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#fits%2fapi%2fv1%2fcommon.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
               
                 <li>
                   <a href="#fits%2fapi%2fv1%2fcommon.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
@@ -1616,6 +1636,58 @@ the list response contains then the page number for the next page. </p></td>
 
         
       
+        <h3 id="fits.api.v1.ResourceRoleAssignment">ResourceRoleAssignment</h3>
+        <p>ResourceRoleAssignment grants a resource role on a single resource instance.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>resource_type</td>
+                  <td><a href="#fits.api.v1.ResourceType">ResourceType</a></td>
+                  <td></td>
+                  <td><p>ResourceType the role applies to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>resource_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>ID of the resource instance. Actual format differs by resource type. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>role</td>
+                  <td><a href="#fits.api.v1.ResourceRole">ResourceRole</a></td>
+                  <td></td>
+                  <td><p>Role granted on the resource. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>project_uuid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the project this resource belongs to. May be empty for resource types that are not scoped to a project. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>namespace</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Namespace is used when the resource has a different scope than a project. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="fits.api.v1.UpdateLabels">UpdateLabels</h3>
         <p>UpdateLabels is a message to update labels</p>
 
@@ -1804,6 +1876,70 @@ and fetches the most recent entity before updating with the given values with th
           </tbody>
         </table>
       
+        <h3 id="fits.api.v1.ResourceRole">ResourceRole</h3>
+        <p>ResourceRole defines the role required of a logged-in user to invoke this resource-scoped service.</p><p>Resource roles are independent of project roles.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>RESOURCE_ROLE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>RESOURCE_ROLE_UNSPECIFIED is not specified</p></td>
+              </tr>
+            
+              <tr>
+                <td>RESOURCE_ROLE_ADMIN</td>
+                <td>1</td>
+                <td><p>RESOURCE_ROLE_ADMIN the logged in user needs at least admin role to call this method</p></td>
+              </tr>
+            
+              <tr>
+                <td>RESOURCE_ROLE_EDITOR</td>
+                <td>2</td>
+                <td><p>RESOURCE_ROLE_EDITOR the logged in user needs at least editor role to call this method</p></td>
+              </tr>
+            
+              <tr>
+                <td>RESOURCE_ROLE_VIEWER</td>
+                <td>3</td>
+                <td><p>RESOURCE_ROLE_VIEWER the logged in user needs at least viewer role to call this method</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="fits.api.v1.ResourceType">ResourceType</h3>
+        <p>ResourceType identifies the resource type a resource scoped method acts on.</p><p>The resource instance id is carried by the request as `uuid`, or `id` when it is not a uuid.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>RESOURCE_TYPE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>RESOURCE_TYPE_UNSPECIFIED is not specified</p></td>
+              </tr>
+            
+              <tr>
+                <td>RESOURCE_TYPE_MANAGED_VM</td>
+                <td>1</td>
+                <td><p>RESOURCE_TYPE_MANAGED_VM identifies a ManagedVM (fits.api.mvm.v1.ManagedVM)</p></td>
+              </tr>
+            
+              <tr>
+                <td>RESOURCE_TYPE_PUBLIC_CLOUD_VM</td>
+                <td>2</td>
+                <td><p>RESOURCE_TYPE_PUBLIC_CLOUD_VM identifies a VM (fits.api.pcvm.v1.PublicCloudVM)</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
         <h3 id="fits.api.v1.TenantRole">TenantRole</h3>
         <p>TenantRole specifies what role a logged in user needs to call this tenant scoped service</p>
         <table class="enum-table">
@@ -1915,6 +2051,22 @@ having a direct membership within the tenant.</p></td>
                 <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
                 <td>51001</td>
                 <td><p>ProjectRoles are used to define which project role a logged in user must provide to call this method</p></td>
+              </tr>
+            
+              <tr>
+                <td>resource</td>
+                <td><a href="#fits.api.v1.ResourceType">ResourceType</a></td>
+                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
+                <td>51006</td>
+                <td><p>Resource defines the resource a resource scoped method acts on. Required whenever resource_roles is set.</p></td>
+              </tr>
+            
+              <tr>
+                <td>resource_roles</td>
+                <td><a href="#fits.api.v1.ResourceRole">ResourceRole</a></td>
+                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
+                <td>51005</td>
+                <td><p>ResourceRoles are used to define which resource role a logged in user must provide to call this method</p></td>
               </tr>
             
               <tr>
@@ -6686,6 +6838,13 @@ Asterisk (*) can be specified to match any subject. </p></td>
                   <td><p>LastName is the family name of the user the token was issued for. </p></td>
                 </tr>
               
+                <tr>
+                  <td>resource_roles</td>
+                  <td><a href="#fits.api.v1.ResourceRoleAssignment">ResourceRoleAssignment</a></td>
+                  <td>repeated</td>
+                  <td><p>ResourceRoles lists each resource instance together with its assigned roles. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -7015,6 +7174,13 @@ Asterisk (*) can be specified to match any subject. </p></td>
                   <td><a href="#fits.api.v1.OperatorRole">OperatorRole</a></td>
                   <td>optional</td>
                   <td><p>OperatorRole defines the operator role of the token owner </p></td>
+                </tr>
+              
+                <tr>
+                  <td>resource_roles</td>
+                  <td><a href="#fits.api.v1.ResourceRoleAssignment">ResourceRoleAssignment</a></td>
+                  <td>repeated</td>
+                  <td><p>ResourceRoles lists the resource roles of the token owner </p></td>
                 </tr>
               
             </tbody>
