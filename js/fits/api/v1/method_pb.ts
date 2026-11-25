@@ -4,8 +4,7 @@
 
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
-import { file_buf_validate_validate } from "../../../buf/validate/validate_pb.js";
-import type { OperatorRole, ProjectRole, TenantRole } from "./common_pb.js";
+import type { ProjectRole, TenantRole } from "./common_pb.js";
 import { file_fits_api_v1_common } from "./common_pb.js";
 import type { MethodPermission } from "./token_pb.js";
 import { file_fits_api_v1_token } from "./token_pb.js";
@@ -15,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/v1/method.proto.
  */
 export const file_fits_api_v1_method: GenFile = /*@__PURE__*/
-  fileDesc("ChhmaXRzL2FwaS92MS9tZXRob2QucHJvdG8SC2ZpdHMuYXBpLnYxIhoKGE1ldGhvZFNlcnZpY2VMaXN0UmVxdWVzdCIsChlNZXRob2RTZXJ2aWNlTGlzdFJlc3BvbnNlEg8KB21ldGhvZHMYASADKAkiJQojTWV0aG9kU2VydmljZVRva2VuU2NvcGVkTGlzdFJlcXVlc3Qi/wMKJE1ldGhvZFNlcnZpY2VUb2tlblNjb3BlZExpc3RSZXNwb25zZRIyCgtwZXJtaXNzaW9ucxgBIAMoCzIdLmZpdHMuYXBpLnYxLk1ldGhvZFBlcm1pc3Npb24SWgoNcHJvamVjdF9yb2xlcxgCIAMoCzJDLmZpdHMuYXBpLnYxLk1ldGhvZFNlcnZpY2VUb2tlblNjb3BlZExpc3RSZXNwb25zZS5Qcm9qZWN0Um9sZXNFbnRyeRJYCgx0ZW5hbnRfcm9sZXMYAyADKAsyQi5maXRzLmFwaS52MS5NZXRob2RTZXJ2aWNlVG9rZW5TY29wZWRMaXN0UmVzcG9uc2UuVGVuYW50Um9sZXNFbnRyeRI/Cg1vcGVyYXRvcl9yb2xlGAQgASgOMhkuZml0cy5hcGkudjEuT3BlcmF0b3JSb2xlQgi6SAWCAQIQAUgAiAEBGk0KEVByb2plY3RSb2xlc0VudHJ5EgsKA2tleRgBIAEoCRInCgV2YWx1ZRgCIAEoDjIYLmZpdHMuYXBpLnYxLlByb2plY3RSb2xlOgI4ARpLChBUZW5hbnRSb2xlc0VudHJ5EgsKA2tleRgBIAEoCRImCgV2YWx1ZRgCIAEoDjIXLmZpdHMuYXBpLnYxLlRlbmFudFJvbGU6AjgBQhAKDl9vcGVyYXRvcl9yb2xlMvMBCg1NZXRob2RTZXJ2aWNlEl8KBExpc3QSJS5maXRzLmFwaS52MS5NZXRob2RTZXJ2aWNlTGlzdFJlcXVlc3QaJi5maXRzLmFwaS52MS5NZXRob2RTZXJ2aWNlTGlzdFJlc3BvbnNlIgjY8xgB4PMYAhKAAQoPVG9rZW5TY29wZWRMaXN0EjAuZml0cy5hcGkudjEuTWV0aG9kU2VydmljZVRva2VuU2NvcGVkTGlzdFJlcXVlc3QaMS5maXRzLmFwaS52MS5NZXRob2RTZXJ2aWNlVG9rZW5TY29wZWRMaXN0UmVzcG9uc2UiCNjzGALg8xgCQpcBCg9jb20uZml0cy5hcGkudjFCC01ldGhvZFByb3RvUAFaKWdpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL3YxO2FwaXYxogIDRkFYqgILRml0cy5BcGkuVjHKAgtGaXRzXEFwaVxWMeICF0ZpdHNcQXBpXFYxXEdQQk1ldGFkYXRh6gINRml0czo6QXBpOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_token]);
+  fileDesc("ChhmaXRzL2FwaS92MS9tZXRob2QucHJvdG8SC2ZpdHMuYXBpLnYxIhoKGE1ldGhvZFNlcnZpY2VMaXN0UmVxdWVzdCIsChlNZXRob2RTZXJ2aWNlTGlzdFJlc3BvbnNlEg8KB21ldGhvZHMYASADKAkiJQojTWV0aG9kU2VydmljZVRva2VuU2NvcGVkTGlzdFJlcXVlc3QirAMKJE1ldGhvZFNlcnZpY2VUb2tlblNjb3BlZExpc3RSZXNwb25zZRIyCgtwZXJtaXNzaW9ucxgBIAMoCzIdLmZpdHMuYXBpLnYxLk1ldGhvZFBlcm1pc3Npb24SWgoNcHJvamVjdF9yb2xlcxgCIAMoCzJDLmZpdHMuYXBpLnYxLk1ldGhvZFNlcnZpY2VUb2tlblNjb3BlZExpc3RSZXNwb25zZS5Qcm9qZWN0Um9sZXNFbnRyeRJYCgx0ZW5hbnRfcm9sZXMYAyADKAsyQi5maXRzLmFwaS52MS5NZXRob2RTZXJ2aWNlVG9rZW5TY29wZWRMaXN0UmVzcG9uc2UuVGVuYW50Um9sZXNFbnRyeRpNChFQcm9qZWN0Um9sZXNFbnRyeRILCgNrZXkYASABKAkSJwoFdmFsdWUYAiABKA4yGC5maXRzLmFwaS52MS5Qcm9qZWN0Um9sZToCOAEaSwoQVGVuYW50Um9sZXNFbnRyeRILCgNrZXkYASABKAkSJgoFdmFsdWUYAiABKA4yFy5maXRzLmFwaS52MS5UZW5hbnRSb2xlOgI4ATLzAQoNTWV0aG9kU2VydmljZRJfCgRMaXN0EiUuZml0cy5hcGkudjEuTWV0aG9kU2VydmljZUxpc3RSZXF1ZXN0GiYuZml0cy5hcGkudjEuTWV0aG9kU2VydmljZUxpc3RSZXNwb25zZSII2PMYAeDzGAISgAEKD1Rva2VuU2NvcGVkTGlzdBIwLmZpdHMuYXBpLnYxLk1ldGhvZFNlcnZpY2VUb2tlblNjb3BlZExpc3RSZXF1ZXN0GjEuZml0cy5hcGkudjEuTWV0aG9kU2VydmljZVRva2VuU2NvcGVkTGlzdFJlc3BvbnNlIgjY8xgC4PMYAkKXAQoPY29tLmZpdHMuYXBpLnYxQgtNZXRob2RQcm90b1ABWilnaXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS92MTthcGl2MaICA0ZBWKoCC0ZpdHMuQXBpLlYxygILRml0c1xBcGlcVjHiAhdGaXRzXEFwaVxWMVxHUEJNZXRhZGF0YeoCDUZpdHM6OkFwaTo6VjFiBnByb3RvMw", [file_fits_api_v1_common, file_fits_api_v1_token]);
 
 /**
  * MethodServiceListRequest is the request payload for listing all public methods.
@@ -94,13 +93,6 @@ export type MethodServiceTokenScopedListResponse = Message<"fits.api.v1.MethodSe
    * @generated from field: map<string, fits.api.v1.TenantRole> tenant_roles = 3;
    */
   tenantRoles: { [key: string]: TenantRole };
-
-  /**
-   * OperatorRole defines the operator role of the token owner
-   *
-   * @generated from field: optional fits.api.v1.OperatorRole operator_role = 4;
-   */
-  operatorRole?: OperatorRole | undefined;
 };
 
 /**

@@ -5,7 +5,7 @@
 import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../../buf/validate/validate_pb.js";
-import type { Meta, OperatorRole, ProjectRole, TenantRole } from "./common_pb.js";
+import type { Meta, ProjectRole, RoleContext, TenantRole } from "./common_pb.js";
 import { file_fits_api_v1_common } from "./common_pb.js";
 import { file_fits_api_v1_predefined_rules } from "./predefined_rules_pb.js";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
@@ -16,7 +16,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/v1/token.proto.
  */
 export const file_fits_api_v1_token: GenFile = /*@__PURE__*/
-  fileDesc("ChdmaXRzL2FwaS92MS90b2tlbi5wcm90bxILZml0cy5hcGkudjEijQgKBVRva2VuEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEhgKBHVzZXIYAiABKAlCCrpIB3IFEAIYgAQSHwoEbWV0YRgDIAEoCzIRLmZpdHMuYXBpLnYxLk1ldGESIAoLZGVzY3JpcHRpb24YBCABKAlCC7pICHIGyLOusQIBEkQKC3Blcm1pc3Npb25zGAUgAygLMiQuZml0cy5hcGkudjEuUGVybWlzc2lvbnNCeVZpc2liaWxpdHlCCbpIBpIBAxD0AxIrCgdleHBpcmVzGAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBItCglpc3N1ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjQKCnRva2VuX3R5cGUYCCABKA4yFi5maXRzLmFwaS52MS5Ub2tlblR5cGVCCLpIBYIBAhABEjsKDXByb2plY3Rfcm9sZXMYCSADKAsyJC5maXRzLmFwaS52MS5Ub2tlbi5Qcm9qZWN0Um9sZXNFbnRyeRJUCgx0ZW5hbnRfcm9sZXMYCiADKAsyIy5maXRzLmFwaS52MS5Ub2tlbi5UZW5hbnRSb2xlc0VudHJ5Qhm6SBaaARPAlbixAgHQlbixAgEqBYIBAhABEj8KDW9wZXJhdG9yX3JvbGUYCyABKA4yGS5maXRzLmFwaS52MS5PcGVyYXRvclJvbGVCCLpIBYIBAhABSACIAQESJwoJcmF3X3JvbGVzGAwgAygJQhS6SBGSAQ7QpLOxAgHYpLOxAgEYARIWCgRuYW1lGA0gASgJQgi6SAVyAxiAAhIXCgVlbWFpbBgOIAEoCUIIukgFcgMYgAISHAoKZmlyc3RfbmFtZRgPIAEoCUIIukgFcgMYgAISGwoJbGFzdF9uYW1lGBAgASgJQgi6SAVyAxiAAhpNChFQcm9qZWN0Um9sZXNFbnRyeRILCgNrZXkYASABKAkSJwoFdmFsdWUYAiABKA4yGC5maXRzLmFwaS52MS5Qcm9qZWN0Um9sZToCOAEaSwoQVGVuYW50Um9sZXNFbnRyeRILCgNrZXkYASABKAkSJgoFdmFsdWUYAiABKA4yFy5maXRzLmFwaS52MS5UZW5hbnRSb2xlOgI4ATqfAbpImwEamAEKG3Rva2VuLnBlcm1pc3Npb25zLnVzZXJ0b2tlbhIpdG9rZW4gdHlwZSB1c2VyIG11c3Qgbm90IGhhdmUgcGVybWlzc2lvbnMaTih0aGlzLnRva2VuX3R5cGUgPT0gMiAmJiB0aGlzLnBlcm1pc3Npb25zLnNpemUoKSA9PSAwKSB8fCB0aGlzLnRva2VuX3R5cGUgIT0gMkIQCg5fb3BlcmF0b3Jfcm9sZSJJChBNZXRob2RQZXJtaXNzaW9uEhkKB3N1YmplY3QYASABKAlCCLpIBXIDGIACEhoKB21ldGhvZHMYAiADKAlCCbpIBpIBAxD0AyKjAgoXUGVybWlzc2lvbnNCeVZpc2liaWxpdHkSMAoGcHVibGljGAEgASgLMh4uZml0cy5hcGkudjEuUHVibGljUGVybWlzc2lvbnNIABIsCgRzZWxmGAIgASgLMhwuZml0cy5hcGkudjEuU2VsZlBlcm1pc3Npb25zSAASMgoHcHJvamVjdBgDIAEoCzIfLmZpdHMuYXBpLnYxLlByb2plY3RQZXJtaXNzaW9uc0gAEjAKBnRlbmFudBgEIAEoCzIeLmZpdHMuYXBpLnYxLlRlbmFudFBlcm1pc3Npb25zSAASNAoIb3BlcmF0b3IYBSABKAsyIC5maXRzLmFwaS52MS5PcGVyYXRvclBlcm1pc3Npb25zSABCDAoKdmlzaWJpbGl0eSIvChFQdWJsaWNQZXJtaXNzaW9ucxIaCgdtZXRob2RzGAEgAygJQgm6SAaSAQMQ9AMiLQoPU2VsZlBlcm1pc3Npb25zEhoKB21ldGhvZHMYASADKAlCCbpIBpIBAxD0AyJOChJQcm9qZWN0UGVybWlzc2lvbnMSHAoHcHJvamVjdBgBIAEoCUILukgIcgaYtK6xAgESGgoHbWV0aG9kcxgCIAMoCUIJukgGkgEDEPQDIksKEVRlbmFudFBlcm1pc3Npb25zEhoKBWxvZ2luGAEgASgJQgu6SAhyBpC0rrECARIaCgdtZXRob2RzGAIgAygJQgm6SAaSAQMQ9AMiMQoTT3BlcmF0b3JQZXJtaXNzaW9ucxIaCgdtZXRob2RzGAEgAygJQgm6SAaSAQMQ9AMiGQoXVG9rZW5TZXJ2aWNlTGlzdFJlcXVlc3QiPgoYVG9rZW5TZXJ2aWNlTGlzdFJlc3BvbnNlEiIKBnRva2VucxgBIAMoCzISLmZpdHMuYXBpLnYxLlRva2VuIjMKGVRva2VuU2VydmljZVJldm9rZVJlcXVlc3QSFgoEdXVpZBgBIAEoCUIIukgFcgOwAQEiHAoaVG9rZW5TZXJ2aWNlUmV2b2tlUmVzcG9uc2UiMAoWVG9rZW5TZXJ2aWNlR2V0UmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABASI8ChdUb2tlblNlcnZpY2VHZXRSZXNwb25zZRIhCgV0b2tlbhgBIAEoCzISLmZpdHMuYXBpLnYxLlRva2VuKlAKCVRva2VuVHlwZRIaChZUT0tFTl9UWVBFX1VOU1BFQ0lGSUVEEAASEgoOVE9LRU5fVFlQRV9BUEkQARITCg9UT0tFTl9UWVBFX1VTRVIQAjKuAgoMVG9rZW5TZXJ2aWNlEloKA0dldBIjLmZpdHMuYXBpLnYxLlRva2VuU2VydmljZUdldFJlcXVlc3QaJC5maXRzLmFwaS52MS5Ub2tlblNlcnZpY2VHZXRSZXNwb25zZSII2PMYAuDzGAESXQoETGlzdBIkLmZpdHMuYXBpLnYxLlRva2VuU2VydmljZUxpc3RSZXF1ZXN0GiUuZml0cy5hcGkudjEuVG9rZW5TZXJ2aWNlTGlzdFJlc3BvbnNlIgjY8xgC4PMYARJjCgZSZXZva2USJi5maXRzLmFwaS52MS5Ub2tlblNlcnZpY2VSZXZva2VSZXF1ZXN0GicuZml0cy5hcGkudjEuVG9rZW5TZXJ2aWNlUmV2b2tlUmVzcG9uc2UiCNjzGALg8xgBQpYBCg9jb20uZml0cy5hcGkudjFCClRva2VuUHJvdG9QAVopZ2l0aHViLmNvbS9maS10cy9hcGkvZ28vZml0cy9hcGkvdjE7YXBpdjGiAgNGQViqAgtGaXRzLkFwaS5WMcoCC0ZpdHNcQXBpXFYx4gIXRml0c1xBcGlcVjFcR1BCTWV0YWRhdGHqAg1GaXRzOjpBcGk6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules, file_google_protobuf_timestamp]);
+  fileDesc("ChdmaXRzL2FwaS92MS90b2tlbi5wcm90bxILZml0cy5hcGkudjEi0wcKBVRva2VuEhYKBHV1aWQYASABKAlCCLpIBXIDsAEBEhgKBHVzZXIYAiABKAlCCrpIB3IFEAIYgAQSHwoEbWV0YRgDIAEoCzIRLmZpdHMuYXBpLnYxLk1ldGESIAoLZGVzY3JpcHRpb24YBCABKAlCC7pICHIGyLOusQIBEkQKC3Blcm1pc3Npb25zGAUgAygLMiQuZml0cy5hcGkudjEuUGVybWlzc2lvbnNCeVZpc2liaWxpdHlCCbpIBpIBAxD0AxIrCgdleHBpcmVzGAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBItCglpc3N1ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjQKCnRva2VuX3R5cGUYCCABKA4yFi5maXRzLmFwaS52MS5Ub2tlblR5cGVCCLpIBYIBAhABEk8KDXByb2plY3Rfcm9sZXMYCSADKAsyJC5maXRzLmFwaS52MS5Ub2tlbi5Qcm9qZWN0Um9sZXNFbnRyeUISukgPmgEMwJW4sQIByJW4sQIBEk0KDHRlbmFudF9yb2xlcxgKIAMoCzIjLmZpdHMuYXBpLnYxLlRva2VuLlRlbmFudFJvbGVzRW50cnlCErpID5oBDMCVuLECAdCVuLECARInCglyYXdfcm9sZXMYDCADKAlCFLpIEZIBDtCks7ECAdiks7ECARgBEhYKBG5hbWUYDSABKAlCCLpIBXIDGIACEhcKBWVtYWlsGA4gASgJQgi6SAVyAxiAAhIcCgpmaXJzdF9uYW1lGA8gASgJQgi6SAVyAxiAAhIbCglsYXN0X25hbWUYECABKAlCCLpIBXIDGIACGlAKEVByb2plY3RSb2xlc0VudHJ5EgsKA2tleRgBIAEoCRIqCgV2YWx1ZRgCIAEoCzIbLmZpdHMuYXBpLnYxLlByb2plY3RDb250ZXh0OgI4ARpOChBUZW5hbnRSb2xlc0VudHJ5EgsKA2tleRgBIAEoCRIpCgV2YWx1ZRgCIAEoCzIaLmZpdHMuYXBpLnYxLlRlbmFudENvbnRleHQ6AjgBOp8BukibARqYAQobdG9rZW4ucGVybWlzc2lvbnMudXNlcnRva2VuEil0b2tlbiB0eXBlIHVzZXIgbXVzdCBub3QgaGF2ZSBwZXJtaXNzaW9ucxpOKHRoaXMudG9rZW5fdHlwZSA9PSAyICYmIHRoaXMucGVybWlzc2lvbnMuc2l6ZSgpID09IDApIHx8IHRoaXMudG9rZW5fdHlwZSAhPSAySgQICxAMIncKDlByb2plY3RDb250ZXh0EjAKBHJvbGUYASABKA4yGC5maXRzLmFwaS52MS5Qcm9qZWN0Um9sZUIIukgFggECEAESMwoHY29udGV4dBgCIAEoDjIYLmZpdHMuYXBpLnYxLlJvbGVDb250ZXh0Qgi6SAWCAQIQASJ1Cg1UZW5hbnRDb250ZXh0Ei8KBHJvbGUYASABKA4yFy5maXRzLmFwaS52MS5UZW5hbnRSb2xlQgi6SAWCAQIQARIzCgdjb250ZXh0GAIgASgOMhguZml0cy5hcGkudjEuUm9sZUNvbnRleHRCCLpIBYIBAhABIkkKEE1ldGhvZFBlcm1pc3Npb24SGQoHc3ViamVjdBgBIAEoCUIIukgFcgMYgAISGgoHbWV0aG9kcxgCIAMoCUIJukgGkgEDEPQDIu0BChdQZXJtaXNzaW9uc0J5VmlzaWJpbGl0eRIwCgZwdWJsaWMYASABKAsyHi5maXRzLmFwaS52MS5QdWJsaWNQZXJtaXNzaW9uc0gAEiwKBHNlbGYYAiABKAsyHC5maXRzLmFwaS52MS5TZWxmUGVybWlzc2lvbnNIABIyCgdwcm9qZWN0GAMgASgLMh8uZml0cy5hcGkudjEuUHJvamVjdFBlcm1pc3Npb25zSAASMAoGdGVuYW50GAQgASgLMh4uZml0cy5hcGkudjEuVGVuYW50UGVybWlzc2lvbnNIAEIMCgp2aXNpYmlsaXR5Ii8KEVB1YmxpY1Blcm1pc3Npb25zEhoKB21ldGhvZHMYASADKAlCCbpIBpIBAxD0AyItCg9TZWxmUGVybWlzc2lvbnMSGgoHbWV0aG9kcxgBIAMoCUIJukgGkgEDEPQDIk4KElByb2plY3RQZXJtaXNzaW9ucxIcCgdwcm9qZWN0GAEgASgJQgu6SAhyBpi0rrECARIaCgdtZXRob2RzGAIgAygJQgm6SAaSAQMQ9AMiSwoRVGVuYW50UGVybWlzc2lvbnMSGgoFbG9naW4YASABKAlCC7pICHIGkLSusQIBEhoKB21ldGhvZHMYAiADKAlCCbpIBpIBAxD0AyIZChdUb2tlblNlcnZpY2VMaXN0UmVxdWVzdCI+ChhUb2tlblNlcnZpY2VMaXN0UmVzcG9uc2USIgoGdG9rZW5zGAEgAygLMhIuZml0cy5hcGkudjEuVG9rZW4iMwoZVG9rZW5TZXJ2aWNlUmV2b2tlUmVxdWVzdBIWCgR1dWlkGAEgASgJQgi6SAVyA7ABASIcChpUb2tlblNlcnZpY2VSZXZva2VSZXNwb25zZSIwChZUb2tlblNlcnZpY2VHZXRSZXF1ZXN0EhYKBHV1aWQYASABKAlCCLpIBXIDsAEBIjwKF1Rva2VuU2VydmljZUdldFJlc3BvbnNlEiEKBXRva2VuGAEgASgLMhIuZml0cy5hcGkudjEuVG9rZW4qUAoJVG9rZW5UeXBlEhoKFlRPS0VOX1RZUEVfVU5TUEVDSUZJRUQQABISCg5UT0tFTl9UWVBFX0FQSRABEhMKD1RPS0VOX1RZUEVfVVNFUhACMq4CCgxUb2tlblNlcnZpY2USWgoDR2V0EiMuZml0cy5hcGkudjEuVG9rZW5TZXJ2aWNlR2V0UmVxdWVzdBokLmZpdHMuYXBpLnYxLlRva2VuU2VydmljZUdldFJlc3BvbnNlIgjY8xgC4PMYARJdCgRMaXN0EiQuZml0cy5hcGkudjEuVG9rZW5TZXJ2aWNlTGlzdFJlcXVlc3QaJS5maXRzLmFwaS52MS5Ub2tlblNlcnZpY2VMaXN0UmVzcG9uc2UiCNjzGALg8xgBEmMKBlJldm9rZRImLmZpdHMuYXBpLnYxLlRva2VuU2VydmljZVJldm9rZVJlcXVlc3QaJy5maXRzLmFwaS52MS5Ub2tlblNlcnZpY2VSZXZva2VSZXNwb25zZSII2PMYAuDzGAFClgEKD2NvbS5maXRzLmFwaS52MUIKVG9rZW5Qcm90b1ABWilnaXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS92MTthcGl2MaICA0ZBWKoCC0ZpdHMuQXBpLlYxygILRml0c1xBcGlcVjHiAhdGaXRzXEFwaVxWMVxHUEJNZXRhZGF0YeoCDUZpdHM6OkFwaTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_common, file_fits_api_v1_predefined_rules, file_google_protobuf_timestamp]);
 
 /**
  * Token generates a jwt authentication token to access the api
@@ -94,23 +94,16 @@ export type Token = Message<"fits.api.v1.Token"> & {
   /**
    * ProjectRoles associates a project id with the corresponding role of the token owner
    *
-   * @generated from field: map<string, fits.api.v1.ProjectRole> project_roles = 9;
+   * @generated from field: map<string, fits.api.v1.ProjectContext> project_roles = 9;
    */
-  projectRoles: { [key: string]: ProjectRole };
+  projectRoles: { [key: string]: ProjectContext };
 
   /**
    * TenantRoles associates a tenant id with the corresponding role of the token owner.
    *
-   * @generated from field: map<string, fits.api.v1.TenantRole> tenant_roles = 10;
+   * @generated from field: map<string, fits.api.v1.TenantContext> tenant_roles = 10;
    */
-  tenantRoles: { [key: string]: TenantRole };
-
-  /**
-   * OperatorRole defines the operator role of the token owner
-   *
-   * @generated from field: optional fits.api.v1.OperatorRole operator_role = 11;
-   */
-  operatorRole?: OperatorRole | undefined;
+  tenantRoles: { [key: string]: TenantContext };
 
   /**
    * RawRoles are the normalized roles transmitted by the OIDC provider.
@@ -156,6 +149,62 @@ export const TokenSchema: GenMessage<Token> = /*@__PURE__*/
   messageDesc(file_fits_api_v1_token, 0);
 
 /**
+ * ProjectContext provides the role context leading to the project role.
+ *
+ * @generated from message fits.api.v1.ProjectContext
+ */
+export type ProjectContext = Message<"fits.api.v1.ProjectContext"> & {
+  /**
+   * Role that the user has in this project.
+   *
+   * @generated from field: fits.api.v1.ProjectRole role = 1;
+   */
+  role: ProjectRole;
+
+  /**
+   * Context that lead to this role.
+   *
+   * @generated from field: fits.api.v1.RoleContext context = 2;
+   */
+  context: RoleContext;
+};
+
+/**
+ * Describes the message fits.api.v1.ProjectContext.
+ * Use `create(ProjectContextSchema)` to create a new message.
+ */
+export const ProjectContextSchema: GenMessage<ProjectContext> = /*@__PURE__*/
+  messageDesc(file_fits_api_v1_token, 1);
+
+/**
+ * TenantContext provides the role context leading to the tenant role.
+ *
+ * @generated from message fits.api.v1.TenantContext
+ */
+export type TenantContext = Message<"fits.api.v1.TenantContext"> & {
+  /**
+   * Role that the user has in this tenant.
+   *
+   * @generated from field: fits.api.v1.TenantRole role = 1;
+   */
+  role: TenantRole;
+
+  /**
+   * Context that lead to this role.
+   *
+   * @generated from field: fits.api.v1.RoleContext context = 2;
+   */
+  context: RoleContext;
+};
+
+/**
+ * Describes the message fits.api.v1.TenantContext.
+ * Use `create(TenantContextSchema)` to create a new message.
+ */
+export const TenantContextSchema: GenMessage<TenantContext> = /*@__PURE__*/
+  messageDesc(file_fits_api_v1_token, 2);
+
+/**
  * MethodPermission is a mapping from a subject/project to a service method
  *
  * @generated from message fits.api.v1.MethodPermission
@@ -186,7 +235,7 @@ export type MethodPermission = Message<"fits.api.v1.MethodPermission"> & {
  * Use `create(MethodPermissionSchema)` to create a new message.
  */
 export const MethodPermissionSchema: GenMessage<MethodPermission> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 1);
+  messageDesc(file_fits_api_v1_token, 3);
 
 /**
  * PermissionsByVisibility contains method permissions by visibility.
@@ -231,14 +280,6 @@ export type PermissionsByVisibility = Message<"fits.api.v1.PermissionsByVisibili
      */
     value: TenantPermissions;
     case: "tenant";
-  } | {
-    /**
-     * OperatorPermissions carries operator method permissions.
-     *
-     * @generated from field: fits.api.v1.OperatorPermissions operator = 5;
-     */
-    value: OperatorPermissions;
-    case: "operator";
   } | { case: undefined; value?: undefined };
 };
 
@@ -247,7 +288,7 @@ export type PermissionsByVisibility = Message<"fits.api.v1.PermissionsByVisibili
  * Use `create(PermissionsByVisibilitySchema)` to create a new message.
  */
 export const PermissionsByVisibilitySchema: GenMessage<PermissionsByVisibility> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 2);
+  messageDesc(file_fits_api_v1_token, 4);
 
 /**
  * PublicPermissions carries public method permissions.
@@ -268,7 +309,7 @@ export type PublicPermissions = Message<"fits.api.v1.PublicPermissions"> & {
  * Use `create(PublicPermissionsSchema)` to create a new message.
  */
 export const PublicPermissionsSchema: GenMessage<PublicPermissions> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 3);
+  messageDesc(file_fits_api_v1_token, 5);
 
 /**
  * SelfPermissions carries self method permissions.
@@ -289,7 +330,7 @@ export type SelfPermissions = Message<"fits.api.v1.SelfPermissions"> & {
  * Use `create(SelfPermissionsSchema)` to create a new message.
  */
 export const SelfPermissionsSchema: GenMessage<SelfPermissions> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 4);
+  messageDesc(file_fits_api_v1_token, 6);
 
 /**
  * ProjectPermissions carries project method permissions.
@@ -318,7 +359,7 @@ export type ProjectPermissions = Message<"fits.api.v1.ProjectPermissions"> & {
  * Use `create(ProjectPermissionsSchema)` to create a new message.
  */
 export const ProjectPermissionsSchema: GenMessage<ProjectPermissions> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 5);
+  messageDesc(file_fits_api_v1_token, 7);
 
 /**
  * TenantPermissions carries tenant method permissions.
@@ -347,28 +388,7 @@ export type TenantPermissions = Message<"fits.api.v1.TenantPermissions"> & {
  * Use `create(TenantPermissionsSchema)` to create a new message.
  */
 export const TenantPermissionsSchema: GenMessage<TenantPermissions> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 6);
-
-/**
- * OperatorPermissions carries operator method permissions.
- *
- * @generated from message fits.api.v1.OperatorPermissions
- */
-export type OperatorPermissions = Message<"fits.api.v1.OperatorPermissions"> & {
-  /**
-   * Methods which should be accessible.
-   *
-   * @generated from field: repeated string methods = 1;
-   */
-  methods: string[];
-};
-
-/**
- * Describes the message fits.api.v1.OperatorPermissions.
- * Use `create(OperatorPermissionsSchema)` to create a new message.
- */
-export const OperatorPermissionsSchema: GenMessage<OperatorPermissions> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 7);
+  messageDesc(file_fits_api_v1_token, 8);
 
 /**
  * TokenServiceListRequest is the request payload to list tokens
@@ -383,7 +403,7 @@ export type TokenServiceListRequest = Message<"fits.api.v1.TokenServiceListReque
  * Use `create(TokenServiceListRequestSchema)` to create a new message.
  */
 export const TokenServiceListRequestSchema: GenMessage<TokenServiceListRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 8);
+  messageDesc(file_fits_api_v1_token, 9);
 
 /**
  * TokenServiceListResponse is the response payload of a token list request
@@ -404,7 +424,7 @@ export type TokenServiceListResponse = Message<"fits.api.v1.TokenServiceListResp
  * Use `create(TokenServiceListResponseSchema)` to create a new message.
  */
 export const TokenServiceListResponseSchema: GenMessage<TokenServiceListResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 9);
+  messageDesc(file_fits_api_v1_token, 10);
 
 /**
  * TokenServiceRevokeRequest is the request payload of a token revoke request
@@ -425,7 +445,7 @@ export type TokenServiceRevokeRequest = Message<"fits.api.v1.TokenServiceRevokeR
  * Use `create(TokenServiceRevokeRequestSchema)` to create a new message.
  */
 export const TokenServiceRevokeRequestSchema: GenMessage<TokenServiceRevokeRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 10);
+  messageDesc(file_fits_api_v1_token, 11);
 
 /**
  * TokenServiceRevokeResponse is the response payload of a token revoke request
@@ -440,7 +460,7 @@ export type TokenServiceRevokeResponse = Message<"fits.api.v1.TokenServiceRevoke
  * Use `create(TokenServiceRevokeResponseSchema)` to create a new message.
  */
 export const TokenServiceRevokeResponseSchema: GenMessage<TokenServiceRevokeResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 11);
+  messageDesc(file_fits_api_v1_token, 12);
 
 /**
  * TokenServiceGetRequest is the request payload of a token get request
@@ -461,7 +481,7 @@ export type TokenServiceGetRequest = Message<"fits.api.v1.TokenServiceGetRequest
  * Use `create(TokenServiceGetRequestSchema)` to create a new message.
  */
 export const TokenServiceGetRequestSchema: GenMessage<TokenServiceGetRequest> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 12);
+  messageDesc(file_fits_api_v1_token, 13);
 
 /**
  * TokenServiceGetResponse is the response payload of a token get request
@@ -482,7 +502,7 @@ export type TokenServiceGetResponse = Message<"fits.api.v1.TokenServiceGetRespon
  * Use `create(TokenServiceGetResponseSchema)` to create a new message.
  */
 export const TokenServiceGetResponseSchema: GenMessage<TokenServiceGetResponse> = /*@__PURE__*/
-  messageDesc(file_fits_api_v1_token, 13);
+  messageDesc(file_fits_api_v1_token, 14);
 
 /**
  * TokenType specifies different use cases of tokens
