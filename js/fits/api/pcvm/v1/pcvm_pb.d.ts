@@ -437,7 +437,7 @@ export declare enum State {
      */
     HEALTHY = 1,
     /**
-     * STATE_HEALTHY: there are some health warnings for this VM.
+     * STATE_WARNING: there are some health warnings for this VM.
      *
      * @generated from enum value: STATE_WARNING = 2;
      */

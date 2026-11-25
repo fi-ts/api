@@ -35,9 +35,7 @@ type Project struct {
 	// Description of this project
 	Description string `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
 	// Tenant this project belongs to
-	Tenant string `protobuf:"bytes,5,opt,name=tenant,proto3" json:"tenant,omitempty"`
-	// AvatarUrl of the Project
-	AvatarUrl     *string `protobuf:"bytes,6,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty"`
+	Tenant        string `protobuf:"bytes,5,opt,name=tenant,proto3" json:"tenant,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -103,13 +101,6 @@ func (x *Project) GetDescription() string {
 func (x *Project) GetTenant() string {
 	if x != nil {
 		return x.Tenant
-	}
-	return ""
-}
-
-func (x *Project) GetAvatarUrl() string {
-	if x != nil && x.AvatarUrl != nil {
-		return *x.AvatarUrl
 	}
 	return ""
 }
@@ -334,10 +325,8 @@ type ProjectServiceCreateRequest struct {
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// Description of this project
 	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	// Avatar URL of the project
-	AvatarUrl *string `protobuf:"bytes,4,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty"`
 	// Labels on the project
-	Labels        *Labels `protobuf:"bytes,5,opt,name=labels,proto3" json:"labels,omitempty"`
+	Labels        *Labels `protobuf:"bytes,4,opt,name=labels,proto3" json:"labels,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -389,13 +378,6 @@ func (x *ProjectServiceCreateRequest) GetName() string {
 func (x *ProjectServiceCreateRequest) GetDescription() string {
 	if x != nil {
 		return x.Description
-	}
-	return ""
-}
-
-func (x *ProjectServiceCreateRequest) GetAvatarUrl() string {
-	if x != nil && x.AvatarUrl != nil {
-		return *x.AvatarUrl
 	}
 	return ""
 }
@@ -556,10 +538,8 @@ type ProjectServiceUpdateRequest struct {
 	Name *string `protobuf:"bytes,3,opt,name=name,proto3,oneof" json:"name,omitempty"`
 	// Description of this project
 	Description *string `protobuf:"bytes,4,opt,name=description,proto3,oneof" json:"description,omitempty"`
-	// Avatar URL of the project
-	AvatarUrl *string `protobuf:"bytes,5,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty"`
 	// Labels on this project
-	Labels        *UpdateLabels `protobuf:"bytes,6,opt,name=labels,proto3,oneof" json:"labels,omitempty"`
+	Labels        *UpdateLabels `protobuf:"bytes,5,opt,name=labels,proto3,oneof" json:"labels,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -622,13 +602,6 @@ func (x *ProjectServiceUpdateRequest) GetDescription() string {
 	return ""
 }
 
-func (x *ProjectServiceUpdateRequest) GetAvatarUrl() string {
-	if x != nil && x.AvatarUrl != nil {
-		return *x.AvatarUrl
-	}
-	return ""
-}
-
 func (x *ProjectServiceUpdateRequest) GetLabels() *UpdateLabels {
 	if x != nil {
 		return x.Labels
@@ -686,16 +659,13 @@ var File_fits_api_v1_project_proto protoreflect.FileDescriptor
 
 const file_fits_api_v1_project_proto_rawDesc = "" +
 	"\n" +
-	"\x19fits/api/v1/project.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xdf\x01\n" +
+	"\x19fits/api/v1/project.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\x18fits/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\"\xac\x01\n" +
 	"\aProject\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12%\n" +
 	"\x04meta\x18\x02 \x01(\v2\x11.fits.api.v1.MetaR\x04meta\x12\x1f\n" +
 	"\x04name\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x04name\x12-\n" +
 	"\vdescription\x18\x04 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\vdescription\x12\x16\n" +
-	"\x06tenant\x18\x05 \x01(\tR\x06tenant\x12\"\n" +
-	"\n" +
-	"avatar_url\x18\x06 \x01(\tH\x00R\tavatarUrl\x88\x01\x01B\r\n" +
-	"\v_avatar_url\"\xd8\x01\n" +
+	"\x06tenant\x18\x05 \x01(\tR\x06tenant\"\xd8\x01\n" +
 	"\x19ProjectServiceListRequest\x12\x13\n" +
 	"\x02id\x18\x01 \x01(\tH\x00R\x02id\x88\x01\x01\x12$\n" +
 	"\x04name\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01H\x01R\x04name\x88\x01\x01\x12(\n" +
@@ -710,33 +680,27 @@ const file_fits_api_v1_project_proto_rawDesc = "" +
 	"\x18ProjectServiceGetRequest\x12\"\n" +
 	"\aproject\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\aproject\"K\n" +
 	"\x19ProjectServiceGetResponse\x12.\n" +
-	"\aproject\x18\x01 \x01(\v2\x14.fits.api.v1.ProjectR\aproject\"\xf2\x01\n" +
+	"\aproject\x18\x01 \x01(\v2\x14.fits.api.v1.ProjectR\aproject\"\xbf\x01\n" +
 	"\x1bProjectServiceCreateRequest\x12#\n" +
 	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12\x1f\n" +
 	"\x04name\x18\x02 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x04name\x12-\n" +
-	"\vdescription\x18\x03 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\vdescription\x12\"\n" +
-	"\n" +
-	"avatar_url\x18\x04 \x01(\tH\x00R\tavatarUrl\x88\x01\x01\x12+\n" +
-	"\x06labels\x18\x05 \x01(\v2\x13.fits.api.v1.LabelsR\x06labelsB\r\n" +
-	"\v_avatar_url\"N\n" +
+	"\vdescription\x18\x03 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01R\vdescription\x12+\n" +
+	"\x06labels\x18\x04 \x01(\v2\x13.fits.api.v1.LabelsR\x06labels\"N\n" +
 	"\x1cProjectServiceCreateResponse\x12.\n" +
 	"\aproject\x18\x01 \x01(\v2\x14.fits.api.v1.ProjectR\aproject\"A\n" +
 	"\x1bProjectServiceDeleteRequest\x12\"\n" +
 	"\aproject\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\aproject\"N\n" +
 	"\x1cProjectServiceDeleteResponse\x12.\n" +
-	"\aproject\x18\x01 \x01(\v2\x14.fits.api.v1.ProjectR\aproject\"\xec\x02\n" +
+	"\aproject\x18\x01 \x01(\v2\x14.fits.api.v1.ProjectR\aproject\"\xb9\x02\n" +
 	"\x1bProjectServiceUpdateRequest\x12\"\n" +
 	"\aproject\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\aproject\x12@\n" +
 	"\vupdate_meta\x18\x02 \x01(\v2\x17.fits.api.v1.UpdateMetaB\x06\xbaH\x03\xc8\x01\x01R\n" +
 	"updateMeta\x12$\n" +
 	"\x04name\x18\x03 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01H\x00R\x04name\x88\x01\x01\x122\n" +
-	"\vdescription\x18\x04 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01H\x01R\vdescription\x88\x01\x01\x12\"\n" +
-	"\n" +
-	"avatar_url\x18\x05 \x01(\tH\x02R\tavatarUrl\x88\x01\x01\x126\n" +
-	"\x06labels\x18\x06 \x01(\v2\x19.fits.api.v1.UpdateLabelsH\x03R\x06labels\x88\x01\x01B\a\n" +
+	"\vdescription\x18\x04 \x01(\tB\v\xbaH\br\x06ȳ\xae\xb1\x02\x01H\x01R\vdescription\x88\x01\x01\x126\n" +
+	"\x06labels\x18\x05 \x01(\v2\x19.fits.api.v1.UpdateLabelsH\x02R\x06labels\x88\x01\x01B\a\n" +
 	"\x05_nameB\x0e\n" +
-	"\f_descriptionB\r\n" +
-	"\v_avatar_urlB\t\n" +
+	"\f_descriptionB\t\n" +
 	"\a_labels\"N\n" +
 	"\x1cProjectServiceUpdateResponse\x12.\n" +
 	"\aproject\x18\x01 \x01(\v2\x14.fits.api.v1.ProjectR\aproject2\x96\x04\n" +
@@ -815,9 +779,7 @@ func file_fits_api_v1_project_proto_init() {
 	}
 	file_fits_api_v1_common_proto_init()
 	file_fits_api_v1_predefined_rules_proto_init()
-	file_fits_api_v1_project_proto_msgTypes[0].OneofWrappers = []any{}
 	file_fits_api_v1_project_proto_msgTypes[1].OneofWrappers = []any{}
-	file_fits_api_v1_project_proto_msgTypes[5].OneofWrappers = []any{}
 	file_fits_api_v1_project_proto_msgTypes[9].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

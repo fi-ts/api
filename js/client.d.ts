@@ -8,6 +8,7 @@ import { MVMService as Apimvmv1MVMService } from "./fits/api/mvm/v1/mvm_pb";
 import { OnBehalfMVMService as Apimvmv1OnBehalfMVMService } from "./fits/api/mvm/v1/mvm_on_behalf_pb";
 import { ProviderMVMService as Apimvmv1ProviderMVMService } from "./fits/api/mvm/v1/mvm_provider_pb";
 import { OSService as Apimvmv1OSService } from "./fits/api/mvm/v1/os_pb";
+import { StageService as Apimvmv1StageService } from "./fits/api/mvm/v1/stage_pb";
 import { VLANService as Apimvmv1VLANService } from "./fits/api/mvm/v1/vlan_pb";
 import { PublicCloudVMService as Apipcvmv1PublicCloudVMService } from "./fits/api/pcvm/v1/pcvm_pb";
 import { HealthService as Apiv1HealthService } from "./fits/api/v1/health_pb";
@@ -35,6 +36,7 @@ export interface Apimvmv1 {
     onBehalfMVM(): ConnectClient<typeof Apimvmv1OnBehalfMVMService>;
     providerMVM(): ConnectClient<typeof Apimvmv1ProviderMVMService>;
     os(): ConnectClient<typeof Apimvmv1OSService>;
+    stage(): ConnectClient<typeof Apimvmv1StageService>;
     vlan(): ConnectClient<typeof Apimvmv1VLANService>;
 }
 export interface Apipcvmv1 {

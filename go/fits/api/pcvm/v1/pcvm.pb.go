@@ -31,7 +31,7 @@ const (
 	State_STATE_UNSPECIFIED State = 0
 	// STATE_HEALTHY: the VM is healthy.
 	State_STATE_HEALTHY State = 1
-	// STATE_HEALTHY: there are some health warnings for this VM.
+	// STATE_WARNING: there are some health warnings for this VM.
 	State_STATE_WARNING State = 2
 	// STATE_ERROR: the VM is unhealthy.
 	State_STATE_ERROR State = 3

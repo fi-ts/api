@@ -34,6 +34,7 @@ type (
 		OnBehalfMVM() mvmv1connect.OnBehalfMVMServiceClient
 		ProviderMVM() mvmv1connect.ProviderMVMServiceClient
 		OS() mvmv1connect.OSServiceClient
+		Stage() mvmv1connect.StageServiceClient
 		VLAN() mvmv1connect.VLANServiceClient
 
 		EnableMCP(mcps runtime.MCPServer, opts ...runtime.Option)
@@ -48,6 +49,7 @@ type (
 		onbehalfmvmservice mvmv1connect.OnBehalfMVMServiceClient
 		providermvmservice mvmv1connect.ProviderMVMServiceClient
 		osservice          mvmv1connect.OSServiceClient
+		stageservice       mvmv1connect.StageServiceClient
 		vlanservice        mvmv1connect.VLANServiceClient
 	}
 
@@ -132,6 +134,12 @@ func (c *client) Apimvmv1() Apimvmv1 {
 			connect.WithInterceptors(c.interceptors...),
 			compress.WithAll(compress.LevelBalanced),
 		),
+		stageservice: mvmv1connect.NewStageServiceClient(
+			c.config.HttpClient(),
+			c.config.BaseURL,
+			connect.WithInterceptors(c.interceptors...),
+			compress.WithAll(compress.LevelBalanced),
+		),
 		vlanservice: mvmv1connect.NewVLANServiceClient(
 			c.config.HttpClient(),
 			c.config.BaseURL,
@@ -165,6 +173,9 @@ func (c *apimvmv1) ProviderMVM() mvmv1connect.ProviderMVMServiceClient {
 }
 func (c *apimvmv1) OS() mvmv1connect.OSServiceClient {
 	return c.osservice
+}
+func (c *apimvmv1) Stage() mvmv1connect.StageServiceClient {
+	return c.stageservice
 }
 func (c *apimvmv1) VLAN() mvmv1connect.VLANServiceClient {
 	return c.vlanservice
@@ -256,6 +267,7 @@ func (c *apimvmv1) EnableMCP(mcps runtime.MCPServer, opts ...runtime.Option) {
 	mvmv1mcp.ForwardToOnBehalfMVMServiceClient(mcps, c.OnBehalfMVM(), opts...)
 	mvmv1mcp.ForwardToProviderMVMServiceClient(mcps, c.ProviderMVM(), opts...)
 	mvmv1mcp.ForwardToOSServiceClient(mcps, c.OS(), opts...)
+	mvmv1mcp.ForwardToStageServiceClient(mcps, c.Stage(), opts...)
 	mvmv1mcp.ForwardToVLANServiceClient(mcps, c.VLAN(), opts...)
 }
 

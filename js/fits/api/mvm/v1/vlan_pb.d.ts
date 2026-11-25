@@ -1,4 +1,5 @@
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
+import type { Stage } from "./stage_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file fits/api/mvm/v1/vlan.proto.
@@ -17,13 +18,13 @@ export type VLAN = Message<"fits.api.mvm.v1.VLAN"> & {
      */
     uuid: string;
     /**
-     * ID of this VLAN. The actual VLAN ID a network interface is attached to.
+     * ID of this VLAN (1-4094). The actual VLAN ID a network interface is attached to.
      *
      * @generated from field: int32 vlan_id = 2;
      */
     vlanId: number;
     /**
-     * Title of the subnet this VLAN belongs to, including the stage type, e.g. "pod01-vlan2001 (Production)".
+     * Title of the subnet this VLAN belongs to.
      *
      * @generated from field: string subnet_title = 3;
      */
@@ -47,9 +48,15 @@ export type VLAN = Message<"fits.api.mvm.v1.VLAN"> & {
      */
     tenant: string;
     /**
+     * Stage the VLAN belongs to.
+     *
+     * @generated from field: fits.api.mvm.v1.Stage stage = 7;
+     */
+    stage?: Stage | undefined;
+    /**
      * UUID of the Windows domain this VLAN is associated with. Only set for Windows.
      *
-     * @generated from field: optional string domain_uuid = 7;
+     * @generated from field: optional string domain_uuid = 8;
      */
     domainUuid?: string | undefined;
 };
@@ -70,6 +77,12 @@ export type VLANQuery = Message<"fits.api.mvm.v1.VLANQuery"> & {
      * @generated from field: optional string domain_uuid = 1;
      */
     domainUuid?: string | undefined;
+    /**
+     * Filter the listed VLANs by Stage.
+     *
+     * @generated from field: optional string stage_uuid = 2;
+     */
+    stageUuid?: string | undefined;
 };
 /**
  * Describes the message fits.api.mvm.v1.VLANQuery.
