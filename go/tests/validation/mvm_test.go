@@ -92,6 +92,7 @@ func validUpdateRequest(modify ...func(*mvmv1.MVMServiceUpdateRequest)) *mvmv1.M
 }
 
 func TestValidateIPAddress(t *testing.T) {
+	ni := &mvmv1.NetworkInterface{VlanUuid: testUUID, MacAddress: proto.String("AA:BB:CC:DD:EE:01")}
 	tests := prototests{
 		{
 			name:    "empty",
@@ -99,27 +100,29 @@ func TestValidateIPAddress(t *testing.T) {
 			wantErr: true,
 			wantErrorMessage: `validation errors:
  - uuid: value is empty, which is not a valid UUID
- - ip_address: value is empty, which is not a valid IPv4 address`,
+ - ip_address: value is empty, which is not a valid IPv4 address
+ - network_interface: value is required`,
 		},
 		{
 			name:             "hostname instead of ip address",
-			msg:              &mvmv1.IPAddress{Uuid: testUUID, IpAddress: "host.example.com"},
+			msg:              &mvmv1.IPAddress{Uuid: testUUID, IpAddress: "host.example.com", NetworkInterface: ni},
 			wantErr:          true,
 			wantErrorMessage: "validation error: ip_address: must be a valid IPv4 address",
 		},
 		{
 			name:             "ipv6 address",
-			msg:              &mvmv1.IPAddress{Uuid: testUUID, IpAddress: "2001:db8::1"},
+			msg:              &mvmv1.IPAddress{Uuid: testUUID, IpAddress: "2001:db8::1", NetworkInterface: ni},
 			wantErr:          true,
 			wantErrorMessage: "validation error: ip_address: must be a valid IPv4 address",
 		},
 		{
-			name: "valid",
+			name: "missing network interface",
 			msg: &mvmv1.IPAddress{
 				Uuid:      testUUID,
 				IpAddress: "10.0.0.1",
 			},
-			wantErr: false,
+			wantErr:          true,
+			wantErrorMessage: "validation error: network_interface: value is required",
 		},
 		{
 			name: "valid with network interface",
@@ -128,7 +131,18 @@ func TestValidateIPAddress(t *testing.T) {
 				IpAddress: "10.0.0.1",
 				NetworkInterface: &mvmv1.NetworkInterface{
 					VlanUuid:   testUUID,
-					MacAddress: "AA:BB:CC:DD:EE:01",
+					MacAddress: proto.String("AA:BB:CC:DD:EE:01"),
+				},
+			},
+			wantErr: false,
+		},
+		{
+			name: "valid additional ip address without mac address",
+			msg: &mvmv1.IPAddress{
+				Uuid:      testUUID,
+				IpAddress: "10.0.0.2",
+				NetworkInterface: &mvmv1.NetworkInterface{
+					VlanUuid: testUUID,
 				},
 			},
 			wantErr: false,
@@ -141,18 +155,25 @@ func TestValidateIPAddress(t *testing.T) {
 func TestValidateNetworkInterface(t *testing.T) {
 	tests := prototests{
 		{
-			name:    "empty",
-			msg:     &mvmv1.NetworkInterface{},
-			wantErr: true,
-			wantErrorMessage: `validation errors:
- - vlan_uuid: value is empty, which is not a valid UUID
- - mac_address: ` + msgMacAddress,
+			name:             "empty",
+			msg:              &mvmv1.NetworkInterface{},
+			wantErr:          true,
+			wantErrorMessage: "validation error: vlan_uuid: value is empty, which is not a valid UUID",
 		},
 		{
 			name: "invalid mac address",
 			msg: &mvmv1.NetworkInterface{
 				VlanUuid:   testUUID,
-				MacAddress: "AA:BB:CC:DD:EE",
+				MacAddress: proto.String("AA:BB:CC:DD:EE"),
+			},
+			wantErr:          true,
+			wantErrorMessage: "validation error: mac_address: " + msgMacAddress,
+		},
+		{
+			name: "empty mac address",
+			msg: &mvmv1.NetworkInterface{
+				VlanUuid:   testUUID,
+				MacAddress: proto.String(""),
 			},
 			wantErr:          true,
 			wantErrorMessage: "validation error: mac_address: " + msgMacAddress,
@@ -161,7 +182,14 @@ func TestValidateNetworkInterface(t *testing.T) {
 			name: "valid",
 			msg: &mvmv1.NetworkInterface{
 				VlanUuid:   testUUID,
-				MacAddress: "AA:BB:CC:DD:EE:01",
+				MacAddress: proto.String("AA:BB:CC:DD:EE:01"),
+			},
+			wantErr: false,
+		},
+		{
+			name: "valid without mac address",
+			msg: &mvmv1.NetworkInterface{
+				VlanUuid: testUUID,
 			},
 			wantErr: false,
 		},
@@ -207,6 +235,7 @@ func TestValidateManagedVM(t *testing.T) {
  - ram_gb: must be within 4 and 512 GiB
  - availability: ` + msgNotUnspecified + `
  - service_class: ` + msgNotUnspecified + `
+ - ip_addresses: must contain at least one IP address with a MAC address
  - order_reference: must be within 2 and 128 characters and not start or end with whitespace`,
 		},
 	}
