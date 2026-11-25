@@ -28,7 +28,7 @@ from fits.api.v1 import predefined_rules_pb2 as fits_dot_api_dot_v1_dot_predefin
 from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1f\x66its/api/v1/tenant_config.proto\x12\x0b\x66its.api.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1cgoogle/protobuf/struct.proto\"\xdc\x01\n\x0cTenantConfig\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x16\n\x06tenant\x18\x02 \x01(\tR\x06tenant\x12\x1c\n\tnamespace\x18\x03 \x01(\tR\tnamespace\x12\x10\n\x03key\x18\x04 \x01(\tR\x03key\x12\x12\n\x04name\x18\x05 \x01(\tR\x04name\x12%\n\x04meta\x18\x06 \x01(\x0b\x32\x11.fits.api.v1.MetaR\x04meta\x12+\n\x04\x64\x61ta\x18\x07 \x01(\x0b\x32\x17.google.protobuf.StructR\x04\x64\x61ta\"\x83\x02\n\x1eTenantConfigServiceListRequest\x12#\n\x06tenant\x18\x01 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12\x36\n\tnamespace\x18\x02 \x01(\tB\x13\xbaH\x10r\x0e\x10\x01\x18?2\x08^[a-z]+$H\x00R\tnamespace\x88\x01\x01\x12\x31\n\x03key\x18\x03 \x01(\tB\x1a\xbaH\x17r\x15\x10\x01\x18\x80\x01\x32\x0e^[a-zA-Z0-9]+$H\x01R\x03key\x88\x01\x01\x12\x30\n\x06labels\x18\x04 \x01(\x0b\x32\x13.fits.api.v1.LabelsH\x02R\x06labels\x88\x01\x01\x42\x0c\n\n_namespaceB\x06\n\x04_keyB\t\n\x07_labels\"V\n\x1fTenantConfigServiceListResponse\x12\x33\n\x07\x63onfigs\x18\x01 \x03(\x0b\x32\x19.fits.api.v1.TenantConfigR\x07\x63onfigs\"b\n\x1dTenantConfigServiceGetRequest\x12#\n\x06tenant\x18\x01 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12\x1c\n\x04uuid\x18\x02 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"S\n\x1eTenantConfigServiceGetResponse\x12\x31\n\x06\x63onfig\x18\x01 \x01(\x0b\x32\x19.fits.api.v1.TenantConfigR\x06\x63onfig\"\xd4\x01\n TenantConfigServiceCreateRequest\x12#\n\x06tenant\x18\x01 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12\x31\n\tnamespace\x18\x02 \x01(\tB\x13\xbaH\x10r\x0e\x10\x01\x18\x08\x32\x08^[a-z]+$R\tnamespace\x12+\n\x03key\x18\x03 \x01(\tB\x19\xbaH\x16r\x14\x10\x01\x18\x1f\x32\x0e^[a-zA-Z0-9]+$R\x03key\x12+\n\x04\x64\x61ta\x18\x04 \x01(\x0b\x32\x17.google.protobuf.StructR\x04\x64\x61ta\"V\n!TenantConfigServiceCreateResponse\x12\x31\n\x06\x63onfig\x18\x01 \x01(\x0b\x32\x19.fits.api.v1.TenantConfigR\x06\x63onfig\"\xd4\x01\n TenantConfigServiceUpdateRequest\x12#\n\x06tenant\x18\x01 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12\x1c\n\x04uuid\x18\x02 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12@\n\x0bupdate_meta\x18\x03 \x01(\x0b\x32\x17.fits.api.v1.UpdateMetaB\x06\xbaH\x03\xc8\x01\x01R\nupdateMeta\x12+\n\x04\x64\x61ta\x18\x04 \x01(\x0b\x32\x17.google.protobuf.StructR\x04\x64\x61ta\"V\n!TenantConfigServiceUpdateResponse\x12\x31\n\x06\x63onfig\x18\x01 \x01(\x0b\x32\x19.fits.api.v1.TenantConfigR\x06\x63onfig\"d\n TenantConfigServiceDeleteRequest\x12\"\n\x06tenant\x18\x01 \x01(\tB\n\xbaH\x07r\x05\x10\x01\x18\x80\x01R\x06tenant\x12\x1c\n\x04uuid\x18\x02 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"V\n!TenantConfigServiceDeleteResponse\x12\x31\n\x06\x63onfig\x18\x01 \x01(\x0b\x32\x19.fits.api.v1.TenantConfigR\x06\x63onfig2\xd0\x04\n\x13TenantConfigService\x12n\n\x04List\x12+.fits.api.v1.TenantConfigServiceListRequest\x1a,.fits.api.v1.TenantConfigServiceListResponse\"\x0b\xc2\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x12k\n\x03Get\x12*.fits.api.v1.TenantConfigServiceGetRequest\x1a+.fits.api.v1.TenantConfigServiceGetResponse\"\x0b\xc2\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x12s\n\x06\x43reate\x12-.fits.api.v1.TenantConfigServiceCreateRequest\x1a..fits.api.v1.TenantConfigServiceCreateResponse\"\n\xc2\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12s\n\x06Update\x12-.fits.api.v1.TenantConfigServiceUpdateRequest\x1a..fits.api.v1.TenantConfigServiceUpdateResponse\"\n\xc2\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12r\n\x06\x44\x65lete\x12-.fits.api.v1.TenantConfigServiceDeleteRequest\x1a..fits.api.v1.TenantConfigServiceDeleteResponse\"\t\xc2\xf3\x18\x01\x01\xe0\xf3\x18\x01\x42\x9d\x01\n\x0f\x63om.fits.api.v1B\x11TenantConfigProtoP\x01Z)github.com/fi-ts/api/go/fits/api/v1;apiv1\xa2\x02\x03\x46\x41X\xaa\x02\x0b\x46its.Api.V1\xca\x02\x0b\x46its\\Api\\V1\xe2\x02\x17\x46its\\Api\\V1\\GPBMetadata\xea\x02\rFits::Api::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1f\x66its/api/v1/tenant_config.proto\x12\x0b\x66its.api.v1\x1a\x1b\x62uf/validate/validate.proto\x1a\x18\x66its/api/v1/common.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a\x1cgoogle/protobuf/struct.proto\"\xdc\x01\n\x0cTenantConfig\x12\x1c\n\x04uuid\x18\x01 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12\x16\n\x06tenant\x18\x02 \x01(\tR\x06tenant\x12\x1c\n\tnamespace\x18\x03 \x01(\tR\tnamespace\x12\x10\n\x03key\x18\x04 \x01(\tR\x03key\x12\x12\n\x04name\x18\x05 \x01(\tR\x04name\x12%\n\x04meta\x18\x06 \x01(\x0b\x32\x11.fits.api.v1.MetaR\x04meta\x12+\n\x04\x64\x61ta\x18\x07 \x01(\x0b\x32\x17.google.protobuf.StructR\x04\x64\x61ta\"\x82\x02\n\x1eTenantConfigServiceListRequest\x12#\n\x06tenant\x18\x01 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12\x36\n\tnamespace\x18\x02 \x01(\tB\x13\xbaH\x10r\x0e\x10\x01\x18\x08\x32\x08^[a-z]+$H\x00R\tnamespace\x88\x01\x01\x12\x30\n\x03key\x18\x03 \x01(\tB\x19\xbaH\x16r\x14\x10\x01\x18\x1f\x32\x0e^[a-zA-Z0-9]+$H\x01R\x03key\x88\x01\x01\x12\x30\n\x06labels\x18\x04 \x01(\x0b\x32\x13.fits.api.v1.LabelsH\x02R\x06labels\x88\x01\x01\x42\x0c\n\n_namespaceB\x06\n\x04_keyB\t\n\x07_labels\"V\n\x1fTenantConfigServiceListResponse\x12\x33\n\x07\x63onfigs\x18\x01 \x03(\x0b\x32\x19.fits.api.v1.TenantConfigR\x07\x63onfigs\"b\n\x1dTenantConfigServiceGetRequest\x12#\n\x06tenant\x18\x01 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12\x1c\n\x04uuid\x18\x02 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"S\n\x1eTenantConfigServiceGetResponse\x12\x31\n\x06\x63onfig\x18\x01 \x01(\x0b\x32\x19.fits.api.v1.TenantConfigR\x06\x63onfig\"\xd4\x01\n TenantConfigServiceCreateRequest\x12#\n\x06tenant\x18\x01 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12\x31\n\tnamespace\x18\x02 \x01(\tB\x13\xbaH\x10r\x0e\x10\x01\x18\x08\x32\x08^[a-z]+$R\tnamespace\x12+\n\x03key\x18\x03 \x01(\tB\x19\xbaH\x16r\x14\x10\x01\x18\x1f\x32\x0e^[a-zA-Z0-9]+$R\x03key\x12+\n\x04\x64\x61ta\x18\x04 \x01(\x0b\x32\x17.google.protobuf.StructR\x04\x64\x61ta\"V\n!TenantConfigServiceCreateResponse\x12\x31\n\x06\x63onfig\x18\x01 \x01(\x0b\x32\x19.fits.api.v1.TenantConfigR\x06\x63onfig\"\xd4\x01\n TenantConfigServiceUpdateRequest\x12#\n\x06tenant\x18\x01 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12\x1c\n\x04uuid\x18\x02 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\x12@\n\x0bupdate_meta\x18\x03 \x01(\x0b\x32\x17.fits.api.v1.UpdateMetaB\x06\xbaH\x03\xc8\x01\x01R\nupdateMeta\x12+\n\x04\x64\x61ta\x18\x04 \x01(\x0b\x32\x17.google.protobuf.StructR\x04\x64\x61ta\"V\n!TenantConfigServiceUpdateResponse\x12\x31\n\x06\x63onfig\x18\x01 \x01(\x0b\x32\x19.fits.api.v1.TenantConfigR\x06\x63onfig\"e\n TenantConfigServiceDeleteRequest\x12#\n\x06tenant\x18\x01 \x01(\tB\x0b\xbaH\x08r\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12\x1c\n\x04uuid\x18\x02 \x01(\tB\x08\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"V\n!TenantConfigServiceDeleteResponse\x12\x31\n\x06\x63onfig\x18\x01 \x01(\x0b\x32\x19.fits.api.v1.TenantConfigR\x06\x63onfig2\xd0\x04\n\x13TenantConfigService\x12n\n\x04List\x12+.fits.api.v1.TenantConfigServiceListRequest\x1a,.fits.api.v1.TenantConfigServiceListResponse\"\x0b\xc2\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x12k\n\x03Get\x12*.fits.api.v1.TenantConfigServiceGetRequest\x1a+.fits.api.v1.TenantConfigServiceGetResponse\"\x0b\xc2\xf3\x18\x03\x01\x02\x03\xe0\xf3\x18\x02\x12s\n\x06\x43reate\x12-.fits.api.v1.TenantConfigServiceCreateRequest\x1a..fits.api.v1.TenantConfigServiceCreateResponse\"\n\xc2\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12s\n\x06Update\x12-.fits.api.v1.TenantConfigServiceUpdateRequest\x1a..fits.api.v1.TenantConfigServiceUpdateResponse\"\n\xc2\xf3\x18\x02\x01\x02\xe0\xf3\x18\x01\x12r\n\x06\x44\x65lete\x12-.fits.api.v1.TenantConfigServiceDeleteRequest\x1a..fits.api.v1.TenantConfigServiceDeleteResponse\"\t\xc2\xf3\x18\x01\x01\xe0\xf3\x18\x01\x42\x9d\x01\n\x0f\x63om.fits.api.v1B\x11TenantConfigProtoP\x01Z)github.com/fi-ts/api/go/fits/api/v1;apiv1\xa2\x02\x03\x46\x41X\xaa\x02\x0b\x46its.Api.V1\xca\x02\x0b\x46its\\Api\\V1\xe2\x02\x17\x46its\\Api\\V1\\GPBMetadata\xea\x02\rFits::Api::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -41,9 +41,9 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_TENANTCONFIGSERVICELISTREQUEST'].fields_by_name['tenant']._loaded_options = None
   _globals['_TENANTCONFIGSERVICELISTREQUEST'].fields_by_name['tenant']._serialized_options = b'\272H\010r\006\300\263\256\261\002\001'
   _globals['_TENANTCONFIGSERVICELISTREQUEST'].fields_by_name['namespace']._loaded_options = None
-  _globals['_TENANTCONFIGSERVICELISTREQUEST'].fields_by_name['namespace']._serialized_options = b'\272H\020r\016\020\001\030?2\010^[a-z]+$'
+  _globals['_TENANTCONFIGSERVICELISTREQUEST'].fields_by_name['namespace']._serialized_options = b'\272H\020r\016\020\001\030\0102\010^[a-z]+$'
   _globals['_TENANTCONFIGSERVICELISTREQUEST'].fields_by_name['key']._loaded_options = None
-  _globals['_TENANTCONFIGSERVICELISTREQUEST'].fields_by_name['key']._serialized_options = b'\272H\027r\025\020\001\030\200\0012\016^[a-zA-Z0-9]+$'
+  _globals['_TENANTCONFIGSERVICELISTREQUEST'].fields_by_name['key']._serialized_options = b'\272H\026r\024\020\001\030\0372\016^[a-zA-Z0-9]+$'
   _globals['_TENANTCONFIGSERVICEGETREQUEST'].fields_by_name['tenant']._loaded_options = None
   _globals['_TENANTCONFIGSERVICEGETREQUEST'].fields_by_name['tenant']._serialized_options = b'\272H\010r\006\300\263\256\261\002\001'
   _globals['_TENANTCONFIGSERVICEGETREQUEST'].fields_by_name['uuid']._loaded_options = None
@@ -61,7 +61,7 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_TENANTCONFIGSERVICEUPDATEREQUEST'].fields_by_name['update_meta']._loaded_options = None
   _globals['_TENANTCONFIGSERVICEUPDATEREQUEST'].fields_by_name['update_meta']._serialized_options = b'\272H\003\310\001\001'
   _globals['_TENANTCONFIGSERVICEDELETEREQUEST'].fields_by_name['tenant']._loaded_options = None
-  _globals['_TENANTCONFIGSERVICEDELETEREQUEST'].fields_by_name['tenant']._serialized_options = b'\272H\007r\005\020\001\030\200\001'
+  _globals['_TENANTCONFIGSERVICEDELETEREQUEST'].fields_by_name['tenant']._serialized_options = b'\272H\010r\006\300\263\256\261\002\001'
   _globals['_TENANTCONFIGSERVICEDELETEREQUEST'].fields_by_name['uuid']._loaded_options = None
   _globals['_TENANTCONFIGSERVICEDELETEREQUEST'].fields_by_name['uuid']._serialized_options = b'\272H\005r\003\260\001\001'
   _globals['_TENANTCONFIGSERVICE'].methods_by_name['List']._loaded_options = None
@@ -77,22 +77,22 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_TENANTCONFIG']._serialized_start=170
   _globals['_TENANTCONFIG']._serialized_end=390
   _globals['_TENANTCONFIGSERVICELISTREQUEST']._serialized_start=393
-  _globals['_TENANTCONFIGSERVICELISTREQUEST']._serialized_end=652
-  _globals['_TENANTCONFIGSERVICELISTRESPONSE']._serialized_start=654
-  _globals['_TENANTCONFIGSERVICELISTRESPONSE']._serialized_end=740
-  _globals['_TENANTCONFIGSERVICEGETREQUEST']._serialized_start=742
-  _globals['_TENANTCONFIGSERVICEGETREQUEST']._serialized_end=840
-  _globals['_TENANTCONFIGSERVICEGETRESPONSE']._serialized_start=842
-  _globals['_TENANTCONFIGSERVICEGETRESPONSE']._serialized_end=925
-  _globals['_TENANTCONFIGSERVICECREATEREQUEST']._serialized_start=928
-  _globals['_TENANTCONFIGSERVICECREATEREQUEST']._serialized_end=1140
-  _globals['_TENANTCONFIGSERVICECREATERESPONSE']._serialized_start=1142
-  _globals['_TENANTCONFIGSERVICECREATERESPONSE']._serialized_end=1228
-  _globals['_TENANTCONFIGSERVICEUPDATEREQUEST']._serialized_start=1231
-  _globals['_TENANTCONFIGSERVICEUPDATEREQUEST']._serialized_end=1443
-  _globals['_TENANTCONFIGSERVICEUPDATERESPONSE']._serialized_start=1445
-  _globals['_TENANTCONFIGSERVICEUPDATERESPONSE']._serialized_end=1531
-  _globals['_TENANTCONFIGSERVICEDELETEREQUEST']._serialized_start=1533
+  _globals['_TENANTCONFIGSERVICELISTREQUEST']._serialized_end=651
+  _globals['_TENANTCONFIGSERVICELISTRESPONSE']._serialized_start=653
+  _globals['_TENANTCONFIGSERVICELISTRESPONSE']._serialized_end=739
+  _globals['_TENANTCONFIGSERVICEGETREQUEST']._serialized_start=741
+  _globals['_TENANTCONFIGSERVICEGETREQUEST']._serialized_end=839
+  _globals['_TENANTCONFIGSERVICEGETRESPONSE']._serialized_start=841
+  _globals['_TENANTCONFIGSERVICEGETRESPONSE']._serialized_end=924
+  _globals['_TENANTCONFIGSERVICECREATEREQUEST']._serialized_start=927
+  _globals['_TENANTCONFIGSERVICECREATEREQUEST']._serialized_end=1139
+  _globals['_TENANTCONFIGSERVICECREATERESPONSE']._serialized_start=1141
+  _globals['_TENANTCONFIGSERVICECREATERESPONSE']._serialized_end=1227
+  _globals['_TENANTCONFIGSERVICEUPDATEREQUEST']._serialized_start=1230
+  _globals['_TENANTCONFIGSERVICEUPDATEREQUEST']._serialized_end=1442
+  _globals['_TENANTCONFIGSERVICEUPDATERESPONSE']._serialized_start=1444
+  _globals['_TENANTCONFIGSERVICEUPDATERESPONSE']._serialized_end=1530
+  _globals['_TENANTCONFIGSERVICEDELETEREQUEST']._serialized_start=1532
   _globals['_TENANTCONFIGSERVICEDELETEREQUEST']._serialized_end=1633
   _globals['_TENANTCONFIGSERVICEDELETERESPONSE']._serialized_start=1635
   _globals['_TENANTCONFIGSERVICEDELETERESPONSE']._serialized_end=1721

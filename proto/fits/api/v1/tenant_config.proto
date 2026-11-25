@@ -52,12 +52,12 @@ message TenantConfig {
   // Tenant is the login of the tenant this config belongs to.
   string tenant = 2;
   // Namespace is the subdomain part of the config name, identifying the owning product or team,
-  // e.g. "mvm", "fce", "fcn".
+  // e.g. "fce", "fcn".
   string namespace = 3;
   // Key is the config identifier within the namespace, e.g. "accounting".
   string key = 4;
-  // Name is the derived composite name in the form "{namespace}.fits.cloud/{key}",
-  // e.g. "mvm.fits.cloud/accounting". It is read-only and computed by the server.
+  // Name is the name of the config. Usually in the form "{namespace}.fits.cloud/{key}",
+  // e.g. "fce.fits.cloud/accounting". It is read-only and computed by the server.
   string name = 5;
   // Meta holds timestamps, labels, and the optimistic-locking generation counter.
   Meta meta = 6;
@@ -74,13 +74,13 @@ message TenantConfigServiceListRequest {
   optional string namespace = 2 [(buf.validate.field).string = {
     pattern: "^[a-z]+$"
     min_len: 1
-    max_len: 63
+    max_len: 8
   }];
   // Key optionally filters by key within the namespace, e.g. "accounting".
   optional string key = 3 [(buf.validate.field).string = {
     pattern: "^[a-zA-Z0-9]+$"
     min_len: 1
-    max_len: 128
+    max_len: 31
   }];
   // Labels optionally filters configs that carry all of the given labels.
   optional Labels labels = 4;
@@ -155,10 +155,7 @@ message TenantConfigServiceUpdateResponse {
 // TenantConfigServiceDeleteRequest is the request payload for deleting a tenant config.
 message TenantConfigServiceDeleteRequest {
   // Tenant is the login of the tenant.
-  string tenant = 1 [(buf.validate.field).string = {
-    min_len: 1
-    max_len: 128
-  }];
+  string tenant = 1 [(buf.validate.field).string.(fits.api.v1.is_name) = true];
   // Uuid is the unique identifier of the config to delete.
   string uuid = 2 [(buf.validate.field).string.uuid = true];
 }

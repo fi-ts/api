@@ -32,12 +32,12 @@ type TenantConfig struct {
 	// Tenant is the login of the tenant this config belongs to.
 	Tenant string `protobuf:"bytes,2,opt,name=tenant,proto3" json:"tenant,omitempty"`
 	// Namespace is the subdomain part of the config name, identifying the owning product or team,
-	// e.g. "mvm", "fce", "fcn".
+	// e.g. "fce", "fcn".
 	Namespace string `protobuf:"bytes,3,opt,name=namespace,proto3" json:"namespace,omitempty"`
 	// Key is the config identifier within the namespace, e.g. "accounting".
 	Key string `protobuf:"bytes,4,opt,name=key,proto3" json:"key,omitempty"`
-	// Name is the derived composite name in the form "{namespace}.fits.cloud/{key}",
-	// e.g. "mvm.fits.cloud/accounting". It is read-only and computed by the server.
+	// Name is the name of the config. Usually in the form "{namespace}.fits.cloud/{key}",
+	// e.g. "fce.fits.cloud/accounting". It is read-only and computed by the server.
 	Name string `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`
 	// Meta holds timestamps, labels, and the optimistic-locking generation counter.
 	Meta *Meta `protobuf:"bytes,6,opt,name=meta,proto3" json:"meta,omitempty"`
@@ -700,11 +700,11 @@ const file_fits_api_v1_tenant_config_proto_rawDesc = "" +
 	"\x03key\x18\x04 \x01(\tR\x03key\x12\x12\n" +
 	"\x04name\x18\x05 \x01(\tR\x04name\x12%\n" +
 	"\x04meta\x18\x06 \x01(\v2\x11.fits.api.v1.MetaR\x04meta\x12+\n" +
-	"\x04data\x18\a \x01(\v2\x17.google.protobuf.StructR\x04data\"\x83\x02\n" +
+	"\x04data\x18\a \x01(\v2\x17.google.protobuf.StructR\x04data\"\x82\x02\n" +
 	"\x1eTenantConfigServiceListRequest\x12#\n" +
 	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x126\n" +
-	"\tnamespace\x18\x02 \x01(\tB\x13\xbaH\x10r\x0e\x10\x01\x18?2\b^[a-z]+$H\x00R\tnamespace\x88\x01\x01\x121\n" +
-	"\x03key\x18\x03 \x01(\tB\x1a\xbaH\x17r\x15\x10\x01\x18\x80\x012\x0e^[a-zA-Z0-9]+$H\x01R\x03key\x88\x01\x01\x120\n" +
+	"\tnamespace\x18\x02 \x01(\tB\x13\xbaH\x10r\x0e\x10\x01\x18\b2\b^[a-z]+$H\x00R\tnamespace\x88\x01\x01\x120\n" +
+	"\x03key\x18\x03 \x01(\tB\x19\xbaH\x16r\x14\x10\x01\x18\x1f2\x0e^[a-zA-Z0-9]+$H\x01R\x03key\x88\x01\x01\x120\n" +
 	"\x06labels\x18\x04 \x01(\v2\x13.fits.api.v1.LabelsH\x02R\x06labels\x88\x01\x01B\f\n" +
 	"\n" +
 	"_namespaceB\x06\n" +
@@ -731,10 +731,9 @@ const file_fits_api_v1_tenant_config_proto_rawDesc = "" +
 	"updateMeta\x12+\n" +
 	"\x04data\x18\x04 \x01(\v2\x17.google.protobuf.StructR\x04data\"V\n" +
 	"!TenantConfigServiceUpdateResponse\x121\n" +
-	"\x06config\x18\x01 \x01(\v2\x19.fits.api.v1.TenantConfigR\x06config\"d\n" +
-	" TenantConfigServiceDeleteRequest\x12\"\n" +
-	"\x06tenant\x18\x01 \x01(\tB\n" +
-	"\xbaH\ar\x05\x10\x01\x18\x80\x01R\x06tenant\x12\x1c\n" +
+	"\x06config\x18\x01 \x01(\v2\x19.fits.api.v1.TenantConfigR\x06config\"e\n" +
+	" TenantConfigServiceDeleteRequest\x12#\n" +
+	"\x06tenant\x18\x01 \x01(\tB\v\xbaH\br\x06\xc0\xb3\xae\xb1\x02\x01R\x06tenant\x12\x1c\n" +
 	"\x04uuid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04uuid\"V\n" +
 	"!TenantConfigServiceDeleteResponse\x121\n" +
 	"\x06config\x18\x01 \x01(\v2\x19.fits.api.v1.TenantConfigR\x06config2\xd0\x04\n" +

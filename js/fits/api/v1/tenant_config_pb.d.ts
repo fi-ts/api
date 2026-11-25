@@ -26,7 +26,7 @@ export type TenantConfig = Message<"fits.api.v1.TenantConfig"> & {
     tenant: string;
     /**
      * Namespace is the subdomain part of the config name, identifying the owning product or team,
-     * e.g. "mvm", "fce", "fcn".
+     * e.g. "fce", "fcn".
      *
      * @generated from field: string namespace = 3;
      */
@@ -38,8 +38,8 @@ export type TenantConfig = Message<"fits.api.v1.TenantConfig"> & {
      */
     key: string;
     /**
-     * Name is the derived composite name in the form "{namespace}.fits.cloud/{key}",
-     * e.g. "mvm.fits.cloud/accounting". It is read-only and computed by the server.
+     * Name is the name of the config. Usually in the form "{namespace}.fits.cloud/{key}",
+     * e.g. "fce.fits.cloud/accounting". It is read-only and computed by the server.
      *
      * @generated from field: string name = 5;
      */
