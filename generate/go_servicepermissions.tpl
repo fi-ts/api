@@ -96,9 +96,9 @@ func GetServicePermissions() *ServicePermissions {
 	"{{ $key }}": {{ $value }} ,
 {{- end }}
 		},
-		Resources:  map[string]v1.Resource{
+		Resources:  map[string]v1.ResourceType{
 {{- range $key, $value := .Resources }}
-	"{{ $key }}": v1.Resource_{{ $value }} ,
+	"{{ $key }}": v1.ResourceType_{{ $value }} ,
 {{- end }}
 		},
 	}
@@ -134,8 +134,8 @@ func IsResourceScope(req connect.AnyRequest) bool {
 	return ok
 }
 
-// GetResource returns the resource a resource scoped method acts on.
-func GetResource(req connect.AnyRequest) (v1.Resource, bool) {
+// GetResourceType returns the resource a resource scoped method acts on.
+func GetResourceType(req connect.AnyRequest) (v1.ResourceType, bool) {
 	resource, ok := GetServicePermissions().Resources[req.Spec().Procedure]
 	return resource, ok
 }

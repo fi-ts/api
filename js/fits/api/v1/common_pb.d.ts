@@ -6,17 +6,17 @@ import type { Message } from "@bufbuild/protobuf";
  */
 export declare const file_fits_api_v1_common: GenFile;
 /**
- * ResourceRoleAssignment grants a resource role on one resource instance.
+ * ResourceRoleAssignment grants a resource role on a single resource instance.
  *
  * @generated from message fits.api.v1.ResourceRoleAssignment
  */
 export type ResourceRoleAssignment = Message<"fits.api.v1.ResourceRoleAssignment"> & {
     /**
-     * Resource the role applies to.
+     * ResourceType the role applies to.
      *
-     * @generated from field: fits.api.v1.Resource resource = 1;
+     * @generated from field: fits.api.v1.ResourceType resource_type = 1;
      */
-    resource: Resource;
+    resourceType: ResourceType;
     /**
      * ID of the resource instance. Actual format differs by resource type.
      *
@@ -36,8 +36,7 @@ export type ResourceRoleAssignment = Message<"fits.api.v1.ResourceRoleAssignment
      */
     scope: {
         /**
-         * UUID of the project the resource belongs to.
-         * Some resource types might not be scoped by projects.
+         * UUID of the project this resource belongs to. May be empty for resource types that are not scoped to a project.
          *
          * @generated from field: string project_uuid = 4;
          */
@@ -300,37 +299,37 @@ export declare enum OperatorRole {
  */
 export declare const OperatorRoleSchema: GenEnum<OperatorRole>;
 /**
- * Resource identifies the resource type a resource scoped method acts on.
+ * ResourceType identifies the resource type a resource scoped method acts on.
  * The resource instance id is carried by the request as `uuid`, or `id` when it is not a uuid.
  *
- * @generated from enum fits.api.v1.Resource
+ * @generated from enum fits.api.v1.ResourceType
  */
-export declare enum Resource {
+export declare enum ResourceType {
     /**
-     * RESOURCE_UNSPECIFIED is not specified
+     * RESOURCE_TYPE_UNSPECIFIED is not specified
      *
-     * @generated from enum value: RESOURCE_UNSPECIFIED = 0;
+     * @generated from enum value: RESOURCE_TYPE_UNSPECIFIED = 0;
      */
     UNSPECIFIED = 0,
     /**
-     * RESOURCE_MANAGED_VM identifies a ManagedVM (fits.api.mvm.v1.ManagedVM)
+     * RESOURCE_TYPE_MANAGED_VM identifies a ManagedVM (fits.api.mvm.v1.ManagedVM)
      *
-     * @generated from enum value: RESOURCE_MANAGED_VM = 1;
+     * @generated from enum value: RESOURCE_TYPE_MANAGED_VM = 1;
      */
     MANAGED_VM = 1,
     /**
-     * RESOURCE_PUBLIC_CLOUD_VM identifies a VM (fits.api.pcvm.v1.PublicCloudVM)
+     * RESOURCE_TYPE_PUBLIC_CLOUD_VM identifies a VM (fits.api.pcvm.v1.PublicCloudVM)
      *
-     * @generated from enum value: RESOURCE_PUBLIC_CLOUD_VM = 2;
+     * @generated from enum value: RESOURCE_TYPE_PUBLIC_CLOUD_VM = 2;
      */
     PUBLIC_CLOUD_VM = 2
 }
 /**
- * Describes the enum fits.api.v1.Resource.
+ * Describes the enum fits.api.v1.ResourceType.
  */
-export declare const ResourceSchema: GenEnum<Resource>;
+export declare const ResourceTypeSchema: GenEnum<ResourceType>;
 /**
- * ResourceRole specifies what role a logged in user needs to call this resource scoped service.
+ * ResourceRole defines the role required of a logged-in user to invoke this resource-scoped service.
  * Resource roles are independent of project roles.
  *
  * @generated from enum fits.api.v1.ResourceRole
@@ -495,9 +494,9 @@ export declare const resource_roles: GenExtension<MethodOptions, ResourceRole[]>
 /**
  * Resource defines the resource a resource scoped method acts on. Required whenever resource_roles is set.
  *
- * @generated from extension: fits.api.v1.Resource resource = 51006;
+ * @generated from extension: fits.api.v1.ResourceType resource = 51006;
  */
-export declare const resource: GenExtension<MethodOptions, Resource>;
+export declare const resource: GenExtension<MethodOptions, ResourceType>;
 /**
  * StringValue which can be set to a enum
  *

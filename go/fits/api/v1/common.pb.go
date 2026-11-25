@@ -197,61 +197,61 @@ func (OperatorRole) EnumDescriptor() ([]byte, []int) {
 	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{2}
 }
 
-// Resource identifies the resource type a resource scoped method acts on.
+// ResourceType identifies the resource type a resource scoped method acts on.
 // The resource instance id is carried by the request as `uuid`, or `id` when it is not a uuid.
-type Resource int32
+type ResourceType int32
 
 const (
-	// RESOURCE_UNSPECIFIED is not specified
-	Resource_RESOURCE_UNSPECIFIED Resource = 0
-	// RESOURCE_MANAGED_VM identifies a ManagedVM (fits.api.mvm.v1.ManagedVM)
-	Resource_RESOURCE_MANAGED_VM Resource = 1
-	// RESOURCE_PUBLIC_CLOUD_VM identifies a VM (fits.api.pcvm.v1.PublicCloudVM)
-	Resource_RESOURCE_PUBLIC_CLOUD_VM Resource = 2
+	// RESOURCE_TYPE_UNSPECIFIED is not specified
+	ResourceType_RESOURCE_TYPE_UNSPECIFIED ResourceType = 0
+	// RESOURCE_TYPE_MANAGED_VM identifies a ManagedVM (fits.api.mvm.v1.ManagedVM)
+	ResourceType_RESOURCE_TYPE_MANAGED_VM ResourceType = 1
+	// RESOURCE_TYPE_PUBLIC_CLOUD_VM identifies a VM (fits.api.pcvm.v1.PublicCloudVM)
+	ResourceType_RESOURCE_TYPE_PUBLIC_CLOUD_VM ResourceType = 2
 )
 
-// Enum value maps for Resource.
+// Enum value maps for ResourceType.
 var (
-	Resource_name = map[int32]string{
-		0: "RESOURCE_UNSPECIFIED",
-		1: "RESOURCE_MANAGED_VM",
-		2: "RESOURCE_PUBLIC_CLOUD_VM",
+	ResourceType_name = map[int32]string{
+		0: "RESOURCE_TYPE_UNSPECIFIED",
+		1: "RESOURCE_TYPE_MANAGED_VM",
+		2: "RESOURCE_TYPE_PUBLIC_CLOUD_VM",
 	}
-	Resource_value = map[string]int32{
-		"RESOURCE_UNSPECIFIED":     0,
-		"RESOURCE_MANAGED_VM":      1,
-		"RESOURCE_PUBLIC_CLOUD_VM": 2,
+	ResourceType_value = map[string]int32{
+		"RESOURCE_TYPE_UNSPECIFIED":     0,
+		"RESOURCE_TYPE_MANAGED_VM":      1,
+		"RESOURCE_TYPE_PUBLIC_CLOUD_VM": 2,
 	}
 )
 
-func (x Resource) Enum() *Resource {
-	p := new(Resource)
+func (x ResourceType) Enum() *ResourceType {
+	p := new(ResourceType)
 	*p = x
 	return p
 }
 
-func (x Resource) String() string {
+func (x ResourceType) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (Resource) Descriptor() protoreflect.EnumDescriptor {
+func (ResourceType) Descriptor() protoreflect.EnumDescriptor {
 	return file_fits_api_v1_common_proto_enumTypes[3].Descriptor()
 }
 
-func (Resource) Type() protoreflect.EnumType {
+func (ResourceType) Type() protoreflect.EnumType {
 	return &file_fits_api_v1_common_proto_enumTypes[3]
 }
 
-func (x Resource) Number() protoreflect.EnumNumber {
+func (x ResourceType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use Resource.Descriptor instead.
-func (Resource) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use ResourceType.Descriptor instead.
+func (ResourceType) EnumDescriptor() ([]byte, []int) {
 	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{3}
 }
 
-// ResourceRole specifies what role a logged in user needs to call this resource scoped service.
+// ResourceRole defines the role required of a logged-in user to invoke this resource-scoped service.
 // Resource roles are independent of project roles.
 type ResourceRole int32
 
@@ -472,11 +472,11 @@ func (OptimisticLockingStrategy) EnumDescriptor() ([]byte, []int) {
 	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{7}
 }
 
-// ResourceRoleAssignment grants a resource role on one resource instance.
+// ResourceRoleAssignment grants a resource role on a single resource instance.
 type ResourceRoleAssignment struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Resource the role applies to.
-	Resource Resource `protobuf:"varint,1,opt,name=resource,proto3,enum=fits.api.v1.Resource" json:"resource,omitempty"`
+	// ResourceType the role applies to.
+	ResourceType ResourceType `protobuf:"varint,1,opt,name=resource_type,json=resourceType,proto3,enum=fits.api.v1.ResourceType" json:"resource_type,omitempty"`
 	// ID of the resource instance. Actual format differs by resource type.
 	ResourceId string `protobuf:"bytes,2,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
 	// Role granted on the resource.
@@ -522,11 +522,11 @@ func (*ResourceRoleAssignment) Descriptor() ([]byte, []int) {
 	return file_fits_api_v1_common_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ResourceRoleAssignment) GetResource() Resource {
+func (x *ResourceRoleAssignment) GetResourceType() ResourceType {
 	if x != nil {
-		return x.Resource
+		return x.ResourceType
 	}
-	return Resource_RESOURCE_UNSPECIFIED
+	return ResourceType_RESOURCE_TYPE_UNSPECIFIED
 }
 
 func (x *ResourceRoleAssignment) GetResourceId() string {
@@ -573,8 +573,7 @@ type isResourceRoleAssignment_Scope interface {
 }
 
 type ResourceRoleAssignment_ProjectUuid struct {
-	// UUID of the project the resource belongs to.
-	// Some resource types might not be scoped by projects.
+	// UUID of the project this resource belongs to. May be empty for resource types that are not scoped to a project.
 	ProjectUuid string `protobuf:"bytes,4,opt,name=project_uuid,json=projectUuid,proto3,oneof"`
 }
 
@@ -925,10 +924,10 @@ var file_fits_api_v1_common_proto_extTypes = []protoimpl.ExtensionInfo{
 	},
 	{
 		ExtendedType:  (*descriptorpb.MethodOptions)(nil),
-		ExtensionType: (*Resource)(nil),
+		ExtensionType: (*ResourceType)(nil),
 		Field:         51006,
 		Name:          "fits.api.v1.resource",
-		Tag:           "varint,51006,opt,name=resource,enum=fits.api.v1.Resource",
+		Tag:           "varint,51006,opt,name=resource,enum=fits.api.v1.ResourceType",
 		Filename:      "fits/api/v1/common.proto",
 	},
 	{
@@ -969,7 +968,7 @@ var (
 	E_ResourceRoles = &file_fits_api_v1_common_proto_extTypes[5]
 	// Resource defines the resource a resource scoped method acts on. Required whenever resource_roles is set.
 	//
-	// optional fits.api.v1.Resource resource = 51006;
+	// optional fits.api.v1.ResourceType resource = 51006;
 	E_Resource = &file_fits_api_v1_common_proto_extTypes[6]
 )
 
@@ -985,9 +984,9 @@ var File_fits_api_v1_common_proto protoreflect.FileDescriptor
 
 const file_fits_api_v1_common_proto_rawDesc = "" +
 	"\n" +
-	"\x18fits/api/v1/common.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a google/protobuf/descriptor.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa4\x02\n" +
-	"\x16ResourceRoleAssignment\x12;\n" +
-	"\bresource\x18\x01 \x01(\x0e2\x15.fits.api.v1.ResourceB\b\xbaH\x05\x82\x01\x02\x10\x01R\bresource\x12)\n" +
+	"\x18fits/api/v1/common.proto\x12\vfits.api.v1\x1a\x1bbuf/validate/validate.proto\x1a\"fits/api/v1/predefined_rules.proto\x1a google/protobuf/descriptor.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb1\x02\n" +
+	"\x16ResourceRoleAssignment\x12H\n" +
+	"\rresource_type\x18\x01 \x01(\x0e2\x19.fits.api.v1.ResourceTypeB\b\xbaH\x05\x82\x01\x02\x10\x01R\fresourceType\x12)\n" +
 	"\vresource_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\x18\x80\x02R\n" +
 	"resourceId\x127\n" +
 	"\x04role\x18\x03 \x01(\x0e2\x19.fits.api.v1.ResourceRoleB\b\xbaH\x05\x82\x01\x02\x10\x01R\x04role\x120\n" +
@@ -1037,11 +1036,11 @@ const file_fits_api_v1_common_proto_rawDesc = "" +
 	"\fOperatorRole\x12\x1d\n" +
 	"\x19OPERATOR_ROLE_UNSPECIFIED\x10\x00\x12\x18\n" +
 	"\x14OPERATOR_ROLE_EDITOR\x10\x01\x12\x18\n" +
-	"\x14OPERATOR_ROLE_VIEWER\x10\x02*[\n" +
-	"\bResource\x12\x18\n" +
-	"\x14RESOURCE_UNSPECIFIED\x10\x00\x12\x17\n" +
-	"\x13RESOURCE_MANAGED_VM\x10\x01\x12\x1c\n" +
-	"\x18RESOURCE_PUBLIC_CLOUD_VM\x10\x02*z\n" +
+	"\x14OPERATOR_ROLE_VIEWER\x10\x02*n\n" +
+	"\fResourceType\x12\x1d\n" +
+	"\x19RESOURCE_TYPE_UNSPECIFIED\x10\x00\x12\x1c\n" +
+	"\x18RESOURCE_TYPE_MANAGED_VM\x10\x01\x12!\n" +
+	"\x1dRESOURCE_TYPE_PUBLIC_CLOUD_VM\x10\x02*z\n" +
 	"\fResourceRole\x12\x1d\n" +
 	"\x19RESOURCE_ROLE_UNSPECIFIED\x10\x00\x12\x17\n" +
 	"\x13RESOURCE_ROLE_ADMIN\x10\x01\x12\x18\n" +
@@ -1067,8 +1066,8 @@ const file_fits_api_v1_common_proto_rawDesc = "" +
 	"visibility\x12\x1e.google.protobuf.MethodOptions\x18\xbb\x8e\x03 \x01(\x0e2\x17.fits.api.v1.VisibilityR\n" +
 	"visibility:S\n" +
 	"\bauditing\x12\x1e.google.protobuf.MethodOptions\x18\xbc\x8e\x03 \x01(\x0e2\x15.fits.api.v1.AuditingR\bauditing:b\n" +
-	"\x0eresource_roles\x12\x1e.google.protobuf.MethodOptions\x18\xbd\x8e\x03 \x03(\x0e2\x19.fits.api.v1.ResourceRoleR\rresourceRoles:S\n" +
-	"\bresource\x12\x1e.google.protobuf.MethodOptions\x18\xbe\x8e\x03 \x01(\x0e2\x15.fits.api.v1.ResourceR\bresource:O\n" +
+	"\x0eresource_roles\x12\x1e.google.protobuf.MethodOptions\x18\xbd\x8e\x03 \x03(\x0e2\x19.fits.api.v1.ResourceRoleR\rresourceRoles:W\n" +
+	"\bresource\x12\x1e.google.protobuf.MethodOptions\x18\xbe\x8e\x03 \x01(\x0e2\x19.fits.api.v1.ResourceTypeR\bresource:O\n" +
 	"\x11enum_string_value\x12!.google.protobuf.EnumValueOptions\x18\xa0\x96\x03 \x01(\tR\x0fenumStringValueB\x97\x01\n" +
 	"\x0fcom.fits.api.v1B\vCommonProtoP\x01Z)github.com/fi-ts/api/go/fits/api/v1;apiv1\xa2\x02\x03FAX\xaa\x02\vFits.Api.V1\xca\x02\vFits\\Api\\V1\xe2\x02\x17Fits\\Api\\V1\\GPBMetadata\xea\x02\rFits::Api::V1b\x06proto3"
 
@@ -1090,7 +1089,7 @@ var file_fits_api_v1_common_proto_goTypes = []any{
 	(TenantRole)(0),                       // 0: fits.api.v1.TenantRole
 	(ProjectRole)(0),                      // 1: fits.api.v1.ProjectRole
 	(OperatorRole)(0),                     // 2: fits.api.v1.OperatorRole
-	(Resource)(0),                         // 3: fits.api.v1.Resource
+	(ResourceType)(0),                     // 3: fits.api.v1.ResourceType
 	(ResourceRole)(0),                     // 4: fits.api.v1.ResourceRole
 	(Visibility)(0),                       // 5: fits.api.v1.Visibility
 	(Auditing)(0),                         // 6: fits.api.v1.Auditing
@@ -1107,7 +1106,7 @@ var file_fits_api_v1_common_proto_goTypes = []any{
 	(*descriptorpb.EnumValueOptions)(nil), // 17: google.protobuf.EnumValueOptions
 }
 var file_fits_api_v1_common_proto_depIdxs = []int32{
-	3,  // 0: fits.api.v1.ResourceRoleAssignment.resource:type_name -> fits.api.v1.Resource
+	3,  // 0: fits.api.v1.ResourceRoleAssignment.resource_type:type_name -> fits.api.v1.ResourceType
 	4,  // 1: fits.api.v1.ResourceRoleAssignment.role:type_name -> fits.api.v1.ResourceRole
 	14, // 2: fits.api.v1.Labels.labels:type_name -> fits.api.v1.Labels.LabelsEntry
 	10, // 3: fits.api.v1.Meta.labels:type_name -> fits.api.v1.Labels
@@ -1130,7 +1129,7 @@ var file_fits_api_v1_common_proto_depIdxs = []int32{
 	5,  // 20: fits.api.v1.visibility:type_name -> fits.api.v1.Visibility
 	6,  // 21: fits.api.v1.auditing:type_name -> fits.api.v1.Auditing
 	4,  // 22: fits.api.v1.resource_roles:type_name -> fits.api.v1.ResourceRole
-	3,  // 23: fits.api.v1.resource:type_name -> fits.api.v1.Resource
+	3,  // 23: fits.api.v1.resource:type_name -> fits.api.v1.ResourceType
 	24, // [24:24] is the sub-list for method output_type
 	24, // [24:24] is the sub-list for method input_type
 	17, // [17:24] is the sub-list for extension type_name

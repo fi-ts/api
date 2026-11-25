@@ -14,20 +14,20 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file fits/api/v1/common.proto.
  */
 export const file_fits_api_v1_common: GenFile = /*@__PURE__*/
-  fileDesc("ChhmaXRzL2FwaS92MS9jb21tb24ucHJvdG8SC2ZpdHMuYXBpLnYxIvABChZSZXNvdXJjZVJvbGVBc3NpZ25tZW50EjEKCHJlc291cmNlGAEgASgOMhUuZml0cy5hcGkudjEuUmVzb3VyY2VCCLpIBYIBAhABEh0KC3Jlc291cmNlX2lkGAIgASgJQgi6SAVyAxiAAhIxCgRyb2xlGAMgASgOMhkuZml0cy5hcGkudjEuUmVzb3VyY2VSb2xlQgi6SAWCAQIQARIjCgxwcm9qZWN0X3V1aWQYBCABKAlCC7pICHIGmLSusQIBSAASHAoJbmFtZXNwYWNlGAUgASgJQge6SARyAhgtSABCDgoFc2NvcGUSBbpIAggBIkIKBlBhZ2luZxIRCgRwYWdlGAEgASgESACIAQESEgoFY291bnQYAiABKARIAYgBAUIHCgVfcGFnZUIICgZfY291bnQiiAEKBkxhYmVscxJPCgZsYWJlbHMYASADKAsyHy5maXRzLmFwaS52MS5MYWJlbHMuTGFiZWxzRW50cnlCHrpIG5oBGLiVuLECASIHcgUQARiAAioHcgUQABiAAhotCgtMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIq8BCgRNZXRhEigKBmxhYmVscxgBIAEoCzITLmZpdHMuYXBpLnYxLkxhYmVsc0gAiAEBEi4KCmNyZWF0ZWRfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhIKCmdlbmVyYXRpb24YBCABKARCCQoHX2xhYmVscyJDCgxVcGRhdGVMYWJlbHMSIwoGdXBkYXRlGAEgASgLMhMuZml0cy5hcGkudjEuTGFiZWxzEg4KBnJlbW92ZRgCIAMoCSKIAQoKVXBkYXRlTWV0YRIuCgp1cGRhdGVkX2F0GAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBJKChBsb2NraW5nX3N0cmF0ZWd5GAIgASgOMiYuZml0cy5hcGkudjEuT3B0aW1pc3RpY0xvY2tpbmdTdHJhdGVneUIIukgFggECEAEqhwEKClRlbmFudFJvbGUSGwoXVEVOQU5UX1JPTEVfVU5TUEVDSUZJRUQQABIVChFURU5BTlRfUk9MRV9BRE1JThABEhYKElRFTkFOVF9ST0xFX0VESVRPUhACEhYKElRFTkFOVF9ST0xFX1ZJRVdFUhADEhUKEVRFTkFOVF9ST0xFX0dVRVNUEAQqdQoLUHJvamVjdFJvbGUSHAoYUFJPSkVDVF9ST0xFX1VOU1BFQ0lGSUVEEAASFgoSUFJPSkVDVF9ST0xFX0FETUlOEAESFwoTUFJPSkVDVF9ST0xFX0VESVRPUhACEhcKE1BST0pFQ1RfUk9MRV9WSUVXRVIQAyphCgxPcGVyYXRvclJvbGUSHQoZT1BFUkFUT1JfUk9MRV9VTlNQRUNJRklFRBAAEhgKFE9QRVJBVE9SX1JPTEVfRURJVE9SEAESGAoUT1BFUkFUT1JfUk9MRV9WSUVXRVIQAipbCghSZXNvdXJjZRIYChRSRVNPVVJDRV9VTlNQRUNJRklFRBAAEhcKE1JFU09VUkNFX01BTkFHRURfVk0QARIcChhSRVNPVVJDRV9QVUJMSUNfQ0xPVURfVk0QAip6CgxSZXNvdXJjZVJvbGUSHQoZUkVTT1VSQ0VfUk9MRV9VTlNQRUNJRklFRBAAEhcKE1JFU09VUkNFX1JPTEVfQURNSU4QARIYChRSRVNPVVJDRV9ST0xFX0VESVRPUhACEhgKFFJFU09VUkNFX1JPTEVfVklFV0VSEAMqVAoKVmlzaWJpbGl0eRIaChZWSVNJQklMSVRZX1VOU1BFQ0lGSUVEEAASFQoRVklTSUJJTElUWV9QVUJMSUMQARITCg9WSVNJQklMSVRZX1NFTEYQAipSCghBdWRpdGluZxIYChRBVURJVElOR19VTlNQRUNJRklFRBAAEhUKEUFVRElUSU5HX0lOQ0xVREVEEAESFQoRQVVESVRJTkdfRVhDTFVERUQQAiqYAQoZT3B0aW1pc3RpY0xvY2tpbmdTdHJhdGVneRIrCidPUFRJTUlTVElDX0xPQ0tJTkdfU1RSQVRFR1lfVU5TUEVDSUZJRUQQABImCiJPUFRJTUlTVElDX0xPQ0tJTkdfU1RSQVRFR1lfQ0xJRU5UEAESJgoiT1BUSU1JU1RJQ19MT0NLSU5HX1NUUkFURUdZX1NFUlZFUhACOlwKDHRlbmFudF9yb2xlcxIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGLiOAyADKA4yFy5maXRzLmFwaS52MS5UZW5hbnRSb2xlUgt0ZW5hbnRSb2xlczpfCg1wcm9qZWN0X3JvbGVzEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYuY4DIAMoDjIYLmZpdHMuYXBpLnYxLlByb2plY3RSb2xlUgxwcm9qZWN0Um9sZXM6YgoOb3BlcmF0b3Jfcm9sZXMSHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxi6jgMgAygOMhkuZml0cy5hcGkudjEuT3BlcmF0b3JSb2xlUg1vcGVyYXRvclJvbGVzOlkKCnZpc2liaWxpdHkSHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxi7jgMgASgOMhcuZml0cy5hcGkudjEuVmlzaWJpbGl0eVIKdmlzaWJpbGl0eTpTCghhdWRpdGluZxIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGLyOAyABKA4yFS5maXRzLmFwaS52MS5BdWRpdGluZ1IIYXVkaXRpbmc6YgoOcmVzb3VyY2Vfcm9sZXMSHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxi9jgMgAygOMhkuZml0cy5hcGkudjEuUmVzb3VyY2VSb2xlUg1yZXNvdXJjZVJvbGVzOlMKCHJlc291cmNlEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYvo4DIAEoDjIVLmZpdHMuYXBpLnYxLlJlc291cmNlUghyZXNvdXJjZTpPChFlbnVtX3N0cmluZ192YWx1ZRIhLmdvb2dsZS5wcm90b2J1Zi5FbnVtVmFsdWVPcHRpb25zGKCWAyABKAlSD2VudW1TdHJpbmdWYWx1ZUKXAQoPY29tLmZpdHMuYXBpLnYxQgtDb21tb25Qcm90b1ABWilnaXRodWIuY29tL2ZpLXRzL2FwaS9nby9maXRzL2FwaS92MTthcGl2MaICA0ZBWKoCC0ZpdHMuQXBpLlYxygILRml0c1xBcGlcVjHiAhdGaXRzXEFwaVxWMVxHUEJNZXRhZGF0YeoCDUZpdHM6OkFwaTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_fits_api_v1_predefined_rules, file_google_protobuf_descriptor, file_google_protobuf_timestamp]);
+  fileDesc("ChhmaXRzL2FwaS92MS9jb21tb24ucHJvdG8SC2ZpdHMuYXBpLnYxIvkBChZSZXNvdXJjZVJvbGVBc3NpZ25tZW50EjoKDXJlc291cmNlX3R5cGUYASABKA4yGS5maXRzLmFwaS52MS5SZXNvdXJjZVR5cGVCCLpIBYIBAhABEh0KC3Jlc291cmNlX2lkGAIgASgJQgi6SAVyAxiAAhIxCgRyb2xlGAMgASgOMhkuZml0cy5hcGkudjEuUmVzb3VyY2VSb2xlQgi6SAWCAQIQARIjCgxwcm9qZWN0X3V1aWQYBCABKAlCC7pICHIGmLSusQIBSAASHAoJbmFtZXNwYWNlGAUgASgJQge6SARyAhgtSABCDgoFc2NvcGUSBbpIAggBIkIKBlBhZ2luZxIRCgRwYWdlGAEgASgESACIAQESEgoFY291bnQYAiABKARIAYgBAUIHCgVfcGFnZUIICgZfY291bnQiiAEKBkxhYmVscxJPCgZsYWJlbHMYASADKAsyHy5maXRzLmFwaS52MS5MYWJlbHMuTGFiZWxzRW50cnlCHrpIG5oBGLiVuLECASIHcgUQARiAAioHcgUQABiAAhotCgtMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIq8BCgRNZXRhEigKBmxhYmVscxgBIAEoCzITLmZpdHMuYXBpLnYxLkxhYmVsc0gAiAEBEi4KCmNyZWF0ZWRfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhIKCmdlbmVyYXRpb24YBCABKARCCQoHX2xhYmVscyJDCgxVcGRhdGVMYWJlbHMSIwoGdXBkYXRlGAEgASgLMhMuZml0cy5hcGkudjEuTGFiZWxzEg4KBnJlbW92ZRgCIAMoCSKIAQoKVXBkYXRlTWV0YRIuCgp1cGRhdGVkX2F0GAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBJKChBsb2NraW5nX3N0cmF0ZWd5GAIgASgOMiYuZml0cy5hcGkudjEuT3B0aW1pc3RpY0xvY2tpbmdTdHJhdGVneUIIukgFggECEAEqhwEKClRlbmFudFJvbGUSGwoXVEVOQU5UX1JPTEVfVU5TUEVDSUZJRUQQABIVChFURU5BTlRfUk9MRV9BRE1JThABEhYKElRFTkFOVF9ST0xFX0VESVRPUhACEhYKElRFTkFOVF9ST0xFX1ZJRVdFUhADEhUKEVRFTkFOVF9ST0xFX0dVRVNUEAQqdQoLUHJvamVjdFJvbGUSHAoYUFJPSkVDVF9ST0xFX1VOU1BFQ0lGSUVEEAASFgoSUFJPSkVDVF9ST0xFX0FETUlOEAESFwoTUFJPSkVDVF9ST0xFX0VESVRPUhACEhcKE1BST0pFQ1RfUk9MRV9WSUVXRVIQAyphCgxPcGVyYXRvclJvbGUSHQoZT1BFUkFUT1JfUk9MRV9VTlNQRUNJRklFRBAAEhgKFE9QRVJBVE9SX1JPTEVfRURJVE9SEAESGAoUT1BFUkFUT1JfUk9MRV9WSUVXRVIQAipuCgxSZXNvdXJjZVR5cGUSHQoZUkVTT1VSQ0VfVFlQRV9VTlNQRUNJRklFRBAAEhwKGFJFU09VUkNFX1RZUEVfTUFOQUdFRF9WTRABEiEKHVJFU09VUkNFX1RZUEVfUFVCTElDX0NMT1VEX1ZNEAIqegoMUmVzb3VyY2VSb2xlEh0KGVJFU09VUkNFX1JPTEVfVU5TUEVDSUZJRUQQABIXChNSRVNPVVJDRV9ST0xFX0FETUlOEAESGAoUUkVTT1VSQ0VfUk9MRV9FRElUT1IQAhIYChRSRVNPVVJDRV9ST0xFX1ZJRVdFUhADKlQKClZpc2liaWxpdHkSGgoWVklTSUJJTElUWV9VTlNQRUNJRklFRBAAEhUKEVZJU0lCSUxJVFlfUFVCTElDEAESEwoPVklTSUJJTElUWV9TRUxGEAIqUgoIQXVkaXRpbmcSGAoUQVVESVRJTkdfVU5TUEVDSUZJRUQQABIVChFBVURJVElOR19JTkNMVURFRBABEhUKEUFVRElUSU5HX0VYQ0xVREVEEAIqmAEKGU9wdGltaXN0aWNMb2NraW5nU3RyYXRlZ3kSKwonT1BUSU1JU1RJQ19MT0NLSU5HX1NUUkFURUdZX1VOU1BFQ0lGSUVEEAASJgoiT1BUSU1JU1RJQ19MT0NLSU5HX1NUUkFURUdZX0NMSUVOVBABEiYKIk9QVElNSVNUSUNfTE9DS0lOR19TVFJBVEVHWV9TRVJWRVIQAjpcCgx0ZW5hbnRfcm9sZXMSHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxi4jgMgAygOMhcuZml0cy5hcGkudjEuVGVuYW50Um9sZVILdGVuYW50Um9sZXM6XwoNcHJvamVjdF9yb2xlcxIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGLmOAyADKA4yGC5maXRzLmFwaS52MS5Qcm9qZWN0Um9sZVIMcHJvamVjdFJvbGVzOmIKDm9wZXJhdG9yX3JvbGVzEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYuo4DIAMoDjIZLmZpdHMuYXBpLnYxLk9wZXJhdG9yUm9sZVINb3BlcmF0b3JSb2xlczpZCgp2aXNpYmlsaXR5Eh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYu44DIAEoDjIXLmZpdHMuYXBpLnYxLlZpc2liaWxpdHlSCnZpc2liaWxpdHk6UwoIYXVkaXRpbmcSHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxi8jgMgASgOMhUuZml0cy5hcGkudjEuQXVkaXRpbmdSCGF1ZGl0aW5nOmIKDnJlc291cmNlX3JvbGVzEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYvY4DIAMoDjIZLmZpdHMuYXBpLnYxLlJlc291cmNlUm9sZVINcmVzb3VyY2VSb2xlczpXCghyZXNvdXJjZRIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGL6OAyABKA4yGS5maXRzLmFwaS52MS5SZXNvdXJjZVR5cGVSCHJlc291cmNlOk8KEWVudW1fc3RyaW5nX3ZhbHVlEiEuZ29vZ2xlLnByb3RvYnVmLkVudW1WYWx1ZU9wdGlvbnMYoJYDIAEoCVIPZW51bVN0cmluZ1ZhbHVlQpcBCg9jb20uZml0cy5hcGkudjFCC0NvbW1vblByb3RvUAFaKWdpdGh1Yi5jb20vZmktdHMvYXBpL2dvL2ZpdHMvYXBpL3YxO2FwaXYxogIDRkFYqgILRml0cy5BcGkuVjHKAgtGaXRzXEFwaVxWMeICF0ZpdHNcQXBpXFYxXEdQQk1ldGFkYXRh6gINRml0czo6QXBpOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_fits_api_v1_predefined_rules, file_google_protobuf_descriptor, file_google_protobuf_timestamp]);
 
 /**
- * ResourceRoleAssignment grants a resource role on one resource instance.
+ * ResourceRoleAssignment grants a resource role on a single resource instance.
  *
  * @generated from message fits.api.v1.ResourceRoleAssignment
  */
 export type ResourceRoleAssignment = Message<"fits.api.v1.ResourceRoleAssignment"> & {
   /**
-   * Resource the role applies to.
+   * ResourceType the role applies to.
    *
-   * @generated from field: fits.api.v1.Resource resource = 1;
+   * @generated from field: fits.api.v1.ResourceType resource_type = 1;
    */
-  resource: Resource;
+  resourceType: ResourceType;
 
   /**
    * ID of the resource instance. Actual format differs by resource type.
@@ -50,8 +50,7 @@ export type ResourceRoleAssignment = Message<"fits.api.v1.ResourceRoleAssignment
    */
   scope: {
     /**
-     * UUID of the project the resource belongs to.
-     * Some resource types might not be scoped by projects.
+     * UUID of the project this resource belongs to. May be empty for resource types that are not scoped to a project.
      *
      * @generated from field: string project_uuid = 4;
      */
@@ -351,42 +350,42 @@ export const OperatorRoleSchema: GenEnum<OperatorRole> = /*@__PURE__*/
   enumDesc(file_fits_api_v1_common, 2);
 
 /**
- * Resource identifies the resource type a resource scoped method acts on.
+ * ResourceType identifies the resource type a resource scoped method acts on.
  * The resource instance id is carried by the request as `uuid`, or `id` when it is not a uuid.
  *
- * @generated from enum fits.api.v1.Resource
+ * @generated from enum fits.api.v1.ResourceType
  */
-export enum Resource {
+export enum ResourceType {
   /**
-   * RESOURCE_UNSPECIFIED is not specified
+   * RESOURCE_TYPE_UNSPECIFIED is not specified
    *
-   * @generated from enum value: RESOURCE_UNSPECIFIED = 0;
+   * @generated from enum value: RESOURCE_TYPE_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
-   * RESOURCE_MANAGED_VM identifies a ManagedVM (fits.api.mvm.v1.ManagedVM)
+   * RESOURCE_TYPE_MANAGED_VM identifies a ManagedVM (fits.api.mvm.v1.ManagedVM)
    *
-   * @generated from enum value: RESOURCE_MANAGED_VM = 1;
+   * @generated from enum value: RESOURCE_TYPE_MANAGED_VM = 1;
    */
   MANAGED_VM = 1,
 
   /**
-   * RESOURCE_PUBLIC_CLOUD_VM identifies a VM (fits.api.pcvm.v1.PublicCloudVM)
+   * RESOURCE_TYPE_PUBLIC_CLOUD_VM identifies a VM (fits.api.pcvm.v1.PublicCloudVM)
    *
-   * @generated from enum value: RESOURCE_PUBLIC_CLOUD_VM = 2;
+   * @generated from enum value: RESOURCE_TYPE_PUBLIC_CLOUD_VM = 2;
    */
   PUBLIC_CLOUD_VM = 2,
 }
 
 /**
- * Describes the enum fits.api.v1.Resource.
+ * Describes the enum fits.api.v1.ResourceType.
  */
-export const ResourceSchema: GenEnum<Resource> = /*@__PURE__*/
+export const ResourceTypeSchema: GenEnum<ResourceType> = /*@__PURE__*/
   enumDesc(file_fits_api_v1_common, 3);
 
 /**
- * ResourceRole specifies what role a logged in user needs to call this resource scoped service.
+ * ResourceRole defines the role required of a logged-in user to invoke this resource-scoped service.
  * Resource roles are independent of project roles.
  *
  * @generated from enum fits.api.v1.ResourceRole
@@ -584,9 +583,9 @@ export const resource_roles: GenExtension<MethodOptions, ResourceRole[]> = /*@__
 /**
  * Resource defines the resource a resource scoped method acts on. Required whenever resource_roles is set.
  *
- * @generated from extension: fits.api.v1.Resource resource = 51006;
+ * @generated from extension: fits.api.v1.ResourceType resource = 51006;
  */
-export const resource: GenExtension<MethodOptions, Resource> = /*@__PURE__*/
+export const resource: GenExtension<MethodOptions, ResourceType> = /*@__PURE__*/
   extDesc(file_fits_api_v1_common, 6);
 
 /**

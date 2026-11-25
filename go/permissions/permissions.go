@@ -24,7 +24,7 @@ type (
 	Tenant    map[v1.TenantRole]Methods
 	Project   map[v1.ProjectRole]Methods
 	Resource  map[v1.ResourceRole]Methods
-	Resources map[string]v1.Resource
+	Resources map[string]v1.ResourceType
 
 	// Roles
 	Roles struct {

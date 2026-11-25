@@ -323,11 +323,11 @@
                 </li>
               
                 <li>
-                  <a href="#fits.api.v1.Resource"><span class="badge">E</span>Resource</a>
+                  <a href="#fits.api.v1.ResourceRole"><span class="badge">E</span>ResourceRole</a>
                 </li>
               
                 <li>
-                  <a href="#fits.api.v1.ResourceRole"><span class="badge">E</span>ResourceRole</a>
+                  <a href="#fits.api.v1.ResourceType"><span class="badge">E</span>ResourceType</a>
                 </li>
               
                 <li>
@@ -1479,7 +1479,7 @@ the list response contains then the page number for the next page. </p></td>
         
       
         <h3 id="fits.api.v1.ResourceRoleAssignment">ResourceRoleAssignment</h3>
-        <p>ResourceRoleAssignment grants a resource role on one resource instance.</p>
+        <p>ResourceRoleAssignment grants a resource role on a single resource instance.</p>
 
         
           <table class="field-table">
@@ -1489,10 +1489,10 @@ the list response contains then the page number for the next page. </p></td>
             <tbody>
               
                 <tr>
-                  <td>resource</td>
-                  <td><a href="#fits.api.v1.Resource">Resource</a></td>
+                  <td>resource_type</td>
+                  <td><a href="#fits.api.v1.ResourceType">ResourceType</a></td>
                   <td></td>
-                  <td><p>Resource the role applies to. </p></td>
+                  <td><p>ResourceType the role applies to. </p></td>
                 </tr>
               
                 <tr>
@@ -1513,8 +1513,7 @@ the list response contains then the page number for the next page. </p></td>
                   <td>project_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>UUID of the project the resource belongs to.
-Some resource types might not be scoped by projects. </p></td>
+                  <td><p>UUID of the project this resource belongs to. May be empty for resource types that are not scoped to a project. </p></td>
                 </tr>
               
                 <tr>
@@ -1719,37 +1718,8 @@ and fetches the most recent entity before updating with the given values with th
           </tbody>
         </table>
       
-        <h3 id="fits.api.v1.Resource">Resource</h3>
-        <p>Resource identifies the resource type a resource scoped method acts on.</p><p>The resource instance id is carried by the request as `uuid`, or `id` when it is not a uuid.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>RESOURCE_UNSPECIFIED</td>
-                <td>0</td>
-                <td><p>RESOURCE_UNSPECIFIED is not specified</p></td>
-              </tr>
-            
-              <tr>
-                <td>RESOURCE_MANAGED_VM</td>
-                <td>1</td>
-                <td><p>RESOURCE_MANAGED_VM identifies a ManagedVM (fits.api.mvm.v1.ManagedVM)</p></td>
-              </tr>
-            
-              <tr>
-                <td>RESOURCE_PUBLIC_CLOUD_VM</td>
-                <td>2</td>
-                <td><p>RESOURCE_PUBLIC_CLOUD_VM identifies a VM (fits.api.pcvm.v1.PublicCloudVM)</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
         <h3 id="fits.api.v1.ResourceRole">ResourceRole</h3>
-        <p>ResourceRole specifies what role a logged in user needs to call this resource scoped service.</p><p>Resource roles are independent of project roles.</p>
+        <p>ResourceRole defines the role required of a logged-in user to invoke this resource-scoped service.</p><p>Resource roles are independent of project roles.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -1778,6 +1748,35 @@ and fetches the most recent entity before updating with the given values with th
                 <td>RESOURCE_ROLE_VIEWER</td>
                 <td>3</td>
                 <td><p>RESOURCE_ROLE_VIEWER the logged in user needs at least viewer role to call this method</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="fits.api.v1.ResourceType">ResourceType</h3>
+        <p>ResourceType identifies the resource type a resource scoped method acts on.</p><p>The resource instance id is carried by the request as `uuid`, or `id` when it is not a uuid.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>RESOURCE_TYPE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>RESOURCE_TYPE_UNSPECIFIED is not specified</p></td>
+              </tr>
+            
+              <tr>
+                <td>RESOURCE_TYPE_MANAGED_VM</td>
+                <td>1</td>
+                <td><p>RESOURCE_TYPE_MANAGED_VM identifies a ManagedVM (fits.api.mvm.v1.ManagedVM)</p></td>
+              </tr>
+            
+              <tr>
+                <td>RESOURCE_TYPE_PUBLIC_CLOUD_VM</td>
+                <td>2</td>
+                <td><p>RESOURCE_TYPE_PUBLIC_CLOUD_VM identifies a VM (fits.api.pcvm.v1.PublicCloudVM)</p></td>
               </tr>
             
           </tbody>
@@ -1898,7 +1897,7 @@ having a direct membership within the tenant.</p></td>
             
               <tr>
                 <td>resource</td>
-                <td><a href="#fits.api.v1.Resource">Resource</a></td>
+                <td><a href="#fits.api.v1.ResourceType">ResourceType</a></td>
                 <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
                 <td>51006</td>
                 <td><p>Resource defines the resource a resource scoped method acts on. Required whenever resource_roles is set.</p></td>

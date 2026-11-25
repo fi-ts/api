@@ -280,7 +280,7 @@ func GetServicePermissions() *ServicePermissions {
 			"/fits.api.v1.TokenService/Revoke":                        true,
 			"/fits.api.v1.VersionService/Get":                         false,
 		},
-		Resources: map[string]v1.Resource{},
+		Resources: map[string]v1.ResourceType{},
 	}
 }
 
@@ -314,8 +314,8 @@ func IsResourceScope(req connect.AnyRequest) bool {
 	return ok
 }
 
-// GetResource returns the resource a resource scoped method acts on.
-func GetResource(req connect.AnyRequest) (v1.Resource, bool) {
+// GetResourceType returns the resource a resource scoped method acts on.
+func GetResourceType(req connect.AnyRequest) (v1.ResourceType, bool) {
 	resource, ok := GetServicePermissions().Resources[req.Spec().Procedure]
 	return resource, ok
 }
@@ -351,7 +351,7 @@ func GetProjectFromRequest(req connect.AnyRequest) (string, bool) {
 	return "", false
 }
 
-// GetResourceFromRequest returns the product instance id from a product scoped request.
+// GetResourceFromRequest returns the resource instance id from a resource scoped request.
 func GetResourceFromRequest(req connect.AnyRequest) (string, bool) {
 	if !IsResourceScope(req) {
 		return "", false

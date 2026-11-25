@@ -45,15 +45,15 @@ enum OperatorRole {
   OPERATOR_ROLE_VIEWER = 2;
 }
 
-// Resource identifies the resource type a resource scoped method acts on.
+// ResourceType identifies the resource type a resource scoped method acts on.
 // The resource instance id is carried by the request as `uuid`, or `id` when it is not a uuid.
-enum Resource {
-  // RESOURCE_UNSPECIFIED is not specified
-  RESOURCE_UNSPECIFIED = 0;
-  // RESOURCE_MANAGED_VM identifies a ManagedVM (fits.api.mvm.v1.ManagedVM)
-  RESOURCE_MANAGED_VM = 1;
-  // RESOURCE_PUBLIC_CLOUD_VM identifies a VM (fits.api.pcvm.v1.PublicCloudVM)
-  RESOURCE_PUBLIC_CLOUD_VM = 2;
+enum ResourceType {
+  // RESOURCE_TYPE_UNSPECIFIED is not specified
+  RESOURCE_TYPE_UNSPECIFIED = 0;
+  // RESOURCE_TYPE_MANAGED_VM identifies a ManagedVM (fits.api.mvm.v1.ManagedVM)
+  RESOURCE_TYPE_MANAGED_VM = 1;
+  // RESOURCE_TYPE_PUBLIC_CLOUD_VM identifies a VM (fits.api.pcvm.v1.PublicCloudVM)
+  RESOURCE_TYPE_PUBLIC_CLOUD_VM = 2;
 }
 
 // ResourceRole defines the role required of a logged-in user to invoke this resource-scoped service.
@@ -106,13 +106,13 @@ extend google.protobuf.MethodOptions {
   // ResourceRoles are used to define which resource role a logged in user must provide to call this method
   repeated ResourceRole resource_roles = 51005;
   // Resource defines the resource a resource scoped method acts on. Required whenever resource_roles is set.
-  Resource resource = 51006;
+  ResourceType resource = 51006;
 }
 
 // ResourceRoleAssignment grants a resource role on a single resource instance.
 message ResourceRoleAssignment {
-  // Resource the role applies to.
-  Resource resource = 1 [(buf.validate.field).enum.defined_only = true];
+  // ResourceType the role applies to.
+  ResourceType resource_type = 1 [(buf.validate.field).enum.defined_only = true];
   // ID of the resource instance. Actual format differs by resource type.
   string resource_id = 2 [(buf.validate.field).string = {max_len: 256}];
   // Role granted on the resource.

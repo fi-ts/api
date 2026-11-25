@@ -200,9 +200,9 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 							visibility.Resource[methodName] = true
 						case v1.ResourceRole_RESOURCE_ROLE_UNSPECIFIED.String():
 							// noop
-						case v1.Resource_RESOURCE_MANAGED_VM.String(), v1.Resource_RESOURCE_PUBLIC_CLOUD_VM.String():
-							resources[methodName] = v1.Resource(v1.Resource_value[role])
-						case v1.Resource_RESOURCE_UNSPECIFIED.String():
+						case v1.ResourceType_RESOURCE_TYPE_MANAGED_VM.String(), v1.ResourceType_RESOURCE_TYPE_PUBLIC_CLOUD_VM.String():
+							resources[methodName] = v1.ResourceType(v1.ResourceType_value[role])
+						case v1.ResourceType_RESOURCE_TYPE_UNSPECIFIED.String():
 							// noop
 						// Visibility
 						case v1.Visibility_VISIBILITY_PUBLIC.String():
