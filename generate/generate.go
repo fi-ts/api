@@ -189,9 +189,7 @@ func servicePermissions(root string) (*permissions.ServicePermissions, error) {
 							auditable[methodName] = true
 						case v1.Auditing_AUDITING_UNSPECIFIED.String():
 							auditable[methodName] = true
-						// RoleContext is enforced separately in the authorize
-						// interceptor and does not map to a service-permission
-						// bucket, so it is a noop here.
+						// RoleContext is enforced separately in the authorize interceptor, so it is a noop here.
 						case v1.RoleContext_ROLE_CONTEXT_PROVIDER.String(),
 							v1.RoleContext_ROLE_CONTEXT_ON_BEHALF.String(),
 							v1.RoleContext_ROLE_CONTEXT_UNSPECIFIED.String():

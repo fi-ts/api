@@ -65,11 +65,7 @@ func (x *MVMServiceValidateUpdateServiceClassRequest) GetProjectUuid() string {
 	return x.GetUpdateServiceClass().GetProjectUuid()
 }
 
-// The OnBehalf* requests wrap a public request and therefore do not carry a
-// top-level project_uuid field either; the same forwarding applies.
-
-// GetProjectUuid returns the project of the wrapped get request so the
-// request satisfies the project-scope resolution used by authorization.
+// GetProjectUuid returns the project of the wrapped get request.
 func (x *OnBehalfMVMServiceGetRequest) GetProjectUuid() string {
 	if x == nil {
 		return ""
@@ -77,8 +73,7 @@ func (x *OnBehalfMVMServiceGetRequest) GetProjectUuid() string {
 	return x.GetRequest().GetProjectUuid()
 }
 
-// GetProjectUuid returns the project of the wrapped list request so the
-// request satisfies the project-scope resolution used by authorization.
+// GetProjectUuid returns the project of the wrapped list request.
 func (x *OnBehalfMVMServiceListRequest) GetProjectUuid() string {
 	if x == nil {
 		return ""
@@ -86,8 +81,7 @@ func (x *OnBehalfMVMServiceListRequest) GetProjectUuid() string {
 	return x.GetRequest().GetProjectUuid()
 }
 
-// GetProjectUuid returns the project of the wrapped create request so the
-// request satisfies the project-scope resolution used by authorization.
+// GetProjectUuid returns the project of the wrapped create request.
 func (x *OnBehalfMVMServiceCreateRequest) GetProjectUuid() string {
 	if x == nil {
 		return ""
@@ -95,8 +89,7 @@ func (x *OnBehalfMVMServiceCreateRequest) GetProjectUuid() string {
 	return x.GetRequest().GetProjectUuid()
 }
 
-// GetProjectUuid returns the project of the wrapped delete request so the
-// request satisfies the project-scope resolution used by authorization.
+// GetProjectUuid returns the project of the wrapped delete request.
 func (x *OnBehalfMVMServiceDeleteRequest) GetProjectUuid() string {
 	if x == nil {
 		return ""

@@ -169,8 +169,7 @@ export type OnBehalfMVMServiceDeleteRequest = Message<"fits.api.mvm.v1.OnBehalfM
      */
     request?: MVMServiceDeleteRequest | undefined;
     /**
-     * The future date when the MVM will be deleted.
-     * If unset, the MVM is deleted immediately.
+     * The future date when the MVM will be deleted, or immediately if unset.
      *
      * @generated from field: optional google.protobuf.Timestamp execution_date = 2;
      */

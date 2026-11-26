@@ -275,9 +275,7 @@ export declare enum Auditing {
  */
 export declare const AuditingSchema: GenEnum<Auditing>;
 /**
- * RoleContext declares in which context a method's roles apply. It belongs only
- * on provider or on-behalf services, never on public ones. It is not a
- * visibility setting or feature flag.
+ * RoleContext declares in which context a method's roles apply; only for provider or on-behalf services.
  *
  * @generated from enum fits.api.v1.RoleContext
  */
@@ -349,8 +347,7 @@ export declare const tenant_roles: GenExtension<MethodOptions, TenantRole[]>;
  */
 export declare const project_roles: GenExtension<MethodOptions, ProjectRole[]>;
 /**
- * RoleContext sets the context the roles above apply in. Only for provider or
- * on-behalf services, never public ones.
+ * RoleContext sets the context the roles above apply in; only for provider or on-behalf services.
  *
  * @generated from extension: fits.api.v1.RoleContext role_context = 51002;
  */

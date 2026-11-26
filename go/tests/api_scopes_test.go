@@ -118,10 +118,7 @@ func Test_FieldNumbering(t *testing.T) {
 				lastNumber int32
 			)
 
-			// reserved collects all field numbers marked `reserved` on this
-			// message. A gap in the field numbering is allowed only if every
-			// skipped number is reserved (e.g. a field removed for wire
-			// compatibility must not be renumbered or reused).
+			// reserved collects the field numbers marked reserved on this message; gaps over them are allowed.
 			reserved := map[int32]bool{}
 			for _, rr := range mt.GetReservedRange() {
 				// Reserved ranges are [start, end) with end exclusive.
@@ -139,8 +136,7 @@ func Test_FieldNumbering(t *testing.T) {
 						// }
 						firstField = false
 					} else {
-						// Advance the expected number over any reserved slots so
-						// that a reserved gap does not count as a violation.
+						// Skip reserved slots so a reserved gap is not a violation.
 						expected := lastNumber + 1
 						for reserved[expected] {
 							expected++
@@ -201,10 +197,8 @@ func validateProto(root string) error {
 		return err
 	}
 
-	// Parse every proto once up front so that cross-file type references (e.g. a
-	// provider request that wraps a message imported from another file) can be
-	// resolved. messagesByFQN is keyed by the fully qualified message name with a
-	// leading dot, matching the TypeName format emitted for imported messages.
+	// Parse every proto up front so cross-file type references resolve.
+	// messagesByFQN is keyed by fully qualified name with a leading dot, matching the TypeName format.
 	var fds []*descriptorpb.FileDescriptorProto
 	messagesByFQN := map[string][]*descriptorpb.FieldDescriptorProto{}
 	for _, filename := range files {
@@ -254,15 +248,9 @@ func validateProto(root string) error {
 				// Sort all to have stable results
 				slices.Sort(allScopeNames)
 
-				// inputFields collects the fields of the request payload
-				// including the fields of nested messages, following references
-				// across files. This way wrapped requests (e.g. Validate* or
-				// provider requests carrying the real request from another file)
-				// are checked as well.
+				// inputFields collects request payload fields including nested messages across files, so wrapped requests are checked too.
 				inputFields := func() (fields []*descriptorpb.FieldDescriptorProto) {
-					// fqn normalizes a type reference to a fully qualified name
-					// with a leading dot: references to same-package messages are
-					// emitted unqualified, imported ones already carry the dot.
+					// fqn normalizes a type reference to a fully qualified name with a leading dot.
 					fqn := func(name string) string {
 						if strings.HasPrefix(name, ".") {
 							return name
@@ -360,28 +348,20 @@ func validateProto(root string) error {
 	return errors.Join(errs...)
 }
 
-// Test_RoleContext enforces that the (fits.api.v1.role_context) method option
-// only appears in files whose name is suffixed with the matching context, i.e.
-// ROLE_CONTEXT_PROVIDER in *_provider.proto and ROLE_CONTEXT_ON_BEHALF in
-// *_on_behalf.proto. Public files must not carry the option at all.
-//
-// This keeps the option from being misused as a general visibility setting or
-// feature flag: it can only live in a dedicated provider or on-behalf file.
+// Test_RoleContext enforces that the role_context option only appears in files suffixed with the matching context.
 func Test_RoleContext(t *testing.T) {
 	err := validateRoleContext("../../proto")
 	require.NoError(t, err)
 }
 
-// roleContextFileSuffix maps each role context to the file-name suffix that is
-// allowed to declare it.
+// roleContextFileSuffix maps each role context to the file-name suffix allowed to declare it.
 var roleContextFileSuffix = map[string]string{
 	v1.RoleContext_ROLE_CONTEXT_PROVIDER.String():  "_provider.proto",
 	v1.RoleContext_ROLE_CONTEXT_ON_BEHALF.String(): "_on_behalf.proto",
 }
 
 func validateRoleContext(root string) error {
-	// roleContextValues are the non-UNSPECIFIED role context identifiers. The
-	// UNSPECIFIED value carries no enforcement meaning and is treated as absent.
+	// roleContextValues are the non-UNSPECIFIED role context identifiers; UNSPECIFIED is treated as absent.
 	roleContextValues := []string{
 		v1.RoleContext_ROLE_CONTEXT_PROVIDER.String(),
 		v1.RoleContext_ROLE_CONTEXT_ON_BEHALF.String(),

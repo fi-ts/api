@@ -386,8 +386,7 @@ type OnBehalfMVMServiceDeleteRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The public delete request.
 	Request *MVMServiceDeleteRequest `protobuf:"bytes,1,opt,name=request,proto3" json:"request,omitempty"`
-	// The future date when the MVM will be deleted.
-	// If unset, the MVM is deleted immediately.
+	// The future date when the MVM will be deleted, or immediately if unset.
 	ExecutionDate *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=execution_date,json=executionDate,proto3,oneof" json:"execution_date,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache

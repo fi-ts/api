@@ -1823,7 +1823,7 @@ and fetches the most recent entity before updating with the given values with th
         </table>
       
         <h3 id="fits.api.v1.RoleContext">RoleContext</h3>
-        <p>RoleContext declares in which context a method's roles apply. It belongs only</p><p>on provider or on-behalf services, never on public ones. It is not a</p><p>visibility setting or feature flag.</p>
+        <p>RoleContext declares in which context a method's roles apply; only for provider or on-behalf services.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -1961,8 +1961,7 @@ having a direct membership within the tenant.</p></td>
                 <td><a href="#fits.api.v1.RoleContext">RoleContext</a></td>
                 <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
                 <td>51002</td>
-                <td><p>RoleContext sets the context the roles above apply in. Only for provider or
-on-behalf services, never public ones.</p></td>
+                <td><p>RoleContext sets the context the roles above apply in; only for provider or on-behalf services.</p></td>
               </tr>
             
               <tr>
@@ -5178,8 +5177,7 @@ Only additional IP addresses (without a MAC address) can be deleted.</p></td>
                   <td>execution_date</td>
                   <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
                   <td>optional</td>
-                  <td><p>The future date when the MVM will be deleted.
-If unset, the MVM is deleted immediately. </p></td>
+                  <td><p>The future date when the MVM will be deleted, or immediately if unset. </p></td>
                 </tr>
               
             </tbody>
