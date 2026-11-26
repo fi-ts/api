@@ -93,11 +93,12 @@ func Test_APIScopes(t *testing.T) {
 	// errs := errors.Join(
 	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Add\" has apiv1.TenantRole but request payload \"WrongProjectServiceAddRequest\" does not have a tenant field"),
 	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Get\" has apiv1.ProjectRole but request payload \"WrongProjectServiceGetRequest\" does not have a project field"),
-	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/List\" has no scope defined. one scope needs to be defined though. use one of the following scopes: [apiv1.OperatorRole apiv1.ProjectRole apiv1.TenantRole apiv1.Visibility]"),
+	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/List\" has no scope defined. one scope needs to be defined though. use one of the following scopes: [apiv1.ProjectRole apiv1.TenantRole apiv1.Visibility]"),
 	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Update\" does not have a update_meta field in WrongProjectServiceUpdateRequest"),
-	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Update\" can not have apiv1.OperatorRole ([OPERATOR_ROLE_VIEWER]) and apiv1.ProjectRole ([PROJECT_ROLE_ADMIN]) at the same time. only one scope is allowed."),
-	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Delete\" can not have apiv1.OperatorRole ([OPERATOR_ROLE_VIEWER]) and apiv1.Visibility ([VISIBILITY_PUBLIC]) at the same time. only one scope is allowed."),
-	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Charge\" has no scope defined. one scope needs to be defined though. use one of the following scopes: [apiv1.OperatorRole apiv1.ProjectRole apiv1.TenantRole apiv1.Visibility]"),
+	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Update\" can not have apiv1.ProjectRole ([PROJECT_ROLE_ADMIN]) and apiv1.Visibility ([VISIBILITY_PUBLIC]) at the same time. only one scope is allowed."),
+	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Delete\" has apiv1.ProjectRole but request payload \"WrongProjectServiceDeleteRequest\" does not have a project field"),
+	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Delete\" can not have apiv1.ProjectRole ([PROJECT_ROLE_ADMIN]) and apiv1.Visibility ([VISIBILITY_PUBLIC]) at the same time. only one scope is allowed."),
+	// 	errors.New("api service method: \"/fits.api.v1.WrongProjectService/Charge\" has no scope defined. one scope needs to be defined though. use one of the following scopes: [apiv1.ProjectRole apiv1.TenantRole apiv1.Visibility]"),
 	// )
 
 	// require.Equal(t, err, errs)
