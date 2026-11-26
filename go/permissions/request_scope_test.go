@@ -11,8 +11,6 @@ import (
 	"google.golang.org/protobuf/reflect/protoregistry"
 	"google.golang.org/protobuf/types/known/emptypb"
 
-	"github.com/fi-ts/api/go/permissions"
-
 	// Register the request types of all services in GetServicePermissions.
 	// A new API package must be added here, otherwise the tests below fail
 	// because its services cannot be found.
@@ -39,23 +37,23 @@ var (
 // The test also checks that the getter returns the project field of the
 // request, so the project that is authorized is the one the handler reads.
 func TestProjectScopedRequestsExposeProject(t *testing.T) {
-	checkScopedRequests(t, permissions.GetServicePermissions().Visibility.Project, projectFields, permissions.GetProjectFromMessage)
+	checkScopedRequests(t, GetServicePermissions().Visibility.Project, projectFields, getProjectFromMessage)
 }
 
 // TestTenantScopedRequestsExposeTenant is the tenant counterpart of
 // TestProjectScopedRequestsExposeProject.
 func TestTenantScopedRequestsExposeTenant(t *testing.T) {
-	checkScopedRequests(t, permissions.GetServicePermissions().Visibility.Tenant, tenantFields, permissions.GetTenantFromMessage)
+	checkScopedRequests(t, GetServicePermissions().Visibility.Tenant, tenantFields, getTenantFromMessage)
 }
 
 // TestScopeLookupWithoutGetter makes sure the lookups report a message
 // without a getter, which is what the tests above rely on.
 func TestScopeLookupWithoutGetter(t *testing.T) {
-	if _, ok := permissions.GetProjectFromMessage(&emptypb.Empty{}); ok {
-		t.Error("GetProjectFromMessage found a project in a message without a project getter")
+	if _, ok := getProjectFromMessage(&emptypb.Empty{}); ok {
+		t.Error("getProjectFromMessage found a project in a message without a project getter")
 	}
-	if _, ok := permissions.GetTenantFromMessage(&emptypb.Empty{}); ok {
-		t.Error("GetTenantFromMessage found a tenant in a message without a tenant getter")
+	if _, ok := getTenantFromMessage(&emptypb.Empty{}); ok {
+		t.Error("getTenantFromMessage found a tenant in a message without a tenant getter")
 	}
 }
 

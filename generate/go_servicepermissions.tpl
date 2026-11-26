@@ -119,14 +119,14 @@ func GetTenantFromRequest(req connect.AnyRequest) (string, bool) {
 	if !IsTenantScope(req) {
 		return "", false
 	}
-	return GetTenantFromMessage(req.Any())
+	return getTenantFromMessage(req.Any())
 }
 
-// GetTenantFromMessage returns the tenant of a request message, or ok=false
+// getTenantFromMessage returns the tenant of a request message, or ok=false
 // if the message has no tenant getter. It is the lookup GetTenantFromRequest
 // uses, split out so it can be tested against every request type without a
 // running connect handler.
-func GetTenantFromMessage(msg any) (string, bool) {
+func getTenantFromMessage(msg any) (string, bool) {
 	switch rq := msg.(type) {
 	case interface{ GetTenant() string }:
 		return rq.GetTenant(), true
@@ -138,10 +138,10 @@ func GetProjectFromRequest(req connect.AnyRequest) (string, bool) {
 	if !IsProjectScope(req) {
 		return "", false
 	}
-	return GetProjectFromMessage(req.Any())
+	return getProjectFromMessage(req.Any())
 }
 
-// GetProjectFromMessage returns the project of a request message, or ok=false
+// getProjectFromMessage returns the project of a request message, or ok=false
 // if the message has no project getter. It is the lookup GetProjectFromRequest
 // uses, split out so it can be tested against every request type without a
 // running connect handler.
@@ -149,7 +149,7 @@ func GetProjectFromRequest(req connect.AnyRequest) (string, bool) {
 // Requests that only wrap another request (e.g. Validate*) have no top-level
 // project field and need a hand-written GetProjectUuid in a *_project_scope.go
 // file next to the generated code.
-func GetProjectFromMessage(msg any) (string, bool) {
+func getProjectFromMessage(msg any) (string, bool) {
 	switch rq := msg.(type) {
 	case interface{ GetProjectUuid() string }:
 		return rq.GetProjectUuid(), true

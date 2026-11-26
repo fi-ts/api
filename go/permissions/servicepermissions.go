@@ -358,10 +358,10 @@ func GetTenantFromRequest(req connect.AnyRequest) (string, bool) {
 	if !IsTenantScope(req) {
 		return "", false
 	}
-	return GetTenantFromMessage(req.Any())
+	return getTenantFromMessage(req.Any())
 }
 
-// GetTenantFromMessage returns the tenant of a request message, or ok=false
+// getTenantFromMessage returns the tenant of a request message, or ok=false
 // if the message has no tenant getter. It is the lookup GetTenantFromRequest
 // uses, split out so it can be tested against every request type without a
 // running connect handler.
@@ -377,10 +377,10 @@ func GetProjectFromRequest(req connect.AnyRequest) (string, bool) {
 	if !IsProjectScope(req) {
 		return "", false
 	}
-	return GetProjectFromMessage(req.Any())
+	return getProjectFromMessage(req.Any())
 }
 
-// GetProjectFromMessage returns the project of a request message, or ok=false
+// getProjectFromMessage returns the project of a request message, or ok=false
 // if the message has no project getter. It is the lookup GetProjectFromRequest
 // uses, split out so it can be tested against every request type without a
 // running connect handler.
