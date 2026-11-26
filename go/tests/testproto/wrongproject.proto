@@ -13,11 +13,11 @@ service WrongProjectService {
   }
   rpc List(WrongProjectServiceListRequest) returns (WrongProjectServiceListResponse) {}
   rpc Update(WrongProjectServiceUpdateRequest) returns (WrongProjectServiceUpdateResponse) {
-    option (operator_roles) = OPERATOR_ROLE_VIEWER;
     option (project_roles) = PROJECT_ROLE_ADMIN;
+    option (fits.api.v1.visibility) = VISIBILITY_PUBLIC;
   }
   rpc Delete(WrongProjectServiceDeleteRequest) returns (WrongProjectServiceDeleteResponse) {
-    option (operator_roles) = OPERATOR_ROLE_VIEWER;
+    option (project_roles) = PROJECT_ROLE_ADMIN;
     option (fits.api.v1.visibility) = VISIBILITY_PUBLIC;
   }
   rpc Charge(WrongProjectServiceChargeRequest) returns (WrongProjectServiceChargeResponse) {

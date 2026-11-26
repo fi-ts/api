@@ -15,6 +15,8 @@ import { LocationService as Apimvmv1LocationService } from "./fits/api/mvm/v1/lo
 
 import { MVMService as Apimvmv1MVMService } from "./fits/api/mvm/v1/mvm_pb";
 
+import { OnBehalfMVMService as Apimvmv1OnBehalfMVMService } from "./fits/api/mvm/v1/mvm_on_behalf_pb";
+
 import { OSService as Apimvmv1OSService } from "./fits/api/mvm/v1/os_pb";
 
 import { StageService as Apimvmv1StageService } from "./fits/api/mvm/v1/stage_pb";
@@ -69,6 +71,8 @@ export interface Apimvmv1 {
   location(): ConnectClient<typeof Apimvmv1LocationService>;
 
   mvm(): ConnectClient<typeof Apimvmv1MVMService>;
+
+  onBehalfMVM(): ConnectClient<typeof Apimvmv1OnBehalfMVMService>;
 
   os(): ConnectClient<typeof Apimvmv1OSService>;
 
@@ -188,6 +192,8 @@ class Apimvmv1Impl implements Apimvmv1 {
 
   private _mvm?: ConnectClient<typeof Apimvmv1MVMService>;
 
+  private _onBehalfMVM?: ConnectClient<typeof Apimvmv1OnBehalfMVMService>;
+
   private _os?: ConnectClient<typeof Apimvmv1OSService>;
 
   private _stage?: ConnectClient<typeof Apimvmv1StageService>;
@@ -233,6 +239,13 @@ class Apimvmv1Impl implements Apimvmv1 {
       this._mvm = createClient(Apimvmv1MVMService, this.transport);
     }
     return this._mvm;
+  }
+
+  onBehalfMVM(): ConnectClient<typeof Apimvmv1OnBehalfMVMService> {
+    if (!this._onBehalfMVM) {
+      this._onBehalfMVM = createClient(Apimvmv1OnBehalfMVMService, this.transport);
+    }
+    return this._onBehalfMVM;
   }
 
   os(): ConnectClient<typeof Apimvmv1OSService> {

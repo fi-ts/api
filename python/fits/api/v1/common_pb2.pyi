@@ -28,12 +28,6 @@ class ProjectRole(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     PROJECT_ROLE_EDITOR: _ClassVar[ProjectRole]
     PROJECT_ROLE_VIEWER: _ClassVar[ProjectRole]
 
-class OperatorRole(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
-    __slots__ = ()
-    OPERATOR_ROLE_UNSPECIFIED: _ClassVar[OperatorRole]
-    OPERATOR_ROLE_EDITOR: _ClassVar[OperatorRole]
-    OPERATOR_ROLE_VIEWER: _ClassVar[OperatorRole]
-
 class Visibility(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
     VISIBILITY_UNSPECIFIED: _ClassVar[Visibility]
@@ -45,6 +39,12 @@ class Auditing(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     AUDITING_UNSPECIFIED: _ClassVar[Auditing]
     AUDITING_INCLUDED: _ClassVar[Auditing]
     AUDITING_EXCLUDED: _ClassVar[Auditing]
+
+class RoleContext(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+    __slots__ = ()
+    ROLE_CONTEXT_UNSPECIFIED: _ClassVar[RoleContext]
+    ROLE_CONTEXT_PROVIDER: _ClassVar[RoleContext]
+    ROLE_CONTEXT_ON_BEHALF: _ClassVar[RoleContext]
 
 class OptimisticLockingStrategy(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
@@ -60,15 +60,15 @@ PROJECT_ROLE_UNSPECIFIED: ProjectRole
 PROJECT_ROLE_ADMIN: ProjectRole
 PROJECT_ROLE_EDITOR: ProjectRole
 PROJECT_ROLE_VIEWER: ProjectRole
-OPERATOR_ROLE_UNSPECIFIED: OperatorRole
-OPERATOR_ROLE_EDITOR: OperatorRole
-OPERATOR_ROLE_VIEWER: OperatorRole
 VISIBILITY_UNSPECIFIED: Visibility
 VISIBILITY_PUBLIC: Visibility
 VISIBILITY_SELF: Visibility
 AUDITING_UNSPECIFIED: Auditing
 AUDITING_INCLUDED: Auditing
 AUDITING_EXCLUDED: Auditing
+ROLE_CONTEXT_UNSPECIFIED: RoleContext
+ROLE_CONTEXT_PROVIDER: RoleContext
+ROLE_CONTEXT_ON_BEHALF: RoleContext
 OPTIMISTIC_LOCKING_STRATEGY_UNSPECIFIED: OptimisticLockingStrategy
 OPTIMISTIC_LOCKING_STRATEGY_CLIENT: OptimisticLockingStrategy
 OPTIMISTIC_LOCKING_STRATEGY_SERVER: OptimisticLockingStrategy
@@ -76,8 +76,8 @@ TENANT_ROLES_FIELD_NUMBER: _ClassVar[int]
 tenant_roles: _descriptor.FieldDescriptor
 PROJECT_ROLES_FIELD_NUMBER: _ClassVar[int]
 project_roles: _descriptor.FieldDescriptor
-OPERATOR_ROLES_FIELD_NUMBER: _ClassVar[int]
-operator_roles: _descriptor.FieldDescriptor
+ROLE_CONTEXT_FIELD_NUMBER: _ClassVar[int]
+role_context: _descriptor.FieldDescriptor
 VISIBILITY_FIELD_NUMBER: _ClassVar[int]
 visibility: _descriptor.FieldDescriptor
 AUDITING_FIELD_NUMBER: _ClassVar[int]

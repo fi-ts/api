@@ -64,3 +64,35 @@ func (x *MVMServiceValidateUpdateServiceClassRequest) GetProjectUuid() string {
 	}
 	return x.GetUpdateServiceClass().GetProjectUuid()
 }
+
+// GetProjectUuid returns the project of the wrapped get request.
+func (x *OnBehalfMVMServiceGetRequest) GetProjectUuid() string {
+	if x == nil {
+		return ""
+	}
+	return x.GetRequest().GetProjectUuid()
+}
+
+// GetProjectUuid returns the project of the wrapped list request.
+func (x *OnBehalfMVMServiceListRequest) GetProjectUuid() string {
+	if x == nil {
+		return ""
+	}
+	return x.GetRequest().GetProjectUuid()
+}
+
+// GetProjectUuid returns the project of the wrapped create request.
+func (x *OnBehalfMVMServiceCreateRequest) GetProjectUuid() string {
+	if x == nil {
+		return ""
+	}
+	return x.GetRequest().GetProjectUuid()
+}
+
+// GetProjectUuid returns the project of the wrapped delete request.
+func (x *OnBehalfMVMServiceDeleteRequest) GetProjectUuid() string {
+	if x == nil {
+		return ""
+	}
+	return x.GetRequest().GetProjectUuid()
+}

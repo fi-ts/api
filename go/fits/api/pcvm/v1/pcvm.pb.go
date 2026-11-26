@@ -94,7 +94,7 @@ const (
 	Operation_OPERATION_UPDATING Operation = 3
 	// OPERATION_DELETED: the VM is deleted.
 	Operation_OPERATION_DELETED Operation = 4
-	// OPERATION_ERROR: there is an error.
+	// OPERATION_ERROR: the VM is in error state.
 	Operation_OPERATION_ERROR Operation = 5
 )
 

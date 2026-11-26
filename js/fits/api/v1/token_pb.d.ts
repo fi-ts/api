@@ -1,5 +1,5 @@
 import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import type { Meta, OperatorRole, ProjectRole, TenantRole } from "./common_pb.js";
+import type { Meta, ProjectRole, TenantRole } from "./common_pb.js";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 /**
@@ -88,39 +88,33 @@ export type Token = Message<"fits.api.v1.Token"> & {
         [key: string]: TenantRole;
     };
     /**
-     * OperatorRole defines the operator role of the token owner
-     *
-     * @generated from field: optional fits.api.v1.OperatorRole operator_role = 11;
-     */
-    operatorRole?: OperatorRole | undefined;
-    /**
      * RawRoles are the normalized roles transmitted by the OIDC provider.
      *
-     * @generated from field: repeated string raw_roles = 12;
+     * @generated from field: repeated string raw_roles = 11;
      */
     rawRoles: string[];
     /**
      * Name is the display name of the user the token was issued for.
      *
-     * @generated from field: string name = 13;
+     * @generated from field: string name = 12;
      */
     name: string;
     /**
      * Email is the email address of the user the token was issued for.
      *
-     * @generated from field: string email = 14;
+     * @generated from field: string email = 13;
      */
     email: string;
     /**
      * FirstName is the given name of the user the token was issued for.
      *
-     * @generated from field: string first_name = 15;
+     * @generated from field: string first_name = 14;
      */
     firstName: string;
     /**
      * LastName is the family name of the user the token was issued for.
      *
-     * @generated from field: string last_name = 16;
+     * @generated from field: string last_name = 15;
      */
     lastName: string;
 };
@@ -201,14 +195,6 @@ export type PermissionsByVisibility = Message<"fits.api.v1.PermissionsByVisibili
          */
         value: TenantPermissions;
         case: "tenant";
-    } | {
-        /**
-         * OperatorPermissions carries operator method permissions.
-         *
-         * @generated from field: fits.api.v1.OperatorPermissions operator = 5;
-         */
-        value: OperatorPermissions;
-        case: "operator";
     } | {
         case: undefined;
         value?: undefined;
@@ -305,24 +291,6 @@ export type TenantPermissions = Message<"fits.api.v1.TenantPermissions"> & {
  * Use `create(TenantPermissionsSchema)` to create a new message.
  */
 export declare const TenantPermissionsSchema: GenMessage<TenantPermissions>;
-/**
- * OperatorPermissions carries operator method permissions.
- *
- * @generated from message fits.api.v1.OperatorPermissions
- */
-export type OperatorPermissions = Message<"fits.api.v1.OperatorPermissions"> & {
-    /**
-     * Methods which should be accessible.
-     *
-     * @generated from field: repeated string methods = 1;
-     */
-    methods: string[];
-};
-/**
- * Describes the message fits.api.v1.OperatorPermissions.
- * Use `create(OperatorPermissionsSchema)` to create a new message.
- */
-export declare const OperatorPermissionsSchema: GenMessage<OperatorPermissions>;
 /**
  * TokenServiceListRequest is the request payload to list tokens
  *
