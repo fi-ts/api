@@ -224,7 +224,7 @@ func WrapConnectErr(c connect.Code, underlying error) *connect.Error {
 }
 
 // ValidationError describes a single validation problem reported by an
-// upstream API (e.g. an HTTP 422 body from nulink).
+// upstream API (e.g. an HTTP 422 body).
 type ValidationError struct {
 	// Loc is the path of the offending field within the upstream request,
 	// e.g. ["body", "serviceclass"].
