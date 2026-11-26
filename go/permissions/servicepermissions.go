@@ -126,7 +126,6 @@ func GetServicePermissions() *ServicePermissions {
 					"/fits.api.mvm.v1.MVMService/ValidateUpdateDisk":         {},
 					"/fits.api.mvm.v1.MVMService/ValidateUpdateServiceClass": {},
 					"/fits.api.mvm.v1.OnBehalfMVMService/Create":             {},
-					"/fits.api.mvm.v1.OnBehalfMVMService/Delete":             {},
 					"/fits.api.mvm.v1.OnBehalfMVMService/Get":                {},
 					"/fits.api.mvm.v1.OnBehalfMVMService/List":               {},
 					"/fits.api.pcvm.v1.PublicCloudVMService/Create":          {},

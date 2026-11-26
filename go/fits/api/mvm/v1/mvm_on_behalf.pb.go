@@ -512,12 +512,12 @@ const file_fits_api_mvm_v1_mvm_on_behalf_proto_rawDesc = "" +
 	"\x0eexecution_date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\rexecutionDate\x88\x01\x01B\x11\n" +
 	"\x0f_execution_date\"i\n" +
 	" OnBehalfMVMServiceDeleteResponse\x12E\n" +
-	"\bresponse\x18\x01 \x01(\v2).fits.api.mvm.v1.MVMServiceDeleteResponseR\bresponse2\x83\x04\n" +
+	"\bresponse\x18\x01 \x01(\v2).fits.api.mvm.v1.MVMServiceDeleteResponseR\bresponse2\x82\x04\n" +
 	"\x12OnBehalfMVMService\x12u\n" +
 	"\x03Get\x12-.fits.api.mvm.v1.OnBehalfMVMServiceGetRequest\x1a..fits.api.mvm.v1.OnBehalfMVMServiceGetResponse\"\x0f\xca\xf3\x18\x03\x01\x02\x03\xd0\xf3\x18\x02\xe0\xf3\x18\x02\x12x\n" +
 	"\x04List\x12..fits.api.mvm.v1.OnBehalfMVMServiceListRequest\x1a/.fits.api.mvm.v1.OnBehalfMVMServiceListResponse\"\x0f\xca\xf3\x18\x03\x01\x02\x03\xd0\xf3\x18\x02\xe0\xf3\x18\x02\x12}\n" +
-	"\x06Create\x120.fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest\x1a1.fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse\"\x0e\xca\xf3\x18\x02\x01\x02\xd0\xf3\x18\x02\xe0\xf3\x18\x01\x12}\n" +
-	"\x06Delete\x120.fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest\x1a1.fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse\"\x0e\xca\xf3\x18\x02\x01\x02\xd0\xf3\x18\x02\xe0\xf3\x18\x01B\xb5\x01\n" +
+	"\x06Create\x120.fits.api.mvm.v1.OnBehalfMVMServiceCreateRequest\x1a1.fits.api.mvm.v1.OnBehalfMVMServiceCreateResponse\"\x0e\xca\xf3\x18\x02\x01\x02\xd0\xf3\x18\x02\xe0\xf3\x18\x01\x12|\n" +
+	"\x06Delete\x120.fits.api.mvm.v1.OnBehalfMVMServiceDeleteRequest\x1a1.fits.api.mvm.v1.OnBehalfMVMServiceDeleteResponse\"\r\xca\xf3\x18\x01\x01\xd0\xf3\x18\x02\xe0\xf3\x18\x01B\xb5\x01\n" +
 	"\x13com.fits.api.mvm.v1B\x10MvmOnBehalfProtoP\x01Z-github.com/fi-ts/api/go/fits/api/mvm/v1;mvmv1\xa2\x02\x03FAM\xaa\x02\x0fFits.Api.Mvm.V1\xca\x02\x0fFits\\Api\\Mvm\\V1\xe2\x02\x1bFits\\Api\\Mvm\\V1\\GPBMetadata\xea\x02\x12Fits::Api::Mvm::V1b\x06proto3"
 
 var (

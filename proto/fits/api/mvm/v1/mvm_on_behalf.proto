@@ -37,7 +37,6 @@ service OnBehalfMVMService {
   // Delete removes an MVM on behalf of a customer tenant.
   rpc Delete(OnBehalfMVMServiceDeleteRequest) returns (OnBehalfMVMServiceDeleteResponse) {
     option (fits.api.v1.project_roles) = PROJECT_ROLE_ADMIN;
-    option (fits.api.v1.project_roles) = PROJECT_ROLE_EDITOR;
     option (fits.api.v1.auditing) = AUDITING_INCLUDED;
     option (fits.api.v1.role_context) = ROLE_CONTEXT_ON_BEHALF;
   }
