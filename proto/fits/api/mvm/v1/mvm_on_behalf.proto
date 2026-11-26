@@ -43,7 +43,7 @@ service OnBehalfMVMService {
   }
 }
 
-// An MVM with additional fields beyond the public ManagedVM.
+// An MVM with additional fields beyond the ManagedVM.
 message OnBehalfMVM {
   // The public MVM.
   ManagedVM mvm = 1;

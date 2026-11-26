@@ -7,7 +7,7 @@ import type { Message } from "@bufbuild/protobuf";
  */
 export declare const file_fits_api_mvm_v1_mvm_on_behalf: GenFile;
 /**
- * An MVM with additional fields beyond the public ManagedVM.
+ * An MVM with additional fields beyond the ManagedVM.
  *
  * @generated from message fits.api.mvm.v1.OnBehalfMVM
  */

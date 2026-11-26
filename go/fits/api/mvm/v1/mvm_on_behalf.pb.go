@@ -23,7 +23,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// An MVM with additional fields beyond the public ManagedVM.
+// An MVM with additional fields beyond the ManagedVM.
 type OnBehalfMVM struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The public MVM.
