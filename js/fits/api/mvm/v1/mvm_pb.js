@@ -444,7 +444,7 @@ export var State;
 export const StateSchema = /*@__PURE__*/ enumDesc(file_fits_api_mvm_v1_mvm, 2);
 /**
  * DiskType classifies a MVM disk by its lifecycle rules.
- * The upstream (nulink) API returns every disk of a MVM, including the
+ * The upstream API returns every disk of a MVM, including the
  * backend-provisioned OS disk, so that oversized OS disks stay billable.
  *
  * Lifecycle per kind:
@@ -461,7 +461,7 @@ export const StateSchema = /*@__PURE__*/ enumDesc(file_fits_api_mvm_v1_mvm, 2);
  * Whether auto-extend is supported for OS and SYSTEM disks is not yet
  * known; only DATA disks are documented as supporting it.
  *
- * These rules are enforced by the upstream (nulink) API at creation and
+ * These rules are enforced by the upstream API at creation and
  * edit time (e.g. duplicate drive letters, deleting a system disk);
  * fco-api does not re-validate them locally and surfaces upstream
  * violations as InvalidArgument errors. Use the Validate* RPCs to
