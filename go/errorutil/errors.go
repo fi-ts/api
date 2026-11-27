@@ -103,6 +103,21 @@ func Unimplemented(format string, args ...any) error {
 	return connect.NewError(connect.CodeUnimplemented, fmt.Errorf(format, args...))
 }
 
+// Unavailable creates a new Unavailable error (Connect Code 14) with a formatted error message.
+func Unavailable(format string, args ...any) error {
+	return connect.NewError(connect.CodeUnavailable, fmt.Errorf(format, args...))
+}
+
+// DeadlineExceeded creates a new Deadline Exceeded error (Connect Code 4) with a formatted error message.
+func DeadlineExceeded(format string, args ...any) error {
+	return connect.NewError(connect.CodeDeadlineExceeded, fmt.Errorf(format, args...))
+}
+
+// Canceled creates a new Canceled error (Connect Code 1) with a formatted error message.
+func Canceled(format string, args ...any) error {
+	return connect.NewError(connect.CodeCanceled, fmt.Errorf(format, args...))
+}
+
 // NewNotFound creates a new Not Found error (Connect Code 5) from an underlying error.
 func NewNotFound(err error) error {
 	return connect.NewError(connect.CodeNotFound, err)
@@ -151,6 +166,21 @@ func NewPermissionDenied(err error) error {
 // NewUnimplemented creates a new Unimplemented error (Connect Code 12) from an underlying error.
 func NewUnimplemented(err error) error {
 	return connect.NewError(connect.CodeUnimplemented, err)
+}
+
+// NewUnavailable creates a new Unavailable error (Connect Code 14) from an underlying error.
+func NewUnavailable(err error) error {
+	return connect.NewError(connect.CodeUnavailable, err)
+}
+
+// NewDeadlineExceeded creates a new Deadline Exceeded error (Connect Code 4) from an underlying error.
+func NewDeadlineExceeded(err error) error {
+	return connect.NewError(connect.CodeDeadlineExceeded, err)
+}
+
+// NewCanceled creates a new Canceled error (Connect Code 1) from an underlying error.
+func NewCanceled(err error) error {
+	return connect.NewError(connect.CodeCanceled, err)
 }
 
 // IsNotFound reports whether the error is a Not Found error (Connect Code 5).
@@ -211,6 +241,24 @@ func IsPermissionDenied(err error) bool {
 func IsUnimplemented(err error) bool {
 	connectErr := Convert(err)
 	return connectErr.Code() == connect.CodeUnimplemented
+}
+
+// IsUnavailable reports whether the error is an Unavailable error (Connect Code 14).
+func IsUnavailable(err error) bool {
+	connectErr := Convert(err)
+	return connectErr.Code() == connect.CodeUnavailable
+}
+
+// IsDeadlineExceeded reports whether the error is a Deadline Exceeded error (Connect Code 4).
+func IsDeadlineExceeded(err error) bool {
+	connectErr := Convert(err)
+	return connectErr.Code() == connect.CodeDeadlineExceeded
+}
+
+// IsCanceled reports whether the error is a Canceled error (Connect Code 1).
+func IsCanceled(err error) bool {
+	connectErr := Convert(err)
+	return connectErr.Code() == connect.CodeCanceled
 }
 
 // WrapConnectErr wraps the error into a connect.Error with the given code if it is not already a connect.Error.

@@ -81,6 +81,21 @@ func TestIsErrFns(t *testing.T) {
 			errFn: IsUnimplemented,
 			code:  connect.CodeUnimplemented,
 		},
+		{
+			name:  "unavailable",
+			errFn: IsUnavailable,
+			code:  connect.CodeUnavailable,
+		},
+		{
+			name:  "deadline exceeded",
+			errFn: IsDeadlineExceeded,
+			code:  connect.CodeDeadlineExceeded,
+		},
+		{
+			name:  "canceled",
+			errFn: IsCanceled,
+			code:  connect.CodeCanceled,
+		},
 	} {
 		tests := []struct {
 			name    string
