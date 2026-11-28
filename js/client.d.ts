@@ -10,6 +10,7 @@ import { OSService as Apimvmv1OSService } from "./fits/api/mvm/v1/os_pb";
 import { StageService as Apimvmv1StageService } from "./fits/api/mvm/v1/stage_pb";
 import { VLANService as Apimvmv1VLANService } from "./fits/api/mvm/v1/vlan_pb";
 import { PublicCloudVMService as Apipcvmv1PublicCloudVMService } from "./fits/api/pcvm/v1/pcvm_pb";
+import { ApiKeyService as Apiv1ApiKeyService } from "./fits/api/v1/apikey_pb";
 import { HealthService as Apiv1HealthService } from "./fits/api/v1/health_pb";
 import { MethodService as Apiv1MethodService } from "./fits/api/v1/method_pb";
 import { ProjectService as Apiv1ProjectService } from "./fits/api/v1/project_pb";
@@ -41,6 +42,7 @@ export interface Apipcvmv1 {
     publicCloudVM(): ConnectClient<typeof Apipcvmv1PublicCloudVMService>;
 }
 export interface Apiv1 {
+    apiKey(): ConnectClient<typeof Apiv1ApiKeyService>;
     health(): ConnectClient<typeof Apiv1HealthService>;
     method(): ConnectClient<typeof Apiv1MethodService>;
     project(): ConnectClient<typeof Apiv1ProjectService>;

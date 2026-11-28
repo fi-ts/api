@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"strings"
 	"time"
 
 	"connectrpc.com/connect"
@@ -17,6 +18,12 @@ const (
 	TokenEnvName     = "FCO_APIV1_TOKEN"
 	TokenFileEnvName = "FCO_APIV1_TOKEN_FILE"
 	BaseURLEnvName   = "FCO_APIV1_URL"
+
+	// ApiKeySecretPrefix is the common prefix of all api key secrets, e.g. fco_v1_abcd12....
+	// Secrets of api keys are opaque strings and not jwts, the version within the
+	// prefix selects the generation and hash scheme of the secret, detection of api
+	// key secrets stays version independent via this common prefix.
+	ApiKeySecretPrefix = "fco_"
 )
 
 type (
@@ -25,8 +32,10 @@ type (
 		// BaseUrl points to the apiv1 url where the apiserver is reachable
 		BaseURL string
 		// Token to be used to talk to the apiserver, the string representation of the token.
+		// This can be a jwt or the secret of an api key, e.g. fco_v1_abcd12....
 		// If Token is specified, TokenFile cannot be specified.
-		// It is possible to renew this token automatically, see TokenRenewal.
+		// It is possible to renew a jwt automatically, see TokenRenewal.
+		// Api key secrets are managed by the apiserver, renewal does not apply to them.
 		Token string
 		// Tokenfile path to a file containing the string representation of the token.
 		// If Tokenfile is specified, Token cannot be specified.
@@ -129,7 +138,13 @@ func (dc *DialConfig) parse() error {
 // parseTokenClaims extracts expiresAt and issuedAt from the current Token.
 // It is called both when initially parsing the config and when a tokenfile
 // token is re-read, in which case only the claims need to be refreshed.
+// Secrets of api keys, e.g. fco_v1_abcd12..., are opaque and not jwts, for
+// them there are no claims to parse and token renewal does not apply.
 func (dc *DialConfig) parseTokenClaims() error {
+	if !strings.Contains(dc.Token, ".") || strings.HasPrefix(dc.Token, ApiKeySecretPrefix) {
+		// not a jwt, most likely the secret of an api key, nothing to parse
+		return nil
+	}
 	parsed, err := jwt.Parse(dc.Token, nil)
 	if err != nil && !errors.Is(err, jwt.ErrTokenUnverifiable) {
 		return fmt.Errorf("unable to parse token:%w", err)
